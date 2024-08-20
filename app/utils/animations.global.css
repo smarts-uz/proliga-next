@@ -1,0 +1,43 @@
+.fade-in {
+  animation: fadeIn ease-in 0.5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-fast {
+  animation: fadeIn ease-in 0.25s;
+}
+
+.transition-left {
+  animation: transitionLeft ease-out 0.75s;
+}
+@keyframes transitionLeft {
+  0% {
+    translate: -100%;
+    opacity: 50%;
+  }
+  100% {
+    translate: 0px;
+    opacity: 100%;
+  }
+}
+
+.transition-right {
+  animation: transitionRight ease-out 0.75s;
+}
+@keyframes transitionRight {
+  0% {
+    translate: 100%;
+    opacity: 25%;
+  }
+  100% {
+    translate: 0px;
+    opacity: 100%;
+  }
+}
