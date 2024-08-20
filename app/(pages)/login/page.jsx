@@ -8,9 +8,10 @@ const Login = () => {
   return (
     <main className="my-4 min-h-[50vh]">
       <Gutter>
-        <form className="w-full flex flex-col gap-4">
-          <h2 className='font-semibold text-2xl' >Kirish yoki ro&apos;yxatdan o&apos;tish</h2>
-
+        <form className="flex w-full flex-col gap-4">
+          <h2 className="text-2xl font-semibold">
+            Kirish yoki ro&apos;yxatdan o&apos;tish
+          </h2>
           <div className="relative text-xl">
             <input
               type="number"
