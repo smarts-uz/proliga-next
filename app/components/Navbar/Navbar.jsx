@@ -13,9 +13,9 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='shadow-white shadow'>
+    <nav className="bg-black bg-opacity-90 shadow shadow-white">
       <Gutter>
-        <div className="relative flex w-full items-center justify-between bg-black bg-opacity-90 py-5 text-white max-2xl:px-12">
+        <div className="relative flex w-full items-center justify-between py-5 text-white max-2xl:px-12">
           <Link href="/">
             <Image
               src="/images/proliga.png"
