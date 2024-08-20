@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Gutter from '../Gutter'
+import Gutter from '@/src/components/Gutter'
 
 const Footer = () => {
   return (

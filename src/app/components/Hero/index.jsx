@@ -1,4 +1,4 @@
-import Gutter from '../Gutter'
+import Gutter from "@/src/components/Gutter"
 
 const Hero = () => {
   const btnStyles =

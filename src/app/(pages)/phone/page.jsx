@@ -2,12 +2,10 @@
 
 import { redirect } from 'next/navigation'
 import { useState } from 'react'
-import Gutter from '../../components/Gutter'
+import Gutter from '@/src/components/Gutter'
 
 const Phone = () => {
   const [number, setNumber] = useState('')
-
-  console.log(number)
 
   if (number.length === 9) {
     redirect('/login')
