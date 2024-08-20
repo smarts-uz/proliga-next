@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer'
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '700']
+  weight: ['400', '700'],
 })
 
 export const metadata = {
@@ -16,11 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={archivo.className}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
+    <head>
+      <title>{metadata.title}</title>
+      <meta name="description" content={metadata.description} />
+    </head>
+    <body className={archivo.className}>
+    <Navbar />
+    <main>{children}</main>
+    <Footer />
+    </body>
     </html>
   )
 }
