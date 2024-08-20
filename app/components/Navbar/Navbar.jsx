@@ -22,7 +22,7 @@ const Navbar = () => {
           className="cursor-pointer"
         />
       </Link>
-      <section className="flex items-center gap-6">
+      <section className="flex items-center text-white gap-6">
         <Link href={'/'}>Chempionat</Link>
         <Link href={'/'}>Yutuqlar</Link>
         <Link href={'/'}>Qoida</Link>
