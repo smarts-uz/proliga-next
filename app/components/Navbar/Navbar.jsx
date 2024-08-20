@@ -39,17 +39,17 @@ const Navbar = () => {
                 height={24}
               />
             </button>
-            <div className="flex items-center justify-center gap-2 sm:min-w-24">
-              <button className="flex size-10 items-center justify-center p-1">
-                <Image
-                  src={'/icons/user.svg'}
-                  alt="user"
-                  width={32}
-                  height={32}
-                  className="rounded-full bg-white"
-                  onClick={handleToggleDropdown}
-                />
-              </button>
+            <button
+              onClick={handleToggleDropdown}
+              className="flex items-center justify-center gap-2 sm:min-w-24"
+            >
+              <Image
+                src={'/icons/user.svg'}
+                alt="user"
+                width={32}
+                height={32}
+                className="size-8 rounded-full bg-white"
+              />
               <Image
                 src={'/icons/arrow-down.svg'}
                 className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden transition-all sm:block`}
@@ -61,7 +61,7 @@ const Navbar = () => {
                 isDropdownOpen={isDropdownOpen}
                 toggleDropdown={toggleDropdown}
               />
-            </div>
+            </button>
           </div>
         </div>
       </Gutter>
