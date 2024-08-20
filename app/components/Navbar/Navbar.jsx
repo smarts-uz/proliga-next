@@ -15,14 +15,14 @@ const Navbar = () => {
     <nav className="relative flex w-full items-center justify-between bg-black bg-opacity-90 px-12 py-5 text-white shadow-sm shadow-gray-200">
       <Link href="/">
         <Image
-          src="/icons/proliga.svg"
+          src="/images/proliga.png"
           alt="Proliga"
           width={180}
           height={60}
           className="cursor-pointer"
         />
       </Link>
-      <section className="flex items-center text-white gap-6">
+      <section className="flex items-center gap-6 text-white">
         <Link href={'/'}>Chempionat</Link>
         <Link href={'/'}>Yutuqlar</Link>
         <Link href={'/'}>Qoida</Link>
@@ -33,9 +33,17 @@ const Navbar = () => {
         </button>
         <div
           onClick={handleToggleDropdown}
-          className="flex min-w-16 cursor-pointer items-center justify-center gap-2"
+          className="flex min-w-24 cursor-pointer items-center justify-center gap-2"
         >
-          <span className="size-8 rounded-full bg-white" />
+          <button className="flex size-10 items-center justify-center p-1">
+            <Image
+              src={'/icons/user.svg'}
+              alt="user"
+              width={32}
+              height={32}
+              className="rounded-full bg-white"
+            />
+          </button>
           <Image
             src={'/icons/arrow-down.svg'}
             className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} transition-all`}
@@ -43,10 +51,10 @@ const Navbar = () => {
             width={24}
             height={24}
           />
-           <Dropdown
-              isDropdownOpen={isDropdownOpen}
-              toggleDropdown={toggleDropdown}
-            />
+          <Dropdown
+            isDropdownOpen={isDropdownOpen}
+            toggleDropdown={toggleDropdown}
+          />
         </div>
       </div>
     </nav>

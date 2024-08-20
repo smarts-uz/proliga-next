@@ -6,16 +6,10 @@ const Dropdown = ({ isDropdownOpen, toggleDropdown }) => {
 
   return (
     <section
-      className={`${styles} absolute right-12 top-20 flex-col gap-4 rounded-md bg-gray-900 p-4 py-6`}
+      className={`${styles} absolute right-12 top-[5.25rem] flex-col gap-4 rounded-md bg-neutral-800 p-4 py-6`}
     >
       <Link href={'/login'} className="flex w-full justify-between gap-2">
-        <Image
-          className="bg-black"
-          src={'/icons/login.svg'}
-          alt="user"
-          width={24}
-          height={24}
-        />
+        <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
         <p>Login</p>
       </Link>
     </section>

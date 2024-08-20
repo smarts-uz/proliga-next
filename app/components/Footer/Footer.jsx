@@ -1,25 +1,56 @@
-import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
-    <footer className="bg-black bg-opacity-90 justify-around  flex py-4 px-12 ">
-      <div className=" m-3">
-        <a href="URL" className="text-white">Про нас</a>
+    <footer className="flex justify-around bg-neutral-900 bg-opacity-90 px-12 pb-28 pt-8 text-white">
+      <div className="flex flex-col gap-4">
+        <Link href="/" className="hover:underline">
+          Biz haqimizda
+        </Link>
       </div>
-      <div className="border-r-4 border-black "></div>
-      <div>
-        <div className=" m-3">
-          <a href="URL" className="text-white">политика</a>
+      <span className="rounded-md border-2 border-black" />
+      <div className="flex flex-col gap-4">
+        <Link href="/" className="hover:underline">
+          Qoidalarimiz va maxfiylik
+        </Link>
+        <Link href="/" className="hover:underline">
+          Foydalanuvchi shartnomasi
+        </Link>
+      </div>
+      <span className="rounded-md border-2 border-black" />
+      <section className="flex flex-col gap-4">
+        <h3 className="font-medium">Bizning ijtimoiy tarmoqlarimiz</h3>
+        <div className="flex items-center gap-4">
+          <Link href="https://www.instagram.com">
+            <Image
+              src={'/icons/instagram.svg'}
+              alt="instagram"
+              width={24}
+              height={24}
+              className="size-8 transition-all hover:scale-110"
+            />
+          </Link>
+          <Link href="https://www.facebook.com">
+            <Image
+              src={'/icons/facebook.svg'}
+              alt="facebook"
+              width={24}
+              height={24}
+              className="size-8 transition-all hover:scale-110"
+            />
+          </Link>
+          <Link href="https://www.telegram.org">
+            <Image
+              src={'/icons/telegram.svg'}
+              alt="telegram"
+              width={24}
+              height={24}
+              className="size-8 transition-all hover:scale-110"
+            />
+          </Link>
         </div>
-        <div className=" m-3">
-          <a href="URL" className="text-white">конфиденциальности</a>
-        </div>
-      </div>
-      <div className="border-r-4 border-black"></div>
-      <div className="text-left m-3">
-        <a href="URL" className="text-white">Пользовательское соглашение</a>
-      </div>
-
+      </section>
     </footer>
   )
 }
