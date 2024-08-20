@@ -5,7 +5,7 @@ import Bell from '../Icons/Bell/Bell'
 
 const Navbar = () => {
   return (
-    <nav className="flex w-full items-center justify-between bg-black bg-opacity-90 px-12 py-5 border-b border-white">
+    <nav className="flex w-full items-center justify-between bg-black bg-opacity-90 px-12 py-5 shadow-sm shadow-gray-200 text-white">
       <Link href="/">
         <Image
           src="/images/Proliga.svg"

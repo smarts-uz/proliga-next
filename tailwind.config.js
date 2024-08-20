@@ -6,7 +6,11 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary": "#FFF400"
+      }
+    },
   },
   plugins: ['prettier-plugin-tailwindcss'],
 }
