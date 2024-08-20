@@ -1,4 +1,4 @@
-import Gutter from '@/app/components/Gutter/Gutter'
+import Gutter from '../Gutter'
 
 const Hero = () => {
   const btnStyles =
@@ -18,7 +18,7 @@ const Hero = () => {
             FUTBOL JAMOANGIZNI
           </h2>
           <span className="block h-3 w-4/5 rounded-md bg-primary md:w-3/5 xl:w-2/5"></span>
-          <div className="flex flex-col sm:flex-row gap-4 text-lg font-bold">
+          <div className="flex flex-col gap-4 text-lg font-bold sm:flex-row">
             <button
               className={`${btnStyles} bg-primary text-black hover:bg-opacity-55`}
             >

@@ -7,7 +7,6 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [settingsStatus, setSettingsStatus] = useState(null)
 
   const handleSubmit = async (e) => {}
 
