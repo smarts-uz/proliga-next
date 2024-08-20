@@ -6,7 +6,7 @@ const Login = () => {
   const [number, setNumber] = useState('')
 
   return (
-    <main className="my-4 min-h-[50vh]">
+    <main className="my-4 min-h-[50vh] text-neutral-200">
       <Gutter>
         <form className="flex w-full flex-col gap-4">
           <h2 className="text-2xl font-semibold">
