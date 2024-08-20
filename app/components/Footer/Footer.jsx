@@ -6,14 +6,14 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900">
       <Gutter>
-        <footer className="mb-4 flex justify-between rounded-md bg-opacity-90 max-2xl:px-12 pb-28 pt-8 text-white">
-          <div className="flex flex-col gap-4">
+        <footer className="mb-4 flex flex-wrap gap-4 xl:gap-0 justify-between rounded-md bg-opacity-90 pb-28 pt-8 text-white">
+          <div className="flex min-w-80 flex-col gap-4">
             <Link href="/" className="hover:underline">
               Biz haqimizda
             </Link>
           </div>
-          <span className="rounded-md border-2 border-black" />
-          <div className="flex flex-col gap-4">
+          <span className="hidden rounded-md border-2 border-black xl:block" />
+          <div className="flex min-w-80 flex-col gap-4">
             <Link href="/" className="hover:underline">
               Qoidalarimiz va maxfiylik
             </Link>
@@ -21,8 +21,8 @@ const Footer = () => {
               Foydalanuvchi shartnomasi
             </Link>
           </div>
-          <span className="rounded-md border-2 border-black" />
-          <section className="flex flex-col gap-4">
+          <span className="hidden rounded-md border-2 border-black xl:block" />
+          <section className="flex min-w-80 flex-col gap-4">
             <h3 className="font-medium">Bizning ijtimoiy tarmoqlarimiz</h3>
             <div className="flex items-center gap-4">
               <Link href="https://www.instagram.com">

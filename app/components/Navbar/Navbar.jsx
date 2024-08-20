@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="bg-black bg-opacity-90 shadow shadow-white">
       <Gutter>
-        <div className="relative flex w-full items-center justify-between py-5 text-white max-2xl:px-12">
+        <div className="relative flex w-full items-center justify-between py-5 text-white">
           <Link href="/">
             <Image
               src="/images/proliga.png"
@@ -25,7 +25,7 @@ const Navbar = () => {
               className="cursor-pointer"
             />
           </Link>
-          <section className="flex items-center gap-6 text-white">
+          <section className="xl:flex items-center gap-6 text-white hidden">
             <Link href={'/'}>Chempionat</Link>
             <Link href={'/'}>Yutuqlar</Link>
             <Link href={'/'}>Qoida</Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
             </button>
             <div
               onClick={handleToggleDropdown}
-              className="flex min-w-24 cursor-pointer items-center justify-center gap-2"
+              className="flex sm:min-w-24 cursor-pointer items-center justify-center gap-2"
             >
               <button className="flex size-10 items-center justify-center p-1">
                 <Image
@@ -54,7 +54,7 @@ const Navbar = () => {
               </button>
               <Image
                 src={'/icons/arrow-down.svg'}
-                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} transition-all`}
+                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} transition-all sm:block hidden`}
                 alt="arrow down"
                 width={24}
                 height={24}
