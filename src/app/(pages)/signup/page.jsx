@@ -15,7 +15,7 @@ const SignUp = () => {
   useEffect(() => {}, [])
 
   return (
-    <div className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-neutral-200">
+    <div className="z-20 my-4 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-neutral-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish
@@ -35,7 +35,7 @@ const SignUp = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="flex flex-col gap-1 relative">
+        <div className="relative flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
             Telefon raqam:
           </label>
@@ -51,7 +51,9 @@ const SignUp = () => {
             required
             onChange={(e) => setPhone(e.target.value)}
           />
-          <span className='absolute left-2 bottom-2 text-neutral-300'>+998</span>
+          <span className="absolute bottom-2 left-2 text-neutral-300">
+            +998
+          </span>
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-xs md:text-base">
