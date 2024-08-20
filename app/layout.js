@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className={`${archivo.className} bg-black`}>
+      <body className={`${archivo.className} bg-black text-white`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

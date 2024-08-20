@@ -21,11 +21,11 @@ const Navbar = () => {
               src="/images/proliga.png"
               alt="Proliga"
               width={180}
-              height={60}
-              className="cursor-pointer"
+              height={56}
+              className="h-8 w-40 cursor-pointer"
             />
           </Link>
-          <section className="xl:flex items-center gap-6 text-white hidden">
+          <section className="hidden items-center gap-6 text-white xl:flex">
             <Link href={'/'}>Chempionat</Link>
             <Link href={'/'}>Yutuqlar</Link>
             <Link href={'/'}>Qoida</Link>
@@ -39,10 +39,7 @@ const Navbar = () => {
                 height={24}
               />
             </button>
-            <div
-              onClick={handleToggleDropdown}
-              className="flex sm:min-w-24 cursor-pointer items-center justify-center gap-2"
-            >
+            <div className="flex items-center justify-center gap-2 sm:min-w-24">
               <button className="flex size-10 items-center justify-center p-1">
                 <Image
                   src={'/icons/user.svg'}
@@ -50,11 +47,12 @@ const Navbar = () => {
                   width={32}
                   height={32}
                   className="rounded-full bg-white"
+                  onClick={handleToggleDropdown}
                 />
               </button>
               <Image
                 src={'/icons/arrow-down.svg'}
-                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} transition-all sm:block hidden`}
+                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden transition-all sm:block`}
                 alt="arrow down"
                 width={24}
                 height={24}

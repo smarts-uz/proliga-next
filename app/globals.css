@@ -29,9 +29,17 @@
     margin: 0;
   }
 
-  /* Firefox */
   input[type='number'] {
     -moz-appearance: textfield;
     appearance: textfield;
+  }
+}
+
+@layer components {
+  .auth-container {
+    @apply xs:w-3/4 mx-4 flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow-md shadow-gray-800 sm:mx-0 sm:w-1/2 md:w-[28rem] md:p-8;
+  }
+  .auth-input {
+    @apply h-10 w-full rounded-md bg-neutral-900 px-2 py-1 text-slate-300 shadow-sm shadow-gray-400;
   }
 }

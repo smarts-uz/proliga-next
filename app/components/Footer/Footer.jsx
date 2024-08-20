@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900">
       <Gutter>
-        <footer className="mb-4 flex flex-wrap gap-4 xl:gap-0 justify-between rounded-md bg-opacity-90 pb-28 pt-8 text-white">
+        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-28 pt-8 text-white xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/" className="hover:underline">
               Biz haqimizda
