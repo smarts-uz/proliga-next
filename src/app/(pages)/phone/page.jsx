@@ -1,9 +1,10 @@
 'use client'
-import Gutter from '@/app/components/Gutter/Gutter'
+
 import { redirect } from 'next/navigation'
 import { useState } from 'react'
+import Gutter from '../../components/Gutter'
 
-const Login = () => {
+const Phone = () => {
   const [number, setNumber] = useState('')
 
   console.log(number)
@@ -39,4 +40,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Phone

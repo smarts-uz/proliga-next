@@ -2,8 +2,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Dropdown from './components/Dropdown'
-import Gutter from '../Gutter/Gutter'
+import Dropdown from './Dropdown'
+import Gutter from '../Gutter'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
