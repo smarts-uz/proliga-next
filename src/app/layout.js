@@ -2,13 +2,9 @@
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-// import { supabase } from './lib/supabaseClient'
 import { useState, useEffect } from 'react'
 import { Archivo } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { createClient } from '@supabase/supabase-js'
 import { supabase } from './lib/supabaseClient'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -46,12 +42,10 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Bu sportlar haqida web sayt" />
       </head>
       <body className={`${archivo.className} bg-black text-white`}>
-        {/* <Auth supabaseClient={supabase}> */}
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ToastContainer />
-        {/* </Auth> */}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <ToastContainer />
       </body>
     </html>
   )

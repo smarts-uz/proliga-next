@@ -22,6 +22,7 @@ const Navbar = () => {
               alt="Proliga"
               width={180}
               height={56}
+              priority={true}
               className="h-8 w-40 cursor-pointer"
             />
           </Link>
@@ -37,7 +38,7 @@ const Navbar = () => {
                 alt="bell"
                 width={24}
                 height={24}
-                className='size-6 select-none'
+                className="size-6 select-none"
               />
             </button>
             <button

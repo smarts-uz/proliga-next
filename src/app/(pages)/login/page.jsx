@@ -1,36 +1,31 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import { toast } from 'react-toastify'
-import { supabase } from '../../lib/supabaseClient'
+import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
+import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const { data, error, isLoading, logIn } = useLogIn()
+  console.log(error)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!email || !password || !phone)
-      return toast.error("Barcha maydonlar to'ldirilishi shart")
-    if (password.length < 6)
-      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
-    if (phone.length !== 9) return toast.error('Telefon raqam xato')
+    await logIn({ email, password, phone })
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: "dilb2dek1@gmail.com",
-      password: "root123"
-    })
+    if (error) return
 
-    if (error) {
-      toast.error(error.message)
-    }
-    if (data) {
-      toast.success('Tizimga muvaffaqiyatli kirildi')
-    }
-    console.log(data, error)
+    setEmail('')
+    setPassword('')
+    setPhone('')
+
+    return setTimeout(() => redirect('/'), 500)
   }
 
   return (
@@ -39,20 +34,6 @@ const Login = () => {
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish
         </h2>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="username" className="text-xs md:text-base">
-            Elektron pochta:
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="auth-input"
-            placeholder="example@xyz.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
             Telefon raqam:
@@ -71,6 +52,20 @@ const Login = () => {
           <span className="absolute bottom-2 left-2 text-neutral-300">
             +998
           </span>
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="username" className="text-xs md:text-base">
+            Elektron pochta:
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="auth-input"
+            placeholder="example@xyz.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-xs md:text-base">
@@ -101,9 +96,20 @@ const Login = () => {
         <button
           onClick={handleSubmit}
           type="submit"
+          disabled={isLoading}
           className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50"
         >
-          Kirish
+          {isLoading ? (
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="mx-auto size-6 animate-spin"
+            />
+          ) : (
+            'Kirish'
+          )}
         </button>
       </form>
     </div>

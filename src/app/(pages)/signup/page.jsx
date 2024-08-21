@@ -1,29 +1,32 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 
 const SignUp = () => {
+  const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [phone, setPhone] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const { signUp, data, error, isLoading } = useSignUp()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!email || !password || !phone)
-      return toast.error("Barcha maydonlar to'ldirilishi shart")
-    if (password.length < 6)
-      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
-    if (phone.length !== 9) return toast.error('Telefon raqam xato')
+    await signUp({ email, password, confirmPassword, phone })
 
+    if (error) return
 
-      
+    setPhone('')
+    setEmail('')
+    setPassword('')
+    setConfirmPassword('')
+
+    return setTimeout(() => redirect('/login'), 500)
   }
-
-  // useEffect(() => {}, [])
 
   return (
     <div className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-neutral-200">
@@ -31,20 +34,6 @@ const SignUp = () => {
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish
         </h2>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="username" className="text-xs md:text-base">
-            Elektron pochta:
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="auth-input"
-            placeholder="example@xyz.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
             Telefon raqam:
@@ -64,6 +53,20 @@ const SignUp = () => {
           <span className="absolute bottom-2 left-2 text-neutral-300">
             +998
           </span>
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="username" className="text-xs md:text-base">
+            Elektron pochta:
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="auth-input"
+            placeholder="example@xyz.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-xs md:text-base">
@@ -113,8 +116,23 @@ const SignUp = () => {
         >
           Akkauntingiz bormi?
         </Link>
-        <button className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50">
-          Kirish
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isLoading}
+          className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50"
+        >
+          {isLoading ? (
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="mx-auto size-6 animate-spin"
+            />
+          ) : (
+            'Kirish'
+          )}
         </button>
       </form>
     </div>
