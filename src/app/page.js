@@ -1,4 +1,4 @@
-import Hero from './components/Hero'
+import Hero from '@/src/components/Hero'
 import Rules from '@/src/app/components/Rules'
 
 export default function Home() {

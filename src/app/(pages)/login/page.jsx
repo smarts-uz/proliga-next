@@ -13,7 +13,7 @@ const Login = () => {
   useEffect(() => {}, [])
 
   return (
-    <div className="z-20 my-8 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-gray-200">
+    <div className="z-20 py-4 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-gray-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish
