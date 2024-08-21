@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import Gutter from '@/src/components/Gutter'
 
 const GetPoints = () => {
   return (
-    <section className="block items-center justify-between bg-[#222222] px-[1rem] md:flex md:px-[6rem]">
+    <section className=" bg-[#222222] ">
+      <Gutter className={'block items-center justify-between md:flex'}>
       <div>
         <h2>BALLARNI YIG’ING</h2>
         <p className="max-w-[651px]">
@@ -21,6 +23,7 @@ const GetPoints = () => {
           height={400}
         />
       </div>
+      </Gutter>
     </section>
   )
 }

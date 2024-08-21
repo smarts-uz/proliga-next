@@ -51,3 +51,7 @@
     @apply h-10 w-full rounded-md bg-neutral-900 px-2 py-1 text-slate-300 shadow-sm shadow-gray-400;
   }
 }
+
+p {
+  @apply text-2xl text-[#B8B8B8]
+}

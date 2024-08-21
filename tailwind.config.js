@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         "primary": "#FFF400"
       },
+      backgroundImage: {
+        'custom-image': "url('/images/promotion-6bg.png')",
+      },
       screens: {
         "xs": "420px",
         "2xs": "375px"
