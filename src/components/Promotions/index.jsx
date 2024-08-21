@@ -8,7 +8,7 @@ const  Promotions = () => {
       <>
         <CreateTeam/>
         <GetPoints/>
-        {/*<Transfers/>*/}
+        {/* <Transfers/> */}
       </>
     )
 }
