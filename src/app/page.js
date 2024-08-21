@@ -7,7 +7,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Carousel/>
+      <Promotions />
+      <Carousel />
       <Rules />
     </>
   )

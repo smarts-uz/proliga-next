@@ -2,6 +2,8 @@ import { Archivo } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   )

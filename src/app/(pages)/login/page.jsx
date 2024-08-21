@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -9,11 +10,11 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e) => {}
-
-  useEffect(() => {}, [])
+  const notify = () => toast('Wow so easy!')
+  // notify()
 
   return (
-    <div className="z-20 py-4 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-gray-200">
+    <div className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-gray-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish
@@ -78,7 +79,10 @@ const Login = () => {
         >
           Akkaunt ochish?
         </Link>
-        <button className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50">
+        <button
+          onClick={() => toast('SignIn')}
+          className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50"
+        >
           Kirish
         </button>
       </form>
