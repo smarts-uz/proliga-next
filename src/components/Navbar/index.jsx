@@ -31,12 +31,13 @@ const Navbar = () => {
             <Link href={'/'}>Qoida</Link>
           </section>
           <div className="flex w-max items-center justify-center gap-4">
-            <button className="h-1/2 w-1/2">
+            <button>
               <Image
                 src={'/icons/bell.svg'}
                 alt="bell"
                 width={24}
                 height={24}
+                className='size-6 select-none'
               />
             </button>
             <button
