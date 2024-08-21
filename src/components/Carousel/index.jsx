@@ -44,8 +44,7 @@ const Carousel = () => {
                     <img
                       className="absolute left-1/2 bottom-0 sm:w-auto sm:h-auto w-[120px] h-[120px] transform -translate-x-1/2"
                       src='/images/promotion-4.png' />
-                    <img
-                      className="absolute top-1/2 left-0 sm:w-auto sm:h-auto w-[120px] h-[120px] transform -translate-y-1/2"
+                    <img className="absolute top-1/2 left-0 sm:w-auto sm:h-auto w-[120px] h-[120px] transform -translate-y-1/2"
                       src='/images/promotion-5.png' />
                     <img
                       className="absolute top-1/2 right-0 sm:w-auto sm:h-auto w-[120px] h-[120px] transform -translate-y-1/2"
