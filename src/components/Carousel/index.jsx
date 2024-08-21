@@ -7,9 +7,10 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const slides = [
-    'https://via.placeholder.com/600x300/FF5733/FFFFFF?text=Slide+1',
-    'https://via.placeholder.com/600x300/33FF57/FFFFFF?text=Slide+2',
-    'https://via.placeholder.com/600x300/3357FF/FFFFFF?text=Slide+3',
+    {},
+    {},
+    {},
+    {}
   ]
 
   const nextSlide = () => {
@@ -39,8 +40,8 @@ const Carousel = () => {
         >
           <div className="w-full flex-shrink-0">
             <section className="h-auto">
-              <div className="w-auto -skew-x-12 transform bg-[#FFF400] pl-16 md:w-1/3">
-                <h3 className="text-[31px] font-bold capitalize italic text-black">
+              <div className="w-auto   bg-[#FFF400] pl-16 md:w-1/3">
+                <h3 className="text-[31px] font-black capitalize italic text-black">
                   umumiy qoidalar
                 </h3>
               </div>
@@ -94,6 +95,36 @@ const Carousel = () => {
               </div>
               <div className={'ml-96 mt-28'}>
                 <img src="/images/promotion-2.png" alt="" />
+              </div>
+            </section>
+          </div>
+          <div className="w-full flex-shrink-0">
+            <section className="h-auto">
+              <div className="w-auto  bg-[#FFF400] pl-16 md:w-1/3">
+                <h3 className="text-[31px] font-black capitalize italic  text-black">
+                  umumiy qoidalar
+                </h3>
+              </div>
+              <div className="block items-center justify-center xl:flex">
+                <div className="mt-[2rem] flex flex-wrap items-center justify-center">
+                  <div className="flex flex-col flex-wrap items-center justify-center">
+                    <h2 className="uppercase text-5xl font-bold">TRANSFERLARNI AMALGA OSHIRING</h2>
+                    <p className="size-1/2 text-2xl pt-8 text-center pb-7 text-gray-400" >
+                      Agar sizning jamoangizdagi o&apos;yinchilardan biri jarohat olgan
+                      bo&apos;lsa yoki shunchaki yomon o&apos;ynasa, har bir turda ochko
+                      to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 2 tagacha
+                      transferni amalga oshirishingiz mumkin
+
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+              <div className="flex items-center justify-cente">
+                <img
+                  className="mx-auto h-auto max-h-[248px] w-auto max-w-[400px] lg:max-h-[448px] lg:max-w-[600px] 2xl:max-h-[648px] 2xl:max-w-[865px]"
+                  src="/images/transfer-removebg-preview.png"
+                />
               </div>
             </section>
           </div>
