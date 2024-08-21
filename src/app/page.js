@@ -1,11 +1,11 @@
-import Hero from "../components/Hero"
-import Promotions from '@/src/components/Promotions'
+import Hero from '@/src/components/Hero'
+import Rules from '@/src/app/components/Rules'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Promotions/>
+      <Rules />
     </>
   )
 }
