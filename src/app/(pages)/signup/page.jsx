@@ -3,36 +3,46 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const SignUp = () => {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const handleSubmit = async (e) => {}
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-  useEffect(() => {}, [])
+    if (!email || !password || !phone)
+      return toast.error("Barcha maydonlar to'ldirilishi shart")
+    if (password.length < 6)
+      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+    if (phone.length !== 9) return toast.error('Telefon raqam xato')
+
+
+      
+  }
+
+  // useEffect(() => {}, [])
 
   return (
-    <div className="z-20 py-4 flex min-h-[70vh] items-center justify-center bg-neutral-800 text-neutral-200">
+    <div className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-neutral-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish
         </h2>
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
-            Toliq ism:
+            Elektron pochta:
           </label>
           <input
-            type="text"
-            name="username"
-            id="username"
+            type="email"
+            name="email"
+            id="email"
             className="auth-input"
-            placeholder="Mening ismim"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="example@xyz.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="relative flex flex-col gap-1">

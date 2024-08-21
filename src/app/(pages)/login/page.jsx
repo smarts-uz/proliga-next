@@ -2,16 +2,36 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { supabase } from '../../lib/supabaseClient'
 
 const Login = () => {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const handleSubmit = async (e) => {}
-  const notify = () => toast('Wow so easy!')
-  // notify()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!email || !password || !phone)
+      return toast.error("Barcha maydonlar to'ldirilishi shart")
+    if (password.length < 6)
+      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+    if (phone.length !== 9) return toast.error('Telefon raqam xato')
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: "dilb2dek1@gmail.com",
+      password: "root123"
+    })
+
+    if (error) {
+      toast.error(error.message)
+    }
+    if (data) {
+      toast.success('Tizimga muvaffaqiyatli kirildi')
+    }
+    console.log(data, error)
+  }
 
   return (
     <div className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-gray-200">
@@ -21,16 +41,16 @@ const Login = () => {
         </h2>
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
-            Toliq ism:
+            Elektron pochta:
           </label>
           <input
-            type="text"
-            name="username"
-            id="username"
+            type="email"
+            name="email"
+            id="email"
             className="auth-input"
-            placeholder="Mening ismim"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="example@xyz.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="relative flex flex-col gap-1">
@@ -46,7 +66,6 @@ const Login = () => {
             value={phone}
             min={9}
             max={9}
-            required
             onChange={(e) => setPhone(e.target.value)}
           />
           <span className="absolute bottom-2 left-2 text-neutral-300">
@@ -80,7 +99,8 @@ const Login = () => {
           Akkaunt ochish?
         </Link>
         <button
-          onClick={() => toast('SignIn')}
+          onClick={handleSubmit}
+          type="submit"
           className="w-full rounded-md border border-primary bg-neutral-800 py-3 font-semibold transition-all hover:bg-neutral-900 hover:bg-opacity-50"
         >
           Kirish
