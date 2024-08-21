@@ -51,11 +51,3 @@
     @apply h-10 w-full rounded-md bg-neutral-900 px-2 py-1 text-slate-300 shadow-sm shadow-gray-400;
   }
 }
-
-h2 {
-  @apply font-bold md:text-[46px] text-[26px]  text-white uppercase
-}
-
-p {
-  @apply text-[#B8B8B8] font-[400] md:text-[23px] text-[16px]
-}
