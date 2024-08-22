@@ -27,7 +27,7 @@ const Carousel = () => {
   }
 
   return (
-    <section className="relative bg-neutral-800">
+    <section className="bg-neutral-800">
       <Gutter>
         {data.map((slide, index) => (
           <Slide
@@ -60,12 +60,10 @@ const data = [
     type: 1,
   },
   {
-    header: 'Umumiy qoidalar',
-    title: "Jamoa yig'ing",
+    title: 'BALLARNI YEG’ING',
     description:
-      "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-    images: '/promotions-tiles.png',
-    mainImage: '/promotions-tiles.png',
+      "Har bir o'yinchi haqiqiy o'yinlarda qilgan harakatlari uchun ochko oladi yoki yo'qotadi. Ballar soni o'yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi",
+    mainImage: '/images/promotion-2.png',
     type: 2,
   },
   {
