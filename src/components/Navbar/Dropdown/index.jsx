@@ -1,12 +1,9 @@
-import { useAuthContext } from '@/src/app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLogOut } from '@/src/app/hooks/auth/useLogOut/useLogOut'
 
-const Dropdown = ({ isDropdownOpen, toggleDropdown }) => {
-  const { state } = useAuthContext()
+const Dropdown = ({ state }) => {
   const { logOut } = useLogOut()
-  console.log(state.user)
 
   return (
     <section
