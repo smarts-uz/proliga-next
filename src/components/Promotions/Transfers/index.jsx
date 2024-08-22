@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const Transfers = () => {
   return (
-    <div className={'w-full bg-[#222222] py-16'}>
+    <div className={'w-full bg-neutral-800 py-16'}>
       <Gutter className={'bg-center   bg-cover bg-custom-image flex flex-col  align-center'}>
         <h2 className={'text-4xl font-bold uppercase text-center mx-auto'}>TRANSFERLARNI AMALGA OSHIRING</h2>
         <p className={'text-center w-[70%] mx-auto'}>
