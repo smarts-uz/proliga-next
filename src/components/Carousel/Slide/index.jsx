@@ -37,7 +37,7 @@ const Slide = ({
         </div>
         <button
           onClick={prevSlide}
-          className="top-[50% - 32px] absolute left-8 transform bg-opacity-50 px-4 py-2 text-white xl:-left-4"
+          className="top-[50% - 32px] absolute left-8 transform bg-opacity-50 text-white xl:left-4"
         >
           <Image
             src="/icons/arrow-down.svg"
@@ -49,7 +49,7 @@ const Slide = ({
         </button>
         <button
           onClick={nextSlide}
-          className="top-[50% - 32px] absolute right-8 bg-opacity-50 px-4 py-2 text-white xl:-right-4"
+          className="top-[50% - 32px] absolute right-8 bg-opacity-50 text-white xl:right-4"
         >
           <Image
             src="/icons/arrow-down.svg"
@@ -65,9 +65,9 @@ const Slide = ({
   if (type === 2 && currentIndex === index) {
     return (
       <div className="justify- flex h-[40rem] w-full items-center">
-        <section className="h-auto w-full pb-10">
+        <section className="pb-10">
           <div className="flex justify-between">
-            <div className="mt-2 w-[30rem] pt-2 text-start">
+            <div className="mt-2 pt-2 text-start">
               <h2 className="text-5xl font-bold uppercase">{title}</h2>
               <p className="pt-5 text-xl text-neutral-400">{description}</p>
             </div>
@@ -112,19 +112,19 @@ const Slide = ({
 
   if (type === 3 && currentIndex === index) {
     return (
-<div className="flex h-[40rem] w-full items-center justify-center">
-  <section className="flex h-auto w-full flex-col items-center pb-10">
-    <div className="mt-2 w-[60rem]  pt-2 text-center mx-auto flex flex-col items-center">
-      <h2 className="pt-7 text-5xl font-bold uppercase">{title}</h2>
-      <p className="pt-5 text-2xl text-neutral-400">{description}</p>
-      <Image
-        width={550}
-        height={400}
-        src={mainImage}
-        alt={title}
-        className="relative pt-12 mx-auto"
-      />
-    </div>
+      <div className="flex h-[40rem] w-full items-center justify-center">
+        <section className="flex h-auto w-full flex-col items-center pb-10">
+          <div className="mx-auto mt-2 flex w-full flex-col items-center pt-2 text-center">
+            <h2 className="pt-7 text-5xl font-bold uppercase">{title}</h2>
+            <p className="pt-5 text-2xl text-neutral-400">{description}</p>
+            <Image
+              width={550}
+              height={400}
+              src={mainImage}
+              alt={title}
+              className="relative mx-auto pt-12"
+            />
+          </div>
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
