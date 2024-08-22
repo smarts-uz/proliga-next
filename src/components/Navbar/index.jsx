@@ -22,13 +22,29 @@ const Navbar = () => {
               alt="Proliga"
               width={180}
               height={56}
+              priority={true}
               className="h-8 w-40 cursor-pointer"
             />
           </Link>
-          <section className="hidden items-center gap-6 text-white xl:flex">
-            <Link href={'/'}>Chempionat</Link>
-            <Link href={'/'}>Yutuqlar</Link>
-            <Link href={'/'}>Qoida</Link>
+          <section className="hidden items-center gap-6 text-neutral-300 xl:flex">
+            <Link
+              className="transition-all hover:text-white hover:underline"
+              href={'/'}
+            >
+              Chempionat
+            </Link>
+            <Link
+              className="transition-all hover:text-white hover:underline"
+              href={'/'}
+            >
+              Yutuqlar
+            </Link>
+            <Link
+              className="transition-all hover:text-white hover:underline"
+              href={'/'}
+            >
+              Qoida
+            </Link>
           </section>
           <div className="flex w-max items-center justify-center gap-4">
             <button>
@@ -37,7 +53,7 @@ const Navbar = () => {
                 alt="bell"
                 width={24}
                 height={24}
-                className='size-6 select-none'
+                className="size-6 select-none"
               />
             </button>
             <button
@@ -58,10 +74,12 @@ const Navbar = () => {
                 width={24}
                 height={24}
               />
-              <Dropdown
-                isDropdownOpen={isDropdownOpen}
-                toggleDropdown={toggleDropdown}
-              />
+              {isDropdownOpen && (
+                <Dropdown
+                  isDropdownOpen={isDropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                />
+              )}
             </button>
           </div>
         </div>
