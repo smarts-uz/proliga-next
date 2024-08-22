@@ -82,9 +82,10 @@ const SignUp = () => {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span
+          <button
             className="absolute bottom-2 right-2 cursor-pointer select-none"
             onClick={() => setShowPassword(!showPassword)}
+            type="button"
           >
             {showPassword ? (
               <Image src="/icons/eye.svg" alt="eye" width={24} height={24} />
@@ -96,7 +97,7 @@ const SignUp = () => {
                 height={24}
               />
             )}
-          </span>
+          </button>
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-xs md:text-base">
@@ -138,8 +139,7 @@ const SignUp = () => {
           onClick={handleSubmit}
           type="submit"
           disabled={isLoading}
-          className="w-full rounded-sm border border-primary bg-neutral-900 
-          py-3 font-semibold transition-all hover:bg-black"
+          className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
           {isLoading ? (
             <Image

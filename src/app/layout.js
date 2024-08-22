@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import { supabase } from './lib/supabaseClient'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import { AuthContext } from './lib/auth.context'
+import AuthContextProvider from './lib/AuthContext'
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],
@@ -42,17 +42,14 @@ export default function RootLayout({ children }) {
         <title>Proliga</title>
         <meta name="description" content="Bu sportlar haqida web sayt" />
       </head>
-      <body className={`${archivo.className} bg-black text-white`}>
-        <Navbar />
-        <AuthContext>
-          {() => {
-            return children
-          }}
-        </AuthContext>
-        <ToastContainer />
-        {/* {children} */}
-        <Footer />
-      </body>
+      <AuthContextProvider>
+        <body className={`${archivo.className} bg-black text-white`}>
+          <Navbar />
+          {children}
+          <ToastContainer />
+          <Footer />
+        </body>
+      </AuthContextProvider>
     </html>
   )
 }

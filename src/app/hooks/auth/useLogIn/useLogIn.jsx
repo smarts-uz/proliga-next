@@ -37,7 +37,7 @@ export const useLogIn = () => {
         console.log(data)
         setData(data)
         // localStorage.setItem('user', JSON.stringify(json))
-        // dispatch({ type: 'LOGIN', payload: data.user })
+        dispatch({ type: 'LOGIN', payload: data.user })
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
         setIsLoading(false)
       }

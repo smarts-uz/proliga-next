@@ -79,6 +79,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
+            type="button"
             className="absolute bottom-2 right-2 cursor-pointer select-none"
             onClick={() => setShowPassword(!showPassword)}
           >
