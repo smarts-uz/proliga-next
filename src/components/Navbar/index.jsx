@@ -69,10 +69,10 @@ const Navbar = () => {
               />
               <Image
                 src={'/icons/arrow-down.svg'}
-                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden select-none transition-all sm:block`}
+                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} size-5 hidden select-none transition-all sm:block`}
                 alt="arrow down"
-                width={24}
-                height={24}
+                width={20}
+                height={20}
               />
               {isDropdownOpen && (
                 <Dropdown

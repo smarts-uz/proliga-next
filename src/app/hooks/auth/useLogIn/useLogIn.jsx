@@ -29,17 +29,17 @@ export const useLogIn = () => {
       })
 
       if (error) {
+        setIsLoading(false)
         setError(error.message)
         toast.error(error.message)
-        setIsLoading(false)
+        return
       }
       if (data?.user && data?.session) {
-        console.log(data)
-        setData(data)
-        // localStorage.setItem('user', JSON.stringify(json))
-        dispatch({ type: 'LOGIN', payload: data.user })
-        toast.success('Tizimga muvaffaqiyatli kirdingiz')
         setIsLoading(false)
+        setData(data)
+        localStorage.setItem('user', JSON.stringify(data?.user))
+        dispatch({ type: 'LOGIN', payload: data })
+        toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {
       setError(error.message)

@@ -74,8 +74,8 @@ const SignUp = () => {
           </label>
           <input
             type={showPassword ? 'text' : 'password'}
-            name="password"
-            id="password"
+            name="confirmPassword"
+            id="confirmPassword"
             placeholder="********"
             className="auth-input"
             value={password}

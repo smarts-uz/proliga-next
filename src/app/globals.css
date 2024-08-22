@@ -39,7 +39,7 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px rgb(35 32 35) inset !important;
-    -webkit-text-fill-color: rgb(130 149 140);
+    -webkit-text-fill-color: rgb(180 179 170);
   }
 }
 
@@ -48,9 +48,6 @@
     @apply mx-4 flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 xs:w-3/4 sm:mx-0 sm:w-1/2 md:w-[28rem] md:p-8;
   }
   .auth-input {
-    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500;
-  }
-  .gutter {
-    @apply mx-auto w-full max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-12;
+    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
   }
 }
