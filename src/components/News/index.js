@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import Gutter from '../Gutter'
+import Article from './Article'
 
 const itemsPerPage = 4
 
@@ -20,23 +21,7 @@ const News = () => {
       <div className="flex h-auto min-h-[40rem] w-96 flex-col items-center justify-between rounded-md bg-black py-4">
         <div>
           {currentItems.map((item, index) => (
-            <div key={index} className="p-4">
-              <div className="flex text-xs text-gray-400">
-                <p className="w-72 max-w-xs">{item.date}</p>
-                <p className="me-2">
-                  <Image
-                    src="/icons/eye.svg"
-                    width={20}
-                    height={20}
-                    alt="eye"
-                  />
-                </p>
-                <p className="pt-0.5">{item.views}</p>
-              </div>
-              <h5 className="w-full text-sm">{item.title}</h5>
-              <p className="text-xs text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
-              <hr />
-            </div>
+            <Article key={index} item={item} />
           ))}
         </div>
         <div className="flex justify-center space-x-1">
@@ -85,6 +70,15 @@ const News = () => {
 
 const data = [
   {
+    id: 1,
+    date: '22-iyul,2022',
+    views: '23232',
+    news: `Benzema " Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
+    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
+`,
+  },
+  {
+    id: 2,
     date: '22-iyul,2022',
     views: '23232',
     news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
@@ -92,6 +86,7 @@ const data = [
 `,
   },
   {
+    id: 3,
     date: '22-iyul,2022',
     views: '23232',
     news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
@@ -99,6 +94,7 @@ const data = [
 `,
   },
   {
+    id: 4,
     date: '22-iyul,2022',
     views: '23232',
     news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
@@ -106,6 +102,7 @@ const data = [
 `,
   },
   {
+    id: 5,
     date: '22-iyul,2022',
     views: '23232',
     news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
@@ -113,13 +110,7 @@ const data = [
 `,
   },
   {
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
+    id: 6,
     date: '22-iyul,2022',
     views: '23232',
     news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
