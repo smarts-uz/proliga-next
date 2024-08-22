@@ -16,7 +16,7 @@ const CreateTeam = () => {
               <h2 className="text-3xl font-bold uppercase">
                 jamoa yig&apos;ing
               </h2>
-              <p className="max-w-md">
+              <p className="max-w-md text-2xl text-gray-400">
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
