@@ -21,13 +21,13 @@ const CreateTeam = () => {
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
             </div>
-            <div className="">
+            <div className="self-cente relative self-center">
               <Image
-                src={'/images/football-tiles.png'}
-                alt="footballer tiles"
-                width={500}
-                height={500}
-                className="min-h-72 min-w-80"
+                width={450}
+                height={405}
+                alt="image"
+                className=""
+                src="/images/4photo-Photoroom.png"
               />
             </div>
           </div>
