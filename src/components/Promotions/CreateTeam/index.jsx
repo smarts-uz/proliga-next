@@ -21,34 +21,13 @@ const CreateTeam = () => {
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
             </div>
-            <div className="relative sm:w-[450px] sm:h-[450px] w-[230px] h-[230px] self-cente self-center">
+            <div className="relative self-cente self-center">
               <Image
-                width={146}
-                height={146}
+                width={450}
+                height={405}
                 alt="image"
-                className="absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 transform sm:h-auto sm:w-auto"
-                src="/images/promotion-3.png"
-              />
-              <Image
-                width={146}
-                height={146}
-                alt="image"
-                className="absolute bottom-0 left-1/2 h-32 w-32 -translate-x-1/2 transform sm:h-auto sm:w-auto"
-                src="/images/promotion-4.png"
-              />
-              <Image
-                width={146}
-                height={146}
-                alt="image"
-                className="absolute left-0 top-1/2 h-32 w-32 -translate-y-1/2 transform sm:h-auto sm:w-auto"
-                src="/images/promotion-5.png"
-              />
-              <Image
-                width={146}
-                height={146}
-                alt="image"
-                className="absolute right-0 top-1/2 min-h-32 w-32 -translate-y-1/2 transform sm:h-auto sm:w-auto"
-                src="/images/promotion-6.png"
+                className=""
+                src="/images/4photo-Photoroom.png"
               />
             </div>
           </div>
