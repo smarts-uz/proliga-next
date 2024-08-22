@@ -7,7 +7,7 @@ const Prizes = () => {
     <section className={'w-full bg-[#222222]'}>
       <Gutter className={''}>
         <div className={'space-y-9 py-16'}>
-        <h2 className={'sm:text-4xl text-2xl font-bold uppercase'}>SOVRINLARNI YUTIB OLING!</h2>
+        <h2 className={'md:text-3xl text-2xl font-bold uppercase'}>SOVRINLARNI YUTIB OLING!</h2>
         <p className={'text-2xl text-gray-400'}>Eng ko&apos;p ball to&apos;plagan foydalanuvchilar sovg&apos;alarga ega bo&apos;lishadi.</p>
         <div className={'grid lg:grid-cols-4 sm:grid-cols-3 gap-4'}>
           <div className={'flex flex-col justify-center items-center'}>

@@ -14,7 +14,7 @@ const Hero = () => {
           <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl xl:text-4xl">
             O&apos;Z FUTBOL JAMOANGIZNI
           </h2>
-          <h2 className="text-3xl font-bold uppercase sm:text-4xl lg:text-5xl xl:text-6xl">
+          <h2 className="text-3xl font-bold uppercase md:text-3xl lg:text-5xl xl:text-6xl">
             Biz bilan yarating
           </h2>
         </div>
