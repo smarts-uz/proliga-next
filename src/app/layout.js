@@ -2,10 +2,8 @@
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useState, useEffect } from 'react'
 import { Archivo } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
-import { supabase } from './lib/supabaseClient'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import AuthContextProvider from './lib/AuthContext'

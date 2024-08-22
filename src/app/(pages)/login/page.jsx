@@ -24,7 +24,7 @@ const Login = () => {
     setPassword('')
     setPhone('')
 
-    redirect('/')
+    // redirect('/')
     // return setTimeout(() => redirect('/'), 500) should use useEffect
   }
 
@@ -105,7 +105,7 @@ const Login = () => {
           onClick={handleSubmit}
           type="submit"
           disabled={isLoading}
-          className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
+          className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
           {isLoading ? (
             <Image

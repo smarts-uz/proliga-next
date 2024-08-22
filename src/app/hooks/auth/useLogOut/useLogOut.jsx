@@ -1,15 +1,20 @@
 import { useAuthContext } from '../useAuthContext/useAuthContext'
+import { supabase } from '@/src/app/lib/supabaseClient'
+import { toast } from 'react-toastify'
 
-export const useLogout = () => {
+export const useLogOut = () => {
   const { dispatch } = useAuthContext()
 
-  const logout = () => {
-    // remove user from storage
-    // localStorage.removeItem('user')
+  const logOut = async () => {
+    try {
+      dispatch({ type: 'LOGOUT' })
+      const { error } = await supabase.auth.signOut()
 
-    // dispatch logout action
-    dispatch({ type: 'LOGOUT' })
+      if (error) return toast.error(error.message)
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
-  return { logout }
+  return { logOut }
 }

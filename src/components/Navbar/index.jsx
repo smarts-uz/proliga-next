@@ -56,7 +56,7 @@ const Navbar = () => {
                 className="size-6 select-none"
               />
             </button>
-            <button
+            <span
               onClick={handleToggleDropdown}
               className="flex items-center justify-center gap-2 sm:min-w-24"
             >
@@ -80,7 +80,7 @@ const Navbar = () => {
                   toggleDropdown={toggleDropdown}
                 />
               )}
-            </button>
+            </span>
           </div>
         </div>
       </Gutter>
