@@ -52,8 +52,8 @@ const News = () => {
                 </p>
                 <p className="pt-0.5">{item.views}</p>
               </div>
-              <h5 className="w-full text-xs">{item.news}</h5>
-              <p className="text-[10px] text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
+              <h5 className="w-full text-sm">{item.news}</h5>
+              <p className="text-xs text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
               <hr />
             </div>
           </>
