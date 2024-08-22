@@ -7,12 +7,11 @@ import Banner from '../components/Banner'
 
 export default function Home() {
   return (
-    <div>
-      <Banner />
+    <section>
       <Hero />
       <Promotions />
       <Carousel />
       <Rules />
-    </div>
+    </section>
   )
 }
