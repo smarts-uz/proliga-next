@@ -68,31 +68,31 @@ const data = [
   },
   {
     header: 'Umumiy qoidalar',
-    title: "Jamoa yig'ing",
+    title: "TRANSFERLARNI AMALGA OSHIRING",
     description:
-      ' Har bir o&apos;yinchi haqiqiy o&apos;yinlarda qilgan harakatlari uchun ochko oladi yoki yo&apos;qotadi. Ballar soni o&apos;yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi',
-    images: '/promotions-tiles.png',
-    mainImage: '/images/promotion-1.png',
+      'Agar sizning jamoangizdagi o’yinchilardan biri jarohat olgan bo’lsa yoki shunchaki yomon o’ynasa, har bir turda ochko to’plamasa, tarkibni optimalroq o’zgartirish uchun 2 tagacha transferni amalga oshirishingiz mumkin',
+    images: '/images/transfer-removebg-preview.png',
+    mainImage: '/images/transfer-removebg-preview.png',
     type: 3,
   },
-  {
-    header: 'Umumiy qoidalar',
-    title: "Jamoa yig'ing",
-    description:
-      "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-    images: '/promotions-tiles.png',
-    mainImage: '/images/promotion-3.png',
-    type: 3,
-  },
-  {
-    header: 'Umumiy qoidalar',
-    title: "Jamoa yig'ing",
-    description:
-      "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-    images: '/promotions-tiles.png',
-    mainImage: '/images/promotion-3.png',
-    type: 1,
-  },
+  // {
+  //   header: 'Umumiy qoidalar',
+  //   title: "Jamoa yig'ing",
+  //   description:
+  //     "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+  //   images: '/promotions-tiles.png',
+  //   mainImage: '/images/promotion-3.png',
+  //   type: 3,
+  // },
+//   {
+//     header: 'Umumiy qoidalar',
+//     title: "Jamoa yig'ing",
+//     description:
+//       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+//     images: '/promotions-tiles.png',
+//     mainImage: '/images/promotion-3.png',
+//     type: 1,
+//   },
 ]
 
 export default Carousel

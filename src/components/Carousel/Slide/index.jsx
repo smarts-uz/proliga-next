@@ -15,7 +15,6 @@ const Slide = ({
 }) => {
   if (type === 1 && currentIndex === index) {
     return (
-      // <Gutter>
       <section className="flex h-auto flex-col items-center justify-between gap-4 py-6 xl:h-[40rem] xl:flex-row xl:gap-0">
         <div className="flex w-full max-w-lg flex-col">
           <div className="-skew-x-12 rounded-sm bg-primary">
@@ -23,15 +22,9 @@ const Slide = ({
               {header}
             </h3>
           </div>
-          <h2 className="text-2xl font-bold uppercase pt-5">{title}</h2>
-          <p className="text-xl text-neutral-400 pt-5">{description}</p>
-          <Image
-            width={400}
-            height={400}
-            src={mainImage}
-            alt={title}
-            // className="h-[230px] w-[230px] sm:h-[430px] sm:w-[430px]"
-          />
+          <h2 className="pt-5 text-2xl font-bold uppercase">{title}</h2>
+          <p className="pt-5 text-xl text-neutral-400">{description}</p>
+          <Image width={400} height={400} src={mainImage} alt={title} />
         </div>
         <div className="items-end">
           <Image
@@ -39,7 +32,6 @@ const Slide = ({
             alt="additional"
             width={500}
             height={600}
-            // className="h-auto max-h-56 w-auto max-w-96 lg:max-h-[27rem] lg:max-w-[38rem] 2xl:max-h-[40rem] 2xl:max-w-[52rem]"
             className="aspect-[6/5] h-full w-full md:min-h-96"
           />
         </div>
@@ -68,7 +60,6 @@ const Slide = ({
           />
         </button>
       </section>
-      // </Gutter>
     )
   }
   if (type === 2 && currentIndex === index) {
@@ -80,7 +71,6 @@ const Slide = ({
               <h2 className="text-5xl font-bold uppercase">{title}</h2>
               <p className="pt-5 text-xl text-neutral-400">{description}</p>
             </div>
-
             <div className="w-auto">
               <Image
                 width={500}
@@ -119,6 +109,51 @@ const Slide = ({
       </div>
     )
   }
+
+  if (type === 3 && currentIndex === index) {
+    return (
+<div className="flex h-[40rem] w-full items-center justify-center">
+  <section className="flex h-auto w-full flex-col items-center pb-10">
+    <div className="mt-2 w-[60rem]  pt-2 text-center mx-auto flex flex-col items-center">
+      <h2 className="pt-7 text-5xl font-bold uppercase">{title}</h2>
+      <p className="pt-5 text-2xl text-neutral-400">{description}</p>
+      <Image
+        width={550}
+        height={400}
+        src={mainImage}
+        alt={title}
+        className="relative pt-12 mx-auto"
+      />
+    </div>
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              alt="arrow"
+              width={32}
+              height={32}
+              className="rotate-90"
+            />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              className="-rotate-90"
+              alt="arrow"
+              width={32}
+              height={32}
+            />
+          </button>
+        </section>
+      </div>
+    )
+  }
+
   // if (type === 3 && currentIndex === index) {
   //   return (
   //     <div>

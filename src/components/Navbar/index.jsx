@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useAuthContext } from '@/src/app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
@@ -7,13 +8,15 @@ import Gutter from '@/src/components/Gutter'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
+  const { state } = useAuthContext()
 
   const handleToggleDropdown = () => {
     toggleDropdown(!isDropdownOpen)
   }
+  console.log(state)
 
   return (
-    <nav className="bg-black bg-opacity-80 backdrop-blur-sm shadow shadow-neutral-500 z-20 fixed left-0 right-0 top-0">
+    <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
       <Gutter>
         <div className="relative flex w-full items-center justify-between py-4 text-white">
           <Link href="/">
@@ -51,6 +54,7 @@ const Navbar = () => {
               <Image
                 src={'/icons/bell.svg'}
                 alt="bell"
+                draggable={false}
                 width={24}
                 height={24}
                 className="size-6 select-none"
@@ -60,26 +64,29 @@ const Navbar = () => {
               onClick={handleToggleDropdown}
               className="flex items-center justify-center gap-2 sm:min-w-24"
             >
-              <Image
-                src={'/icons/user.svg'}
-                alt="user"
-                width={32}
-                height={32}
-                className="size-8 rounded-full bg-white"
-              />
-              <Image
-                src={'/icons/arrow-down.svg'}
-                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} size-5 hidden select-none transition-all sm:block`}
-                alt="arrow down"
-                width={20}
-                height={20}
-              />
-              {isDropdownOpen && (
-                <Dropdown
-                  isDropdownOpen={isDropdownOpen}
-                  toggleDropdown={toggleDropdown}
+              {state.user ? (
+                <span className="flex size-8 items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
+                  {state.user.user.email.slice(0, 1)}
+                </span>
+              ) : (
+                <Image
+                  src={'/icons/user.svg'}
+                  alt="user"
+                  width={32}
+                  draggable={false}
+                  height={32}
+                  className="size-8 rounded-full bg-white"
                 />
               )}
+              <Image
+                src={'/icons/arrow-down.svg'}
+                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden size-5 select-none transition-all sm:block`}
+                alt="arrow down"
+                width={20}
+                draggable={false}
+                height={20}
+              />
+              {isDropdownOpen && <Dropdown state={state} />}
             </span>
           </div>
         </div>

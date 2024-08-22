@@ -29,7 +29,7 @@ const Login = () => {
   }
 
   return (
-    <main className="z-10 flex min-h-[100vh] items-center justify-center bg-neutral-800 py-4 text-gray-200">
+    <main className="z-10 flex min-h-svh lg:min-h-[45rem] 2xl:min-h-[100vh] items-center justify-center bg-neutral-800 py-4 text-gray-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish

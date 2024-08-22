@@ -6,11 +6,11 @@ import Promotions from '@/src/components/Promotions'
 
 export default function Home() {
   return (
-    <div>
+    <section>
       <Hero />
       <Promotions />
       <Carousel />
       <Rules />
-    </div>
+    </section>
   )
 }
