@@ -25,9 +25,9 @@ const CreateTeam = () => {
               <Image
                 width={450}
                 height={405}
-                alt="image"
-                className=""
-                src="/images/4photo-Photoroom.png"
+                alt="footballers images"
+                className="min-w-80 min-h-72"
+                src="/images/footbal-tiles.png"
               />
             </div>
           </div>
