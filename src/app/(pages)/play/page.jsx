@@ -3,7 +3,7 @@ import GameNavigation from '@/src/components/GameNavigation'
 
 const Play = () => {
   return (
-    <div className='bg-neutral-200'>
+    <div className="bg-neutral-200">
       <GameNavigation />
       <News />
     </div>
