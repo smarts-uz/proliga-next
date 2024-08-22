@@ -29,7 +29,7 @@ const SignUp = () => {
   }
 
   return (
-    <main className="z-20 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-neutral-200">
+    <main className="z-10 flex min-h-[70vh] items-center justify-center bg-neutral-800 py-4 text-neutral-200">
       <form className="auth-container">
         <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish

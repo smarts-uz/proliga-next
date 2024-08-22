@@ -9,7 +9,7 @@ const Hero = () => {
       className="w-full bg-cover bg-center"
       style={{ backgroundImage: "url('/images/Hero-image.png')" }}
     >
-      <div className="flex h-[90vh] flex-col items-center justify-center gap-6 text-white xl:gap-6">
+      <div className="flex h-screen flex-col items-center justify-center gap-6 text-white xl:gap-6">
         <div className="flex flex-col gap-2 text-center">
           <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl xl:text-4xl">
             O&apos;Z FUTBOL JAMOANGIZNI
