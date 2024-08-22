@@ -1,6 +1,8 @@
 'use client'
 
 import { createContext, useReducer, useEffect } from 'react'
+import { supabase } from './supabaseClient'
+import { toast } from 'react-toastify'
 
 export const AuthContext = createContext()
 
@@ -18,9 +20,9 @@ export const authReducer = (state, action) => {
 }
 
 const AuthContextProvider = ({ children }) => {
-  // const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
-
-  // const localAuth = JSON.parse(localStorage.getItem(`sb-${sbUrl}-auth-token`))
+  const [state, dispatch] = useReducer(authReducer, {
+    user: null,
+  })
 
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
@@ -30,9 +32,20 @@ const AuthContextProvider = ({ children }) => {
     }
   }, [])
 
-  const [state, dispatch] = useReducer(authReducer, {
-    user: null,
-  })
+  useEffect(() => {
+    if (state.user && state.user.expiresAt >= Date.now()) {
+      ;async () => {
+        const { data, error } = await supabase.auth.refreshSession({
+          refresh_token: state.user.refresh_token,
+        })
+
+        console.log(data)
+        if (error) {
+          toast.error(error.message)
+        }
+      }
+    }
+  }, [state.user])
 
   console.log('Auth', state)
 

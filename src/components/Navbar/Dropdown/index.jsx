@@ -1,8 +1,10 @@
+import { useAuthContext } from '@/src/app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const Dropdown = ({ isDropdownOpen, toggleDropdown }) => {
-  const styles = isDropdownOpen ? `flex` : `hidden`
+  const { state } = useAuthContext()
+  console.log(state.user)
 
   return (
     <section
