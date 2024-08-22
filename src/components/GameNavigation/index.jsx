@@ -1,13 +1,19 @@
 import Gutter from '../Gutter'
+import { data } from '@/src/app/utils/tabs.util'
 
-const GameNavigation = () => {
+const GameNavigation = ({ currentTab, setCurrentTab }) => {
+  const active = 'bg-primary text-black bg-opacity-100'
+  const passive =
+    'bg-neutral-300 text-neutral-800 hover:text-neutral-950 hover:bg-opacity-80 '
+
   return (
     <Gutter>
       <div className="flex flex-wrap items-center justify-center gap-4 py-6 2xl:gap-6">
-        {data.map((item) => (
+        {data.map((item, index) => (
           <button
             key={item.id}
-            className="rounded-sm bg-neutral-300 px-3 py-2 font-semibold uppercase text-neutral-900 transition-all hover:bg-primary md:px-4"
+            className={`rounded-sm bg-opacity-80 px-3 py-2 font-semibold uppercase transition-all hover:bg-primary md:px-4 ${item.key === currentTab ? active : passive} `}
+            onClick={() => setCurrentTab(item.key)}
           >
             {item.title}
           </button>
@@ -16,38 +22,5 @@ const GameNavigation = () => {
     </Gutter>
   )
 }
-
-const data = [
-  {
-    id: 2,
-    title: 'Profil',
-    key: 'GameProfile',
-  },
-  {
-    id: 1,
-    title: 'Transfer',
-    key: 'Transfer',
-  },
-  {
-    id: 4,
-    title: 'Turnir',
-    key: 'Tournament',
-  },
-  {
-    id: 5,
-    title: 'Jurnal',
-    key: 'Journal',
-  },
-  {
-    id: 3,
-    title: 'Stastics',
-    key: 'Statistics',
-  },
-  {
-    id: 6,
-    title: 'Chempionat',
-    key: 'Championship',
-  },
-]
 
 export default GameNavigation

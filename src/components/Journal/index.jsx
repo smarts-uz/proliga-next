@@ -1,11 +1,11 @@
 import Gutter from '../Gutter'
 
-const Transfer = () => {
+const Journal = () => {
   return (
     <Gutter>
-      <div>Transfer</div>
+      <div>Journal</div>
     </Gutter>
   )
 }
 
-export default Transfer
+export default Journal

@@ -1,8 +1,10 @@
-import React from 'react'
+import Gutter from '../Gutter'
 
 const Tournament = () => {
   return (
-    <div>Tournament</div>
+    <Gutter>
+      <div>Tournament</div>
+    </Gutter>
   )
 }
 

@@ -1,8 +1,10 @@
-import React from 'react'
+import Gutter from '../Gutter'
 
 const Stastics = () => {
   return (
-    <div>Stastics</div>
+    <Gutter>
+      <div>Stastics</div>
+    </Gutter>
   )
 }
 

@@ -13,7 +13,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-black bg-opacity-80 backdrop-blur-sm shadow shadow-neutral-500 z-20 fixed left-0 right-0 top-0">
+    <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
       <Gutter>
         <div className="relative flex w-full items-center justify-between py-4 text-white">
           <Link href="/">
@@ -51,6 +51,7 @@ const Navbar = () => {
               <Image
                 src={'/icons/bell.svg'}
                 alt="bell"
+                draggable={false}
                 width={24}
                 height={24}
                 className="size-6 select-none"
@@ -64,14 +65,16 @@ const Navbar = () => {
                 src={'/icons/user.svg'}
                 alt="user"
                 width={32}
+                draggable={false}
                 height={32}
                 className="size-8 rounded-full bg-white"
               />
               <Image
                 src={'/icons/arrow-down.svg'}
-                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} size-5 hidden select-none transition-all sm:block`}
+                className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden size-5 select-none transition-all sm:block`}
                 alt="arrow down"
                 width={20}
+                draggable={false}
                 height={20}
               />
               {isDropdownOpen && (
