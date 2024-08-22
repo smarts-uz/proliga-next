@@ -19,26 +19,24 @@ const News = () => {
     <Gutter>
       <div className="flex h-auto min-h-[40rem] w-96 flex-col items-center justify-between rounded-md bg-black py-4">
         <div>
-          {currentItems.map((item) => (
-            <>
-              <div className="p-4">
-                <div className="flex text-xs text-gray-400">
-                  <p className="w-72 max-w-xs">{item.date}</p>
-                  <p className="me-2">
-                    <Image
-                      src="/icons/eye.svg"
-                      width={20}
-                      height={20}
-                      alt="eye"
-                    />
-                  </p>
-                  <p className="pt-0.5">{item.views}</p>
-                </div>
-                <h5 className="w-full text-sm">{item.title}</h5>
-                <p className="text-xs text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
-                <hr />
+          {currentItems.map((item, index) => (
+            <div key={index} className="p-4">
+              <div className="flex text-xs text-gray-400">
+                <p className="w-72 max-w-xs">{item.date}</p>
+                <p className="me-2">
+                  <Image
+                    src="/icons/eye.svg"
+                    width={20}
+                    height={20}
+                    alt="eye"
+                  />
+                </p>
+                <p className="pt-0.5">{item.views}</p>
               </div>
-            </>
+              <h5 className="w-full text-sm">{item.title}</h5>
+              <p className="text-xs text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
+              <hr />
+            </div>
           ))}
         </div>
         <div className="flex justify-center space-x-1">
