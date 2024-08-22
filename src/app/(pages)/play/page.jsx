@@ -1,7 +1,11 @@
+import News from '@/src/components/News'
 
 const Play = () => {
   return (
-    <div>Play</div>
+    <div>
+      Play
+      <News />
+    </div>
   )
 }
 

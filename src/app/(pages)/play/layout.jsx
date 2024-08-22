@@ -1,8 +1,11 @@
-import React from 'react'
+import Banner from '@/src/components/Banner'
 
 const PlayLayout = ({ children }) => {
   return (
-    {children}
+    <>
+      <Banner />
+      {children}
+    </>
   )
 }
 
