@@ -5,11 +5,11 @@ import Promotions from '@/src/components/Promotions'
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Hero />
       <Promotions />
       <Carousel />
       <Rules />
-    </>
+    </div>
   )
 }

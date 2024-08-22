@@ -6,7 +6,8 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900">
       <Gutter>
-        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-28 pt-8 text-white xl:gap-0">
+        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 
+        pb-24 pt-8 text-neutral-200 xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/" className="hover:underline">
               Biz haqimizda
@@ -31,7 +32,7 @@ const Footer = () => {
                   alt="instagram"
                   width={24}
                   height={24}
-                  className="size-8 transition-all hover:scale-110"
+                  className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
               <Link href="https://www.facebook.com">
@@ -40,7 +41,7 @@ const Footer = () => {
                   alt="facebook"
                   width={24}
                   height={24}
-                  className="size-8 transition-all hover:scale-110"
+                  className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
               <Link href="https://www.telegram.org">
@@ -49,7 +50,7 @@ const Footer = () => {
                   alt="telegram"
                   width={24}
                   height={24}
-                  className="size-8 transition-all hover:scale-110"
+                  className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
             </div>

@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import { supabase } from './lib/supabaseClient'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import { AuthContext } from './lib/auth.context'
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],
@@ -43,9 +44,14 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${archivo.className} bg-black text-white`}>
         <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <AuthContext>
+          {() => {
+            return children
+          }}
+        </AuthContext>
         <ToastContainer />
+        {/* {children} */}
+        <Footer />
       </body>
     </html>
   )
