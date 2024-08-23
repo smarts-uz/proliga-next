@@ -2,7 +2,8 @@ import Player from '../Player'
 
 const PlayersStructure = () => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-0 z-10 flex flex-col justify-between pt-4 pb-12">
+    // 4-4-2
+    <div className="absolute bottom-0 left-0 right-0 top-0 z-10 flex flex-col justify-between pb-12 pt-4">
       <div className="flex w-full justify-center">
         <Player />
       </div>

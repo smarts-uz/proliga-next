@@ -62,7 +62,7 @@ const Navbar = () => {
             </button>
             <span
               onClick={handleToggleDropdown}
-              className="flex items-center justify-center gap-2 sm:min-w-24 cursor-pointer"
+              className="flex cursor-pointer items-center justify-center gap-2"
             >
               {state.user ? (
                 <span className="flex size-8 items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">

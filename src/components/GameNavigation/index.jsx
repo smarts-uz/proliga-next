@@ -8,7 +8,7 @@ const GameNavigation = ({ currentTab, setCurrentTab }) => {
 
   return (
     <Gutter>
-      <div className="flex flex-wrap items-center justify-center gap-4 py-6 2xl:gap-6">
+      <div className="flex flex-wrap items-center justify-center gap-4 pt-6 2xl:gap-6">
         {data.map((item, index) => (
           <button
             key={item.id}

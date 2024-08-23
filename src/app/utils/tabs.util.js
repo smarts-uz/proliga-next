@@ -21,7 +21,7 @@ export const data = [
   },
   {
     id: 3,
-    title: 'Stastics',
+    title: 'Stastika',
     key: 'Statistics',
   },
   {

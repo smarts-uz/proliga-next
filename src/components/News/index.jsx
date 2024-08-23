@@ -28,54 +28,52 @@ const News = () => {
   //   getNews()
   // })
   return (
-    <Gutter>
-      <div className="flex h-auto min-h-[40rem] flex-col items-center justify-between rounded-md bg-black py-4 xs:w-96">
-        <div>
-          {currentItems.map((item, index) => (
-            <Article key={index} item={item} />
-          ))}
-        </div>
-        <div className="flex justify-center space-x-1">
-          <button
-            onClick={() => goToPage(currentPage - 1)}
-            className={`rounded border px-4 py-2 text-gray-200 ${
-              currentPage === 1
-                ? 'cursor-not-allowed opacity-75'
-                : 'bg-opacity-50 hover:border-primary hover:text-primary'
-            }`}
-            disabled={currentPage === 1}
-          >
-            Oldingi
-          </button>
-
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => goToPage(i + 1)}
-              className={`rounded border bg-neutral-900 px-4 py-2 ${
-                currentPage === i + 1
-                  ? 'border-primary text-primary'
-                  : 'border-white text-neutral-300 hover:text-white'
-              }`}
-            >
-              {i + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={() => goToPage(currentPage + 1)}
-            className={`rounded border px-4 py-2 text-neutral-300 ${
-              currentPage === totalPages
-                ? 'cursor-not-allowed opacity-75'
-                : 'hover:border-primary hover:text-primary'
-            }`}
-            disabled={currentPage === totalPages}
-          >
-            Keyingi
-          </button>
-        </div>
+    <div className="flex h-auto min-h-[40rem] flex-col items-center justify-between rounded-md bg-black py-4 xs:w-96">
+      <div>
+        {currentItems.map((item, index) => (
+          <Article key={index} item={item} />
+        ))}
       </div>
-    </Gutter>
+      <div className="flex justify-center space-x-1">
+        <button
+          onClick={() => goToPage(currentPage - 1)}
+          className={`rounded border px-4 py-2 text-gray-200 ${
+            currentPage === 1
+              ? 'cursor-not-allowed opacity-75'
+              : 'bg-opacity-50 hover:border-primary hover:text-primary'
+          }`}
+          disabled={currentPage === 1}
+        >
+          Oldingi
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => goToPage(i + 1)}
+            className={`rounded border bg-neutral-900 px-4 py-2 ${
+              currentPage === i + 1
+                ? 'border-primary text-primary'
+                : 'border-white text-neutral-300 hover:text-white'
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() => goToPage(currentPage + 1)}
+          className={`rounded border px-4 py-2 text-neutral-300 ${
+            currentPage === totalPages
+              ? 'cursor-not-allowed opacity-75'
+              : 'hover:border-primary hover:text-primary'
+          }`}
+          disabled={currentPage === totalPages}
+        >
+          Keyingi
+        </button>
+      </div>
+    </div>
   )
 }
 
