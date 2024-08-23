@@ -40,8 +40,8 @@ const News = () => {
             onClick={() => goToPage(currentPage - 1)}
             className={`rounded border px-4 py-2 text-gray-200 ${
               currentPage === 1
-                ? 'cursor-not-allowed'
-                : 'bg-opacity-50 hover:text-primary'
+                ? 'cursor-not-allowed opacity-75'
+                : 'bg-opacity-50 hover:border-primary hover:text-primary'
             }`}
             disabled={currentPage === 1}
           >
@@ -52,11 +52,11 @@ const News = () => {
             <button
               key={i + 1}
               onClick={() => goToPage(i + 1)}
-              className={`rounded border px-4 py-2 ${
+              className={`rounded border bg-neutral-900 px-4 py-2 ${
                 currentPage === i + 1
-                  ? 'bg-neutral-950 bg-opacity-25 text-primary'
-                  : 'bg-neutral-800 text-neutral-300'
-              } hover:text-white`}
+                  ? 'border-primary text-primary'
+                  : 'border-white text-neutral-300 hover:text-white'
+              }`}
             >
               {i + 1}
             </button>
@@ -64,10 +64,10 @@ const News = () => {
 
           <button
             onClick={() => goToPage(currentPage + 1)}
-            className={`rounded border px-4 py-2 text-gray-200 ${
+            className={`rounded border px-4 py-2 text-neutral-300 ${
               currentPage === totalPages
-                ? 'cursor-not-allowed opacity-70'
-                : 'hover:text-primary'
+                ? 'cursor-not-allowed opacity-75'
+                : 'hover:border-primary hover:text-primary'
             }`}
             disabled={currentPage === totalPages}
           >
