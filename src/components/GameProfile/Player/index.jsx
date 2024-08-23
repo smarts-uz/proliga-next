@@ -28,7 +28,7 @@ const Player = () => {
             className={sideBtnStyles}
           />
         </button>
-        <div className="cursor-default rounded-md bg-white px-2 font-bold">
+        <div className="cursor-default shadow shadow-neutral-600 rounded-md bg-white px-2 font-bold">
           {score}
         </div>
         {deletePlayer && (
