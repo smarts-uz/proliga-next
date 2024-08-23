@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Bu sportlar haqida web sayt" />
       </head>
       <AuthContextProvider>
-        <body className={`${archivo.className} bg-black text-white`}>
+        <body className={`${archivo.className} bg-black text-white min-h-svh`}>
           <Navbar />
           {children}
           <ToastContainer />

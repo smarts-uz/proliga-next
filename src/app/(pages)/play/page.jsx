@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import News from '@/src/components/News'
 import GameNavigation from '@/src/components/GameNavigation'
 import { tabs } from '../../utils/tabs.util'
 import CurrentTab from '@/src/components/CurrentTab'

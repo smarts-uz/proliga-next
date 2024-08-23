@@ -56,7 +56,7 @@ const data = [
     description:
       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
     images: '/images/promotion-1.png',
-    mainImage: '/images/Group 219.png',
+    mainImage: '/images/football-tiles.png',
     type: 1,
   },
   {
@@ -68,11 +68,10 @@ const data = [
   },
   {
     header: 'Umumiy qoidalar',
-    title: "TRANSFERLARNI AMALGA OSHIRING",
+    title: 'TRANSFERLARNI AMALGA OSHIRING',
     description:
       'Agar sizning jamoangizdagi o’yinchilardan biri jarohat olgan bo’lsa yoki shunchaki yomon o’ynasa, har bir turda ochko to’plamasa, tarkibni optimalroq o’zgartirish uchun 2 tagacha transferni amalga oshirishingiz mumkin',
-    images: '/images/transfer-removebg-preview.png',
-    mainImage: '/images/transfer-removebg-preview.png',
+    mainImage: '/images/promotion-transfer.png',
     type: 3,
   },
   // {
@@ -84,15 +83,15 @@ const data = [
   //   mainImage: '/images/promotion-3.png',
   //   type: 3,
   // },
-//   {
-//     header: 'Umumiy qoidalar',
-//     title: "Jamoa yig'ing",
-//     description:
-//       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-//     images: '/promotions-tiles.png',
-//     mainImage: '/images/promotion-3.png',
-//     type: 1,
-//   },
+  //   {
+  //     header: 'Umumiy qoidalar',
+  //     title: "Jamoa yig'ing",
+  //     description:
+  //       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+  //     images: '/promotions-tiles.png',
+  //     mainImage: '/images/promotion-3.png',
+  //     type: 1,
+  //   },
 ]
 
 export default Carousel
