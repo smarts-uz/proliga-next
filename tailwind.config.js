@@ -8,12 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary": "#FFF400"
+        primary: '#FFF400',
       },
       screens: {
-        "xs": "420px",
-        "2xs": "375px"
-      }
+        xs: '420px',
+        '2xs': '375px',
+      },
     },
   },
   plugins: ['prettier-plugin-tailwindcss'],

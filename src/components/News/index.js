@@ -24,9 +24,9 @@ const News = () => {
   const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
-  useEffect(() => {
-    getNews()
-  })
+  // useEffect(() => {
+  //   getNews()
+  // })
   return (
     <Gutter>
       <div className="flex h-auto min-h-[40rem] flex-col items-center justify-between rounded-md bg-black py-4 xs:w-96">

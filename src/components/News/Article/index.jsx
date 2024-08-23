@@ -21,14 +21,14 @@ const Article = ({ item }) => {
           </p>
           <p className="pt-0.5">{item.views}</p>
         </div>
-        <h5 className="w-full text-sm text-gray-200">{item.title}</h5>
+        <h5 className="w-full text-sm">{item.title}</h5>
         <p className="text-xs text-yellow-300">{`yangiliklarni ko'rsatish`}</p>
         <hr />
       </div>
       {openModal ? (
         <Backdrop onClick={toggleModal}>
-          <div className="absolute max-w-[460px] scroll-smooth rounded-md bg-white py-2 shadow-lg">
-            <div className="p-4">
+          <dialog className="fade-in mx-4 flex w-full max-w-[460px] flex-col items-center gap-2 overflow-y-scroll rounded-md bg-white py-2 shadow-lg md:mx-auto md:w-1/2">
+            <div className="overflow-y-scroll p-4">
               <div className="flex text-xs text-gray-400">
                 <p className="w-72 max-w-xs">{item.date}</p>
                 <p className="me-2">
@@ -42,8 +42,84 @@ const Article = ({ item }) => {
                 <p className="pt-0.5">{item.views}</p>
               </div>
               {/* <h5 className="text-md w-full">asdadadsadadaadsa</h5> */}
-              <div dangerouslySetInnerHTML={{ __html: item.news }} />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
+              <div
+                className="snap-start"
+                dangerouslySetInnerHTML={{ __html: item.news }}
+              />
             </div>
+
             <div className="flex items-center justify-between border-t border-gray-300 px-4 pt-2">
               <button
                 onClick={toggleModal}
@@ -53,7 +129,7 @@ const Article = ({ item }) => {
                 Close
               </button>
             </div>
-          </div>
+          </dialog>
         </Backdrop>
       ) : (
         ''
