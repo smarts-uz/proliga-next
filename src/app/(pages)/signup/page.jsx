@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
+import { useAuthContext } from '../../hooks/auth/useAuthContext/useAuthContext'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -12,6 +13,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
+  const { state } = useAuthContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,9 +26,11 @@ const SignUp = () => {
     setEmail('')
     setPassword('')
     setConfirmPassword('')
-
-    // return setTimeout(() => redirect('/login'), 500) should use useEffect
   }
+
+  // useEffect(() => {
+  //   state.user && setTimeout(() => redirect('/'), 500)
+  // }, [state.user])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">

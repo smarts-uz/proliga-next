@@ -1,6 +1,6 @@
 import Gutter from '../Gutter'
 
-const Stastics = () => {
+const Statistics = () => {
   return (
     <Gutter>
       <div>Stastics</div>
@@ -8,4 +8,4 @@ const Stastics = () => {
   )
 }
 
-export default Stastics
+export default Statistics
