@@ -1,13 +1,21 @@
 'use client'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Gutter from '../Gutter'
 import Article from './Article'
+import { supabase } from '@/src/app/lib/supabaseClient'
 
 const itemsPerPage = 4
 
 const News = () => {
   const [currentPage, setCurrentPage] = useState(1)
+
+  // const getNews = async () => {
+  //   try {
+  //     const { data, error } = await supabase.from('news').select()
+  //   } catch (err) {
+  //     throw new err()
+  //   }
+  // }
 
   const totalPages = Math.ceil(data.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
@@ -16,9 +24,12 @@ const News = () => {
   const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
+  useEffect(() => {
+    getNews()
+  })
   return (
     <Gutter>
-      <div className="flex h-auto min-h-[40rem] w-96 flex-col items-center justify-between rounded-md bg-black py-4">
+      <div className="flex h-auto min-h-[40rem] flex-col items-center justify-between rounded-md bg-black py-4 xs:w-96">
         <div>
           {currentItems.map((item, index) => (
             <Article key={index} item={item} />
@@ -27,10 +38,10 @@ const News = () => {
         <div className="flex justify-center space-x-1">
           <button
             onClick={() => goToPage(currentPage - 1)}
-            className={`rounded border px-4 py-2 ${
+            className={`rounded border px-4 py-2 text-gray-200 ${
               currentPage === 1
-                ? 'cursor-not-allowed opacity-50'
-                : 'bg-opacity-50 hover:bg-primary hover:text-white'
+                ? 'cursor-not-allowed'
+                : 'bg-opacity-50 hover:text-primary'
             }`}
             disabled={currentPage === 1}
           >
@@ -45,7 +56,7 @@ const News = () => {
                 currentPage === i + 1
                   ? 'bg-neutral-950 bg-opacity-25 text-primary'
                   : 'bg-neutral-800 text-neutral-300'
-              } hover:bg-primary hover:text-white`}
+              } hover:text-white`}
             >
               {i + 1}
             </button>
@@ -53,10 +64,10 @@ const News = () => {
 
           <button
             onClick={() => goToPage(currentPage + 1)}
-            className={`rounded border px-4 py-2 ${
+            className={`rounded border px-4 py-2 text-gray-200 ${
               currentPage === totalPages
-                ? 'cursor-not-allowed opacity-50'
-                : 'hover:bg-primary hover:text-white'
+                ? 'cursor-not-allowed opacity-70'
+                : 'hover:text-primary'
             }`}
             disabled={currentPage === totalPages}
           >
