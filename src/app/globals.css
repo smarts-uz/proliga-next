@@ -66,4 +66,7 @@
     filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(1197%)
       hue-rotate(218deg) brightness(95%) contrast(92%);
   }
+  .text-shadow{
+    text-shadow: #000 1px 0 1px;
+  }
 }

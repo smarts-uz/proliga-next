@@ -9,7 +9,7 @@ const GameNavigation = ({ currentTab, setCurrentTab }) => {
 
   return (
     <Gutter>
-      <div className="flex flex-wrap items-center justify-center gap-4 pt-6 2xl:gap-6">
+      <div className="flex flex-wrap items-center gap-4 pt-6 2xl:gap-6">
         {data.map((item, index) => (
           <button
             key={item.id}
@@ -29,7 +29,7 @@ const GameNavigation = ({ currentTab, setCurrentTab }) => {
       <div className="mt-4 flex w-full overflow-x-auto rounded-sm text-black">
         {data.map((item, index) => (
           <div
-            className="min-w-64 flex-1 rounded-md border bg-black p-2 text-lg font-medium text-white lg:min-w-80"
+            className="min-w-40 sm:min-w-64 flex-1 rounded-md border bg-black p-2 text-lg font-medium text-white lg:min-w-80"
             key={Math.random()}
           >
             Tur {index + 1}
