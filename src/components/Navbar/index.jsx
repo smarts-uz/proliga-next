@@ -28,7 +28,7 @@ const Navbar = () => {
           <section className="hidden items-center gap-6 text-neutral-300 xl:flex">
             <Link
               className="transition-all hover:text-white hover:underline"
-              href={'/league'}
+              href={'/leagues'}
             >
               Chempionat
             </Link>
