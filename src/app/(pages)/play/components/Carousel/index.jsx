@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Gutter from '../../../../../components/Gutter'
 import Slide from './Slide'
 import Image from 'next/image'
@@ -25,6 +25,10 @@ const Carousel = () => {
       }
     })
   }
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section className="bg-neutral-800">
