@@ -106,6 +106,18 @@ Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko is
     mainImage: '/images/promotion-table.png',
     type: 4,
   },
+  {
+    header: "sovg'alarni yutib oling ",
+    title:
+      "Eng ko'p ball to'plagan foydalanuvchilar sovg'alarga ega bo'lishadi.",
+    type: 5,
+    images: [
+      { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
+      { name: 'Playstation 5', img: '/images/promotion-price2.png' },
+      { name: 'Tv Samsung  55', img: '/images/promotion-price3.png' },
+      { name: 'Apple ipad pro ', img: '/images/promotion-price4.png' },
+    ],
+  },
 
   // {
   //   header: 'Umumiy qoidalar',
