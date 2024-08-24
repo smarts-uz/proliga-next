@@ -24,7 +24,7 @@ const Hero = () => {
             href="/signup"
             className={`${btnStyles} bg-primary text-black hover:bg-opacity-55`}
           >
-            Royxatdan otish
+            Ro&apos;yxatdan otish
           </Link>
           <Link
             href="/play"
