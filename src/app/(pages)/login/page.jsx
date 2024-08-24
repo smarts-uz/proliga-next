@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
 import { redirect } from 'next/navigation'
-import { useAuthContext } from '../../hooks/auth/useAuthContext/useAuthContext'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -13,7 +12,6 @@ const Login = () => {
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
-  const { state } = useAuthContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault()

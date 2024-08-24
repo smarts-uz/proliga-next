@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
-import { useAuthContext } from '../../hooks/auth/useAuthContext/useAuthContext'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -13,7 +12,6 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
-  const { state } = useAuthContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
