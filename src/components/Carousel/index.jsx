@@ -56,11 +56,11 @@ const data = [
     description:
       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
     images: '/images/promotion-1.png',
-    mainImage: '/images/Group 219.png',
+    mainImage: '/images/football-tiles.png',
     type: 1,
   },
   {
-    title: 'BALLARNI YEG’ING',
+    title: 'BALLARNI YiG’ING',
     description:
       "Har bir o'yinchi haqiqiy o'yinlarda qilgan harakatlari uchun ochko oladi yoki yo'qotadi. Ballar soni o'yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi",
     mainImage: '/images/promotion-2.png',
@@ -68,31 +68,13 @@ const data = [
   },
   {
     header: 'Umumiy qoidalar',
-    title: "TRANSFERLARNI AMALGA OSHIRING",
+    title: 'TRANSFERLARNI AMALGA OSHIRING',
     description:
       'Agar sizning jamoangizdagi o’yinchilardan biri jarohat olgan bo’lsa yoki shunchaki yomon o’ynasa, har bir turda ochko to’plamasa, tarkibni optimalroq o’zgartirish uchun 2 tagacha transferni amalga oshirishingiz mumkin',
     images: '/images/transfer-removebg-preview.png',
-    mainImage: '/images/transfer-removebg-preview.png',
+    mainImage: '/images/promotion-transfer.png',
     type: 3,
   },
-  // {
-  //   header: 'Umumiy qoidalar',
-  //   title: "Jamoa yig'ing",
-  //   description:
-  //     "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-  //   images: '/promotions-tiles.png',
-  //   mainImage: '/images/promotion-3.png',
-  //   type: 3,
-  // },
-//   {
-//     header: 'Umumiy qoidalar',
-//     title: "Jamoa yig'ing",
-//     description:
-//       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-//     images: '/promotions-tiles.png',
-//     mainImage: '/images/promotion-3.png',
-//     type: 1,
-//   },
 ]
 
 export default Carousel

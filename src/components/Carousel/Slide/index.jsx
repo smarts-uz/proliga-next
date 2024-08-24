@@ -14,101 +14,105 @@ const Slide = ({
 }) => {
   if (type === 1 && currentIndex === index) {
     return (
-      <section className="flex h-auto flex-col items-center justify-between gap-4 py-6 xl:h-[40rem] xl:flex-row xl:gap-0">
-        <div className="flex w-full max-w-lg flex-col">
-          <div className="-skew-x-12 rounded-sm bg-primary">
-            <h3 className="text-3xl font-black capitalize text-black">
-              {header}
-            </h3>
+      <div>
+        <section className="flex h-auto flex-col items-center justify-between gap-4 py-6 xl:h-[40rem] xl:flex-row xl:gap-0">
+          <div className="flex w-full max-w-lg flex-col">
+            <div className="-skew-x-12 rounded-sm bg-primary">
+              <h3 className="text-center text-3xl font-black capitalize text-black">
+                {header}
+              </h3>
+            </div>
+            <h2 className="pt-5 text-2xl font-bold uppercase">{title}</h2>
+            <p className="pt-5 text-xl text-neutral-400">{description}</p>
+            <Image width={400} height={400} src={mainImage} alt={title} />
           </div>
-          <h2 className="pt-5 text-2xl font-bold uppercase">{title}</h2>
-          <p className="pt-5 text-xl text-neutral-400">{description}</p>
-          <Image width={400} height={400} src={mainImage} alt={title} />
-        </div>
-        <div className="items-end">
-          <Image
-            src={images}
-            alt="additional"
-            width={500}
-            height={600}
-            className="aspect-[6/5] h-full w-full md:min-h-96"
-          />
-        </div>
-        <button
-          onClick={prevSlide}
-          className="top-[50% - 32px] absolute left-8 transform bg-opacity-50 text-white xl:left-4"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            alt="arrow"
-            width={32}
-            height={32}
-            className="rotate-90"
-          />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="top-[50% - 32px] absolute right-8 bg-opacity-50 text-white xl:right-4"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            className="-rotate-90"
-            alt="arrow"
-            width={32}
-            height={32}
-          />
-        </button>
-      </section>
+          <div className="items-end">
+            <Image
+              src={images}
+              alt="additional"
+              width={500}
+              height={600}
+              className="aspect-[6/5] h-full w-full md:min-h-96"
+            />
+          </div>
+          <button
+            onClick={prevSlide}
+            className="top-[50% - 32px] absolute left-8 transform bg-opacity-50 text-white xl:left-4"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              alt="arrow"
+              width={32}
+              height={32}
+              className="rotate-90"
+            />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="top-[50% - 32px] absolute right-8 bg-opacity-50 text-white xl:right-4"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              className="-rotate-90"
+              alt="arrow"
+              width={32}
+              height={32}
+            />
+          </button>
+        </section>
+      </div>
     )
   }
   if (type === 2 && currentIndex === index) {
     return (
-      <section className="justify- flex h-[40rem] w-full items-center">
-        <div className="flex w-full justify-between">
-          <div className="mt-2 max-w-md pt-2 text-start">
-            <div className="-skew-x-12 rounded-sm bg-primary">
-              <h3 className="text-3xl font-black capitalize text-black">
-                {header}
-              </h3>
+      <div>
+        <section className="justify- flex h-[40rem] w-full items-center">
+          <div className="flex w-full justify-between">
+            <div className="mt-2 max-w-md pt-2 text-start">
+              <div className="-skew-x-12 rounded-sm bg-primary">
+                <h3 className="text-3xl font-black capitalize text-black">
+                  {header}
+                </h3>
+              </div>
+              <h2 className="text-3xl font-bold uppercase">{title}</h2>
+              <p className="text-lg text-neutral-400">{description}</p>
             </div>
-            <h2 className="text-3xl font-bold uppercase">{title}</h2>
-            <p className="text-lg text-neutral-400">{description}</p>
+            <div className="">
+              <Image
+                width={500}
+                height={300}
+                src={mainImage}
+                alt={title}
+                className="relative h-[230px] w-[230px] sm:h-[430px] sm:w-[430px]"
+              />
+            </div>
           </div>
-          <div className="">
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
+          >
             <Image
-              width={500}
-              height={300}
-              src={mainImage}
-              alt={title}
-              className="relative h-[230px] w-[230px] sm:h-[430px] sm:w-[430px]"
+              src="/icons/arrow-down.svg"
+              alt="arrow"
+              width={32}
+              height={32}
+              className="rotate-90"
             />
-          </div>
-        </div>
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            alt="arrow"
-            width={32}
-            height={32}
-            className="rotate-90"
-          />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            className="-rotate-90"
-            alt="arrow"
-            width={32}
-            height={32}
-          />
-        </button>
-      </section>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              className="-rotate-90"
+              alt="arrow"
+              width={32}
+              height={32}
+            />
+          </button>
+        </section>
+      </div>
     )
   }
 
