@@ -80,9 +80,9 @@ const Slide = ({
   }
   if (type === 4 && currentIndex === index) {
     return (
-      <section className="flex h-full bg-neutral-800 py-12">
+      <section className="flex h-auto min-h-[46rem] bg-neutral-800 py-12">
         <div className="ml-28 flex flex-col-reverse gap-8 xl:flex-row">
-          <Image src={mainImage} width={500} height={100} alt="img" />
+          <Image src={mainImage} width={600} height={100} alt="img" />
           <div>
             <h1 className="mt-28 text-3xl">{header}</h1>
             <h3 className="text-md max-w-sm md:max-w-lg">{description}</h3>
@@ -99,8 +99,8 @@ const Slide = ({
           <h3 className="py-3 text-xl text-neutral-400">{title}</h3>
         </div>
         <div className="grid grid-rows-2 items-center justify-center gap-4 text-neutral-400 xl:flex">
-          {images.map((item) => (
-            <div className="w-full">
+          {images.map((item, index) => (
+            <div key={index} className="w-full">
               <h3 className="text-start text-xl xl:text-center">{item.name}</h3>
               <Image src={item.img} width={300} height={100} alt="img" />
             </div>
