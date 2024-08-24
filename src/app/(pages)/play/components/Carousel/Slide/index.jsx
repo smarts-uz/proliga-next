@@ -99,8 +99,8 @@ const Slide = ({
           <h3 className="py-3 text-xl text-neutral-400">{title}</h3>
         </div>
         <div className="grid grid-rows-2 items-center justify-center gap-4 text-neutral-400 xl:flex">
-          {images.map((item) => (
-            <div className="w-full">
+          {images.map((item, index) => (
+            <div key={index} className="w-full">
               <h3 className="text-start text-xl xl:text-center">{item.name}</h3>
               <Image src={item.img} width={300} height={100} alt="img" />
             </div>

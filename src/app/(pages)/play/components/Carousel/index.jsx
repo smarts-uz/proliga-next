@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-
+  const [active, setActive] = useState(false)
   const nextSlide = () => {
     setCurrentIndex((prevState) => {
       if (prevState === data.length - 1) {
@@ -50,7 +50,7 @@ const Carousel = () => {
         ))}
         <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block"
+          className="2xl: absolute left-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block 2xl:bg-red-400"
         >
           <Image
             src="/icons/arrow-down.svg"
