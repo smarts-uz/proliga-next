@@ -1,4 +1,3 @@
-import { Irish_Grover } from 'next/font/google'
 import Image from 'next/image'
 
 const Slide = ({
@@ -64,21 +63,19 @@ const Slide = ({
 
   if (type === 3 && currentIndex === index) {
     return (
-      <div className="flex min-h-[46rem] w-full items-center justify-center md:min-h-[36rem]">
-        <section className="flex h-auto w-full flex-col items-center">
-          <div className="mx-auto flex w-full flex-col items-center text-center">
-            <h2 className="text-3xl font-bold uppercase">{title}</h2>
-            <p className="text-2xl text-neutral-400">{description}</p>
-            <Image
-              width={550}
-              height={400}
-              src={mainImage}
-              alt={title}
-              className="relative mx-auto pt-12"
-            />
-          </div>
-        </section>
-      </div>
+      <section className="flex h-auto min-h-[46rem] w-full flex-col items-center py-6">
+        <div className="mx-auto flex w-full flex-col items-center text-center">
+          <h2 className="text-3xl font-bold uppercase">{title}</h2>
+          <p className="text-2xl text-neutral-400">{description}</p>
+          <Image
+            width={550}
+            height={400}
+            src={mainImage}
+            alt={title}
+            className="relative mx-auto pt-12"
+          />
+        </div>
+      </section>
     )
   }
   if (type === 4 && currentIndex === index) {
