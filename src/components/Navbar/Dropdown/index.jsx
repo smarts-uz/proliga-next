@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useLogOut } from '@/src/app/hooks/auth/useLogOut/useLogOut'
+import { useLogOut } from '../../../app/hooks/auth/useLogOut/useLogOut'
 
 const Dropdown = ({ state }) => {
   const { logOut } = useLogOut()

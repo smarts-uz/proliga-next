@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { supabase } from '@/src/app/lib/supabaseClient'
+import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useAuthContext } from '../useAuthContext/useAuthContext'
 

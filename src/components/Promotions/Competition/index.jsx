@@ -1,7 +1,6 @@
 'use client'
-import React, { useState } from 'react'
 import Image from 'next/image'
-import Gutter from '@/src/components/Gutter'
+import Gutter from '../../Gutter'
 
 const Competition = () => {
   return (

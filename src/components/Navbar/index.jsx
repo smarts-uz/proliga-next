@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useAuthContext } from '@/src/app/hooks/auth/useAuthContext/useAuthContext'
+import { useAuthContext } from '../../app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
-import Gutter from '@/src/components/Gutter'
+import Gutter from '../Gutter'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
@@ -32,7 +32,7 @@ const Navbar = () => {
           <section className="hidden items-center gap-6 text-neutral-300 xl:flex">
             <Link
               className="transition-all hover:text-white hover:underline"
-              href={'/'}
+              href={'/league'}
             >
               Chempionat
             </Link>
@@ -62,7 +62,7 @@ const Navbar = () => {
             </button>
             <span
               onClick={handleToggleDropdown}
-              className="flex items-center justify-center gap-2 sm:min-w-24"
+              className="flex cursor-pointer items-center justify-center gap-2"
             >
               {state.user ? (
                 <span className="flex size-8 items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">

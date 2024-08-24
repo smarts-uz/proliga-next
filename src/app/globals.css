@@ -50,4 +50,20 @@
   .auth-input {
     @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
   }
+  .filter-neutral-400 {
+    filter: brightness(0) saturate(100%) invert(70%) sepia(19%) saturate(0%)
+      hue-rotate(236deg) brightness(92%) contrast(84%);
+  }
+  .filter-neutral-200 {
+    filter: brightness(0) saturate(100%) invert(89%) sepia(93%) saturate(4046%)
+      hue-rotate(184deg) brightness(124%) contrast(80%);
+  }
+  .filter-neutral-50 {
+    filter: brightness(0) saturate(100%) invert(89%) sepia(93%) saturate(4046%)
+      hue-rotate(184deg) brightness(124%) contrast(80%);
+  }
+  .filter-neutral-950 {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(1197%)
+      hue-rotate(218deg) brightness(95%) contrast(92%);
+  }
 }

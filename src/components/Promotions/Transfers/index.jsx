@@ -1,6 +1,6 @@
 import React from 'react'
-import Gutter from '@/src/components/Gutter'
 import Image from 'next/image'
+import Gutter from '../../Gutter'
 
 const Transfers = () => {
   return (

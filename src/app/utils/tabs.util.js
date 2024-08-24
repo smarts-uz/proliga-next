@@ -21,7 +21,7 @@ export const data = [
   },
   {
     id: 3,
-    title: 'Stastics',
+    title: 'Stastika',
     key: 'Statistics',
   },
   {
@@ -30,3 +30,11 @@ export const data = [
     key: 'Championship',
   },
 ]
+export const tabs = {
+  GameProfile: 'GameProfile',
+  Statistics: 'Statistics',
+  Transfer: 'Transfer',
+  Championship: 'Championship',
+  Journal: 'Journal',
+  Tournament: 'Tournament',
+}
