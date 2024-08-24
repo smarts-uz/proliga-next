@@ -1,8 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import Gutter from '../Gutter'
+import { useEffect, useState } from 'react'
 import Article from './Article'
-import { supabase } from '@/src/app/lib/supabaseClient'
 
 const itemsPerPage = 4
 

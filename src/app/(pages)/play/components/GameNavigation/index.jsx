@@ -1,5 +1,5 @@
-import Gutter from '../Gutter'
-import { data } from '@/src/app/utils/tabs.util'
+import Gutter from "../../../../../components/Gutter"
+import { data } from "../../../../utils/tabs.util"
 
 const GameNavigation = ({ currentTab, setCurrentTab }) => {
   const active = 'bg-primary text-black bg-opacity-100'

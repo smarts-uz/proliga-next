@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Backdrop from '../../Backdrop'
+import Backdrop from '../../../../../../components/Backdrop'
 
 const ArticleModal = ({ item, toggleModal }) => {
   return (

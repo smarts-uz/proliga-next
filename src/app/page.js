@@ -1,15 +1,13 @@
 'use client'
-import Hero from '@/src/components/Hero'
-import Rules from '@/src/components/Rules'
-import Carousel from '@/src/components/Carousel'
-import Promotions from '@/src/components/Promotions'
+import Rules from '../components/Rules'
+import Promotions from '../components/Promotions'
+import Hero from '../components/Hero'
 
 export default function Home() {
   return (
     <section>
       <Hero />
       <Promotions />
-      <Carousel />
       <Rules />
     </section>
   )

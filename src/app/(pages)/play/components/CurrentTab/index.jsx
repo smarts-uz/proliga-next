@@ -4,7 +4,8 @@ import Transfer from '../Transfer'
 import Championship from '../Championship'
 import Journal from '../Journal'
 import Tournament from '../Tournament'
-import { tabs } from '@/src/app/utils/tabs.util'
+// import { tabs } from '@/src/app/utils/tabs.util'
+import { tabs } from '../../../../utils/tabs.util'
 
 const CurrentTab = ({ currentTab }) => {
   return (

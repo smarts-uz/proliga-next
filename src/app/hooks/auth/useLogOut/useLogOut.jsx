@@ -1,5 +1,5 @@
 import { useAuthContext } from '../useAuthContext/useAuthContext'
-import { supabase } from '@/src/app/lib/supabaseClient'
+import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 
 export const useLogOut = () => {

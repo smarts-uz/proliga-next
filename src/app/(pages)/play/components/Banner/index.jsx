@@ -1,4 +1,3 @@
-import Gutter from '../Gutter'
 
 const Banner = () => {
   return (

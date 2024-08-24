@@ -22,7 +22,7 @@ const League = () => {
     <Gutter>
       <section className="my-8 w-full rounded-2xl bg-neutral-800 p-6">
         <h2 className="mb-4 text-2xl font-bold">Leagues</h2>
-        <div className="lg:xl-cols-3 grid gap-x-4 gap-y-2 xs:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {leagues.map((item, index) => (
             <article
               key={index}
@@ -33,7 +33,7 @@ const League = () => {
                 alt={item.title}
                 className="z-20 size-12 rounded-full bg-white p-1"
               />
-              <span className="absolute bottom-0 left-0 top-0 h-full w-10 bg-primary"></span>
+              <span className="absolute bottom-0 left-0 top-0 h-full w-10 bg-primary" />
               <div>
                 <h3 className="text-xl font-bold">{item.title}</h3>
                 <p className="text-neutral-400">

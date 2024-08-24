@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import GameNavigation from '@/src/components/GameNavigation'
+import GameNavigation from './components/GameNavigation'
 import { tabs } from '../../utils/tabs.util'
-import CurrentTab from '@/src/components/CurrentTab'
+import CurrentTab from './components/CurrentTab'
 
 const Play = () => {
   const [currentTab, setCurrentTab] = useState(tabs.GameProfile)

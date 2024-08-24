@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
-import Gutter from '../Gutter'
+import Gutter from '../../../../../components/Gutter'
 import Slide from './Slide'
 
 const Carousel = () => {

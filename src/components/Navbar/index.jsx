@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useAuthContext } from '@/src/app/hooks/auth/useAuthContext/useAuthContext'
+import { useAuthContext } from '../../app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
-import Gutter from '@/src/components/Gutter'
+import Gutter from '../Gutter'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)

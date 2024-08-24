@@ -1,6 +1,6 @@
-import Gutter from '../Gutter'
 import Image from 'next/image'
 import PlayersStructure from './PlayersStructure'
+import Gutter from '../../../../../components/Gutter'
 
 const GameProfile = () => {
   return (

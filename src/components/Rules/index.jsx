@@ -1,4 +1,4 @@
-import Gutter from '@/src/components/Gutter'
+import Gutter from "../Gutter"
 
 export default function Rules() {
   return (

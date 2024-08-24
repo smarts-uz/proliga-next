@@ -1,4 +1,4 @@
-import Gutter from '../Gutter'
+import Gutter from "../../../../../components/Gutter"
 
 const Statistics = () => {
   return (

@@ -1,11 +1,11 @@
 import News from '../News'
 import MatchesHistory from '../MatchesHistory'
-import Gutter from '../Gutter'
+import Gutter from '../../../../../components/Gutter'
 
 const WorldNews = () => {
   return (
     <Gutter>
-      <section className="flex justify-between mb-6">
+      <section className="mb-6 flex justify-between">
         <MatchesHistory />
         <News />
       </section>

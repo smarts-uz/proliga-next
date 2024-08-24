@@ -1,6 +1,6 @@
-import Banner from '@/src/components/Banner'
-import Carousel from '@/src/components/Carousel'
-import WorldNews from '@/src/components/WorldNews'
+import Banner from './components/Banner'
+import WorldNews from './components/WorldNews'
+import Carousel from './components/Carousel'
 
 const PlayLayout = ({ children }) => {
   return (
