@@ -1,5 +1,3 @@
-import React from 'react'
-
 const GameBrief = () => {
   return (
     <section className="flex h-min w-full max-w-[30rem] flex-col justify-between gap-6 rounded-2xl bg-neutral-950 px-10 py-6">
@@ -29,7 +27,7 @@ const GameBrief = () => {
           <p className="text-sm uppercase text-primary">Ispanya</p>
         </div>
         <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">Turdagi o'rin</p>
+          <p className="text-neutral-100">Turdagi o&apos;rin</p>
           <p className="text-sm uppercase text-primary">17</p>
         </div>
       </div>
