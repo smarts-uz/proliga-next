@@ -50,7 +50,7 @@ const Carousel = () => {
         ))}
         <button
           onClick={prevSlide}
-          className="2xl: absolute left-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block 2xl:bg-red-400"
+          className="absolute top-1/2 hidden bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-left-24"
         >
           <Image
             src="/icons/arrow-down.svg"
@@ -62,7 +62,7 @@ const Carousel = () => {
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block"
+          className="absolute right-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-right-24"
         >
           <Image
             src="/icons/arrow-down.svg"

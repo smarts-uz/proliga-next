@@ -16,7 +16,7 @@ const CreateTeam = () => {
               <h2 className="pl-8 font-bold uppercase md:text-3xl">
                 jamoa yig&apos;ing
               </h2>
-              <p className="min-w-xl pl-8 text-base text-gray-400 lg:text-2xl">
+              <p className="min-w-xl pl-8 text-base text-gray-200 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
@@ -26,7 +26,7 @@ const CreateTeam = () => {
                 width={450}
                 height={505}
                 alt="footballers images"
-                className="min-h-72 min-w-80"
+                className="min-h-72 min-w-80 xs:h-72 xs:w-72"
                 src="/images/football-tiles.png"
               />
             </div>
