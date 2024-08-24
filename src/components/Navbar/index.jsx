@@ -22,10 +22,10 @@ const Navbar = () => {
               width={180}
               height={56}
               priority={true}
-              className="h-8 w-40 cursor-pointer"
+              className="h-6 w-32 cursor-pointer md:h-8 md:w-40"
             />
           </Link>
-          <section className="hidden items-center gap-6 text-neutral-300 xl:flex">
+          <section className="hidden items-center gap-6 text-neutral-300 lg:flex">
             <Link
               className="transition-all hover:text-white hover:underline"
               href={'/leagues'}

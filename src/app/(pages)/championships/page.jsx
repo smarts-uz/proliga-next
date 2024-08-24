@@ -22,7 +22,7 @@ const Championships = () => {
     <Gutter>
       <section className="my-8 w-full rounded-2xl bg-neutral-800 p-6">
         <h2 className="mb-4 text-2xl font-bold">Leagues</h2>
-        <div className="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {championships.map((item, index) => (
             <Championship key={index} item={item} />
           ))}
