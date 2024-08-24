@@ -5,7 +5,7 @@ import { tabs } from '../../utils/tabs.util'
 import CurrentTab from './components/CurrentTab'
 
 const Play = () => {
-  const [currentTab, setCurrentTab] = useState(tabs.GameProfile)
+  const [currentTab, setCurrentTab] = useState(tabs.Transfer)
 
   return (
     <section className="flex flex-col gap-6 bg-neutral-200 pb-6 text-neutral-700">

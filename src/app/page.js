@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
     const auth = JSON.parse(localStorage.getItem(`sb-${sbUrl}-auth-token`))
-    if (auth.access_token) {
+    if (auth && auth?.access_token) {
       dispatch(setUserAuth(auth.user))
     }
   }, [dispatch])
