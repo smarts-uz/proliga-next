@@ -24,17 +24,11 @@ export const data = [
     title: 'Stastika',
     key: 'Statistics',
   },
-  {
-    id: 6,
-    title: 'Chempionat',
-    key: 'Championship',
-  },
 ]
 export const tabs = {
   GameProfile: 'GameProfile',
-  Statistics: 'Statistics',
   Transfer: 'Transfer',
-  Championship: 'Championship',
+  Statistics: 'Statistics',
   Journal: 'Journal',
   Tournament: 'Tournament',
 }
