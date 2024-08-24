@@ -2,7 +2,8 @@
 import LeagueModal from '../Modal/index'
 import { useState } from 'react'
 
-const League = ({ item}) => {
+const Championship
+ = ({ item}) => {
   const [isModalOpen, toggleModal] = useState(false)
 
   console.log(isModalOpen)
@@ -29,4 +30,5 @@ const League = ({ item}) => {
   )
 }
 
-export default League
+export default Championship
+

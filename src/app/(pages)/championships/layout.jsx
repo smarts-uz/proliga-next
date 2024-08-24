@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LeagueLayout = ({ children }) => {
+const ChampionshipsLayout = ({ children }) => {
   return (
     <main className='pt-16 bg-neutral-950 min-h-screen'>
       {children}
@@ -8,4 +8,4 @@ const LeagueLayout = ({ children }) => {
   )
 }
 
-export default LeagueLayout
+export default ChampionshipsLayout
