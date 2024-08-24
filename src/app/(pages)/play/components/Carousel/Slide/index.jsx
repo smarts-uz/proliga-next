@@ -1,3 +1,4 @@
+import { Irish_Grover } from 'next/font/google'
 import Image from 'next/image'
 
 const Slide = ({
@@ -35,84 +36,29 @@ const Slide = ({
               className="aspect-[6/5] h-full w-full md:min-h-96"
             />
           </div>
-          <button
-            onClick={prevSlide}
-            className="top-[50% - 32px] absolute left-8 transform bg-opacity-50 text-white xl:left-4"
-          >
-            <Image
-              src="/icons/arrow-down.svg"
-              alt="arrow"
-              width={32}
-              height={32}
-              className="rotate-90"
-            />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="top-[50% - 32px] absolute right-8 bg-opacity-50 text-white xl:right-4"
-          >
-            <Image
-              src="/icons/arrow-down.svg"
-              className="-rotate-90"
-              alt="arrow"
-              width={32}
-              height={32}
-            />
-          </button>
         </section>
       </div>
     )
   }
   if (type === 2 && currentIndex === index) {
     return (
-      <div>
-        <section className="justify- flex h-[40rem] w-full items-center">
-          <div className="flex w-full justify-between">
-            <div className="mt-2 max-w-md pt-2 text-start">
-              <div className="-skew-x-12 rounded-sm bg-primary">
-                <h3 className="text-3xl font-black capitalize text-black">
-                  {header}
-                </h3>
-              </div>
-              <h2 className="text-3xl font-bold uppercase">{title}</h2>
-              <p className="text-lg text-neutral-400">{description}</p>
-            </div>
-            <div className="">
-              <Image
-                width={500}
-                height={300}
-                src={mainImage}
-                alt={title}
-                className="relative h-[230px] w-[230px] sm:h-[430px] sm:w-[430px]"
-              />
-            </div>
+      <section className="flex h-[40rem] w-full items-center">
+        <div className="xl:felx-col flex w-full justify-between gap-8">
+          <div className="mt-2 max-w-md pt-2">
+            <h2 className="text-3xl font-bold uppercase">{title}</h2>
+            <p className="text-lg text-neutral-400">{description}</p>
           </div>
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-          >
+          <div>
             <Image
-              src="/icons/arrow-down.svg"
-              alt="arrow"
-              width={32}
-              height={32}
-              className="rotate-90"
+              width={500}
+              height={300}
+              src={mainImage}
+              alt={title}
+              className="relative h-[230px] w-[230px] sm:h-[430px] sm:w-[430px]"
             />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-          >
-            <Image
-              src="/icons/arrow-down.svg"
-              className="-rotate-90"
-              alt="arrow"
-              width={32}
-              height={32}
-            />
-          </button>
-        </section>
-      </div>
+          </div>
+        </div>
+      </section>
     )
   }
 
@@ -131,32 +77,21 @@ const Slide = ({
               className="relative mx-auto pt-12"
             />
           </div>
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-          >
-            <Image
-              src="/icons/arrow-down.svg"
-              alt="arrow"
-              width={32}
-              height={32}
-              className="rotate-90"
-            />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white"
-          >
-            <Image
-              src="/icons/arrow-down.svg"
-              className="-rotate-90"
-              alt="arrow"
-              width={32}
-              height={32}
-            />
-          </button>
         </section>
       </div>
+    )
+  }
+  if (type === 4 && currentIndex === index) {
+    return (
+      <section className="flex h-full bg-neutral-800 py-12">
+        <div className="ml-28 flex flex-col-reverse gap-8 xl:flex-row">
+          <Image src={mainImage} width={500} height={100} alt="img" />
+          <div>
+            <h1 className="mt-28 text-3xl">{header}</h1>
+            <h3 className="text-md max-w-sm md:max-w-lg">{description}</h3>
+          </div>
+        </div>
+      </section>
     )
   }
 

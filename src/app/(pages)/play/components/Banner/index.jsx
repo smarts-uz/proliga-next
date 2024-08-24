@@ -2,7 +2,7 @@
 const Banner = () => {
   return (
     <section
-      className="h-[50vh] min-h-96 w-full bg-cover bg-center md:h-[55vh] lg:min-h-80 xl:h-[50vh] xl:min-h-96 2xl:h-[45vh]"
+      className="h-[60vh] min-h-96 w-full bg-cover bg-center md:h-[55vh] lg:min-h-80 xl:h-[50vh] xl:min-h-96"
       style={{ backgroundImage: "url('/images/Hero-image.png')" }}
     >
       <div className="flex h-full flex-col items-center justify-center gap-6 text-white xl:gap-6">

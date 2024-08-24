@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
-import { useAuthContext } from '../useAuthContext/useAuthContext'
 
 export const useLogIn = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
-  const { dispatch } = useAuthContext()
 
   const logIn = async ({ email, password, phone }) => {
     setIsLoading(false)
@@ -38,7 +36,6 @@ export const useLogIn = () => {
         setIsLoading(false)
         setData(data)
         localStorage.setItem('user', JSON.stringify(data?.user))
-        dispatch({ type: 'LOGIN', payload: data })
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {

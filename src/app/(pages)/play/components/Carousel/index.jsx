@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Gutter from '../../../../../components/Gutter'
 import Slide from './Slide'
+import Image from 'next/image'
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -43,6 +44,30 @@ const Carousel = () => {
             prevSlide={prevSlide}
           />
         ))}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block"
+        >
+          <Image
+            src="/icons/arrow-down.svg"
+            alt="arrow"
+            width={32}
+            height={32}
+            className="rotate-90"
+          />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block"
+        >
+          <Image
+            src="/icons/arrow-down.svg"
+            className="-rotate-90"
+            alt="arrow"
+            width={32}
+            height={32}
+          />
+        </button>
       </Gutter>
     </section>
   )
@@ -74,10 +99,14 @@ const data = [
     mainImage: '/images/promotion-transfer.png',
     type: 3,
   },
+  {
+    header: 'Raqobatlashing',
+    description: `
+Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko ishlashga harakat qiling va mavsum so'ngida g'olib bo'ling!`,
+    mainImage: '/images/promotion-table.png',
+    type: 4,
+  },
 
-  //  { mainImage: '/images/promotion-transfer.png',
-  //   type: 3
-  // }
   // {
   //   header: 'Umumiy qoidalar',
   //   title: "Jamoa yig'ing",

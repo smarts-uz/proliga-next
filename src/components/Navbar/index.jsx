@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { useAuthContext } from '../../app/hooks/auth/useAuthContext/useAuthContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
@@ -8,13 +7,10 @@ import Gutter from '../Gutter'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
-  const { state } = useAuthContext()
 
   const handleToggleDropdown = () => {
     toggleDropdown(!isDropdownOpen)
   }
-  console.log(state)
-
   return (
     <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
       <Gutter>
@@ -64,8 +60,8 @@ const Navbar = () => {
               onClick={handleToggleDropdown}
               className="flex cursor-pointer items-center justify-center gap-2"
             >
-              {state.user ? (
-                <span className="flex size-8 items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
+              {false ? (
+                <span className="flex size-8 select-none items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
                   {state.user.user.email.slice(0, 1)}
                 </span>
               ) : (
@@ -86,7 +82,7 @@ const Navbar = () => {
                 draggable={false}
                 height={20}
               />
-              {isDropdownOpen && <Dropdown state={state} />}
+              {isDropdownOpen && <Dropdown />}
             </span>
           </div>
         </div>
