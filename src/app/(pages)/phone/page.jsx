@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 import { useState } from 'react'
-import Gutter from '@/src/components/Gutter'
+import Gutter from '../../../components/Gutter'
 
 const Phone = () => {
   const [number, setNumber] = useState('')

@@ -4,7 +4,7 @@ import Carousel from './components/Carousel'
 
 const PlayLayout = ({ children }) => {
   return (
-    <main className="bg-neutral-200 pt-16 min-h-screen">
+    <main className="bg-neutral-200 min-h-screen">
       <Banner />
       {children}
       <WorldNews />

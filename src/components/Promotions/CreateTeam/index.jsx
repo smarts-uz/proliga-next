@@ -23,8 +23,8 @@ const CreateTeam = () => {
             </div>
             <div className="self-cente relative self-center">
               <Image
-                width={450}
-                height={405}
+                width={400}
+                height={400}
                 alt="footballers images"
                 className="min-w-80 min-h-72"
                 src="/images/football-tiles.png"

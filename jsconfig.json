@@ -1,9 +1,17 @@
 {
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  },
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"],
-    },
-     "baseUrl": "src/"
-
-  }
+    "baseUrl": "./src",
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+  },
+   "include": [
+     "src/**/*"
+   ],
 }
