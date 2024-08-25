@@ -10,8 +10,8 @@ const Statistics = () => {
   useEffect(() => {
     const fetch = async () => {
       const { data, error } = await supabase
-        .from('player')
-        .select('id, name, position, club(name), price')
+        .from('player_result')
+        .select('*, player_id(name)')
         .limit(54)
       if (error) return toast.error(error.message)
       if (data?.length > 0) setPlayers(data)
@@ -19,36 +19,35 @@ const Statistics = () => {
     fetch()
   }, [])
 
+  console.log(players)
+
   return (
     <Gutter>
-      <section className='flex gap-4'>
+      <section className="flex gap-4">
         <div className="h-min max-h-[36rem] min-h-[36rem] table-auto overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/3">
           <table class="w-full table-auto border-spacing-0">
             <thead>
               <tr>
                 <th>Player</th>
                 <th>Position</th>
-                <th>Price</th>
-                <th>Club</th>
+                <th title="Goal">G</th>
+                <th title="Goal Assist">GA</th>
+                <th title='Missed Penalty'>MP</th>
+                <th title="Yellow Card">YC</th>
+                <th title="Red Card">RC</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {players.map((player) => (
-                <tr key={player.id} className="border-spacing-0">
-                  <td className="w-24 truncate">{player.name}</td>
-                  <td>{player.position}</td>
-                  <td>{player.price}</td>
-                  <td>{player.club.name}</td>
-                  <button>
-                    <Image
-                      src="/icons/plus.svg"
-                      alt="add player"
-                      width={24}
-                      height={24}
-                      className="filter-primary"
-                    />
-                  </button>
+                <tr key={player.id} className="text-center">
+                  <td className="w-1/4 truncate">{player.player_id.name}</td>
+                  <td className="w-1/4 truncate">{player.position}</td>
+                  <td className="w-1/8 truncate">{player.goal}</td>
+                  <td className="w-1/8 truncate">{player.goal_asist}</td>
+                  <td className="w-1/8 truncate">{player.missed_penalty}</td>
+                  <td className="w-1/8 truncate">{player.yellow_card}</td>
+                  <td className="w-1/8 truncate">{player.red_card}</td>
                 </tr>
               ))}
             </tbody>
@@ -59,9 +58,9 @@ const Statistics = () => {
           <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
             <h3 className="text-xl font-bold">ENG KUCHLI TOP 3 - JAMOALAR</h3>
             <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-28 rounded-xl bg-white"></div>{' '}
-              <div className="size-28 rounded-xl bg-white"></div>
-              <div className="size-28 rounded-xl bg-white"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
             </div>
           </div>
           <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
@@ -69,9 +68,9 @@ const Statistics = () => {
               ENG KUCHLI TOP 3 - Futbolchilar
             </h3>
             <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-28 rounded-xl bg-white"></div>{' '}
-              <div className="size-28 rounded-xl bg-white"></div>
-              <div className="size-28 rounded-xl bg-white"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
+              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
             </div>
           </div>
         </div>

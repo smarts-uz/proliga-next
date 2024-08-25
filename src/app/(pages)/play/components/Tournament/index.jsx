@@ -11,14 +11,13 @@ const Tournament = () => {
     const fetch = async () => {
       const { data, error } = await supabase
         .from('team_point')
-        .select('id, name, team_id(name), user_id(email), tour_id(name)')
+        .select('id, point, team_id(name), user_id(email), tour_id(name)')
         .limit(54)
       if (error) return toast.error(error.message)
       if (data?.length > 0) setPlayers(data)
     }
     fetch()
   }, [])
-  console.log(players)
 
   return (
     <Gutter>
@@ -27,29 +26,20 @@ const Tournament = () => {
           <table class="w-full table-auto border-spacing-0">
             <thead>
               <tr>
-                <th>Player</th>
-                <th>Team</th>
                 <th>User</th>
+                <th>Team</th>
+                <th>Point</th>
                 <th>Tour</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {players.map((player) => (
-                <tr key={player.id} className="text-center">
-                  <td className="w-24 truncate">{player.name}</td>
-                  <td className="w-24 truncate">{player.team_id.name}</td>
-                  <td className="w-24 truncate">{player.user_id?.email}</td>
-                  <td>{player.tour_id.name}</td>
-                  <span className='cursor-pointer'>
-                    <Image
-                      src="/icons/plus.svg"
-                      alt="add player"
-                      width={24}
-                      height={24}
-                      className="filter-primary"
-                    />
-                  </span>
+                <tr key={player.id} className="px-auto text-center">
+                  <td className="w-1/4">{player.user_id?.email}</td>
+                  <td className="w-1/4">{player.team_id.name}</td>
+                  <td className="w-1/4">{player.point}</td>
+                  <td className="w-1/4">{player.tour_id.name}</td>
                 </tr>
               ))}
             </tbody>
