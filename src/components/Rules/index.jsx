@@ -1,5 +1,5 @@
 import Gutter from '../Gutter'
-import Link  from 'next/link'
+import Link from 'next/link'
 
 export default function Rules() {
   return (
@@ -44,7 +44,10 @@ export default function Rules() {
             Ipsum.
           </li>
         </ul>
-        <Link href="/" className="mx-auto self-center rounded-2xl bg-green-400 px-8 py-1 uppercase">
+        <Link
+          href="/"
+          className="mx-auto self-center rounded-2xl bg-green-600 px-8 py-1 uppercase"
+        >
           Oyin boshlash
         </Link>
       </div>

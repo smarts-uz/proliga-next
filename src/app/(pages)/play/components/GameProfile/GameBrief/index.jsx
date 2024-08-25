@@ -1,6 +1,6 @@
 const GameBrief = () => {
   return (
-    <section className="flex h-min w-full max-w-[30rem] flex-col justify-between gap-6 rounded-2xl bg-neutral-950 px-10 py-6">
+    <section className="flex md:w-2/5 h-min w-full  flex-col justify-between gap-6 rounded-2xl bg-neutral-950 px-10 py-6">
       <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Keyingi Tur</p>

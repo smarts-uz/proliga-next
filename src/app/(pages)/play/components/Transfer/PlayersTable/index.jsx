@@ -6,37 +6,26 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
+import { supabase } from '../../../../../lib/supabaseClient'
 
 const PlayersTable = () => {
-  const defaultData = [
-    {
-      firstName: 'tanner',
-      lastName: 'linsley',
-      age: 24,
-      visits: 100,
-      status: 'In Relationship',
-      progress: 50,
-    },
-    {
-      firstName: 'tandy',
-      lastName: 'miller',
-      age: 40,
-      visits: 40,
-      status: 'Single',
-      progress: 80,
-    },
-    {
-      firstName: 'joe',
-      lastName: 'dirte',
-      age: 45,
-      visits: 20,
-      status: 'Complicated',
-      progress: 10,
-    },
-  ]
+  const [players, setPlayers] = useState([])
 
-  const [data, _setData] = useState(() => [...defaultData])
+  useEffect(() => {
+    const fetch = async () => {
+      const { data, error } = await supabase
+        .from('player')
+        .select('*')
+        .limit(12)
+      if (error) return toast.error(error.message)
+      if (data?.length > 0) setPlayers(data)
+    }
+    fetch()
+  }, [])
+  console.log(players)
+
+  const [data, _setData] = useState(players)
   const rerender = useReducer(() => ({}), {})[1]
 
   const table = useReactTable({
@@ -46,9 +35,9 @@ const PlayersTable = () => {
   })
 
   return (
-    <div className="w-2/5 bg-black p-2 text-neutral-200">
+    <div className="overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/5">
       <table>
-        <thead>
+        <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -75,7 +64,7 @@ const PlayersTable = () => {
             </tr>
           ))}
         </tbody>
-        <tfoot>
+        {/* <tfoot>
           {table.getFooterGroups().map((footerGroup) => (
             <tr key={footerGroup.id}>
               {footerGroup.headers.map((header) => (
@@ -90,7 +79,7 @@ const PlayersTable = () => {
               ))}
             </tr>
           ))}
-        </tfoot>
+        </tfoot> */}
       </table>
       <div className="h-4" />
       <button onClick={() => rerender()} className="border p-2">
@@ -103,31 +92,23 @@ const PlayersTable = () => {
 const columnHelper = createColumnHelper()
 
 const columns = [
-  columnHelper.accessor('firstName', {
+  columnHelper.accessor((row) => row.lastName, {
+    id: 'Position',
+    cell: (info) => <i>{info.getValue()}</i>,
+    header: () => <span>Position</span>,
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('Name', {
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'lastName',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('age', {
-    header: () => 'Age',
+  columnHelper.accessor('price', {
+    header: () => 'Price',
     cell: (info) => info.renderValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor('visits', {
-    header: () => <span>Visits</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('status', {
+  columnHelper.accessor('Club', {
     header: 'Status',
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('progress', {
-    header: 'Profile Progress',
     footer: (info) => info.column.id,
   }),
 ]

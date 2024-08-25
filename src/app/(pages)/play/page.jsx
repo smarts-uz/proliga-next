@@ -8,7 +8,7 @@ const Play = () => {
   const [currentTab, setCurrentTab] = useState(tabs.Transfer)
 
   return (
-    <section className="flex flex-col gap-6 bg-neutral-700 pb-6 text-neutral-700">
+    <section className="flex flex-col gap-6 bg-neutral-700 pb-6 text-neutral-700 overflow-hidden">
       <GameNavigation currentTab={currentTab} setCurrentTab={setCurrentTab} />
       <CurrentTab currentTab={currentTab} />
     </section>

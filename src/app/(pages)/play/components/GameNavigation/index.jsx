@@ -26,10 +26,10 @@ const GameNavigation = ({ currentTab, setCurrentTab }) => {
           Championship
         </Link>
       </div>
-      <div className="mt-4 flex w-full overflow-x-auto rounded-sm text-black">
+      <div className="mt-4 flex w-full gap-1 overflow-x-auto rounded-sm text-black">
         {data.map((item, index) => (
           <div
-            className="min-w-40 sm:min-w-64 flex-1 rounded-md border bg-black p-2 text-lg font-medium text-white lg:min-w-80"
+            className="min-w-40 flex-1 cursor-pointer rounded-md border bg-black p-2 text-lg font-medium text-white sm:min-w-64 lg:min-w-80"
             key={Math.random()}
           >
             Tur {index + 1}

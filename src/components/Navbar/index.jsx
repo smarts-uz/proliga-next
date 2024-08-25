@@ -4,13 +4,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
 import Gutter from '../Gutter'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
+  const { userAuth } = useSelector((state) => state.auth)
 
   const handleToggleDropdown = () => {
     toggleDropdown(!isDropdownOpen)
   }
+  
   return (
     <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
       <Gutter>
@@ -60,9 +63,9 @@ const Navbar = () => {
               onClick={handleToggleDropdown}
               className="flex cursor-pointer items-center justify-center gap-2"
             >
-              {false ? (
+              {userAuth?.email ? (
                 <span className="flex size-8 select-none items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
-                  {state.user.user.email.slice(0, 1)}
+                  {userAuth.email.slice(0, 1)}
                 </span>
               ) : (
                 <Image
