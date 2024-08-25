@@ -3,8 +3,21 @@ import LeagueModal from '../Modal/index'
 import { useState } from 'react'
 
 const Championship = ({ item }) => {
-  const [isModalOpen, toggleModal] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
 
+  const toggleModal = () => {
+    if (isModalOpen) {
+      setModalOpen(false)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'auto'
+      }
+    } else {
+      setModalOpen(true)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden'
+      }
+    }
+  }
   console.log(isModalOpen)
   return (
     <>
@@ -20,8 +33,12 @@ const Championship = ({ item }) => {
         />
         <span className="absolute bottom-0 left-0 top-0 h-full w-10 bg-primary" />
         <div>
-          <h3 className="text-base xs:text-lg md:text-xl font-bold capitalize">{item.title}</h3>
-          <p className="text-xs xs:text-sm md:text-base text-neutral-400">Description of League</p>
+          <h3 className="text-base font-bold capitalize xs:text-lg md:text-xl">
+            {item.title}
+          </h3>
+          <p className="text-xs text-neutral-400 xs:text-sm md:text-base">
+            Description of League
+          </p>
         </div>
       </article>
       {isModalOpen && <LeagueModal toggleModal={toggleModal} />}

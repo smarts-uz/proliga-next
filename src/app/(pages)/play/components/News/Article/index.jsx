@@ -3,10 +3,22 @@ import { useState } from 'react'
 import ArticleModal from '../Modal'
 
 const Article = ({ item }) => {
-  const [openModal, setOpenModal] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
+
   const toggleModal = () => {
-    setOpenModal(!openModal)
+    if (isModalOpen) {
+      setModalOpen(false)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'auto'
+      }
+    } else {
+      setModalOpen(true)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden'
+      }
+    }
   }
+
   return (
     <>
       <article onClick={toggleModal} className="group p-4 hover:cursor-pointer">
@@ -29,7 +41,7 @@ const Article = ({ item }) => {
         </p>
         <hr />
       </article>
-      {openModal && <ArticleModal toggleModal={toggleModal} item={item} />}
+      {isModalOpen && <ArticleModal toggleModal={toggleModal} item={item} />}
     </>
   )
 }

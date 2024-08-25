@@ -2,10 +2,14 @@ import Backdrop from '../../../../../components/Backdrop'
 import Image from 'next/image'
 
 const LeagueModal = ({ toggleModal }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <Backdrop onClick={() => toggleModal(false)}>
       <dialog
-        className="fade-in min-size-96 flex flex-col gap-4 overflow-y-auto rounded-2xl bg-white p-6 lg:w-1/3"
+        className="fade-in flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between pb-4">
@@ -13,7 +17,7 @@ const LeagueModal = ({ toggleModal }) => {
           <button onClick={() => toggleModal(false)}>
             <Image
               src="/icons/close.svg"
-              className="filter-neutral-950"
+              className="filter-neutral-50"
               alt="close"
               width={24}
               height={24}
@@ -26,7 +30,7 @@ const LeagueModal = ({ toggleModal }) => {
             <input
               type="text"
               id="team name"
-              placeholder="Jamoangiz nomi"
+              placeholder="Jamoangizni nomi"
               className="h-12 w-full rounded-lg border border-neutral-700 bg-transparent p-2 outline-none"
             />
           </div>
@@ -35,18 +39,46 @@ const LeagueModal = ({ toggleModal }) => {
             <select
               name=""
               id=""
-              className="h-12 w-full rounded-lg border border-neutral-700 bg-transparent p-2 outline-none"
+              className="h-12 w-full rounded-lg border border-neutral-700 bg-neutral-800 bg-transparent p-2 outline-none"
             >
-              <option selected value="">
+              <option
+                className="bg-neutral-800 checked:bg-neutral-700"
+                selected
+                value="4-3-3"
+              >
                 4-3-3
               </option>
-              <option value="">4-4-2</option>
-              <option value="">3-4-3</option>
-              <option value="">5-3-2</option>
-              <option value="">3-5-2</option>
+              <option
+                className="bg-neutral-800 checked:bg-neutral-700"
+                value="4-4-2"
+              >
+                4-4-2
+              </option>
+              <option
+                className="bg-neutral-800 checked:bg-neutral-700"
+                value="3-4-3"
+              >
+                3-4-3
+              </option>
+              <option
+                className="bg-neutral-800 checked:bg-neutral-700"
+                value="5-3-2"
+              >
+                5-3-2
+              </option>
+              <option
+                className="bg-neutral-800 checked:bg-neutral-700"
+                value="3-5-2"
+              >
+                3-5-2
+              </option>
             </select>
           </div>
-          <button className="rounded border bg-black py-2 text-white hover:bg-opacity-80">
+          <button
+            onClick={(e) => handleSubmit(e)}
+            type="submit"
+            className="rounded border border-primary bg-black py-2 text-white hover:bg-opacity-80 hover:text-primary"
+          >
             Saqlash
           </button>
         </form>

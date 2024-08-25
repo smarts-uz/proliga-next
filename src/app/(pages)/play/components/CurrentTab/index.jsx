@@ -9,8 +9,8 @@ const CurrentTab = ({ currentTab }) => {
   return (
     <>
       {currentTab === tabs.GameProfile && <GameProfile />}
-      {currentTab === tabs.Statistics && <Statistics />}
       {currentTab === tabs.Transfer && <Transfer />}
+      {currentTab === tabs.Statistics && <Statistics />}
       {currentTab === tabs.Journal && <Journal />}
       {currentTab === tabs.Tournament && <Tournament />}
     </>
