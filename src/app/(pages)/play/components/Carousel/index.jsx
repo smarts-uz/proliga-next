@@ -36,10 +36,10 @@ const Carousel = () => {
     })
   }
 
-  // useEffect(() => {
-  //   const interval = setInterval(nextSlide, 5000)
-  //   return () => clearInterval(interval)
-  // }, [])
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section className="overflow-hidden bg-neutral-800">
