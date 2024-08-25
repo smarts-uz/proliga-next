@@ -7,8 +7,12 @@ import Image from 'next/image'
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [active, setActive] = useState(false)
+  const [imageAnimation, setImageAnimation] = useState('fade-in')
   const nextSlide = () => {
     setCurrentIndex((prevState) => {
+      if (data.length > 1) {
+        setImageAnimation('transition-left')
+      }
       if (prevState === data.length - 1) {
         return 0
       } else {
@@ -17,6 +21,10 @@ const Carousel = () => {
     })
   }
   const prevSlide = () => {
+    if (data.length > 1) {
+      setImageAnimation('transition-right')
+    }
+
     setCurrentIndex((prevState) => {
       if (prevState === 0) {
         return data.length - 1
@@ -44,6 +52,7 @@ const Carousel = () => {
             type={slide.type}
             index={index}
             currentIndex={currentIndex}
+            imageAnimation={imageAnimation}
             nextSlide={nextSlide}
             prevSlide={prevSlide}
           />
@@ -107,7 +116,7 @@ const data = [
     header: 'Raqobatlashing',
     description: `
 Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko ishlashga harakat qiling va mavsum so'ngida g'olib bo'ling!`,
-    mainImage: '/images/promotion-table.png',
+    mainImage: '/images/promotion-stats.png',
     type: 4,
   },
   {
@@ -118,8 +127,8 @@ Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko is
     images: [
       { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
       { name: 'Playstation 5', img: '/images/promotion-price2.png' },
-      { name: 'Tv Samsung  55', img: '/images/promotion-price3.png' },
-      { name: 'Apple ipad pro ', img: '/images/promotion-price4.png' },
+      { name: 'TV Samsung  55', img: '/images/promotion-price3.png' },
+      { name: 'Apple iPad Pro ', img: '/images/promotion-price4.png' },
     ],
   },
 

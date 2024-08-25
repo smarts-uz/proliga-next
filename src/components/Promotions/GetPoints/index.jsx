@@ -23,7 +23,7 @@ const GetPoints = () => {
               alt="football"
               width={400}
               height={400}
-              className="xs:h-72 xs:w-72"
+              className="h-72 w-72 md:size-96"
             />
           </div>
         </article>
