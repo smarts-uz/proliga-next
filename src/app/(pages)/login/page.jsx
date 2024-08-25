@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
@@ -13,8 +13,8 @@ const Login = () => {
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
-  const router = useRouter()
   const { userAuth } = useSelector((state) => state.auth)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ const Login = () => {
     if (userAuth) {
       setTimeout(() => router.push('/championships'), 250)
     }
-  }, [userAuth])
+  }, [userAuth, router])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
