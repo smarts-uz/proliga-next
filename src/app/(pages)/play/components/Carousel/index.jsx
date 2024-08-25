@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import Gutter from '../../../../../components/Gutter'
 import Slide from './Slide'
 import Image from 'next/image'
+import SliderPin from './Slide/pin'
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [active, setActive] = useState(false)
   const [imageAnimation, setImageAnimation] = useState('fade-in')
+
   const nextSlide = () => {
     setCurrentIndex((prevState) => {
       if (data.length > 1) {
@@ -33,54 +35,70 @@ const Carousel = () => {
       }
     })
   }
+
   // useEffect(() => {
   //   const interval = setInterval(nextSlide, 5000)
   //   return () => clearInterval(interval)
   // }, [])
 
   return (
-    <section className="bg-neutral-800">
+    <section className="overflow-hidden bg-neutral-800">
       <Gutter>
-        {data.map((slide, index) => (
-          <Slide
-            key={index}
-            title={slide.title}
-            header={slide.header}
-            description={slide.description}
-            images={slide.images}
-            mainImage={slide.mainImage}
-            type={slide.type}
-            index={index}
-            currentIndex={currentIndex}
-            imageAnimation={imageAnimation}
-            nextSlide={nextSlide}
-            prevSlide={prevSlide}
-          />
-        ))}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 hidden bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-left-24"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            alt="arrow"
-            width={32}
-            height={32}
-            className="rotate-90"
-          />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-right-24"
-        >
-          <Image
-            src="/icons/arrow-down.svg"
-            className="-rotate-90"
-            alt="arrow"
-            width={32}
-            height={32}
-          />
-        </button>
+        <section className="flex flex-col gap-4 pb-4">
+          {data.map((slide, index) => (
+            <Slide
+              key={index}
+              title={slide.title}
+              header={slide.header}
+              description={slide.description}
+              images={slide.images}
+              mainImage={slide.mainImage}
+              type={slide.type}
+              index={index}
+              currentIndex={currentIndex}
+              imageAnimation={imageAnimation}
+              nextSlide={nextSlide}
+              prevSlide={prevSlide}
+            />
+          ))}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 hidden bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-left-24"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              alt="arrow"
+              width={32}
+              height={32}
+              className="rotate-90"
+            />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 hidden -translate-y-1/2 transform bg-opacity-50 px-4 py-2 text-white xl:block 2xl:-right-24"
+          >
+            <Image
+              src="/icons/arrow-down.svg"
+              className="-rotate-90"
+              alt="arrow"
+              width={32}
+              height={32}
+            />
+          </button>
+          <div className="flex w-full items-center justify-center gap-2 self-center">
+            {data &&
+              data.map((image, i) => (
+                <SliderPin
+                  key={i}
+                  image={image}
+                  index={currentIndex}
+                  currentIndex={i}
+                  setImageAnimation={setImageAnimation}
+                  handleClick={setCurrentIndex}
+                />
+              ))}
+          </div>
+        </section>
       </Gutter>
     </section>
   )
