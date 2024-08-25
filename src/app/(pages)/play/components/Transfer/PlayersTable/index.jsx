@@ -8,6 +8,8 @@ import {
 } from '@tanstack/react-table'
 import { useState, useReducer, useEffect } from 'react'
 import { supabase } from '../../../../../lib/supabaseClient'
+import { toast } from 'react-toastify'
+import Image from 'next/image'
 
 const PlayersTable = () => {
   const [players, setPlayers] = useState([])
@@ -16,101 +18,72 @@ const PlayersTable = () => {
     const fetch = async () => {
       const { data, error } = await supabase
         .from('player')
-        .select('*')
-        .limit(12)
+        .select('id, name, position, club(name), price')
+        .limit(54)
       if (error) return toast.error(error.message)
       if (data?.length > 0) setPlayers(data)
     }
     fetch()
   }, [])
-  console.log(players)
 
-  const [data, _setData] = useState(players)
+  const [data, _setData] = useState(players ?? [])
   const rerender = useReducer(() => ({}), {})[1]
+  console.log(players)
 
   const table = useReactTable({
     data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
   })
 
   return (
-    <div className="overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/5">
-      <table>
-        <thead className="">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
+    <div className="h-min max-h-[36rem] table-auto overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/5">
+      <table class="w-full table-auto border-spacing-0">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Position</th>
+            <th>Price</th>
+            <th>Club</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+          {/* <tr>
+            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+            <td>Malcolm Lockyer</td>
+            <td>1961</td>
+          </tr>
+          <tr>
+            <td>Witchy Woman</td>
+            <td>The Eagles</td>
+            <td>1972</td>
+          </tr>
+          <tr>
+            <td>Shining Star</td>
+            <td>Earth, Wind, and Fire</td>
+            <td>1975</td>
+          </tr> */}
+          {players.map((player) => (
+            <tr key={player.id} className="border-spacing-0">
+              <td className="w-24 truncate">{player.name}</td>
+              <td>{player.position}</td>
+              <td>{player.price}</td>
+              <td>{player.club.name}</td>
+              <button>
+                <Image
+                  src="/icons/plus.svg"
+                  alt="add player"
+                  width={24}
+                  height={24}
+                  className="filter-primary"
+                />
+              </button>
             </tr>
           ))}
         </tbody>
-        {/* <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot> */}
       </table>
       <div className="h-4" />
-      <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button>
     </div>
   )
 }
-
-const columnHelper = createColumnHelper()
-
-const columns = [
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'Position',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Position</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('Name', {
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('price', {
-    header: () => 'Price',
-    cell: (info) => info.renderValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('Club', {
-    header: 'Status',
-    footer: (info) => info.column.id,
-  }),
-]
 
 export default PlayersTable
