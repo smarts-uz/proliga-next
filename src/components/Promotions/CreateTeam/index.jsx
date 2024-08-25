@@ -16,7 +16,7 @@ const CreateTeam = () => {
               <h2 className="pl-8 font-bold uppercase md:text-3xl">
                 jamoa yig&apos;ing
               </h2>
-              <p className="min-w-xl pl-8 text-base text-gray-200 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
+              <p className="min-w-xl pl-8 text-base text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
