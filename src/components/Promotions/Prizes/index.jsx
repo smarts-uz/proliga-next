@@ -4,25 +4,21 @@ import Gutter from '../../Gutter'
 
 const Prizes = () => {
   return (
-    <section className={'w-full bg-[#222222]'}>
-      <Gutter className={''}>
-        <div className={'space-y-9 py-16'}>
-          <h2
-            className={
-              'text-2xl font-bold uppercase xs:text-sm md:text-3xl lg:text-4xl'
-            }
-          >
+    <section className={'w-full bg-neutral-800'}>
+      <Gutter>
+        <div className={'space-y-4 py-16 md:space-y-8'}>
+          <h2 className="promotion-header font-bold uppercase">
             SOVRINLARNI YUTIB OLING!
           </h2>
-          <p
-            className={
-              'text-2xl text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl'
-            }
-          >
+          <p className="promotion-text text-neutral-300">
             Eng ko&apos;p ball to&apos;plagan foydalanuvchilar sovg&apos;alarga
             ega bo&apos;lishadi.
           </p>
-          <div className={'grid gap-4 sm:grid-cols-3 lg:grid-cols-4'}>
+          <div
+            className={
+              'grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+            }
+          >
             <div className={'flex flex-col items-center justify-center'}>
               <p className={'mb-2 text-2xl'}>Iphone 15 Pro Max</p>
               <Image

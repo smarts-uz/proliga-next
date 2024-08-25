@@ -6,7 +6,7 @@ const Competition = () => {
   return (
     <div className="relative w-full bg-neutral-900 py-8">
       <Gutter>
-        <section className="flex w-full flex-col items-center justify-between md:flex-row">
+        <section className="flex w-full gap-4 md:gap-0 flex-col items-center justify-between md:flex-row">
           <div>
             <Image
               src="/images/promotion-stats.png"
@@ -15,11 +15,11 @@ const Competition = () => {
               height={400}
             />
           </div>
-          <div className="flex max-w-xl flex-col gap-8">
-            <h2 className="text-3xl font-bold uppercase xs:text-sm md:text-3xl lg:text-4xl">
+          <div className="flex max-w-xl flex-col gap-4 md:gap-8">
+            <h2 className="font-bold uppercase promotion-header">
               RAQOBATLASHING
             </h2>
-            <p className="text-2xl text-neutral-400 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
+            <p className=" text-neutral-400 promotion-text">
               Boshqa foydalanuvchilar bilan umuimiy ligada qatnashing, Ulardan
               ko&apos;proq ochko ishlashga harakat qiling va mavsum
               so&apos;ngida g&apos;olib bo&apos;ling!

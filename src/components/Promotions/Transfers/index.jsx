@@ -7,10 +7,10 @@ const Transfers = () => {
     <div className="w-full bg-neutral-800 py-8 2xl:py-16">
       <Gutter>
         <div className="bg-custom-image align-center flex flex-col bg-cover">
-          <h2 className="self-center text-center text-3xl font-bold uppercase xs:justify-start xs:text-start xs:text-sm md:text-3xl lg:text-4xl">
+          <h2 className="self-center text-center  font-bold uppercase xs:justify-start xs:text-start promotion-header">
             TRANSFERLARNI AMALGA OSHIRING
           </h2>
-          <p className="mt-10 w-3/4 self-center text-center text-xl text-neutral-400 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
+          <p className="promotion-text mt-4 self-center text-center text-neutral-400 md:mt-10 md:w-3/4">
             Agar sizning jamoangizdagi o&apos;yinchilardan biri jarohat olgan
             bo&apos;lsa yoki shunchaki yomon o&apos;ynasa, har bir turda ochko
             to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 2
