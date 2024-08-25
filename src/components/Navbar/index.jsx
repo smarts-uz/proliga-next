@@ -85,7 +85,7 @@ const Navbar = () => {
                 draggable={false}
                 height={20}
               />
-              {isDropdownOpen && <Dropdown />}
+              {isDropdownOpen && <Dropdown auth={userAuth} />}
             </span>
           </div>
         </div>
