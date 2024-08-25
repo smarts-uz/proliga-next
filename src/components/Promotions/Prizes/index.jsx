@@ -16,7 +16,7 @@ const Prizes = () => {
           </h2>
           <p
             className={
-              'text-2xl text-gray-400 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl'
+              'text-2xl text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl'
             }
           >
             Eng ko&apos;p ball to&apos;plagan foydalanuvchilar sovg&apos;alarga
@@ -24,7 +24,7 @@ const Prizes = () => {
           </p>
           <div className={'grid gap-4 sm:grid-cols-3 lg:grid-cols-4'}>
             <div className={'flex flex-col items-center justify-center'}>
-              <p className={'text-2xl'}>Iphone 15 Pro Max</p>
+              <p className={'mb-2 text-2xl'}>Iphone 15 Pro Max</p>
               <Image
                 width={336}
                 height={319}
@@ -34,7 +34,7 @@ const Prizes = () => {
             </div>
 
             <div className={'flex flex-col items-center justify-center'}>
-              <p className={'text-2xl'}>Playstation 5</p>
+              <p className={'mb-2 text-2xl'}>Playstation 5</p>
               <Image
                 width={336}
                 height={319}
@@ -44,7 +44,7 @@ const Prizes = () => {
             </div>
 
             <div className={'flex flex-col items-center justify-center'}>
-              <p className={'text-2xl'}>TV Samsung 55 </p>
+              <p className={'mb-2 text-2xl'}>TV Samsung 55 </p>
               <Image
                 width={336}
                 height={319}
@@ -54,7 +54,7 @@ const Prizes = () => {
             </div>
 
             <div className={'flex flex-col items-center justify-center'}>
-              <p className={'text-2xl'}>Apple iPad Pro</p>
+              <p className={'mb-2 text-2xl'}>Apple iPad Pro</p>
               <Image
                 width={336}
                 height={319}

@@ -9,7 +9,7 @@ const Competition = () => {
         <section className="flex w-full flex-col items-center justify-between md:flex-row">
           <div>
             <Image
-              src="/images/promotion-table.png"
+              src="/images/promotion-stats.png"
               alt="competition"
               width={400}
               height={400}

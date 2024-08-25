@@ -106,7 +106,7 @@ const Slide = ({
           </div>
           <div className="2xl:ml-80">
             <h1 className="mt-28 text-3xl 2xl:text-4xl">{header}</h1>
-            <h3 className="py-5gap-4 min-w-72 gap-4 py-4 text-base text-neutral-400 md:text-lg 2xl:text-xl">
+            <h3 className="min-w-72 gap-4 py-4 text-base text-neutral-400 md:text-lg 2xl:text-xl">
               {description}
             </h3>
           </div>
@@ -121,14 +121,16 @@ const Slide = ({
       >
         <div className="gap-4 py-12 text-center xl:text-start">
           <h1 className="text-3xl uppercase">{header}</h1>
-          <h3 className="gap-4 py-4 text-base text-neutral-400 md:text-lg 2xl:text-xl">
+          <h3 className="gap-4 py-4 text-base text-neutral-300 md:text-lg 2xl:text-xl">
             {title}
           </h3>
         </div>
         <div className="grid grid-rows-2 items-center justify-center gap-4 text-neutral-200 xl:ml-24 xl:flex">
           {images.map((item, index) => (
             <div key={index} className="w-full">
-              <h3 className="text-start text-xl xl:text-center">{item.name}</h3>
+              <h3 className="mb-3 text-start text-xl xl:text-center">
+                {item.name}
+              </h3>
               <Image
                 src={item.img}
                 width={400}

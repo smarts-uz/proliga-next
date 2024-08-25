@@ -23,7 +23,7 @@ const Transfers = () => {
               height={193}
               src={'/images/promotion-transfer.png'}
               alt="transfer players"
-              className="h-22 md:min-h-38 w-72 md:min-w-96"
+              className="h-22 w-72 md:min-h-36 md:min-w-96 2xl:h-52 2xl:w-[36rem]"
             />
           </div>
         </div>
