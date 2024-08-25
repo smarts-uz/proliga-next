@@ -47,28 +47,13 @@ const PlayersTable = () => {
           </tr>
         </thead>
         <tbody>
-          {/* <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr> */}
           {players.map((player) => (
             <tr key={player.id} className="border-spacing-0">
               <td className="w-24 truncate">{player.name}</td>
               <td>{player.position}</td>
               <td>{player.price}</td>
               <td>{player.club.name}</td>
-              <button>
+              <span className="cursor-pointer">
                 <Image
                   src="/icons/plus.svg"
                   alt="add player"
@@ -76,7 +61,7 @@ const PlayersTable = () => {
                   height={24}
                   className="filter-primary"
                 />
-              </button>
+              </span>
             </tr>
           ))}
         </tbody>
