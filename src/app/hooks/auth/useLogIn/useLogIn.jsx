@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 
 export const useLogIn = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
+  const dispatch = useDispatch()
 
   const logIn = async ({ email, password, phone }) => {
     setIsLoading(false)
@@ -34,8 +37,9 @@ export const useLogIn = () => {
       }
       if (data?.user && data?.session) {
         setIsLoading(false)
-        setData(data)
+        dispatch(setUserAuth(data?.user))
         localStorage.setItem('user', JSON.stringify(data?.user))
+        setData(data)
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {
