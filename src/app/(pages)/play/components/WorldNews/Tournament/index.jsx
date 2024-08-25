@@ -1,4 +1,4 @@
-import Gutter from "../../../../../components/Gutter"
+import Gutter from "../../../../../../components/Gutter"
 
 const Tournament = () => {
   return (

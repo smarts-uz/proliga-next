@@ -1,22 +1,23 @@
 import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
-import PlayersStructure from '../GameProfile/PlayersStructure'
+import PlayersStructure from '../PlayersStructure'
+import PlayersTable from './PlayersTable'
 
 const Transfer = () => {
   return (
     <Gutter>
-    
-      <main className="flex flex-col md:flex-row justify-between gap-4">
-        <div className="relative">
+      <main className="flex flex-col justify-between gap-4 md:flex-row">
+        <div className="relative w-3/5">
           <Image
             src="/images/stadium.png"
             alt="stadium"
             width={700}
             height={600}
+            className="w-full"
           />
           <PlayersStructure />
         </div>
-        <div className="w-96 rounded-xl bg-black p-4">table</div>
+        <PlayersTable />
       </main>
     </Gutter>
   )

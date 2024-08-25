@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import PlayersStructure from './PlayersStructure'
+import PlayersStructure from '../PlayersStructure'
 import Gutter from '../../../../../components/Gutter'
-import GameBrief from '../GameBrief'
+import GameBrief from './GameBrief'
 
 const GameProfile = () => {
   return (

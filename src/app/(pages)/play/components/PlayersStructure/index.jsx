@@ -1,4 +1,4 @@
-import Player from '../Player'
+import Player from './Player'
 
 const PlayersStructure = () => {
   return (
@@ -13,13 +13,13 @@ const PlayersStructure = () => {
         <Player />
         <Player />
       </div>
-      <div className="mx-8 flex gap-0 md:mx-24 justify-between md:gap-8">
+      <div className="mx-8 flex justify-between gap-0 md:mx-24 md:gap-8">
         <Player />
         <Player />
         <Player />
         <Player />
       </div>
-      <div className="m:mx-24 mx-0 flex justify-evenly gap-0 md:justify-around md:gap-8">
+      <div className="mx-0 flex justify-evenly gap-0 md:mx-24 md:justify-around md:gap-8">
         <Player />
         <Player />
       </div>
