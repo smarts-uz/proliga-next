@@ -1,10 +1,10 @@
-import Gutter from "../../../../../components/Gutter"
+import Gutter from '../../../../../components/Gutter'
 import { useState, useReducer, useEffect } from 'react'
 import { supabase } from '../../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
 
-const Statistics = () => {
+const Tournament = () => {
   const [players, setPlayers] = useState([])
 
   useEffect(() => {
@@ -58,4 +58,4 @@ const Statistics = () => {
   )
 }
 
-export default Statistics
+export default Tournament
