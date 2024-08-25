@@ -6,7 +6,7 @@ const ArticleModal = ({ item, toggleModal }) => {
     <Backdrop onClick={toggleModal}>
       <dialog
         onClick={(e) => e.stopPropagation()}
-        className="fade-in flex min-h-[50vh] max-h-[80vh] w-full flex-col gap-4 overflow-y-auto rounded-2xl bg-white px-4 py-2 shadow-lg md:mx-auto md:w-1/2"
+        className="fade-in mx-4 flex max-h-[80vh] min-h-[50vh] w-full flex-col gap-4 overflow-y-auto rounded-2xl bg-white px-4 py-2 shadow-lg md:mx-auto md:w-1/2"
       >
         <button
           onClick={toggleModal}
