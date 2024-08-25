@@ -16,8 +16,10 @@ const Competition = () => {
             />
           </div>
           <div className="flex max-w-xl flex-col gap-8">
-            <h2 className="text-3xl font-bold uppercase">RAQOBATLASHING</h2>
-            <p className="text-2xl text-neutral-300">
+            <h2 className="text-3xl font-bold uppercase xs:text-sm md:text-3xl lg:text-4xl">
+              RAQOBATLASHING
+            </h2>
+            <p className="text-2xl text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
               Boshqa foydalanuvchilar bilan umuimiy ligada qatnashing, Ulardan
               ko&apos;proq ochko ishlashga harakat qiling va mavsum
               so&apos;ngida g&apos;olib bo&apos;ling!

@@ -93,12 +93,12 @@ const Slide = ({
   }
   if (type === 5 && currentIndex === index) {
     return (
-      <section className="block h-full min-h-[46rem] w-full justify-between bg-neutral-800">
+      <section className="left-3 block h-full min-h-[46rem] w-full max-w-[80rem] justify-between bg-neutral-800">
         <div className="gap-4 py-12 text-center xl:text-start">
           <h1 className="text-3xl uppercase">{header}</h1>
-          <h3 className="py-3 text-xl text-neutral-400">{title}</h3>
+          <h3 className="py-3 text-xl text-neutral-200">{title}</h3>
         </div>
-        <div className="grid grid-rows-2 items-center justify-center gap-4 text-neutral-400 xl:flex">
+        <div className="grid grid-rows-2 items-center justify-center gap-4 text-neutral-200 xl:ml-24 xl:flex">
           {images.map((item, index) => (
             <div key={index} className="w-full">
               <h3 className="text-start text-xl xl:text-center">{item.name}</h3>
