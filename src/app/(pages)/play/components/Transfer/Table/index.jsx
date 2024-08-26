@@ -13,6 +13,7 @@ import {
 } from '@tanstack/react-table'
 import React from 'react'
 import { supabase } from '../../../../../lib/supabaseClient'
+import Image from 'next/image'
 
 const columnHelper = createColumnHelper()
 
@@ -24,7 +25,7 @@ const columns = [
     header: () => <span className="w-1/2">Name</span>,
   }),
   columnHelper.accessor((row) => row.position, {
-    accessorFn: row => row.position,
+    accessorFn: (row) => row.position,
     id: 'position',
     cell: (info) => <i>{info.getValue()}</i>,
     header: 'Position',
@@ -48,10 +49,6 @@ const columns = [
       filterVariant: 'range',
     },
   }),
-  // columnHelper.accessor('progress', {
-  //   header: 'Profile Progress',
-  //   footer: (info) => info.column.id,
-  // }),
 ]
 
 function TransferTable() {
@@ -90,14 +87,14 @@ function TransferTable() {
   })
 
   return (
-    <div className="h-min text-sm w-1/2 overflow-y-auto rounded-xl bg-black p-6 text-neutral-200">
-      <table className="w-full table-auto">
-      <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+    <div className="h-min w-1/2 overflow-auto rounded-xl bg-black p-6 text-neutral-200">
+      <table className="w-full  table-auto">
+        <thead className=''>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr className='' key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
                 return (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th className='text-start' key={header.id} colSpan={header.colSpan}>
                     <div
                       {...{
                         className: header.column.getCanSort()
@@ -126,17 +123,34 @@ function TransferTable() {
             </tr>
           ))}
         </thead>
-        <tbody className="text-center">
+        <tbody className="mt-4 space-y-2">
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td
-                  className={cell.column.id === 'name' ? 'w-1/3' : 'w-1/5'}
+                  className={cell.column.id === 'name' ? 'w-1/3' : 'w-1/6'}
                   key={cell.id}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
+              {row.getVisibleCells().map((cell) => {
+                if (cell.column.id === 'name')
+                  return (
+                    <td
+                      className="block size-5 cursor-pointer"
+                      key={cell.column.id}
+                    >
+                      <Image
+                        src="/icons/plus.svg"
+                        alt="plus"
+                        width={20}
+                        height={20}
+                        className="filter-primary"
+                      />
+                    </td>
+                  )
+              })}
             </tr>
           ))}
         </tbody>
@@ -156,21 +170,21 @@ function TransferTable() {
               </tr>
             ))}
           </tfoot> */}
-        <div mb={2}>
+        <div className="mb-2 mt-8">
           Page {table.getState().pagination.pageIndex + 1} of{' '}
           {table.getPageCount()}
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => table.previousPage()}
-            isDisabled={!table.getCanPreviousPage()}
+            disabled={!table.getCanPreviousPage()}
             className="rounded-sm border px-2 py-1"
           >
             {'<'}
           </button>
           <button
             className="rounded-sm border px-2 py-1"
-            isDisabled={!table.getCanNextPage()}
+            disabled={!table.getCanNextPage()}
             onClick={() => table.nextPage()}
           >
             {'>'}
@@ -181,10 +195,7 @@ function TransferTable() {
   )
 }
 
-function Filter({
-  column,
-  table,
-}) {
+function Filter({ column, table }) {
   const firstValue = table
     .getPreFilteredRowModel()
     .flatRows[0]?.getValue(column.id)
@@ -192,43 +203,36 @@ function Filter({
   const columnFilterValue = column.getFilterValue()
 
   return typeof firstValue === 'number' ? (
-    <div className="flex text-black space-x-2" onClick={e => e.stopPropagation()}>
+    <div className="flex gap-1 text-black" onClick={(e) => e.stopPropagation()}>
       <input
         type="number"
-        value={(columnFilterValue)?.[0] ?? ''}
-        onChange={e =>
-          column.setFilterValue((old) => [
-            e.target.value,
-            old?.[1],
-          ])
+        value={columnFilterValue?.[0] ?? ''}
+        onChange={(e) =>
+          column.setFilterValue((old) => [e.target.value, old?.[1]])
         }
         placeholder={`Min`}
-        className="w-24 text-black border shadow rounded"
+        className="w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
       />
       <input
         type="number"
-        value={(columnFilterValue )?.[1] ?? ''}
-        onChange={e =>
-          column.setFilterValue((old) => [
-            old?.[0],
-            e.target.value,
-          ])
+        value={columnFilterValue?.[1] ?? ''}
+        onChange={(e) =>
+          column.setFilterValue((old) => [old?.[0], e.target.value])
         }
         placeholder={`Max`}
-        className="w-24 text-black border shadow rounded"
+        className="w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
       />
     </div>
   ) : (
     <input
-      className="w-36 border text-black shadow rounded"
-      onChange={e => column.setFilterValue(e.target.value)}
-      onClick={e => e.stopPropagation()}
+      className="w-32 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+      onChange={(e) => column.setFilterValue(e.target.value)}
+      onClick={(e) => e.stopPropagation()}
       placeholder={`Search...`}
       type="text"
-      value={(columnFilterValue ?? '')}
+      value={columnFilterValue ?? ''}
     />
   )
 }
-
 
 export default TransferTable
