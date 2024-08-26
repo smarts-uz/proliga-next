@@ -30,6 +30,9 @@ const columns = [
     cell: (info) => <i>{info.getValue()}</i>,
     header: 'Position',
     footer: (info) => info.column.id,
+    meta: {
+      filterVariant: 'select',
+    },
   }),
   columnHelper.accessor('price', {
     accessorKey: 'price',
@@ -88,13 +91,17 @@ function TransferTable() {
 
   return (
     <div className="h-min w-1/2 overflow-auto rounded-xl bg-black p-6 text-neutral-200">
-      <table className="w-full  table-auto">
-        <thead className=''>
+      <table className="w-full table-auto">
+        <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr className='' key={headerGroup.id}>
+            <tr className="" key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <th className='text-start' key={header.id} colSpan={header.colSpan}>
+                  <th
+                    className="text-start"
+                    key={header.id}
+                    colSpan={header.colSpan}
+                  >
                     <div
                       {...{
                         className: header.column.getCanSort()
@@ -128,7 +135,7 @@ function TransferTable() {
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td
-                  className={cell.column.id === 'name' ? 'w-1/3' : 'w-1/6'}
+                  className={cell.column.id === 'name' ? 'w-[30%]' : 'w-1/6'}
                   key={cell.id}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -199,7 +206,7 @@ function Filter({ column, table }) {
   const firstValue = table
     .getPreFilteredRowModel()
     .flatRows[0]?.getValue(column.id)
-
+  const { filterVariant } = column.columnDef.meta ?? {}
   const columnFilterValue = column.getFilterValue()
 
   return typeof firstValue === 'number' ? (
@@ -223,6 +230,18 @@ function Filter({ column, table }) {
         className="w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
       />
     </div>
+  ) : filterVariant === 'select' ? (
+    <select
+      onChange={(e) => column.setFilterValue(e.target.value)}
+      value={columnFilterValue?.toString()}
+      className="w-20 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+    >
+      <option value="">All</option>
+      <option value="GOA">GOA</option>
+      <option value="DEF">DEF</option>
+      <option value="MID">MID</option>
+      <option value="STR">STR</option>
+    </select>
   ) : (
     <input
       className="w-32 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
