@@ -27,7 +27,6 @@ const PlayersTable = () => {
   }, [])
 
   const [data, _setData] = useState(players ?? [])
-  const rerender = useReducer(() => ({}), {})[1]
   console.log(players)
 
   const table = useReactTable({

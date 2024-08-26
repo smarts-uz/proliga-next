@@ -2,6 +2,7 @@ import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import PlayersTable from './PlayersTable'
+import TransferTable from './Table'
 
 const Transfer = () => {
   return (
@@ -17,7 +18,8 @@ const Transfer = () => {
           />
           <PlayersStructure />
         </div>
-        <PlayersTable />
+        <TransferTable />
+        {/* <PlayersTable /> */}
       </main>
     </Gutter>
   )
