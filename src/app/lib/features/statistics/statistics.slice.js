@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { tabs } from '../../../utils/tabs.util'
 
 const initialState = {
-  team: null,
-  competition: null,
-  tour: null,
-  tab: tabs.GameProfile,
+  statistics: [],
 }
 
 const gameSlice = createSlice({
-  name: 'game',
+  name: 'statistics',
   initialState,
-  reducers: {},
+  reducers: {
+    setStats: (state, action) => {
+      state.game = action.payload
+    },
+  },
 })
 
 export default gameSlice.reducer
