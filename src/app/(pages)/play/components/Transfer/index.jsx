@@ -81,11 +81,43 @@ const Forms = () => {
         <label htmlFor="kaptain" className="text-lg font-semibold">
           Kapitan
         </label>
-        <input
-          placeholder="kapitan"
-          type="text"
-          className="h-10 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-200 px-2 text-black"
-        />
+        <select
+          name="formation"
+          id="formation"
+          className="h-12 w-48 -skew-x-12 rounded-lg border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
+        >
+          <option
+            className="bg-neutral-950 checked:bg-neutral-900"
+            selected
+            value="Gaisca Garcia"
+          >
+            Gaisca Garcia
+          </option>
+          <option
+            className="bg-neutral-950 checked:bg-neutral-800"
+            value="Unai Simon"
+          >
+            Unai Simon
+          </option>
+          <option
+            className="bg-neutral-950 checked:bg-neutral-700"
+            value="Danny Vivian"
+          >
+            Danny Vivian
+          </option>
+          <option
+            className="bg-neutral-950 checked:bg-neutral-700"
+            value="Antoni Gorosabel"
+          >
+            Antoni Gorosabel
+          </option>
+          <option
+            className="bg-neutral-950 checked:bg-neutral-700"
+            value="Iker Muniain"
+          >
+            Iker Muniain
+          </option>
+        </select>
       </div>
       <button className="mt-4 h-10 -skew-x-12 self-end rounded-sm bg-black px-10 text-lg text-white hover:bg-opacity-75">
         Saqlash
