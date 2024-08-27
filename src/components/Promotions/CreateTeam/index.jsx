@@ -21,7 +21,7 @@ const CreateTeam = () => {
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
             </div>
-            <div className="relative self-center">
+            <div className="relative self-start xs:px-8">
               <Image
                 width={450}
                 height={505}
