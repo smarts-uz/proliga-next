@@ -14,13 +14,27 @@ const Dropdown = () => {
         <p>Chempionat</p>
       </Link>
       {true ? (
-        <Link
-          href="/login"
-          className="flex w-full gap-2 py-1 hover:bg-neutral-700"
-        >
-          <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-          <p>Login</p>
-        </Link>
+        <div>
+          <Link
+            href="/login"
+            className="flex w-full gap-2 py-1 hover:bg-neutral-700"
+          >
+            <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
+            <p>Login</p>
+          </Link>
+          <Link
+            href="/cabinet"
+            className="flex w-full gap-2 py-1 hover:bg-neutral-700"
+          >
+            <Image
+              width={24}
+              height={24}
+              alt="setting"
+              src="/icons/setting.png"
+            />
+            <p>Cabinet</p>
+          </Link>
+        </div>
       ) : (
         <button
           onClick={logOut}
@@ -33,5 +47,4 @@ const Dropdown = () => {
     </section>
   )
 }
-
 export default Dropdown
