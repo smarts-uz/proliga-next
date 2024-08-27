@@ -1,41 +1,22 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import NavLink from './NavLink'
+import { useLogOut } from '../../../app/hooks/auth/useLogOut/useLogOut'
+import { useSelector } from 'react-redux'
 
 const Dropdown = () => {
+  const { logOut } = useLogOut()
+  const { userAuth } = useSelector((state) => state.auth)
+
   return (
     <section
-      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-40 flex-col gap-4 rounded-md bg-neutral-900 p-4 py-6 sm:w-96`}
+      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-40 flex-col gap-4 rounded-md bg-neutral-900 p-4`}
+      onClick={(e) => e.stopPropagation()}
     >
-      <Link
-        href="/championships"
-        className="flex w-full gap-2 py-1 hover:bg-neutral-700 md:hidden"
-      >
-        <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
+      <NavLink href="/championships">
+        <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
         <p>Chempionat</p>
-      </Link>
-      {true ? (
-        <>
-          <Link
-            href="/cabinet"
-            className="flex w-full gap-2 py-1 hover:bg-neutral-700"
-          >
-            <Image
-              width={24}
-              height={24}
-              alt="setting"
-              src="/icons/setting.png"
-            />
-            <p>Kabinet</p>
-          </Link>
-          <Link
-            href="/login"
-            className="flex w-full gap-2 py-1 hover:bg-neutral-700"
-          >
-            <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-            <p>Login</p>
-          </Link>
-        </>
-      ) : (
+      </NavLink>
+      {userAuth ? (
         <button
           onClick={logOut}
           className="flex w-full gap-2 hover:bg-neutral-700"
@@ -43,8 +24,25 @@ const Dropdown = () => {
           <Image src={'/icons/logout.svg'} alt="user" width={24} height={24} />
           <p>Log out</p>
         </button>
+      ) : (
+        <>
+          <NavLink href="/cabinet">
+            <Image
+              width={24}
+              height={24}
+              alt="settings"
+              src="/icons/gear.svg"
+            />
+            <p>Kabinet</p>
+          </NavLink>
+          <NavLink href="/login">
+            <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
+            <p>Login</p>
+          </NavLink>
+        </>
       )}
     </section>
   )
 }
+
 export default Dropdown

@@ -14,12 +14,21 @@ export const useLogIn = () => {
     setIsLoading(false)
     setError(null)
 
-    if (password.length < 6)
-      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
-    if (phone.length !== 9) return toast.error('Telefon raqam xato terilgan')
-
-    if (!email || !password || !phone)
-      return toast.error("Barcha maydonlar to'ldirilishi shart")
+    if (password.length < 6) {
+      setError("Parol 6 ta belgidan kam bo'lmasligi kerak")
+      toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+      return
+    }
+    if (phone.length !== 9) {
+      setError('Telefon raqam xato terilgan')
+      toast.error('Telefon raqam xato terilgan')
+      return
+    }
+    if (!email || !password || !phone) {
+      setError("Barcha maydonlar to'ldirilishi shart")
+      toast.error("Barcha maydonlar to'ldirilishi shart")
+      return
+    }
 
     try {
       setIsLoading(true)

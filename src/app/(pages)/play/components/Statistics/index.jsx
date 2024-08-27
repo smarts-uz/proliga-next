@@ -19,8 +19,6 @@ const Statistics = () => {
     fetch()
   }, [])
 
-  console.log(players)
-
   return (
     <Gutter>
       <section className="flex gap-4">

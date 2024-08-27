@@ -85,7 +85,7 @@ function PlayersTable() {
         <thead className="">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr className="" key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
+              {/* {headerGroup.headers.map((header) => {
                 return (
                   <th
                     className="text-start"
@@ -119,12 +119,12 @@ function PlayersTable() {
                     </div>
                   </th>
                 )
-              })}
+              })} */}
             </tr>
           ))}
         </thead>
         <tbody className="mt-4 space-y-2">
-          {table.getRowModel().rows.map((row) => (
+          {/* {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td
@@ -152,7 +152,7 @@ function PlayersTable() {
                   )
               })}
             </tr>
-          ))}
+          ))} */}
         </tbody>
         {/* <tfoot>
             {table.getFooterGroups().map((footerGroup) => (
@@ -174,7 +174,7 @@ function PlayersTable() {
           Page {table.getState().pagination.pageIndex + 1} of{' '}
           {table.getPageCount()}
         </div>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -189,7 +189,7 @@ function PlayersTable() {
           >
             {'>'}
           </button>
-        </div>
+        </div> */}
       </table>
     </div>
   )

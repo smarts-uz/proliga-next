@@ -18,7 +18,6 @@ const Championship = ({ item }) => {
       }
     }
   }
-  console.log(isModalOpen)
   return (
     <>
       <article

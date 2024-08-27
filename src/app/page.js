@@ -25,7 +25,6 @@ export default function Home() {
   //         refresh_token: state.user.refresh_token,
   //       })
 
-  //       console.log(data)
   //       if (error) {
   //         toast.error(error.message)
   //       }
