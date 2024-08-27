@@ -83,10 +83,6 @@ function PlayersTable() {
           ))}
         </tbody>
       </table>
-      <div className="mb-2 mt-4">
-        Page {table.getState().pagination.pageIndex + 1} of{' '}
-        {table.getPageCount()}
-      </div>
       <TransferTablePagination table={table} />
     </div>
   )
