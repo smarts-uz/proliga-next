@@ -6,14 +6,14 @@ const CreateTeam = () => {
     <section className="bg-neutral-800 py-8">
       <Gutter>
         <div className="flex w-full flex-col items-center justify-between gap-4 lg:flex-row lg:gap-0">
-          <div className="mt-[2rem] flex flex-1 flex-col flex-wrap">
+          <div className="mt-8 flex flex-1 flex-col flex-wrap">
             <div className="mb-12 w-5/6 -skew-x-12 self-start rounded-sm bg-primary pl-12 pr-16">
-              <h3 className="text-center text-2xl font-bold capitalize text-black md:text-3xl lg:text-4xl">
+              <h3 className="promotion-header text-center font-bold capitalize text-black">
                 Umumiy qoidalar
               </h3>
             </div>
             <div className="flex flex-col flex-wrap justify-center gap-4 self-center">
-              <h2 className="pl-8 font-bold uppercase md:text-3xl">
+              <h2 className="promotion-header pl-8 font-bold uppercase">
                 jamoa yig&apos;ing
               </h2>
               <p className="min-w-xl pl-8 text-base text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
@@ -21,7 +21,7 @@ const CreateTeam = () => {
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
             </div>
-            <div className="self-cente relative self-center">
+            <div className="relative self-center">
               <Image
                 width={450}
                 height={505}
@@ -31,11 +31,12 @@ const CreateTeam = () => {
               />
             </div>
           </div>
-          <div className="flex">
+          <div className="">
             <Image
               src="/images/promotion-1.png"
-              width={840}
-              height={600}
+              width={800}
+              height={800}
+              className="min-w-80 xs:min-w-96 md:min-w-[32rem] xl:min-w-[40rem] 2xl:min-w-[46rem]"
               alt="interactive stadium"
             />
           </div>

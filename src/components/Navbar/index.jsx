@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleToggleDropdown = () => {
     toggleDropdown(!isDropdownOpen)
   }
-  
+
   return (
     <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
       <Gutter>
@@ -31,7 +31,7 @@ const Navbar = () => {
           <section className="hidden items-center gap-6 text-neutral-300 lg:flex">
             <Link
               className="transition-all hover:text-white hover:underline"
-              href={'/championships'}
+              href={userAuth ? '/championships' : '/login'}
             >
               Chempionat
             </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
                 draggable={false}
                 height={20}
               />
-              {isDropdownOpen && <Dropdown />}
+              {isDropdownOpen && <Dropdown auth={userAuth} />}
             </span>
           </div>
         </div>

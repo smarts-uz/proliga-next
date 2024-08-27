@@ -4,7 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -12,6 +13,8 @@ const Login = () => {
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
+  const { userAuth } = useSelector((state) => state.auth)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,9 +28,11 @@ const Login = () => {
     setPhone('')
   }
 
-  // useEffect(() => {
-  //   state.user && setTimeout(() => redirect('/'), 500)
-  // }, [state.user])
+  useEffect(() => {
+    if (userAuth) {
+      setTimeout(() => router.push('/championships'), 250)
+    }
+  }, [userAuth, router])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">

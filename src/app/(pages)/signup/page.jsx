@@ -1,8 +1,10 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
+import { useSelector } from 'react-redux'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -12,6 +14,8 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
+  const { userAuth } = useSelector((state) => state.auth)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,9 +30,11 @@ const SignUp = () => {
     setConfirmPassword('')
   }
 
-  // useEffect(() => {
-  //   state.user && setTimeout(() => redirect('/'), 500)
-  // }, [state.user])
+  useEffect(() => {
+    if (userAuth) {
+      setTimeout(() => router.push('/championships'), 250)
+    }
+  }, [userAuth, router])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">

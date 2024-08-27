@@ -4,13 +4,13 @@ import Link from 'next/link'
 export default function Rules() {
   return (
     <Gutter>
-      <div className="flex flex-col pb-6 pt-[25px] text-white">
-        <div className="w-auto bg-primary pl-16 md:w-1/3">
+      <div className="flex flex-col py-6 text-white">
+        <div className="block w-auto max-w-96 -skew-x-12 rounded-sm bg-primary px-16">
           <h3 className="text-2xl font-bold capitalize text-black">
             umumiy qoidalar
           </h3>
         </div>
-        <ul className="list-inside list-decimal pt-[15px]">
+        <ul className="list-inside list-decimal pt-4">
           <li>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industrys standard dummy text
@@ -46,7 +46,7 @@ export default function Rules() {
         </ul>
         <Link
           href="/"
-          className="mx-auto self-center rounded-2xl bg-green-600 px-8 py-1 uppercase"
+          className="mx-auto self-center rounded-md bg-green-600 px-10 py-1 uppercase"
         >
           Oyin boshlash
         </Link>

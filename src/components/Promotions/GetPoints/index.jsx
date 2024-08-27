@@ -5,12 +5,10 @@ const GetPoints = () => {
   return (
     <section className="w-full bg-neutral-900 py-8">
       <Gutter>
-        <article className="flex w-full flex-col items-center justify-between md:flex-row">
-          <div className="flex flex-col gap-8">
-            <h2 className="text-3xl font-bold xs:text-sm md:text-3xl lg:text-4xl">
-              BALLARNI YIG’ING
-            </h2>
-            <p className="max-w-xl text-2xl text-neutral-400 xs:my-auto xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
+        <article className="flex w-full flex-col items-center justify-between gap-4 md:gap-0 md:flex-row">
+          <div className="flex flex-col gap-4 md:gap-8">
+            <h2 className="promotion-header font-bold">BALLARNI YIG’ING</h2>
+            <p className="promotion-text max-w-xl text-neutral-400 xs:my-auto">
               Har bir o&apos;yinchi haqiqiy o&apos;yinlarda qilgan harakatlari
               uchun ochko oladi yoki yo&apos;qotadi. Ballar soni
               o&apos;yinchining roliga qarab farq qilishi mumkin. Masalan,

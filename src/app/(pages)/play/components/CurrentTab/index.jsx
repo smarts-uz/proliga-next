@@ -2,7 +2,7 @@ import GameProfile from '../GameProfile'
 import Statistics from '../Statistics'
 import Transfer from '../Transfer'
 import Journal from '../Journal'
-import Tournament from '../WorldNews/Tournament'
+import Tournament from '../Tournament'
 import { tabs } from '../../../../utils/tabs.util'
 
 const CurrentTab = ({ currentTab }) => {
