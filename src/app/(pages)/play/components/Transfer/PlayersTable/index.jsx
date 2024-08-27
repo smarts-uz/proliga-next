@@ -12,6 +12,7 @@ import { supabase } from '../../../../../lib/supabaseClient'
 import columns from './columns'
 import TransferTablePagination from './Pagination'
 import TransferTableHead from './TableHead'
+import Image from 'next/image'
 
 function PlayersTable() {
   const [data, _setData] = useState([])
@@ -62,23 +63,24 @@ function PlayersTable() {
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
-              {/* {row.getVisibleCells().map((cell) => {
+              {row.getVisibleCells().map((cell) => {
                 if (cell.column.id === 'name')
                   return (
                     <td
-                      className="flex justify-center items-center h-full w-full cursor-pointer "
+                      className="flex w-auto cursor-pointer items-center justify-center px-2 py-1"
                       key={cell.column.id}
                     >
                       <Image
                         src="/icons/plus.svg"
                         alt="plus"
-                        width={20}
-                        height={20}
-                        className="filter-primary"
+                        width={24}
+                        draggable={false}
+                        height={24}
+                        className="filter-primary size-5 md:size-6"
                       />
                     </td>
                   )
-              })} */}
+              })}
             </tr>
           ))}
         </tbody>

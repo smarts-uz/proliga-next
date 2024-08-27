@@ -5,9 +5,9 @@ import Image from 'next/image'
 
 const TransferTableHead = ({ table }) => {
   return (
-    <thead className="w-full gap-4 bg-red-400">
+    <thead className="w-full gap-4">
       {table.getHeaderGroups().map((headerGroup) => (
-        <tr className="" key={headerGroup.id}>
+        <tr className="w-full" key={headerGroup.id}>
           {headerGroup.headers.map((header) => {
             return (
               <th
@@ -15,8 +15,8 @@ const TransferTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? 'cursor-pointer select-none bg-neutral-800 p-2 text-start'
-                    : 'bg-neutral-800 p-2 text-start',
+                    ? 'cursor-pointer select-none  p-2 text-start'
+                    : ' p-2 text-start',
                   onClick: header.column.getToggleSortingHandler(),
                 }}
               >
