@@ -6,7 +6,7 @@ function TransferTableFilters({ column, table }) {
   const columnFilterValue = column.getFilterValue()
 
   return typeof firstValue === 'number' ? (
-    <div className="flex gap-1 text-black" onClick={(e) => e.stopPropagation()}>
+    <div className="flex flex-col md:flex-row gap-1 text-black" onClick={(e) => e.stopPropagation()}>
       <input
         type="number"
         value={columnFilterValue?.[0] ?? ''}
@@ -14,7 +14,7 @@ function TransferTableFilters({ column, table }) {
           column.setFilterValue((old) => [e.target.value, old?.[1]])
         }
         placeholder={`Min`}
-        className="w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+        className="h-8 w-full md:w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
       />
       <input
         type="number"
@@ -23,14 +23,14 @@ function TransferTableFilters({ column, table }) {
           column.setFilterValue((old) => [old?.[0], e.target.value])
         }
         placeholder={`Max`}
-        className="w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+        className="h-8 w-full md:w-16 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
       />
     </div>
   ) : filterVariant === 'select' ? (
     <select
       onChange={(e) => column.setFilterValue(e.target.value)}
       value={columnFilterValue?.toString()}
-      className="w-20 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+      className="h-8 min-w-24 w-full rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
     >
       <option value="">All</option>
       <option value="GOA">GOA</option>
@@ -40,7 +40,7 @@ function TransferTableFilters({ column, table }) {
     </select>
   ) : (
     <input
-      className="w-32 rounded border bg-neutral-800 px-1 text-neutral-200 shadow"
+      className="h-8 w-full rounded border bg-neutral-800 px-1 truncate text-neutral-200 shadow"
       onChange={(e) => column.setFilterValue(e.target.value)}
       onClick={(e) => e.stopPropagation()}
       placeholder={`Search...`}

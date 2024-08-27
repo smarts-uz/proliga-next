@@ -7,9 +7,9 @@ import ChangeCaptainForm from './ChangeCaptainForm'
 const Transfer = () => {
   return (
     <Gutter>
-      <main className="flex flex-col justify-between gap-4 md:flex-row">
-        <div className="flex h-full w-full flex-col md:w-3/5">
-          <div className="relative h-full w-full md:w-full">
+      <main className="flex flex-col justify-between gap-4 lg:flex-row">
+        <div className="flex h-full w-full flex-col lg:w-1/2">
+          <div className="relative h-full w-full lg:w-full">
             <Image
               src="/images/stadium.png"
               alt="stadium"
