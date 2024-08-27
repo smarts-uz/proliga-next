@@ -36,7 +36,7 @@ const CreateTeam = () => {
               src="/images/promotion-1.png"
               width={800}
               height={800}
-              className="min-w-80 xs:min-w-96 md:min-w-[32rem] xl:min-w-[40rem] 2xl:min-w-[46rem]"
+              className="min-w-full xs:min-w-96 md:min-w-[32rem] xl:min-w-[40rem] 2xl:min-w-[46rem]"
               alt="interactive stadium"
             />
           </div>

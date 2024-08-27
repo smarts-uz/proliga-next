@@ -16,7 +16,7 @@ const NavigationTabs = () => {
       {data.map((item, index) => (
         <button
           key={item.id}
-          className={`rounded bg-opacity-80 px-3 py-2 font-semibold uppercase transition-all hover:bg-primary md:px-4 ${item.key === currentTab ? active : passive} `}
+          className={`rounded bg-opacity-80 px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === currentTab ? active : passive} `}
           onClick={() => setCurrentTab(item.key)}
         >
           {item.title}
@@ -24,7 +24,7 @@ const NavigationTabs = () => {
       ))}
       <Link
         href="/championships"
-        className="rounded bg-neutral-300 bg-opacity-80 px-3 py-2 font-semibold uppercase text-neutral-800 transition-all hover:bg-primary hover:bg-opacity-60 hover:text-neutral-950 md:px-4"
+        className="rounded bg-opacity-80 px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base bg-neutral-300 text-neutral-800 hover:text-neutral-950 hover:bg-opacity-60"
       >
         Championship
       </Link>
