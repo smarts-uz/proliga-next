@@ -48,7 +48,7 @@ export default function Rules() {
           href="/"
           className="mx-auto self-center rounded-md bg-green-600 px-10 py-1 uppercase"
         >
-          Oyin boshlash
+          O&apos;yin boshlash
         </Link>
       </div>
     </Gutter>

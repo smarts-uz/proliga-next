@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Dropdown = () => {
   return (
     <section
-      className={`fade-in-fast absolute right-0 top-[4.75rem] flex w-40 flex-col gap-4 rounded-md bg-neutral-900 p-4 py-6 sm:w-96`}
+      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-40 flex-col gap-4 rounded-md bg-neutral-900 p-4 py-6 sm:w-96`}
     >
       <Link
         href="/championships"
