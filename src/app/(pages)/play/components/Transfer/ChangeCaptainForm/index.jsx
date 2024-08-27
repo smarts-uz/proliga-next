@@ -7,7 +7,7 @@ const ChangeCaptainForm = () => {
           id="formation"
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
-          <option value="" selected disabled>
+          <option value="" defaultChecked disabled>
             Kapitan
           </option>
           <option

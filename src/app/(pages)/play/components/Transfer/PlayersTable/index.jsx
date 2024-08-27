@@ -1,3 +1,4 @@
+'use client'
 import {
   flexRender,
   getCoreRowModel,
@@ -6,8 +7,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { supabase } from '../../../../../lib/supabaseClient'
 import columns from './columns'
 import TransferTablePagination from './Pagination'
@@ -17,7 +17,7 @@ function PlayersTable() {
   const [data, _setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 11,
+    pageSize: 12,
   })
 
   useEffect(() => {
@@ -25,6 +25,7 @@ function PlayersTable() {
       const { data, error } = await supabase
         .from('player')
         .select('id, name, position, club(name), price')
+        .limit(300)
 
       if (error) return toast.error(error.message)
       if (data?.length > 0) _setData(data)
@@ -57,7 +58,7 @@ function PlayersTable() {
               className="mx-auto border-b border-neutral-700 bg-neutral-950 odd:bg-neutral-900"
             >
               {row.getVisibleCells().map((cell) => (
-                <td className="w-auto py-1" key={cell.id}>
+                <td className="w-auto px-2 py-1" key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -81,8 +82,12 @@ function PlayersTable() {
             </tr>
           ))}
         </tbody>
-        <TransferTablePagination table={table} />
       </table>
+      <div className="mb-2 mt-4">
+        Page {table.getState().pagination.pageIndex + 1} of{' '}
+        {table.getPageCount()}
+      </div>
+      <TransferTablePagination table={table} />
     </div>
   )
 }
