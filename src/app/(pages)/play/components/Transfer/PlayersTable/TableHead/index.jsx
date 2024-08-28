@@ -1,13 +1,12 @@
 'use client'
-import TransferTableFilter from './Filters'
 import { flexRender } from '@tanstack/react-table'
 import Image from 'next/image'
 
 const TransferTableHead = ({ table }) => {
   return (
-    <thead className="w-full gap-4">
+    <thead>
       {table.getHeaderGroups().map((headerGroup) => (
-        <tr className="w-full" key={headerGroup.id}>
+        <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => {
             return (
               <th
@@ -15,13 +14,11 @@ const TransferTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? 'cursor-pointer select-none  p-2 text-start'
+                    ? 'cursor-pointer select-none p-2 text-start'
                     : ' p-2 text-start',
                   onClick: header.column.getToggleSortingHandler(),
                 }}
               >
-                {/* <th
-                > */}
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext()
@@ -46,15 +43,6 @@ const TransferTableHead = ({ table }) => {
                     />
                   ),
                 }[header.column.getIsSorted()] ?? null}
-                {/* {header.column.getCanFilter() ? (
-                    <div>
-                      <TransferTableFilter
-                        column={header.column}
-                        table={table}
-                      />
-                    </div>
-                  ) : null} */}
-                {/* </th> */}
               </th>
             )
           })}
