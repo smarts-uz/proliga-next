@@ -15,7 +15,7 @@ const columns = [
     header: 'Price',
     cell: (info) => info.renderValue(),
     meta: {
-      filterVariant: 'range',
+      filterVariant: 'price',
     },
   }),
   columnHelper.accessor('club.name', {
@@ -31,7 +31,7 @@ const columns = [
     cell: (info) => <i>{info.getValue()}</i>,
     header: 'Position',
     meta: {
-      filterVariant: 'select',
+      filterVariant: 'position',
     },
   }),
 ]

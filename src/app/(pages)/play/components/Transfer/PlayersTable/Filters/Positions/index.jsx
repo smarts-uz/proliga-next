@@ -1,17 +1,43 @@
-const PositionsFilter = ({ column, columnFilterValue }) => {
+const PositionsFilter = ({ column, columnFilterValue, table }) => {
+  const active = 'bg-primary text-black font-bold'
+  const passive = 'bg-transparent text-neutral-500 font-base'
+
   return (
-    <select
-      onChange={(e) => column.setFilterValue(e.target.value)}
-      value={columnFilterValue?.toString()}
-      className="h-8 w-full rounded border bg-neutral-950 px-1 text-neutral-200 shadow md:min-w-24"
-    >
-      <option value="">All</option>
-      <option value="GOA">GOA</option>
-      <option value="DEF">DEF</option>
-      <option value="MID">MID</option>
-      <option value="STR">STR</option>
-    </select>
+    <div className="mb-2 mt-4 flex w-full gap-2 overflow-x-auto lg:gap-4">
+      {DATA.map((obj, index) => (
+        <button
+          key={index}
+          className={`rounded px-2 py-1 font-medium transition-all md:px-4 md:text-sm ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
+          onClick={() => column.setFilterValue(obj.key)}
+        >
+          {obj.title}
+        </button>
+      ))}
+    </div>
   )
 }
+
+const DATA = [
+  {
+    title: 'ALL',
+    key: '',
+  },
+  {
+    title: 'GOA',
+    key: 'GOA',
+  },
+  {
+    title: 'DEF',
+    key: 'DEF',
+  },
+  {
+    title: 'MID',
+    key: 'MID',
+  },
+  {
+    title: 'STR',
+    key: 'STR',
+  },
+]
 
 export default PositionsFilter

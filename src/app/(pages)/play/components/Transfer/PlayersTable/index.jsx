@@ -13,7 +13,7 @@ import columns from './columns'
 import TransferTablePagination from './Pagination'
 import TransferTableHead from './TableHead'
 import Image from 'next/image'
-import TransferTableFilters from './TableHead/Filters'
+import TransferTableFilters from './Filters'
 
 function PlayersTable() {
   const [data, _setData] = useState([])
@@ -55,7 +55,7 @@ function PlayersTable() {
         {table.getHeaderGroups().map((headerGroup) =>
           headerGroup.headers.map((header) => (
             <div key={header.id} className="w-full">
-              <TransferTableFilters column={header.column} />
+              <TransferTableFilters table={table} column={header.column} />
             </div>
           ))
         )}

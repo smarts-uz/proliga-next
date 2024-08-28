@@ -1,4 +1,3 @@
-
 const ClubsFilter = ({ column, columnFilterValue }) => {
   return (
     <input

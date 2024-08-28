@@ -1,6 +1,5 @@
-import React from 'react'
 
-const PlayerNameFilter = () => {
+const PlayerNameFilter = ({ column, columnFilterValue}) => {
   return (
     <input
       className="h-8 w-full truncate rounded border bg-neutral-950 px-1 text-neutral-200 shadow"
