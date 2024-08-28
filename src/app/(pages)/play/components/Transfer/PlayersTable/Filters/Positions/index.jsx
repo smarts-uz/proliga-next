@@ -1,9 +1,9 @@
-const PositionsFilter = ({ column, columnFilterValue, table }) => {
+const PositionsFilter = ({ column, columnFilterValue }) => {
   const active = 'bg-primary text-black font-bold'
   const passive = 'bg-transparent text-neutral-500 font-base'
 
   return (
-    <div className="mb-2 mt-4 flex w-full gap-2 overflow-x-auto lg:gap-4">
+    <div className="col-span-2 mt-2 flex w-full gap-2 overflow-x-auto lg:gap-4">
       {DATA.map((obj, index) => (
         <button
           key={index}

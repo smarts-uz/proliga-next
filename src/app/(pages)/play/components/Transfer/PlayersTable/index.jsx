@@ -51,14 +51,14 @@ function PlayersTable() {
 
   return (
     <div className="h-min w-full border-collapse overflow-x-auto rounded-xl bg-black p-6 text-neutral-200 md:text-sm lg:w-1/2 xl:text-base">
-      <div className="w-full">
-        {table.getHeaderGroups().map((headerGroup) =>
-          headerGroup.headers.map((header) => (
-            <div key={header.id} className="w-full">
-              <TransferTableFilters table={table} column={header.column} />
-            </div>
-          ))
-        )}
+      <div className="grid w-full grid-cols-2 gap-1 text-sm">
+        {table
+          .getHeaderGroups()
+          .map((headerGroup) =>
+            headerGroup.headers.map((header) => (
+              <TransferTableFilters key={header.id} column={header.column} />
+            ))
+          )}
       </div>
       <table className="font-sm w-full min-w-[25rem] table-auto">
         <TransferTableHead table={table} />

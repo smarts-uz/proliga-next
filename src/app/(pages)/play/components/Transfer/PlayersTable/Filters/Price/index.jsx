@@ -1,9 +1,9 @@
 const PriceFilter = ({ column, columnFilterValue }) => {
   return (
-    <>
-      <h3 className="text-sm font-semibold md:text-base">Narx</h3>
-      <div
-        className="flex flex-col items-center gap-1 text-neutral-200 md:flex-row md:gap-2"
+    <div className="flex w-full gap-2 items-center">
+      <h3 className="text-sm hidden md:block font-semibold md:text-base">Narx</h3>
+      <div  
+        className="flex items-center gap-1 text-neutral-200 md:flex-row md:gap-2"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -25,7 +25,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
           className="h-8 w-full max-w-32 rounded border bg-neutral-950 px-1 text-neutral-200"
         />
       </div>
-    </>
+    </div>
   )
 }
 

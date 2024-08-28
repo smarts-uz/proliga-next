@@ -10,19 +10,19 @@ const columns = [
       filterVariant: 'name',
     },
   }),
+  columnHelper.accessor('club.name', {
+    accessorKey: 'club.name',
+    header: 'Club',
+    meta: {
+      filterVariant: 'club',
+    },
+  }),
   columnHelper.accessor('price', {
     accessorKey: 'price',
     header: 'Price',
     cell: (info) => info.renderValue(),
     meta: {
       filterVariant: 'price',
-    },
-  }),
-  columnHelper.accessor('club.name', {
-    accessorKey: 'club.name',
-    header: 'Club',
-    meta: {
-      filterVariant: 'club',
     },
   }),
   columnHelper.accessor((row) => row.position, {
