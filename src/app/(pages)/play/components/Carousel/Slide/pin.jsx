@@ -10,7 +10,7 @@ const SliderPin = ({
   const style =
     currentIndex === index
       ? 'bg-primary hover:bg-opacity-100'
-      : ' border-solid border-2 border-yellow-300'
+      : ' border-solid border-2 border-primary'
 
   const setSlide = () => {
     handleClick(currentIndex)
@@ -19,7 +19,7 @@ const SliderPin = ({
   return (
     <span
       key={image.url}
-      className={`size-4 cursor-pointer rounded-full border-yellow-800 ${style}`}
+      className={`size-4 cursor-pointer rounded-full border-primary ${style}`}
       onClick={() => setSlide()}
     ></span>
   )

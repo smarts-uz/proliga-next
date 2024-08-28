@@ -57,8 +57,6 @@ const Carousel = () => {
               index={index}
               currentIndex={currentIndex}
               imageAnimation={imageAnimation}
-              nextSlide={nextSlide}
-              prevSlide={prevSlide}
             />
           ))}
           <button

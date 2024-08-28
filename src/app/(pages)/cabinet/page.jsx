@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-
+import UppyDashboard from './formik/Uppy/index'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
 
@@ -15,7 +15,6 @@ function Page() {
       middleName: '',
       birthdate: '',
       lastName: '',
-      photo: '',
       bio: '',
       gender: '',
     },
@@ -23,6 +22,7 @@ function Page() {
       alert(JSON.stringify(values, null, 2))
     },
   })
+
   return (
     <Gutter>
       <div className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
@@ -97,20 +97,6 @@ function Page() {
               />
 
               <label
-                className="5 my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="photo"
-              >
-                Profil uchun surat
-              </label>
-              <input
-                id="photo"
-                name="photo"
-                type="file"
-                className="auth-input"
-                onChange={formik.handleChange}
-                value={formik.values.photo}
-              />
-              <label
                 className="my-2 block text-sm font-bold text-neutral-300"
                 htmlFor="bio"
               >
@@ -162,6 +148,13 @@ function Page() {
                 </div>
               </div>
 
+              <label
+                className="5 my-2 block text-sm font-bold text-neutral-300"
+                htmlFor="photo"
+              >
+                Profil uchun surat
+              </label>
+              <UppyDashboard />
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"

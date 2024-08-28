@@ -8,8 +8,6 @@ const Slide = ({
   mainImage,
   type,
   imageAnimation,
-  nextSlide,
-  prevSlide,
   index,
   currentIndex,
 }) => {
@@ -83,7 +81,7 @@ const Slide = ({
             height={400}
             src={mainImage}
             alt={title}
-            className="relative mx-auto pt-12"
+            className="relative mx-auto pt-12 w-auto h-auto"
           />
         </div>
       </section>
@@ -134,8 +132,8 @@ const Slide = ({
               <Image
                 src={item.img}
                 width={400}
-                className="w-96"
                 height={100}
+                className="w-96"
                 alt="img"
               />
             </div>
