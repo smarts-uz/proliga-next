@@ -3,6 +3,7 @@ import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useDispatch } from 'react-redux'
+import { useCreateUserTable } from '../useCreateUserTable/useCreateUserTable'
 
 export const useSignUp = () => {
   const [error, setError] = useState(null)
@@ -14,13 +15,23 @@ export const useSignUp = () => {
     setIsLoading(false)
     setError(null)
 
-    if (password.length < 6)
-      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
-    if (phone.length !== 9) return toast.error('Telefon raqam xato terilgan')
+    if (password.length < 6) {
+      setError("Parol 6 ta belgidan kam bo'lmaydi")
+      toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+      return
+    }
+    console.log(phone.length)
+    // if (phone.length !== 12) return toast.error('Telefon raqam xato terilgan')
 
-    if (!email || !password || !phone)
+    if (!email || !password || !phone) {
+      setError("Barcha maydonlar to'ldirilishi shart")
       return toast.error("Barcha maydonlar to'ldirilishi shart")
-    if (password !== confirmPassword) return toast.error('Parollar mos kelmadi')
+    }
+    if (password !== confirmPassword) {
+      setError('Parollar mos kelmadi')
+      toast.error('Parollar mos kelmadi')
+      return
+    }
 
     try {
       setIsLoading(true)

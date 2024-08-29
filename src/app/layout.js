@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
       <head>
         <title>Proliga</title>
         <meta name="description" content="Bu sportlar haqida web sayt" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <ReduxProvider>
         <body className={`${archivo.className} min-h-svh bg-black dark text-white`}>

@@ -10,7 +10,7 @@ export const useLogIn = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const logIn = async ({ login, password }) => {
+  const logIn = async ({ phone, password }) => {
     setIsLoading(false)
     setError(null)
 
@@ -20,24 +20,20 @@ export const useLogIn = () => {
       return
     }
 
-    if (!login || !password) {
+    if (!phone || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
       toast.error("Barcha maydonlar to'ldirilishi shart")
       return
     }
 
+    if (!phone.includes('+')) {
+      setError("Telefon raqam notog'ri kiritildi")
+      toast.error("Telefon raqam notog'ri kiritildi")
+      return
+    }
+
     try {
       setIsLoading(true)
-
-      let phone
-
-      if (!login.split('').includes('@')) {
-        phone = login
-        if (!phone.split('').includes('+')) {
-          phone = '+' + phone
-        }
-        
-      }
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email,

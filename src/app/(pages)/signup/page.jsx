@@ -1,10 +1,12 @@
 'use client'
-import { useRouter } from 'next/navigation'
-import { useState, forwardRef } from 'react'
-import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
-import Link from 'next/link'
+
 import Image from 'next/image'
-import { PhoneInput } from './components/PhoneInput'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
+import { PhoneInput } from '../../../components/PhoneInput'
+import { useCreateUserTable } from 'app/hooks/auth/useCreateUserTable/useCreateUserTable'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -14,18 +16,26 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
+  const {
+    createUserTable,
+    isLoading: tableIsLoading,
+    error: tableError,
+    data: tableData,
+  } = useCreateUserTable()
+
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     await signUp({ email, password, confirmPassword, phone })
-
+    await createUserTable({ email, phone })
+    
     setPhone('')
     setEmail('')
     setPassword('')
     setConfirmPassword('')
-
+    
     if (!error && !isLoading && data) {
       setTimeout(() => router.push('/championships'), 250)
     }
@@ -50,7 +60,7 @@ const SignUp = () => {
             onChange={setPhone}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="relative flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
             Elektron pochta:
           </label>
@@ -58,10 +68,17 @@ const SignUp = () => {
             type="email"
             name="email"
             id="email"
-            className="auth-input"
+            className="auth-input pl-9"
             placeholder="example@xyz.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+          <Image
+            src="/icons/mail.svg"
+            alt="mail"
+            width={20}
+            height={20}
+            className="filter-neutral-400 absolute bottom-2.5 left-2"
           />
         </div>
         <div className="relative flex flex-col gap-1">
@@ -73,9 +90,8 @@ const SignUp = () => {
             name="confirmPassword"
             id="confirmPassword"
             placeholder="Parol"
-            className="auth-input"
+            className="auth-input pl-9"
             value={password}
-            required
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
@@ -94,6 +110,13 @@ const SignUp = () => {
               />
             )}
           </button>
+          <Image
+            src="/icons/lock.svg"
+            alt="password"
+            width={20}
+            height={20}
+            className="filter-neutral-400 absolute bottom-2.5 left-2 size-5"
+          />
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-xs md:text-base">
@@ -104,14 +127,14 @@ const SignUp = () => {
             name="password"
             id="password"
             placeholder="Parol"
-            className="auth-input"
+            className="auth-input pl-9"
             value={confirmPassword}
-            required
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button
             className="absolute bottom-2 right-2 cursor-pointer select-none"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            type="button"
           >
             {showConfirmPassword ? (
               <Image src="/icons/eye.svg" alt="eye" width={24} height={24} />
@@ -121,9 +144,17 @@ const SignUp = () => {
                 alt="eye"
                 width={24}
                 height={24}
+                className="size-6"
               />
             )}
           </button>
+          <Image
+            src="/icons/lock.svg"
+            alt="password"
+            width={20}
+            height={20}
+            className="filter-neutral-400 absolute bottom-2.5 left-2 size-5"
+          />
         </div>
         <Link
           href="/login"

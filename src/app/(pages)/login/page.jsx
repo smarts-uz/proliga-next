@@ -5,9 +5,10 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
 import { useRouter } from 'next/navigation'
+import { PhoneInput } from '../../../components/PhoneInput'
 
 const Login = () => {
-  const [login, setLogin] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
@@ -33,18 +34,25 @@ const Login = () => {
         <h2 className="mb-2 text-center text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish
         </h2>
-        <div className="flex flex-col gap-1">
+        <div className="relative flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
-            Elektron pochta / Telefon raqam:
+            Login:
           </label>
-          <input
+          {/* <input
             type="text"
             name="login"
             id="login"
             className="auth-input"
-            placeholder="Login"
+            placeholder="Telefon raqam / Elektron pochta"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
+          /> */}
+          <PhoneInput
+            placeholder="Telefon raqam"
+            defaultCountry="UZ"
+            className="h-10 bg-neutral-950 text-white"
+            value={phone}
+            onChange={setPhone}
           />
         </div>
         <div className="relative flex flex-col gap-1">
@@ -56,9 +64,16 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="Parol"
-            className="auth-input"
+            className="auth-input pl-9"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <Image
+            src="/icons/lock.svg"
+            alt="password"
+            width={20}
+            height={20}
+            className="filter-neutral-400 absolute bottom-2.5 left-2"
           />
           <button
             type="button"
