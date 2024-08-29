@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Bu sportlar haqida web sayt" />
       </head>
       <ReduxProvider>
-        <body className={`${archivo.className} min-h-svh bg-black text-white`}>
+        <body className={`${archivo.className} min-h-svh bg-black dark text-white`}>
           <Navbar />
           {children}
           <ToastContainer />

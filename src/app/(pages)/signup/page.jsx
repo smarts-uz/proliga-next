@@ -1,10 +1,10 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 import Link from 'next/link'
 import Image from 'next/image'
-import PhoneInput from 'react-phone-number-input/input'
+import { PhoneInput } from './components/PhoneInput'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -42,28 +42,13 @@ const SignUp = () => {
           <label htmlFor="username" className="text-xs md:text-base">
             Telefon raqam:
           </label>
-          {/* <input
-            type="number"
-            name="phone"
-            id="phone"
-            className="auth-input pl-14"
-            placeholder="-- --- -- --"
-            value={phone}
-            min={9}
-            max={9}
-            required
-            onChange={(e) => setPhone(e.target.value)}
-          /> */}
           <PhoneInput
             placeholder="Telefon raqam"
             defaultCountry="UZ"
-            className="auth-input text-neutral-800"
+            className="h-10 bg-neutral-950 text-white"
             value={phone}
             onChange={setPhone}
           />
-          <span className="absolute bottom-2 left-2 text-neutral-300">
-            +998
-          </span>
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
