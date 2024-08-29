@@ -7,6 +7,7 @@ import { Archivo } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-phone-number-input/style.css'
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],

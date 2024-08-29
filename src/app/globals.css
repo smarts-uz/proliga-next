@@ -3,6 +3,9 @@
 @tailwind utilities;
 @import url('./utils/animations.global.css');
 
+:root {
+  --PhoneInputCountryFlag-aspectRatio: 1.333;
+}
 @layer base {
   ::-webkit-scrollbar {
     width: 20px;
@@ -78,5 +81,12 @@
   }
   .promotion-header{
     @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl
+  }
+  /* .PhoneInput{
+    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
+  } */
+  .PhoneInput--focus{
+    background-color: #4ab;
+    padding: 16px;
   }
 }

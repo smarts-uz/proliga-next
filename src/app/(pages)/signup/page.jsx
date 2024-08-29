@@ -1,9 +1,10 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
+import PhoneInput from 'react-phone-number-input/input'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -29,6 +30,7 @@ const SignUp = () => {
       setTimeout(() => router.push('/championships'), 250)
     }
   }
+  console.log(phone)
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
@@ -40,7 +42,7 @@ const SignUp = () => {
           <label htmlFor="username" className="text-xs md:text-base">
             Telefon raqam:
           </label>
-          <input
+          {/* <input
             type="number"
             name="phone"
             id="phone"
@@ -51,6 +53,13 @@ const SignUp = () => {
             max={9}
             required
             onChange={(e) => setPhone(e.target.value)}
+          /> */}
+          <PhoneInput
+            placeholder="Telefon raqam"
+            defaultCountry="UZ"
+            className="auth-input text-neutral-800"
+            value={phone}
+            onChange={setPhone}
           />
           <span className="absolute bottom-2 left-2 text-neutral-300">
             +998
@@ -78,7 +87,7 @@ const SignUp = () => {
             type={showPassword ? 'text' : 'password'}
             name="confirmPassword"
             id="confirmPassword"
-            placeholder="********"
+            placeholder="Parol"
             className="auth-input"
             value={password}
             required
@@ -109,7 +118,7 @@ const SignUp = () => {
             type={showConfirmPassword ? 'text' : 'password'}
             name="password"
             id="password"
-            placeholder="********"
+            placeholder="Parol"
             className="auth-input"
             value={confirmPassword}
             required
@@ -133,7 +142,7 @@ const SignUp = () => {
         </div>
         <Link
           href="/login"
-          className={`my-2 text-sm text-neutral-600 transition-colors hover:text-neutral-500 hover:underline`}
+          className={`my-2 text-sm text-neutral-500 transition-colors hover:text-neutral-400 hover:underline`}
         >
           Akkauntingiz bormi?
         </Link>

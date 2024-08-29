@@ -55,7 +55,7 @@ const Login = () => {
             type={showPassword ? 'text' : 'password'}
             name="password"
             id="password"
-            placeholder="********"
+            placeholder="Parol"
             className="auth-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +79,7 @@ const Login = () => {
         </div>
         <Link
           href="/signup"
-          className={`my-2 text-sm text-neutral-600 transition-colors hover:text-neutral-500 hover:underline`}
+          className={`my-2 text-sm text-neutral-500 transition-colors hover:text-neutral-400 hover:underline`}
         >
           Akkaunt ochish?
         </Link>
