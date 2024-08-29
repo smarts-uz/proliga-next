@@ -7,9 +7,8 @@ import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
+  const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
-  const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
   const router = useRouter()
@@ -17,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await logIn({ email, password, phone })
+    await logIn({ login, password })
 
     setEmail('')
     setPassword('')
@@ -31,38 +30,21 @@ const Login = () => {
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
       <form className="auth-container">
-        <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
+        <h2 className="mb-2 text-center text-xl font-bold md:mb-4 md:text-2xl">
           Tizimga kirish
         </h2>
-        <div className="relative flex flex-col gap-1">
-          <label htmlFor="username" className="text-xs md:text-base">
-            Telefon raqam:
-          </label>
-          <input
-            type="number"
-            name="phone"
-            id="phone"
-            className="auth-input pl-14"
-            placeholder="-- --- -- --"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <span className="absolute bottom-2 left-2 text-neutral-300">
-            +998
-          </span>
-        </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className="text-xs md:text-base">
-            Elektron pochta:
+            Elektron pochta / Telefon raqam:
           </label>
           <input
-            type="email"
-            name="email"
-            id="email"
+            type="text"
+            name="login"
+            id="login"
             className="auth-input"
-            placeholder="example@xyz.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Login"
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
           />
         </div>
         <div className="relative flex flex-col gap-1">

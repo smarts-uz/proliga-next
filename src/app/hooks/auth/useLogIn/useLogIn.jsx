@@ -10,7 +10,7 @@ export const useLogIn = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const logIn = async ({ email, password, phone }) => {
+  const logIn = async ({ login, password }) => {
     setIsLoading(false)
     setError(null)
 
@@ -19,12 +19,8 @@ export const useLogIn = () => {
       toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
       return
     }
-    if (phone.length !== 9) {
-      setError('Telefon raqam xato terilgan')
-      toast.error('Telefon raqam xato terilgan')
-      return
-    }
-    if (!email || !password || !phone) {
+
+    if (!login || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
       toast.error("Barcha maydonlar to'ldirilishi shart")
       return
@@ -32,6 +28,16 @@ export const useLogIn = () => {
 
     try {
       setIsLoading(true)
+
+      let phone
+
+      if (!login.split('').includes('@')) {
+        phone = login
+        if (!phone.split('').includes('+')) {
+          phone = '+' + phone
+        }
+        
+      }
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
