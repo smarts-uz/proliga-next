@@ -1,19 +1,12 @@
 const ClubsFilter = ({ column, columnFilterValue }) => {
-  console.log(column)
   return (
-    // <input
-    //   className="inline-block h-8 w-full max-w-48 truncate rounded border bg-neutral-950 px-1 text-neutral-200 shadow"
-    //   onChange={(e) => column.setFilterValue(e.target.value)}
-    //   onClick={(e) => e.stopPropagation()}
-    //   placeholder={`Club nomi...`}
-    //   type="text"
-    //   value={columnFilterValue ?? ''}
-    // />
     <select
-      className="h-8 w-full checked:bg-red-400  max-w-36 md:max-w-48 truncate active:accent-primary selection:accent-primary rounded border bg-neutral-950 px-1 text-neutral-200 shadow"
+      onClick={(e) => e.stopPropagation()}
+      className="h-8 w-full max-w-36 truncate rounded border bg-neutral-950 px-1 text-neutral-200 shadow selection:accent-primary checked:bg-red-400 active:accent-primary md:max-w-48"
     >
-      <option value="" className="checked:bg-red-400 text-black" defaultChecked>Clublar</option>
-
+      <option value="" className="text-black checked:bg-red-400" defaultChecked>
+        Clublar
+      </option>
     </select>
   )
 }

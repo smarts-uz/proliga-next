@@ -30,7 +30,7 @@ const Statistics = () => {
                 <th>Position</th>
                 <th title="Goal">G</th>
                 <th title="Goal Assist">GA</th>
-                <th title='Missed Penalty'>MP</th>
+                <th title="Missed Penalty">MP</th>
                 <th title="Yellow Card">YC</th>
                 <th title="Red Card">RC</th>
                 <th></th>
@@ -39,7 +39,9 @@ const Statistics = () => {
             <tbody>
               {players.map((player) => (
                 <tr key={player.id} className="text-center">
-                  <td className="w-1/4 truncate">{player.player_id.name}</td>
+                  <td className="w-1/4 truncate">
+                    {player.player_id ?? 'Player Name'}
+                  </td>
                   <td className="w-1/4 truncate">{player.position}</td>
                   <td className="w-1/8 truncate">{player.goal}</td>
                   <td className="w-1/8 truncate">{player.goal_asist}</td>
