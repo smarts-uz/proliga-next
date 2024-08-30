@@ -4,19 +4,19 @@ import { setUserAuth, setUserTable } from './lib/features/auth/auth.slice'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
-  const { userAuth } = useSelector((state) => state.auth)
+  const { userAuth, userTable } = useSelector((state) => state.auth)
 
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
     const auth = JSON.parse(localStorage.getItem(`user-auth-${sbUrl}`))
     const table = JSON.parse(localStorage.getItem(`user-table-${sbUrl}`))
-    if (auth && auth?.access_token) {
+    if (auth && auth?.access_token && !userAuth) {
       dispatch(setUserAuth(auth))
     }
-    if (table && table.email) {
+    if (table && table.email && !userTable) {
       dispatch(setUserTable(table))
     }
-  }, [dispatch])
+  }, [dispatch, userAuth, userTable])
 
   useEffect(() => {
     if (userAuth && userAuth.session.expiresAt >= Date.now()) {

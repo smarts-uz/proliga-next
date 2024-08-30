@@ -12,7 +12,7 @@ const Play = () => {
   const router = useRouter()
 
   useEffect(() => {
-    if (!userAuth || !userTable) {
+    if (!userAuth || !userTable) {  
       return router.push('/login')
     }
   }, [userAuth, userTable, router])

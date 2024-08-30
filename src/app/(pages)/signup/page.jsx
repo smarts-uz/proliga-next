@@ -29,22 +29,19 @@ const SignUp = () => {
     e.preventDefault()
 
     await createUserTable({ email, phone })
-
-    if (tableData && !tableIsLoading && !tableError) {
-      await signUp({ email, password, confirmPassword, phone })
-    }
+    await signUp({ email, password, confirmPassword, phone })
 
     // setPhone('')
     // setEmail('')
     // setPassword('')
     // setConfirmPassword('')
-    if (!error || !tableError) {
-      setTimeout(() => router.push('/championships'), 250)
-    }
+    // if (!error || !tableError) {
+    //   setTimeout(() => router.push('/championships'), 250)
+    // }
   }
 
   return (
-    <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
+    <main className="z-10 mt-16 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
       <form className="auth-container">
         <h2 className="mb-2 text-center text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish
@@ -166,10 +163,10 @@ const SignUp = () => {
         <button
           onClick={handleSubmit}
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || tableIsLoading}
           className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
-          {isLoading ? (
+          {isLoading || tableIsLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}

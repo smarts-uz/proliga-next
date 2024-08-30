@@ -12,7 +12,7 @@ export const useSignUp = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
 
-  const signUp = async ({ email, password, confirmPassword, phone }) => {
+  const signUp = async ({ email, password, confirmPassword }) => {
     setIsLoading(false)
     setError(null)
 
@@ -21,7 +21,7 @@ export const useSignUp = () => {
       toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
       return
     }
-    if (!email || !password || !phone) {
+    if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
       return toast.error("Barcha maydonlar to'ldirilishi shart")
     }
@@ -37,11 +37,6 @@ export const useSignUp = () => {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          data: {
-            phone,
-          },
-        },
       })
 
       if (error) {
