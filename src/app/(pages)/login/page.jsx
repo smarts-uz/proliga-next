@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
+import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { useRouter } from 'next/navigation'
 import { PhoneInput } from '../../../components/PhoneInput'
 
@@ -13,14 +14,20 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
+  const {
+    data: tableData,
+    error: tableError,
+    isLoading: tableIsLoading,
+    getUserTable,
+  } = useGetUserTable()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    await getUserTable({ phone, setEmail })
     
-
-    if (!email) {
+    if (email) {
       await logIn({ email, password })
     }
 

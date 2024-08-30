@@ -28,15 +28,17 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await signUp({ email, password, confirmPassword, phone })
-
     await createUserTable({ email, phone })
 
-    if (!error && !isLoading && data) {
-      setPhone('')
-      setEmail('')
-      setPassword('')
-      setConfirmPassword('')
+    if (tableData && !tableIsLoading && !tableError) {
+      await signUp({ email, password, confirmPassword, phone })
+    }
+
+    // setPhone('')
+    // setEmail('')
+    // setPassword('')
+    // setConfirmPassword('')
+    if (!error || !tableError) {
       setTimeout(() => router.push('/championships'), 250)
     }
   }

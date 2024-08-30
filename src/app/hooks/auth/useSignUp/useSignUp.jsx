@@ -9,6 +9,7 @@ export const useSignUp = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
 
   const signUp = async ({ email, password, confirmPassword, phone }) => {
@@ -20,9 +21,6 @@ export const useSignUp = () => {
       toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
       return
     }
-    console.log(phone.length)
-    // if (phone.length !== 12) return toast.error('Telefon raqam xato terilgan')
-
     if (!email || !password || !phone) {
       setError("Barcha maydonlar to'ldirilishi shart")
       return toast.error("Barcha maydonlar to'ldirilishi shart")
@@ -36,13 +34,15 @@ export const useSignUp = () => {
     try {
       setIsLoading(true)
 
-      const { data, error } = await supabase.auth.signUp(
-        {
-          email,
-          password,
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            phone,
+          },
         },
-        { phone }
-      )
+      })
 
       if (error) {
         toast.error(error.message)
@@ -50,6 +50,7 @@ export const useSignUp = () => {
       }
       if (data?.user && data?.session) {
         setData(data)
+        localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
         dispatch(setUserAuth(data))
       }

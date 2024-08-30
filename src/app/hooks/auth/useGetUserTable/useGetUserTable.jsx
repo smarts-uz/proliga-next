@@ -5,16 +5,17 @@ import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 
 export const useGetUserTable = () => {
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const getUserTable = async ({ email, phone }) => {
+  const getUserTable = async ({ phone, setEmail }) => {
     setIsLoading(false)
     setError(null)
 
-    if (!email || !phone) {
+    if (!phone) {
       setError('Email va Telefon kirilmagan')
       toast.error('Email va Telefon kiritilmagan')
       return
@@ -25,8 +26,8 @@ export const useGetUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .insert({ email, phone })
         .select()
+        .eq('phone', phone)
 
       if (error) {
         setError(error.message)
@@ -35,7 +36,8 @@ export const useGetUserTable = () => {
       }
       if (data) {
         dispatch(setUserTable(data[0]))
-        // localStorage.setItem('user', JSON.stringify(data?.user))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
+        setEmail(data[0].email)
         setData(data)
       }
     } catch (error) {

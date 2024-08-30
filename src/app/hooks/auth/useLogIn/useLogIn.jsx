@@ -9,6 +9,7 @@ export const useLogIn = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 
   const logIn = async ({ email, password }) => {
     setIsLoading(false)
@@ -47,6 +48,7 @@ export const useLogIn = () => {
       }
       if (data?.user && data?.session) {
         dispatch(setUserAuth(data))
+        localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         setData(data)
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
