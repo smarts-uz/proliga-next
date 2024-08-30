@@ -1,6 +1,25 @@
 import Image from 'next/image'
+import { addPlayerToTeam } from 'app/lib/features/game/game.slice'
+import { PLAYERS } from 'app/utils/playerTypes.util.'
+import { useDispatch } from 'react-redux'
 
 const TransferTableBody = ({ table, flexRender }) => {
+  const dispatch = useDispatch()
+  const handleAddPlayer = (player) => {
+    if (player.position === PLAYERS.GOA) {
+      dispatch(addPlayerToTeam({ player, type: PLAYERS.GOA }))
+    }
+    if (player.position === PLAYERS.DEF) {
+      dispatch(addPlayerToTeam({ player, type: PLAYERS.DEF }))
+    }
+    if (player.position === PLAYERS.MID) {
+      dispatch(addPlayerToTeam({ player, type: PLAYERS.MID }))
+    }
+    if (player.position === PLAYERS.STR) {
+      dispatch(addPlayerToTeam({ player, type: PLAYERS.STR }))
+    }
+  }
+
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (
@@ -19,6 +38,7 @@ const TransferTableBody = ({ table, flexRender }) => {
                 <td
                   className="flex w-auto cursor-pointer items-center justify-center px-2 py-1"
                   key={cell.column.id}
+                  onClick={() => handleAddPlayer(cell.row.original)}
                 >
                   <Image
                     src="/icons/plus.svg"

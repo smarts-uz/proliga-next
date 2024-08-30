@@ -1,46 +1,53 @@
 import Image from 'next/image'
+import { useDispatch } from 'react-redux'
+import { deletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 
-const Player = () => {
-  const name = 'Player Name'
-  const score = 10
-  const additionalInfo = true
-  const deletePlayer = true
+const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
+  const dispatch = useDispatch()
 
-  const sideBtnStyles = 'size-4 xl:size-5'
+  const handleDeletePlayer = () => {
+    dispatch(deletePlayerFromTeam({ player, type: player.position }))
+  }
+  const imageErr = (e) => {
+    e.target.src = '/icons/player-tshirt.svg'
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center text-sm text-neutral-700 sm:text-base">
+    <div className="fade-in-fast flex flex-col items-center justify-center text-sm text-neutral-700 sm:text-base">
       <Image
-        src="/icons/player-tshirt.svg"
+        src={`/club/${player.club.name.toLowerCase()}/app.svg`}
         alt="player tshirt"
         width={48}
         height={48}
-        className="w-10 md:w-16"
+        onError={imageErr}
+        className="size-12"
       />
-      <p className="text-shadow line-clamp-1 text-xs text-white md:text-sm xl:text-base">
-        {name}
+      <p className="text-shadow line-clamp-1 text-xs text-white md:text-sm">
+        {player.name}
       </p>
       <div className="flex items-center gap-1">
-        <button>
-          <Image
-            width={16}
-            height={16}
-            src="/icons/info.svg"
-            alt="additional info"
-            className={sideBtnStyles}
-          />
-        </button>
-        <div className="cursor-default rounded-md bg-white px-2 text-xs font-bold shadow shadow-neutral-600 xs:text-sm md:text-base">
-          {score}
+        {additionalInfo && (
+          <button>
+            <Image
+              width={16}
+              height={16}
+              src="/icons/info.svg"
+              alt="additional info"
+              className="size-4 2xl:size-[18px]"
+            />
+          </button>
+        )}
+        <div className="h-5 w-8 cursor-default rounded-md bg-white text-center text-xs font-bold shadow shadow-neutral-600 md:text-sm">
+          {player.price ?? '00'}
         </div>
         {deletePlayer && (
-          <button>
+          <button onClick={handleDeletePlayer}>
             <Image
               width={16}
               height={16}
               src="/icons/delete-player.svg"
               alt="delete player"
-              className={sideBtnStyles}
+              className="size-4 2xl:size-[18px]"
             />
           </button>
         )}

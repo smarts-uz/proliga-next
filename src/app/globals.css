@@ -74,7 +74,7 @@
       hue-rotate(348deg) brightness(98%) contrast(109%);
   }
   .text-shadow {
-    text-shadow: #000 1px 0 1px;
+    text-shadow: 2px 1px 1px #000;
   }
   .promotion-text {
     @apply text-sm xs:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-xl;
