@@ -29,23 +29,22 @@ const SignUp = () => {
     e.preventDefault()
 
     await signUp({ email, password, confirmPassword, phone })
+
     await createUserTable({ email, phone })
-    
-    setPhone('')
-    setEmail('')
-    setPassword('')
-    setConfirmPassword('')
-    
+
     if (!error && !isLoading && data) {
+      setPhone('')
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
       setTimeout(() => router.push('/championships'), 250)
     }
   }
-  console.log(phone)
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
       <form className="auth-container">
-        <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
+        <h2 className="mb-2 text-center text-xl font-bold md:mb-4 md:text-2xl">
           Ro&apos;yxatdan o&apos;tish
         </h2>
         <div className="relative flex flex-col gap-1">

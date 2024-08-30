@@ -47,17 +47,17 @@ export const useSignUp = () => {
       if (error) {
         toast.error(error.message)
         setError(error.message)
-        setIsLoading(false)
       }
       if (data?.user && data?.session) {
-        setIsLoading(false)
         setData(data)
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
-        dispatch(setUserAuth(data?.user))
+        dispatch(setUserAuth(data))
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
   return { signUp, isLoading, error, data }

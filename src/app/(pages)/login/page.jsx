@@ -9,6 +9,7 @@ import { PhoneInput } from '../../../components/PhoneInput'
 
 const Login = () => {
   const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { data, error, isLoading, logIn } = useLogIn()
@@ -17,7 +18,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await logIn({ login, password })
+    
+
+    if (!email) {
+      await logIn({ email, password })
+    }
 
     setEmail('')
     setPassword('')
@@ -38,15 +43,6 @@ const Login = () => {
           <label htmlFor="username" className="text-xs md:text-base">
             Login:
           </label>
-          {/* <input
-            type="text"
-            name="login"
-            id="login"
-            className="auth-input"
-            placeholder="Telefon raqam / Elektron pochta"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          /> */}
           <PhoneInput
             placeholder="Telefon raqam"
             defaultCountry="UZ"

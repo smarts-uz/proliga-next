@@ -14,6 +14,8 @@ export const useLogOut = () => {
       dispatch(setUserAuth(null))
     } catch (error) {
       toast.error(error.message)
+    } finally {
+      toast.success('Tizimdan chiqdingiz')
     }
   }
 

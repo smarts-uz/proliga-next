@@ -1,4 +1,4 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
@@ -10,7 +10,7 @@ export const useLogIn = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const logIn = async ({ phone, password }) => {
+  const logIn = async ({ email, password }) => {
     setIsLoading(false)
     setError(null)
 
@@ -20,15 +20,15 @@ export const useLogIn = () => {
       return
     }
 
-    if (!phone || !password) {
+    if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
       toast.error("Barcha maydonlar to'ldirilishi shart")
       return
     }
 
-    if (!phone.includes('+')) {
-      setError("Telefon raqam notog'ri kiritildi")
-      toast.error("Telefon raqam notog'ri kiritildi")
+    if (!email.includes('@')) {
+      setError("Elektron pochta manzili notog'ri kiritildi")
+      toast.error("Elektron pochta manzili notog'ri kiritildi")
       return
     }
 
@@ -41,21 +41,20 @@ export const useLogIn = () => {
       })
 
       if (error) {
-        setIsLoading(false)
         setError(error.message)
         toast.error(error.message)
         return
       }
       if (data?.user && data?.session) {
-        setIsLoading(false)
-        dispatch(setUserAuth(data?.user))
-        localStorage.setItem('user', JSON.stringify(data?.user))
+        dispatch(setUserAuth(data))
         setData(data)
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
   return { logIn, isLoading, error, data }

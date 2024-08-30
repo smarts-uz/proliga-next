@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 
-export const useCreateUserTable = () => {
+export const useGetUserTable = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const createUserTable = async ({ email, phone }) => {
+  const getUserTable = async ({ email, phone }) => {
     setIsLoading(false)
     setError(null)
 
@@ -35,10 +35,8 @@ export const useCreateUserTable = () => {
       }
       if (data) {
         dispatch(setUserTable(data[0]))
-
         // localStorage.setItem('user', JSON.stringify(data?.user))
         setData(data)
-        // toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {
       setError(error.message)
@@ -47,5 +45,5 @@ export const useCreateUserTable = () => {
       setIsLoading(false)
     }
   }
-  return { createUserTable, isLoading, error, data }
+  return { getUserTable, isLoading, error, data }
 }

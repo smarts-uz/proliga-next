@@ -17,14 +17,6 @@ const Dropdown = () => {
         <p>Chempionat</p>
       </NavLink>
       {userAuth ? (
-        <button
-          onClick={logOut}
-          className="flex w-full gap-2 hover:bg-neutral-700"
-        >
-          <Image src={'/icons/logout.svg'} alt="user" width={24} height={24} />
-          <p>Log out</p>
-        </button>
-      ) : (
         <>
           <NavLink href="/cabinet">
             <Image
@@ -35,11 +27,25 @@ const Dropdown = () => {
             />
             <p>Kabinet</p>
           </NavLink>
-          <NavLink href="/login">
-            <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-            <p>Login</p>
-          </NavLink>
+          <button
+            onClick={logOut}
+            className="flex w-full gap-2 hover:bg-neutral-700"
+          >
+            <Image
+              src={'/icons/logout.svg'}
+              alt="user"
+              width={24}
+              height={24}
+              className="size-6"
+            />
+            <p>Log out</p>
+          </button>
         </>
+      ) : (
+        <NavLink href="/login">
+          <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
+          <p>Login</p>
+        </NavLink>
       )}
     </section>
   )

@@ -3,6 +3,7 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ReduxProvider from './store.provider'
+import GetInitialState from './GetInitialState'
 import { Archivo } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
@@ -23,11 +24,15 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <ReduxProvider>
-        <body className={`${archivo.className} min-h-svh bg-black dark text-white`}>
-          <Navbar />
-          {children}
-          <ToastContainer />
-          <Footer />
+        <body
+          className={`${archivo.className} dark min-h-svh bg-black text-white`}
+        >
+          <GetInitialState>
+            <Navbar />
+            {children}
+            <ToastContainer />
+            <Footer />
+          </GetInitialState>
         </body>
       </ReduxProvider>
     </html>
