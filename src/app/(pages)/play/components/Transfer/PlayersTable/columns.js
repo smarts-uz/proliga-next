@@ -1,7 +1,7 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
 const columnHelper = createColumnHelper()
-const columns = [
+export const columns = [
   columnHelper.accessor('name', {
     accessorKey: 'name',
     cell: (info) => info.getValue(),
@@ -35,4 +35,3 @@ const columns = [
     },
   }),
 ]
-export default columns
