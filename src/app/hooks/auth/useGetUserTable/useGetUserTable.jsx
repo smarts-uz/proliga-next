@@ -11,7 +11,7 @@ export const useGetUserTable = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const getUserTable = async ({ phone, setEmail }) => {
+  const getUserTable = async ({ phone }) => {
     setIsLoading(false)
     setError(null)
 
@@ -37,7 +37,6 @@ export const useGetUserTable = () => {
       if (data) {
         dispatch(setUserTable(data[0]))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
-        setEmail(data[0].email)
         setData(data)
       }
     } catch (error) {

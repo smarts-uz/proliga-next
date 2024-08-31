@@ -2,43 +2,48 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLogIn } from '../../hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { useRouter } from 'next/navigation'
 import { PhoneInput } from '../../../components/PhoneInput'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
   const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const { data, error, isLoading, logIn } = useLogIn()
+  const { isLoading, logIn, error } = useLogIn()
+  const { userTable } = useSelector((state) => state.auth)
+  const [active, setActive] = useState(false)
   const {
-    data: tableData,
-    error: tableError,
     isLoading: tableIsLoading,
     getUserTable,
+    error: tableError,
   } = useGetUserTable()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await getUserTable({ phone, setEmail })
-    
-    if (email) {
-      await logIn({ email, password })
-    }
-
-    setEmail('')
-    setPassword('')
-    setPhone('')
-
-    if (!isLoading && !error && data) {
+    setActive(true)
+    await getUserTable({ phone })
+    if (!isLoading && !error && !tableIsLoading && !tableError) {
       return setTimeout(() => router.push('/championships'), 250)
     }
   }
+
+  useEffect(() => {
+    if (userTable && active) {
+      const fetch = async () =>
+        await logIn({ email: userTable.email, password })
+      fetch()
+
+      setPassword('')
+      setPhone('')
+      setActive(false)
+    }
+  }, [userTable])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
@@ -104,10 +109,10 @@ const Login = () => {
         <button
           onClick={handleSubmit}
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || tableIsLoading}
           className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
-          {isLoading ? (
+          {isLoading || tableIsLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}

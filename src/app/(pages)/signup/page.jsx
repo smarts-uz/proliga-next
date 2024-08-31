@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux'
 const SignUp = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
+  const [active, setActive] = useState(false)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -31,11 +32,16 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    setActive(true)
     await signUp({ email, password, confirmPassword })
+
+    if (!error && !tableError && !isLoading && !tableIsLoading) {
+      setTimeout(() => router.push('/championships'), 250)
+    }
   }
 
   useEffect(() => {
-    if (userAuth.user) {
+    if (userAuth.user && active) {
       const fetch = async () => {
         await updateUserTable({
           id: userAuth.user.id,
@@ -44,14 +50,12 @@ const SignUp = () => {
         })
       }
       fetch()
+
       setPhone('')
       setEmail('')
       setPassword('')
       setConfirmPassword('')
-
-      if (!error || (!tableError && !isLoading && !tableIsLoading)) {
-        setTimeout(() => router.push('/championships'), 250)
-      }
+      setActive(false)
     }
   }, [userAuth])
 
