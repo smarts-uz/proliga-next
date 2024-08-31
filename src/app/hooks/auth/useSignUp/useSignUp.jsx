@@ -3,7 +3,6 @@ import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useDispatch } from 'react-redux'
-import { useCreateUserTable } from '../useCreateUserTable/useCreateUserTable'
 
 export const useSignUp = () => {
   const [error, setError] = useState(null)

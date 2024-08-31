@@ -4,18 +4,18 @@ import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 
-export const useCreateUserTable = () => {
+export const useUpdateUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const createUserTable = async ({ email, phone }) => {
+  const updateUserTable = async ({ id, email, phone }) => {
     setIsLoading(false)
     setError(null)
 
-    if (!email || !phone) {
+    if (!id || !phone || !email) {
       setError('Email va Telefon kirilmagan')
       toast.error('Email va Telefon kiritilmagan')
       return
@@ -26,7 +26,8 @@ export const useCreateUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .insert({ email, phone })
+        .update({ phone, email })
+        .eq('guid', id)
         .select()
 
       if (error) {
@@ -46,5 +47,5 @@ export const useCreateUserTable = () => {
       setIsLoading(false)
     }
   }
-  return { createUserTable, isLoading, error, data }
+  return { updateUserTable, isLoading, error, data }
 }

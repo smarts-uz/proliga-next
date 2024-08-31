@@ -3,10 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from '../../../components/PhoneInput'
-import { useCreateUserTable } from 'app/hooks/auth/useCreateUserTable/useCreateUserTable'
+import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
+import { supabase } from 'app/lib/supabaseClient'
+import { useSelector } from 'react-redux'
 
 const SignUp = () => {
   const [phone, setPhone] = useState('')
@@ -16,21 +18,20 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
+  const { userAuth } = useSelector((store) => store.auth)
   const {
-    createUserTable,
     isLoading: tableIsLoading,
     error: tableError,
     data: tableData,
-  } = useCreateUserTable()
+    updateUserTable,
+  } = useUpdateUserTable()
 
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await createUserTable({ email, phone })
-    await signUp({ email, password, confirmPassword, phone })
-
+    await signUp({ email, password, confirmPassword })
     // setPhone('')
     // setEmail('')
     // setPassword('')
@@ -39,6 +40,19 @@ const SignUp = () => {
     //   setTimeout(() => router.push('/championships'), 250)
     // }
   }
+
+  useEffect(() => {
+    if (userAuth.user) {
+      const fetch = async () => {
+        await updateUserTable({
+          id: userAuth.user.id,
+          email: userAuth.user.email,
+          phone,
+        })
+      }
+      fetch()
+    }
+  }, [userAuth])
 
   return (
     <main className="z-10 mt-16 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
