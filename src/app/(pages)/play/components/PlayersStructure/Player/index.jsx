@@ -12,8 +12,10 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
     e.target.src = '/icons/player-tshirt.svg'
   }
   const clubPath = player.club.slug
-  const firstName = player.name.split(' ')[0]
-  const lastName = player.name.split(' ')[1].slice(0, 1).toUpperCase()
+  const firstName = player.name.split(' ')[0] ?? ''
+  const lastName = player.name.split(' ')[1]
+    ? player.name.split(' ')[1].slice(0, 1).toUpperCase()
+    : ''
 
   return (
     <div className="fade-in-fast flex flex-col items-center justify-center text-sm text-neutral-700 sm:text-base">
@@ -26,7 +28,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
         className="size-6 xs:size-8 md:size-12"
       />
       <p className="text-shadow line-clamp-1 text-[11px] text-white xs:text-xs md:text-sm">
-        {firstName} {lastName}.
+        {firstName} {lastName} {lastName && '.'}
       </p>
       <div className="flex items-center gap-1">
         {additionalInfo && (

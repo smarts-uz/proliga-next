@@ -1,6 +1,8 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCapitan } from 'app/lib/features/game/game.slice'
 
 const ChangeCaptainForm = () => {
+  const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((state) => state.game)
 
   return (
@@ -9,6 +11,7 @@ const ChangeCaptainForm = () => {
         <select
           name="formation"
           id="formation"
+          onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
           <option
@@ -59,7 +62,8 @@ const ChangeCaptainForm = () => {
       <button
         type="submit"
         onClick={(e) => e.preventDefault()}
-        className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
+        className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white 
+        transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
       >
         Saqlash
       </button>

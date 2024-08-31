@@ -14,6 +14,7 @@ const initialState = {
   formation: '',
   tour: null,
   tab: tabs.Transfer,
+  capitan: null,
 }
 
 const gameSlice = createSlice({
@@ -29,6 +30,9 @@ const gameSlice = createSlice({
     setTab: (state, action) => {
       state.tab = action.payload
     },
+    setCapitan: (state, action) => {
+      state.capitan = action.payload
+    },
     addPlayerToTeam: addPlayerToTeamReducer,
     deletePlayerFromTeam: deletePlayerFromTeamReducer,
   },
@@ -39,6 +43,7 @@ export const {
   setCompetition,
   setTour,
   setTab,
+  setCapitan,
   addPlayerToTeam,
   deletePlayerFromTeam,
 } = gameSlice.actions
