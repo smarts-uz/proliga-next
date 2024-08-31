@@ -4,26 +4,47 @@ import { toast } from 'react-toastify'
 export const addPlayerToTeamReducer = (state, action) => {
   const { player, type } = action.payload
 
-  const existingPlayer = state.team.find((p) => p.id === player.id)
+  if (type === PLAYERS.GOA && state.GOA.length < 1 && state.team < 11) {
+    const existingPlayer = state.GOA.find((p) => p.id === player.id)
+    if (existingPlayer) {
+      toast.warning('Player already exists')
 
-  if (existingPlayer) {
-    toast.warning('Player already exists')
-    return
-  }
-  if (type === PLAYERS.GOA && state.GOA.length < 1 && state.team.length < 11) {
+      state = state
+      return
+    }
+
     state.GOA.push(player)
+    state.team++
   }
-  if (type === PLAYERS.DEF && state.DEF.length < 5 && state.team.length < 11) {
+  if (type === PLAYERS.DEF && state.DEF.length < 5 && state.team < 11) {
+    const existingPlayer = state.DEF.find((p) => p.id === player.id)
+    if (existingPlayer) {
+      toast.warning('Player already exists')
+      return state
+    }
+
     state.DEF.push(player)
+    state.team++
   }
-  if (type === PLAYERS.MID && state.MID.length < 5 && state.team.length < 11) {
+  if (type === PLAYERS.MID && state.MID.length < 5 && state.team < 11) {
+    const existingPlayer = state.DEF.find((p) => p.id === player.id)
+    if (existingPlayer) {
+      toast.warning('Player already exists')
+      return state
+    }
+
     state.MID.push(player)
+    state.team++
   }
-  if (type === PLAYERS.STR && state.STR.length < 4 && state.team.length < 11) {
+  if (type === PLAYERS.STR && state.STR.length < 4 && state.team < 11) {
+    const existingPlayer = state.DEF.find((p) => p.id === player.id)
+    if (existingPlayer) {
+      toast.warning('Player already exists')
+      return state
+    }
+
     state.STR.push(player)
-  }
-  if (state.team.length < 11) {
-    state.team.push(player)
+    state.team++
   }
 }
 
