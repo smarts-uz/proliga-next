@@ -63,5 +63,4 @@ export const deletePlayerFromTeamReducer = (state, action) => {
   if (type === PLAYERS.STR) {
     state.STR = state.STR.filter((p) => p.id !== player.id)
   }
-  state.team = state.team.filter((p) => p.id !== player.id)
 }

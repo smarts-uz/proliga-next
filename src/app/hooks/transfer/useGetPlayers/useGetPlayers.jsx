@@ -18,7 +18,7 @@ export const useGetPlayers = () => {
 
       const { data, error } = await supabase
         .from('player')
-        .select('id, name, position, club(name), price')
+        .select('id, name, position, club(name, slug), price')
 
       if (error) {
         setError(error.message)

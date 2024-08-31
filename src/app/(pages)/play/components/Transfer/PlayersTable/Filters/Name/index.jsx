@@ -12,7 +12,7 @@ const PlayerNameFilter = ({ column, columnFilterValue }) => {
         value={columnFilterValue ?? ''}
       />
       <Image
-        src="./icons/search.svg"
+        src="/icons/search.svg"
         className="absolute right-2 top-2"
         alt="search"
         width={16}

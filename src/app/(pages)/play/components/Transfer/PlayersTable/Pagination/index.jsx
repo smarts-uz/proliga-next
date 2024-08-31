@@ -66,7 +66,7 @@ const PaginationButton = ({
       }
     >
       <Image
-        src={'./icons/' + src}
+        src={'/icons/' + src}
         alt="arrow"
         className={'h-full w-full select-none ' + imgClassName}
         width={24}
