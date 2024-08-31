@@ -3,7 +3,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
     <div className="flex w-full gap-2 items-center">
       <h3 className="text-sm hidden md:block font-semibold md:text-base">Narx</h3>
       <div  
-        className="flex items-center gap-1 text-neutral-200 md:flex-row md:gap-2"
+        className="flex items-center gap-1 text-neutral-200 md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         <input
