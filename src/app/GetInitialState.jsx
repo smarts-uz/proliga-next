@@ -10,7 +10,8 @@ const GetInitialState = ({ children }) => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
     const auth = JSON.parse(localStorage.getItem(`user-auth-${sbUrl}`))
     const table = JSON.parse(localStorage.getItem(`user-table-${sbUrl}`))
-    if (auth && auth?.access_token && !userAuth) {
+
+    if (auth && auth?.session.access_token && !userAuth) {
       dispatch(setUserAuth(auth))
     }
     if (table && table.email && !userTable) {

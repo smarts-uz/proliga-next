@@ -32,13 +32,6 @@ const SignUp = () => {
     e.preventDefault()
 
     await signUp({ email, password, confirmPassword })
-    // setPhone('')
-    // setEmail('')
-    // setPassword('')
-    // setConfirmPassword('')
-    // if (!error || !tableError) {
-    //   setTimeout(() => router.push('/championships'), 250)
-    // }
   }
 
   useEffect(() => {
@@ -51,6 +44,14 @@ const SignUp = () => {
         })
       }
       fetch()
+      setPhone('')
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
+
+      if (!error || (!tableError && !isLoading && !tableIsLoading)) {
+        setTimeout(() => router.push('/championships'), 250)
+      }
     }
   }, [userAuth])
 
