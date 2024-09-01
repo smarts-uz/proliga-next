@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 
 export const useLogIn = () => {
-  const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
+  const dispatch = useDispatch()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 
   const logIn = async ({ email, password }) => {

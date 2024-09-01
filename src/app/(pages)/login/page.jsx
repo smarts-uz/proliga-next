@@ -43,6 +43,7 @@ const Login = () => {
       setPhone('')
       setActive(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTable])
 
   return (
