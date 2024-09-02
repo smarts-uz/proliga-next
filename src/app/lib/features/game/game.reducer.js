@@ -33,14 +33,18 @@ export const deletePlayerFromTeamReducer = (state, action) => {
 
   if (type === PLAYERS.GOA) {
     state.GOA = state.GOA.filter((p) => p.id !== player.id)
+    state.team = state.team.filter((p) => p.id !== player.id)
   }
   if (type === PLAYERS.DEF) {
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
+    state.team = state.team.filter((p) => p.id !== player.id)
   }
   if (type === PLAYERS.MID) {
     state.MID = state.MID.filter((p) => p.id !== player.id)
+    state.team = state.team.filter((p) => p.id !== player.id)
   }
   if (type === PLAYERS.STR) {
     state.STR = state.STR.filter((p) => p.id !== player.id)
+    state.team = state.team.filter((p) => p.id !== player.id)
   }
 }

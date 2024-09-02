@@ -14,6 +14,6 @@ export const transferSlice = createSlice({
   },
 })
 
-export const { setPlayers, setPagination } = transferSlice.actions
+export const { setPlayers } = transferSlice.actions
 
 export default transferSlice.reducer

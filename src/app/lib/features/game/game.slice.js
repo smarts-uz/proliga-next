@@ -40,7 +40,6 @@ const gameSlice = createSlice({
 
 export const {
   setTeam,
-  setCompetition,
   setTour,
   setTab,
   setCapitan,
