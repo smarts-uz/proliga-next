@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect } from 'react'
-import GameNavigation from '../components/GameNavigation'
-import CurrentTab from '../components/CurrentTab'
+import GameNavigation from '../../components/GameNavigation'
+import CurrentTab from '../../components/CurrentTab'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 
-const Play = () => {
+const Play = ({ params }) => {
+  console.log(params)
+
   const { tab } = useSelector((state) => state.game)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const router = useRouter()

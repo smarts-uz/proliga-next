@@ -14,10 +14,11 @@ const LeagueModal = ({ toggleModal, league }) => {
     e.preventDefault()
 
     await createTeam({ title, formation, competition_id: league.id })
-    if (!error && data && !isLoading) {
+    if (!error && !isLoading) {
       setTitle('')
       setFormation(formations['4-3-3'])
     }
+    toggleModal()
   }
 
   return (

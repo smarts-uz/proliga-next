@@ -19,7 +19,7 @@ export const useGetCompetition = () => {
 
       const { data, error } = await supabase
         .from('competition')
-        .select('id, title, flag, country_id')
+        .select('id, title, flag, country_id, slug')
 
       if (error) {
         setError(error.message)
