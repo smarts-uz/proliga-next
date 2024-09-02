@@ -40,7 +40,7 @@ const Championship = ({ item }) => {
           </p>
         </div>
       </article>
-      {isModalOpen && <LeagueModal toggleModal={toggleModal} />}
+      {isModalOpen && <LeagueModal toggleModal={toggleModal} league={item} />}
     </>
   )
 }

@@ -8,10 +8,12 @@ const gameSlice = createSlice({
   name: 'statistics',
   initialState,
   reducers: {
-    setStats: (state, action) => {
-      state.game = action.payload
+    setStatistics: (state, action) => {
+      state.statistics = action.payload
     },
   },
 })
+
+export const { setStatistics } = gameSlice.actions
 
 export default gameSlice.reducer

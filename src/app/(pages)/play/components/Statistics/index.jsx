@@ -3,22 +3,23 @@ import { useState, useReducer, useEffect } from 'react'
 import { supabase } from '../../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { useGetPlayerStats } from 'app/hooks/statistics/useGetPlayerStats/useGetPlayerStats'
+import { useSelector } from 'react-redux'
 
 const Statistics = () => {
   const [players, setPlayers] = useState([])
+  const { statistics } = useSelector((state) => state.statistics)
+  const { getPlayerStats, isLoading, error } = useGetPlayerStats()
 
   useEffect(() => {
     const fetch = async () => {
-      const { data, error } = await supabase
-        .from('player_result')
-        .select('*, player_id(name)')
-        .limit(54)
-      if (error) return toast.error(error.message)
-      if (data?.length > 0) setPlayers(data)
+      await getPlayerStats()
     }
     fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  console.log(players)
   return (
     <Gutter>
       <section className="flex gap-4">
@@ -37,10 +38,10 @@ const Statistics = () => {
               </tr>
             </thead>
             <tbody>
-              {players.map((player) => (
+              {statistics.map((player) => (
                 <tr key={player.id} className="text-center">
                   <td className="w-1/4 truncate">
-                    {player.player_id ?? 'Player Name'}
+                    {player.player_id.name ?? 'Player Name'}
                   </td>
                   <td className="w-1/4 truncate">{player.position}</td>
                   <td className="w-1/8 truncate">{player.goal}</td>
