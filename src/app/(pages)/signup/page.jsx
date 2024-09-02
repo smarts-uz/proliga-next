@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { act, useEffect, useState } from 'react'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from '../../../components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
@@ -41,7 +41,7 @@ const SignUp = () => {
   }
 
   useEffect(() => {
-    if (userAuth.user && active) {
+    if (userAuth && userAuth.user && active) {
       const fetch = async () => {
         await updateUserTable({
           id: userAuth.user.id,
@@ -57,7 +57,8 @@ const SignUp = () => {
       setConfirmPassword('')
       setActive(false)
     }
-  }, [userAuth])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAuth, active])
 
   return (
     <main className="z-10 mt-16 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-neutral-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
