@@ -63,9 +63,9 @@ const Navbar = () => {
               onClick={handleToggleDropdown}
               className="flex cursor-pointer items-center justify-center gap-2"
             >
-              {userAuth?.email ? (
+              {userAuth && userAuth.user.email ? (
                 <span className="flex size-8 select-none items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
-                  {userAuth.email.slice(0, 1)}
+                  {userAuth.user.email.slice(0, 1)}
                 </span>
               ) : (
                 <Image

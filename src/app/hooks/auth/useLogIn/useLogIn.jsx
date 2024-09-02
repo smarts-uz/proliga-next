@@ -1,4 +1,4 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
@@ -9,8 +9,9 @@ export const useLogIn = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 
-  const logIn = async ({ email, password, phone }) => {
+  const logIn = async ({ email, password }) => {
     setIsLoading(false)
     setError(null)
 
@@ -19,14 +20,16 @@ export const useLogIn = () => {
       toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
       return
     }
-    if (phone.length !== 9) {
-      setError('Telefon raqam xato terilgan')
-      toast.error('Telefon raqam xato terilgan')
-      return
-    }
-    if (!email || !password || !phone) {
+
+    if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
       toast.error("Barcha maydonlar to'ldirilishi shart")
+      return
+    }
+
+    if (!email.includes('@')) {
+      setError("Elektron pochta manzili notog'ri kiritildi")
+      toast.error("Elektron pochta manzili notog'ri kiritildi")
       return
     }
 
@@ -39,21 +42,21 @@ export const useLogIn = () => {
       })
 
       if (error) {
-        setIsLoading(false)
         setError(error.message)
         toast.error(error.message)
         return
       }
       if (data?.user && data?.session) {
-        setIsLoading(false)
-        dispatch(setUserAuth(data?.user))
-        localStorage.setItem('user', JSON.stringify(data?.user))
+        dispatch(setUserAuth(data))
+        localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         setData(data)
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
   return { logIn, isLoading, error, data }

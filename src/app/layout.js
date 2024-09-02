@@ -3,10 +3,12 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ReduxProvider from './store.provider'
+import GetInitialState from './GetInitialState'
 import { Archivo } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-phone-number-input/style.css'
 
 const archivo = Archivo({
   subsets: ['latin', 'latin-ext'],
@@ -19,13 +21,18 @@ export default function RootLayout({ children }) {
       <head>
         <title>Proliga</title>
         <meta name="description" content="Bu sportlar haqida web sayt" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <ReduxProvider>
-        <body className={`${archivo.className} min-h-svh bg-black text-white`}>
-          <Navbar />
-          {children}
-          <ToastContainer />
-          <Footer />
+        <body
+          className={`${archivo.className} dark min-h-svh bg-black text-white`}
+        >
+          <GetInitialState>
+            <Navbar />
+            {children}
+            <ToastContainer />
+            <Footer />
+          </GetInitialState>
         </body>
       </ReduxProvider>
     </html>

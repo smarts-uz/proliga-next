@@ -3,6 +3,9 @@
 @tailwind utilities;
 @import url('./utils/animations.global.css');
 
+:root {
+  --PhoneInputCountryFlag-aspectRatio: 1.333;
+}
 @layer base {
   ::-webkit-scrollbar {
     width: 20px;
@@ -48,7 +51,7 @@
     @apply mx-4 flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 xs:w-3/4 sm:mx-0 sm:w-1/2 md:w-[28rem] md:p-8;
   }
   .auth-input {
-    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
+    @apply h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base;
   }
   .filter-neutral-400 {
     filter: brightness(0) saturate(100%) invert(70%) sepia(19%) saturate(0%)
@@ -71,12 +74,19 @@
       hue-rotate(348deg) brightness(98%) contrast(109%);
   }
   .text-shadow {
-    text-shadow: #000 1px 0 1px;
+    text-shadow: 2px 1px 1px #000;
   }
   .promotion-text {
     @apply text-sm xs:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-xl;
   }
-  .promotion-header{
-    @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl
+  .promotion-header {
+    @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl;
+  }
+  /* .PhoneInput{
+    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
+  } */
+  .PhoneInput--focus {
+    background-color: #4ab;
+    padding: 16px;
   }
 }

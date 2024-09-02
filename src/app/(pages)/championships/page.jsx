@@ -1,13 +1,17 @@
 'use client'
 
+import Gutter from '../../../components/Gutter'
+import Championship from './components/Championship'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient'
-import Gutter from '../../../components/Gutter'
-import Championship from './components/Championship'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
 
 const Championships = () => {
+  const router = useRouter()
   const [championships, setChampionships] = useState([])
+  const { userAuth, userTable } = useSelector((state) => state.auth)
 
   useEffect(() => {
     const fetch = async () => {
@@ -17,6 +21,10 @@ const Championships = () => {
     }
     fetch()
   }, [])
+
+  useEffect(() => {
+    if (!userAuth || !userTable) router.push('/login')
+  }, [userAuth, userTable, router])
 
   return (
     <Gutter>

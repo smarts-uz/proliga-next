@@ -8,45 +8,51 @@ export const useSignUp = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
 
-  const signUp = async ({ email, password, confirmPassword, phone }) => {
+  const signUp = async ({ email, password, confirmPassword }) => {
     setIsLoading(false)
     setError(null)
 
-    if (password.length < 6)
-      return toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
-    if (phone.length !== 9) return toast.error('Telefon raqam xato terilgan')
-
-    if (!email || !password || !phone)
+    if (password.length < 6) {
+      setError("Parol 6 ta belgidan kam bo'lmaydi")
+      toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+      return
+    }
+    if (!email || !password) {
+      setError("Barcha maydonlar to'ldirilishi shart")
       return toast.error("Barcha maydonlar to'ldirilishi shart")
-    if (password !== confirmPassword) return toast.error('Parollar mos kelmadi')
+    }
+    if (password !== confirmPassword) {
+      setError('Parollar mos kelmadi')
+      toast.error('Parollar mos kelmadi')
+      return
+    }
 
     try {
       setIsLoading(true)
 
-      const { data, error } = await supabase.auth.signUp(
-        {
-          email,
-          password,
-        },
-        { phone }
-      )
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      })
 
       if (error) {
         toast.error(error.message)
         setError(error.message)
-        setIsLoading(false)
       }
       if (data?.user && data?.session) {
-        setIsLoading(false)
         setData(data)
+        localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         toast.success('Tizimga muvaffaqiyatli kirdingiz')
-        dispatch(setUserAuth(data?.user))
+        dispatch(setUserAuth(data))
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
   return { signUp, isLoading, error, data }
