@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import { addPlayerToTeam } from 'app/lib/features/game/game.slice'
 import { PLAYERS } from 'app/utils/playerTypes.util.'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import AddPlayerButton from './AddPlayerButton'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
+  const { team } = useSelector((state) => state.game)
+
   const handleAddPlayer = (player) => {
     if (player.position === PLAYERS.GOA) {
       dispatch(addPlayerToTeam({ player, type: PLAYERS.GOA }))
@@ -20,6 +23,10 @@ const TransferTableBody = ({ table, flexRender }) => {
     }
   }
 
+  const playerExists = (cell) => {
+    team.find((player) => player.name === cell.getValue())
+  }
+
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (
@@ -32,25 +39,19 @@ const TransferTableBody = ({ table, flexRender }) => {
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </td>
           ))}
-          {row.getVisibleCells().map((cell) => {
-            if (cell.column.id === 'name')
-              return (
-                <td
-                  className="flex w-auto cursor-pointer items-center justify-center px-2 py-1"
-                  key={cell.column.id}
-                  onClick={() => handleAddPlayer(cell.row.original)}
-                >
-                  <Image
-                    src="/icons/plus.svg"
-                    alt="plus"
-                    width={24}
-                    draggable={false}
-                    height={24}
-                    className="filter-primary size-5 md:size-6"
+          {row
+            .getVisibleCells()
+            .map(
+              (cell) =>
+                cell.column.id === 'name' && (
+                  <AddPlayerButton
+                    key={cell.id}
+                    cell={cell}
+                    team={team}
+                    handleAddPlayer={handleAddPlayer}
                   />
-                </td>
-              )
-          })}
+                )
+            )}
         </tr>
       ))}
     </tbody>
