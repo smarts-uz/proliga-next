@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { addPlayerToTeam, setTeam } from 'app/lib/features/game/game.slice'
+import { setTeam } from 'app/lib/features/game/game.slice'
 
 export const useGetTeamPlayers = () => {
   const [error, setError] = useState(null)
@@ -29,15 +29,7 @@ export const useGetTeamPlayers = () => {
       }
       if (data) {
         setData(data)
-        data.map((player) =>
-          dispatch(
-            addPlayerToTeam({
-              player,
-              type: player.position,
-              ignoreExistingPlayers: true,
-            })
-          )
-        )
+        dispatch(setTeam(data))
       }
     } catch (error) {
       setError(error.message)

@@ -17,8 +17,6 @@ export const useUpdateUserData = () => {
     birthdate
   ) => {
     try {
-      console.log(firstName)
-
       setIsLoading(true)
       setError('')
       // const { data, error } = await supabase.auth.updateUser({

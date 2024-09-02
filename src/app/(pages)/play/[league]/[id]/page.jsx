@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useGetTeamPlayers } from 'app/hooks/competition/useGetTeamPlayers/useGetTeamPlayers'
-import { toast } from 'react-toastify'
 
 const Play = ({ params }) => {
   const { tab } = useSelector((state) => state.game)
@@ -21,7 +20,7 @@ const Play = ({ params }) => {
       }
       fetch()
     }
-  }, [userAuth, userTable])
+  }, [userAuth])
 
   // useEffect(() => {
   //   if (!userAuth || !userTable) {

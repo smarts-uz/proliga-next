@@ -23,12 +23,13 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   }
 
   const handleDeletePlayer = () => {
-    dispatch(deletePlayerFromTeam({ player, type: player.position }))
+    dispatch(deletePlayerFromTeam({ player }))
+    toggleDeleteModal()
   }
   const imageErr = (e) => {
     e.target.src = '/icons/player-tshirt.svg'
   }
-  const clubPath = player.name ? player.slug : ""
+  const clubPath = player.name ? player.club.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player.name ? player?.name?.split(' ')[1] : ''
 
@@ -67,7 +68,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                     height={16}
                     src="/icons/info.svg"
                     alt="additional info"
-                    className="size-3 xs:size-4 2xl:size-[18px]"
+                    className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
                   />
                 </button>
               )}
@@ -81,7 +82,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                     height={16}
                     src="/icons/delete-player.svg"
                     alt="delete player"
-                    className="size-3 xs:size-4 2xl:size-[18px]"
+                    className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
                   />
                 </button>
               )}

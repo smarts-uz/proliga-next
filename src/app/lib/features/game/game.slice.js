@@ -16,6 +16,12 @@ const initialState = {
   tour: null,
   tab: tabs.Transfer,
   capitan: null,
+  indexes: {
+    GOA: 0,
+    DEF: 0,
+    MID: 0,
+    STR: 0,
+  },
 }
 
 const gameSlice = createSlice({
@@ -23,7 +29,11 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     setTeam: (state, action) => {
-      state.team = action.payload
+      const team = action.payload
+      state.team = team
+      team.forEach((player) => {
+        state[player.position].push(player)
+      })
     },
     setTour: (state, action) => {
       state.tour = action.payload
