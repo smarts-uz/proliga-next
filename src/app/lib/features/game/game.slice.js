@@ -6,7 +6,7 @@ import {
 } from './game.reducer'
 
 const initialState = {
-  team: 0,
+  team: [],
   GOA: [],
   DEF: [],
   MID: [],
@@ -40,7 +40,6 @@ const gameSlice = createSlice({
 
 export const {
   setTeam,
-  setCompetition,
   setTour,
   setTab,
   setCapitan,
