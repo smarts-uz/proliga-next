@@ -5,10 +5,13 @@ import Championship from './components/Championship'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useGetCompetition } from 'app/hooks/competition/useGetCompetition/useGetCompetition'
+import { useGetTeams } from 'app/hooks/competition/useGetTeams/useGetTeams'
 
 const Championships = () => {
-  const { getCompetition, isLoading, error } = useGetCompetition()
   const { competition } = useSelector((state) => state.competition)
+  const { userTable } = useSelector((state) => state.auth)
+  const { getCompetition, isLoading, error } = useGetCompetition()
+  const { getTeams, isLoading: teamIsLoading, error: teamError } = useGetTeams()
 
   useEffect(() => {
     const fetch = async () => {
@@ -17,6 +20,15 @@ const Championships = () => {
     fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  useEffect(() => {
+    if (userTable) {
+      const fetch = async () => {
+        await getTeams()
+      }
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userTable])
 
   return (
     <Gutter>

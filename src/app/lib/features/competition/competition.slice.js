@@ -15,9 +15,12 @@ export const competitionSlice = createSlice({
     addGame: (state, action) => {
       state.games.push(action.payload)
     },
+    setGame: (state, action) => {
+      state.games = action.payload
+    },
   },
 })
 
-export const { setCompetition, addGame } = competitionSlice.actions
+export const { setCompetition, addGame, setGame } = competitionSlice.actions
 
 export default competitionSlice.reducer
