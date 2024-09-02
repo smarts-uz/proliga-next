@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import UppyDashboard from './component/Uppy/index'
 import { toast } from 'react-toastify'
-import { useUpdateUserData } from 'app/hooks/auth/useUpdateUserData/useUpdateUserData'
+import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
