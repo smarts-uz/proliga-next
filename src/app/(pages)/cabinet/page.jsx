@@ -5,6 +5,8 @@ import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import UppyDashboard from './formik/Uppy/index'
+import { toast } from 'react-toastify'
+import { supabase } from '../../lib/supabaseClient'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
 
@@ -14,7 +16,7 @@ function Page() {
       lastName: '',
       middleName: '',
       birthdate: '',
-      lastName: '',
+      email: '',
       bio: '',
       gender: '',
     },
@@ -22,7 +24,26 @@ function Page() {
       alert(JSON.stringify(values, null, 2))
     },
   })
+  const updateUserData = async () => {
+    formik.birthdate = startDate
+    try {
+      if (
+        formik.firstName === null ||
+        formik.lastName === null ||
+        formik.gender === null
+      ) {
+        toast.warning("Ma'lumot bo'sh bo'lmasin")
+      }
+      const jwt = localStorage.getItem(
+        'sb-torthiwfsqwzbcveiimx-auth-token'
+      ).access_token
+      const data = await supabase.auth.getUser(jwt)
+    } catch (error) {
+      console.log(error)
 
+      toast.error('Xatolik')
+    }
+  }
   return (
     <Gutter>
       <div className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
@@ -158,6 +179,7 @@ function Page() {
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
+                onClick={() => updateUserData()}
               >
                 Submit
               </button>
