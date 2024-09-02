@@ -2,10 +2,10 @@ import { PLAYERS } from 'app/utils/playerTypes.util.'
 import { toast } from 'react-toastify'
 
 export const addPlayerToTeamReducer = (state, action) => {
-  const { player, type } = action.payload
+  const { player, type, ignoreExistingPlayers } = action.payload
 
-  const existingPlayer = state.team.find((p) => p.id === player.id)
-  if (existingPlayer) {
+  const existingPlayer = state.team.find((p) => p.name === player.name)
+  if (existingPlayer && !ignoreExistingPlayers) {
     toast.warning('Player already exists')
     return state
   }
@@ -25,6 +25,47 @@ export const addPlayerToTeamReducer = (state, action) => {
   if (type === PLAYERS.STR && state.STR.length < 4 && state.team.length < 11) {
     state.STR.push(player)
     state.team.push(player)
+  }
+}
+
+export const updatePlayerInTeamReducer = (state, action) => {
+  const { player, type } = action.payload
+
+  // const existingPlayer = state.team.find((p) => p.id === player.id)
+  // if (existingPlayer) {
+  //   toast.warning('Player already exists')
+  //   return state
+  // }
+
+  if (type === PLAYERS.GOA) {
+    // state.GOA.map((p) =>
+    //   p.name ? p : { name: player.name, club_id: player.club_id, ...p }
+    // )
+    state.GOA[0] = {
+      ...state.GOA[0],
+      name: player.name,
+      club_id: player.club_id,
+      slug: player.club.slug,
+      price: player.price,
+    }
+  }
+  if (type === PLAYERS.DEF) {
+    // state.DEF.shift()
+    // state.DEF.unshift(player)
+    // state.DEF = state.DEF.map((p) => (p.id === player.id ? player : p))
+    // state.team = state.team.map((p) => (p.id === player.id ? player : p))
+  }
+  if (type === PLAYERS.MID) {
+    state.MID.shift()
+    state.MID.unshift(player)
+    // state.MID = state.MID.map((p) => (p.id === player.id ? player : p))
+    // state.team = state.team.map((p) => (p.id === player.id ? player : p))
+  }
+  if (type === PLAYERS.STR) {
+    state.STR.shift()
+    state.STR.unshift(player)
+    // state.STR = state.STR.map((p) => (p.id === player.id ? player : p))
+    // state.team = state.team.map((p) => (p.id === player.id ? player : p))
   }
 }
 

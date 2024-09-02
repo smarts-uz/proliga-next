@@ -9,6 +9,10 @@ export default function TourTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+  const map = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+  ] 
 
   return (
     <Box
@@ -28,13 +32,9 @@ export default function TourTabs() {
         className="mt-4 rounded text-white"
         aria-label="scrollable auto tabs example "
       >
-        <StyledTab className="md:w-40" label="Item One" />
-        <StyledTab className="md:w-40" label="Item Two" />
-        <StyledTab className="md:w-40" label="Item Three" />
-        <StyledTab className="md:w-40" label="Item Four" />
-        <StyledTab className="md:w-40" label="Item Five" />
-        <StyledTab className="md:w-40" label="Item Six" />
-        <StyledTab className="md:w-40" label="Item Seven" />
+        {map.map((item) => (
+          <StyledTab key={item} className="md:w-40" label={`Tour ${item}`} />
+        ))}
       </StyledTabs>
     </Box>
   )

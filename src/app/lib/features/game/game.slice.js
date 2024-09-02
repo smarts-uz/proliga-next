@@ -3,6 +3,7 @@ import { tabs } from '../../../utils/tabs.util'
 import {
   addPlayerToTeamReducer,
   deletePlayerFromTeamReducer,
+  updatePlayerInTeamReducer,
 } from './game.reducer'
 
 const initialState = {
@@ -35,6 +36,7 @@ const gameSlice = createSlice({
     },
     addPlayerToTeam: addPlayerToTeamReducer,
     deletePlayerFromTeam: deletePlayerFromTeamReducer,
+    updatePlayerInTeam: updatePlayerInTeamReducer,
   },
 })
 
@@ -45,6 +47,7 @@ export const {
   setCapitan,
   addPlayerToTeam,
   deletePlayerFromTeam,
+  updatePlayerInTeam,
 } = gameSlice.actions
 
 export default gameSlice.reducer

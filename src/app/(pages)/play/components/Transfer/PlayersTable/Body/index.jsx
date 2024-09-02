@@ -1,5 +1,7 @@
-import Image from 'next/image'
-import { addPlayerToTeam } from 'app/lib/features/game/game.slice'
+import {
+  addPlayerToTeam,
+  updatePlayerInTeam,
+} from 'app/lib/features/game/game.slice'
 import { PLAYERS } from 'app/utils/playerTypes.util.'
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
@@ -9,17 +11,30 @@ const TransferTableBody = ({ table, flexRender }) => {
   const { team } = useSelector((state) => state.game)
 
   const handleAddPlayer = (player) => {
-    if (player.position === PLAYERS.GOA) {
+    if (player.position === PLAYERS.GOA || player.name) {
       dispatch(addPlayerToTeam({ player, type: PLAYERS.GOA }))
     }
-    if (player.position === PLAYERS.DEF) {
+    if (player.position === PLAYERS.GOA || !player.name) {
+      dispatch(updatePlayerInTeam({ player, type: PLAYERS.GOA }))
+    }
+
+    if (player.position === PLAYERS.DEF || player.name) {
       dispatch(addPlayerToTeam({ player, type: PLAYERS.DEF }))
     }
-    if (player.position === PLAYERS.MID) {
+    if (player.position === PLAYERS.DEF || !player.name) {
+      dispatch(updatePlayerInTeam({ player, type: PLAYERS.DEF }))
+    }
+    if (player.position === PLAYERS.MID || player.name) {
       dispatch(addPlayerToTeam({ player, type: PLAYERS.MID }))
     }
-    if (player.position === PLAYERS.STR) {
+    if (player.position === PLAYERS.MID || !player.name) {
+      dispatch(updatePlayerInTeam({ player, type: PLAYERS.MID }))
+    }
+    if (player.position === PLAYERS.STR || player.name) {
       dispatch(addPlayerToTeam({ player, type: PLAYERS.STR }))
+    }
+    if (player.position === PLAYERS.STR || !player.name) {
+      dispatch(updatePlayerInTeam({ player, type: PLAYERS.STR }))
     }
   }
 

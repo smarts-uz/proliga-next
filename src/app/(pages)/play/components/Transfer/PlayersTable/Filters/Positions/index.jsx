@@ -1,7 +1,6 @@
 const PositionsFilter = ({ column, columnFilterValue }) => {
   const active = 'bg-primary text-black font-bold'
   const passive = 'bg-transparent text-neutral-500 font-base'
-  console.log(column.getFilterValue())
 
   return (
     <div className="col-span-2 mt-2 flex w-full gap-2 overflow-x-auto lg:gap-4">

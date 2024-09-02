@@ -19,7 +19,6 @@ const Statistics = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(players)
   return (
     <Gutter>
       <section className="flex gap-4">
