@@ -29,23 +29,24 @@ const Dropdown = () => {
           </NavLink>
           <button
             onClick={logOut}
-            className="flex h-full w-full gap-2 rounded p-1 hover:bg-neutral-700"
+            className="flex w-full gap-2 hover:bg-neutral-700"
           >
             <Image
               src={'/icons/logout.svg'}
               alt="user"
               width={24}
               height={24}
-              className="size-6"
             />
             <p>Log out</p>
           </button>
         </>
       ) : (
-        <NavLink href="/login">
-          <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-          <p>Login</p>
-        </NavLink>
+        <>
+          <NavLink href="/login">
+            <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
+            <p>Login</p>
+          </NavLink>
+        </>
       )}
     </section>
   )

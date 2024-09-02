@@ -4,18 +4,19 @@ import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-
+import UppyDashboard from './component/Uppy/index'
+import { toast } from 'react-toastify'
+import { useUpdateUserData } from 'app/hooks/auth/useUpdateUserData/useUpdateUserData'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
-
+  const { updateData, error, isLoading } = useUpdateUserData()
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       middleName: '',
       birthdate: '',
-      lastName: '',
-      photo: '',
+      email: '',
       bio: '',
       gender: '',
     },
@@ -23,6 +24,18 @@ function Page() {
       alert(JSON.stringify(values, null, 2))
     },
   })
+  const update = async () => {
+    try {
+      await updateData(
+        formik.values.firstName,
+        formik.values.lastName,
+        formik.values.middleName,
+        formik.values.bio,
+        formik.values.gender,
+        startDate
+      )
+    } catch (error) {}
+  }
   return (
     <Gutter>
       <div className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
@@ -31,8 +44,8 @@ function Page() {
           className="auth-container flex w-screen max-w-[80rem] items-center justify-center gap-2"
         >
           <h3 className="flex gap-4 text-xl">Ma&apos;lumot</h3>
-          <div className="flex max-w-[40rem]">
-            <div className="my-4 md:w-[36rem]">
+          <div className="flex">
+            <div className="my-4 max-w-72 xs:max-w-96 sm:max-w-[36rem]">
               <label
                 className="my-2 block text-sm font-bold text-neutral-300"
                 htmlFor="email"
@@ -97,20 +110,6 @@ function Page() {
               />
 
               <label
-                className="5 my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="photo"
-              >
-                Profil uchun surat
-              </label>
-              <input
-                id="photo"
-                name="photo"
-                type="file"
-                className="auth-input"
-                onChange={formik.handleChange}
-                value={formik.values.photo}
-              />
-              <label
                 className="my-2 block text-sm font-bold text-neutral-300"
                 htmlFor="bio"
               >
@@ -162,9 +161,17 @@ function Page() {
                 </div>
               </div>
 
+              <label
+                className="5 my-2 block text-sm font-bold text-neutral-300"
+                htmlFor="photo"
+              >
+                Profil uchun surat
+              </label>
+              <UppyDashboard />
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
+                onClick={() => update()}
               >
                 Submit
               </button>
