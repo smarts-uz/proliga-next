@@ -117,21 +117,18 @@ export const deletePlayerFromTeamReducer = (state, action) => {
   })
 
   if (player.position === PLAYERS.GOA) {
-    const getIndex = (p) => p.id === player.id
-    const index = state.GOA.findIndex(getIndex)
+    const currentPlayer = player
 
-    if (index !== -1) {
-      state.GOA[index] = deletedPlayerObj(state.GOA[index])
-    }
-    state.indexes.GOA = index
+    state.GOA = state.GOA.filter((p) => p.id !== player.id)
+    state.GOA.push(deletedPlayerObj(currentPlayer))
+
+    state.indexes.GOA--
   }
   if (player.position === PLAYERS.DEF) {
-    const getIndex = (p) => p.id === player.id
-    const index = state.DEF.findIndex(getIndex)
+    const currentPlayer = player
 
-    if (index !== -1) {
-      state.DEF[index] = deletedPlayerObj(state.DEF[index])
-    }
+    state.DEF = state.DEF.filter((p) => p.id !== player.id)
+    state.DEF.push(deletedPlayerObj(currentPlayer))
 
     state.indexes.DEF--
   }
@@ -144,14 +141,12 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     state.indexes.MID--
   }
   if (player.position === PLAYERS.STR) {
-    const getIndex = (p) => p.id === player.id
-    const index = state.STR.findIndex(getIndex)
+    const currentPlayer = player
 
-    if (index !== -1) {
-      state.STR[index] = deletedPlayerObj(state.STR[index])
-    }
+    state.STR = state.STR.filter((p) => p.id !== player.id)
+    state.STR.push(deletedPlayerObj(currentPlayer))
 
-    state.indexes.STR = index
+    state.indexes.STR--
   }
 }
 
