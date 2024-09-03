@@ -4,9 +4,9 @@ import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import UppyDashboard from './component/Uppy/index'
 import { toast } from 'react-toastify'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
+import App from './component/Uppy/index'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
@@ -168,7 +168,7 @@ function Page() {
               >
                 Profil uchun surat
               </label>
-              <UppyDashboard />
+              <App />
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
