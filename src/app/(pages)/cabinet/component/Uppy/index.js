@@ -1,5 +1,5 @@
-/* eslint-disable */
-import React from 'react'
+'use client'
+
 import Uppy from '@uppy/core'
 import Webcam from '@uppy/webcam'
 import { Dashboard } from '@uppy/react'
