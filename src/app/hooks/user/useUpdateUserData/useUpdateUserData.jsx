@@ -20,11 +20,11 @@ export const useUpdateUserData = () => {
     try {
       setIsLoading(true)
       setError('')
-      // if (!password) {
-      //   const { data, error } = await supabase.auth.updateUser({
-      //     password: password,
-      //   })
-      // }
+      if (password) {
+        const { data, error } = await supabase.auth.updateUser({
+          password: password,
+        })
+      }
       const { data, error } = await supabase
         .from('user')
         .update({
