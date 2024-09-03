@@ -6,7 +6,7 @@ import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
-import App from './component/Uppy/index'
+import App from './components/Uppy/index'
 import Link from 'next/link'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
