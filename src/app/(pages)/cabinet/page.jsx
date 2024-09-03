@@ -136,10 +136,11 @@ function Page() {
                   </label>
                   <select
                     id="gender"
-                    className="auth-input mx-2 lg:w-48"
+                    className="auth-input mx-2 lg:w-64"
                     onChange={formik.handleChange}
                     value={formik.values.gender}
                   >
+                    <option value="null">Tanlang</option>
                     <option value="male">Erkak</option>
                     <option value="female">Ayol</option>
                     <option value="unset">Belgilanmagan</option>
@@ -155,7 +156,7 @@ function Page() {
                   <DatePicker
                     id="birthdate"
                     selected={startDate}
-                    className="auth-input mx-2 lg:w-full"
+                    className="auth-input mx-2 w-[288px] xs:w-[384px] sm:w-[576px] lg:w-72"
                     onChange={(date) => setStartDate(date)}
                   />
                 </div>
