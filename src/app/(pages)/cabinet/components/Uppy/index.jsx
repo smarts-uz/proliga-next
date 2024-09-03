@@ -29,7 +29,7 @@ function createUppy() {
     .use(Webcam)
 }
 
-export default function App() {
+export default function UppyDashboard() {
   const [uppy] = useState(createUppy)
   return (
     <>

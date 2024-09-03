@@ -17,8 +17,11 @@ const UpdatePassword = () => {
 
   return (
     <Gutter>
-      <div className="mt-16">
-        <form className="auth-container" onSubmit={formik.handleSubmit}>
+      <div className="mt-16 h-screen items-center justify-center">
+        <form
+          className="auth-container items-center justify-center gap-2"
+          onSubmit={formik.handleSubmit}
+        >
           <div className="my-4 max-w-72 xs:max-w-96 sm:max-w-[36rem]">
             <label
               className="mb-2 block text-sm font-bold text-neutral-300"

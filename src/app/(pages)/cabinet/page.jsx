@@ -6,7 +6,7 @@ import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
-import App from './components/Uppy/index'
+// import UppyDashboard from './components/Uppy'
 import Link from 'next/link'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
@@ -171,7 +171,7 @@ function Page() {
               >
                 Profil uchun surat
               </label>
-              <App />
+              {/* <UppyDashboard /> */}
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
