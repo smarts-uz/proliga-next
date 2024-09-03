@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from 'react'
 import Uppy from '@uppy/core'
-import Tus from '@uppy/tus'
 import Webcam from '@uppy/webcam'
 import { Dashboard } from '@uppy/react'
 
@@ -10,6 +9,7 @@ import '@uppy/dashboard/dist/style.css'
 import '@uppy/drag-drop/dist/style.css'
 import '@uppy/file-input/dist/style.css'
 import '@uppy/progress-bar/dist/style.css'
+import { Transloadit } from 'uppy'
 
 const metaFields = [
   { id: 'license', name: 'License', placeholder: 'specify license' },
@@ -17,7 +17,14 @@ const metaFields = [
 
 function createUppy() {
   return new Uppy({ restrictions: { requiredMetaFields: ['license'] } })
-    .use(Tus, { endpoint: 'https://tusd.tusdemo.net/files/' })
+    .use(Transloadit, {
+      assemblyOptions: {
+        params: {
+          auth: { key: 'your-transloadit-key' },
+          template_id: 'your-template-id',
+        },
+      },
+    })
     .use(Webcam)
 }
 

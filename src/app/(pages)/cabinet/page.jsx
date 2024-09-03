@@ -4,12 +4,13 @@ import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { toast } from 'react-toastify'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 import App from './component/Uppy/index'
+import { useRouter } from 'next/router'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
+  const router = useRouter()
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -57,7 +58,7 @@ function Page() {
                 name="email"
                 type="text"
                 disabled
-                placeholder="example@email.com"
+                placeholder={'example@email.com'}
                 className="auth-input"
                 onChange={formik.handleChange}
                 value={formik.values.email}
