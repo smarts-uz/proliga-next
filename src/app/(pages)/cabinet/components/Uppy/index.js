@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Uppy from '@uppy/core'
 import Webcam from '@uppy/webcam'
 import { Dashboard } from '@uppy/react'
@@ -29,7 +30,7 @@ function createUppy() {
 }
 
 export default function App() {
-  const [uppy] = React.useState(createUppy)
+  const [uppy] = useState(createUppy)
   return (
     <>
       <Dashboard uppy={uppy} theme="dark" metaFields={metaFields} />
