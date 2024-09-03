@@ -7,7 +7,8 @@ import AddPlayerButton from './AddPlayerButton'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
-  const { team } = useSelector((state) => state.game)
+  const { GOA, DEF, MID, STR } = useSelector((state) => state.game)
+  const team = GOA.concat(DEF, MID, STR)
 
   const handleAddPlayer = (player) => {
     dispatch(updatePlayerInTeam({ player }))

@@ -3,11 +3,12 @@ import { tabs } from '../../../utils/tabs.util'
 import {
   addPlayerToTeamReducer,
   deletePlayerFromTeamReducer,
+  setTeamReducer,
   updatePlayerInTeamReducer,
 } from './game.reducer'
 
 const initialState = {
-  team: 0,
+  teamCount: 0,
   GOA: [],
   DEF: [],
   MID: [],
@@ -28,13 +29,7 @@ const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    setTeam: (state, action) => {
-      const team = action.payload
-      state.team = team
-      team.forEach((player) => {
-        state[player.position].push(player)
-      })
-    },
+    setTeam: setTeamReducer,
     setTour: (state, action) => {
       state.tour = action.payload
     },

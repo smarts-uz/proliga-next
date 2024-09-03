@@ -8,18 +8,19 @@ import { useEffect } from 'react'
 import { useGetTeamPlayers } from 'app/hooks/competition/useGetTeamPlayers/useGetTeamPlayers'
 
 const Play = ({ params }) => {
-  const { tab } = useSelector((state) => state.game)
+  const { tab, teamCount } = useSelector((state) => state.game)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const router = useRouter()
   const { getTeamPlayers, isLoading, error } = useGetTeamPlayers()
 
   useEffect(() => {
-    if (userAuth && userTable && params.id) {
+    if (userAuth && userTable && params.id && teamCount === 0) {
       const fetch = async () => {
         await getTeamPlayers({ team_id: params.id })
       }
       fetch()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth])
 
   // useEffect(() => {

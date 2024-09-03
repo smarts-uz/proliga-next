@@ -31,12 +31,13 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   }
   const clubPath = player.name ? player.club.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
-  const lastName = player.name ? player?.name?.split(' ')[1] : ''
+  const lastName = player?.name?.split(' ')[1] ?? ''
 
   return (
     <>
       <div
         className={`fade-in-fast flex flex-col items-center justify-center text-sm text-neutral-700 sm:text-base`}
+        data-player-id={player.id}
       >
         {!player.name && (
           <Image
