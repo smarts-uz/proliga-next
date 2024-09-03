@@ -133,18 +133,14 @@ export const deletePlayerFromTeamReducer = (state, action) => {
       state.DEF[index] = deletedPlayerObj(state.DEF[index])
     }
 
-    state.DEF.sort((a, b) => (a.name - b.name ? -1 : -1))
     state.indexes.DEF--
   }
   if (player.position === PLAYERS.MID) {
-    const getIndex = (p) => p.id === player.id
-    const index = state.MID.findIndex(getIndex)
+    const currentPlayer = player
 
-    if (index !== -1) {
-      state.MID[index] = deletedPlayerObj(state.MID[index])
-    }
+    state.MID = state.MID.filter((p) => p.id !== player.id)
+    state.MID.push(deletedPlayerObj(currentPlayer))
 
-    state.MID.sort((a, b) => a.price - b.price && 1)
     state.indexes.MID--
   }
   if (player.position === PLAYERS.STR) {
