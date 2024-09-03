@@ -55,41 +55,57 @@ export const updatePlayerInTeamReducer = (state, action) => {
     state.indexes.GOA < 1
   ) {
     const newPlayer = updatedPlayerObj(state.GOA[state.indexes.GOA])
-    state.GOA[state.indexes.GOA] = newPlayer
+    state.GOA = state.GOA.map((p, i) =>
+      !p.name && i === state.indexes.GOA ? newPlayer : p
+    )
 
     state.indexes.GOA++
   }
   if (player.position === PLAYERS.DEF && state.indexes.DEF < state.DEF.length) {
     const newPlayer = updatedPlayerObj(state.DEF[state.indexes.DEF])
-    state.DEF[state.indexes.DEF] = newPlayer
+    state.DEF = state.DEF.map((p, i) =>
+      !p.name && i === state.indexes.DEF ? newPlayer : p
+    )
 
     state.indexes.DEF++
   }
   if (player.position === PLAYERS.MID && state.indexes.MID < state.MID.length) {
     const newPlayer = updatedPlayerObj(state.MID[state.indexes.MID])
-    state.MID[state.indexes.MID] = newPlayer
+    state.MID = state.MID.map((p, i) =>
+      !p.name && i === state.indexes.MID ? newPlayer : p
+    )
 
     state.indexes.MID++
   }
   if (player.position === PLAYERS.STR && state.indexes.STR < state.STR.length) {
-    state.STR[state.indexes.STR] = {
-      ...state.STR[state.indexes.STR],
-      name: player.name,
-      club_id: player.club_id,
-      club: {
-        slug: player.club.slug,
-      },
-      price: player.price,
-    }
+    const newPlayer = updatedPlayerObj(state.STR[state.indexes.STR])
+    state.STR = state.STR.map((p, i) =>
+      !p.name && i === state.indexes.STR ? newPlayer : p
+    )
+
     state.indexes.STR++
   }
 }
 
 export const deletePlayerFromTeamReducer = (state, action) => {
   const { player } = action.payload
-  // This is just soft delete!
 
-  const updatedPlayerObj = (prevPlayer) => ({
+  const compare = (a, b) => {
+    const c = { ...a }
+    console.log(c, b)
+    if (c.name < b.name) {
+      console.log(c, b)
+      return -1
+    }
+    if (c.name > b.name) {
+      console.log(c, b)
+
+      return 1
+    }
+    return 0
+  }
+
+  const deletedPlayerObj = (prevPlayer) => ({
     ...prevPlayer,
     player_id: null,
     name: null,
@@ -100,14 +116,12 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     price: null,
   })
 
-  // let currentPlayer = state.teamCount.find((p) => p.id === player.id)
   if (player.position === PLAYERS.GOA) {
-    // const index = state.GOA.indexOf(player.id)
     const getIndex = (p) => p.id === player.id
     const index = state.GOA.findIndex(getIndex)
 
     if (index !== -1) {
-      state.GOA[index] = updatedPlayerObj(state.GOA[index])
+      state.GOA[index] = deletedPlayerObj(state.GOA[index])
     }
     state.indexes.GOA = index
   }
@@ -116,7 +130,7 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     const index = state.DEF.findIndex(getIndex)
 
     if (index !== -1) {
-      state.DEF[index] = updatedPlayerObj(state.DEF[index])
+      state.DEF[index] = deletedPlayerObj(state.DEF[index])
     }
     state.indexes.DEF = index
   }
@@ -125,25 +139,20 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     const index = state.MID.findIndex(getIndex)
 
     if (index !== -1) {
-      state.MID[index] = updatedPlayerObj(state.MID[index])
+      state.MID[index] = deletedPlayerObj(state.MID[index])
     }
-    state.indexes.MID = index
+    state.MID = state.MID.sort(compare)
+
+    state.indexes.MID--
   }
   if (player.position === PLAYERS.STR) {
-    const prevPlayer = state.STR[state.indexes.STR]
-    if (!prevPlayer.name) {
-      toast.warning(
-        "Iltimos, joriy o'yinchini o'chirishdan oldin oldingi o'yinchini to'ldiring!"
-      )
-      return state
-    }
-
     const getIndex = (p) => p.id === player.id
     const index = state.STR.findIndex(getIndex)
 
     if (index !== -1) {
-      state.STR[index] = updatedPlayerObj(state.STR[index])
+      state.STR[index] = deletedPlayerObj(state.STR[index])
     }
+
     state.indexes.STR = index
   }
 }
