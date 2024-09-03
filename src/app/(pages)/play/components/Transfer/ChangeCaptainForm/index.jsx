@@ -21,49 +21,60 @@ const ChangeCaptainForm = () => {
           >
             Kapitan
           </option>
-          {GOA.map((player) => (
-            <option
-              className="bg-neutral-950 checked:bg-neutral-900"
-              value={player.name}
-              key={player.id}
-            >
-              {player.name}
-            </option>
-          ))}
-          {DEF.map((player) => (
-            <option
-              className="bg-neutral-950 checked:bg-neutral-900"
-              value={player.name}
-              key={player.id}
-            >
-              {player.name}
-            </option>
-          ))}
-          {MID.map((player) => (
-            <option
-              className="bg-neutral-950 checked:bg-neutral-900"
-              value={player.name}
-              key={player.id}
-            >
-              {player.name}
-            </option>
-          ))}
-          {STR.map((player) => (
-            <option
-              className="bg-neutral-950 checked:bg-neutral-900"
-              value={player.name}
-              key={player.id}
-            >
-              {player.name}
-            </option>
-          ))}
+          {GOA.map(
+            (player) =>
+              player.name && (
+                <option
+                  className="bg-neutral-950 checked:bg-neutral-900"
+                  value={player.name}
+                  key={player.id}
+                >
+                  {player.name}
+                </option>
+              )
+          )}
+          {DEF.map(
+            (player) =>
+              player.name && (
+                <option
+                  className="bg-neutral-950 checked:bg-neutral-900"
+                  value={player.name}
+                  key={player.id}
+                >
+                  {player.name}
+                </option>
+              )
+          )}
+          {MID.map(
+            (player) =>
+              player.name && (
+                <option
+                  className="bg-neutral-950 checked:bg-neutral-900"
+                  value={player.name}
+                  key={player.id}
+                >
+                  {player.name}
+                </option>
+              )
+          )}
+          {STR.map(
+            (player) =>
+              player.name && (
+                <option
+                  className="bg-neutral-950 checked:bg-neutral-900"
+                  value={player.name}
+                  key={player.id}
+                >
+                  {player.name}
+                </option>
+              )
+          )}
         </select>
       </div>
       <button
         type="submit"
         onClick={(e) => e.preventDefault()}
-        className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white 
-        transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
+        className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
       >
         Saqlash
       </button>
