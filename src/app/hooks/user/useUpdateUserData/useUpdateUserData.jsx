@@ -2,7 +2,7 @@ import { supabase } from 'app/lib/supabaseClient'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-
+import { setUserAuth } from 'app/lib/features/auth/auth.slice'
 export const useUpdateUserData = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -14,16 +14,17 @@ export const useUpdateUserData = () => {
     middleName,
     bio,
     gender,
-    birthdate
+    birthdate,
+    password
   ) => {
     try {
-      console.log(firstName)
-
       setIsLoading(true)
       setError('')
-      // const { data, error } = await supabase.auth.updateUser({
-      //   password: 'ppp009q12',
-      // })
+      // if (!password) {
+      //   const { data, error } = await supabase.auth.updateUser({
+      //     password: password,
+      //   })
+      // }
       const { data, error } = await supabase
         .from('user')
         .update({
@@ -36,9 +37,21 @@ export const useUpdateUserData = () => {
         })
         .eq('guid', userAuth.user.id)
         .select()
-      toast.success("ma'lumot taxrirlandi")
+      if (error) {
+        setError(error.message)
+        toast.error(error.message)
+        return
+      }
+      if (data?.user && data?.session) {
+        dispatch(setUserAuth(data))
+        setData(data)
+        toast.success("ma'lumot taxrirlandi")
+      }
     } catch (error) {
-      console.log(error)
+      setError(error.message)
+      toast.error(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
   return { updateData, isLoading, error }
