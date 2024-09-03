@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { tabs } from '../../../utils/tabs.util'
 import {
   addPlayerToTeamReducer,
-  deletePlayerFromTeamReducer,
   setTeamReducer,
   updatePlayerInTeamReducer,
+  softDeletePlayerFromTeamReducer,
 } from './game.reducer'
 
 const initialState = {
@@ -40,7 +40,7 @@ const gameSlice = createSlice({
       state.capitan = action.payload
     },
     addPlayerToTeam: addPlayerToTeamReducer,
-    deletePlayerFromTeam: deletePlayerFromTeamReducer,
+    softDeletePlayerFromTeam: softDeletePlayerFromTeamReducer,
     updatePlayerInTeam: updatePlayerInTeamReducer,
   },
 })
@@ -51,7 +51,7 @@ export const {
   setTab,
   setCapitan,
   addPlayerToTeam,
-  deletePlayerFromTeam,
+  softDeletePlayerFromTeam,
   updatePlayerInTeam,
 } = gameSlice.actions
 

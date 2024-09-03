@@ -4,6 +4,7 @@ import { setCapitan } from 'app/lib/features/game/game.slice'
 const ChangeCaptainForm = () => {
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((state) => state.game)
+  const team = GOA.concat(DEF, MID, STR)
 
   return (
     <form className="mt-2 flex justify-between text-black">
@@ -21,43 +22,7 @@ const ChangeCaptainForm = () => {
           >
             Kapitan
           </option>
-          {GOA.map(
-            (player) =>
-              player.name && (
-                <option
-                  className="bg-neutral-950 checked:bg-neutral-900"
-                  value={player.name}
-                  key={player.id}
-                >
-                  {player.name}
-                </option>
-              )
-          )}
-          {DEF.map(
-            (player) =>
-              player.name && (
-                <option
-                  className="bg-neutral-950 checked:bg-neutral-900"
-                  value={player.name}
-                  key={player.id}
-                >
-                  {player.name}
-                </option>
-              )
-          )}
-          {MID.map(
-            (player) =>
-              player.name && (
-                <option
-                  className="bg-neutral-950 checked:bg-neutral-900"
-                  value={player.name}
-                  key={player.id}
-                >
-                  {player.name}
-                </option>
-              )
-          )}
-          {STR.map(
+          {team.map(
             (player) =>
               player.name && (
                 <option

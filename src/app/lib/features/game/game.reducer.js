@@ -87,7 +87,7 @@ export const updatePlayerInTeamReducer = (state, action) => {
   }
 }
 
-export const deletePlayerFromTeamReducer = (state, action) => {
+export const softDeletePlayerFromTeamReducer = (state, action) => {
   const { player } = action.payload
 
   const compare = (a, b) => {
@@ -170,4 +170,12 @@ export const setTeamReducer = (state, action) => {
       state.teamCount++
     }
   })
+}
+
+export const setCapitanReducer = (state, action) => {
+  const { player } = action.payload
+
+  if (player.position === PLAYERS.GOA) {
+    state.capitan = player
+  }
 }

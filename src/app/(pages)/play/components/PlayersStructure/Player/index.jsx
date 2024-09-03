@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { deletePlayerFromTeam } from 'app/lib/features/game/game.slice'
+import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
@@ -23,7 +23,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   }
 
   const handleDeletePlayer = () => {
-    dispatch(deletePlayerFromTeam({ player }))
+    dispatch(softDeletePlayerFromTeam({ player }))
     toggleDeleteModal()
   }
   const imageErr = (e) => {
@@ -40,13 +40,35 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
         data-player-id={player.id}
       >
         {!player.name && (
-          <Image
-            src="/icons/player-tshirt.svg"
-            alt="player tshirt"
-            width={48}
-            height={48}
-            className="size-6 xs:size-8 md:size-12"
-          />
+          <>
+            <Image
+              src="/icons/player-tshirt.svg"
+              alt="player tshirt"
+              width={48}
+              height={48}
+              className="size-6 xs:size-8 md:size-12"
+            />
+            <div className="mt-0.5 flex">
+              <button>
+                <Image
+                  width={8}
+                  height={8}
+                  src="/icons/arrow-bold-up.svg"
+                  alt="arrow"
+                  className="filter-neutral-950 size-4"
+                />
+              </button>
+              <button>
+                <Image
+                  width={8}
+                  height={8}
+                  src="/icons/arrow-bold-up.svg"
+                  alt="arrow"
+                  className="filter-neutral-950 size-4 rotate-180"
+                />
+              </button>
+            </div>
+          </>
         )}
         {player.name && (
           <>
