@@ -132,7 +132,9 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     if (index !== -1) {
       state.DEF[index] = deletedPlayerObj(state.DEF[index])
     }
-    state.indexes.DEF = index
+
+    state.DEF.sort((a, b) => (a.name - b.name ? -1 : -1))
+    state.indexes.DEF--
   }
   if (player.position === PLAYERS.MID) {
     const getIndex = (p) => p.id === player.id
@@ -141,8 +143,8 @@ export const deletePlayerFromTeamReducer = (state, action) => {
     if (index !== -1) {
       state.MID[index] = deletedPlayerObj(state.MID[index])
     }
-    state.MID = state.MID.sort(compare)
 
+    state.MID.sort((a, b) => a.price - b.price && 1)
     state.indexes.MID--
   }
   if (player.position === PLAYERS.STR) {
