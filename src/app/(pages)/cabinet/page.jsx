@@ -4,9 +4,9 @@ import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { toast } from 'react-toastify'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 import App from './component/Uppy/index'
+import Link from 'next/link'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
@@ -57,7 +57,7 @@ function Page() {
                 name="email"
                 type="text"
                 disabled
-                placeholder="example@email.com"
+                placeholder={'example@email.com'}
                 className="auth-input"
                 onChange={formik.handleChange}
                 value={formik.values.email}
@@ -161,7 +161,9 @@ function Page() {
                   />
                 </div>
               </div>
-
+              <Link className="text-blue-500" href={'/cabinet/update'}>
+                Parolni yangilash
+              </Link>
               <label
                 className="5 my-2 block text-sm font-bold text-neutral-300"
                 htmlFor="photo"
