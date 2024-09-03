@@ -5,6 +5,7 @@ import {
   setTeamReducer,
   updatePlayerInTeamReducer,
   softDeletePlayerFromTeamReducer,
+  setDraggablePlayerReducer,
 } from './game.reducer'
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     MID: 0,
     STR: 0,
   },
+  draggablePlayer: null,
 }
 
 const gameSlice = createSlice({
@@ -42,6 +44,7 @@ const gameSlice = createSlice({
     addPlayerToTeam: addPlayerToTeamReducer,
     softDeletePlayerFromTeam: softDeletePlayerFromTeamReducer,
     updatePlayerInTeam: updatePlayerInTeamReducer,
+    setDraggablePlayer: setDraggablePlayerReducer,
   },
 })
 
@@ -53,6 +56,7 @@ export const {
   addPlayerToTeam,
   softDeletePlayerFromTeam,
   updatePlayerInTeam,
+  setDraggablePlayer,
 } = gameSlice.actions
 
 export default gameSlice.reducer

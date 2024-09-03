@@ -5,9 +5,9 @@ import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
+  const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
 
-  const dispatch = useDispatch()
   const toggleDeleteModal = () => {
     if (deleteModalVisible) {
       setDeleteModalVisible(false)
@@ -20,6 +20,9 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
         document.body.style.overflow = 'hidden'
       }
     }
+  }
+  const handleOnDrag = (e, player_id) => {
+    e.dataTransfer.setData('player_id', player_id)
   }
 
   const handleDeletePlayer = () => {
@@ -36,8 +39,10 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   return (
     <>
       <div
-        className={`fade-in-fast flex flex-col items-center justify-center text-sm text-neutral-700 sm:text-base`}
-        data-player-id={player.id}
+        className={`fade-in-fast flex h-min flex-col items-center justify-center bg-red-400 text-sm text-neutral-700 active:rounded-sm active:opacity-70 sm:text-base ${player.name ? 'cursor-default' : 'cursor-grab'} `}
+        draggable={player.name ? false : true}
+        onDragStart={(e) => handleOnDrag(e, player.id)}
+        // onDragEnd={() => setDraggable(null)}
       >
         {!player.name && (
           <>
@@ -46,28 +51,9 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               alt="player tshirt"
               width={48}
               height={48}
-              className="size-6 xs:size-8 md:size-12"
+              // draggable={false}
+              className="size-6 active:rounded-md active:shadow active:shadow-white xs:size-8 md:size-12"
             />
-            <div className="mt-0.5 flex">
-              <button>
-                <Image
-                  width={8}
-                  height={8}
-                  src="/icons/arrow-bold-up.svg"
-                  alt="arrow"
-                  className="filter-neutral-950 size-4"
-                />
-              </button>
-              <button>
-                <Image
-                  width={8}
-                  height={8}
-                  src="/icons/arrow-bold-up.svg"
-                  alt="arrow"
-                  className="filter-neutral-950 size-4 rotate-180"
-                />
-              </button>
-            </div>
           </>
         )}
         {player.name && (
