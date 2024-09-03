@@ -35,8 +35,9 @@ const UppyDashboard = () => {
       .use(Dashboard, {
         inline: true,
         target: '#uppy-dashboard',
-        showProgressDetails: true,
-        proudlyDisplayPoweredByUppy: true,
+        // showProgressDetails: true,
+        // proudlyDisplayPoweredByUppy: true,
+        theme: 'dark',
       })
       .use(RemoteSources, {
         companionUrl: COMPANION_URL,
@@ -48,7 +49,6 @@ const UppyDashboard = () => {
         showVideoSourceDropdown: true,
         showRecordingLength: true,
       })
-
       .use(ImageEditor, { target: Dashboard })
       .use(DropTarget, {
         target: document.body,
@@ -97,9 +97,10 @@ const UppyDashboard = () => {
   }, [])
 
   return (
-    <div className="container mx-auto my-8">
-      <div id="uppy-dashboard" className="uppy-dashboard"></div>
-    </div>
+    <div
+      id="uppy-dashboard"
+      className="uppy-dashboard flex w-full flex-col overflow-hidden"
+    />
   )
 }
 

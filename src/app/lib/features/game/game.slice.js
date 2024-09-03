@@ -7,7 +7,7 @@ import {
 } from './game.reducer'
 
 const initialState = {
-  team: [],
+  team: 0,
   GOA: [],
   DEF: [],
   MID: [],
