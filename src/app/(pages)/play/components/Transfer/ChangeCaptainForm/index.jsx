@@ -10,7 +10,7 @@ const ChangeCaptainForm = () => {
     (state) => state.game
   )
   const teamConcat = GOA.concat(DEF, MID, STR)
-  const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
+  const { updateTeamPlayers, isLoading, error, data } = useUpdateTeamPlayers()
   const {
     updateTeam,
     isLoading: teamLoading,
@@ -34,7 +34,7 @@ const ChangeCaptainForm = () => {
     await updateTeamPlayers({ team: teamConcat, team_id: team.id })
     await updateTeam({ capitan, team_id: team.id })
 
-    if (!error && !teamError && !isLoading && !teamLoading) {
+    if (!error && !isLoading && data) {
       toast.success('Team updated successfully')
     }
   }

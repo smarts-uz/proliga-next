@@ -26,13 +26,7 @@ const PlayersStructure = () => {
     <div className="absolute bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 sm:py-2 md:pb-8 md:pt-0">
       <div className={`flex w-full items-center justify-center`}>
         {GOA.map((player) => (
-          <Player
-            key={player.id}
-            player={player}
-            DEF={DEF}
-            MID={MID}
-            STR={STR}
-          />
+          <Player key={player.id} player={player} />
         ))}
       </div>
       <div
@@ -42,13 +36,7 @@ const PlayersStructure = () => {
         className={`flex items-center justify-around gap-0.5 px-0 xs:px-10 sm:gap-1 md:gap-8 md:px-16 lg:px-24`}
       >
         {DEF.map((player) => (
-          <Player
-            key={player.id}
-            player={player}
-            DEF={DEF}
-            MID={MID}
-            STR={STR}
-          />
+          <Player key={player.id} player={player} />
         ))}
       </div>
       <div
@@ -58,13 +46,7 @@ const PlayersStructure = () => {
         className="flex items-center justify-around gap-0.5 px-0 xs:justify-between xs:px-10 sm:gap-1 md:gap-8 md:px-24"
       >
         {MID.map((player) => (
-          <Player
-            key={player.id}
-            player={player}
-            DEF={DEF}
-            MID={MID}
-            STR={STR}
-          />
+          <Player key={player.id} player={player} />
         ))}
       </div>
       <div

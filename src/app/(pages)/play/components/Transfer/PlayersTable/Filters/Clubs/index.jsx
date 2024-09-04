@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react'
 import { useGetClubs } from 'app/hooks/transfer/useGetClubs/useGetClubs'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-const ClubsFilter = ({ column, columnFilterValue }) => {
-  const [data, setData] = useState([])
-  const { getClubs } = useGetClubs(0)
+const ClubsFilter = ({ column }) => {
+  const { clubs } = useSelector((state) => state.game)
+  const { getClubs, isLoading, error } = useGetClubs()
 
   useEffect(() => {
-    const fetchData = async () => {
-      await getClubs({ setData })
+    const fetch = async () => {
+      await getClubs()
     }
-    fetchData()
+    fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -25,15 +26,16 @@ const ClubsFilter = ({ column, columnFilterValue }) => {
       >
         Clublar
       </option>
-      {data.map((club) => (
-        <option
-          key={club.id}
-          value={club.name}
-          className="capitalize text-neutral-200 checked:bg-neutral-800"
-        >
-          {club.name}
-        </option>
-      ))}
+      {clubs?.length > 0 &&
+        clubs.map((club) => (
+          <option
+            key={club.id}
+            value={club.name}
+            className="capitalize text-neutral-200 checked:bg-neutral-800"
+          >
+            {club.name}
+          </option>
+        ))}
     </select>
   )
 }

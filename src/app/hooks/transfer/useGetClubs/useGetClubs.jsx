@@ -1,19 +1,24 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { supabase } from '../../../lib/supabaseClient'
+import { useDispatch } from 'react-redux'
+import { setClubs } from 'app/lib/features/game/game.slice'
 
 export const useGetClubs = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useDispatch()
 
-  const getClubs = async ({ setData }) => {
+  const getClubs = async () => {
     setIsLoading(false)
     setError(null)
 
     try {
       setIsLoading(true)
 
-      const { data, error } = await supabase.from('club').select('id, name')
+      const { data, error } = await supabase
+        .from('club')
+        .select('id, name, slug')
 
       if (error) {
         setError(error.message)
@@ -21,7 +26,7 @@ export const useGetClubs = () => {
         return
       }
       if (data) {
-        setData(data)
+        dispatch(setClubs(data))
       }
     } catch (error) {
       setError(error.message)

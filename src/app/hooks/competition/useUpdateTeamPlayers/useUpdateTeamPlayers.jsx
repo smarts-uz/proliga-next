@@ -9,18 +9,30 @@ export const useUpdateTeamPlayers = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const updateTeamPlayers = async ({ team_id, team }) => {
+  const updateTeamPlayers = async ({ team, team_id }) => {
     setIsLoading(false)
     setError(null)
 
     try {
       setIsLoading(true)
 
-      console.log(team)
-      const { data, error } = supabase
-        .from('team_player')
-        .upsert([...team])
-        .select()
+      const newTeam = team.map((player) => ({
+        ...player,
+        club_id: player.club_id.id,
+      }))
+
+      newTeam.map(async (player) => {
+        const { data, error } = await supabase
+          .from('team_player')
+          .update(player)
+          .eq('id', player.id)
+          .select()
+
+        if (error) {
+          setError(error.message)
+          toast.error(error.message)
+        }
+      })
 
       if (error) {
         setError(error.message)
@@ -28,8 +40,8 @@ export const useUpdateTeamPlayers = () => {
       }
       if (data) {
         setData(data)
-        console.log(data)
       }
+      console.log(data)
     } catch (error) {
       setError(error.message)
       toast.error(error.message)

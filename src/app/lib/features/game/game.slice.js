@@ -27,6 +27,7 @@ const initialState = {
     MID: 0,
     STR: 0,
   },
+  clubs: null,
 }
 
 const gameSlice = createSlice({
@@ -45,6 +46,9 @@ const gameSlice = createSlice({
     },
     setTourTeam: (state, action) => {
       state.tour_team = action.payload
+    },
+    setClubs: (state, action) => {
+      state.clubs = action.payload
     },
     setCapitan: setCapitanReducer,
     addPlayerToTeam: addPlayerToTeamReducer,
@@ -67,6 +71,7 @@ export const {
   setDraggablePlayer,
   deletePlayerById,
   setTourTeam,
+  setClubs,
 } = gameSlice.actions
 
 export default gameSlice.reducer

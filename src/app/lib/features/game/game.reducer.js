@@ -53,9 +53,9 @@ export const updatePlayerInTeamReducer = (state, action) => {
     ...prevPlayer,
     player_id: player.id,
     name: player.name,
-    club_id: player.club_id,
-    club: {
+    club_id: {
       slug: player.club.slug,
+      id: player.club.id,
     },
     price: player.price,
     competition_id: team.competition_id.id,

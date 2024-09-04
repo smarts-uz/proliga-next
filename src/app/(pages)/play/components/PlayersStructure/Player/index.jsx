@@ -1,18 +1,14 @@
 import Image from 'next/image'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
 
-const Player = ({
-  player,
-  additionalInfo = true,
-  deletePlayer = true,
-  DEF,
-  MID,
-  STR,
-}) => {
+const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
+
+  const { clubs } = useSelector((state) => state.game)
+  const [image, setImage] = useState('')
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
 
   const toggleDeleteModal = () => {
@@ -28,6 +24,18 @@ const Player = ({
       }
     }
   }
+
+  useEffect(() => {
+    if (clubs?.length > 0) {
+      const club = clubs.find((club) => club.id === player.club_id)
+      // setImage(club.slug)
+      if (club) setImage(club.slug)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clubs])
+
+  console.log(image)
+
   const handleOnDrag = (e, player_id) => {
     e.dataTransfer.setData('player_id', player_id)
   }
@@ -39,7 +47,7 @@ const Player = ({
   const imageErr = (e) => {
     e.target.src = '/icons/player-tshirt.svg'
   }
-  const clubPath = player.name ? player.club.slug : ''
+  const clubPath = player.name ? image : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
 
