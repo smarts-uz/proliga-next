@@ -40,11 +40,9 @@ const Championships = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {userAuth &&
-              userTable &&
-              competition.map((item, index) => (
-                <Championship key={index} item={item} />
-              ))}
+            {competition.map((item, index) => (
+              <Championship key={index} item={item} />
+            ))}
           </div>
         )}
       </section>
