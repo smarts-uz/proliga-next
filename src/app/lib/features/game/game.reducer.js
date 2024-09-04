@@ -47,7 +47,7 @@ export const addPlayerToTeamReducer = (state, action) => {
 }
 
 export const updatePlayerInTeamReducer = (state, action) => {
-  const { player } = action.payload
+  const { player, team, tour_team } = action.payload
 
   const updatedPlayerObj = (prevPlayer) => ({
     ...prevPlayer,
@@ -58,6 +58,8 @@ export const updatePlayerInTeamReducer = (state, action) => {
       slug: player.club.slug,
     },
     price: player.price,
+    competition_id: team.competition_id.id,
+    user_id: team.user_id,
   })
 
   if (
@@ -154,10 +156,6 @@ export const setCapitanReducer = (state, action) => {
 
   if (capitan) {
     state.capitan = capitan
-  }
-  if (capitan.position === PLAYERS.GOA) {
-
-
   }
 }
 

@@ -1,4 +1,4 @@
-import { Tabs } from "@mui/material"
+import { Tabs } from '@mui/material'
 import { styled } from '@mui/material'
 
 const StyledTabs = styled((props) => (
@@ -13,7 +13,6 @@ const StyledTabs = styled((props) => (
     backgroundColor: 'transparent',
   },
   '& .MuiTabs-indicatorSpan': {
-    // maxWidth: 40,
     width: '100%',
     borderRadius: '2px',
     backgroundColor: '#fff400',

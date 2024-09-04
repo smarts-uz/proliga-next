@@ -7,26 +7,26 @@ import {
   softDeletePlayerFromTeamReducer,
   setDraggablePlayerReducer,
   deletePlayerByIdReducer,
+  setCapitanReducer,
 } from './game.reducer'
 
 const initialState = {
   team: null,
   teamCount: 0,
+  tour_team: null,
+  tour: null,
+  capitan: null,
+  tab: tabs.Transfer,
   GOA: [],
   DEF: [],
   MID: [],
   STR: [],
-  formation: '',
-  tour: null,
-  tab: tabs.Transfer,
-  capitan: null,
   indexes: {
     GOA: 0,
     DEF: 0,
     MID: 0,
     STR: 0,
   },
-  draggablePlayer: null,
 }
 
 const gameSlice = createSlice({
@@ -40,13 +40,13 @@ const gameSlice = createSlice({
     setTab: (state, action) => {
       state.tab = action.payload
     },
-    setCapitan: (state, action) => {
-      console.log('setCapitan', action.payload && JSON.parse(action.payload))
-      state.capitan = action.payload
-    },
     setTeam: (state, action) => {
       state.team = action.payload
     },
+    setTourTeam: (state, action) => {
+      state.tour_team = action.payload
+    },
+    setCapitan: setCapitanReducer,
     addPlayerToTeam: addPlayerToTeamReducer,
     softDeletePlayerFromTeam: softDeletePlayerFromTeamReducer,
     updatePlayerInTeam: updatePlayerInTeamReducer,
@@ -66,6 +66,7 @@ export const {
   updatePlayerInTeam,
   setDraggablePlayer,
   deletePlayerById,
+  setTourTeam,
 } = gameSlice.actions
 
 export default gameSlice.reducer

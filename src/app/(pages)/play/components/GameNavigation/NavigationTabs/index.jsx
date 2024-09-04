@@ -23,7 +23,7 @@ const NavigationTabs = () => {
       {data.map((item, index) => (
         <button
           key={item.id}
-          className={`rounded px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === tab ? active : passive} `}
+          className={`rounded px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === tab ? active : passive}`}
           onClick={() => setCurrentTab(item.key)}
         >
           {item.title}
@@ -31,9 +31,9 @@ const NavigationTabs = () => {
       ))}
       <Link
         href="/championships"
-        className="rounded bg-neutral-300 bg-opacity-80 px-2 py-1 text-sm font-semibold uppercase text-neutral-800 transition-all hover:bg-primary hover:bg-opacity-60 hover:text-neutral-950 sm:px-3 md:px-4 md:py-2 md:text-base"
+        className="rounded bg-neutral-300 bg-opacity-80 px-2 py-1 text-sm font-semibold uppercase text-neutral-800 transition-all hover:bg-primary hover:bg-opacity-60 hover:text-neutral-950 sm:hidden sm:px-3 md:px-4 md:py-2 md:text-base"
       >
-        Championship
+        Chempionat
       </Link>
     </div>
   )

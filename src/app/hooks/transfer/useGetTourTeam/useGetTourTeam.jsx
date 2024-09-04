@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setTour } from 'app/lib/features/game/game.slice'
+import { setTourTeam } from 'app/lib/features/game/game.slice'
 
-export const useGetTours = () => {
+export const useGetTourTeam = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getTours = async ({ competition_id }) => {
+  const getTourTeam = async (id) => {
     setIsLoading(false)
     setError(null)
 
@@ -17,10 +17,9 @@ export const useGetTours = () => {
       setIsLoading(true)
 
       const { data, error } = await supabase
-        .from('tour')
+        .from('tour_team')
         .select('*')
-        .eq('competition_id', competition_id)
-        .order('created_at', { ascending: true })
+        .eq('team_id', id)
 
       if (error) {
         setError(error.message)
@@ -28,7 +27,7 @@ export const useGetTours = () => {
         return
       }
       if (data) {
-        dispatch(setTour(data))
+        dispatch(setTourTeam(data[0]))
       }
     } catch (error) {
       setError(error.message)
@@ -37,5 +36,5 @@ export const useGetTours = () => {
       setIsLoading(false)
     }
   }
-  return { getTours, isLoading, error }
+  return { getTourTeam, isLoading, error }
 }

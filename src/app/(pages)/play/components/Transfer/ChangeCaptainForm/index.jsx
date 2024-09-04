@@ -1,10 +1,43 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { setCapitan } from 'app/lib/features/game/game.slice'
+import { useUpdateTeamPlayers } from 'app/hooks/competition/useUpdateTeamPlayers/useUpdateTeamPlayers'
+import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
+import { toast } from 'react-toastify'
 
 const ChangeCaptainForm = () => {
   const dispatch = useDispatch()
-  const { GOA, DEF, MID, STR } = useSelector((state) => state.game)
-  const team = GOA.concat(DEF, MID, STR)
+  const { GOA, DEF, MID, STR, capitan, team } = useSelector(
+    (state) => state.game
+  )
+  const teamConcat = GOA.concat(DEF, MID, STR)
+  const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
+  const {
+    updateTeam,
+    isLoading: teamLoading,
+    error: teamError,
+  } = useUpdateTeam()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    teamConcat.forEach((player) => {
+      if (!player.name || !player.price) {
+        toast.error('The player or players are missing')
+        return
+      }
+    })
+    if (!capitan) {
+      toast.error('Kapitan tanlang')
+      return
+    }
+
+    await updateTeamPlayers({ team: teamConcat, team_id: team.id })
+    await updateTeam({ capitan, team_id: team.id })
+
+    if (!error && !teamError && !isLoading && !teamLoading) {
+      toast.success('Team updated successfully')
+    }
+  }
 
   return (
     <form className="mt-2 flex justify-between text-black">
@@ -22,12 +55,12 @@ const ChangeCaptainForm = () => {
           >
             Kapitan
           </option>
-          {team.map(
+          {teamConcat.map(
             (player) =>
               player.name && (
                 <option
                   className="bg-neutral-950 checked:bg-neutral-900"
-                  value={JSON.stringify(player)}
+                  value={player.id}
                   key={player.id}
                 >
                   {player.name}
@@ -38,7 +71,7 @@ const ChangeCaptainForm = () => {
       </div>
       <button
         type="submit"
-        onClick={(e) => e.preventDefault()}
+        onClick={handleSubmit}
         className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
       >
         Saqlash

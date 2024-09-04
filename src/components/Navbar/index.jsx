@@ -28,7 +28,7 @@ const Navbar = () => {
               className="h-6 w-32 cursor-pointer md:h-8 md:w-40"
             />
           </Link>
-          <section className="hidden items-center gap-6 text-neutral-300 lg:flex">
+          <section className="hidden items-center gap-4 text-neutral-300 sm:flex sm:text-sm lg:gap-6 lg:text-base">
             <Link
               className="transition-all hover:text-white hover:underline"
               href={userAuth ? '/championships' : '/login'}

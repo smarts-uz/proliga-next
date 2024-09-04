@@ -23,10 +23,6 @@ export default function TourTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
-  const map = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
-  ]
 
   const getStatus = (status) => {
     if (status === 'not_started') {
@@ -35,7 +31,7 @@ export default function TourTabs() {
       return 'Tugagan'
     } else if (status === 'not_started_transfer') {
       return 'Boshlanmagan transfer mumkin'
-    } else if (status === 'in_progress') {
+    } else if (status === 'in_process') {
       return 'Jarayonda'
     }
     return 'Unidentified Status'
@@ -62,10 +58,18 @@ export default function TourTabs() {
         {tour &&
           tour.map((item, index) => (
             <StyledTab
-              key={item}
-              className="md:w-40"
-              icon={<h3 className="text-start">{index + 1} Tur</h3>}
-              label={<p>{getStatus(item.status)}</p>}
+              key={item.id}
+              className="md:w-48"
+              icon={
+                <h3 className="text-start text-sm md:text-base">
+                  {index + 1} Tur
+                </h3>
+              }
+              label={
+                <p className="text-xs capitalize md:text-sm">
+                  {getStatus(item.status)}
+                </p>
+              }
             />
           ))}
       </StyledTabs>

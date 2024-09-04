@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useGetTeamPlayers } from 'app/hooks/competition/useGetTeamPlayers/useGetTeamPlayers'
 import { useGetTeam } from 'app/hooks/transfer/useGetTeam/useGetTeam'
+import { useGetTourTeam } from 'app/hooks/transfer/useGetTourTeam/useGetTourTeam'
 
 const Play = ({ params }) => {
   const { tab, teamCount } = useSelector((state) => state.game)
@@ -14,6 +15,11 @@ const Play = ({ params }) => {
   const router = useRouter()
   const { getTeamPlayers, isLoading, error } = useGetTeamPlayers()
   const { getTeam, isLoading: teamLoading, error: teamError } = useGetTeam()
+  const {
+    getTourTeam,
+    isLoading: tourTeamLoading,
+    error: tourTeamError,
+  } = useGetTourTeam()
 
   useEffect(() => {
     if (userAuth && userTable && params.id && teamCount === 0) {
@@ -29,6 +35,16 @@ const Play = ({ params }) => {
     if (userAuth && userTable && params.id) {
       const fetch = async () => {
         await getTeam(params.id)
+      }
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAuth])
+
+  useEffect(() => {
+    if (userAuth && userTable && params.id) {
+      const fetch = async () => {
+        await getTourTeam(params.id)
       }
       fetch()
     }
