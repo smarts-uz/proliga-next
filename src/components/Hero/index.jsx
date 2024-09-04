@@ -27,7 +27,7 @@ const Hero = () => {
             Ro&apos;yxatdan otish
           </Link>
           <Link
-            href={`/play/abcd`}
+            href={`/championships`}
             className={`${btnStyles} bg-transparent text-primary hover:bg-primary hover:bg-opacity-55 hover:text-black`}
           >
             O&apos;yinga kirish
