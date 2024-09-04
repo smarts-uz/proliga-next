@@ -10,7 +10,9 @@ export const addPlayerToTeamReducer = (state, action) => {
     state.teamCount < 11
   ) {
     state.GOA.push(player)
-    state.teamCount++
+    if (player.name) {
+      state.teamCount++
+    }
   }
   if (
     player.position === PLAYERS.DEF &&
@@ -18,7 +20,9 @@ export const addPlayerToTeamReducer = (state, action) => {
     state.teamCount < 11
   ) {
     state.DEF.push(player)
-    state.teamCount++
+    if (player.name) {
+      state.teamCount++
+    }
   }
   if (
     player.position === PLAYERS.MID &&
@@ -26,7 +30,9 @@ export const addPlayerToTeamReducer = (state, action) => {
     state.teamCount < 11
   ) {
     state.MID.push(player)
-    state.teamCount++
+    if (player.name) {
+      state.teamCount++
+    }
   }
   if (
     player.position === PLAYERS.STR &&
@@ -34,7 +40,9 @@ export const addPlayerToTeamReducer = (state, action) => {
     state.teamCount < 11
   ) {
     state.STR.push(player)
-    state.teamCount++
+    if (player.name) {
+      state.teamCount++
+    }
   }
 }
 
@@ -170,28 +178,46 @@ export const setDraggablePlayerReducer = (state, action) => {
     return state
   }
 
-  if (position === PLAYERS.DEF && prevPlayer.position !== position) {
+  if (state.DEF.length < 3 && state.MID.length < 3 && state.STR.length < 2) {
+    toast.error("O'yinchi formati notogri")
+    return state
+  }
+  function isValidLength(input, min, max) {
+    return input.length >= min && input.length <= max
+  }
+
+  const conditions =
+    isValidLength(state.DEF, 3, 5) &&
+    isValidLength(state.MID, 3, 4) &&
+    isValidLength(state.STR, 2, 4)
+
+  if (
+    position === PLAYERS.DEF &&
+    prevPlayer.position !== position &&
+    conditions
+  ) {
     state.MID = state.MID.filter((p) => p.id !== +player_id)
     state.STR = state.STR.filter((p) => p.id !== +player_id)
     state[position].push({ ...prevPlayer, position })
   }
-  if (position === PLAYERS.MID && prevPlayer.position !== position) {
+  if (
+    position === PLAYERS.MID &&
+    prevPlayer.position !== position &&
+    conditions
+  ) {
     state.DEF = state.DEF.filter((p) => p.id !== +player_id)
     state.STR = state.STR.filter((p) => p.id !== +player_id)
     state[position].push({ ...prevPlayer, position })
   }
-  if (position === PLAYERS.STR && prevPlayer.position !== position) {
+  if (
+    position === PLAYERS.STR &&
+    prevPlayer.position !== position &&
+    conditions
+  ) {
     state.DEF = state.DEF.filter((p) => p.id !== +player_id)
     state.MID = state.MID.filter((p) => p.id !== +player_id)
     state[position].push({ ...prevPlayer, position })
   }
-  // const conditions =
-  //   state.DEF.length > 3 &&
-  //   state.DEF.length < 5 &&
-  //   state.MID.length > 3 &&
-  //   state.MID.length < 5 &&
-  //   state.STR.length > 1 &&
-  //   state.STR.length < 5
 }
 
 export const deletePlayerByIdReducer = (state, action) => {
@@ -199,6 +225,5 @@ export const deletePlayerByIdReducer = (state, action) => {
   state.DEF = state.DEF.filter((p) => p.id !== +player_id)
   state.MID = state.MID.filter((p) => p.id !== +player_id)
   state.STR = state.STR.filter((p) => p.id !== +player_id)
-  console.log(state.DEF)
   state.teamCount--
 }

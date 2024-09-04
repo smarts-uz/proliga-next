@@ -6,7 +6,7 @@ import {
   updatePlayerInTeamReducer,
   softDeletePlayerFromTeamReducer,
   setDraggablePlayerReducer,
-  deletePlayerByIdReducer
+  deletePlayerByIdReducer,
 } from './game.reducer'
 
 const initialState = {
@@ -40,6 +40,7 @@ const gameSlice = createSlice({
       state.tab = action.payload
     },
     setCapitan: (state, action) => {
+      console.log('setCapitan', action.payload)
       state.capitan = action.payload
     },
     addPlayerToTeam: addPlayerToTeamReducer,

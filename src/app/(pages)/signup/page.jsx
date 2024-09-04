@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { act, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSignUp } from '../../hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from '../../../components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'

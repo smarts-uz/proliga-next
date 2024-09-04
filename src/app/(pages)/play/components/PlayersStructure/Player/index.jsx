@@ -4,7 +4,14 @@ import { useDispatch } from 'react-redux'
 import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
 
-const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
+const Player = ({
+  player,
+  additionalInfo = true,
+  deletePlayer = true,
+  DEF,
+  MID,
+  STR,
+}) => {
   const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
 
