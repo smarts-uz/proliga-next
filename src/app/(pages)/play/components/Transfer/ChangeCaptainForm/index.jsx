@@ -27,7 +27,7 @@ const ChangeCaptainForm = () => {
               player.name && (
                 <option
                   className="bg-neutral-950 checked:bg-neutral-900"
-                  value={player.name}
+                  value={JSON.stringify(player)}
                   key={player.id}
                 >
                   {player.name}

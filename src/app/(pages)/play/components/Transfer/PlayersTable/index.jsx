@@ -15,6 +15,7 @@ import TransferTablePagination from './Pagination'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import TransferTableFilters from './Filters'
+import { useSelector } from 'react-redux'
 
 function PlayersTable() {
   const [data, setData] = useState([])
@@ -22,15 +23,18 @@ function PlayersTable() {
     pageIndex: 0,
     pageSize: 10,
   })
+  const { team } = useSelector((store) => store.game)
   const { getPlayers } = useGetPlayers()
 
   useEffect(() => {
-    const fetchData = async () => {
-      await getPlayers({ setData })
+    if (team) {
+      const fetch = async () => {
+        await getPlayers({ setData, competition_id: team.competition_id.id })
+      }
+      fetch()
     }
-    fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [team])
 
   const table = useReactTable({
     columns,

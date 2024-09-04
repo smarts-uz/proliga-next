@@ -127,7 +127,7 @@ export const softDeletePlayerFromTeamReducer = (state, action) => {
   }
 }
 
-export const setTeamReducer = (state, action) => {
+export const setTeamPlayersReducer = (state, action) => {
   const team = action.payload
   team.forEach((player) => {
     if (player.position === PLAYERS.GOA) {
@@ -150,10 +150,14 @@ export const setTeamReducer = (state, action) => {
 }
 
 export const setCapitanReducer = (state, action) => {
-  const { player } = action.payload
+  const capitan = action.payload && JSON.parse(action.payload)
 
-  if (player.position === PLAYERS.GOA) {
-    state.capitan = player
+  if (capitan) {
+    state.capitan = capitan
+  }
+  if (capitan.position === PLAYERS.GOA) {
+
+
   }
 }
 
