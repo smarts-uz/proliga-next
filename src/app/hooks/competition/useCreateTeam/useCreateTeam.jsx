@@ -20,7 +20,7 @@ export const useCreateTeam = () => {
     if (!userTable && !userAuth) {
       setError('You must be logged in to create a team')
       toast.error('You must be logged in to create a team')
-      router.push('/login')
+      router.push('/auth')
       return
     }
     try {

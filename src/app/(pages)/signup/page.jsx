@@ -175,7 +175,7 @@ const SignUp = () => {
           />
         </div>
         <Link
-          href="/login"
+          href="/auth"
           className={`my-2 text-sm text-neutral-500 transition-colors hover:text-neutral-400 hover:underline`}
         >
           Akkauntingiz bormi?

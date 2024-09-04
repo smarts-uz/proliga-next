@@ -21,7 +21,7 @@ const Hero = () => {
         <span className="block h-3 w-4/5 -skew-x-[45deg] rounded-sm bg-primary md:w-3/5 lg:w-1/2 xl:w-2/5"></span>
         <div className="flex flex-col gap-4 text-lg font-bold sm:flex-row">
           <Link
-            href="/signup"
+            href="/auth"
             className={`${btnStyles} bg-primary text-black hover:bg-opacity-55`}
           >
             Ro&apos;yxatdan otish

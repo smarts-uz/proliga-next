@@ -42,7 +42,7 @@ function Page() {
       <div className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
         <form
           onSubmit={formik.handleSubmit}
-          className="auth-container flex w-screen max-w-[80rem] items-center justify-center gap-2"
+          className="auth-container w-screen max-w-[80rem] items-center justify-center gap-2"
         >
           <h3 className="flex gap-4 text-xl">Ma&apos;lumot</h3>
           <div className="flex">

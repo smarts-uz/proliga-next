@@ -42,7 +42,7 @@ const Dropdown = () => {
         </>
       ) : (
         <>
-          <NavLink href="/login">
+          <NavLink href="/auth">
             <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
             <p>Login</p>
           </NavLink>

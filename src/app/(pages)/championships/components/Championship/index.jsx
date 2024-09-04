@@ -22,7 +22,8 @@ const Championship = ({ item }) => {
       }
     }
   }
-  const currentGame = games.find((game) => game.competition_id === item.id)
+  const currentGame =
+    games && games.find((game) => game.competition_id === item.id)
 
   const handleClick = () => {
     if (currentGame) {

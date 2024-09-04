@@ -1,10 +1,10 @@
-import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import {
   setUserAuth,
   setUserTable,
 } from '../../../lib/features/auth/auth.slice'
+import { setGame } from 'app/lib/features/competition/competition.slice'
 
 export const useLogOut = () => {
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ export const useLogOut = () => {
 
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))
+      dispatch(setGame(null))
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)

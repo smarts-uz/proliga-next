@@ -18,8 +18,8 @@ const Championships = () => {
       await getCompetition()
     }
     fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (userTable) {
       const fetch = async () => {
@@ -27,8 +27,8 @@ const Championships = () => {
       }
       fetch()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTable])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
     <Gutter>
