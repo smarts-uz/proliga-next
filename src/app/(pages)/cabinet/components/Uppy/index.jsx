@@ -1,39 +1,31 @@
+/* eslint-disable */
 'use client'
-
-import { useState } from 'react'
+import React from 'react'
 import Uppy from '@uppy/core'
-import Webcam from '@uppy/webcam'
+import Tus from '@uppy/tus'
+import { Webcam } from 'uppy'
 import { Dashboard } from '@uppy/react'
-
+import { useState } from 'react'
 import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import '@uppy/drag-drop/dist/style.css'
-import '@uppy/file-input/dist/style.css'
-import '@uppy/progress-bar/dist/style.css'
-import { Transloadit } from 'uppy'
-
 const metaFields = [
   { id: 'license', name: 'License', placeholder: 'specify license' },
 ]
 
 function createUppy() {
-  return new Uppy({ restrictions: { requiredMetaFields: ['license'] } })
-    .use(Transloadit, {
-      assemblyOptions: {
-        params: {
-          auth: { key: 'your-transloadit-key' },
-          template_id: 'your-template-id',
-        },
-      },
-    })
-    .use(Webcam)
+  return new Uppy({ restrictions: { requiredMetaFields: ['license'] } }).use(
+    Tus,
+    { endpoint: 'https://tusd.tusdemo.net/files/' }
+  )
 }
 
 export default function UppyDashboard() {
   const [uppy] = useState(createUppy)
+
   return (
     <>
-      <Dashboard uppy={uppy} theme="dark" metaFields={metaFields} />
+      <Dashboard uppy={uppy} metaFields={metaFields} />
     </>
   )
 }

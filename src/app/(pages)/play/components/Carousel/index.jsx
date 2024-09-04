@@ -12,6 +12,7 @@ const Carousel = () => {
 
   const nextSlide = () => {
     setCurrentIndex((prevState) => {
+      setActive(true)
       if (data.length > 1) {
         setImageAnimation('transition-right')
       }
@@ -23,6 +24,7 @@ const Carousel = () => {
     })
   }
   const prevSlide = () => {
+    setActive(true)
     if (data.length > 1) {
       setImageAnimation('transition-left')
     }

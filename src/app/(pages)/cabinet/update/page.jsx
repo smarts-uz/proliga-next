@@ -2,8 +2,13 @@
 
 import Gutter from 'components/Gutter'
 import { useFormik } from 'formik'
-
+import { useUpdatePassword } from 'app/hooks/auth/useUpdatePassword/useUpdatePassword'
+import Image from 'next/image'
+import { useState } from 'react'
 const UpdatePassword = () => {
+  const { updatePassword, error, isLoading } = useUpdatePassword()
+  const [showPassword, setShowPassword] = useState(false)
+
   const formik = useFormik({
     initialValues: {
       oldPassword: '',
@@ -15,64 +20,70 @@ const UpdatePassword = () => {
     },
   })
 
+  const update = () => {
+    try {
+      updatePassword(
+        formik.values.oldPassword,
+        formik.values.newPassword,
+        formik.values.confirmPassword
+      )
+    } catch (error) {}
+  }
   return (
     <Gutter>
-      <div className="mt-16 h-screen items-center justify-center">
-        <form
-          className="auth-container items-center justify-center gap-2"
-          onSubmit={formik.handleSubmit}
-        >
-          <div className="my-4 max-w-72 xs:max-w-96 sm:max-w-[36rem]">
-            <label
-              className="mb-2 block text-sm font-bold text-neutral-300"
-              htmlFor="email"
-            >
-              Eski parol
-            </label>
-            <input
-              id="email"
-              name="email"
-              className="auth-input"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.oldPassword}
-            />
-            <label
-              className="mb-2 block text-sm font-bold text-neutral-300"
-              htmlFor="email"
-            >
-              Yangi parol
-            </label>
-            <input
-              id="email"
-              name="email"
-              className="auth-input"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.oldPassword}
-            />
-            <label
-              className="mb-2 block text-sm font-bold text-neutral-300"
-              htmlFor="email"
-            >
-              Yangi parolni qayta kiriting
-            </label>
-            <input
-              id="email"
-              name="email"
-              className="auth-input"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.oldPassword}
-            />
+      <div className="z-10 flex min-h-svh items-center justify-center py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
+        <form className="auth-container gap-2" onSubmit={formik.handleSubmit}>
+          <label
+            className="mb-2 block text-sm font-bold text-neutral-300"
+            htmlFor="oldPassword"
+          >
+            Eski parol
+          </label>
+          <input
+            id="oldPassword"
+            name="oldPassword"
+            className="auth-input"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.oldPassword}
+          />
 
-            <button
-              className="mt- focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
+          <label
+            className="mb-2 block text-sm font-bold text-neutral-300"
+            htmlFor="newPassword"
+          >
+            Yangi parol
+          </label>
+          <input
+            id="newPassword"
+            name="newPassword"
+            className="auth-input"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.newPassword}
+          />
+          <label
+            className="mb-2 block text-sm font-bold text-neutral-300"
+            htmlFor="confirmPassword"
+          >
+            Yangi parolni qayta kiriting
+          </label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            className="auth-input"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.confirmPassword}
+          />
+
+          <button
+            className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
+            type="submit"
+            onClick={() => update()}
+          >
+            Tahrirlash
+          </button>
         </form>
       </div>
     </Gutter>
