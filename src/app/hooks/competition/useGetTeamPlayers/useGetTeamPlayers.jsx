@@ -28,9 +28,9 @@ export const useGetTeamPlayers = () => {
         setError(error.message)
         toast.error(error.message)
       }
-      if (data) {
+      if (data && teamCount === 0) {
         setData(data)
-        teamCount === 0 && dispatch(setTeam(data))
+        dispatch(setTeam(data))
       }
     } catch (error) {
       setError(error.message)

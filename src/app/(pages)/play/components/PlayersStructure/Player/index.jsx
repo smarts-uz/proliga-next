@@ -39,10 +39,9 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   return (
     <>
       <div
-        className={`fade-in-fast flex h-min flex-col items-center justify-center bg-red-400 text-sm text-neutral-700 active:rounded-sm active:opacity-70 sm:text-base ${player.name ? 'cursor-default' : 'cursor-grab'} `}
+        className={`fade-in-fast flex h-min flex-col items-center justify-center text-sm text-neutral-700 active:rounded-sm active:opacity-70 sm:text-base ${player.name ? 'cursor-default' : 'cursor-grab'} `}
         draggable={player.name ? false : true}
         onDragStart={(e) => handleOnDrag(e, player.id)}
-        // onDragEnd={() => setDraggable(null)}
       >
         {!player.name && (
           <>

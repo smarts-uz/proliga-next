@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import { PLAYERS } from 'app/utils/playerTypes.util.'
 
 export const addPlayerToTeamReducer = (state, action) => {
@@ -152,36 +153,52 @@ export const setDraggablePlayerReducer = (state, action) => {
   const { player_id, position } = action.payload
 
   if (!position) {
-    toast.warning("Iltimos, o'yinchi qo'shing")
+    toast.warning("Iltimos, o'yinchi dalaga qo'shing")
+    return state
+  }
+  const DEFStr = JSON.stringify(state.DEF)
+  const DEF = JSON.parse(DEFStr)
+  const MIDStr = JSON.stringify(state.MID)
+  const MID = JSON.parse(MIDStr)
+  const STRStr = JSON.stringify(state.STR)
+  const STR = JSON.parse(STRStr)
+  const team = [...DEF, ...MID, ...STR]
+
+  const prevPlayer = team.find((p) => p.id === +player_id)
+  if (!prevPlayer) {
+    toast.warning("Iltimos, o'yinchi dalaga qo'shing")
     return state
   }
 
-  // const currentPlayer = team.find((p) => p.id === player_id)
+  if (position === PLAYERS.DEF && prevPlayer.position !== position) {
+    state.MID = state.MID.filter((p) => p.id !== +player_id)
+    state.STR = state.STR.filter((p) => p.id !== +player_id)
+    state[position].push({ ...prevPlayer, position })
+  }
+  if (position === PLAYERS.MID && prevPlayer.position !== position) {
+    state.DEF = state.DEF.filter((p) => p.id !== +player_id)
+    state.STR = state.STR.filter((p) => p.id !== +player_id)
+    state[position].push({ ...prevPlayer, position })
+  }
+  if (position === PLAYERS.STR && prevPlayer.position !== position) {
+    state.DEF = state.DEF.filter((p) => p.id !== +player_id)
+    state.MID = state.MID.filter((p) => p.id !== +player_id)
+    state[position].push({ ...prevPlayer, position })
+  }
+  // const conditions =
+  //   state.DEF.length > 3 &&
+  //   state.DEF.length < 5 &&
+  //   state.MID.length > 3 &&
+  //   state.MID.length < 5 &&
+  //   state.STR.length > 1 &&
+  //   state.STR.length < 5
+}
 
-  if (
-    position === PLAYERS.DEF
-    // state.DEF.length > 3 &&
-    // state.DEF.length < 5
-  ) {
-    state.DEF = state.DEF.filter((p) => p.id !== player_id)
-    console.log(state.DEF)
-    // state[position].push({ id: player_id })
-  }
-  if (
-    position === PLAYERS.MID
-    // state.MID.length > 3 &&
-    // state.MID.length < 5
-  ) {
-    state.MID = state.MID.filter((p) => p.id !== player_id)
-    state[position].push({ id: player_id })
-  }
-  if (
-    position === PLAYERS.STR
-    // state.STR.length > 2 &&
-    // state.STR.length < 4
-  ) {
-    console.log(player_id)
-    state.STR = state.STR.filter((p) => p.id !== player_id)
-    state[position].push({ id: player_id })
-  }
+export const deletePlayerByIdReducer = (state, action) => {
+  const player_id = action.payload
+  state.DEF = state.DEF.filter((p) => p.id !== +player_id)
+  state.MID = state.MID.filter((p) => p.id !== +player_id)
+  state.STR = state.STR.filter((p) => p.id !== +player_id)
+  console.log(state.DEF)
+  state.teamCount--
 }
