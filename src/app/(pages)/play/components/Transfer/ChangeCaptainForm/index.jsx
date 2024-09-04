@@ -46,7 +46,7 @@ const ChangeCaptainForm = () => {
           name="formation"
           id="formation"
           onClick={(e) => dispatch(setCapitan(e.target.value))}
-          value={team.captain_id ?? null}
+          value={team && team.captain_id}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
           <option

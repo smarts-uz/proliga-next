@@ -14,7 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { isLoading, logIn, error } = useLogIn()
-  const { userTable } = useSelector((state) => state.auth)
+  const { userTable, userAuth } = useSelector((state) => state.auth)
   const [active, setActive] = useState(false)
   const {
     isLoading: tableIsLoading,
@@ -28,8 +28,8 @@ const Login = () => {
 
     setActive(true)
     await getUserTable({ phone })
-    if (!isLoading && !error && !tableIsLoading && !tableError) {
-      return setTimeout(() => router.push('/championships'), 250)
+    if (userTable && userAuth) {
+      router.push('/championships')
     }
   }
 
@@ -41,10 +41,15 @@ const Login = () => {
 
       setPassword('')
       setPhone('')
-      setActive(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTable])
+  useEffect(() => {
+    if (userAuth && active) {
+      router.push('/championships')
+      setActive(false)
+    }
+  }, [active, router, userAuth])
 
   return (
     <main className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-4 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">

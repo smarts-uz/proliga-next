@@ -12,9 +12,9 @@ export const useLogOut = () => {
 
   const logOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut()
+      // const { error } = await supabase.auth.signOut()
 
-      if (error) return toast.error(error.message)
+      // if (error) return toast.error(error.message)
 
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))

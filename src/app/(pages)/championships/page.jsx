@@ -9,7 +9,7 @@ import { useGetTeams } from 'app/hooks/competition/useGetTeams/useGetTeams'
 
 const Championships = () => {
   const { competition } = useSelector((state) => state.competition)
-  const { userTable } = useSelector((state) => state.auth)
+  const { userTable, userAuth } = useSelector((state) => state.auth)
   const { getCompetition, isLoading, error } = useGetCompetition()
   const { getTeams, isLoading: teamIsLoading, error: teamError } = useGetTeams()
 
@@ -40,9 +40,11 @@ const Championships = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {competition.map((item, index) => (
-              <Championship key={index} item={item} />
-            ))}
+            {userAuth &&
+              userTable &&
+              competition.map((item, index) => (
+                <Championship key={index} item={item} />
+              ))}
           </div>
         )}
       </section>
