@@ -5,11 +5,11 @@ import StyledTabs from './StyledTabs'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetTours } from 'app/hooks/transfer/useGetTours/useGetTours'
 import { TOUR } from 'app/utils/tour.utils'
-import { setCurrentTour } from 'app/lib/features/game/game.slice'
+import { setCurrentTourIndex } from 'app/lib/features/game/game.slice'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
-  const { team, tours, currentTour } = useSelector((state) => state.game)
+  const { team, tours, currentTourIndex } = useSelector((state) => state.game)
   const { getTours, isLoading, data, error } = useGetTours()
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function TourTabs() {
       width={'100%'}
     >
       <StyledTabs
-        value={currentTour}
+        value={currentTourIndex}
         // onChange={(e) => dispatch(setCurrentTour(e.target.value))}
         variant="scrollable"
         scrollButtons="auto"
@@ -56,7 +56,7 @@ export default function TourTabs() {
         {tours?.map((item, index) => (
           <StyledTab
             key={item.id}
-            onClick={() => dispatch(setCurrentTour(index))}
+            onClick={() => dispatch(setCurrentTourIndex(index))}
             className="space-y-0 disabled:cursor-default disabled:text-neutral-500 md:w-48 lg:w-56 xl:w-64"
             icon={
               <h3 className="text-start text-sm md:text-base">
