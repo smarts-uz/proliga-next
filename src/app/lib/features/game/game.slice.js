@@ -42,6 +42,7 @@ const gameSlice = createSlice({
       state.tab = action.payload
     },
     setTeam: (state, action) => {
+      state.capitan = action.payload.captain_id
       state.team = action.payload
     },
     setTourTeam: (state, action) => {

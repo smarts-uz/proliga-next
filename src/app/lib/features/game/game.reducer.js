@@ -164,7 +164,7 @@ export const setTeamPlayersReducer = (state, action) => {
 }
 
 export const setCapitanReducer = (state, action) => {
-  const capitan = action.payload && JSON.parse(action.payload)
+  const capitan = action.payload
 
   if (capitan) {
     state.capitan = capitan
