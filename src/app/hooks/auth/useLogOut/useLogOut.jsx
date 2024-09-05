@@ -5,7 +5,7 @@ import {
   setUserTable,
 } from '../../../lib/features/auth/auth.slice'
 import { setGame } from 'app/lib/features/competition/competition.slice'
-import { useRouter } from 'next/router'
+import { useRouter  } from 'next/navigation'
 
 export const useLogOut = () => {
   const dispatch = useDispatch()
