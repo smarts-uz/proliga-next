@@ -59,7 +59,7 @@ export default function TourTabs() {
           tour.map((item, index) => (
             <StyledTab
               key={item.id}
-              className="md:w-48"
+              className="md:w-48 lg:w-56 xl:w-64 space-y-0"
               icon={
                 <h3 className="text-start text-sm md:text-base">
                   {index + 1} Tur

@@ -3,16 +3,18 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const ClubsFilter = ({ column }) => {
-  const { clubs } = useSelector((state) => state.game)
+  const { clubs, team } = useSelector((state) => state.game)
   const { getClubs, isLoading, error } = useGetClubs()
 
   useEffect(() => {
-    const fetch = async () => {
-      await getClubs()
+    if (team?.competition_id) {
+      const fetch = async () => {
+        await getClubs(team.competition_id.id)
+      }
+      fetch()
     }
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [team])
 
   return (
     <select

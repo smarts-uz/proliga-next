@@ -135,18 +135,30 @@ export const setTeamPlayersReducer = (state, action) => {
     if (player.position === PLAYERS.GOA) {
       state.GOA.push(player)
       state.teamCount++
+      if (player.name) {
+        state.indexes.GOA++
+      }
     }
     if (player.position === PLAYERS.DEF) {
       state.DEF.push(player)
       state.teamCount++
+      if (player.name) {
+        state.indexes.DEF++
+      }
     }
     if (player.position === PLAYERS.MID) {
       state.MID.push(player)
       state.teamCount++
+      if (player.name) {
+        state.indexes.MID++
+      }
     }
     if (player.position === PLAYERS.STR) {
       state.STR.push(player)
       state.teamCount++
+      if (player.name) {
+        state.indexes.STR++
+      }
     }
   })
 }

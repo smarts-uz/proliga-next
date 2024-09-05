@@ -22,7 +22,9 @@ const ChangeCaptainForm = () => {
 
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
-        toast.error('The player or players are missing')
+        toast.warning(
+          `identifikatori ${player.id} bo'lgan va ${player.position} holatidagi o'yinchi yaroqsiz`
+        )
         return
       }
     })
@@ -46,13 +48,12 @@ const ChangeCaptainForm = () => {
           name="formation"
           id="formation"
           onClick={(e) => dispatch(setCapitan(e.target.value))}
-          value={team && team.captain_id}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
           <option
             value=""
             className="bg-neutral-950 checked:bg-neutral-900"
-            defaultChecked
+            defaultChecked={team && team.captain_id ? false : true}
           >
             Kapitan
           </option>
@@ -63,6 +64,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-900"
                   value={player.id}
                   key={player.id}
+                  selected={player.id === team?.captain_id}
                 >
                   {player.name}
                 </option>

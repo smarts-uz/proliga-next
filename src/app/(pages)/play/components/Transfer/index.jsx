@@ -15,7 +15,8 @@ const Transfer = () => {
               alt="stadium"
               width={700}
               height={600}
-              className="w-full rounded-sm"
+              draggable={false}
+              className="w-full rounded-sm select-none"
             />
             <PlayersStructure />
           </div>

@@ -3,20 +3,30 @@ import Image from 'next/image'
 import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam'
 import { useState } from 'react'
 import { formations } from 'app/utils/formations.utils'
+import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 const LeagueModal = ({ toggleModal, league }) => {
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(formations['4-3-3'])
+  const { games } = useSelector((state) => state.competition)
+  const router = useRouter()
 
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const currentGame =
+      games && games.find((game) => game.competition_id === league.id)
+
     await createTeam({ title, formation, competition_id: league.id })
     if (!error && !isLoading) {
       setTitle('')
       setFormation(formations['4-3-3'])
+    }
+    if (currentGame) {
+      router.push(`/play/${league.slug}/${currentGame.id}`)
     }
     toggleModal()
   }

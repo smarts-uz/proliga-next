@@ -29,7 +29,7 @@ const Play = ({ params }) => {
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth])
+  }, [userAuth, params, teamCount, userTable])
 
   useEffect(() => {
     if (userAuth && userTable && params.id) {
@@ -39,7 +39,7 @@ const Play = ({ params }) => {
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth])
+  }, [userAuth, params, userTable])
 
   useEffect(() => {
     if (userAuth && userTable && params.id) {

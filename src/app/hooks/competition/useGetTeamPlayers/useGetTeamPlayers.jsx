@@ -20,7 +20,7 @@ export const useGetTeamPlayers = () => {
 
       const { data, error } = await supabase
         .from('team_player')
-        .select('*')
+        .select('*, club_id(name, id, slug)')
         .eq('team_id', team_id)
         .limit(11)
 
@@ -28,9 +28,11 @@ export const useGetTeamPlayers = () => {
         setError(error.message)
         toast.error(error.message)
       }
-      if (data && teamCount === 0) {
+      if (data) {
         setData(data)
-        dispatch(setTeamPlayers(data))
+        if (teamCount === 0) {
+          dispatch(setTeamPlayers(data))
+        }
       }
     } catch (error) {
       setError(error.message)

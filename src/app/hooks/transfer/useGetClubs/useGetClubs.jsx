@@ -9,7 +9,7 @@ export const useGetClubs = () => {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
 
-  const getClubs = async () => {
+  const getClubs = async (id) => {
     setIsLoading(false)
     setError(null)
 
@@ -19,6 +19,7 @@ export const useGetClubs = () => {
       const { data, error } = await supabase
         .from('club')
         .select('id, name, slug')
+        .eq('competition_id', id)
 
       if (error) {
         setError(error.message)

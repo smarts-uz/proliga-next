@@ -30,30 +30,21 @@ const PlayersStructure = () => {
         ))}
       </div>
       <div
-        data-type={PLAYERS.DEF}
-        onDrop={handleOnDrop}
-        onDragOver={(e) => handleDragOver(e)}
-        className={`flex items-center justify-around gap-0.5 px-0 xs:px-10 sm:gap-1 md:gap-8 md:px-16 lg:px-24`}
+        className={`flex items-center justify-evenly gap-0.5 px-4 sm:gap-0.5 md:px-6 xl:gap-0`}
       >
         {DEF.map((player) => (
           <Player key={player.id} player={player} />
         ))}
       </div>
       <div
-        data-type={PLAYERS.MID}
-        onDrop={handleOnDrop}
-        onDragOver={(e) => handleDragOver(e)}
-        className="flex items-center justify-around gap-0.5 px-0 xs:justify-between xs:px-10 sm:gap-1 md:gap-8 md:px-24"
+        className="flex items-center justify-evenly gap-0.5 px-0 sm:gap-1 md:gap-4 md:px-4 xl:gap-0"
       >
         {MID.map((player) => (
           <Player key={player.id} player={player} />
         ))}
       </div>
       <div
-        data-type={PLAYERS.STR}
-        onDrop={handleOnDrop}
-        onDragOver={(e) => handleDragOver(e)}
-        className="flex items-center justify-evenly gap-0 px-0 md:justify-around md:gap-8 md:px-24"
+        className="flex items-center justify-evenly gap-0 px-0 md:px-4"
       >
         {STR.map((player) => (
           <Player

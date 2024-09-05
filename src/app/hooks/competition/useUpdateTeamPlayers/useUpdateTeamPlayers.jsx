@@ -21,6 +21,7 @@ export const useUpdateTeamPlayers = () => {
         club_id: player.club_id.id,
       }))
 
+      console.log(newTeam)
       newTeam.map(async (player) => {
         const { data, error } = await supabase
           .from('team_player')
@@ -41,7 +42,6 @@ export const useUpdateTeamPlayers = () => {
       if (data) {
         setData(data)
       }
-      console.log(data)
     } catch (error) {
       setError(error.message)
       toast.error(error.message)

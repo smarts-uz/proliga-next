@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
@@ -7,8 +7,8 @@ import ConfirmationModal from 'components/ConfirmationModal'
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
 
-  const { clubs } = useSelector((state) => state.game)
   const [image, setImage] = useState('')
+  const { clubs } = useSelector((state) => state.game)
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
 
   const toggleDeleteModal = () => {
@@ -25,39 +25,22 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
     }
   }
 
-  useEffect(() => {
-    if (clubs?.length > 0) {
-      const club = clubs.find((club) => club.id === player.club_id)
-      // setImage(club.slug)
-      if (club) setImage(club.slug)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clubs])
-
-  console.log(image)
-
-  const handleOnDrag = (e, player_id) => {
-    e.dataTransfer.setData('player_id', player_id)
-  }
-
   const handleDeletePlayer = () => {
     dispatch(softDeletePlayerFromTeam({ player }))
     toggleDeleteModal()
   }
+
   const imageErr = (e) => {
     e.target.src = '/icons/player-tshirt.svg'
   }
-  const clubPath = player.name ? image : ''
+
+  const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
 
   return (
     <>
-      <div
-        className={`fade-in-fast flex h-min flex-col items-center justify-center text-sm text-neutral-700 active:rounded-sm active:opacity-70 sm:text-base ${player.name ? 'cursor-default' : 'cursor-grab'} `}
-        draggable={player.name ? false : true}
-        onDragStart={(e) => handleOnDrag(e, player.id)}
-      >
+      <div className="fade-in-fast flex h-min select-none flex-col items-center justify-center text-sm text-neutral-700 sm:text-base">
         {!player.name && (
           <>
             <Image
@@ -65,8 +48,8 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               alt="player tshirt"
               width={48}
               height={48}
-              // draggable={false}
-              className="size-6 active:rounded-md active:shadow active:shadow-white xs:size-8 md:size-12"
+              draggable={false}
+              className="size-6 xs:size-8 md:size-12 lg:size-10 xl:size-12"
             />
           </>
         )}
@@ -78,7 +61,8 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               width={48}
               height={48}
               onError={imageErr}
-              className="size-6 xs:size-8 md:size-12"
+              draggable={false}
+              className="size-6 xs:size-8 md:size-12 lg:size-10 xl:size-12"
             />
             <p className="text-shadow line-clamp-1 text-[11px] text-white xs:text-xs md:text-sm">
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
@@ -89,6 +73,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                   <Image
                     width={16}
                     height={16}
+                    draggable={false}
                     src="/icons/info.svg"
                     alt="additional info"
                     className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"

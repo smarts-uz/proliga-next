@@ -34,7 +34,6 @@ export const useGetUserTable = () => {
         toast.error(error.message)
         return
       }
-      console.log(data[0])
       if (!data[0]) {
         setError('Parol yoki telefon raqam notogri kiritilgan')
         toast.error('Parol yoki telefon raqam notogri kiritilgan')
