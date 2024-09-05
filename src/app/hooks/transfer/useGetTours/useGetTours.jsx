@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setTour } from 'app/lib/features/game/game.slice'
+import { setTours } from 'app/lib/features/game/game.slice'
 
 export const useGetTours = () => {
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export const useGetTours = () => {
         return
       }
       if (data) {
-        dispatch(setTour(data))
+        dispatch(setTours(data))
       }
     } catch (error) {
       setError(error.message)

@@ -6,6 +6,7 @@ import {
   softDeletePlayerFromTeamReducer,
   setDraggablePlayerReducer,
 } from './game.reducer'
+import { TOUR } from 'app/utils/tour.utils'
 
 const initialState = {
   team: null,
@@ -17,7 +18,8 @@ const initialState = {
     STR: 0,
   },
   tour_team: null,
-  tour: null,
+  tours: null,
+  currentTour: 0,
   capitan: null,
   tab: tabs.Transfer,
   GOA: [],
@@ -38,8 +40,14 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     setTeamPlayers: setTeamPlayersReducer,
-    setTour: (state, action) => {
-      state.tour = action.payload
+    setTours: (state, action) => {
+      state.tours = action.payload
+      const tour = state.tours.findIndex(
+        (tour) => tour.status === TOUR.notStartedTransfer
+      )
+      if (tour) {
+        state.currentTour = tour
+      }
     },
     setTab: (state, action) => {
       state.tab = action.payload
@@ -61,6 +69,9 @@ const gameSlice = createSlice({
         state.capitan = capitan
       }
     },
+    setCurrentTour: (state, action) => {
+      state.currentTour = action.payload
+    },
     softDeletePlayerFromTeam: softDeletePlayerFromTeamReducer,
     updatePlayerInTeam: updatePlayerInTeamReducer,
   },
@@ -68,7 +79,7 @@ const gameSlice = createSlice({
 
 export const {
   setTeamPlayers,
-  setTour,
+  setTours,
   setTab,
   setTeam,
   setCapitan,
@@ -76,6 +87,7 @@ export const {
   updatePlayerInTeam,
   setTourTeam,
   setClubs,
+  setCurrentTour,
 } = gameSlice.actions
 
 export default gameSlice.reducer
