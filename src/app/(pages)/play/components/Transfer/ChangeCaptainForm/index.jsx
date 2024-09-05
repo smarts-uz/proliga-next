@@ -10,7 +10,7 @@ const ChangeCaptainForm = () => {
     (state) => state.game
   )
   const teamConcat = GOA.concat(DEF, MID, STR)
-  const { updateTeamPlayers, isLoading, error, data } = useUpdateTeamPlayers()
+  const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
   const {
     updateTeam,
     isLoading: teamLoading,
@@ -36,7 +36,8 @@ const ChangeCaptainForm = () => {
     await updateTeamPlayers({ team: teamConcat, team_id: team.id })
     await updateTeam({ capitan, team_id: team.id })
 
-    if (!error && !isLoading && data) {
+    // console.log( isLoading)
+    if (!error && !isLoading && !teamLoading && !teamError) {
       toast.success('Team updated successfully')
     }
   }
@@ -49,12 +50,9 @@ const ChangeCaptainForm = () => {
           id="formation"
           onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
+          // defaultChecked={team && team.captain_id}
         >
-          <option
-            value=""
-            className="bg-neutral-950 checked:bg-neutral-900"
-            defaultChecked={team && team.captain_id ? false : true}
-          >
+          <option value="" className="bg-neutral-950 checked:bg-neutral-900">
             Kapitan
           </option>
           {teamConcat.map(
@@ -62,9 +60,10 @@ const ChangeCaptainForm = () => {
               player.name && (
                 <option
                   className="bg-neutral-950 checked:bg-neutral-900"
-                  value={player.id}
+                  value={player.player_id}
                   key={player.id}
-                  selected={player.player_id === team?.captain_id}
+                  // defaultChecked={true}
+                  selected={player.player_id === capitan}
                 >
                   {player.name}
                 </option>

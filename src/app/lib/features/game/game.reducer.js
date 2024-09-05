@@ -97,9 +97,6 @@ export const softDeletePlayerFromTeamReducer = (state, action) => {
     player_id: null,
     name: null,
     club_id: null,
-    club: {
-      slug: null,
-    },
     price: null,
   })
 
