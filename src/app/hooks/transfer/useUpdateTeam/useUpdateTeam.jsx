@@ -10,7 +10,7 @@ export const useUpdateTeam = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
 
-  const updateTeam = async ({ capitan, formation, team_id }) => {
+  const updateTeam = async ({ capitan, team_id }) => {
     setIsLoading(false)
     setError(null)
 

@@ -1,55 +1,10 @@
 import { toast } from 'react-toastify'
 import { PLAYERS } from 'app/utils/playerTypes.util.'
 
-export const addPlayerToTeamReducer = (state, action) => {
-  const { player } = action.payload
-
-  if (
-    player.position === PLAYERS.GOA &&
-    state.GOA.length < 1 &&
-    state.teamCount < 11
-  ) {
-    state.GOA.push(player)
-    if (player.name) {
-      state.teamCount++
-    }
-  }
-  if (
-    player.position === PLAYERS.DEF &&
-    state.DEF.length < 5 &&
-    state.teamCount < 11
-  ) {
-    state.DEF.push(player)
-    if (player.name) {
-      state.teamCount++
-    }
-  }
-  if (
-    player.position === PLAYERS.MID &&
-    state.MID.length < 5 &&
-    state.teamCount < 11
-  ) {
-    state.MID.push(player)
-    if (player.name) {
-      state.teamCount++
-    }
-  }
-  if (
-    player.position === PLAYERS.STR &&
-    state.STR.length < 4 &&
-    state.teamCount < 11
-  ) {
-    state.STR.push(player)
-    if (player.name) {
-      state.teamCount++
-    }
-  }
-}
-
 export const updatePlayerInTeamReducer = (state, action) => {
-  const { player, team, tour_team } = action.payload
+  const { player, team, teamConcat } = action.payload
 
-  const updatedPlayerObj = (prevPlayer) => ({
+  const createUpdatePlayer = (prevPlayer) => ({
     ...prevPlayer,
     player_id: player.id,
     name: player.name,
@@ -62,30 +17,92 @@ export const updatePlayerInTeamReducer = (state, action) => {
     user_id: team.user_id,
   })
 
+  const softDeleteEmptyPlayer = (emptyPlayer) => {
+    if (emptyPlayer.position === PLAYERS.DEF) {
+      state.DEF = state.DEF.filter((p) => p.id !== emptyPlayer.id)
+      state.indexes.DEF--
+    }
+    if (emptyPlayer.position === PLAYERS.MID) {
+      state.MID = state.MID.filter((p) => p.id !== emptyPlayer.id)
+      state.indexes.MID--
+    }
+    if (emptyPlayer.position === PLAYERS.STR) {
+      state.STR = state.STR.filter((p) => p.id !== emptyPlayer.id)
+      state.indexes.STR--
+    }
+  }
+
+  const emptyPlayer = teamConcat.find((player) => !player.name)
+  if (!emptyPlayer) {
+    toast.warning('No more players available')
+    return
+  }
+
   if (
     state.GOA.length > 0 &&
     player.position === PLAYERS.GOA &&
     state.indexes.GOA < 1
   ) {
-    const newPlayer = updatedPlayerObj(state.GOA[state.indexes.GOA])
+    const newPlayer = createUpdatePlayer(state.GOA[state.indexes.GOA])
     state.GOA[state.indexes.GOA] = newPlayer
     state.indexes.GOA++
   }
+  //goa
   if (player.position === PLAYERS.DEF && state.indexes.DEF < state.DEF.length) {
-    const newPlayer = updatedPlayerObj(state.DEF[state.indexes.DEF])
+    const newPlayer = createUpdatePlayer(state.DEF[state.indexes.DEF])
     state.DEF[state.indexes.DEF] = newPlayer
     state.indexes.DEF++
   }
+  if (
+    player.position === PLAYERS.DEF &&
+    state.indexes.DEF >= state.DEF.length &&
+    state.DEF.length < 5
+  ) {
+    softDeleteEmptyPlayer(emptyPlayer)
+    const newPlayer = createUpdatePlayer(player)
+    delete newPlayer.club
+    state.DEF.push({ ...newPlayer, id: emptyPlayer.id })
+    state.playersCount.DEF++
+    state.indexes.DEF++
+    state.teamCount++
+  }
+  // mid
   if (player.position === PLAYERS.MID && state.indexes.MID < state.MID.length) {
-    const newPlayer = updatedPlayerObj(state.MID[state.indexes.MID])
+    const newPlayer = createUpdatePlayer(state.MID[state.indexes.MID])
     state.MID[state.indexes.MID] = newPlayer
     state.indexes.MID++
   }
+  if (
+    player.position === PLAYERS.MID &&
+    state.indexes.MID >= state.MID.length &&
+    state.MID.length < 5
+  ) {
+    softDeleteEmptyPlayer(emptyPlayer)
+    const newPlayer = createUpdatePlayer(player)
+    delete newPlayer.club
+    state.MID.push({ ...newPlayer, id: emptyPlayer.id })
+    state.playersCount.MID++
+    state.indexes.MID++
+    state.teamCount++
+  }
+  //str
   if (player.position === PLAYERS.STR && state.indexes.STR < state.STR.length) {
-    const newPlayer = updatedPlayerObj(state.STR[state.indexes.STR])
+    const newPlayer = createUpdatePlayer(state.STR[state.indexes.STR])
     state.STR[state.indexes.STR] = newPlayer
-
     state.indexes.STR++
+    state.playersCount.STR++
+  }
+  if (
+    player.position === PLAYERS.STR &&
+    state.indexes.STR >= state.STR.length &&
+    state.STR.length < 4
+  ) {
+    softDeleteEmptyPlayer(emptyPlayer)
+    const newPlayer = createUpdatePlayer(player)
+    delete newPlayer.club
+    state.STR.push({ ...newPlayer, id: emptyPlayer.id })
+    state.indexes.STR++
+    state.teamCount++
   }
 }
 
@@ -100,29 +117,48 @@ export const softDeletePlayerFromTeamReducer = (state, action) => {
     price: null,
   })
 
+  if (
+    !state.playersCount.STR > 2 &&
+    !state.playersCount.MID > 3 &&
+    !state.playersCount.DEF > 3
+  ) {
+    toast.warning(
+      'You need at least 2 STR players, 3 MID players and 3 DEF players'
+    )
+    return state
+  }
+
   if (player.position === PLAYERS.GOA) {
     const currentPlayer = player
     state.GOA = state.GOA.filter((p) => p.id !== player.id)
     state.GOA.push(deletedPlayerObj(currentPlayer))
     state.indexes.GOA--
+    state.playersCount.GOA--
+    state.teamCount--
   }
   if (player.position === PLAYERS.DEF) {
     const currentPlayer = player
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
     state.DEF.push(deletedPlayerObj(currentPlayer))
     state.indexes.DEF--
+    state.playersCount.DEF--
+    state.teamCount--
   }
   if (player.position === PLAYERS.MID) {
     const currentPlayer = player
     state.MID = state.MID.filter((p) => p.id !== player.id)
     state.MID.push(deletedPlayerObj(currentPlayer))
     state.indexes.MID--
+    state.playersCount.MID--
+    state.teamCount--
   }
   if (player.position === PLAYERS.STR) {
     const currentPlayer = player
     state.STR = state.STR.filter((p) => p.id !== player.id)
     state.STR.push(deletedPlayerObj(currentPlayer))
     state.indexes.STR--
+    state.playersCount.STR--
+    state.teamCount--
   }
 }
 
@@ -131,110 +167,35 @@ export const setTeamPlayersReducer = (state, action) => {
   team.forEach((player) => {
     if (player.position === PLAYERS.GOA) {
       state.GOA.push(player)
-      state.teamCount++
       if (player.name) {
+        state.teamCount++
+        state.playersCount.GOA++
         state.indexes.GOA++
       }
     }
     if (player.position === PLAYERS.DEF) {
       state.DEF.push(player)
-      state.teamCount++
       if (player.name) {
+        state.teamCount++
         state.indexes.DEF++
+        state.playersCount.DEF++
       }
     }
     if (player.position === PLAYERS.MID) {
       state.MID.push(player)
-      state.teamCount++
       if (player.name) {
+        state.teamCount++
+        state.playersCount.MID++
         state.indexes.MID++
       }
     }
     if (player.position === PLAYERS.STR) {
       state.STR.push(player)
-      state.teamCount++
       if (player.name) {
+        state.playersCount.STR++
+        state.teamCount++
         state.indexes.STR++
       }
     }
   })
-}
-
-export const setCapitanReducer = (state, action) => {
-  const capitan = action.payload
-
-  if (capitan) {
-    state.capitan = capitan
-  }
-}
-
-export const setDraggablePlayerReducer = (state, action) => {
-  const { player_id, position } = action.payload
-
-  if (!position) {
-    toast.warning("Iltimos, o'yinchi dalaga qo'shing")
-    return state
-  }
-  const DEFStr = JSON.stringify(state.DEF)
-  const DEF = JSON.parse(DEFStr)
-  const MIDStr = JSON.stringify(state.MID)
-  const MID = JSON.parse(MIDStr)
-  const STRStr = JSON.stringify(state.STR)
-  const STR = JSON.parse(STRStr)
-  const team = [...DEF, ...MID, ...STR]
-
-  const prevPlayer = team.find((p) => p.id === +player_id)
-  if (!prevPlayer) {
-    toast.warning("Iltimos, o'yinchi dalaga qo'shing")
-    return state
-  }
-
-  if (state.DEF.length < 3 && state.MID.length < 3 && state.STR.length < 2) {
-    toast.error("O'yinchi formati notogri")
-    return state
-  }
-  function isValidLength(input, min, max) {
-    return input.length >= min && input.length <= max
-  }
-
-  const conditions =
-    isValidLength(state.DEF, 3, 5) &&
-    isValidLength(state.MID, 3, 4) &&
-    isValidLength(state.STR, 2, 4)
-
-  if (
-    position === PLAYERS.DEF &&
-    prevPlayer.position !== position &&
-    conditions
-  ) {
-    state.MID = state.MID.filter((p) => p.id !== +player_id)
-    state.STR = state.STR.filter((p) => p.id !== +player_id)
-    state[position].push({ ...prevPlayer, position })
-  }
-  if (
-    position === PLAYERS.MID &&
-    prevPlayer.position !== position &&
-    conditions
-  ) {
-    state.DEF = state.DEF.filter((p) => p.id !== +player_id)
-    state.STR = state.STR.filter((p) => p.id !== +player_id)
-    state[position].push({ ...prevPlayer, position })
-  }
-  if (
-    position === PLAYERS.STR &&
-    prevPlayer.position !== position &&
-    conditions
-  ) {
-    state.DEF = state.DEF.filter((p) => p.id !== +player_id)
-    state.MID = state.MID.filter((p) => p.id !== +player_id)
-    state[position].push({ ...prevPlayer, position })
-  }
-}
-
-export const deletePlayerByIdReducer = (state, action) => {
-  const player_id = action.payload
-  state.DEF = state.DEF.filter((p) => p.id !== +player_id)
-  state.MID = state.MID.filter((p) => p.id !== +player_id)
-  state.STR = state.STR.filter((p) => p.id !== +player_id)
-  state.teamCount--
 }

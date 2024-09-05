@@ -1,14 +1,11 @@
 import Image from 'next/image'
-import { useEffect, useState, useMemo, memo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
-
-  const [image, setImage] = useState('')
-  const { clubs } = useSelector((state) => state.game)
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
 
   const toggleDeleteModal = () => {

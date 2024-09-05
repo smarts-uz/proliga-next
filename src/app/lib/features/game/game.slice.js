@@ -1,18 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { tabs } from '../../../utils/tabs.util'
 import {
-  addPlayerToTeamReducer,
   setTeamPlayersReducer,
   updatePlayerInTeamReducer,
   softDeletePlayerFromTeamReducer,
   setDraggablePlayerReducer,
-  deletePlayerByIdReducer,
-  setCapitanReducer,
 } from './game.reducer'
 
 const initialState = {
   team: null,
   teamCount: 0,
+  playersCount: {
+    GOA: 0,
+    DEF: 0,
+    MID: 0,
+    STR: 0,
+  },
   tour_team: null,
   tour: null,
   capitan: null,
@@ -51,12 +54,15 @@ const gameSlice = createSlice({
     setClubs: (state, action) => {
       state.clubs = action.payload
     },
-    setCapitan: setCapitanReducer,
-    addPlayerToTeam: addPlayerToTeamReducer,
+    setCapitan: (state, action) => {
+      const capitan = action.payload
+
+      if (capitan) {
+        state.capitan = capitan
+      }
+    },
     softDeletePlayerFromTeam: softDeletePlayerFromTeamReducer,
     updatePlayerInTeam: updatePlayerInTeamReducer,
-    setDraggablePlayer: setDraggablePlayerReducer,
-    deletePlayerById: deletePlayerByIdReducer,
   },
 })
 
@@ -66,11 +72,8 @@ export const {
   setTab,
   setTeam,
   setCapitan,
-  addPlayerToTeam,
   softDeletePlayerFromTeam,
   updatePlayerInTeam,
-  setDraggablePlayer,
-  deletePlayerById,
   setTourTeam,
   setClubs,
 } = gameSlice.actions

@@ -6,9 +6,8 @@ import { toast } from 'react-toastify'
 
 const ChangeCaptainForm = () => {
   const dispatch = useDispatch()
-  const { GOA, DEF, MID, STR, capitan, team } = useSelector(
-    (state) => state.game
-  )
+  const { GOA, DEF, MID, STR, capitan, team, teamCount, playersCount } =
+    useSelector((state) => state.game)
   const teamConcat = GOA.concat(DEF, MID, STR)
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
   const {
@@ -32,11 +31,20 @@ const ChangeCaptainForm = () => {
       toast.error('Kapitan tanlang')
       return
     }
+    if (
+      teamCount !== 11 &&
+      playersCount.DEF < 3 &&
+      playersCount.MID < 3 &&
+      playersCount.STR < 2
+    ) {
+      toast.error('Jamoa da yetarli futbolchilar yoq')
+      return
+    }
+    const formation = `${playersCount.DEF}-${playersCount.MID}-${playersCount.STR}`
 
     await updateTeamPlayers({ team: teamConcat, team_id: team.id })
-    await updateTeam({ capitan, team_id: team.id })
+    await updateTeam({ capitan, team_id: team.id, formation })
 
-    // console.log( isLoading)
     if (!error && !isLoading && !teamLoading && !teamError) {
       toast.success('Team updated successfully')
     }
@@ -50,7 +58,6 @@ const ChangeCaptainForm = () => {
           id="formation"
           onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
-          // defaultChecked={team && team.captain_id}
         >
           <option value="" className="bg-neutral-950 checked:bg-neutral-900">
             Kapitan
@@ -62,7 +69,6 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-900"
                   value={player.player_id}
                   key={player.id}
-                  // defaultChecked={true}
                   selected={player.player_id === capitan}
                 >
                   {player.name}
