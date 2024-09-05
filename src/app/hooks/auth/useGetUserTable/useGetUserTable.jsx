@@ -34,7 +34,13 @@ export const useGetUserTable = () => {
         toast.error(error.message)
         return
       }
-      if (data) {
+      console.log(data[0])
+      if (!data[0]) {
+        setError('Parol yoki telefon raqam notogri kiritilgan')
+        toast.error('Parol yoki telefon raqam notogri kiritilgan')
+        return
+      }
+      if (data && data[0]) {
         dispatch(setUserTable(data[0]))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
         setData(data)

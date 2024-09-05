@@ -9,7 +9,7 @@ import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 
-const SignUpForm = () => {
+const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [active, setActive] = useState(false)
@@ -172,12 +172,13 @@ const SignUpForm = () => {
           className="filter-neutral-400 absolute bottom-2.5 left-2 size-5"
         />
       </div>
-      <Link
-        href="/auth"
-        className={`my-2 text-sm text-neutral-500 transition-colors hover:text-neutral-400 hover:underline`}
+      <button
+        type="button"
+        onClick={onClick}
+        className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
         Akkauntingiz bormi?
-      </Link>
+      </button>
       <button
         onClick={handleSubmit}
         type="submit"

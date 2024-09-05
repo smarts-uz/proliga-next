@@ -9,7 +9,7 @@ import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 
-const LoginForm = () => {
+const LoginForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -63,7 +63,7 @@ const LoginForm = () => {
         <PhoneInput
           placeholder="Telefon raqam"
           defaultCountry="UZ"
-          className="h-10 bg-neutral-950 text-white"
+          className="h-10 bg-neutral-950 text-neutral-200 placeholder:text-neutral-500"
           value={phone}
           onChange={setPhone}
         />
@@ -105,12 +105,13 @@ const LoginForm = () => {
           )}
         </button>
       </div>
-      <Link
-        href="/auth"
-        className={`my-2 text-sm text-neutral-500 transition-colors hover:text-neutral-400 hover:underline`}
+      <button
+        type="button"
+        onClick={onClick}
+        className={`my-2 text-sm self-start text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
         Akkaunt ochish?
-      </Link>
+      </button>
       <button
         onClick={handleSubmit}
         type="submit"
