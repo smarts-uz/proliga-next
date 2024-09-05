@@ -64,7 +64,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-900"
                   value={player.id}
                   key={player.id}
-                  selected={player.id === team?.captain_id}
+                  selected={player.player_id === team?.captain_id}
                 >
                   {player.name}
                 </option>
