@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { tabs } from '../../../utils/tabs.util'
+import { TABS } from '../../../utils/tabs.util'
 import {
   setTeamPlayersReducer,
   updatePlayerInTeamReducer,
   softDeletePlayerFromTeamReducer,
 } from './game.reducer'
-import { TOUR } from 'app/utils/tour.utils'
+import { TOUR } from 'app/utils/tour.util'
 
 const initialState = {
   team: null,
@@ -21,7 +21,7 @@ const initialState = {
   currentTour: 0,
   currentTourIndex: 0,
   capitan: null,
-  tab: tabs.Transfer,
+  tab: TABS.Transfer,
   GOA: [],
   DEF: [],
   MID: [],
@@ -48,7 +48,7 @@ const gameSlice = createSlice({
       const tourIndex = state.tours.findIndex(
         (tour) => tour.status === TOUR.notStartedTransfer
       )
-      if (tour && tourIndex) {
+      if(tour){
         state.currentTour = tour
         state.currentTourIndex = tourIndex
       }

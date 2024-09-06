@@ -1,4 +1,4 @@
-export const data = [
+export const TABSDATA = [
   {
     id: 2,
     title: 'Profil',
@@ -25,7 +25,8 @@ export const data = [
     key: 'Statistics',
   },
 ]
-export const tabs = {
+
+export const TABS = {
   GameProfile: 'GameProfile',
   Transfer: 'Transfer',
   Statistics: 'Statistics',

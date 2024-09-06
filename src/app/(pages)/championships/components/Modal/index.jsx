@@ -2,13 +2,13 @@ import Backdrop from '../../../../../components/Backdrop'
 import Image from 'next/image'
 import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam'
 import { useState } from 'react'
-import { formations } from 'app/utils/formations.utils'
+import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 
 const LeagueModal = ({ toggleModal, league }) => {
   const [title, setTitle] = useState('')
-  const [formation, setFormation] = useState(formations['4-3-3'])
+  const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
   const { games } = useSelector((state) => state.competition)
   const router = useRouter()
 
@@ -23,7 +23,7 @@ const LeagueModal = ({ toggleModal, league }) => {
     await createTeam({ title, formation, competition_id: league.id })
     if (!error && !isLoading) {
       setTitle('')
-      setFormation(formations['4-3-3'])
+      setFormation(FORMATIONS['4-3-3'])
     }
     if (currentGame) {
       router.push(`/play/${league.slug}/${currentGame.id}`)
@@ -72,31 +72,31 @@ const LeagueModal = ({ toggleModal, league }) => {
             >
               <option
                 className="bg-neutral-800 checked:bg-neutral-700"
-                value={formations['4-3-3']}
+                value={FORMATIONS['4-3-3']}
               >
                 4-3-3
               </option>
               <option
                 className="bg-neutral-800 checked:bg-neutral-700"
-                value={formations['4-4-2']}
+                value={FORMATIONS['4-4-2']}
               >
                 4-4-2
               </option>
               <option
                 className="bg-neutral-800 checked:bg-neutral-700"
-                value={formations['3-4-3']}
+                value={FORMATIONS['3-4-3']}
               >
                 3-4-3
               </option>
               <option
                 className="bg-neutral-800 checked:bg-neutral-700"
-                value={formations['5-3-2']}
+                value={FORMATIONS['5-3-2']}
               >
                 5-3-2
               </option>
               <option
                 className="bg-neutral-800 checked:bg-neutral-700"
-                value={formations['3-5-2']}
+                value={FORMATIONS['3-5-2']}
               >
                 3-5-2
               </option>

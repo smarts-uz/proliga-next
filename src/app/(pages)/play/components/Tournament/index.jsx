@@ -2,7 +2,6 @@ import Gutter from '../../../../../components/Gutter'
 import { useState, useEffect } from 'react'
 import { supabase } from '../../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
-import Image from 'next/image'
 
 const Tournament = () => {
   const [players, setPlayers] = useState([])

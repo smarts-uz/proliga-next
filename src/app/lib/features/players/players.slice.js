@@ -4,8 +4,8 @@ const initialState = {
   players: [],
 }
 
-export const transferSlice = createSlice({
-  name: 'transfer',
+export const playersSlice = createSlice({
+  name: 'players',
   initialState,
   reducers: {
     setPlayers: (state, action) => {
@@ -14,6 +14,6 @@ export const transferSlice = createSlice({
   },
 })
 
-export const { setPlayers } = transferSlice.actions
+export const { setPlayers } = playersSlice.actions
 
-export default transferSlice.reducer
+export default playersSlice

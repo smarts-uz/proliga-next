@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify'
-import { PLAYERS } from 'app/utils/playerTypes.util.'
+import { PLAYERS } from 'app/utils/players.util'
 
 export const updatePlayerInTeamReducer = (state, action) => {
   const { player, team, teamConcat } = action.payload

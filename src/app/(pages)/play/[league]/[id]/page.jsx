@@ -20,16 +20,17 @@ const Play = ({ params }) => {
     isLoading: tourTeamLoading,
     error: tourTeamError,
   } = useGetTourTeam()
+  console.log(params.id)
 
   useEffect(() => {
-    if (userAuth && userTable && params.id && teamCount === 0) {
+    if (params.id && userTable && userAuth) {
       const fetch = async () => {
         await getTeamPlayers({ team_id: params.id })
       }
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, params, teamCount, userTable])
+  }, [userAuth, params.id, teamCount, userTable])
 
   useEffect(() => {
     if (userAuth && userTable && params.id) {
@@ -39,7 +40,7 @@ const Play = ({ params }) => {
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, params, userTable])
+  }, [userAuth, params.id, userTable])
 
   useEffect(() => {
     if (userAuth && userTable && params.id) {
@@ -49,7 +50,7 @@ const Play = ({ params }) => {
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth])
+  }, [userAuth, params.id])
 
   // useEffect(() => {
   //   if (!userAuth || !userTable) {

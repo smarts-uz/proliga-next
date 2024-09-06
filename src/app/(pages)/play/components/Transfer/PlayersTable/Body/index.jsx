@@ -1,7 +1,6 @@
 import { updatePlayerInTeam } from 'app/lib/features/game/game.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
-import { PLAYERS } from 'app/utils/playerTypes.util.'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()

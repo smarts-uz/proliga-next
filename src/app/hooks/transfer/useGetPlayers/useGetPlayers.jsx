@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setPlayers } from 'app/lib/features/transfer/transfer.slice'
+import { setPlayers } from 'app/lib/features/players/players.slice'
 
 export const useGetPlayers = () => {
   const dispatch = useDispatch()

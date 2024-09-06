@@ -4,9 +4,8 @@ import PlayersStructure from '../PlayersStructure'
 import PlayersTable from './PlayersTable'
 import ChangeCaptainForm from './ChangeCaptainForm'
 import { useSelector } from 'react-redux'
-import { TOUR } from 'app/utils/tour.utils'
+import { TOUR } from 'app/utils/tour.util'
 import ToursHistory from './ToursHistory'
-import { useState } from 'react'
 
 const Transfer = () => {
   const { tours, currentTour } = useSelector((state) => state.game)

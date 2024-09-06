@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   statistics: [],
+  playerActivities: [],
+  tournament: [],
 }
 
 const gameSlice = createSlice({

@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import StyledTab from './StyledTab'
 import StyledTabs from './StyledTabs'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetTours } from 'app/hooks/transfer/useGetTours/useGetTours'
-import { TOUR } from 'app/utils/tour.utils'
+import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/game/game.slice'
 
 export default function TourTabs() {

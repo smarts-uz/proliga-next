@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { data, tabs } from '../../../../../utils/tabs.util'
+import { TABSDATA,TABS } from '../../../../../utils/tabs.util'
 import { setTab } from '../../../../../lib/features/game/game.slice'
 import { toast } from 'react-toastify'
 
@@ -12,7 +12,7 @@ const NavigationTabs = () => {
   const dispatch = useDispatch()
 
   const setCurrentTab = (key) => {
-    if (Object.keys(tabs).includes(key)) {
+    if (Object.keys(TABS).includes(key)) {
       return dispatch(setTab(key))
     }
     return toast.error("selected tab doesn't exist!")
@@ -20,7 +20,7 @@ const NavigationTabs = () => {
 
   return (
     <div className="flex flex-wrap items-center gap-4 pt-6 2xl:gap-6">
-      {data.map((item, index) => (
+      {TABSDATA.map((item, index) => (
         <button
           key={item.id}
           className={`rounded px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === tab ? active : passive}`}

@@ -3,16 +3,16 @@ import Statistics from '../Statistics'
 import Transfer from '../Transfer'
 import Journal from '../Journal'
 import Tournament from '../Tournament'
-import { tabs } from '../../../../utils/tabs.util'
+import { TABS } from '../../../../utils/tabs.util'
 
 const CurrentTab = ({ currentTab }) => {
   return (
     <>
-      {currentTab === tabs.GameProfile && <GameProfile />}
-      {currentTab === tabs.Transfer && <Transfer />}
-      {currentTab === tabs.Statistics && <Statistics />}
-      {currentTab === tabs.Journal && <Journal />}
-      {currentTab === tabs.Tournament && <Tournament />}
+      {currentTab === TABS.GameProfile && <GameProfile />}
+      {currentTab === TABS.Transfer && <Transfer />}
+      {currentTab === TABS.Statistics && <Statistics />}
+      {currentTab === TABS.Journal && <Journal />}
+      {currentTab === TABS.Tournament && <Tournament />}
     </>
   )
 }
