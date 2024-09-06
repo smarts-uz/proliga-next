@@ -3,12 +3,11 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   const passive = 'bg-transparent text-neutral-500 font-base'
 
   return (
-    <div className="col-span-2 mt-2 flex w-full gap-2 overflow-x-auto lg:gap-4">
+    <div className="col-span-2 mt-2 flex w-full gap-2 overflow-x-scroll lg:gap-4">
       {DATA.map((obj, index) => (
         <button
           key={index}
-          className={`rounded px-2 py-1 font-medium transition-all md:px-4 md:text-sm 
-          ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
+          className={`py-.5 text-nowrap rounded px-1 font-medium uppercase transition-all md:px-4 md:text-sm ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
           onClick={() => column.setFilterValue(obj.key)}
         >
           {obj.title}
@@ -20,23 +19,23 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
 
 const DATA = [
   {
-    title: 'ALL',
+    title: 'hammasi',
     key: '',
   },
   {
-    title: 'GOA',
+    title: 'darvozabon',
     key: 'GOA',
   },
   {
-    title: 'DEF',
+    title: 'himoyachi',
     key: 'DEF',
   },
   {
-    title: 'MID',
+    title: 'yarim himoyachi',
     key: 'MID',
   },
   {
-    title: 'STR',
+    title: 'hujumchi',
     key: 'STR',
   },
 ]

@@ -34,7 +34,7 @@ export const updatePlayerInTeamReducer = (state, action) => {
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
   if (!emptyPlayer) {
-    toast.warning('No more players available')
+    toast.warning('Boshqa oyinchi qoshish mumkin emas!')
     return
   }
 

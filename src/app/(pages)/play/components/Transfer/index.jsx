@@ -30,7 +30,7 @@ const Transfer = () => {
             {currentTour?.status === TOUR.completed && (
               <PlayersStructure allowDelete={false} />
             )}
-              {currentTour?.status === TOUR.inProcess && (
+            {currentTour?.status === TOUR.inProcess && (
               <PlayersStructure allowDelete={false} />
             )}
           </div>
