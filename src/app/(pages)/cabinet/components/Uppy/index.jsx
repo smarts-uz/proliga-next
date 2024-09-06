@@ -24,8 +24,8 @@ export default function UppyDashboard() {
   const [uppy] = useState(createUppy)
 
   return (
-    <>
+    <div className="min-h-[36rem]">
       <Dashboard uppy={uppy} metaFields={metaFields} />
-    </>
+    </div>
   )
 }

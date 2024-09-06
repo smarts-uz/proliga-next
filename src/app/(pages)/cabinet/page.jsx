@@ -39,7 +39,7 @@ function Page() {
   }
   return (
     <Gutter>
-      <div className="z-10 flex min-h-svh items-center justify-center bg-neutral-800 py-8 text-gray-200 lg:min-h-[45rem] 2xl:min-h-[100vh]">
+      <div className="z-10 mt-24 flex min-h-svh items-center justify-center py-6 text-gray-200 ">
         <form
           onSubmit={formik.handleSubmit}
           className="auth-container w-screen max-w-[80rem] items-center justify-center gap-2"
