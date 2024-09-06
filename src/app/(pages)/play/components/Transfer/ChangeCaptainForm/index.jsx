@@ -59,7 +59,7 @@ const ChangeCaptainForm = () => {
           onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
-          <option value="" className="bg-neutral-950 checked:bg-neutral-900">
+          <option value="" className="bg-neutral-950 checked:bg-neutral-800">
             Kapitan
           </option>
           {teamConcat.map(

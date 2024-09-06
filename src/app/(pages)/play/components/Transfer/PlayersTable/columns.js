@@ -21,6 +21,18 @@ export const columns = [
     accessorKey: 'price',
     header: 'Price',
     cell: (info) => info.renderValue(),
+    filterFn: (row, id, filterValues) => {
+      const price = row.getValue(id)
+      const { min, max } = filterValues
+
+      if (min !== undefined && price < min) {
+        return false
+      }
+      if (max !== undefined && price > max) {
+        return false
+      }
+      return true
+    },
     meta: {
       filterVariant: 'price',
     },

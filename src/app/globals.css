@@ -44,6 +44,10 @@
     -webkit-box-shadow: 0 0 0 30px rgb(35 32 35) inset !important;
     -webkit-text-fill-color: rgb(180 179 170);
   }
+  select option:checked,
+  select option:hover {
+      box-shadow: 0 0 10px 100px #000 inset;
+  }
 }
 
 @layer components {
