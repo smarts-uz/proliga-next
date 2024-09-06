@@ -27,6 +27,9 @@ const Transfer = () => {
             {currentTour?.status === TOUR.notStartedTransfer && (
               <PlayersStructure />
             )}
+            {currentTour?.status === TOUR.completed && (
+              <PlayersStructure allowDelete={false} />
+            )}
           </div>
           <ChangeCaptainForm />
         </div>
