@@ -17,7 +17,7 @@ const Transfer = () => {
         <div className="flex h-full w-full flex-col lg:w-1/2">
           <div className="relative h-full w-full lg:w-full">
             <Image
-              src="/images/stadium.png"
+              src="/icons/stadium.svg"
               alt="stadium"
               width={700}
               height={600}

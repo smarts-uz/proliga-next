@@ -9,7 +9,7 @@ const GameProfile = () => {
       <main className="flex flex-col justify-between gap-4 md:flex-row">
         <div className="relative md:w-3/5">
           <Image
-            src="/images/stadium.png"
+            src="/icons/stadium.svg"
             alt="stadium"
             width={700}
             height={600}
