@@ -16,16 +16,16 @@ const Auth = () => {
       <section className="mx-4 mb-8 mt-24 flex w-full max-w-[28rem] flex-col gap-4 bg-black sm:mx-0 2xl:mt-32">
         <div className="flex rounded bg-neutral-900 p-1">
           <button
-            className={`flex-1 select-none rounded py-1.5 text-sm font-medium transition-all ${currentTab === tabs.login ? active : passive}`}
+            className={`flex-1 select-none rounded py-1.5 text-sm font-medium capitalize transition-all ${currentTab === tabs.login ? active : passive}`}
             onClick={() => setCurrentTab(tabs.login)}
           >
-            Login
+            tizimga kirish
           </button>
           <button
             className={`flex-1 select-none rounded py-1.5 text-sm font-medium transition-all ${currentTab === tabs.signup ? active : passive}`}
             onClick={() => setCurrentTab(tabs.signup)}
           >
-            Sign Up
+            Ro&apos;yxatdan o&apos;tish
           </button>
         </div>
         {currentTab === 'login' && (

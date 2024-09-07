@@ -64,7 +64,10 @@ const SignUpForm = ({ onClick }) => {
         Ro&apos;yxatdan o&apos;tish
       </h2>
       <div className="relative flex flex-col gap-1">
-        <label htmlFor="username" className="text-xs md:text-base">
+        <label
+          htmlFor="username"
+          className="text-xs text-neutral-400 md:text-base"
+        >
           Telefon raqam:
         </label>
         <PhoneInput
@@ -76,7 +79,10 @@ const SignUpForm = ({ onClick }) => {
         />
       </div>
       <div className="relative flex flex-col gap-1">
-        <label htmlFor="username" className="text-xs md:text-base">
+        <label
+          htmlFor="username"
+          className="text-xs text-neutral-400 md:text-base"
+        >
           Elektron pochta:
         </label>
         <input
@@ -97,7 +103,10 @@ const SignUpForm = ({ onClick }) => {
         />
       </div>
       <div className="relative flex flex-col gap-1">
-        <label htmlFor="password" className="text-xs md:text-base">
+        <label
+          htmlFor="password"
+          className="text-xs text-neutral-400 md:text-base"
+        >
           Parol:
         </label>
         <input
@@ -134,7 +143,10 @@ const SignUpForm = ({ onClick }) => {
         />
       </div>
       <div className="relative flex flex-col gap-1">
-        <label htmlFor="password" className="text-xs md:text-base">
+        <label
+          htmlFor="password"
+          className="text-xs text-neutral-400 md:text-base"
+        >
           Parol tasdiqlash:
         </label>
         <input
@@ -171,6 +183,31 @@ const SignUpForm = ({ onClick }) => {
           className="filter-neutral-400 absolute bottom-2.5 left-2 size-5"
         />
       </div>
+      {/* <div className="flex flex-col gap-1 text-xs md:text-sm">
+        <label
+          htmlFor="sms-confirmation"
+          className="text-xs capitalize text-neutral-400 md:text-base"
+        >
+          telefon raqamni tasdiqlash:
+        </label>
+        <div className="flex w-full gap-1">
+          <input
+            type="number"
+            min={6}
+            max={6}
+            name="sms-confirmation"
+            id="sms-confirmation"
+            placeholder="- - - - -"
+            className="auth-input w-full"
+          />
+          <button
+            type="button"
+            className="h-full text-nowrap rounded border border-primary bg-neutral-900 px-2 text-xs text-white transition-all hover:bg-black md:px-4 md:text-sm"
+          >
+            Kod Yuborish
+          </button>
+        </div>
+      </div> */}
       <button
         type="button"
         onClick={onClick}
@@ -193,7 +230,7 @@ const SignUpForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          'Kirish'
+          "Akkaunt O'chish"
         )}
       </button>
     </form>
