@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
+import OTPConfirmationModal from 'components/OTPConfirmationModal'
 
 const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -183,31 +184,6 @@ const SignUpForm = ({ onClick }) => {
           className="filter-neutral-400 absolute bottom-2.5 left-2 size-5"
         />
       </div>
-      {/* <div className="flex flex-col gap-1 text-xs md:text-sm">
-        <label
-          htmlFor="sms-confirmation"
-          className="text-xs capitalize text-neutral-400 md:text-base"
-        >
-          telefon raqamni tasdiqlash:
-        </label>
-        <div className="flex w-full gap-1">
-          <input
-            type="number"
-            min={6}
-            max={6}
-            name="sms-confirmation"
-            id="sms-confirmation"
-            placeholder="- - - - -"
-            className="auth-input w-full"
-          />
-          <button
-            type="button"
-            className="h-full text-nowrap rounded border border-primary bg-neutral-900 px-2 text-xs text-white transition-all hover:bg-black md:px-4 md:text-sm"
-          >
-            Kod Yuborish
-          </button>
-        </div>
-      </div> */}
       <button
         type="button"
         onClick={onClick}
@@ -233,6 +209,7 @@ const SignUpForm = ({ onClick }) => {
           "Akkaunt O'chish"
         )}
       </button>
+      <OTPConfirmationModal />
     </form>
   )
 }

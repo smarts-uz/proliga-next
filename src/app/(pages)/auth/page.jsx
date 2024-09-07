@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import LoginForm from './components/LoginForm'
 import SignUpForm from './components/SignUpForm'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 const Auth = () => {
   const [currentTab, setCurrentTab] = useState(tabs.login)
