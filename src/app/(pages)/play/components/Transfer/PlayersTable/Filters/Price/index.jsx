@@ -1,11 +1,11 @@
 const PriceFilter = ({ column, columnFilterValue }) => {
   return (
-    <div className="flex w-full items-center gap-1">
+    <div className="col-span-2 flex w-full items-center gap-1">
       <h3 className="mr-1 hidden text-sm font-semibold md:block md:text-base">
         Narx
       </h3>
       <select
-        className="min-w-16 rounded border border-neutral-500 bg-neutral-950 p-1 text-neutral-200"
+        className="h-full min-w-16 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
         onClick={(e) =>
           column.setFilterValue(() => ({
             min: e.target.value,
@@ -25,7 +25,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
         ))}
       </select>
       <select
-        className="min-w-16 rounded border border-neutral-500 bg-neutral-950 p-1 text-neutral-200"
+        className="h-full min-w-16 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
         onClick={(e) =>
           column.setFilterValue(() => ({
             min: columnFilterValue?.min ?? MIN[0],

@@ -3,11 +3,11 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   const passive = 'bg-transparent text-neutral-500 font-base'
 
   return (
-    <div className="col-span-2 mt-2 flex w-full gap-2 overflow-x-scroll lg:gap-4">
+    <div className="col-span-3 mt-2 flex w-full gap-2 overflow-x-scroll lg:gap-4">
       {DATA.map((obj, index) => (
         <button
           key={index}
-          className={`py-.5 text-nowrap rounded px-1 font-medium uppercase transition-all md:px-4 md:text-sm ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
+          className={`text-nowrap rounded px-1 py-1 font-medium uppercase transition-all md:px-4 md:text-sm 2xl:px-2 ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
           onClick={() => column.setFilterValue(obj.key)}
         >
           {obj.title}

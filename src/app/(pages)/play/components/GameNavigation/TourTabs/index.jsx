@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box'
-import { useEffect } from 'react'
 import StyledTab from './StyledTab'
+
 import StyledTabs from './StyledTabs'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetTours } from 'app/hooks/transfer/useGetTours/useGetTours'
 import { TOUR } from 'app/utils/tour.util'
@@ -47,7 +48,6 @@ export default function TourTabs() {
     >
       <StyledTabs
         value={currentTourIndex}
-        // onChange={(e) => dispatch(setCurrentTour(e.target.value))}
         variant="scrollable"
         scrollButtons="auto"
         className="mt-4 rounded text-white"
@@ -57,7 +57,7 @@ export default function TourTabs() {
           <StyledTab
             key={item.id}
             onClick={() => dispatch(setCurrentTourIndex(index))}
-            className="space-y-0 disabled:cursor-default disabled:text-neutral-500 md:w-48 lg:w-56 xl:w-64"
+            className="w-48 space-y-0 disabled:cursor-default disabled:text-neutral-500 sm:w-56 md:w-64 2xl:w-72"
             icon={
               <h3 className="text-start text-sm md:text-base">
                 {index + 1} Tur

@@ -18,7 +18,7 @@ const ClubsFilter = ({ column }) => {
 
   return (
     <select
-      className="h-8 w-full max-w-36 truncate rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200 shadow checked:bg-red-400  md:max-w-48"
+      className="col-span-1 h-8 w-full max-w-36 truncate rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200 shadow md:max-w-48"
       onClick={(e) => column.setFilterValue(e.target.value)}
     >
       <option
