@@ -209,7 +209,6 @@ const SignUpForm = ({ onClick }) => {
           "Akkaunt O'chish"
         )}
       </button>
-      <OTPConfirmationModal />
     </form>
   )
 }
