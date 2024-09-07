@@ -9,32 +9,40 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useEffect, useState } from 'react'
-import { useGetPlayers } from 'app/hooks/transfer/useGetPlayers/useGetPlayers'
 import { columns } from './columns'
 import TransferTablePagination from './Pagination'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import TransferTableFilters from './Filters'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPlayers } from 'app/lib/features/players/players.thunk'
+import { selectPlayers } from 'app/lib/features/players/players.selector'
 
 function PlayersTable() {
+  const dispatch = useDispatch()
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
   const { team } = useSelector((store) => store.game)
-  const { getPlayers } = useGetPlayers()
+  const selectedPlayers = useSelector(selectPlayers)
 
   useEffect(() => {
-    if (team) {
-      const fetch = async () => {
-        await getPlayers({ setData, competition_id: team.competition_id.id })
-      }
-      fetch()
+    if (selectedPlayers?.length > 0) {
+      setData(selectedPlayers)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [team])
+  }, [selectedPlayers])
+
+  useEffect(() => {
+    if (team?.competition_id?.id) {
+      dispatch(
+        fetchPlayers({
+          competition_id: team.competition_id.id,
+        })
+      )
+    }
+  }, [dispatch, team])
 
   const table = useReactTable({
     columns,
