@@ -1,12 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectTeams } from 'app/lib/features/teams/teams.selector'
+import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
 
-const Championship = ({ item }) => {
+const Championship = ({ game }) => {
+  const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
-  const { games } = useSelector((state) => state.competition)
+  const [currentGame, setCurrentGame] = useState(null)
+  const { userTable } = useSelector((state) => state.auth)
+  const teams = useSelector(selectTeams)
   const router = useRouter()
 
   const toggleModal = () => {
@@ -22,8 +27,20 @@ const Championship = ({ item }) => {
       }
     }
   }
-  const currentGame =
-    games && games.find((game) => game.competition_id === item.id)
+
+  useEffect(() => {
+    dispatch(
+      fetchTeams({
+        user_id: userTable.id,
+      })
+    )
+  }, [dispatch, userTable])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const currentGame = teams?.find((team) => team.competition_id === game.id)
+    setCurrentGame(currentGame)
+  }, [teams, game.id])
 
   const handleClick = () => {
     if (currentGame) {
@@ -40,8 +57,8 @@ const Championship = ({ item }) => {
         onClick={handleClick}
       >
         <img
-          src={item.flag}
-          alt={item.title}
+          src={game.flag}
+          alt={game.title}
           className="z-10 size-12 select-none rounded-full bg-white p-1"
           draggable={false}
         />
@@ -50,11 +67,11 @@ const Championship = ({ item }) => {
         />
         <div>
           <h3 className="text-base font-bold capitalize xs:text-lg md:text-xl">
-            {item.title}
+            {game.title}
           </h3>
-          <p className="text-xs text-neutral-400 xs:text-sm md:text-base">
+          {/* <p className="text-xs text-neutral-400 xs:text-sm md:text-base">
             Description of League
-          </p>
+          </p> */}
         </div>
       </article>
       {isModalOpen && <LeagueModal toggleModal={toggleModal} league={item} />}

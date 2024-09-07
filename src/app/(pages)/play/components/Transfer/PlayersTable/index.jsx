@@ -74,7 +74,6 @@ function PlayersTable() {
             transferlar
           </h3>
           <p className="cursor-pointer text-4xl font-bold">2/2</p>
-          <span className="absolute left-[68px] top-0 size-2.5 animate-pulse rounded-full bg-yellow-500" />
         </div>
       </div>
       <div className="grid w-full grid-cols-3 gap-1 text-sm">
