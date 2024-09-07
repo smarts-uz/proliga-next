@@ -6,16 +6,20 @@ import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
-import UppyDashboard from './components/Uppy'
 import Link from 'next/link'
 import { useUploadFile } from 'app/hooks/user/useUploadFile/useUploadFile'
+import { useDownloadFile } from 'app/hooks/user/useDownloadFile/useDownloadFile'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
-  const { uploadFile, downloadFile, img } = useUploadFile()
+  const { uploadFile, isLoading: uploadLoading, } = useUploadFile()
+  const {downloadFile,img}=useDownloadFile()  
   const uploadImage = async () => {
     let rasm = document.getElementById('img')
     await uploadFile(rasm.files[0])
+    
+    window.location.reload()
+
   }
   const formik = useFormik({
     initialValues: {
@@ -33,7 +37,7 @@ function Page() {
   })
   useEffect(() => {
     downloadFile()
-  }, [img])
+  }, [])
   const update = async () => {
     try {
       await updateData(
@@ -174,13 +178,7 @@ function Page() {
               <Link className="text-blue-500" href={'/cabinet/update'}>
                 Parolni yangilash
               </Link>
-              <label
-                className="5 my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="photo"
-              >
-                Profil uchun surat
-              </label>
-            
+           
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
@@ -188,7 +186,14 @@ function Page() {
               >
                 Tahrirlash
               </button>
-              <input type="file" id="img" className="auth-input mt-4" />
+              <label
+                className=" my-2 block text-sm font-bold text-neutral-300"
+                htmlFor="img"
+              >
+                Profil uchun surat
+                <img src={img} width={100} height={100} key={img} alt="img" />
+              </label>
+              <input type="file" id="img" className="hidden" />
               <button
                 type="button"
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
