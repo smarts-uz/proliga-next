@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import Gutter from '../../../components/Gutter'
 import DatePicker from 'react-datepicker'
@@ -8,9 +8,15 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 import UppyDashboard from './components/Uppy'
 import Link from 'next/link'
+import { useUploadFile } from 'app/hooks/user/useUploadFile/useUploadFile'
 function Page() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
+  const { uploadFile, downloadFile, img } = useUploadFile()
+  const uploadImage = async () => {
+    let rasm = document.getElementById('img')
+    await uploadFile(rasm.files[0])
+  }
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -25,6 +31,9 @@ function Page() {
       alert(JSON.stringify(values, null, 2))
     },
   })
+  useEffect(() => {
+    downloadFile()
+  }, [img])
   const update = async () => {
     try {
       await updateData(
@@ -171,13 +180,21 @@ function Page() {
               >
                 Profil uchun surat
               </label>
-              <UppyDashboard />
+            
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
                 onClick={() => update()}
               >
                 Tahrirlash
+              </button>
+              <input type="file" id="img" className="auth-input mt-4" />
+              <button
+                type="button"
+                className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
+                onClick={() => uploadImage()}
+              >
+                Surat qo&apos;shish
               </button>
             </div>
           </div>
