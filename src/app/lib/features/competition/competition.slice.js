@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { competitionExtraReducer } from './competition.extraReducer'
 
 const initialState = {
   competition: [],
-  games: [],
+  error: null,
+  isLoading: false,
 }
 
 export const competitionSlice = createSlice({
@@ -12,15 +14,10 @@ export const competitionSlice = createSlice({
     setCompetition: (state, action) => {
       state.competition = action.payload
     },
-    addGame: (state, action) => {
-      state.games.push(action.payload)
-    },
-    setGame: (state, action) => {
-      state.games = action.payload
-    },
   },
+  extraReducers: competitionExtraReducer,
 })
 
-export const { setCompetition, addGame, setGame } = competitionSlice.actions
+export const { setCompetition } = competitionSlice.actions
 
 export default competitionSlice.reducer

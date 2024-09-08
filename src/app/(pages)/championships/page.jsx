@@ -3,20 +3,32 @@
 import Gutter from '../../../components/Gutter'
 import Championship from './components/Championship'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useGetCompetition } from 'app/hooks/competition/useGetCompetition/useGetCompetition'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
+import { selectTeams } from 'app/lib/features/teams/teams.selector'
+import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
+import { selectCompetition } from 'app/lib/features/competition/competition.selector'
 
 const Championships = () => {
-  const { competition } = useSelector((state) => state.competition)
-  const { getCompetition, isLoading, error } = useGetCompetition()
+  const dispatch = useDispatch()
+  const { userTable } = useSelector((state) => state.auth)
+  const selectedTeams = useSelector(selectTeams)
+  const selectedCompetition = useSelector(selectCompetition)
+  const { isLoading } = useSelector((state) => state.competition)
 
   useEffect(() => {
-    const fetch = async () => {
-      await getCompetition()
+    dispatch(fetchCompetition())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (userTable && selectedTeams.length === 0) {
+      dispatch(
+        fetchTeams({
+          user_id: userTable.id,
+        })
+      )
     }
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch, userTable, selectedTeams])
 
   return (
     <Gutter>
@@ -28,7 +40,7 @@ const Championships = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {competition.map((game, index) => (
+            {selectedCompetition.map((game, index) => (
               <Championship key={index} game={game} />
             ))}
           </div>

@@ -5,29 +5,31 @@ import { useState } from 'react'
 import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
+import { selectTeams } from 'app/lib/features/teams/teams.selector'
 
-const LeagueModal = ({ toggleModal, league }) => {
+const CompetitionModal = ({ toggleModal, game }) => {
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
-  const { games } = useSelector((state) => state.competition)
   const router = useRouter()
+  const selectedTeams = useSelector(selectTeams)
 
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const currentGame =
-      games && games.find((game) => game.competition_id === league.id)
+    const currentGame = selectedTeams.find(
+      (game) => game.competition_id === game.id
+    )
 
-    await createTeam({ title, formation, competition_id: league.id })
+    await createTeam({ title, formation, competition_id: game.id })
     if (!error && !isLoading) {
       setTitle('')
       setFormation(FORMATIONS['4-3-3'])
     }
-    if (currentGame) {
-      router.push(`/play/${league.slug}/${currentGame.id}`)
-    }
+    // if (currentGame) {
+    //   router.push(`/play/${game.slug}/${currentGame.id}`)
+    // }
     toggleModal()
   }
 
@@ -126,4 +128,4 @@ const LeagueModal = ({ toggleModal, league }) => {
   )
 }
 
-export default LeagueModal
+export default CompetitionModal

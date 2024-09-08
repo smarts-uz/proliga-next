@@ -2,15 +2,12 @@
 import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
 
 const Championship = ({ game }) => {
-  const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
-  const { userTable } = useSelector((state) => state.auth)
   const teams = useSelector(selectTeams)
   const router = useRouter()
 
@@ -28,13 +25,6 @@ const Championship = ({ game }) => {
     }
   }
 
-  useEffect(() => {
-    dispatch(
-      fetchTeams({
-        user_id: userTable.id,
-      })
-    )
-  }, [dispatch, userTable])
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -44,7 +34,7 @@ const Championship = ({ game }) => {
 
   const handleClick = () => {
     if (currentGame) {
-      router.push(`/play/${item.slug}/${currentGame.id}`)
+      router.push(`/play/${game.slug}/${currentGame.id}`)
     } else {
       toggleModal(true)
     }
@@ -74,7 +64,7 @@ const Championship = ({ game }) => {
           </p> */}
         </div>
       </article>
-      {isModalOpen && <LeagueModal toggleModal={toggleModal} league={item} />}
+      {isModalOpen && <LeagueModal toggleModal={toggleModal} game={game} />}
     </>
   )
 }

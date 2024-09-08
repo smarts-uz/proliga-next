@@ -35,7 +35,6 @@ export const useGetTeams = () => {
       }
       if (data) {
         setData(data)
-        dispatch(setGame(data))
       }
     } catch (error) {
       setError(error.message)

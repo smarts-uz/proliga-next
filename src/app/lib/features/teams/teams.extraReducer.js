@@ -11,6 +11,6 @@ export const teamsExtraReducer = (builder) => {
     })
     .addCase(fetchTeams.rejected, (state, action) => {
       state.isLoading = false
-      state.teams = action.payload.error.message ?? null
+      state.error = action.payload.error.message ?? null
     })
 }

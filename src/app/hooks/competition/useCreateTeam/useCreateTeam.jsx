@@ -44,7 +44,6 @@ export const useCreateTeam = () => {
       }
       if (data) {
         setData(data)
-        dispatch(addGame(data[0]))
       }
     } catch (error) {
       setError(error.message)

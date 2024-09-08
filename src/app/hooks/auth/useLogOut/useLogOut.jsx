@@ -4,7 +4,6 @@ import {
   setUserAuth,
   setUserTable,
 } from '../../../lib/features/auth/auth.slice'
-import { setGame } from 'app/lib/features/competition/competition.slice'
 import { useRouter  } from 'next/navigation'
 
 export const useLogOut = () => {
@@ -16,7 +15,6 @@ export const useLogOut = () => {
     try {
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))
-      dispatch(setGame(null))
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)

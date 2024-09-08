@@ -35,14 +35,14 @@ function PlayersTable() {
   }, [selectedPlayers])
 
   useEffect(() => {
-    if (team?.competition_id?.id) {
+    if (team?.competition_id?.id && selectedPlayers?.length === 0) {
       dispatch(
         fetchPlayers({
           competition_id: team.competition_id.id,
         })
       )
     }
-  }, [dispatch, team])
+  }, [dispatch, team, selectedPlayers])
 
   const table = useReactTable({
     columns,
