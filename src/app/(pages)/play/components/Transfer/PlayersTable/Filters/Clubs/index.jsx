@@ -14,7 +14,7 @@ const ClubsFilter = ({ column }) => {
         className="rounded-sm checked:bg-neutral-800"
         defaultChecked
       >
-        Clublar
+        Hamma Clublar
       </option>
       {selectedClubs?.length > 0 &&
         selectedClubs.map((club) => (

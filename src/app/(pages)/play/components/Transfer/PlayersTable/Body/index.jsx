@@ -1,16 +1,20 @@
-import { updatePlayerInTeam } from 'app/lib/features/game/game.slice'
+import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
+import { addTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayer.slice'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
-  const { GOA, DEF, MID, STR, team, tour_team } = useSelector(
-    (state) => state.game
+  const currentTeam = useSelector((state) => state.currentTeam)
+  const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
+
+  const teamConcat = useMemo(
+    () => GOA.concat(DEF, MID, STR),
+    [GOA, DEF, MID, STR]
   )
-  const teamConcat = GOA.concat(DEF, MID, STR)
 
   const handleAddPlayer = (player) => {
-    dispatch(updatePlayerInTeam({ player, team, tour_team, teamConcat }))
+    dispatch(addTeamPlayer({ player, team: currentTeam, teamConcat }))
   }
 
   return (

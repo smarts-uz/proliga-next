@@ -47,7 +47,6 @@ export const updatePlayerInTeamReducer = (state, action) => {
     state.GOA[state.indexes.GOA] = newPlayer
     state.indexes.GOA++
   }
-  //goa
   if (player.position === PLAYERS.DEF && state.indexes.DEF < state.DEF.length) {
     const newPlayer = createUpdatePlayer(state.DEF[state.indexes.DEF])
     state.DEF[state.indexes.DEF] = newPlayer
@@ -66,7 +65,6 @@ export const updatePlayerInTeamReducer = (state, action) => {
     state.indexes.DEF++
     state.teamCount++
   }
-  // mid
   if (player.position === PLAYERS.MID && state.indexes.MID < state.MID.length) {
     const newPlayer = createUpdatePlayer(state.MID[state.indexes.MID])
     state.MID[state.indexes.MID] = newPlayer
@@ -85,7 +83,6 @@ export const updatePlayerInTeamReducer = (state, action) => {
     state.indexes.MID++
     state.teamCount++
   }
-  //str
   if (player.position === PLAYERS.STR && state.indexes.STR < state.STR.length) {
     const newPlayer = createUpdatePlayer(state.STR[state.indexes.STR])
     state.STR[state.indexes.STR] = newPlayer
@@ -160,42 +157,4 @@ export const softDeletePlayerFromTeamReducer = (state, action) => {
     state.playersCount.STR--
     state.teamCount--
   }
-}
-
-export const setTeamPlayersReducer = (state, action) => {
-  const team = action.payload
-  team.forEach((player) => {
-    if (player.position === PLAYERS.GOA) {
-      state.GOA.push(player)
-      if (player.name) {
-        state.teamCount++
-        state.playersCount.GOA++
-        state.indexes.GOA++
-      }
-    }
-    if (player.position === PLAYERS.DEF) {
-      state.DEF.push(player)
-      if (player.name) {
-        state.teamCount++
-        state.indexes.DEF++
-        state.playersCount.DEF++
-      }
-    }
-    if (player.position === PLAYERS.MID) {
-      state.MID.push(player)
-      if (player.name) {
-        state.teamCount++
-        state.playersCount.MID++
-        state.indexes.MID++
-      }
-    }
-    if (player.position === PLAYERS.STR) {
-      state.STR.push(player)
-      if (player.name) {
-        state.playersCount.STR++
-        state.teamCount++
-        state.indexes.STR++
-      }
-    }
-  })
 }

@@ -2,7 +2,7 @@ import Player from './Player'
 import { useSelector } from 'react-redux'
 
 const PlayersStructure = ({ allowDelete = true }) => {
-  const { GOA, DEF, MID, STR } = useSelector((state) => state.game)
+  const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
 
   return (
     <div className="absolute bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 sm:py-2 md:pb-8 md:pt-0">

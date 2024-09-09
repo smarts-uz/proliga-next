@@ -5,17 +5,15 @@ import CurrentTab from '../../components/CurrentTab'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { useGetTeamPlayers } from 'app/hooks/competition/useGetTeamPlayers/useGetTeamPlayers'
-import { useGetTeam } from 'app/hooks/transfer/useGetTeam/useGetTeam'
 import { useGetTourTeam } from 'app/hooks/transfer/useGetTourTeam/useGetTourTeam'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
+import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 
 const Play = ({ params }) => {
   const router = useRouter()
   const dispatch = useDispatch()
-  const { tab, teamCount } = useSelector((state) => state.game)
+  const { tab } = useSelector((state) => state.game)
   const { userAuth, userTable } = useSelector((state) => state.auth)
-  const { getTeamPlayers, isLoading, error } = useGetTeamPlayers()
   const {
     getTourTeam,
     isLoading: tourTeamLoading,
@@ -26,27 +24,7 @@ const Play = ({ params }) => {
   useEffect(() => {
     if (params.id && userTable && userAuth) {
       const fetch = async () => {
-        await getTeamPlayers({ team_id: params.id })
-      }
-      fetch()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, params.id, teamCount, userTable])
-
-  // useEffect(() => {
-  //   if (userAuth && userTable && params.id) {
-  //     const fetch = async () => {
-  //       await getTeam(params.id)
-  //     }
-  //     fetch()
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [userAuth, params.id, userTable])
-
-  useEffect(() => {
-    if (userAuth && userTable && params.id) {
-      const fetch = async () => {
-        dispatch(fetchCurrentTeam({ id: params.id }))
+        await getTourTeam(params.id)
       }
       fetch()
     }
@@ -56,12 +34,13 @@ const Play = ({ params }) => {
   useEffect(() => {
     if (userAuth && userTable && params.id) {
       const fetch = async () => {
-        await getTourTeam(params.id)
+        dispatch(fetchCurrentTeam({ id: params.id }))
+        dispatch(fetchTeamPlayers({ team_id: params.id }))
       }
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, params.id])
+  }, [userAuth, params.id, userTable])
 
   // useEffect(() => {
   //   if (!userAuth || !userTable) {

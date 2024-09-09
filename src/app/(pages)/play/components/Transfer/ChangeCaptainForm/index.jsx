@@ -5,8 +5,8 @@ import { toast } from 'react-toastify'
 import { useMemo } from 'react'
 
 const ChangeCaptainForm = () => {
-  const { GOA, DEF, MID, STR, team, teamCount, playersCount } = useSelector(
-    (state) => state.game
+  const { GOA, DEF, MID, STR, playersCount } = useSelector(
+    (state) => state.teamPlayers
   )
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const teamConcat = useMemo(
@@ -31,23 +31,21 @@ const ChangeCaptainForm = () => {
         return
       }
     })
-    if (!capitan) {
+    if (!currentTeam.captain_id) {
       toast.error('Kapitan tanlang')
       return
     }
-    if (
-      teamCount !== 11 &&
-      playersCount.DEF < 3 &&
-      playersCount.MID < 3 &&
-      playersCount.STR < 2
-    ) {
+    if (playersCount.DEF < 3 && playersCount.MID < 3 && playersCount.STR < 2) {
       toast.error('Jamoa da yetarli futbolchilar yoq')
       return
     }
-    const formation = `${playersCount.DEF}-${playersCount.MID}-${playersCount.STR}`
+    // const formation = `${playersCount.DEF}-${playersCount.MID}-${playersCount.STR}`
 
-    await updateTeamPlayers({ team: teamConcat, team_id: team.id })
-    await updateTeam({ capitan, team_id: team.id, formation })
+    await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
+    await updateTeam({
+      captain_id: currentTeam.captain_id,
+      team_id: currentTeam.id,
+    })
 
     if (!error && !isLoading && !teamLoading && !teamError) {
       toast.success('Team updated successfully')
@@ -57,21 +55,24 @@ const ChangeCaptainForm = () => {
   return (
     <form className="mt-2 flex justify-between text-black">
       <div className="flex items-center gap-1 text-neutral-200">
-        <h3 className="mr-2 text-lg font-medium">Kapitan:</h3>
+        <h3 className="mr-2 text-lg font-medium text-neutral-100">Kapitan:</h3>
         <select
           name="formation"
           id="formation"
           // onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
-          <option value="" className="bg-neutral-950 checked:bg-neutral-800">
-            Kapitan
+          <option
+            value=""
+            className="bg-neutral-950 checked:bg-neutral-700 active:bg-neutral-800"
+          >
+            Kapitan tanlang
           </option>
           {teamConcat.map(
             (player) =>
               player.name && (
                 <option
-                  className="bg-neutral-950 checked:bg-neutral-900"
+                  className="bg-neutral-950 checked:bg-neutral-800"
                   value={player.player_id}
                   key={player.id}
                   selected={player.player_id === currentTeam.captain_id}

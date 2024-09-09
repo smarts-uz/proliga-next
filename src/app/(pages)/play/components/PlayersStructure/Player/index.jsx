@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { softDeletePlayerFromTeam } from 'app/lib/features/game/game.slice'
 import ConfirmationModal from 'components/ConfirmationModal'
+import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayer.slice'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   }
 
   const handleDeletePlayer = () => {
-    dispatch(softDeletePlayerFromTeam({ player }))
+    dispatch(deleteTeamPlayer({ player }))
     toggleDeleteModal()
   }
 
