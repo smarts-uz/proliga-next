@@ -2,16 +2,13 @@
 
 import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useGetTourTeam } from 'app/hooks/transfer/useGetTourTeam/useGetTourTeam'
-import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
-import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 
 const Play = ({ params }) => {
   const router = useRouter()
-  const dispatch = useDispatch()
   const { tab } = useSelector((state) => state.game)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const {
@@ -30,15 +27,6 @@ const Play = ({ params }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth, params.id, userTable])
 
-  useEffect(() => {
-    if (userAuth && userTable && params.id) {
-      const fetch = async () => {
-        dispatch(fetchCurrentTeam({ id: params.id }))
-        dispatch(fetchTeamPlayers({ team_id: params.id }))
-      }
-      fetch()
-    }
-  }, [userAuth, params.id, userTable, dispatch])
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // useEffect(() => {

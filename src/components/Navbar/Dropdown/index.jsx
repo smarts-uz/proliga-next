@@ -24,7 +24,7 @@ const Dropdown = () => {
               alt="settings"
               src="/icons/gear.svg"
             />
-            <p>Kabinet</p>
+            <p>Sozlamalar</p>
           </NavLink>
           <button
             onClick={logOut}

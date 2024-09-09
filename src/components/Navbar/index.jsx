@@ -6,7 +6,6 @@ import Dropdown from './Dropdown'
 import Gutter from '../Gutter'
 import { useSelector } from 'react-redux'
 import Notification from './Notification/Notification'
-import { toast } from 'react-toastify'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
@@ -15,14 +14,15 @@ const Navbar = () => {
 
   const handleToggleDropdown = () => {
     if (isNotificationsOpen) {
-      return toast.warning('Iltimos, ochiladigan menyuni yoping!')
+      toggleNotificationsOpen(false)
     }
+
     toggleDropdown(!isDropdownOpen)
   }
 
   const handleToggleNotifications = () => {
     if (isDropdownOpen) {
-      return toast.warning('Iltimos, ochiladigan menyuni yoping!')
+      toggleDropdown(false)
     }
     toggleNotificationsOpen(!isNotificationsOpen)
   }
@@ -38,6 +38,7 @@ const Navbar = () => {
               width={180}
               height={56}
               priority={true}
+              draggable={false}
               className="h-6 w-32 cursor-pointer md:h-8 md:w-40"
             />
           </Link>

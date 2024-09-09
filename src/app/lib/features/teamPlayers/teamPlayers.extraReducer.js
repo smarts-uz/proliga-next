@@ -7,7 +7,15 @@ export const teamPlayersExtraReducer = (builder) => {
       state.isLoading = true
     })
     .addCase(fetchTeamPlayers.fulfilled, (state, action) => {
-      state.isLoading = false
+      state.GOA = []
+      state.playersCount.GOA = 0
+      state.DEF = []
+      state.playersCount.DEF = 0
+      state.MID = []
+      state.playersCount.MID = 0
+      state.STR = []
+      state.playersCount.STR = 0
+
       const team = action.payload.data
       team.forEach((player) => {
         if (player.position === PLAYERS.GOA) {
@@ -35,6 +43,7 @@ export const teamPlayersExtraReducer = (builder) => {
           }
         }
       })
+      state.isLoading = false
     })
     .addCase(fetchTeamPlayers.rejected, (state, action) => {
       state.isLoading = false
