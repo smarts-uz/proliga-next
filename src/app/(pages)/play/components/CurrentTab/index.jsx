@@ -12,7 +12,6 @@ import { useEffect } from 'react'
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
-  console.log(paramsId)
 
   useEffect(() => {
     if (userAuth && userTable && paramsId) {

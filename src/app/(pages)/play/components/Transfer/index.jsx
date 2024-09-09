@@ -29,7 +29,7 @@ const Transfer = ({ paramsId }) => {
   return (
     <Gutter>
       <main className="flex flex-col justify-between gap-2 md:min-h-max lg:flex-row">
-        <div className="flex h-full w-full flex-col lg:w-1/2">
+        <div className="flex h-full w-full flex-col lg:w-3/5">
           <div className="relative h-full w-full lg:w-full">
             <Image
               src="/icons/stadium.svg"

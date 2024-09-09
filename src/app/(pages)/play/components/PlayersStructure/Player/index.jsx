@@ -1,8 +1,8 @@
 import Image from 'next/image'
+import ConfirmationModal from 'components/ConfirmationModal'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import ConfirmationModal from 'components/ConfirmationModal'
-import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayer.slice'
+import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()

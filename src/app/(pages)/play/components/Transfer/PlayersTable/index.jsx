@@ -15,7 +15,6 @@ import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import TransferTableFilters from './Filters'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
 
 function PlayersTable() {

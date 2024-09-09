@@ -1,4 +1,5 @@
 import { PLAYERS } from 'app/utils/players.util'
+import { toast } from 'react-toastify'
 
 export const deleteTeamPlayerReducer = (state, action) => {
   const { player } = action.payload
@@ -11,33 +12,34 @@ export const deleteTeamPlayerReducer = (state, action) => {
     price: null,
   })
 
-  if (
-    !state.playersCount.STR > 2 &&
-    !state.playersCount.MID > 3 &&
-    !state.playersCount.DEF > 3
-  ) {
-    toast.warning(
-      "Sizda kamida 2 hujumchi, 3 ta ya'rim himoyachi va 3 ta himoyobon bolishi shart!"
-    )
-    return state
-  }
-
   if (player.position === PLAYERS.GOA) {
     state.GOA = state.GOA.filter((p) => p.id !== player.id)
     state.GOA.push(deletedPlayerObj(player))
     state.playersCount.GOA--
   }
   if (player.position === PLAYERS.DEF) {
+    if (state.playersCount.DEF < 4) {
+      toast.warning('Sizda kamida 3 darvozabon bolishi shart!')
+      return state
+    }
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
     state.DEF.push(deletedPlayerObj(player))
     state.playersCount.DEF--
   }
   if (player.position === PLAYERS.MID) {
+    if (state.playersCount.MID < 4) {
+      toast.warning('Sizda kamida 3 yarim himoyachi bolishi shart!')
+      return state
+    }
     state.MID = state.MID.filter((p) => p.id !== player.id)
     state.MID.push(deletedPlayerObj(player))
     state.playersCount.MID--
   }
   if (player.position === PLAYERS.STR) {
+    if (state.playersCount.STR < 3) {
+      toast.warning('Sizda kamida 2 hujumchi bolishi shart!')
+      return state
+    }
     state.STR = state.STR.filter((p) => p.id !== player.id)
     state.STR.push(deletedPlayerObj(player))
     state.playersCount.STR--
@@ -83,9 +85,9 @@ export const addTeamPlayerReducer = (state, action) => {
     player.position === PLAYERS.GOA &&
     state.playersCount.GOA < 1
   ) {
-    const emptyGOAPlayer = state.GOA.find((p) => p.name)
+    const emptyGOAPlayer = state.GOA.find((p) => !p.name)
     const newPlayer = createUpdatedPlayer(emptyGOAPlayer)
-    state.GOA.filter((p) => p.id === emptyGOAPlayer.id)
+    state.GOA = state.GOA.filter((p) => p.id !== emptyGOAPlayer.id)
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
   }
@@ -93,9 +95,9 @@ export const addTeamPlayerReducer = (state, action) => {
     player.position === PLAYERS.DEF &&
     state.playersCount.DEF < state.DEF.length
   ) {
-    const emptyDEFPlayer = state.DEF.find((p) => p.name)
+    const emptyDEFPlayer = state.DEF.find((p) => !p.name)
     const newPlayer = createUpdatedPlayer(emptyDEFPlayer)
-    state.DEF.filter((p) => p.id === emptyDEFPlayer.id)
+    state.DEF = state.DEF.filter((p) => p.id !== emptyDEFPlayer.id)
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
   }
@@ -114,9 +116,9 @@ export const addTeamPlayerReducer = (state, action) => {
     player.position === PLAYERS.MID &&
     state.playersCount.MID < state.MID.length
   ) {
-    const emptyMIDPlayer = state.MID.find((p) => p.name)
+    const emptyMIDPlayer = state.MID.find((p) => !p.name)
     const newPlayer = createUpdatedPlayer(emptyMIDPlayer)
-    state.MID.filter((p) => p.id === emptyMIDPlayer.id)
+    state.MID = state.MID.filter((p) => p.id !== emptyMIDPlayer.id)
     state.MID.push(newPlayer)
     state.playersCount.MID++
   }
@@ -133,11 +135,11 @@ export const addTeamPlayerReducer = (state, action) => {
   }
   if (
     player.position === PLAYERS.STR &&
-    state.playerCount.STR < state.STR.length
+    state.playersCount.STR < state.STR.length
   ) {
-    const emptySTRPlayer = state.STR.find((p) => p.name)
+    const emptySTRPlayer = state.STR.find((p) => !p.name)
     const newPlayer = createUpdatedPlayer(emptySTRPlayer)
-    state.STR.filter((p) => p.id === emptySTRPlayer.id)
+    state.STR = state.STR.filter((p) => p.id !== emptySTRPlayer.id)
     state.STR.push(newPlayer)
     state.playersCount.STR++
   }

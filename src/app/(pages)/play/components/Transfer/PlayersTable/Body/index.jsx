@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
-import { addTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayer.slice'
+import { addTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
-  const currentTeam = useSelector((state) => state.currentTeam)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
 
   const teamConcat = useMemo(
