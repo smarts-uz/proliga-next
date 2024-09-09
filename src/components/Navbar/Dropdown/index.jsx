@@ -9,8 +9,7 @@ const Dropdown = () => {
 
   return (
     <section
-      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-40 flex-col gap-4 rounded-md bg-neutral-900 p-4`}
-      onClick={(e) => e.stopPropagation()}
+      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-56 flex-col gap-4 rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500`}
     >
       <NavLink href="/championships">
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
@@ -37,14 +36,14 @@ const Dropdown = () => {
               width={24}
               height={24}
             />
-            <p>Log out</p>
+            <p>Tizimdan chiqish</p>
           </button>
         </>
       ) : (
         <>
           <NavLink href="/auth">
             <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-            <p>Login</p>
+            <p>Tizimga Kirish</p>
           </NavLink>
         </>
       )}

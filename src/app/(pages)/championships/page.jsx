@@ -32,8 +32,8 @@ const Championships = () => {
 
   return (
     <Gutter>
-      <section className="my-8 w-full rounded-2xl bg-neutral-800 p-6">
-        <h2 className="mb-4 text-2xl font-bold">Leagues</h2>
+      <section className="my-8 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">
+        <h2 className="mb-4 text-2xl font-bold">Ligalar</h2>
         {isLoading ? (
           <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             Loading...

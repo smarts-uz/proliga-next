@@ -43,7 +43,7 @@ const Championship = ({ game }) => {
   return (
     <>
       <article
-        className="relative flex cursor-pointer items-center gap-4 rounded-sm border border-neutral-500 bg-neutral-700 p-4"
+        className="relative flex cursor-pointer items-center gap-4 rounded-sm border border-neutral-500 bg-neutral-800 p-4 transition-all hover:bg-neutral-700"
         onClick={handleClick}
       >
         <img
@@ -59,9 +59,6 @@ const Championship = ({ game }) => {
           <h3 className="text-base font-bold capitalize xs:text-lg md:text-xl">
             {game.title}
           </h3>
-          {/* <p className="text-xs text-neutral-400 xs:text-sm md:text-base">
-            Description of League
-          </p> */}
         </div>
       </article>
       {isModalOpen && <LeagueModal toggleModal={toggleModal} game={game} />}

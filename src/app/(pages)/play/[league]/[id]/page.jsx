@@ -19,7 +19,6 @@ const Play = ({ params }) => {
     isLoading: tourTeamLoading,
     error: tourTeamError,
   } = useGetTourTeam()
-  console.log(params.id)
 
   useEffect(() => {
     if (params.id && userTable && userAuth) {
@@ -39,8 +38,8 @@ const Play = ({ params }) => {
       }
       fetch()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, params.id, userTable])
+  }, [userAuth, params.id, userTable, dispatch])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // useEffect(() => {
   //   if (!userAuth || !userTable) {

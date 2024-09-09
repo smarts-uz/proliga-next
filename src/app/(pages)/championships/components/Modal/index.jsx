@@ -53,11 +53,12 @@ const CompetitionModal = ({ toggleModal, game }) => {
         </div>
         <form className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <label htmlFor="name">Ism</label>
+            <label htmlFor="name">Jamoa Ismi</label>
             <input
               type="text"
               id="team-title"
               value={title}
+              autoFocus
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Jamoangizni nomi"
               className="h-12 w-full rounded-lg border border-neutral-700 bg-transparent p-2 outline-none"

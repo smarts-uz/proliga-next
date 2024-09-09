@@ -5,13 +5,26 @@ import Link from 'next/link'
 import Dropdown from './Dropdown'
 import Gutter from '../Gutter'
 import { useSelector } from 'react-redux'
+import Notification from './Notification/Notification'
+import { toast } from 'react-toastify'
 
 const Navbar = () => {
   const [isDropdownOpen, toggleDropdown] = useState(false)
+  const [isNotificationsOpen, toggleNotificationsOpen] = useState(false)
   const { userAuth } = useSelector((state) => state.auth)
 
   const handleToggleDropdown = () => {
+    if (isNotificationsOpen) {
+      return toast.warning('Iltimos, ochiladigan menyuni yoping!')
+    }
     toggleDropdown(!isDropdownOpen)
+  }
+
+  const handleToggleNotifications = () => {
+    if (isDropdownOpen) {
+      return toast.warning('Iltimos, ochiladigan menyuni yoping!')
+    }
+    toggleNotificationsOpen(!isNotificationsOpen)
   }
 
   return (
@@ -49,14 +62,14 @@ const Navbar = () => {
             </Link>
           </section>
           <div className="flex w-max items-center justify-center gap-4">
-            <button>
+            <button onClick={handleToggleNotifications}>
               <Image
                 src={'/icons/bell.svg'}
                 alt="bell"
                 draggable={false}
                 width={24}
                 height={24}
-                className="size-6 select-none"
+                className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
               />
             </button>
             <span
@@ -85,8 +98,9 @@ const Navbar = () => {
                 draggable={false}
                 height={20}
               />
-              {isDropdownOpen && <Dropdown auth={userAuth} />}
             </span>
+            {isDropdownOpen && <Dropdown auth={userAuth} />}
+            {isNotificationsOpen && <Notification />}
           </div>
         </div>
       </Gutter>

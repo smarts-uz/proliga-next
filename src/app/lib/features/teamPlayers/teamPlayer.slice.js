@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   addTeamPlayerReducer,
   deleteTeamPlayerReducer,
-} from './teamPlayer.reducer'
+} from './teamPlayers.reducer'
 import { teamPlayersExtraReducer } from './teamPlayers.extraReducer'
 
 const initialState = {
@@ -27,7 +27,7 @@ const teamPlayersSlice = createSlice({
     addTeamPlayer: addTeamPlayerReducer,
     deleteTeamPlayer: deleteTeamPlayerReducer,
   },
-  extraReducers: teamPlayersExtraReducer
+  extraReducers: teamPlayersExtraReducer,
 })
 
 export const { addTeamPlayer, deleteTeamPlayer } = teamPlayersSlice.actions
