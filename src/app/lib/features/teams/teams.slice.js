@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const teamsSlice = createSlice({
-  name: 'team',
+  name: 'teams',
   initialState,
   reducers: {},
   extraReducers: teamsExtraReducer,

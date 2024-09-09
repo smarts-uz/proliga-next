@@ -8,6 +8,7 @@ import { TOUR } from 'app/utils/tour.util'
 import { useEffect } from 'react'
 import ToursHistory from './ToursHistory'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
+import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 
 const Transfer = ({ paramsId }) => {
   const dispatch = useDispatch()
@@ -15,12 +16,13 @@ const Transfer = ({ paramsId }) => {
   const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
-    if (currentTeam && currentTeam.competition_id.id && paramsId) {
+    if (currentTeam?.competition_id?.id && paramsId) {
       dispatch(
         fetchPlayers({
           competition_id: currentTeam.competition_id.id,
         })
       )
+      dispatch(fetchClubs({ competition_id: currentTeam.competition_id.id }))
     }
   }, [dispatch, currentTeam, paramsId])
 

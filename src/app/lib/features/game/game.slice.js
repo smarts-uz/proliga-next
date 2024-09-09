@@ -8,7 +8,6 @@ import {
 import { TOUR } from 'app/utils/tour.util'
 
 const initialState = {
-  team: null,
   teamCount: 0,
   playersCount: {
     GOA: 0,
@@ -20,7 +19,6 @@ const initialState = {
   tours: null,
   currentTour: 0,
   currentTourIndex: 0,
-  capitan: null,
   tab: TABS.Transfer,
   GOA: [],
   DEF: [],
@@ -32,7 +30,6 @@ const initialState = {
     MID: 0,
     STR: 0,
   },
-  clubs: null,
 }
 
 const gameSlice = createSlice({
@@ -48,7 +45,7 @@ const gameSlice = createSlice({
       const tourIndex = state.tours.findIndex(
         (tour) => tour.status === TOUR.notStartedTransfer
       )
-      if(tour){
+      if (tour) {
         state.currentTour = tour
         state.currentTourIndex = tourIndex
       }
@@ -56,22 +53,8 @@ const gameSlice = createSlice({
     setTab: (state, action) => {
       state.tab = action.payload
     },
-    setTeam: (state, action) => {
-      state.capitan = action.payload.captain_id
-      state.team = action.payload
-    },
     setTourTeam: (state, action) => {
       state.tour_team = action.payload
-    },
-    setClubs: (state, action) => {
-      state.clubs = action.payload
-    },
-    setCapitan: (state, action) => {
-      const capitan = action.payload
-
-      if (capitan) {
-        state.capitan = capitan
-      }
     },
     setCurrentTourIndex: (state, action) => {
       state.currentTour = state.tours[action.payload]

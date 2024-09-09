@@ -1,14 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { setCapitan } from 'app/lib/features/game/game.slice'
 import { useUpdateTeamPlayers } from 'app/hooks/competition/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { toast } from 'react-toastify'
+import { useMemo } from 'react'
 
 const ChangeCaptainForm = () => {
-  const dispatch = useDispatch()
-  const { GOA, DEF, MID, STR, capitan, team, teamCount, playersCount } =
-    useSelector((state) => state.game)
-  const teamConcat = GOA.concat(DEF, MID, STR)
+  const { GOA, DEF, MID, STR, team, teamCount, playersCount } = useSelector(
+    (state) => state.game
+  )
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const teamConcat = useMemo(
+    () => GOA.concat(DEF, MID, STR),
+    [GOA, DEF, MID, STR]
+  )
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
   const {
     updateTeam,
@@ -52,11 +56,12 @@ const ChangeCaptainForm = () => {
 
   return (
     <form className="mt-2 flex justify-between text-black">
-      <div className="flex flex-col gap-1 text-neutral-200">
+      <div className="flex items-center gap-1 text-neutral-200">
+        <h3 className="mr-2 text-lg font-medium">Kapitan:</h3>
         <select
           name="formation"
           id="formation"
-          onClick={(e) => dispatch(setCapitan(e.target.value))}
+          // onClick={(e) => dispatch(setCapitan(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
           <option value="" className="bg-neutral-950 checked:bg-neutral-800">
@@ -69,7 +74,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-900"
                   value={player.player_id}
                   key={player.id}
-                  selected={player.player_id === capitan}
+                  selected={player.player_id === currentTeam.captain_id}
                 >
                   {player.name}
                 </option>

@@ -1,20 +1,8 @@
-import { useGetClubs } from 'app/hooks/transfer/useGetClubs/useGetClubs'
-import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { selectClubs } from 'app/lib/features/clubs/clubs.selector'
 
 const ClubsFilter = ({ column }) => {
-  const { clubs, team } = useSelector((state) => state.game)
-  const { getClubs, isLoading, error } = useGetClubs()
-
-  useEffect(() => {
-    if (team?.competition_id) {
-      const fetch = async () => {
-        await getClubs(team.competition_id.id)
-      }
-      fetch()
-    }
-    /* eslint-disable react-hooks/exhaustive-deps */
-  }, [team])
+  const selectedClubs = useSelector(selectClubs)
 
   return (
     <select
@@ -28,8 +16,8 @@ const ClubsFilter = ({ column }) => {
       >
         Clublar
       </option>
-      {clubs?.length > 0 &&
-        clubs.map((club) => (
+      {selectedClubs?.length > 0 &&
+        selectedClubs.map((club) => (
           <option
             key={club.id}
             value={club.name}

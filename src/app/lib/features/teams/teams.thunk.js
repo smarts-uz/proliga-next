@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { supabase } from 'app/lib/supabaseClient'
-import { useDispatch } from 'react-redux'
 
 export const fetchTeams = createAsyncThunk(
-  'team/fetchTeams',
+  'teams/fetchTeams',
   async ({ user_id }) => {
     const { data, error } = await supabase
       .from('team')

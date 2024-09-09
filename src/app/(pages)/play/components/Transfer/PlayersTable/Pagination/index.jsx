@@ -25,7 +25,7 @@ const TransferTablePagination = ({ table }) => {
               key={page}
               onClick={() => table.setPageIndex(page)}
               className={
-                'block size-9 rounded-sm border p-1 ' +
+                'block size-6 rounded-sm border p-1 text-xs md:size-8 md:text-sm ' +
                 (table.getState().pagination.pageIndex === page
                   ? 'bg-primary text-black'
                   : 'bg-transparent')
@@ -62,7 +62,8 @@ const PaginationButton = ({
       onClick={onClick}
       disabled={disabled}
       className={
-        'block size-9 rounded-sm border p-1 disabled:opacity-75 ' + className
+        'block size-6 rounded-sm border p-1 disabled:opacity-75 md:size-8 ' +
+        className
       }
     >
       <Image
