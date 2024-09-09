@@ -2,19 +2,20 @@
 
 import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useGetTeamPlayers } from 'app/hooks/competition/useGetTeamPlayers/useGetTeamPlayers'
 import { useGetTeam } from 'app/hooks/transfer/useGetTeam/useGetTeam'
 import { useGetTourTeam } from 'app/hooks/transfer/useGetTourTeam/useGetTourTeam'
+import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
 
 const Play = ({ params }) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const { tab, teamCount } = useSelector((state) => state.game)
   const { userAuth, userTable } = useSelector((state) => state.auth)
-  const router = useRouter()
   const { getTeamPlayers, isLoading, error } = useGetTeamPlayers()
-  const { getTeam, isLoading: teamLoading, error: teamError } = useGetTeam()
   const {
     getTourTeam,
     isLoading: tourTeamLoading,
@@ -32,10 +33,20 @@ const Play = ({ params }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth, params.id, teamCount, userTable])
 
+  // useEffect(() => {
+  //   if (userAuth && userTable && params.id) {
+  //     const fetch = async () => {
+  //       await getTeam(params.id)
+  //     }
+  //     fetch()
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [userAuth, params.id, userTable])
+
   useEffect(() => {
     if (userAuth && userTable && params.id) {
       const fetch = async () => {
-        await getTeam(params.id)
+        dispatch(fetchCurrentTeam({ id: params.id }))
       }
       fetch()
     }
@@ -61,7 +72,7 @@ const Play = ({ params }) => {
   return (
     <section className="flex flex-col gap-6 overflow-hidden bg-neutral-700 pb-6 text-neutral-700">
       <GameNavigation currentTab={tab} />
-      <CurrentTab currentTab={tab} />
+      <CurrentTab paramsId={params.id} currentTab={tab} />
     </section>
   )
 }

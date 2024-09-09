@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 const GameBrief = () => {
-  const { team } = useSelector((store) => store.game)
+  const { currentTeam } = useSelector((store) => store.currentTeam)
 
   return (
     <section className="flex h-min w-full flex-col justify-between gap-6 rounded-2xl bg-neutral-950 px-10 py-6 md:w-2/5">
@@ -29,7 +29,7 @@ const GameBrief = () => {
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Chempionat</p>
           <p className="text-sm uppercase text-primary">
-            {team && team.competition_id.title}
+            {currentTeam?.competition_id?.title}
           </p>
         </div>
         <div className="flex justify-between text-lg">
@@ -41,12 +41,14 @@ const GameBrief = () => {
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Jamoa narxi</p>
           <p className="text-sm uppercase text-primary">
-            {team.team_price ?? 0}
+            {/* {currentTeam?.team_price ?? 0} */}
           </p>
         </div>
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Balans</p>
-          <p className="text-sm uppercase text-primary">{team.balance}</p>
+          <p className="text-sm uppercase text-primary">
+            {/* {currentTeam?.balance} */}
+          </p>
         </div>
       </div>
     </section>

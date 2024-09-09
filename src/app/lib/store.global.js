@@ -6,6 +6,7 @@ import CompetitionSlice from './features/competition/competition.slice.js'
 import StatisticsSlice from './features/statistics/statistics.slice.js'
 import PlayersSlice from './features/players/players.slice.js'
 import TeamSlice from './features/teams/teams.slice.js'
+import CurrentTeamSlice from './features/currentTeam/currentTeam.slice.js'
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     statistics: StatisticsSlice,
     players: PlayersSlice,
     teams: TeamSlice,
+    currentTeam: CurrentTeamSlice,
   },
 })
 

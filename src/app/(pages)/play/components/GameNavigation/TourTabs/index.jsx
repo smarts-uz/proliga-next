@@ -10,18 +10,19 @@ import { setCurrentTourIndex } from 'app/lib/features/game/game.slice'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
-  const { team, tours, currentTourIndex } = useSelector((state) => state.game)
+  const { tours, currentTourIndex } = useSelector((state) => state.game)
   const { getTours, isLoading, data, error } = useGetTours()
-
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  
   useEffect(() => {
-    if (team) {
+    if (currentTeam?.competition_id) {
       const fetch = async () => {
-        await getTours({ competition_id: team.competition_id.id })
+        await getTours({ competition_id: currentTeam.competition_id.id })
       }
       fetch()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [team])
+  }, [currentTeam])
 
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {

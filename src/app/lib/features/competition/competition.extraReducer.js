@@ -11,6 +11,6 @@ export const competitionExtraReducer = (builder) => {
     })
     .addCase(fetchCompetition.rejected, (state, action) => {
       state.isLoading = false
-      state.error = action.error.message ?? null
+      state.error = action.payload.error.message ?? null
     })
 }

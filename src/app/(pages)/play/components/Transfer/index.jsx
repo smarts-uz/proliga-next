@@ -3,13 +3,26 @@ import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import PlayersTable from './PlayersTable'
 import ChangeCaptainForm from './ChangeCaptainForm'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
+import { useEffect } from 'react'
 import ToursHistory from './ToursHistory'
+import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 
-const Transfer = () => {
-  const { tours, currentTour } = useSelector((state) => state.game)
-  // const tour = tours[currentTour]
+const Transfer = ({ paramsId }) => {
+  const dispatch = useDispatch()
+  const { currentTour } = useSelector((state) => state.game)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+
+  useEffect(() => {
+    if (currentTeam && currentTeam.competition_id.id && paramsId) {
+      dispatch(
+        fetchPlayers({
+          competition_id: currentTeam.competition_id.id,
+        })
+      )
+    }
+  }, [dispatch, currentTeam, paramsId])
 
   return (
     <Gutter>
