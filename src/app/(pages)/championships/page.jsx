@@ -11,7 +11,7 @@ import { selectCompetition } from 'app/lib/features/competition/competition.sele
 
 const Championships = () => {
   const dispatch = useDispatch()
-  const { userTable } = useSelector((state) => state.auth)
+  const { userTable, userAuth } = useSelector((state) => state.auth)
   const selectedTeams = useSelector(selectTeams)
   const selectedCompetition = useSelector(selectCompetition)
   const { isLoading } = useSelector((state) => state.competition)
@@ -21,7 +21,7 @@ const Championships = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (userTable && selectedTeams.length === 0) {
+    if (userTable) {
       dispatch(
         fetchTeams({
           user_id: userTable.id,

@@ -108,7 +108,7 @@ const LoginForm = ({ onClick }) => {
       <button
         type="button"
         onClick={onClick}
-        className={`my-2 text-sm self-start text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
+        className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
         Akkaunt ochish?
       </button>

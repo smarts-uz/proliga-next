@@ -34,7 +34,14 @@ const SignUpForm = ({ onClick }) => {
     setActive(true)
     await signUp({ email, password, confirmPassword })
 
-    if (!error && !tableError && !isLoading && !tableIsLoading) {
+    if (
+      !error &&
+      !tableError &&
+      !isLoading &&
+      !tableIsLoading &&
+      tableData &&
+      data
+    ) {
       setTimeout(() => router.push('/championships'), 250)
     }
   }
@@ -206,7 +213,7 @@ const SignUpForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          "Akkaunt O'chish"
+          "Akkaunt Ochish"
         )}
       </button>
     </form>

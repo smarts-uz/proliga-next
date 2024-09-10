@@ -10,8 +10,14 @@ const initialState = {
 const teamsSlice = createSlice({
   name: 'teams',
   initialState,
-  reducers: {},
+  reducers: {
+    setTeams: (state, action) => {
+      state.teams = action.payload
+    }, 
+  },
   extraReducers: teamsExtraReducer,
 })
+
+export const { setTeams } = teamsSlice.actions
 
 export default teamsSlice.reducer
