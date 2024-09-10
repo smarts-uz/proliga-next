@@ -5,12 +5,12 @@ import CurrentTab from '../../components/CurrentTab'
 import { useSelector } from 'react-redux'
 
 const Play = ({ params }) => {
-  const { tab } = useSelector((state) => state.game)
-  
+  const { gameTab } = useSelector((state) => state.tabs)
+
   return (
     <section className="flex flex-col gap-6 overflow-hidden bg-neutral-700 pb-6 text-neutral-700">
-      <GameNavigation currentTab={tab} />
-      <CurrentTab paramsId={params.id} currentTab={tab} />
+      <GameNavigation currentTab={gameTab} />
+      <CurrentTab paramsId={params.id} currentTab={gameTab} />
     </section>
   )
 }

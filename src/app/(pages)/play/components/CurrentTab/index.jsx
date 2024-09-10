@@ -24,6 +24,11 @@ const CurrentTab = ({ currentTab, paramsId }) => {
     }
   }, [userAuth, paramsId, userTable, dispatch])
 
+  console.log(userAuth)
+  console.log(userTable)
+  console.log(paramsId)
+  console.log(currentTour)
+
   useEffect(() => {
     if (userAuth && userTable && paramsId && currentTour?.id) {
       const fetch = async () => {

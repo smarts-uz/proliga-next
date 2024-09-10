@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { TABSDATA, TABS } from '../../../../../utils/tabs.util'
-import { setTab } from '../../../../../lib/features/game/game.slice'
 import { toast } from 'react-toastify'
+import { setTab } from 'app/lib/features/tabs/tabs.slice'
 
 const NavigationTabs = () => {
+  const dispatch = useDispatch()
+  const { gameTab } = useSelector((state) => state.tabs)
   const active = 'bg-primary text-black bg-opacity-100'
   const passive =
     'bg-neutral-300 text-neutral-800 hover:text-neutral-950 hover:bg-opacity-70'
-  const { tab } = useSelector((state) => state.game)
-  const dispatch = useDispatch()
 
   const setCurrentTab = (key) => {
     if (Object.keys(TABS).includes(key)) {
@@ -23,7 +23,7 @@ const NavigationTabs = () => {
       {TABSDATA.map((item) => (
         <button
           key={item.id}
-          className={`rounded px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === tab ? active : passive}`}
+          className={`rounded px-2 py-1 text-sm font-semibold uppercase transition-all hover:bg-primary sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === gameTab ? active : passive}`}
           onClick={() => setCurrentTab(item.key)}
         >
           {item.title}

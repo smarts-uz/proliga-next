@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux'
 import { TABS } from '../../../../utils/tabs.util'
 
 const GameNavigation = () => {
-  const { tab } = useSelector((state) => state.game)
+  const { gameTab } = useSelector((state) => state.tabs)
 
   return (
     <Gutter>
       <NavigationTabs />
-      {tab === TABS.Transfer && <Tabs />}
+      {gameTab === TABS.Transfer && <Tabs />}
     </Gutter>
   )
 }

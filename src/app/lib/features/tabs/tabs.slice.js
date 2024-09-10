@@ -1,16 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { TABS } from 'app/utils/tabs.util'
 
 const initialState = {
-  currentTab: null
-
+  gameTab: TABS.Transfer,
 }
 
-const userSlice = createSlice({
-  name: 'user',
+const tabsSlice = createSlice({
+  name: 'tabs',
   initialState,
-  reducers: {},
+  reducers: {
+    setTab: (state, action) => {
+      state.gameTab = action.payload
+    },
+  },
 })
 
-// export const { }  = authSlice.actions
+export const { setTab } = tabsSlice.actions
 
-export default userSlice.reducer
+export default tabsSlice.reducer

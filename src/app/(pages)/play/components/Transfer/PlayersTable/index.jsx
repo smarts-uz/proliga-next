@@ -18,13 +18,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
 
 function PlayersTable() {
-  const dispatch = useDispatch()
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
-  const { team } = useSelector((store) => store.game)
   const selectedPlayers = useSelector(selectPlayers)
 
   useEffect(() => {
@@ -48,7 +46,7 @@ function PlayersTable() {
   })
 
   return (
-    <div className="min-h-[30rem] border-collapse overflow-x-auto rounded-xl h-min bg-black p-6 text-neutral-200 md:text-sm lg:w-1/2 xl:text-base">
+    <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl bg-black p-6 text-neutral-200 md:text-sm lg:w-1/2 xl:text-base">
       <div className="mb-4 grid grid-cols-3 capitalize">
         <div className="flex flex-col">
           <h2 className="text-sm text-neutral-400">Balans</h2>
