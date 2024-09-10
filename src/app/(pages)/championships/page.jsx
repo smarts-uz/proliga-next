@@ -8,6 +8,7 @@ import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import { selectCompetition } from 'app/lib/features/competition/competition.selector'
+import { fetchSeason } from 'app/lib/features/season/season.thunk'
 
 const Championships = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const Championships = () => {
 
   useEffect(() => {
     dispatch(fetchCompetition())
+    dispatch(fetchSeason())
   }, [dispatch])
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const Championships = () => {
         })
       )
     }
-  }, [dispatch, userTable, selectedTeams])
+  }, [dispatch, userTable])
 
   return (
     <Gutter>
