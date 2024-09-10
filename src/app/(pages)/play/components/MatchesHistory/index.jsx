@@ -1,7 +1,40 @@
+'use client'
+
+import Image from 'next/image'
+import { useSelector } from 'react-redux'
 
 const MatchesHistory = () => {
+  const { currentTour } = useSelector((state) => state.game)
+
   return (
-    <div className="w-full md:w-[22rem] min-h-[36rem] p-6 rounded-2xl bg-neutral-800 h-[30rem]">MatchesHistory</div>
+    <div className="flex min-h-[36rem] w-full flex-col gap-2 rounded-xl bg-neutral-800 p-6 md:w-1/3">
+      <div className="flex w-full items-center justify-center gap-4">
+        <button>
+          <Image
+            src="/icons/arrow-down.svg"
+            alt="arrow"
+            width={24}
+            className="size-7 rotate-90"
+            height={24}
+          />
+        </button>
+        <h2 className="text-xl font-semibold">{currentTour?.name}</h2>
+        <button>
+          <Image
+            src="/icons/arrow-down.svg"
+            alt="arrow"
+            width={24}
+            className="size-7 -rotate-90"
+            height={24}
+          />
+        </button>
+      </div>
+      <div className="grid flex-1 grid-rows-8 gap-1">
+        <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
+          Matchlar topilmadi!
+        </p>
+      </div>
+    </div>
   )
 }
 

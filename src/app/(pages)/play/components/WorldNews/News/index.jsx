@@ -27,29 +27,37 @@ const News = () => {
   //   getNews()
   // })
   return (
-    <div className="flex h-auto min-h-[40rem] flex-col items-center justify-between rounded-md bg-black py-4 xs:w-96">
-      <div>
-        {currentItems.map((item, index) => (
-          <Article key={index} item={item} />
-        ))}
+    <div className="flex h-auto min-h-[36rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 xs:w-96 md:w-1/3">
+      <h3 className="items-start self-start text-xl font-semibold">
+        Yangiliklar
+      </h3>
+      <div className="flex-1">
+        {currentItems?.length > 0 &&
+          currentItems.map((item, index) => (
+            <Article key={index} item={item} />
+          ))}
+        {currentItems?.length === 0 && (
+          <p className="mt-2 text-center text-neutral-400">
+            Yangiliklar mavjud emas!
+          </p>
+        )}
       </div>
       <div className="flex justify-center space-x-1">
         <button
           onClick={() => goToPage(currentPage - 1)}
           className={`rounded border px-4 py-2 text-gray-200 ${
             currentPage === 1
-              ? 'cursor-not-allowed opacity-75'
+              ? 'cursor-default opacity-75'
               : 'bg-opacity-50 hover:border-primary hover:text-primary'
           }`}
-          disabled={currentPage === 1}
+          disabled={true}
         >
           Oldingi
         </button>
-
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i + 1}
-            onClick={() => goToPage(i + 1)}
+            // onClick={() => goToPage(i + 1)}
             className={`rounded border bg-neutral-900 px-4 py-2 ${
               currentPage === i + 1
                 ? 'border-primary text-primary'
@@ -59,15 +67,14 @@ const News = () => {
             {i + 1}
           </button>
         ))}
-
         <button
-          onClick={() => goToPage(currentPage + 1)}
+          // onClick={() => goToPage(currentPage + 1)}
           className={`rounded border px-4 py-2 text-neutral-300 ${
-            currentPage === totalPages
-              ? 'cursor-not-allowed opacity-75'
+            true
+              ? 'cursor-default opacity-75'
               : 'hover:border-primary hover:text-primary'
           }`}
-          disabled={currentPage === totalPages}
+          disabled={true}
         >
           Keyingi
         </button>
@@ -76,55 +83,6 @@ const News = () => {
   )
 }
 
-const data = [
-  {
-    id: 1,
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema " Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
-    id: 2,
-    date: '23-iyul,2022',
-    views: '23232',
-    news: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores. v Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse minima veniam perferendis unde ipsa sint ab nobis distinctio, molestias eaque, ullam laborum ad magni obcaecati fuga doloremque tempora ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut consequatur voluptates repellendus error optio dignissimos architecto nostrum eius reprehenderit officiis incidunt ut illum, quas ab ex culpa amet animi ducimus? lorem Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse dolor doloremque quos laborum aliquam repellat ipsum, nemo est in maxime quod similique. Ducimus animi blanditiis mollitia vitae dolores impedit maiores.`,
-    title: `lorem "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
-    id: 3,
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
-    id: 4,
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
-    id: 5,
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-  {
-    id: 6,
-    date: '22-iyul,2022',
-    views: '23232',
-    news: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...`,
-    title: `Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib" Benzema "Oltin to'p" haqida: "Sovringa Vinisius munosib". Lorem Ipsum why...
-`,
-  },
-]
+const data = []
 
 export default News

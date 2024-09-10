@@ -6,17 +6,17 @@ import { toast } from 'react-toastify'
 const Tournament = () => {
   const [players, setPlayers] = useState([])
 
-  useEffect(() => {
-    const fetch = async () => {
-      const { data, error } = await supabase
-        .from('team_point')
-        .select('id, point, team_id(name), user_id(email), tour_id(name)')
-        .limit(54)
-      if (error) return toast.error(error.message)
-      if (data?.length > 0) setPlayers(data)
-    }
-    fetch()
-  }, [])
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const { data, error } = await supabase
+  //       .from('team_point')
+  //       .select('id, point, team_id(name), user_id(email), tour_id(name)')
+  //       .limit(54)
+  //     if (error) return toast.error(error.message)
+  //     if (data?.length > 0) setPlayers(data)
+  //   }
+  //   fetch()
+  // }, [])
 
   return (
     <Gutter>
@@ -44,7 +44,7 @@ const Tournament = () => {
             </tbody>
           </table>
         </div>
-        <div className="flex h-min w-1/3 flex-col gap-8">
+        {/* <div className="flex h-min w-1/3 flex-col gap-8">
           <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
             <h3 className="text-xl font-bold">ENG KUCHLI TOP 3 - JAMOALAR</h3>
             <div className="mt-4 grid grid-cols-3 gap-2">
@@ -63,7 +63,7 @@ const Tournament = () => {
               <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </Gutter>
   )
