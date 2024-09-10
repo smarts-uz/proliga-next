@@ -10,6 +10,7 @@ import CurrentTeamSlice from './features/currentTeam/currentTeam.slice.js'
 import ClubsSlice from './features/clubs/clubs.slice.js'
 import TeamPlayersSlice from './features/teamPlayers/teamPlayers.slice.js'
 import ToursSlice from './features/tours/tours.slice.js'
+import TourTeamSlice from './features/tourTeam/tourTeam.slice.js'
 
 export const rootReducer = combineReducers({
   auth: AuthSlice,
@@ -23,4 +24,5 @@ export const rootReducer = combineReducers({
   currentTeam: CurrentTeamSlice,
   clubs: ClubsSlice,
   tours: ToursSlice,
+  tourTeam: TourTeamSlice,
 })

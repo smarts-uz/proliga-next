@@ -7,11 +7,13 @@ import { TABS } from '../../../../utils/tabs.util'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
+import { fetchTourTeam } from 'app/lib/features/tourTeam/tourTeam.thunk'
 import { useEffect } from 'react'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { currentTour } = useSelector((state) => state.tours)
 
   useEffect(() => {
     if (userAuth && userTable && paramsId) {
@@ -23,13 +25,16 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [userAuth, paramsId, userTable, dispatch])
 
   useEffect(() => {
-    if (userAuth && userTable && paramsId) {
+    if (userAuth && userTable && paramsId && currentTour?.id) {
       const fetch = async () => {
-        dispatch(fetchTeamPlayers({ team_id: paramsId }))
+        dispatch(
+          fetchTeamPlayers({ team_id: paramsId, tour_id: currentTour.id })
+        )
+        dispatch(fetchTourTeam({ team_id: paramsId, tour_id: currentTour.id }))
       }
       fetch()
     }
-  }, [userAuth, paramsId, userTable, dispatch])
+  }, [userAuth, paramsId, userTable, dispatch, currentTour])
 
   return (
     <>

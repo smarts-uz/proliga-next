@@ -3,11 +3,11 @@
 import Image from 'next/image'
 import { useSelector } from 'react-redux'
 
-const MatchesHistory = () => {
+const Matches = () => {
   const { currentTour } = useSelector((state) => state.tours)
 
   return (
-    <div className="flex min-h-[36rem] w-full flex-col gap-2 rounded-xl bg-neutral-800 p-6 md:w-1/3">
+    <div className="flex min-h-[36rem] w-full flex-col gap-2 rounded-xl bg-neutral-800 p-6 max-w-96 xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
         <button>
           <Image
@@ -38,4 +38,4 @@ const MatchesHistory = () => {
   )
 }
 
-export default MatchesHistory
+export default Matches

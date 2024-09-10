@@ -27,7 +27,7 @@ const News = () => {
   //   getNews()
   // })
   return (
-    <div className="flex h-auto min-h-[36rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 xs:w-96 md:w-1/3">
+    <div className="flex h-auto min-h-[36rem] w-full flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 max-w-96 xl:w-1/3">
       <h3 className="items-start self-start text-xl font-semibold">
         Yangiliklar
       </h3>
