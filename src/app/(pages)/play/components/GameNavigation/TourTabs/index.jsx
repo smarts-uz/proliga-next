@@ -4,25 +4,25 @@ import StyledTab from './StyledTab'
 import StyledTabs from './StyledTabs'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useGetTours } from 'app/hooks/transfer/useGetTours/useGetTours'
 import { TOUR } from 'app/utils/tour.util'
-import { setCurrentTourIndex } from 'app/lib/features/game/game.slice'
+import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
+import { fetchTours } from 'app/lib/features/tours/tours.thunk'
+import { selectTours } from 'app/lib/features/tours/tours.selector'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
-  const { tours, currentTourIndex } = useSelector((state) => state.game)
-  const { getTours, isLoading, data, error } = useGetTours()
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  
+  const selectedTours = useSelector(selectTours)
+  const { currentTourIndex } = useSelector((state) => state.tours)
+
   useEffect(() => {
     if (currentTeam?.competition_id) {
       const fetch = async () => {
-        await getTours({ competition_id: currentTeam.competition_id.id })
+        dispatch(fetchTours({ competition_id: currentTeam.competition_id.id }))
       }
       fetch()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentTeam])
+  }, [currentTeam, dispatch])
 
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
@@ -54,7 +54,7 @@ export default function TourTabs() {
         className="mt-4 rounded text-white"
         aria-label="scrollable auto tabs example "
       >
-        {tours?.map((item, index) => (
+        {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
             onClick={() => dispatch(setCurrentTourIndex(index))}

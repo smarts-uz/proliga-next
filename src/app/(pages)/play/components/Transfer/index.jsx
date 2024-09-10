@@ -12,7 +12,7 @@ import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 
 const Transfer = ({ paramsId }) => {
   const dispatch = useDispatch()
-  const { currentTour } = useSelector((state) => state.game)
+  const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
