@@ -10,8 +10,8 @@ const Championship = ({ game }) => {
   const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
-  const teams = useSelector(selectTeams)
   const router = useRouter()
+  const { teams } = useSelector((state) => state.teams)
   const { season } = useSelector((state) => state.season)
 
   const toggleModal = () => {
@@ -27,7 +27,6 @@ const Championship = ({ game }) => {
       }
     }
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const currentGame = teams?.find((team) => team.competition_id === game.id)
@@ -63,7 +62,9 @@ const Championship = ({ game }) => {
           </h3>
         </div>
       </article>
-      {isModalOpen && <LeagueModal toggleModal={toggleModal} game={game} />}
+      {isModalOpen && (
+        <LeagueModal toggleModal={toggleModal} competition={game} />
+      )}
     </>
   )
 }

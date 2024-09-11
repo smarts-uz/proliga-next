@@ -4,32 +4,49 @@ import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam
 import { useState } from 'react'
 import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
+import { useCheckExistingTeam } from 'app/hooks/competition/useCheckExistingTeam/useCheckExistingTeam'
 
-const CompetitionModal = ({ toggleModal, game }) => {
+const CompetitionModal = ({ toggleModal, competition }) => {
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
   const router = useRouter()
   const selectedTeams = useSelector(selectTeams)
+  const { season } = useSelector((state) => state.season)
+  const {
+    checkTeam,
+    isLoading: checkLoading,
+    error: checkError,
+    data: checkData,
+  } = useCheckExistingTeam()
 
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const currentGame = selectedTeams.find(
-      (game) => game.competition_id === game.id
-    )
+    // await createTeam({ title, formation, competition_id: competition.id })
+    await checkTeam({ competition_id: competition.id, season_id: season.id })
+    console.log(checkData)
 
-    await createTeam({ title, formation, competition_id: game.id })
+    console.log(data, isLoading, error)
     if (!error && !isLoading && data) {
       setTitle('')
       setFormation(FORMATIONS['4-3-3'])
-      if (currentGame) {
-        router.push(`/play/${game.slug}/${currentGame.id}`)
-      }
       toggleModal()
+      dispatch(addGameToTeam(data[0]))
+    }
+
+    const currentGame = selectedTeams.find(
+      (game) => game.competition_id === competition.id
+    )
+
+    console.log(currentGame)
+
+    if (currentGame) {
+      router.push(`/play/${competition.slug}/${currentGame.id}`)
     }
   }
 

@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 
-export const useCreateTeam = () => {
+export const useCheckExistingTeam = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const router = useRouter()
 
-  const createTeam = async ({ title, formation, competition_id }) => {
+  const checkTeam = async ({ competition_id, season_id }) => {
     setIsLoading(false)
     setError(null)
 
@@ -22,9 +22,9 @@ export const useCreateTeam = () => {
       return
     }
 
-    if (!title) {
-      setError('Ism bolishi shart')
-      toast.error('ism bolishi shart')
+    if (!competition_id || !season_id) {
+      setError('Competition and season are required')
+      toast.error('Competition and season are required')
       return
     }
 
@@ -33,14 +33,10 @@ export const useCreateTeam = () => {
 
       const { data, error } = await supabase
         .from('team')
-        .insert({
-          name: title,
-          formation,
-          balance: 100,
-          competition_id,
-          user_id: userTable.id,
-        })
-        .select()
+        .select('id, name')
+        .eq('user_id', userTable.id)
+        .eq('competition_id', 1)
+        .eq('season_id', season_id)
 
       if (error) {
         setError(error.message)
@@ -48,8 +44,8 @@ export const useCreateTeam = () => {
         return
       }
       if (data) {
-        setData(data[0])
-        toast.success('Jomoa muvaffaqiyatli yaratildi')
+        setData(data)
+        console.log(data)
       }
     } catch (error) {
       setError(error.message)
@@ -58,5 +54,5 @@ export const useCreateTeam = () => {
       setIsLoading(false)
     }
   }
-  return { createTeam, isLoading, error, data }
+  return { checkTeam, isLoading, error, data }
 }

@@ -7,7 +7,7 @@ export const tourTeamExtraReducer = (builder) => {
     })
     .addCase(fetchTourTeam.fulfilled, (state, action) => {
       state.isLoading = false
-      if (action.payload.data[0]) {
+      if (action.payload.data.length > 0) {
         state.tourTeam = action.payload.data[0]
       }
     })

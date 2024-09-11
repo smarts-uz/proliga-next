@@ -7,36 +7,36 @@ const CreateTeam = () => {
       <Gutter>
         <div className="flex w-full flex-col items-center justify-between gap-4 lg:flex-row lg:gap-0">
           <div className="mt-8 flex flex-1 flex-col flex-wrap">
-            <div className="mb-12 w-5/6 -skew-x-12 self-start rounded-sm bg-primary pl-12 pr-16">
+            <div className="mb-12 w-5/6 max-w-[32rem] -skew-x-12 self-start rounded-sm bg-primary pl-12 pr-16">
               <h3 className="promotion-header text-center font-bold capitalize text-black">
                 Umumiy qoidalar
               </h3>
             </div>
-            <div className="flex flex-col flex-wrap justify-center gap-4 self-center">
-              <h2 className="promotion-header pl-8 font-bold uppercase">
+            <div className="flex flex-col flex-wrap justify-center gap-4 self-start lg:pl-8">
+              <h2 className="promotion-header font-bold uppercase">
                 jamoa yig&apos;ing
               </h2>
-              <p className="min-w-xl pl-8 text-base text-neutral-300 xs:text-xs lg:text-lg xl:text-xl 2xl:text-xl">
+              <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
-            </div>
-            <div className="relative self-start xs:px-8">
-              <Image
-                width={450}
-                height={505}
-                alt="footballers images"
-                className="min-h-72 min-w-80 xs:h-72 xs:w-72"
-                src="/images/football-tiles.png"
-              />
+              <div className="relative self-start xs:px-8">
+                <Image
+                  width={400}
+                  height={400}
+                  alt="footballers images"
+                  className="aspect-[1.12/1] w-full"
+                  src="/images/football-tiles.png"
+                />
+              </div>
             </div>
           </div>
-          <div className="">
+          <div className="items-end self-end">
             <Image
               src="/images/promotion-1.png"
-              width={800}
-              height={800}
-              className="min-w-full xs:min-w-96 md:min-w-[32rem] xl:min-w-[40rem] 2xl:min-w-[46rem]"
+              width={600}
+              height={600}
+              className="aspect-[1/1.025] h-full w-full min-w-full"
               alt="interactive stadium"
             />
           </div>

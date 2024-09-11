@@ -1,4 +1,4 @@
-import { fetchCurrentTeam } from "./currentTeam.thunk"
+import { fetchCurrentTeam } from './currentTeam.thunk'
 
 export const currentTeamExtraReducer = (builder) => {
   builder
@@ -7,7 +7,9 @@ export const currentTeamExtraReducer = (builder) => {
     })
     .addCase(fetchCurrentTeam.fulfilled, (state, action) => {
       state.isLoading = false
-      state.currentTeam = action.payload.data[0]
+      if (action.payload.data.length > 0) {
+        state.currentTeam = action.payload.data[0]
+      }
     })
     .addCase(fetchCurrentTeam.rejected, (state, action) => {
       state.isLoading = false
