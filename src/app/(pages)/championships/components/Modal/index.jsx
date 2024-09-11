@@ -27,9 +27,8 @@ const CompetitionModal = ({ toggleModal, competition }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // await createTeam({ title, formation, competition_id: competition.id })
-    await checkTeam({ competition_id: competition.id, season_id: season.id })
-    console.log(checkData)
+    await createTeam({ title, formation, competition_id: competition.id })
+    // await checkTeam({ competition_id: competition.id, season_id: season.id })
 
     console.log(data, isLoading, error)
     if (!error && !isLoading && data) {

@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box'
 import StyledTab from './StyledTab'
-
 import StyledTabs from './StyledTabs'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
+import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 
@@ -37,6 +37,11 @@ export default function TourTabs() {
     return 'Unidentified Status'
   }
 
+  const handleClick = (index) => {
+    dispatch(setCurrentTourTeamIndex(index))
+    dispatch(setCurrentTourIndex(index))
+  }
+
   return (
     <Box
       sx={{
@@ -57,7 +62,7 @@ export default function TourTabs() {
         {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
-            onClick={() => dispatch(setCurrentTourIndex(index))}
+            onClick={() => handleClick(index)}
             className="w-48 space-y-0 disabled:cursor-default disabled:text-neutral-500 sm:w-56 md:w-64 2xl:w-72"
             icon={
               <h3 className="text-start text-sm md:text-base">

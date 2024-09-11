@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 
 const GameBrief = () => {
   const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { currentCompetition } = useSelector((store) => store.competition)
 
   return (
     <section className="flex h-min w-full flex-col justify-between gap-6 rounded-2xl bg-neutral-950 px-10 py-6 md:w-2/5">

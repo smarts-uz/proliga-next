@@ -1,14 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useUpdateTeamPlayers } from 'app/hooks/competition/useUpdateTeamPlayers/useUpdateTeamPlayers'
+import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
+import { setCaptain } from 'app/lib/features/tourTeams/tourTeams.slice'
 
 const ChangeCaptainForm = () => {
+  const dispatch = useDispatch()
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  // const { tourTeam } = useSelector((state) => state.tourTeam)
+  const { currentTour } = useSelector((state) => state.tours)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -31,20 +35,20 @@ const ChangeCaptainForm = () => {
         return
       }
     })
-    if (!currentTeam.captain_id) {
-      toast.error('Kapitan tanlang')
-      return
-    }
+    // if (!tourTeam.captain_id) {
+    //   toast.error('Kapitan tanlang')
+    //   return
+    // }
     if (playersCount.DEF < 3 && playersCount.MID < 3 && playersCount.STR < 2) {
       toast.error('Jamoa da yetarli futbolchilar yoq')
       return
     }
-    // const formation = `${playersCount.DEF}-${playersCount.MID}-${playersCount.STR}`
 
     await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
     await updateTeam({
-      captain_id: currentTeam.captain_id,
+      // captain_id: tourTeam.captain_id,
       team_id: currentTeam.id,
+      tour_id: currentTour.id,
     })
 
     if (!error && !isLoading && !teamLoading && !teamError) {
@@ -59,7 +63,7 @@ const ChangeCaptainForm = () => {
         <select
           name="formation"
           id="formation"
-          // onClick={(e) => dispatch(setCapitan(e.target.value))}
+          onClick={(e) => dispatch(setCaptain(e.target.value))}
           className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
         >
           <option
@@ -75,7 +79,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-800"
                   value={player.player_id}
                   key={player.id}
-                  selected={player.player_id === currentTeam.captain_id}
+                  // selected={player.player_id === tourTeam.captain_id}
                 >
                   {player.name}
                 </option>

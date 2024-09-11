@@ -1,17 +1,17 @@
-import { fetchTourTeam } from './tourTeam.thunk'
+import { fetchTourTeams } from './tourTeams.thunk'
 
 export const tourTeamExtraReducer = (builder) => {
   builder
-    .addCase(fetchTourTeam.pending, (state) => {
+    .addCase(fetchTourTeams.pending, (state) => {
       state.isLoading = true
     })
-    .addCase(fetchTourTeam.fulfilled, (state, action) => {
+    .addCase(fetchTourTeams.fulfilled, (state, action) => {
       state.isLoading = false
       if (action.payload.data.length > 0) {
-        state.tourTeam = action.payload.data[0]
+        state.tourTeams = action.payload.data
       }
     })
-    .addCase(fetchTourTeam.rejected, (state, action) => {
+    .addCase(fetchTourTeams.rejected, (state, action) => {
       state.isLoading = false
       state.error = action.payload.error.message ?? null
     })

@@ -7,7 +7,7 @@ import { TABS } from '../../../../utils/tabs.util'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
-import { fetchTourTeam } from 'app/lib/features/tourTeam/tourTeam.thunk'
+import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { useEffect } from 'react'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
@@ -30,7 +30,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         dispatch(
           fetchTeamPlayers({ team_id: paramsId, tour_id: currentTour.id })
         )
-        dispatch(fetchTourTeam({ team_id: paramsId, tour_id: currentTour.id }))
+        dispatch(fetchTourTeams({ team_id: paramsId }))
       }
       fetch()
     }

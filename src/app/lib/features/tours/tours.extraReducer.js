@@ -9,12 +9,19 @@ export const toursExtraReducer = (builder) => {
     .addCase(fetchTours.fulfilled, (state, action) => {
       state.isLoading = false
       state.tours = action.payload.data
-      const tour = state.tours.find(
+      let tour = state.tours.find(
         (tour) => tour.status === TOUR.notStartedTransfer
       )
-      const tourIndex = state.tours.findIndex(
+      let tourIndex = state.tours.findIndex(
         (tour) => tour.status === TOUR.notStartedTransfer
       )
+      if (!tour) {
+        tour = state.tours.find((tour) => tour.status === TOUR.completed)
+        tourIndex = state.tours.findIndex(
+          (tour) => tour.status === TOUR.completed
+        )
+      }
+      console.log(tour, tourIndex)
       if (tour) {
         state.currentTour = tour
         state.currentTourIndex = tourIndex

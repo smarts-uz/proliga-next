@@ -8,7 +8,7 @@ export const useUpdateTeam = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
 
-  const updateTeam = async ({ captain_id, team_id }) => {
+  const updateTeam = async ({ captain_id, team_id, tour_id }) => {
     setIsLoading(false)
     setError(null)
 
@@ -16,9 +16,10 @@ export const useUpdateTeam = () => {
       setIsLoading(true)
 
       const { data, error } = await supabase
-        .from('team')
-        .update({ captain_id: captain_id, updated_at: new Date(Date.now()) })
+        .from('tour_team')
+        .update({ captain_id })
         .eq('id', team_id)
+        .eq('tour_id', tour_id)
         .select()
 
       if (error) {

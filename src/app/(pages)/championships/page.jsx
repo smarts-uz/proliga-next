@@ -15,11 +15,9 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 
 const Championships = () => {
   const dispatch = useDispatch()
-  const { userTable, userAuth } = useSelector((state) => state.auth)
-  const selectedTeams = useSelector(selectTeams)
+  const { userTable } = useSelector((state) => state.auth)
   const selectedCompetition = useSelector(selectCompetition)
-  const { isLoading, competition } = useSelector((state) => state.competition)
-  const { season } = useSelector((state) => state.season)
+  const { isLoading } = useSelector((state) => state.competition)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -35,19 +33,6 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable])
-
-  // useEffect(() => {
-  //   if (competition) {
-  //     competition.map((game) =>
-  //       dispatch(
-  //         fetchCompetitionStats({
-  //           competition_id: game.id,
-  //           season_id: season.id,
-  //         })
-  //       )
-  //     )
-  //   }
-  // }, [dispatch, competition, season])
 
   return (
     <Gutter>
