@@ -47,23 +47,7 @@ function PlayersTable() {
 
   return (
     <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl bg-black p-6 text-neutral-200 md:text-sm lg:w-1/2 xl:text-base">
-      <div className="mb-4 grid grid-cols-3 capitalize">
-        <div className="flex flex-col">
-          <h2 className="text-sm text-neutral-400">Balans</h2>
-          <p className="text-4xl font-bold">77.5</p>
-        </div>
-        <div className="flex flex-col">
-          <h3 className="text-sm capitalize text-neutral-400">jamoa narxi</h3>
-          <p className="text-4xl font-bold">22.5</p>
-        </div>
-        <div className="relative flex flex-col">
-          <h3 className="cursor-pointer text-sm text-neutral-400">
-            transferlar
-          </h3>
-          <p className="cursor-pointer text-4xl font-bold">2/2</p>
-        </div>
-      </div>
-      <div className="grid w-full grid-cols-3 gap-1 text-sm">
+      <div className="grid w-full grid-cols-3 gap-4 gap-x-2 text-sm">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>

@@ -5,7 +5,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
         Narx
       </h3>
       <select
-        className="h-full min-w-16 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
+        className="h-7 min-w-20 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
         onClick={(e) =>
           column.setFilterValue(() => ({
             min: e.target.value,
@@ -25,7 +25,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
         ))}
       </select>
       <select
-        className="h-full min-w-16 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
+        className="h-7 min-w-20 rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200"
         onClick={(e) =>
           column.setFilterValue(() => ({
             min: columnFilterValue?.min ?? MIN[0],

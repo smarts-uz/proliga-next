@@ -13,11 +13,17 @@ const teamsSlice = createSlice({
   reducers: {
     setTeams: (state, action) => {
       state.teams = action.payload
-    }, 
+    },
+    addGameToTeam: (state, action) => {
+      const { game } = action.payload
+      if (game) {
+        state.teams.push(game)
+      }
+    },
   },
   extraReducers: teamsExtraReducer,
 })
 
-export const { setTeams } = teamsSlice.actions
+export const { setTeams, addGameToTeam } = teamsSlice.actions
 
 export default teamsSlice.reducer

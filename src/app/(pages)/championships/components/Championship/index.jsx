@@ -2,14 +2,17 @@
 import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
+import { fetchCompetitionStats } from 'app/lib/features/competition/competition.thunk'
 
 const Championship = ({ game }) => {
+  const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
   const teams = useSelector(selectTeams)
   const router = useRouter()
+  const { season } = useSelector((state) => state.season)
 
   const toggleModal = () => {
     if (isModalOpen) {
@@ -24,7 +27,6 @@ const Championship = ({ game }) => {
       }
     }
   }
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {

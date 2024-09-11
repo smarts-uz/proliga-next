@@ -3,6 +3,7 @@ import { competitionExtraReducer } from './competition.extraReducer'
 
 const initialState = {
   competition: [],
+  competitionStats: [],
   error: null,
   isLoading: false,
 }

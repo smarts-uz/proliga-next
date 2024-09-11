@@ -6,7 +6,10 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
+import {
+  fetchCompetition,
+  fetchCompetitionStats,
+} from 'app/lib/features/competition/competition.thunk'
 import { selectCompetition } from 'app/lib/features/competition/competition.selector'
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
 
@@ -15,7 +18,8 @@ const Championships = () => {
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const selectedTeams = useSelector(selectTeams)
   const selectedCompetition = useSelector(selectCompetition)
-  const { isLoading } = useSelector((state) => state.competition)
+  const { isLoading, competition } = useSelector((state) => state.competition)
+  const { season } = useSelector((state) => state.season)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -31,6 +35,19 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable])
+
+  // useEffect(() => {
+  //   if (competition) {
+  //     competition.map((game) =>
+  //       dispatch(
+  //         fetchCompetitionStats({
+  //           competition_id: game.id,
+  //           season_id: season.id,
+  //         })
+  //       )
+  //     )
+  //   }
+  // }, [dispatch, competition, season])
 
   return (
     <Gutter>

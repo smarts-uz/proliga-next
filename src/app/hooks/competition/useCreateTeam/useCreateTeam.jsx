@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { addGame } from 'app/lib/features/competition/competition.slice'
 import { useRouter } from 'next/navigation'
+import { addGameToTeam } from 'app/lib/features/teams/teams.slice'
 
 export const useCreateTeam = () => {
   const [error, setError] = useState(null)
@@ -23,6 +23,13 @@ export const useCreateTeam = () => {
       router.push('/auth')
       return
     }
+
+    if (!title) {
+      setError('Ism bolishi shart')
+      toast.error('ism bolishi shart')
+      return
+    }
+
     try {
       setIsLoading(true)
 
@@ -44,6 +51,7 @@ export const useCreateTeam = () => {
       }
       if (data) {
         setData(data)
+        dispatch(addGameToTeam(data))
       }
     } catch (error) {
       setError(error.message)

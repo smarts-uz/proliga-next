@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import ToursHistory from './ToursHistory'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
+import Overview from './Overview'
 
 const Transfer = ({ paramsId }) => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const Transfer = ({ paramsId }) => {
     <Gutter>
       <main className="flex flex-col justify-between gap-2 md:min-h-max lg:flex-row">
         <div className="flex h-full w-max flex-col lg:w-3/5">
+          <Overview />
           <div className="relative h-full w-full lg:w-full">
             <Image
               src="/icons/stadium.svg"

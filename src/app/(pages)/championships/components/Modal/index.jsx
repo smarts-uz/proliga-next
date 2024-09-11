@@ -23,14 +23,14 @@ const CompetitionModal = ({ toggleModal, game }) => {
     )
 
     await createTeam({ title, formation, competition_id: game.id })
-    if (!error && !isLoading) {
+    if (!error && !isLoading && data) {
       setTitle('')
       setFormation(FORMATIONS['4-3-3'])
+      if (currentGame) {
+        router.push(`/play/${game.slug}/${currentGame.id}`)
+      }
+      toggleModal()
     }
-    // if (currentGame) {
-    //   router.push(`/play/${game.slug}/${currentGame.id}`)
-    // }
-    toggleModal()
   }
 
   return (

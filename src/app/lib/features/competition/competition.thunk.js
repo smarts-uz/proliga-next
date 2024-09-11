@@ -8,3 +8,16 @@ export const fetchCompetition = createAsyncThunk(
     return { data, error }
   }
 )
+
+export const fetchCompetitionStats = createAsyncThunk(
+  'competition/fetchCompetitionStats',
+  async ({ competition_id, season_id }) => {
+    const { data, error } = await supabase
+      .from('team')
+      .select('')
+      .eq('competition_id', competition_id)
+      .eq('season_id', season_id)
+
+    return { data, error }
+  }
+)
