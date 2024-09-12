@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import ToursHistory from './ToursHistory'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
-import Overview from './Overview'
+import Overview from './TeamOverview'
 
 const Transfer = ({ paramsId }) => {
   const dispatch = useDispatch()

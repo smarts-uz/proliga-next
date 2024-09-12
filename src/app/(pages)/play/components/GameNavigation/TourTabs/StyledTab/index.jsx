@@ -17,7 +17,6 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
       color: 'white',
       opacity: 0.5,
     },
-
   })
 )
 
