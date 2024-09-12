@@ -1,26 +1,33 @@
 import { useSelector } from 'react-redux'
+import Image from 'next/image'
 
 const Overview = () => {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { currentTourTeam } = useSelector((state) => state.tourTeams)
 
-
   return (
     <div className="mb-4 grid grid-cols-4 rounded-xl bg-neutral-950 p-6 capitalize text-neutral-50">
-      <div className="flex flex-col">
-        <h2 className="text-sm text-neutral-400">Balans</h2>
-        <p className="text-4xl font-bold">{currentTeam.balance ?? '00'}</p>
-      </div>
       <div className="flex flex-col">
         <h3 className="text-sm text-neutral-400">jamoa narxi</h3>
         <p className="text-4xl font-bold">{currentTourTeam?.price ?? '00'}</p>
       </div>
+      <div className="flex flex-col">
+        <h2 className="text-sm text-neutral-400">Balans</h2>
+        <p className="text-4xl font-bold">{currentTeam.balance ?? '00'}</p>
+      </div>
       <div className="relative flex flex-col">
         <h3
           title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-          className="cursor-pointer text-sm text-neutral-400"
+          className="group flex cursor-pointer gap-1 text-sm text-neutral-400 transition-all hover:text-neutral-50 hover:underline"
         >
           transferlar
+          <Image
+            src="/icons/arrow-bold-up.svg"
+            alt="arrow"
+            width={16}
+            className="filter-neutral-400 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
+            height={16}
+          />
         </h3>
         <p className="cursor-pointer text-4xl font-bold">2/2</p>
       </div>
