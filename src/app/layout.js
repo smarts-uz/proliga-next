@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       </head>
       <ReduxProvider>
         <body
-          className={`${archivo.className} dark min-h-svh bg-black text-white`}
+          className={`${archivo.className} dark min-h-screen bg-black text-white`}
         >
           <GetInitialState>
             <Navbar />
