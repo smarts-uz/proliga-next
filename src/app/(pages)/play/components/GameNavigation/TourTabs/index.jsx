@@ -76,7 +76,7 @@ export default function TourTabs() {
           <StyledTab
             key={item.id}
             onClick={() => handleClick(index)}
-            className="w-48 space-y-0 disabled:cursor-default disabled:text-neutral-500 sm:w-56 md:w-64 2xl:w-72"
+            className="w-48 space-y-0 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             icon={
               <h3 className="text-start text-sm md:text-base">{item.name}</h3>
             }
