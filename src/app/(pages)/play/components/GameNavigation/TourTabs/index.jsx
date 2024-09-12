@@ -65,11 +65,12 @@ export default function TourTabs() {
             onClick={() => handleClick(index)}
             className="w-48 space-y-0 disabled:cursor-default disabled:text-neutral-500 sm:w-56 md:w-64 2xl:w-72"
             icon={
-              <h3 className="text-start text-sm md:text-base">
-                {index + 1} Tur
-              </h3>
+              <h3 className="text-start text-sm md:text-base">{item.name}</h3>
             }
-            disabled={item.status === 'not_started'}
+            disabled={
+              item.status === 'not_started' ||
+              currentTeam.registered_tour_id >= item.id
+            }
             label={
               <p className="text-xs capitalize md:text-sm">
                 {getStatus(item.status)}
