@@ -79,6 +79,11 @@ export const addTeamPlayerReducer = (state, action) => {
     toast.warning('Boshqa oyinchi qoshish mumkin emas!')
     return
   }
+  const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
+  if (existingPlayer) {
+    toast.warning('Ushbu oyinchi allaqachon oyinda!')
+    return
+  }
 
   if (
     state.GOA.length > 0 &&
