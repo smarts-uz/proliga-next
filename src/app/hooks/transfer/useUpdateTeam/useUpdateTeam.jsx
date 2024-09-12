@@ -18,7 +18,7 @@ export const useUpdateTeam = () => {
       const { data, error } = await supabase
         .from('tour_team')
         .update({ captain_id })
-        .eq('id', team_id)
+        .eq('team_id', team_id)
         .eq('tour_id', tour_id)
         .select()
 

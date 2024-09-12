@@ -32,7 +32,6 @@ export const useSignUp = () => {
 
     try {
       setIsLoading(true)
-      console.log(email, password)
 
       const { data, error } = await supabase.auth.signUp({
         email,

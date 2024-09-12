@@ -21,7 +21,6 @@ export const toursExtraReducer = (builder) => {
           (tour) => tour.status === TOUR.completed
         )
       }
-      console.log(tour, tourIndex)
       if (tour) {
         state.currentTour = tour
         state.currentTourIndex = tourIndex

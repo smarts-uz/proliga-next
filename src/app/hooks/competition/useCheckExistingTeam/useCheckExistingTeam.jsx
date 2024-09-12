@@ -45,7 +45,6 @@ export const useCheckExistingTeam = () => {
       }
       if (data) {
         setData(data)
-        console.log(data)
       }
     } catch (error) {
       setError(error.message)

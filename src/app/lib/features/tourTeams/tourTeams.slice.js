@@ -17,9 +17,10 @@ const tourTeamSlice = createSlice({
       state.currentTourTeam.captain_id = action.payload
     },
     setCurrentTourTeamIndex: (state, action) => {
-      console.log(action.payload)
-      state.currentTourTeam = state.tourTeams[action.payload]
-      state.currentTourTeamIndex = action.payload
+      if (action.payload && state.tourTeams[action.payload]) {
+        state.currentTourTeam = state.tourTeams[action.payload]
+        state.currentTourTeamIndex = action.payload
+      }
     },
   },
   extraReducers: tourTeamExtraReducer,

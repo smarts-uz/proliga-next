@@ -11,7 +11,7 @@ const ChangeCaptainForm = () => {
     (state) => state.teamPlayers
   )
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  // const { tourTeam } = useSelector((state) => state.tourTeam)
+  const { currentTourTeam } = useSelector((state) => state.tourTeams)
   const { currentTour } = useSelector((state) => state.tours)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -35,10 +35,10 @@ const ChangeCaptainForm = () => {
         return
       }
     })
-    // if (!tourTeam.captain_id) {
-    //   toast.error('Kapitan tanlang')
-    //   return
-    // }
+    if (!currentTourTeam.captain_id) {
+      toast.error('Kapitan tanlang')
+      return
+    }
     if (playersCount.DEF < 3 && playersCount.MID < 3 && playersCount.STR < 2) {
       toast.error('Jamoa da yetarli futbolchilar yoq')
       return
@@ -46,7 +46,7 @@ const ChangeCaptainForm = () => {
 
     await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
     await updateTeam({
-      // captain_id: tourTeam.captain_id,
+      captain_id: currentTourTeam.captain_id,
       team_id: currentTeam.id,
       tour_id: currentTour.id,
     })
@@ -79,7 +79,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-800"
                   value={player.player_id}
                   key={player.id}
-                  // selected={player.player_id === tourTeam.captain_id}
+                  selected={player.player_id === currentTourTeam.captain_id}
                 >
                   {player.name}
                 </option>

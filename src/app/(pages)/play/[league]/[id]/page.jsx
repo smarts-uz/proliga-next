@@ -13,7 +13,6 @@ const Play = ({ params }) => {
   const { gameTab } = useSelector((state) => state.tabs)
   const { competition } = useSelector((state) => state.competition)
 
-  console.log(params)
   useEffect(() => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())

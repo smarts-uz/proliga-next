@@ -14,6 +14,9 @@ export default function TourTabs() {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const selectedTours = useSelector(selectTours)
   const { currentTourIndex } = useSelector((state) => state.tours)
+  const { currentTourTeamIndex, tourTeams } = useSelector(
+    (state) => state.tourTeams
+  )
 
   useEffect(() => {
     if (currentTeam?.competition_id) {
@@ -23,6 +26,16 @@ export default function TourTabs() {
       fetch()
     }
   }, [currentTeam, dispatch])
+
+  useEffect(() => {
+    if (
+      currentTourIndex !== currentTourTeamIndex &&
+      selectTours?.length > 0 &&
+      tourTeams?.length > 0
+    ) {
+      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+    }
+  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
 
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
