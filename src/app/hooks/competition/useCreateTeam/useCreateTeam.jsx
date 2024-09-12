@@ -3,8 +3,10 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
+import { addGameToTeam } from 'app/lib/features/teams/teams.slice'
 
 export const useCreateTeam = () => {
+  const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
@@ -25,6 +27,12 @@ export const useCreateTeam = () => {
     if (!title) {
       setError('Ism bolishi shart')
       toast.error('ism bolishi shart')
+      return
+    }
+
+    if (!formation) {
+      setError('Taktika bolishi shart')
+      toast.error('Taktika bolishi shart')
       return
     }
 
@@ -49,6 +57,7 @@ export const useCreateTeam = () => {
       }
       if (data) {
         setData(data[0])
+        dispatch(addGameToTeam(data[0]))
         toast.success('Jomoa muvaffaqiyatli yaratildi')
       }
     } catch (error) {

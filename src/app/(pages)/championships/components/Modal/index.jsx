@@ -1,53 +1,50 @@
 import Backdrop from '../../../../../components/Backdrop'
 import Image from 'next/image'
 import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import { useCheckExistingTeam } from 'app/hooks/competition/useCheckExistingTeam/useCheckExistingTeam'
 
 const CompetitionModal = ({ toggleModal, competition }) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
+  const [active, setActive] = useState(false)
   const router = useRouter()
   const selectedTeams = useSelector(selectTeams)
-  const { season } = useSelector((state) => state.season)
-  const {
-    checkTeam,
-    isLoading: checkLoading,
-    error: checkError,
-    data: checkData,
-  } = useCheckExistingTeam()
 
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    setActive(true)
     await createTeam({ title, formation, competition_id: competition.id })
-    // await checkTeam({ competition_id: competition.id, season_id: season.id })
+  }
 
-    console.log(data, isLoading, error)
-    if (!error && !isLoading && data) {
+  useEffect(() => {
+    if (active && data && !isLoading && !error) {
+      const currentGame = selectedTeams.find(
+        (game) => game.competition_id === competition.id
+      )
+      setActive(false)
       setTitle('')
       setFormation(FORMATIONS['4-3-3'])
+      currentGame && router.push(`/play/${competition.slug}/${currentGame.id}`)
       toggleModal()
-      dispatch(addGameToTeam(data[0]))
     }
-
-    const currentGame = selectedTeams.find(
-      (game) => game.competition_id === competition.id
-    )
-
-    console.log(currentGame)
-
-    if (currentGame) {
-      router.push(`/play/${competition.slug}/${currentGame.id}`)
-    }
-  }
+  }, [
+    active,
+    competition,
+    router,
+    selectedTeams,
+    data,
+    isLoading,
+    error,
+    toggleModal,
+  ])
 
   return (
     <Backdrop onClick={() => toggleModal(false)}>

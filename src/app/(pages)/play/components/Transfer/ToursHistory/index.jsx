@@ -36,7 +36,7 @@ const ToursHistory = () => {
           <span className="mr-1 text-neutral-100">
             {currentTeam?.order ?? '00'}
           </span>
-          / {currentTourTeam.sum_of_team_point ?? '00000'}
+          / {currentTourTeam?.sum_of_team_point ?? '00000'}
         </p>
       </div>
     </div>

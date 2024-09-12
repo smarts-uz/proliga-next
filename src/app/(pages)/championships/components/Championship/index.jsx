@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import { fetchCompetitionStats } from 'app/lib/features/competition/competition.thunk'
 
 const Championship = ({ game }) => {
   const dispatch = useDispatch()
@@ -12,9 +10,8 @@ const Championship = ({ game }) => {
   const [currentGame, setCurrentGame] = useState(null)
   const router = useRouter()
   const { teams } = useSelector((state) => state.teams)
-  const { season } = useSelector((state) => state.season)
 
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     if (isModalOpen) {
       setModalOpen(false)
       if (typeof window != 'undefined' && window.document) {
@@ -26,7 +23,7 @@ const Championship = ({ game }) => {
         document.body.style.overflow = 'hidden'
       }
     }
-  }
+  }, [isModalOpen])
 
   useEffect(() => {
     const currentGame = teams?.find((team) => team.competition_id === game.id)

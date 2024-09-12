@@ -33,9 +33,9 @@ export const useCheckExistingTeam = () => {
 
       const { data, error } = await supabase
         .from('team')
-        .select('id, name')
+        .select('*', { count: 'exact', head: true })
         .eq('user_id', userTable.id)
-        .eq('competition_id', 1)
+        .eq('competition_id', competition_id)
         .eq('season_id', season_id)
 
       if (error) {

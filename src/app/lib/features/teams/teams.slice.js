@@ -15,9 +15,8 @@ const teamsSlice = createSlice({
       state.teams = action.payload
     },
     addGameToTeam: (state, action) => {
-      const { game } = action.payload
-      if (game) {
-        state.teams.push(game)
+      if (action.payload) {
+        state.teams.push(action.payload)
       }
     },
   },
