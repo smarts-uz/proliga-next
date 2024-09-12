@@ -51,13 +51,13 @@ const Navbar = () => {
             </Link>
             <Link
               className="transition-all hover:text-white hover:underline"
-              href={'/'}
+              href="/prizes"
             >
               Yutuqlar
             </Link>
             <Link
               className="transition-all hover:text-white hover:underline"
-              href={'/'}
+              href="/regulation"
             >
               Qoida
             </Link>

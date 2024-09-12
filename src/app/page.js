@@ -8,7 +8,7 @@ export default function Home() {
     <section>
       <Hero />
       <Promotions />
-      {/* <Rules /> */}
+      <Rules />
     </section>
   )
 }

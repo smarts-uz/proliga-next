@@ -18,28 +18,44 @@ const TeamBalanceModal = ({ handleModal }) => {
           </h3>
         </header>
         <section className="flex flex-col gap-2">
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Tangalar miqdorini <span className="font-bold">115</span> tangaga
-              oshirish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Tangalar miqdorini <span className="font-bold">125</span> tangaga
-              oshirish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Tangalar miqdorini <span className="font-bold">155</span> tangaga
-              oshirish
-            </Link>
-          </div>
+          {balance.map((item) => (
+            <div
+              key={item.id}
+              className="flex gap-2 rounded border border-neutral-400 p-4"
+            >
+              <Link href={`/confirm-payment/${item.id}`}>
+                Tangalar miqdorini
+                <span className="font-bold">{item.amount}</span> tangaga
+                oshirish
+              </Link>
+            </div>
+          ))}
         </section>
       </dialog>
     </Backdrop>
   )
 }
+
+const balance = [
+  {
+    id: 1,
+    type: 'balance',
+    amount: 115,
+    price: 25000,
+  },
+  {
+    id: 2,
+    type: 'balance',
+
+    amount: 125,
+    price: 35000,
+  },
+  {
+    id: 3,
+    type: 'balance',
+    amount: 150,
+    price: 65000,
+  },
+]
 
 export default TeamBalanceModal

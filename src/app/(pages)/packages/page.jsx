@@ -71,14 +71,17 @@ const Packages = () => {
 }
 const balance = [
   {
+    id: 1,
     amount: 115,
     price: 25000,
   },
   {
+    id: 2,
     amount: 125,
     price: 35000,
   },
   {
+    id: 3,
     amount: 150,
     price: 65000,
   },
@@ -86,14 +89,17 @@ const balance = [
 
 const transfers = [
   {
+    id: 4,
     amount: 3,
     price: 25000,
   },
   {
+    id: 5,
     amount: 4,
     price: 35000,
   },
   {
+    id: 6,
     amount: 5,
     price: 65000,
   },
@@ -101,14 +107,17 @@ const transfers = [
 
 const maxClubMembers = [
   {
+    id: 7,
     amount: 3,
     price: 25000,
   },
   {
+    id: 8,
     amount: 4,
     price: 35000,
   },
   {
+    id: 9,
     amount: 5,
     price: 65000,
   },

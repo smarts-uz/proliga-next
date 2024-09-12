@@ -18,28 +18,42 @@ const TeamMaxClubMembersModal = ({ handleModal }) => {
           </h3>
         </header>
         <section className="flex flex-col gap-2">
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Bir jamoadan <span className="font-bold">3ta</span> futbolchi
-              sotib olish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Bir jamoadan <span className="font-bold">4ta</span> futbolchi
-              sotib olish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Bir jamoadan <span className="font-bold">5ta</span> futbolchi
-              sotib olish
-            </Link>
-          </div>
+          {maxClubMembers.map((item) => (
+            <div
+              key={item.id}
+              className="flex gap-2 rounded border border-neutral-400 p-4"
+            >
+              <Link href={`/confirm-payment/${item.id}`}>
+                Bir jamoadan <span className="font-bold">{item.amount}ta</span>
+                futbolchi sotib olish
+              </Link>
+            </div>
+          ))}
         </section>
       </dialog>
     </Backdrop>
   )
 }
+
+const maxClubMembers = [
+  {
+    id: 7,
+    type: 'maxClubMembers',
+    amount: 3,
+    price: 25000,
+  },
+  {
+    id: 8,
+    type: 'maxClubMembers',
+    amount: 4,
+    price: 35000,
+  },
+  {
+    id: 9,
+    type: 'maxClubMembers',
+    amount: 5,
+    price: 65000,
+  },
+]
 
 export default TeamMaxClubMembersModal

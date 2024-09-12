@@ -18,25 +18,42 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
           </h3>
         </header>
         <section className="flex flex-col gap-2">
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Transfer limitni <span className="font-bold">3taga</span> oshirish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Transfer limitni <span className="font-bold">4taga</span> oshirish
-            </Link>
-          </div>
-          <div className="flex gap-2 rounded border border-neutral-400 p-4">
-            <Link href="/">
-              Transfer limitni <span className="font-bold">5taga</span> oshirish
-            </Link>
-          </div>
+          {transfers.map((transfer) => (
+            <div
+              key={transfer.id}
+              className="flex gap-2 rounded border border-neutral-400 p-4"
+            >
+              <Link href={`/confirm-payment/${transfer.id}`}>
+                Transfer limitni
+                <span className="font-bold">{transfer.amount}ta</span> oshirish
+              </Link>
+            </div>
+          ))}
         </section>
       </dialog>
     </Backdrop>
   )
 }
+
+const transfers = [
+  {
+    id: 4,
+    type: 'transfer',
+    amount: 3,
+    price: 25000,
+  },
+  {
+    id: 5,
+    type: 'transfer',
+    amount: 4,
+    price: 35000,
+  },
+  {
+    id: 6,
+    type: 'transfer',
+    amount: 5,
+    price: 65000,
+  },
+]
 
 export default TeamMaxTransfersModal
