@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+import Image from 'next/image'
 
 import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
@@ -28,7 +29,7 @@ function Page() {
   let rasm = document.getElementById('img')
   const uploadImage = async () => {
     await uploadFile(rasm.files[0])
-    // window.location.reload()
+    window.location.reload()
   }  
   
   const formik = useFormik({
@@ -74,19 +75,22 @@ function Page() {
                 className=" my-2 block text-sm font-bold text-neutral-300"
                 htmlFor="img"
               >
-                <div className='relative'>
+                <div className='relative group'>
                 <img src={imgPreview?imgPreview:img} className='rounded-full xl:size-56 md:size-40 lg:size-48 sm:size-36 xs:size-32 border-neutral-50 bg-neutral-300 border-2'  width={100} height={100} key={img} alt="img" />
-                <span style={{ left: "calc(50% - 24px)", top: 'calc(50% - 24px)' }} className='absolute bg-green-600 block rounded-full w-12 h-12 top-0 text-black'>
-                </span>
+           <div className='bg-neutral-400'>
+           <Image width={100} height={100} alt={'edit'}  src={'/icons/edit.svg'} style={{ left: "calc(50% - 24px)", top: 'calc(50% - 24px)' }} className='hidden xl:group-hover:block absolute filter-neutral-950  w-12 h-12 top-0 '/>
+           </div>
                 </div>
+              <h2 className='text-blue-600 text-center pt-4 hover:underline xl:hidden'>Su&apos;rat  qo&apos;shish</h2>
+
               </label>
               <input type="file"   onChange={handleFileChange} id="img" className="hidden" />
               <button
                 type="button"
-                className={photo?"mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black":('hidden')}
+                className={photo?"w-32 rounded-sm border border-neutral-500 bg-neutral-900 py-3 font-semibold transition-all hover:bg-black":('hidden')}
                 onClick={() => uploadImage()}
               >
-                Surat qo&apos;shish
+                Yuklash
               </button>
           <div className="flex">
             <div className="my-4 min-w-72 xs:max-w-96 sm:max-w-[36rem]">
@@ -205,10 +209,14 @@ function Page() {
                   />
                 </div>
               </div>
-              <Link className="text-blue-500" href={'/cabinet/update'}>
+              <div className='flex'>
+                 <Link className="text-blue-500 hover:underline" href={'/cabinet/update'}>
+                  Hisobni to&apos;ldirish
+                </Link>
+                 <Link className="text-blue-500 hover:underline mx-3" href={'/cabinet/update'}>
                 Parolni yangilash
               </Link>
-           
+              </div>           
               <button
                 className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
                 type="submit"
