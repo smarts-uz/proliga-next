@@ -19,9 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Proliga</title>
+        <title>Proliga.uz</title>
         <meta name="description" content="Bu sportlar haqida web sayt" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="./favicon.svg" type="image/x-icon" />
       </head>
       <ReduxProvider>
         <body

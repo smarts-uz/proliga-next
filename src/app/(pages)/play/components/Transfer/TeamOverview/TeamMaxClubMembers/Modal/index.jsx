@@ -6,28 +6,33 @@ const TeamMaxClubMembersModal = ({ handleModal }) => {
   return (
     <Backdrop bgOpacity={'bg-opacity-50'} onClick={handleModal}>
       <dialog
-        className="flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 fade-in md:p-6 lg:w-1/3"
+        className="mx-4 flex flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 fade-in xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={handleModal} className="self-end">
           <Image width={24} height={24} src="/icons/close.svg" alt="close" />
         </button>
-        <header>
+        <header className="space-y-1">
           <h3 className="text-xl font-semibold">
             Bir jamoadan oyinchilarni sonini oshirishni hoxlaysizmi?
           </h3>
+          <p className="text-sm text-neutral-300 md:text-base">
+            Musobaqada g‘alaba qozonish uchun bir jamoadan ikkita o‘yinchi
+            etarli bo‘lmasligi mumkin. Foydalanuvchiga qo‘shimcha ravishda har
+            bir jamoadan yana 3 tagacha o‘yinchi (jami 5 o‘yinchi) sotib
+            olishlari mumkin bo‘ladi. Shu sababli, foydalanuvchilar bir jamoadan
+            qo‘shimcha futbolchilar limitini sotib olib, chempionlik sari qadam
+            tashlaydi
+          </p>
         </header>
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-2 text-sm xs:text-base">
           {maxClubMembers.map((item) => (
-            <div
-              key={item.id}
-              className="flex gap-2 rounded border border-neutral-400 p-4"
-            >
-              <Link href={`/confirm-payment/${item.id}`}>
+            <Link key={item.id} href={`/confirm-payment/${item.id}`}>
+              <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
                 Bir jamoadan <span className="font-bold">{item.amount}ta</span>
                 futbolchi sotib olish
-              </Link>
-            </div>
+              </div>
+            </Link>
           ))}
         </section>
       </dialog>

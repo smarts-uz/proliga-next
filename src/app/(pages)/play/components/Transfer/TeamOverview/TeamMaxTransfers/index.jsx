@@ -28,7 +28,7 @@ const TeamMaxTransfers = () => {
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-            className="text-sm"
+            className="text-xs xs:text-sm"
           >
             transferlar
           </h3>
@@ -37,10 +37,10 @@ const TeamMaxTransfers = () => {
             alt="arrow"
             width={16}
             height={16}
-            className="filter-neutral-400 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
+            className="filter-neutral-400 group-hover:filter-neutral-50 size-3.5 translate-x-0 rotate-45 transition-all group-hover:translate-x-1 xs:size-4"
           />
         </header>
-        <p className="cursor-pointer text-4xl font-bold">2/2</p>
+        <p className="cursor-pointer text-3xl font-bold xs:text-4xl">2/2</p>
       </div>
       {isModalOpen && <TeamMaxTransfersModal handleModal={handleModal} />}
     </>

@@ -5,21 +5,21 @@ export const columns = [
   columnHelper.accessor('name', {
     accessorKey: 'name',
     cell: (info) => info.getValue(),
-    header: 'Name',
+    header: 'Ism',
     meta: {
       filterVariant: 'name',
     },
   }),
   columnHelper.accessor('club.name', {
     accessorKey: 'club.name',
-    header: 'Club',
+    header: 'Klub',
     meta: {
       filterVariant: 'club',
     },
   }),
   columnHelper.accessor('price', {
     accessorKey: 'price',
-    header: 'Price',
+    header: 'Narx',
     cell: (info) => info.renderValue(),
     filterFn: (row, id, filterValues) => {
       const price = row.getValue(id)
@@ -41,7 +41,7 @@ export const columns = [
     accessorFn: (row) => row.position,
     id: 'position',
     cell: (info) => <i>{info.getValue()}</i>,
-    header: 'Position',
+    header: 'Pozitsiya',
     meta: {
       filterVariant: 'position',
     },

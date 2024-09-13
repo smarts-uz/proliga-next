@@ -33,13 +33,13 @@ const Navbar = () => {
         <div className="relative flex w-full items-center justify-between py-4 text-white">
           <Link href="/">
             <Image
-              src="/images/proliga.png"
+              src="/icons/proliga-full.svg"
               alt="Proliga"
               width={180}
               height={56}
               priority={true}
               draggable={false}
-              className="h-6 w-32 cursor-pointer md:h-8 md:w-40"
+              className="cursor-pointer w-28  sm:w-36"
             />
           </Link>
           <section className="hidden items-center gap-4 text-neutral-300 sm:flex sm:text-sm lg:gap-6 lg:text-base">

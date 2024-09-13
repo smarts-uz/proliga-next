@@ -59,12 +59,14 @@ const ChangeCaptainForm = () => {
   return (
     <form className="mt-2 flex justify-between text-black">
       <div className="flex items-center gap-1 text-neutral-200">
-        <h3 className="mr-2 text-lg font-medium text-neutral-100">Kapitan:</h3>
+        <h3 className="mr-2 hidden text-lg font-medium text-neutral-100 sm:block">
+          Kapitan:
+        </h3>
         <select
           name="formation"
           id="formation"
           onClick={(e) => dispatch(setCaptain(e.target.value))}
-          className="w-48 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-2 font-semibold text-neutral-200 outline-none"
+          className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2"
         >
           <option
             value=""
@@ -90,7 +92,7 @@ const ChangeCaptainForm = () => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="-skew-x-12 rounded-sm bg-black px-10 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black"
+        className="-skew-x-12 rounded-sm bg-black px-6 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10"
       >
         Saqlash
       </button>

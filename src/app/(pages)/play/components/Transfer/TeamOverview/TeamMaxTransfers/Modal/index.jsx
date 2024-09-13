@@ -6,28 +6,33 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
   return (
     <Backdrop onClick={handleModal}>
       <dialog
-        className="flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 fade-in md:p-6 lg:w-1/3"
+        className="mx-4 flex flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 fade-in xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={handleModal} className="self-end">
           <Image width={24} height={24} src="/icons/close.svg" alt="close" />
         </button>
-        <header>
+        <header className="space-y-1">
           <h3 className="text-xl font-semibold">
             Transfer limitini oshirishni hoxlaysizmi?
           </h3>
+          <p className="text-sm text-neutral-300 md:text-base">
+            Trasnfer limitini oshirish bu musobaqada g‘alaba qozonish uchun
+            foydalanuvchiga yana 3 tagacha qo‘shimcha transfer kerak bo‘lishi
+            mumkin (jami 5 ta transfer). Shu sababli, foydalanuvchilar
+            qo‘shimcha transferlardan birini sotib olib, chempionlik sari qadam
+            tashlaydi
+          </p>
         </header>
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-2 text-sm xs:text-base">
           {transfers.map((transfer) => (
-            <div
-              key={transfer.id}
-              className="flex gap-2 rounded border border-neutral-400 p-4"
-            >
-              <Link href={`/confirm-payment/${transfer.id}`}>
+            <Link key={transfer.id} href={`/confirm-payment/${transfer.id}`}>
+              <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
                 Transfer limitni
-                <span className="font-bold">{transfer.amount}ta</span> oshirish
-              </Link>
-            </div>
+                <span className="font-bold">{transfer.amount} </span>taga
+                oshirish
+              </div>
+            </Link>
           ))}
         </section>
       </dialog>

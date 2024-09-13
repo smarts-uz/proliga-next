@@ -40,7 +40,7 @@ const Statistics = () => {
               {statistics.map((player) => (
                 <tr key={player.id} className="text-center">
                   <td className="w-1/4 truncate">
-                    {player?.player_id?.name ?? 'Player Name'}
+                    {player?.player_id?.name ?? 'Oyinchi Ismi'}
                   </td>
                   <td className="w-1/4 truncate">{player.position}</td>
                   <td className="w-1/8 truncate">{player.goal}</td>

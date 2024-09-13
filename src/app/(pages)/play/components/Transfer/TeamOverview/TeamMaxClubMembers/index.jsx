@@ -28,7 +28,7 @@ export default function TeamMaxClubMembers() {
         <header className="flex text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-            className="text-sm"
+            className="text-xs xs:text-sm"
           >
             Bir jamoadan o&apos;yinchilar
           </h3>
@@ -36,11 +36,11 @@ export default function TeamMaxClubMembers() {
             src="/icons/arrow-bold-up.svg"
             alt="arrow"
             width={16}
-            className="filter-neutral-400 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
+            className="filter-neutral-400 group-hover:filter-neutral-50 size-3.5 translate-x-0 rotate-45 transition-all group-hover:translate-x-1 xs:size-4"
             height={16}
           />
         </header>
-        <p className="text-4xl font-bold">2/2</p>
+        <p className="text-3xl font-bold xs:text-4xl">2/2</p>
       </div>
       {isModalOpen && <TeamMaxClubMembersModal handleModal={handleModal} />}
     </>
