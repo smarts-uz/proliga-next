@@ -4,26 +4,30 @@ import Gutter from '../../Gutter'
 
 const Transfers = () => {
   return (
-    <div className="w-full bg-neutral-800 py-8 2xl:py-16">
+    <div className="w-full bg-neutral-800 py-6 md:py-8">
       <Gutter>
         <div className="bg-custom-image align-center flex flex-col bg-cover">
           <h2 className="promotion-header self-center text-center font-bold uppercase xs:justify-start xs:text-start">
             TRANSFERLARNI AMALGA OSHIRING
           </h2>
-          <p className="promotion-text mt-4 self-center text-center text-neutral-400 md:mt-10 md:w-3/4">
+          <p className="promotion-text mt-6 self-center text-center text-neutral-400 md:w-3/4 xl:mt-10">
             Agar sizning jamoangizdagi o&apos;yinchilardan biri jarohat olgan
             bo&apos;lsa yoki shunchaki yomon o&apos;ynasa, har bir turda ochko
             to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 2
             tagacha transferni amalga oshirishingiz mumkin
           </p>
 
-          <div className={'mx-auto mt-10 flex items-center justify-center'}>
+          <div
+            className={
+              'mx-auto mt-10 w-full flex-1 md:w-auto md:items-center md:justify-center'
+            }
+          >
             <Image
               width={536}
               height={193}
               src={'/images/promotion-transfer.png'}
               alt="transfer players"
-              className="h-22 w-full md:min-h-36 md:w-72 md:min-w-96 2xl:h-52 2xl:w-[36rem]"
+              className="h-full w-full mx-auto md:mx-0 xs:w-3/4 sm:w-96 xl:w-[32rem]"
             />
           </div>
         </div>

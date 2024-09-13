@@ -3,16 +3,16 @@ import Gutter from '../../Gutter'
 
 const CreateTeam = () => {
   return (
-    <section className="bg-neutral-800 py-8">
+    <section className="bg-neutral-800 py-6 md:py-8">
       <Gutter>
-        <div className="flex w-full flex-col items-center justify-between gap-4 lg:flex-row lg:gap-0">
+        <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row md:gap-4 lg:gap-0">
           <div className="mt-8 flex flex-1 flex-col flex-wrap">
-            <div className="mb-12 w-5/6 max-w-[32rem] -skew-x-12 self-start rounded-sm bg-primary pl-12 pr-16">
+            <div className="mb-6 w-5/6 max-w-[24rem] -skew-x-12 self-start rounded-sm bg-primary md:mb-12 md:max-w-[32rem]">
               <h3 className="promotion-header text-center font-bold capitalize text-black">
                 Umumiy qoidalar
               </h3>
             </div>
-            <div className="flex flex-col flex-wrap justify-center gap-4 self-start lg:pl-8">
+            <div className="flex flex-col flex-wrap justify-center gap-4 self-center md:self-start lg:pl-8">
               <h2 className="promotion-header font-bold uppercase">
                 jamoa yig&apos;ing
               </h2>
@@ -20,7 +20,7 @@ const CreateTeam = () => {
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
-              <div className="relative self-start xs:px-8">
+              <div className="relative hidden self-start xs:px-8 md:block">
                 <Image
                   width={400}
                   height={400}
@@ -31,12 +31,12 @@ const CreateTeam = () => {
               </div>
             </div>
           </div>
-          <div className="items-end self-end">
+          <div className="w-full flex-1 items-end self-center xs:w-4/5 md:w-auto">
             <Image
               src="/images/promotion-1.png"
               width={600}
               height={600}
-              className="aspect-[1/1.025] h-full w-full min-w-full"
+              className="aspect-[1/1.025] h-full w-full"
               alt="interactive stadium"
             />
           </div>
