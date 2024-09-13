@@ -21,8 +21,11 @@ const TeamMaxTransfers = () => {
 
   return (
     <>
-      <div className="w-min cursor-pointer capitalize" onClick={handleModal}>
-        <header className="group flex cursor-pointer text-neutral-400 transition-all hover:text-neutral-50 hover:underline">
+      <div
+        className="group w-min cursor-pointer capitalize"
+        onClick={handleModal}
+      >
+        <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-sm"

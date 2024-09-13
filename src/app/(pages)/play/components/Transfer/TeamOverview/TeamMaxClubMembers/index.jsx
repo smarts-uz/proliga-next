@@ -21,8 +21,11 @@ export default function TeamMaxClubMembers() {
 
   return (
     <>
-      <div className="w-min min-w-44 capitalize cursor-pointer" onClick={handleModal}>
-        <header className="group flex cursor-pointer text-neutral-400 transition-all hover:text-neutral-50 hover:underline">
+      <div
+        className="group w-min min-w-44 cursor-pointer capitalize"
+        onClick={handleModal}
+      >
+        <header className="flex text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-sm"
@@ -37,7 +40,7 @@ export default function TeamMaxClubMembers() {
             height={16}
           />
         </header>
-        <p className="cursor-default text-4xl font-bold">2/2</p>
+        <p className="text-4xl font-bold">2/2</p>
       </div>
       {isModalOpen && <TeamMaxClubMembersModal handleModal={handleModal} />}
     </>

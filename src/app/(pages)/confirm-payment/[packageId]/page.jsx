@@ -1,60 +1,36 @@
 'use client'
 
 import Gutter from 'components/Gutter'
+import CurrentPackage from './components/CurrentPackage'
+import PaymentOptions from './components/PaymentOptions'
 
 const ConfirmPayment = ({ params }) => {
-  console.log(params.packageId)
   const allPackages = [...balance, ...transfers, ...maxClubMembers]
   const currentPackage = allPackages.find(
     (item) => item.id === +params.packageId
   )
 
-  const getPackageText = (currentPackage) => {
-    if (currentPackage.type === 'balance') return 'Balansni'
-    if (currentPackage.type === 'transfer') return 'Transferni'
-    if (currentPackage.type === 'maxClubMembers')
-      return "Maksimum klub oyi'nchilarini"
-  }
-
   return (
     <Gutter>
       <section className="my-8 w-full">
-        <div className="flex items-center gap-6 rounded-md bg-neutral-800 p-6">
-          <span className="flex size-12 items-center justify-center rounded-full bg-black font-bold text-neutral-300">
-            1
-          </span>
-          <div className="flex w-full items-center justify-between">
-            <div className="space-x-2 text-xl">
-              {getPackageText(currentPackage)}
-              <span className="text-2xl font-bold">
-                {' ' + currentPackage.amount}
-              </span>{' '}
-              ga oshirish
-            </div>
-            <div className="text-2xl font-medium text-neutral-100">
-              <span className="text-3xl font-bold">
-                {currentPackage.price + ' '}
-              </span>
+        <CurrentPackage currentPackage={currentPackage} />
+        <PaymentOptions />
+        <div className="mt-16 flex h-24 items-center justify-between gap-6 rounded-md bg-gradient-to-l from-neutral-800 to-stone-900 p-6 md:mt-24">
+          <div>
+            <h2 className="text-xl font-medium">
+              Ummiy To&apos;lov Miqdori:{' '}
+              <span className="text-2xl font-bold">{currentPackage.price}</span>{' '}
               so&apos;m
-            </div>
+            </h2>
           </div>
-        </div>
-        <div className="mt-4">
-          <div className="flex w-full items-center gap-6 p-6">
-            <span className="flex size-12 items-center justify-center rounded-full bg-neutral-700 font-bold text-neutral-300">
-              2
-            </span>
-            <h3 className="text-xl font-medium">
-              Qanday qilib tolov qilmoqchisiz?
-            </h3>
+          <div className="flex items-center gap-1 font-medium">
+            <button className="h-10 w-32 rounded border border-neutral-300 bg-neutral-950 text-neutral-300 transition-all hover:border-neutral-100 hover:bg-opacity-75 hover:text-neutral-100">
+              Qaytish
+            </button>
+            <button className="h-10 w-32 rounded border border-primary bg-neutral-950 text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary">
+              Tolash
+            </button>
           </div>
-          <section className="flex gap-4 md:gap-6">
-            <div className="size-80 rounded-xl border border-neutral-600">
-              {/* <Image  /> */}
-            </div>
-            <div className="size-80 rounded-xl border border-neutral-600"></div>
-            <div className="size-80 rounded-xl border border-neutral-600"></div>
-          </section>
         </div>
       </section>
     </Gutter>
