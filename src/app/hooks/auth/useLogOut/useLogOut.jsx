@@ -20,6 +20,8 @@ export const useLogOut = () => {
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)
+      localStorage.removeItem(`photo_path`)
+
       router.push('/')
     } catch (error) {
       toast.error(error.message)

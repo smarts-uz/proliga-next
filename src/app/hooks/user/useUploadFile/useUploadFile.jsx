@@ -7,15 +7,15 @@ export const useUploadFile = () => {
   const [error, setError] = useState(null)
   const { userAuth } = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = useState(false)
-  
-  const uploadFile = async (file) => {    
+
+  const uploadFile = async (file) => {
     try {
       setIsLoading(true)
       setError('')
       if (localStorage.getItem('photo_path')) {
         const { data, error } = await supabase.storage
           .from('avatars')
-          .update(localStorage.getItem("photo_path"), file, {
+          .update(localStorage.getItem('photo_path'), file, {
             cacheControl: '3600',
             upsert: true,
           })
@@ -54,6 +54,5 @@ export const useUploadFile = () => {
     }
   }
 
-  
   return { uploadFile, isLoading, error }
 }
