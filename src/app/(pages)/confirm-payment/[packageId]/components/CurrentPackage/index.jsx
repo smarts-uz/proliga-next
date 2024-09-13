@@ -1,25 +1,25 @@
 const CurrentPackage = ({ currentPackage }) => {
   const getPackageText = (currentPackage) => {
     if (currentPackage.type === 'balance') return 'Balansni'
-    if (currentPackage.type === 'transfer') return 'Transferni'
+    if (currentPackage.type === 'transfer') return 'Transferlar sonini'
     if (currentPackage.type === 'maxClubMembers')
       return "Maksimum klub oyi'nchilarini"
   }
   return (
-    <div className="flex items-center gap-6 h-24 rounded-md bg-neutral-800 p-6">
-      <span className="flex size-12 items-center justify-center rounded-full bg-black font-bold text-neutral-300">
+    <div className="flex flex-row items-center gap-6 rounded-md bg-neutral-800 p-4 md:h-24 md:p-6">
+      <span className="hidden size-12 items-center justify-center rounded-full bg-black font-bold text-neutral-300 sm:flex">
         1
       </span>
-      <div className="flex w-full items-center justify-between">
-        <div className="space-x-2 text-xl">
+      <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row sm:gap-0">
+        <div className="space-x-2 text-lg md:text-xl">
           {getPackageText(currentPackage)}
-          <span className="text-2xl font-bold">
+          <span className="text-lg font-bold xs:text-xl md:text-2xl">
             {' ' + currentPackage.amount}
           </span>{' '}
           ga oshirish
         </div>
-        <div className="text-2xl font-medium text-neutral-100">
-          <span className="text-3xl font-bold">
+        <div className="text-lg font-medium text-neutral-100 xs:text-xl md:text-2xl">
+          <span className="text-xl font-bold xs:text-2xl md:text-3xl">
             {currentPackage.price + ' '}
           </span>
           so&apos;m
