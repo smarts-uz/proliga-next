@@ -11,6 +11,7 @@ const GameNavigation = () => {
     <Gutter>
       <NavigationTabs />
       {gameTab === TABS.Transfer && <Tabs />}
+      {gameTab === TABS.GameProfile && <Tabs />}
     </Gutter>
   )
 }

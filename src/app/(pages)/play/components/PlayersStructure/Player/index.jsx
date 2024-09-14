@@ -46,7 +46,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               width={48}
               height={48}
               draggable={false}
-              className="size-6 xs:size-8 md:size-12 lg:size-10 xl:size-12"
+              className="size-5 xs:size-7 md:size-10 lg:size-8 xl:size-10"
             />
           </>
         )}
@@ -59,7 +59,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               height={48}
               onError={imageErr}
               draggable={false}
-              className="size-6 xs:size-8 md:size-12 lg:size-10 xl:size-12"
+              className="size-5 xs:size-7 md:size-10 lg:size-8 xl:size-10"
             />
             <p className="text-shadow line-clamp-1 text-[11px] text-white xs:text-xs md:text-sm">
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}

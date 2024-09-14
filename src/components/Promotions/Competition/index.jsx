@@ -6,13 +6,13 @@ const Competition = () => {
   return (
     <div className="relative h-full w-full bg-neutral-900 py-8">
       <Gutter>
-        <section className="flex w-full flex-col justify-start gap-8 md:flex-row md:items-center md:gap-4">
-          <div className="flex-1 self-center w-full items-center ">
+        <section className="flex w-full flex-col justify-start gap-8 md:flex-row md:items-center md:justify-between md:gap-4">
+          <div className="w-full flex-1 items-center self-center">
             <Image
               src="/images/promotion-stats.png"
               alt="competition"
               width={400}
-              className=" w-full xs:w-3/4 mx-auto md:size-80 xl:size-96"
+              className="mx-auto w-full xs:w-3/4 md:mx-0 md:size-80 xl:size-96"
               height={400}
             />
           </div>

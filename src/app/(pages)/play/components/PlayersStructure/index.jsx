@@ -12,13 +12,13 @@ const PlayersStructure = ({ allowDelete = true }) => {
         ))}
       </div>
       <div
-        className={`flex items-center justify-evenly gap-0.5 px-4 sm:gap-0.5 md:px-6 xl:gap-0 xl:px-10`}
+        className={`flex items-center justify-evenly gap-0.5 px-10 sm:gap-0.5  xl:gap-0 xl:px-10`}
       >
         {DEF.map((player) => (
           <Player deletePlayer={allowDelete} key={player.id} player={player} />
         ))}
       </div>
-      <div className="flex items-center justify-evenly gap-0.5 px-0 sm:gap-1 md:gap-4 md:px-4 xl:gap-0 xl:px-10">
+      <div className="flex items-center justify-evenly gap-0.5 px-6 sm:gap-1 md:gap-4 md:px-4 xl:gap-0 xl:px-10">
         {MID.map((player) => (
           <Player deletePlayer={allowDelete} key={player.id} player={player} />
         ))}

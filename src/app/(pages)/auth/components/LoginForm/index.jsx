@@ -52,7 +52,10 @@ const LoginForm = ({ onClick }) => {
   }, [active, router, userAuth])
 
   return (
-    <form className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
+    >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
         Tizimga kirish
       </h2>
@@ -113,7 +116,6 @@ const LoginForm = ({ onClick }) => {
         Akkaunt ochish?
       </button>
       <button
-        onClick={handleSubmit}
         type="submit"
         disabled={isLoading || tableIsLoading}
         className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"

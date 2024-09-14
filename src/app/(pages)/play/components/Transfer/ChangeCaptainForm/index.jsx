@@ -57,7 +57,10 @@ const ChangeCaptainForm = () => {
   }
 
   return (
-    <form className="mt-2 flex justify-between text-black">
+    <form
+      onSubmit={handleSubmit}
+      className="mt-2 flex justify-between text-black"
+    >
       <div className="flex items-center gap-1 text-neutral-200">
         <h3 className="mr-2 hidden text-lg font-medium text-neutral-100 sm:block">
           Kapitan:
@@ -91,7 +94,6 @@ const ChangeCaptainForm = () => {
       </div>
       <button
         type="submit"
-        onClick={handleSubmit}
         className="-skew-x-12 rounded-sm bg-black px-6 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10"
       >
         Saqlash

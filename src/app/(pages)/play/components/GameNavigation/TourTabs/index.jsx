@@ -82,7 +82,7 @@ export default function TourTabs() {
             }
             disabled={
               item.status === 'not_started' ||
-              currentTeam.registered_tour_id >= item.id
+              currentTeam.registered_tour_id > item.id
             }
             label={
               <p className="text-xs capitalize md:text-sm">

@@ -67,7 +67,10 @@ const SignUpForm = ({ onClick }) => {
   }, [userAuth, active])
 
   return (
-    <form className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
+    >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
         Ro&apos;yxatdan o&apos;tish
       </h2>
@@ -199,7 +202,6 @@ const SignUpForm = ({ onClick }) => {
         Akkauntingiz bormi?
       </button>
       <button
-        onClick={handleSubmit}
         type="submit"
         disabled={isLoading || tableIsLoading}
         className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
@@ -213,7 +215,7 @@ const SignUpForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          "Akkaunt Ochish"
+          'Akkaunt Ochish'
         )}
       </button>
     </form>

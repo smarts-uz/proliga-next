@@ -64,7 +64,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
             />
           </button>
         </div>
-        <form className="flex flex-col gap-6">
+        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <label htmlFor="name">Jamoa Ismi</label>
             <input
@@ -119,7 +119,6 @@ const CompetitionModal = ({ toggleModal, competition }) => {
             </select>
           </div>
           <button
-            onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={isLoading}
             className="rounded border border-primary bg-black py-2 text-white hover:bg-opacity-80 hover:text-primary"
