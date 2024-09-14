@@ -1,12 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import ConfirmationModal from 'components/ConfirmationModal'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+  const { currentTourTeam } = useSelector((state) => state.tourTeams)
 
   const toggleDeleteModal = () => {
     if (deleteModalVisible) {
@@ -34,6 +37,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
+  console.log(player)
 
   return (
     <>
@@ -52,15 +56,27 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
         )}
         {player.name && (
           <>
-            <Image
-              src={`/club/${clubPath}/app.svg`}
-              alt="player tshirt"
-              width={48}
-              height={48}
-              onError={imageErr}
-              draggable={false}
-              className="size-5 xs:size-7 md:size-10 lg:size-8 xl:size-10"
-            />
+            <div className="relative size-5 xs:size-7 md:size-10 lg:size-8 xl:size-10">
+              <Image
+                src={`/club/${clubPath}/app.svg`}
+                alt="player tshirt"
+                width={48}
+                height={48}
+                onError={imageErr}
+                draggable={false}
+                className="h-full w-full"
+              />
+              {player.player_id === currentTourTeam.captain_id && (
+                <Image
+                  src="/icons/captain-badge.svg"
+                  alt="captain"
+                  width={16}
+                  height={16}
+                  draggable={false}
+                  className="absolute bottom-0 -right-1 size-4"
+                />
+              )}
+            </div>
             <p className="text-shadow line-clamp-1 text-[11px] text-white xs:text-xs md:text-sm">
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>

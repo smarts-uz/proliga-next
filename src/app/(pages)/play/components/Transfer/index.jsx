@@ -51,7 +51,7 @@ const Transfer = ({ paramsId }) => {
               <PlayersStructure allowDelete={false} />
             )}
           </div>
-          <ChangeCaptainForm />
+          {currentTour?.status === TOUR.notStartedTransfer && <ChangeCaptainForm />}
         </div>
         {currentTour?.status === TOUR.notStartedTransfer && <PlayersTable />}
         {currentTour?.status === TOUR.inProcess && <ToursHistory />}
