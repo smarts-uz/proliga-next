@@ -10,29 +10,33 @@ const ToursHistory = () => {
       <h2 className="text-lg font-bold text-neutral-50">Meni Ochkolarim</h2>
       <div className="flex gap-2 md:gap-8">
         <div>
-          <p className="text-xs md:text-sm text-neutral-500">Turnirdagi ochkolar</p>
-          <span className="text-4xl md:text-6xl font-bold text-neutral-50">
+          <p className="text-xs text-neutral-500 md:text-sm">
+            Turnirdagi ochkolar
+          </p>
+          <span className="text-4xl font-bold text-neutral-50 md:text-6xl">
             {currentTeam?.point ?? '00'}
           </span>
         </div>
         <div>
-          <p className="text-xs md:text-sm text-neutral-500">Turdagi ochkolar</p>
-          <span className="text-4xl md:text-6xl font-bold text-neutral-50">
+          <p className="text-xs text-neutral-500 md:text-sm">
+            Turdagi ochkolar
+          </p>
+          <span className="text-4xl font-bold text-neutral-50 md:text-6xl">
             {currentTeam?.point ?? '00'}
           </span>
         </div>
         <div>
           <p className="text-sm text-neutral-500">O&apos;rtacha olgan ballar</p>
-          <span className="text-3xl md:text-5xl font-bold text-neutral-50">
+          <span className="text-3xl font-bold text-neutral-50 md:text-5xl">
             {currentCompetition?.average_team_point ?? '00'}
           </span>
         </div>
       </div>
-      <h3 className="text-base md:text-lg font-semibold capitalize text-neutral-200">
+      <h3 className="text-base font-semibold capitalize text-neutral-200 md:text-lg">
         ligadagi o&apos;rnim
       </h3>
       <div className="w-min rounded border border-neutral-600 px-6 py-3">
-        <p className="max-w-24 text-wrap text-xl tmd:text-2xl font-bold text-neutral-400">
+        <p className="tmd:text-2xl max-w-24 text-wrap text-xl font-bold text-neutral-400">
           <span className="mr-1 text-neutral-100">
             {currentTeam?.order ?? '00'}
           </span>

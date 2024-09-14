@@ -46,8 +46,8 @@ function PlayersTable() {
   })
 
   return (
-    <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl bg-black p-4 md:p-6 text-neutral-200 md:text-sm lg:w-1/2 xl:text-base">
-      <div className="grid w-full grid-cols-3 gap-x-1 gap-y-2 md:gap-2 text-xs md:text-sm">
+    <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2 xl:text-base">
+      <div className="grid w-full grid-cols-3 gap-x-1 gap-y-2 text-xs md:gap-2 md:text-sm">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>
@@ -56,7 +56,7 @@ function PlayersTable() {
             ))
           )}
       </div>
-      <table className="text-sm w-full min-w-80 md:min-w-[25rem] table-auto">
+      <table className="w-full min-w-80 table-auto text-sm md:min-w-[25rem]">
         <TransferTableHead table={table} />
         <TransferTableBody table={table} flexRender={flexRender} />
       </table>

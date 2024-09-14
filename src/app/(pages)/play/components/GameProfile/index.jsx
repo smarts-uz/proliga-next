@@ -2,9 +2,13 @@ import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import Gutter from '../../../../../components/Gutter'
 import GameBrief from './GameBrief'
-import ChangeCaptainForm from '../Transfer/ChangeCaptainForm'
+import ChangeCaptainForm from '../ChangeCaptainForm'
+import { useSelector } from 'react-redux'
+import { TOUR } from 'app/utils/tour.util'
 
 const GameProfile = () => {
+  const { currentTour } = useSelector((store) => store.tours)
+
   return (
     <Gutter>
       <main className="flex flex-col justify-between gap-4 md:flex-row">
@@ -19,7 +23,9 @@ const GameProfile = () => {
             />
             <PlayersStructure allowDelete={false} />
           </div>
-          <ChangeCaptainForm />
+          {currentTour?.status === TOUR.notStartedTransfer && (
+            <ChangeCaptainForm />
+          )}
         </div>
         <GameBrief />
       </main>

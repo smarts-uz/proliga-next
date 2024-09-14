@@ -2,7 +2,7 @@ import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import PlayersTable from './PlayersTable'
-import ChangeCaptainForm from './ChangeCaptainForm'
+import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { useEffect } from 'react'
@@ -51,7 +51,9 @@ const Transfer = ({ paramsId }) => {
               <PlayersStructure allowDelete={false} />
             )}
           </div>
-          {currentTour?.status === TOUR.notStartedTransfer && <ChangeCaptainForm />}
+          {currentTour?.status === TOUR.notStartedTransfer && (
+            <ChangeCaptainForm />
+          )}
         </div>
         {currentTour?.status === TOUR.notStartedTransfer && <PlayersTable />}
         {currentTour?.status === TOUR.inProcess && <ToursHistory />}
