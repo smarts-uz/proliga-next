@@ -18,7 +18,7 @@ const SignUpForm = ({ onClick }) => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
-  const { userAuth } = useSelector((store) => store.auth)
+  const { userAuth, userTable } = useSelector((store) => store.auth)
   const {
     isLoading: tableIsLoading,
     error: tableError,
@@ -61,10 +61,16 @@ const SignUpForm = ({ onClick }) => {
       setEmail('')
       setPassword('')
       setConfirmPassword('')
-      setActive(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth, active])
+
+  useEffect(() => {
+    if (userAuth && userTable && active) {
+      router.push('/championships')
+      setActive(false)
+    }
+  }, [active, router, userAuth, userTable])
 
   return (
     <form

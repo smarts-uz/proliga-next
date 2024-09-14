@@ -7,7 +7,7 @@ export const seasonExtraReducer = (builder) => {
     })
     .addCase(fetchSeason.fulfilled, (state, action) => {
       state.isLoading = false
-      if (action.payload.data.length > 0) {
+      if (action.payload.data?.length > 0) {
         state.season = action.payload.data[0]
       }
     })

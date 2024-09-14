@@ -42,14 +42,18 @@ const LoginForm = ({ onClick }) => {
       setPassword('')
       setPhone('')
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTable])
+  }, [userTable, active])
+
   useEffect(() => {
-    if (userAuth && active) {
+    if (userTable && userAuth && active) {
       router.push('/championships')
       setActive(false)
     }
-  }, [active, router, userAuth])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, router])
 
   return (
     <form

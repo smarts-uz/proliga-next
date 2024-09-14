@@ -5,7 +5,7 @@ const GameBrief = () => {
   const { currentCompetition } = useSelector((store) => store.competition)
 
   return (
-    <section className="flex transition-all h-min w-full flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 hover:border-opacity-100 md:w-2/5">
+    <section className="flex h-min w-full flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all hover:border-opacity-100 md:w-2/5">
       <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Keyingi Tur</p>
