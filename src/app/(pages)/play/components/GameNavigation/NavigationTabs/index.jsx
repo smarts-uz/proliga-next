@@ -19,11 +19,11 @@ const NavigationTabs = () => {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-4 pt-6 2xl:gap-6">
+    <div className="flex flex-wrap items-center gap-1 pt-6 sm:gap-2 md:gap-4 2xl:gap-6">
       {TABSDATA.map((item) => (
         <button
           key={item.id}
-          className={`rounded border border-yellow-900 px-2 py-1 text-sm font-semibold uppercase transition-all sm:px-3 md:px-4 md:py-2 md:text-base ${item.key === gameTab ? active : passive}`}
+          className={`rounded border border-yellow-900 px-1 py-1 text-xs font-semibold uppercase transition-all xs:px-2 sm:px-3 sm:text-sm md:px-4 md:py-2 md:text-base ${item.key === gameTab ? active : passive}`}
           onClick={() => setCurrentTab(item.key)}
         >
           {item.title}

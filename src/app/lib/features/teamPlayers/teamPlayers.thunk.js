@@ -9,6 +9,7 @@ export const fetchTeamPlayers = createAsyncThunk(
       .select('*, club_id(name, id, slug)')
       .eq('team_id', team_id)
       .eq('tour_id', tour_id)
+      .limit(11)
 
     return { data, error }
   }

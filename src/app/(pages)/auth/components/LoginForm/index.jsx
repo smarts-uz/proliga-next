@@ -51,9 +51,7 @@ const LoginForm = ({ onClick }) => {
       router.push('/championships')
       setActive(false)
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, router])
+  }, [active, router, userAuth, userTable])
 
   return (
     <form
