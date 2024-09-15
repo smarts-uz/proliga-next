@@ -1,5 +1,5 @@
 'use client'
-import Rules from '../components/Rules'
+
 import Promotions from '../components/Promotions'
 import Hero from '../components/Hero'
 

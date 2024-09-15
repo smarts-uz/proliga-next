@@ -2,11 +2,11 @@
 import Image from 'next/image'
 import Gutter from '../../Gutter'
 
-const Competition = () => {
+const PromotionCompete = () => {
   return (
-    <div className="relative h-full w-full bg-neutral-900 py-8">
+    <div className="relative h-full w-full bg-neutral-900 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
-        <section className="flex w-full flex-col justify-start gap-8 md:flex-row md:items-center md:justify-between md:gap-4">
+        <section className="flex w-full flex-col-reverse justify-start gap-8 md:flex-row md:items-center md:justify-between md:gap-4">
           <div className="w-full flex-1 items-center self-center">
             <Image
               src="/images/promotion-stats.png"
@@ -32,4 +32,4 @@ const Competition = () => {
   )
 }
 
-export default Competition
+export default PromotionCompete

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Gutter from '../../Gutter'
 
-const CreateTeam = () => {
+const PromotionCreateTeam = () => {
   return (
-    <section className="bg-neutral-800 py-6 md:py-8">
+    <section className="bg-neutral-800 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
         <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row md:gap-4 lg:gap-0">
           <div className="mt-8 flex flex-1 flex-col flex-wrap">
@@ -20,13 +20,13 @@ const CreateTeam = () => {
                 100 millionlik byudjetdan foydalaning va chempionatning eng
                 yaxshifutbolchilaridan iborat jamoani to&apos;plang
               </p>
-              <div className="relative hidden self-start xs:px-8 md:block">
+              <div className="relative hidden h-full w-full self-start md:block">
                 <Image
-                  width={400}
-                  height={400}
+                  width={300}
+                  height={300}
                   alt="footballers images"
-                  className="aspect-[1.12/1] w-full"
-                  src="/images/football-tiles.png"
+                  className="h-full w-full"
+                  src="/images/footballers-tile.png"
                 />
               </div>
             </div>
@@ -46,4 +46,4 @@ const CreateTeam = () => {
   )
 }
 
-export default CreateTeam
+export default PromotionCreateTeam

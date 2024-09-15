@@ -1,18 +1,17 @@
-import CreateTeam from './CreateTeam'
-import GetPoints from './GetPoints'
-import Transfers from './Transfers'
-import Prizes from './Prizes'
-import Competition from './Competition'
-
+import PromotionCompete from './Compete'
+import PromotionCreateTeam from './CreateTeam'
+import PromotionGatherPoints from './GatherPoints'
+import PromotionMakeTransfers from './MakeTransfers'
+import PromotionWinPrizes from './WinPrizes'
 
 const Promotions = () => {
   return (
     <>
-      <CreateTeam />
-      <GetPoints />
-      <Transfers />
-      <Competition />
-      <Prizes />
+      <PromotionCreateTeam />
+      <PromotionGatherPoints />
+      <PromotionMakeTransfers />
+      <PromotionCompete />
+      <PromotionWinPrizes />
     </>
   )
 }
