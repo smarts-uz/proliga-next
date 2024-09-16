@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('./utils/animations.global.css');
+@import url('./utils/filters.global.css');
 
 :root {
   --PhoneInputCountryFlag-aspectRatio: 1.333;
@@ -10,11 +11,9 @@
   ::-webkit-scrollbar {
     width: 20px;
   }
-
   ::-webkit-scrollbar-track {
     background-color: transparent;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: #d6dee1;
     border-radius: 20px;
@@ -57,30 +56,6 @@
   .auth-input {
     @apply h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base;
   }
-  .filter-neutral-50 {
-    filter: brightness(0) saturate(100%) invert(89%) sepia(93%) saturate(4046%)
-      hue-rotate(184deg) brightness(124%) contrast(80%);
-  }
-  .filter-neutral-200 {
-    filter: brightness(0) saturate(100%) invert(89%) sepia(93%) saturate(4046%)
-      hue-rotate(184deg) brightness(124%) contrast(80%);
-  }
-  .filter-neutral-300 {
-    filter: brightness(0) saturate(100%) invert(96%) sepia(0%) saturate(685%)
-      hue-rotate(135deg) brightness(94%) contrast(84%);
-  }
-  .filter-neutral-400 {
-    filter: brightness(0) saturate(100%) invert(70%) sepia(19%) saturate(0%)
-      hue-rotate(236deg) brightness(92%) contrast(84%);
-  }
-  .filter-neutral-950 {
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(1197%)
-      hue-rotate(218deg) brightness(95%) contrast(92%);
-  }
-  .filter-primary {
-    filter: brightness(0) saturate(100%) invert(99%) sepia(68%) saturate(3464%)
-      hue-rotate(348deg) brightness(98%) contrast(109%);
-  }
   .text-shadow {
     text-shadow: 2px 1px 1px #000;
   }
@@ -89,12 +64,5 @@
   }
   .promotion-header {
     @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl;
-  }
-  /* .PhoneInput{
-    @apply h-10 w-full rounded-sm bg-neutral-900 px-2 py-1 text-neutral-200 shadow-sm shadow-yellow-500 placeholder:text-neutral-500;
-  } */
-  .PhoneInput--focus {
-    background-color: #4ab;
-    padding: 16px;
   }
 }

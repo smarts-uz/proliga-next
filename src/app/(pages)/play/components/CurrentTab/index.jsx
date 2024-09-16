@@ -9,11 +9,13 @@ import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { useEffect } from 'react'
+import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { currentTour } = useSelector((state) => state.tours)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
     if (userAuth && userTable && paramsId) {
@@ -35,6 +37,15 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       fetch()
     }
   }, [userAuth, paramsId, userTable, dispatch, currentTour])
+
+  useEffect(() => {
+    if (currentTeam?.competition_id) {
+      const fetch = async () => {
+        dispatch(fetchTours({ competition_id: currentTeam.competition_id.id }))
+      }
+      fetch()
+    }
+  }, [currentTeam, dispatch])
 
   return (
     <>

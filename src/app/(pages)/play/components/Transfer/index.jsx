@@ -6,7 +6,6 @@ import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { useEffect } from 'react'
-import ToursHistory from './ToursHistory'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import Overview from './TeamOverview'
@@ -55,9 +54,7 @@ const Transfer = ({ paramsId }) => {
             <ChangeCaptainForm />
           )}
         </div>
-        {<PlayersTable />}
-        {currentTour?.status === TOUR.inProcess && <ToursHistory />}
-        {currentTour?.status === TOUR.completed && <ToursHistory />}
+        <PlayersTable />
       </main>
     </Gutter>
   )

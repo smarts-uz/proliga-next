@@ -5,6 +5,7 @@ import GameBrief from './GameBrief'
 import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
+import ToursHistory from '../Transfer/ToursHistory'
 
 const GameProfile = () => {
   const { currentTour } = useSelector((store) => store.tours)
@@ -28,6 +29,7 @@ const GameProfile = () => {
           )}
         </div>
         <GameBrief />
+        <ToursHistory />
       </main>
     </Gutter>
   )

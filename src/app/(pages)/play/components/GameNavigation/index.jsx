@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { TABS } from '../../../../utils/tabs.util'
 
 const GameNavigation = () => {
-  const { gameTab } = useSelector((state) => state.tabs)
+  const { gameTab } = useSelector((state) => state.tours)
 
   return (
     <Gutter>

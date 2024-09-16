@@ -18,21 +18,18 @@ import { useSelector } from 'react-redux'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
 
 function PlayersTable() {
-  const [data, setData] = useState([
-  
-  ])
+  const [data, setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
   const selectedPlayers = useSelector(selectPlayers)
 
-  // useEffect(() => {
-  //   if (selectedPlayers?.length > 0) {
-  //     setData(selectedPlayers)
-  //   }
-  // }, [selectedPlayers])
-  console.log(data, 'blah')
+  useEffect(() => {
+    if (selectedPlayers?.length > 0) {
+      setData(selectedPlayers)
+    }
+  }, [selectedPlayers])
 
   const table = useReactTable({
     columns,

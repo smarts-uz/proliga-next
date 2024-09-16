@@ -10,7 +10,7 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
-  const { gameTab } = useSelector((state) => state.tabs)
+  const { gameTab } = useSelector((state) => state.tours)
   const { competition } = useSelector((state) => state.competition)
 
   useEffect(() => {

@@ -19,15 +19,6 @@ export default function TourTabs() {
   )
 
   useEffect(() => {
-    if (currentTeam?.competition_id) {
-      const fetch = async () => {
-        dispatch(fetchTours({ competition_id: currentTeam.competition_id.id }))
-      }
-      fetch()
-    }
-  }, [currentTeam, dispatch])
-
-  useEffect(() => {
     if (
       currentTourIndex !== currentTourTeamIndex &&
       selectTours?.length > 0 &&
@@ -62,6 +53,7 @@ export default function TourTabs() {
         bgcolor: '#000',
         color: '#fff',
         borderRadius: '4px',
+        height: '',
       }}
       width={'100%'}
     >
@@ -78,14 +70,16 @@ export default function TourTabs() {
             onClick={() => handleClick(index)}
             className="w-48 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             icon={
-              <h3 className="text-start text-sm md:text-base">{item.name}</h3>
+              <h3 className="text-start text-xs md:text-sm xl:text-base">
+                {item.name}
+              </h3>
             }
             disabled={
               item.status === 'not_started' ||
               currentTeam.registered_tour_id > item.id
             }
             label={
-              <p className="text-xs capitalize md:text-sm">
+              <p className="text-[10px] capitalize sm:text-xs md:text-sm">
                 {getStatus(item.status)}
               </p>
             }

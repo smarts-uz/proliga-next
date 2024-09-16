@@ -35,7 +35,7 @@ const TeamBalance = () => {
             src="/icons/arrow-bold-up.svg"
             alt="arrow"
             width={16}
-            className="filter-neutral-400 size-3.5 xs:size-4 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
+            className="filter-neutral-400 self-center size-3.5 xs:size-4 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
             height={16}
           />
         </header>

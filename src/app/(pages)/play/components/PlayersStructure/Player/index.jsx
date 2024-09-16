@@ -72,7 +72,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                   width={16}
                   height={16}
                   draggable={false}
-                  className="absolute -right-1 bottom-0 size-4"
+                  className="absolute -right-1 bottom-0 size-3 md:size-4"
                 />
               )}
             </div>
