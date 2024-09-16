@@ -6,8 +6,8 @@ const ClubsFilter = ({ column }) => {
 
   return (
     <select
-      className="col-span-1 w-max h-8 sm:max-w-36 truncate rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200 shadow md:max-w-48"
-      onClick={(e) => column.setFilterValue(e.target.value)}
+      className="col-span-1 h-8 w-max truncate rounded border border-neutral-500 bg-neutral-950 px-1 text-neutral-200 shadow sm:max-w-36 md:max-w-48"
+      onChange={(e) => column.setFilterValue(e.target.value)}
     >
       <option
         value=""
@@ -16,16 +16,15 @@ const ClubsFilter = ({ column }) => {
       >
         Hamma Clublar
       </option>
-      {selectedClubs?.length > 0 &&
-        selectedClubs.map((club) => (
-          <option
-            key={club.id}
-            value={club.name}
-            className="capitalize text-neutral-200 checked:bg-neutral-800"
-          >
-            {club.name}
-          </option>
-        ))}
+      {selectedClubs?.map((club) => (
+        <option
+          key={club.id}
+          value={club.name}
+          className="capitalize text-neutral-200 checked:bg-neutral-800"
+        >
+          {club.name}
+        </option>
+      ))}
     </select>
   )
 }
