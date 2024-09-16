@@ -27,7 +27,7 @@ const ChangeCaptainForm = () => {
         )
         return
       }
-      if (player.isCaptain) {
+      if (player.is_captain) {
         captains.push(player.player_id)
       }
     })
@@ -70,16 +70,16 @@ const ChangeCaptainForm = () => {
         <select
           name="formation"
           id="formation"
-          value={teamConcat.find((player) => player.is_captain)?.player_id}
+          // value={teamConcat.find((player) => player.is_captain)?.player_id}
           onClick={(e) => dispatch(setCaptain(e.target.value))}
           className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2"
         >
-          <option
+          {/* <option
             value=""
             className="bg-neutral-950 checked:bg-neutral-700 active:bg-neutral-800"
           >
             Kapitan tanlang
-          </option>
+          </option> */}
           {teamConcat.map(
             (player) =>
               player.name && (
@@ -87,6 +87,7 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-800"
                   value={player.player_id}
                   key={player.id}
+                  selected={player.is_captain}
                 >
                   {player.name}
                 </option>
