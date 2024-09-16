@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
 import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
-import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 
 export default function TourTabs() {

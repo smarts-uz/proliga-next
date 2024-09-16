@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
-import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
-import { setCaptain } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const ChangeCaptainForm = () => {
   const dispatch = useDispatch()
@@ -11,22 +10,16 @@ const ChangeCaptainForm = () => {
     (state) => state.teamPlayers
   )
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { currentTourTeam } = useSelector((state) => state.tourTeams)
-  const { currentTour } = useSelector((state) => state.tours)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
-  const {
-    updateTeam,
-    isLoading: teamLoading,
-    error: teamError,
-  } = useUpdateTeam()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const captains = []
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
@@ -34,25 +27,34 @@ const ChangeCaptainForm = () => {
         )
         return
       }
+      if (player.isCaptain) {
+        captains.push(player.player_id)
+      }
     })
-    if (!currentTourTeam.captain_id) {
-      toast.error('Kapitan tanlang')
+
+    if (captains.length === 0) {
+      toast.warning('Kapitan tanlanmagan')
       return
     }
-    if (playersCount.DEF < 3 && playersCount.MID < 3 && playersCount.STR < 2) {
+    if (captains.length > 1) {
+      toast.warning('Ko`p kapitan tanlangan')
+      return
+    }
+
+    if (
+      playersCount.GOA !== 1 &&
+      playersCount.DEF < 3 &&
+      playersCount.MID < 3 &&
+      playersCount.STR < 2
+    ) {
       toast.error('Jamoa da yetarli futbolchilar yoq')
       return
     }
 
     await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
-    await updateTeam({
-      captain_id: currentTourTeam.captain_id,
-      team_id: currentTeam.id,
-      tour_id: currentTour.id,
-    })
 
-    if (!error && !isLoading && !teamLoading && !teamError) {
-      toast.success('Team updated successfully')
+    if (!error && !isLoading) {
+      toast.success('Jamoa muvaffaqiyatli yangilandi')
     }
   }
 
@@ -68,6 +70,7 @@ const ChangeCaptainForm = () => {
         <select
           name="formation"
           id="formation"
+          value={teamConcat.find((player) => player.is_captain)?.player_id}
           onClick={(e) => dispatch(setCaptain(e.target.value))}
           className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2"
         >
@@ -84,7 +87,6 @@ const ChangeCaptainForm = () => {
                   className="bg-neutral-950 checked:bg-neutral-800"
                   value={player.player_id}
                   key={player.id}
-                  selected={player.player_id === currentTourTeam.captain_id}
                 >
                   {player.name}
                 </option>

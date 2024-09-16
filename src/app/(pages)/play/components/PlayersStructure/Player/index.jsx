@@ -9,7 +9,6 @@ import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
-  const { currentTourTeam } = useSelector((state) => state.tourTeams)
 
   const toggleDeleteModal = () => {
     if (deleteModalVisible) {
@@ -65,14 +64,14 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                 draggable={false}
                 className="h-full w-full"
               />
-              {player.player_id === currentTourTeam.captain_id && (
+              {player.is_captain && (
                 <Image
                   src="/icons/captain-badge.svg"
                   alt="captain"
                   width={16}
                   height={16}
                   draggable={false}
-                  className="absolute -right-1 bottom-0 size-3 md:size-4"
+                  className="absolute -right-1 bottom-0 size-3 md:size-4 2xl:size-5"
                 />
               )}
             </div>

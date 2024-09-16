@@ -8,7 +8,7 @@ export const useUpdateTeam = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
 
-  const updateTeam = async ({ captain_id, team_id, tour_id }) => {
+  const updateTeam = async ({  team_id, tour_id }) => {
     setIsLoading(false)
     setError(null)
 
