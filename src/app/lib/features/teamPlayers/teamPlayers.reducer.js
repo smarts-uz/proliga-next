@@ -12,10 +12,19 @@ export const deleteTeamPlayerReducer = (state, action) => {
     price: null,
   })
 
+  const deletePlayerSlugToExistingClubs = (clubSlug) => {
+    if (state.existingClubs[clubSlug] === 1) {
+      state.existingClubs[clubSlug] = 0
+    }
+    state.existingClubs[clubSlug] -= 1
+  }
+
   if (player.position === PLAYERS.GOA) {
     state.GOA = state.GOA.filter((p) => p.id !== player.id)
     state.GOA.push(deletedPlayerObj(player))
+    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.GOA--
+    return state
   }
   if (player.position === PLAYERS.DEF) {
     if (state.playersCount.DEF < 4) {
@@ -24,7 +33,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
     state.DEF.push(deletedPlayerObj(player))
+    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.DEF--
+    return state
   }
   if (player.position === PLAYERS.MID) {
     if (state.playersCount.MID < 4) {
@@ -33,7 +44,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.MID = state.MID.filter((p) => p.id !== player.id)
     state.MID.push(deletedPlayerObj(player))
+    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.MID--
+    return state
   }
   if (player.position === PLAYERS.STR) {
     if (state.playersCount.STR < 3) {
@@ -42,7 +55,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.STR = state.STR.filter((p) => p.id !== player.id)
     state.STR.push(deletedPlayerObj(player))
+    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.STR--
+    return state
   }
 }
 
@@ -73,6 +88,12 @@ export const addTeamPlayerReducer = (state, action) => {
       state.STR = state.STR.filter((p) => p.id !== emptyPlayer.id)
     }
   }
+  const addPlayerSlugToExistingClubs = (clubSlug) => {
+    if (!state.existingClubs[clubSlug] || state.existingClubs[clubSlug] === 0) {
+      state.existingClubs[clubSlug] = 1
+    }
+    state.existingClubs[clubSlug] += 1
+  }
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
   if (!emptyPlayer) {
@@ -95,6 +116,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.GOA = state.GOA.filter((p) => p.id !== emptyGOAPlayer.id)
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -106,6 +128,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.DEF = state.DEF.filter((p) => p.id !== emptyDEFPlayer.id)
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -118,6 +141,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.DEF.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.DEF++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -129,6 +153,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.MID = state.MID.filter((p) => p.id !== emptyMIDPlayer.id)
     state.MID.push(newPlayer)
     state.playersCount.MID++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -141,6 +166,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.MID.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.MID++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -152,6 +178,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.STR = state.STR.filter((p) => p.id !== emptySTRPlayer.id)
     state.STR.push(newPlayer)
     state.playersCount.STR++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
   if (
@@ -164,6 +191,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.STR.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.STR++
+    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
     return state
   }
 }
