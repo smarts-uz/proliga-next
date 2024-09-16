@@ -71,7 +71,7 @@ const ChangeCaptainForm = () => {
           name="formation"
           id="formation"
           onChange={(e) => dispatch(setCaptain(e.target.value))}
-          className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2"
+          className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2 2xl:w-56"
         >
           <option
             value=""

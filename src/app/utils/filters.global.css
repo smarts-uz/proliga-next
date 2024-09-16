@@ -30,3 +30,11 @@
   filter: brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(6825%)
     hue-rotate(125deg) brightness(100%) contrast(83%);
 }
+.filter-black {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(14%) saturate(2390%)
+    hue-rotate(47deg) brightness(96%) contrast(88%);
+}
+.filter-white {
+  filter: brightness(0) saturate(100%) invert(85%) sepia(18%) saturate(315%)
+    hue-rotate(183deg) brightness(103%) contrast(103%);
+}
