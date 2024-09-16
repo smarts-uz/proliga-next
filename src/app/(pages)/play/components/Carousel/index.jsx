@@ -111,7 +111,7 @@ const data = [
     description:
       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
     images: '/images/promotion-1.png',
-    mainImage: '/images/football-tiles.png',
+    mainImage: '/images/footballers-tile.png',
     type: 1,
   },
   {

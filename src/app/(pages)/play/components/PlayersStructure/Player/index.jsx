@@ -37,7 +37,6 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
-  console.log(player)
 
   return (
     <>
@@ -73,7 +72,7 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                   width={16}
                   height={16}
                   draggable={false}
-                  className="absolute bottom-0 -right-1 size-4"
+                  className="absolute -right-1 bottom-0 size-4"
                 />
               )}
             </div>

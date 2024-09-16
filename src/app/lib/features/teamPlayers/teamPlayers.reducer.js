@@ -19,7 +19,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
   }
   if (player.position === PLAYERS.DEF) {
     if (state.playersCount.DEF < 4) {
-      toast.warning('Sizda kamida 3 darvozabon bolishi shart!')
+      toast.warning('Sizda kamida 3 hiboyachi bolishi shart!')
       return state
     }
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
@@ -157,7 +157,7 @@ export const addTeamPlayerReducer = (state, action) => {
   if (
     player.position === PLAYERS.STR &&
     state.playersCount.STR >= state.STR.length &&
-    state.STR.length < 4
+    state.STR.length < 3
   ) {
     softDeleteEmptyPlayer(emptyPlayer)
     const newPlayer = createUpdatedPlayer(player)

@@ -7,7 +7,7 @@ export const currentTeamExtraReducer = (builder) => {
     })
     .addCase(fetchCurrentTeam.fulfilled, (state, action) => {
       state.isLoading = false
-      if (action.payload.data.length > 0) {
+      if (action.payload.data?.length > 0) {
         state.currentTeam = action.payload.data[0]
       }
     })

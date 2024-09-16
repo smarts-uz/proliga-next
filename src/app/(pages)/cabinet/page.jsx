@@ -22,8 +22,6 @@ function Page() {
   const [imgPreview, setImgPreview] = useState(img)
   const { userTable } = useSelector((store) => store.auth)
 
-  console.log(userTable)
-
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setImgPreview(URL.createObjectURL(file))

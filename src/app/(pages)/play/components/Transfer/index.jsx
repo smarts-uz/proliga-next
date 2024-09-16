@@ -55,7 +55,7 @@ const Transfer = ({ paramsId }) => {
             <ChangeCaptainForm />
           )}
         </div>
-        {currentTour?.status === TOUR.notStartedTransfer && <PlayersTable />}
+        {<PlayersTable />}
         {currentTour?.status === TOUR.inProcess && <ToursHistory />}
         {currentTour?.status === TOUR.completed && <ToursHistory />}
       </main>

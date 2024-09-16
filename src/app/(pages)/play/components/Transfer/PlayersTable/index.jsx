@@ -14,27 +14,29 @@ import TransferTablePagination from './Pagination'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import TransferTableFilters from './Filters'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
 
 function PlayersTable() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+  
+  ])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
   const selectedPlayers = useSelector(selectPlayers)
 
-  useEffect(() => {
-    if (selectedPlayers?.length > 0) {
-      setData(selectedPlayers)
-    }
-  }, [selectedPlayers])
+  // useEffect(() => {
+  //   if (selectedPlayers?.length > 0) {
+  //     setData(selectedPlayers)
+  //   }
+  // }, [selectedPlayers])
+  console.log(data, 'blah')
 
   const table = useReactTable({
     columns,
     data,
-    debugTable: true,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
