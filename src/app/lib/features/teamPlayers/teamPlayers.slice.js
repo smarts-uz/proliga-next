@@ -28,11 +28,12 @@ const teamPlayersSlice = createSlice({
     addTeamPlayer: addTeamPlayerReducer,
     deleteTeamPlayer: deleteTeamPlayerReducer,
     setCaptain: setCaptainReducer,
+    emptyTeamPlayers: () => initialState,
   },
   extraReducers: teamPlayersExtraReducer,
 })
 
-export const { addTeamPlayer, deleteTeamPlayer, setCaptain } =
+export const { addTeamPlayer, deleteTeamPlayer, setCaptain, emptyTeamPlayers } =
   teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

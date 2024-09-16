@@ -4,7 +4,7 @@ import { useState } from 'react'
 import TeamBalanceModal from './Modal'
 
 const TeamBalance = () => {
-  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { teamBalance } = useSelector((store) => store.tourTeams)
   const [isModalOpen, toggleModal] = useState(false)
 
   const handleModal = () => {
@@ -23,7 +23,10 @@ const TeamBalance = () => {
 
   return (
     <>
-      <div className="w-min group cursor-pointer capitalize" onClick={handleModal}>
+      <div
+        className="group w-min cursor-pointer capitalize"
+        onClick={handleModal}
+      >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
@@ -35,11 +38,11 @@ const TeamBalance = () => {
             src="/icons/arrow-bold-up.svg"
             alt="arrow"
             width={16}
-            className="filter-neutral-400 self-center size-3.5 xs:size-4 group-hover:filter-neutral-50 translate-x-0 rotate-45 transition-all group-hover:translate-x-1"
+            className="filter-neutral-400 group-hover:filter-neutral-50 size-3.5 translate-x-0 rotate-45 self-center transition-all group-hover:translate-x-1 xs:size-4"
             height={16}
           />
         </header>
-        <p className="text-3xl xs:text-4xl font-bold">{currentTeam.balance ?? '00'}</p>
+        <p className="text-3xl font-bold xs:text-4xl">{teamBalance ?? '00'}</p>
       </div>
       {isModalOpen && <TeamBalanceModal handleModal={handleModal} />}
     </>

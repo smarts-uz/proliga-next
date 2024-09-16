@@ -7,6 +7,7 @@ const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
+  const { teamBalance } = useSelector((state) => state.tourTeams)
 
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -35,6 +36,7 @@ const TransferTableBody = ({ table, flexRender }) => {
               (cell) =>
                 cell.column.id === 'name' && (
                   <AddPlayerButton
+                    teamBalance={teamBalance}
                     key={cell.id}
                     cell={cell}
                     team={teamConcat}

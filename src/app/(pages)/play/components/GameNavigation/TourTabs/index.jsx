@@ -7,6 +7,7 @@ import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
 import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
+import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ export default function TourTabs() {
   }
 
   const handleClick = (index) => {
+    dispatch(emptyTeamPlayers())
     dispatch(setCurrentTourTeamIndex(index))
     dispatch(setCurrentTourIndex(index))
   }

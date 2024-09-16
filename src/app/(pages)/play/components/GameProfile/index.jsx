@@ -5,15 +5,14 @@ import GameBrief from './GameBrief'
 import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import ToursHistory from '../Transfer/ToursHistory'
 
 const GameProfile = () => {
   const { currentTour } = useSelector((store) => store.tours)
 
   return (
     <Gutter>
-      <main className="flex flex-col justify-between gap-4 md:flex-row">
-        <div className="h-full w-full md:w-3/5">
+      <main className="flex flex-col justify-between gap-2 fade-in lg:flex-row lg:gap-4">
+        <div className="h-full w-full lg:w-2/3">
           <div className="relative h-full w-full">
             <Image
               src="/icons/stadium.svg"
@@ -29,7 +28,6 @@ const GameProfile = () => {
           )}
         </div>
         <GameBrief />
-        <ToursHistory />
       </main>
     </Gutter>
   )

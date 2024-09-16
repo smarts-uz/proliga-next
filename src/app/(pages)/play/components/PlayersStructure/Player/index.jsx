@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import ConfirmationModal from 'components/ConfirmationModal'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {

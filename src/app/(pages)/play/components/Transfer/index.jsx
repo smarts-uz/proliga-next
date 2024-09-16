@@ -3,7 +3,7 @@ import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import PlayersTable from './PlayersTable'
 import ChangeCaptainForm from '../ChangeCaptainForm'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import Overview from './TeamOverview'
 
@@ -12,7 +12,7 @@ const Transfer = () => {
 
   return (
     <Gutter>
-      <main className="flex flex-col justify-between gap-2 md:min-h-max lg:flex-row">
+      <main className="flex flex-col justify-between gap-2 fade-in md:min-h-max lg:flex-row">
         <div className="flex h-full flex-col lg:w-3/5">
           <Overview />
           <div className="relative h-full w-full lg:w-full">

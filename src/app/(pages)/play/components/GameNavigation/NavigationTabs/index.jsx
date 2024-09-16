@@ -14,7 +14,6 @@ const NavigationTabs = () => {
 
   const setCurrentTab = (key) => {
     if (Object.keys(TABS).includes(key)) {
-      console.log(currentTour)
       if (currentTour.status === TOUR.inProcess) {
         return dispatch(setTab(TABS.GameProfile))
       }

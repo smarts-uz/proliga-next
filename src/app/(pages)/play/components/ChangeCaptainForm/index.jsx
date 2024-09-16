@@ -9,6 +9,7 @@ const ChangeCaptainForm = () => {
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
+  const { teamBalance, teamPrice } = useSelector((state) => state.currentTeam)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -38,6 +39,10 @@ const ChangeCaptainForm = () => {
     }
     if (captains.length > 1) {
       toast.warning('Ko`p kapitan tanlangan')
+      return
+    }
+    if (teamBalance < teamPrice) {
+      toast.error('Balansingiz yetarli emas')
       return
     }
 

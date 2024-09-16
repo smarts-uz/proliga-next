@@ -1,6 +1,12 @@
 import Image from 'next/image'
 
-const AddPlayerButton = ({ cell, handleAddPlayer, team }) => {
+const AddPlayerButton = ({
+  cell,
+  handleAddPlayer,
+  team,
+  teamBalance,
+}) => {
+  const condition = teamBalance >= cell.row.original.price
   if (team.find((p) => p.name === cell.getValue())) {
     return (
       <td
@@ -22,14 +28,14 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team }) => {
       <td
         className="flex h-full w-full cursor-pointer items-center justify-center px-2 py-1 md:w-auto"
         key={cell.column.id}
-        onClick={() => handleAddPlayer(cell.row.original)}
+        onClick={condition ? () => handleAddPlayer(cell.row.original) : null}
       >
         <Image
           src="/icons/plus.svg"
           alt="plus"
           width={24}
           draggable={false}
-          className="filter-primary h-full w-full min-w-4 max-w-6 select-none sm:size-6"
+          className={`${condition ? 'filter-primary' : 'filter-neutral-400'} h-full w-full min-w-4 max-w-6 select-none sm:size-6`}
           height={24}
         />
       </td>
