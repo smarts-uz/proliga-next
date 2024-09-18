@@ -5,7 +5,6 @@ import PlayersTable from './PlayersTable'
 import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import Overview from './TeamOverview'
 
 const Transfer = () => {
   const { currentTour } = useSelector((state) => state.tours)
@@ -14,7 +13,6 @@ const Transfer = () => {
     <Gutter>
       <main className="flex flex-col justify-between gap-2 fade-in md:min-h-max lg:flex-row">
         <div className="flex h-full flex-col lg:w-1/2">
-          <Overview />
           <div className="relative h-full w-full lg:w-full">
             <Image
               src="/icons/stadium.svg"

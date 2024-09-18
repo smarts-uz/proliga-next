@@ -1,16 +1,22 @@
 'use client'
+
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
 import Gutter from '../Gutter'
 import { useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
 import Notification from './Notification/Notification'
+import DefaultLinks from './DefaultLinks'
+import PlayLinks from './PlayLinks'
 
 const Navbar = () => {
+  const path = usePathname()
   const [isDropdownOpen, toggleDropdown] = useState(false)
   const [isNotificationsOpen, toggleNotificationsOpen] = useState(false)
   const { userAuth } = useSelector((state) => state.auth)
+  const linksCondition = path.split('/').includes('play')
 
   const handleToggleDropdown = () => {
     if (isNotificationsOpen) {
@@ -26,6 +32,7 @@ const Navbar = () => {
     }
     toggleNotificationsOpen(!isNotificationsOpen)
   }
+  console.log(path.split('/').includes('play'))
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 py-4 backdrop-blur-md">
@@ -42,26 +49,7 @@ const Navbar = () => {
               className="w-28 cursor-pointer sm:w-36"
             />
           </Link>
-          <section className="hidden items-center gap-4 text-neutral-300 sm:flex sm:text-sm lg:gap-6 lg:text-base">
-            <Link
-              className="transition-all hover:text-white hover:underline"
-              href="/championships"
-            >
-              Chempionat
-            </Link>
-            <Link
-              className="transition-all hover:text-white hover:underline"
-              href="/prizes"
-            >
-              Yutuqlar
-            </Link>
-            <Link
-              className="transition-all hover:text-white hover:underline"
-              href="/regulation"
-            >
-              Qoida
-            </Link>
-          </section>
+          {linksCondition ? <PlayLinks /> : <DefaultLinks />}
           <div className="flex w-max items-center justify-center gap-4">
             <button onClick={handleToggleNotifications}>
               <Image

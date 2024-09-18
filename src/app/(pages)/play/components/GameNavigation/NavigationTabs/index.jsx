@@ -24,7 +24,7 @@ const NavigationTabs = () => {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-1 pt-4 sm:gap-2 md:gap-4 2xl:gap-6">
+    <div className="hidden flex-wrap items-center gap-1 pt-4 sm:gap-2 md:gap-4 2xl:gap-6">
       {currentTeam?.is_team_created &&
         TABSDATA.map((item) => (
           <button
@@ -35,12 +35,6 @@ const NavigationTabs = () => {
             {item.title}
           </button>
         ))}
-      {/* <Link
-        href="/championships"
-        className="rounded bg-neutral-300 bg-opacity-80 px-2 py-1 text-sm font-semibold uppercase text-neutral-800 transition-all hover:bg-primary hover:bg-opacity-60 hover:text-neutral-950 sm:hidden sm:px-3 md:px-4 md:py-2 md:text-base"
-      >
-        Chempionat
-      </Link> */}
     </div>
   )
 }

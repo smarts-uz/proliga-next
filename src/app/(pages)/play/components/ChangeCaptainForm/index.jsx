@@ -69,21 +69,20 @@ const ChangeCaptainForm = () => {
       className="mt-2 flex justify-between text-black"
     >
       <div className="flex items-center gap-1 text-neutral-200">
-        <h3 className="mr-2 hidden text-lg font-medium text-neutral-100 sm:block">
-          Kapitan:
-        </h3>
+        {/* <h3 className="mr-2 hidden text-lg font-medium text-neutral-100 sm:block">
+          Kapitan Tanlang:
+        </h3> */}
         <select
           name="formation"
           id="formation"
           onChange={(e) => dispatch(setCaptain(e.target.value))}
-          className="w-40 -skew-x-12 rounded-sm border border-neutral-900 bg-neutral-950 p-1.5 font-semibold text-neutral-200 outline-none md:w-48 md:p-2 2xl:w-56"
+          className="w-40 -skew-x-12 rounded-sm border border-neutral-400 bg-transparent p-1.5 font-semibold text-neutral-50 outline-none md:w-48 md:p-2 2xl:w-56"
         >
           <option
             value=""
-            disabled
-            className="bg-neutral-950 checked:bg-neutral-700 active:bg-neutral-800"
+            className="checked:bg-neutral-700 active:bg-neutral-800"
           >
-            Kapitan tanlang
+            Kapitan
           </option>
           {teamConcat.map(
             (player) =>
@@ -102,7 +101,7 @@ const ChangeCaptainForm = () => {
       </div>
       <button
         type="submit"
-        className="-skew-x-12 rounded-sm bg-black px-6 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10"
+        className="-skew-x-12 rounded-sm border bg-black px-6 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10"
       >
         Saqlash
       </button>

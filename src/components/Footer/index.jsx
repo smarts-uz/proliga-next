@@ -27,7 +27,7 @@ const Footer = () => {
               Bizning ijtimoiy tarmoqlarimiz
             </h3>
             <div className="flex items-center gap-4">
-              <Link href="https://www.instagram.com">
+              <Link href="https://www.instagram.com/proliga.uz1">
                 <Image
                   src={'/icons/instagram.svg'}
                   alt="instagram"
@@ -45,7 +45,7 @@ const Footer = () => {
                   className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
-              <Link href="https://www.telegram.org">
+              <Link href="https://t.me/proliga_uz1">
                 <Image
                   src={'/icons/telegram.svg'}
                   alt="telegram"

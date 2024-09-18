@@ -17,7 +17,6 @@ export const teamPlayersExtraReducer = (builder) => {
       state.playersCount.STR = 0
 
       const team = action.payload.data
-      console.log(team)
       team?.length > 0 &&
         team.forEach((player) => {
           const clubSlug = player?.club_id?.slug ?? ''

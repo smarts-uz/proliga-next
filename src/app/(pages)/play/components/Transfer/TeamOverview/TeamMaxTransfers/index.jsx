@@ -24,7 +24,7 @@ const TeamMaxTransfers = () => {
   return (
     <>
       <div
-        className="group w-min min-w-28 md:min-w-max cursor-pointer capitalize"
+        className="group w-1/2 cursor-pointer capitalize md:w-auto"
         onClick={handleModal}
       >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
@@ -42,7 +42,7 @@ const TeamMaxTransfers = () => {
             className="filter-neutral-400 group-hover:filter-neutral-50 size-3.5 translate-x-0 rotate-45 self-center transition-all group-hover:translate-x-1 xs:size-4"
           />
         </header>
-        <p className="cursor-pointer text-3xl font-bold xs:text-4xl">
+        <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
           2/{currentTeam?.transfers_from_one_team ?? 0}
         </p>
       </div>

@@ -69,17 +69,17 @@ export default function TourTabs() {
           <StyledTab
             key={item.id}
             onClick={() => handleClick(index)}
-            className="w-48 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
+            className="w-44 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             disabled={
               item.status === 'not_started' ||
               currentTeam.registered_tour_id > item.id
             }
             label={
-              <div className='gap-0.5 md:gap-1 items-center flex justify-center flex-col '> 
-                <h3 className="text-start text-xs md:text-sm xl:text-base">
+              <div className="flex flex-col items-center justify-center gap-1">
+                <h3 className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
                   {item.name}
                 </h3>
-                <p className="text-[10px] capitalize sm:text-xs md:text-sm">
+                <p className="text-[10px] capitalize text-neutral-200 sm:text-xs md:text-sm">
                   {getStatus(item.status)}
                 </p>
               </div>

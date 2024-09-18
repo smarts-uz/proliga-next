@@ -24,13 +24,13 @@ const TeamBalance = () => {
   return (
     <>
       <div
-        className="group min-w-28 md:min-w-max w-min cursor-pointer capitalize"
+        className="group w-1/2 cursor-pointer capitalize md:w-auto"
         onClick={handleModal}
       >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-            className="text-xs xs:text-sm"
+            className="text-xs sm:text-sm"
           >
             balans
           </h3>
@@ -42,7 +42,9 @@ const TeamBalance = () => {
             height={16}
           />
         </header>
-        <p className="text-3xl font-bold xs:text-4xl">{teamBalance ?? '00'}</p>
+        <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
+          {teamBalance ?? '00'}
+        </p>
       </div>
       {isModalOpen && <TeamBalanceModal handleModal={handleModal} />}
     </>
