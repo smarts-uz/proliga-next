@@ -28,12 +28,8 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "formik": "^2.4.6",
-<<<<<<< HEAD
     "framer-motion": "^11.5.4",
-=======
-    "framer-motion": "^11.4.0",
     "i18next-http-backend": "^2.6.1",
->>>>>>> a23a7842b5fc5dcc9606da85119234627b5f5858
     "input-otp": "^1.2.4",
     "lucide-react": "^0.436.0",
     "next": "14.2.5",
