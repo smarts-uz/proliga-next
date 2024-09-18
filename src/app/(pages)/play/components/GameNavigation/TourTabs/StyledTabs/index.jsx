@@ -7,6 +7,7 @@ const StyledTabs = styled((props) => (
     TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
+  // padding: '0.5rem 0',
   '& .MuiTabs-indicator': {
     display: 'flex',
     justifyContent: 'center',

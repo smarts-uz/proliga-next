@@ -5,7 +5,7 @@ import TeamMaxClubMembers from './TeamMaxClubMembers'
 
 const TeamOverview = () => {
   return (
-    <section className="mb-4 grid grid-cols-2 gap-1 rounded-xl border border-primary border-opacity-50 bg-neutral-950 p-6 text-neutral-50 transition-all hover:border-opacity-100 md:grid-cols-3 md:gap-0 xl:grid-cols-4">
+    <section className="mb-2 flex flex-wrap justify-evenly sm:justify-between gap-1 rounded-xl border border-primary border-opacity-50 bg-neutral-950 px-6 py-4 text-neutral-50 transition-all hover:border-opacity-100 md:gap-0">
       <TeamPrice />
       <TeamBalance />
       <TeamMaxTransfers />

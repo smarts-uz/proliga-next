@@ -4,7 +4,7 @@ const TeamPrice = () => {
   const { teamPrice } = useSelector((store) => store.tourTeams)
 
   return (
-    <div>
+    <div className='min-w-28 md:min-w-max'>
       <h3
         title="Maksimum sotib olish mumkin bolgan o'yinchilar"
         className="cursor-default text-xs capitalize text-neutral-400 xs:text-sm"

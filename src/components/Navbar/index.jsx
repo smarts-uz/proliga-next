@@ -28,9 +28,9 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 shadow shadow-neutral-500 backdrop-blur-sm">
+    <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 py-4 backdrop-blur-md">
       <Gutter>
-        <div className="relative flex w-full items-center justify-between py-4 text-white">
+        <div className="relative flex w-full items-center justify-between text-white">
           <Link href="/">
             <Image
               src="/icons/proliga-full.svg"
@@ -39,7 +39,7 @@ const Navbar = () => {
               height={56}
               priority={true}
               draggable={false}
-              className="cursor-pointer w-28  sm:w-36"
+              className="w-28 cursor-pointer sm:w-36"
             />
           </Link>
           <section className="hidden items-center gap-4 text-neutral-300 sm:flex sm:text-sm lg:gap-6 lg:text-base">

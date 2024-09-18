@@ -24,7 +24,7 @@ export default function TeamMaxClubMembers() {
   return (
     <>
       <div
-        className="group w-min min-w-44 cursor-pointer capitalize"
+        className="group w-min min-w-28 cursor-pointer capitalize md:min-w-max"
         onClick={handleModal}
       >
         <header className="flex text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
@@ -32,7 +32,7 @@ export default function TeamMaxClubMembers() {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs xs:text-sm"
           >
-            Bir jamoadan o&apos;yinchilar
+            Bir jamoadan
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"

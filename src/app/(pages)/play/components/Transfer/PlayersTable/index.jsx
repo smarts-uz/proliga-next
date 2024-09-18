@@ -46,7 +46,7 @@ function PlayersTable() {
 
   return (
     <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2 xl:text-base">
-      <div className="grid w-full grid-cols-3 gap-x-1 gap-y-2 text-xs md:gap-2 md:text-sm">
+      <div className="grid w-full grid-cols-4 gap-x-1 gap-y-2 text-xs md:gap-2 xl:gap-y-4 md:text-sm">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>

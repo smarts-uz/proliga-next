@@ -24,7 +24,7 @@ const TeamBalance = () => {
   return (
     <>
       <div
-        className="group w-min cursor-pointer capitalize"
+        className="group min-w-28 md:min-w-max w-min cursor-pointer capitalize"
         onClick={handleModal}
       >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">

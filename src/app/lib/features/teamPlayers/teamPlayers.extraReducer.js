@@ -17,62 +17,68 @@ export const teamPlayersExtraReducer = (builder) => {
       state.playersCount.STR = 0
 
       const team = action.payload.data
-      team.forEach((player) => {
-        const clubSlug = player.club_id.slug
+      console.log(team)
+      team?.length > 0 &&
+        team.forEach((player) => {
+          const clubSlug = player?.club_id?.slug ?? ''
 
-        if (player.position === PLAYERS.GOA) {
-          state.GOA.push(player)
-          if (player.name) {
-            state.playersCount.GOA++
-            if (
-              !state.existingClubs[clubSlug] ||
-              state.existingClubs[clubSlug] === 0
-            ) {
-              state.existingClubs[clubSlug] = 1
+          if (player.position === PLAYERS.GOA) {
+            state.GOA.push(player)
+            if (player.name) {
+              state.playersCount.GOA++
+              if (
+                !state.existingClubs[clubSlug] ||
+                state.existingClubs[clubSlug] === 0
+              ) {
+                state.existingClubs[clubSlug] = 1
+                return
+              }
+              state.existingClubs[clubSlug] += 1
             }
-            state.existingClubs[clubSlug] += 1
           }
-        }
-        if (player.position === PLAYERS.DEF) {
-          state.DEF.push(player)
-          if (player.name) {
-            state.playersCount.DEF++
-            if (
-              !state.existingClubs[clubSlug] ||
-              state.existingClubs[clubSlug] === 0
-            ) {
-              state.existingClubs[clubSlug] = 1
+          if (player.position === PLAYERS.DEF) {
+            state.DEF.push(player)
+            if (player.name) {
+              state.playersCount.DEF++
+              if (
+                !state.existingClubs[clubSlug] ||
+                state.existingClubs[clubSlug] === 0
+              ) {
+                state.existingClubs[clubSlug] = 1
+                return
+              }
+              state.existingClubs[clubSlug] += 1
             }
-            state.existingClubs[clubSlug] += 1
           }
-        }
-        if (player.position === PLAYERS.MID) {
-          state.MID.push(player)
-          if (player.name) {
-            state.playersCount.MID++
-            if (
-              !state.existingClubs[clubSlug] ||
-              state.existingClubs[clubSlug] === 0
-            ) {
-              state.existingClubs[clubSlug] = 1
+          if (player.position === PLAYERS.MID) {
+            state.MID.push(player)
+            if (player.name) {
+              state.playersCount.MID++
+              if (
+                !state.existingClubs[clubSlug] ||
+                state.existingClubs[clubSlug] === 0
+              ) {
+                state.existingClubs[clubSlug] = 1
+                return
+              }
+              state.existingClubs[clubSlug] += 1
             }
-            state.existingClubs[clubSlug] += 1
           }
-        }
-        if (player.position === PLAYERS.STR) {
-          state.STR.push(player)
-          if (player.name) {
-            state.playersCount.STR++
-            if (
-              !state.existingClubs[clubSlug] ||
-              state.existingClubs[clubSlug] === 0
-            ) {
-              state.existingClubs[clubSlug] = 1
+          if (player.position === PLAYERS.STR) {
+            state.STR.push(player)
+            if (player.name) {
+              state.playersCount.STR++
+              if (
+                !state.existingClubs[clubSlug] ||
+                state.existingClubs[clubSlug] === 0
+              ) {
+                state.existingClubs[clubSlug] = 1
+                return
+              }
+              state.existingClubs[clubSlug] += 1
             }
-            state.existingClubs[clubSlug] += 1
           }
-        }
-      })
+        })
       state.isLoading = false
     })
     .addCase(fetchTeamPlayers.rejected, (state, action) => {

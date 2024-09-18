@@ -15,6 +15,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
   const deletePlayerSlugToExistingClubs = (clubSlug) => {
     if (state.existingClubs[clubSlug] === 1) {
       state.existingClubs[clubSlug] = 0
+      return
     }
     state.existingClubs[clubSlug] -= 1
   }
@@ -91,6 +92,7 @@ export const addTeamPlayerReducer = (state, action) => {
   const addPlayerSlugToExistingClubs = (clubSlug) => {
     if (!state.existingClubs[clubSlug] || state.existingClubs[clubSlug] === 0) {
       state.existingClubs[clubSlug] = 1
+      return
     }
     state.existingClubs[clubSlug] += 1
   }

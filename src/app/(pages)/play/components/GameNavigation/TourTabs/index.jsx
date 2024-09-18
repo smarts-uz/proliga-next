@@ -54,7 +54,7 @@ export default function TourTabs() {
         bgcolor: '#000',
         color: '#fff',
         borderRadius: '4px',
-        height: '',
+        // height: '60px',
       }}
       width={'100%'}
     >
@@ -62,7 +62,7 @@ export default function TourTabs() {
         value={currentTourIndex}
         variant="scrollable"
         scrollButtons="auto"
-        className="mt-4 rounded text-neutral-50 disabled:text-neutral-500"
+        className="mt-4 rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
       >
         {selectedTours?.map((item, index) => (
@@ -70,19 +70,19 @@ export default function TourTabs() {
             key={item.id}
             onClick={() => handleClick(index)}
             className="w-48 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
-            icon={
-              <h3 className="text-start text-xs md:text-sm xl:text-base">
-                {item.name}
-              </h3>
-            }
             disabled={
               item.status === 'not_started' ||
               currentTeam.registered_tour_id > item.id
             }
             label={
-              <p className="text-[10px] capitalize sm:text-xs md:text-sm">
-                {getStatus(item.status)}
-              </p>
+              <div className='gap-0.5 md:gap-1 items-center flex justify-center flex-col '> 
+                <h3 className="text-start text-xs md:text-sm xl:text-base">
+                  {item.name}
+                </h3>
+                <p className="text-[10px] capitalize sm:text-xs md:text-sm">
+                  {getStatus(item.status)}
+                </p>
+              </div>
             }
           />
         ))}

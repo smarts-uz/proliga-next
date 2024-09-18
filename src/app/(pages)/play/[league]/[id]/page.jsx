@@ -67,7 +67,7 @@ const Play = ({ params }) => {
   }, [GOA, DEF, MID, STR, dispatch, currentTeam])
 
   return (
-    <section className="flex flex-col gap-6 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 text-neutral-700">
+    <section className="flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 text-neutral-700">
       <GameNavigation currentTab={gameTab} />
       <CurrentTab paramsId={params.id} currentTab={gameTab} />
     </section>

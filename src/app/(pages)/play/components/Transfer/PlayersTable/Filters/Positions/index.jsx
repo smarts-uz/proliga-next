@@ -3,7 +3,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   const passive = 'bg-transparent text-neutral-500 font-base'
 
   return (
-    <div className="col-span-3 flex w-full gap-2 overflow-x-scroll lg:gap-4">
+    <div className="col-span-4 flex w-full gap-2 overflow-x-scroll lg:gap-4">
       {DATA.map((obj, index) => (
         <button
           key={index}
@@ -19,23 +19,23 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
 
 const DATA = [
   {
-    title: 'BRCHS',
+    title: 'Barchasi',
     key: '',
   },
   {
-    title: 'DRVZB',
+    title: 'Darvazabon',
     key: 'GOA',
   },
   {
-    title: 'HMCH',
+    title: 'Himoyachi',
     key: 'DEF',
   },
   {
-    title: 'YHMCH',
+    title: 'Yarim himoyachi',
     key: 'MID',
   },
   {
-    title: 'HJMCH',
+    title: 'Hujimchi',
     key: 'STR',
   },
 ]
