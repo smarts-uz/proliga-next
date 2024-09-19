@@ -75,13 +75,14 @@ const Navbar = () => {
               />
             </Link>
             <PlayLinks />
-            <button onClick={handleToggleModal} className="size-6 lg:hidden">
+            <button onClick={handleToggleModal} className="lg:hidden">
               <Image
                 width={24}
                 height={24}
                 draggable={false}
                 src="/icons/hamburger.svg"
                 alt="menu"
+                className="size-6"
               />
             </button>
             <div className="hidden w-max items-center justify-center gap-4 lg:flex">

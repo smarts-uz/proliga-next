@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation'
 import { TABS } from 'app/utils/tabs.util'
 import Link from 'next/link'
 import { setTab } from 'app/lib/features/tours/tours.slice'
+import Dropdown from '../Dropdown'
+import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 
 const MobileModal = ({ onCancel }) => {
   const path = usePathname()
@@ -13,6 +15,13 @@ const MobileModal = ({ onCancel }) => {
   const passive = 'before:hidden hover:before:block'
   const disabled =
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
+  const { userAuth } = useSelector((state) => state.auth)
+  const { logOut } = useLogOut()
+
+  const handleLogOut = () => {
+    logOut()
+    onCancel()
+  }
 
   return (
     <Backdrop onClick={onCancel}>
@@ -20,7 +29,7 @@ const MobileModal = ({ onCancel }) => {
         initial={{ opacity: 0, x: '1rem' }}
         animate={{ opacity: 1, x: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="right-0 mr-0 flex h-full min-w-96 flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 text-neutral-200 sm:min-w-[32rem] md:p-6"
+        className="right-0 mr-0 flex h-full min-w-80 flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 text-neutral-200 xs:min-w-96 sm:min-w-[32rem] md:p-6"
       >
         <button className="self-end">
           <Image
@@ -32,78 +41,151 @@ const MobileModal = ({ onCancel }) => {
             onClick={onCancel}
           />
         </button>
-        <div className="flex flex-col gap-8">
-          <Tab
-            title="Profil"
-            passive={passive}
-            active={active}
-            disabled={disabled}
-            tab={TABS.GameProfile}
-          />
-          <Tab
-            title="Transfer"
-            passive={passive}
-            disabled={disabled}
-            active={active}
-            tab={TABS.Transfer}
-          />
-          <Tab
-            title="Turnir"
-            passive={passive}
-            disabled={disabled}
-            active={active}
-            tab={TABS.Tournament}
-          />
-          <Tab
-            title="Jurnal"
-            passive={passive}
-            disabled={disabled}
-            active={active}
-            tab={TABS.Journal}
-          />
-          <Tab
-            title="Statistika"
-            disabled={disabled}
-            passive={passive}
-            active={active}
-            tab={TABS.Statistics}
-          />
+
+        <div className="flex flex-col items-start justify-center gap-8 pl-12">
+          {path.includes('play') && (
+            <>
+              <Tab
+                title="Profil"
+                passive={passive}
+                active={active}
+                toggleModal={onCancel}
+                disabled={disabled}
+                tab={TABS.GameProfile}
+              />
+              <Tab
+                title="Transfer"
+                passive={passive}
+                disabled={disabled}
+                active={active}
+                toggleModal={onCancel}
+                tab={TABS.Transfer}
+              />
+              <Tab
+                title="Turnir"
+                passive={passive}
+                disabled={disabled}
+                active={active}
+                tab={TABS.Tournament}
+                toggleModal={onCancel}
+              />
+              <Tab
+                title="Jurnal"
+                passive={passive}
+                disabled={disabled}
+                active={active}
+                toggleModal={onCancel}
+                tab={TABS.Journal}
+              />
+              <Tab
+                title="Statistika"
+                disabled={disabled}
+                toggleModal={onCancel}
+                passive={passive}
+                active={active}
+                tab={TABS.Statistics}
+              />
+            </>
+          )}
           <Link
-            className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('championships') ? active : passive}`}
+            className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('championships') ? active : passive}`}
             href="/championships"
+            onClick={onCancel}
           >
             Chempionat
           </Link>
           <Link
-            className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
+            className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
+            onClick={onCancel}
             href="/prizes"
           >
             Yutuqlar
           </Link>
           <Link
-            className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
+            className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
+            onClick={onCancel}
             href="/regulation"
           >
             Qoida
           </Link>
         </div>
+        <section
+          className={`mt-auto flex w-full flex-col justify-between gap-2 rounded-md xs:flex-row`}
+        >
+          {userAuth ? (
+            <>
+              <NavLink handleToggle={onCancel} href="/cabinet">
+                <Image
+                  width={24}
+                  height={24}
+                  alt="settings"
+                  src="/icons/gear.svg"
+                />
+                <p>Sozlamalar</p>
+              </NavLink>
+              <button
+                onClick={handleLogOut}
+                className="flex h-full w-full gap-2 rounded bg-neutral-900 p-2 hover:bg-neutral-700"
+              >
+                <Image
+                  src={'/icons/logout.svg'}
+                  alt="user"
+                  width={24}
+                  height={24}
+                />
+                <p>Tizimdan chiqish</p>
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink handleToggle={onCancel} href="/auth">
+                <Image
+                  src={'/icons/login.svg'}
+                  alt="user"
+                  width={24}
+                  height={24}
+                />
+                <p>Tizimga Kirish</p>
+              </NavLink>
+            </>
+          )}
+        </section>
       </motion.dialog>
     </Backdrop>
   )
 }
 
-const Tab = ({ title, tab, passive, active, disabled }) => {
+const Tab = ({ title, tab, passive, active, disabled, toggleModal }) => {
   const dispatch = useDispatch()
   const { gameTab } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
 
+  const handleClick = () => {
+    if (currentTeam?.is_team_created) {
+      dispatch(setTab(tab))
+      toggleModal()
+    }
+  }
+
   return (
     <button
-      className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${currentTeam?.is_team_created ? (gameTab === tab ? active : passive) : disabled}`}
-      onClick={() => currentTeam?.is_team_created && dispatch(setTab(tab))}
+      className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${currentTeam?.is_team_created ? (gameTab === tab ? active : passive) : disabled}`}
+      onClick={handleClick}
     >
       {title}
     </button>
+  )
+}
+
+const NavLink = ({ children, href, handleToggle }) => {
+  return (
+    <Link
+      href={href}
+      onClick={handleToggle}
+      className="flex h-full w-full gap-2 rounded bg-neutral-900 p-2 hover:bg-neutral-700"
+    >
+      {children}
+    </Link>
   )
 }
 

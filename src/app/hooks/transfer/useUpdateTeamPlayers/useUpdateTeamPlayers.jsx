@@ -17,8 +17,11 @@ export const useUpdateTeamPlayers = () => {
       setIsLoading(true)
 
       const newTeam = team.map((player) => ({
-        ...player,
-        club_id: player.club_id.id,
+        id: player.id,
+        player_id: player.player_id,
+        team_id: team_id,
+        tour_id: player.tour_id,
+        is_captain: player.is_captain,
       }))
 
       newTeam.map(async (player) => {

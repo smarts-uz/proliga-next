@@ -17,7 +17,6 @@ import TransferTableFilters from './Filters'
 import TeamOverview from '../TeamOverview'
 import { useSelector } from 'react-redux'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
-import ChangeCaptainForm from '../../ChangeCaptainForm'
 
 function PlayersTable() {
   const [data, setData] = useState([])

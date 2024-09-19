@@ -11,7 +11,6 @@ export const useCreateTeam = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { userTable, userAuth } = useSelector((state) => state.auth)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
   const router = useRouter()
 
   const createTeam = async ({ title, formation, competition_id }) => {
@@ -46,7 +45,6 @@ export const useCreateTeam = () => {
           name: title,
           formation,
           competition_id,
-          is_team_created: true,
           user_id: userTable.id,
         })
         .select()

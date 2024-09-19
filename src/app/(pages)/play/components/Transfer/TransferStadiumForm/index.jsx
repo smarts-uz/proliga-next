@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
-import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import Image from 'next/image'
+import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
+import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
-const ChangeCaptainForm = () => {
+const TransferStadiumForm = () => {
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
@@ -48,9 +48,9 @@ const ChangeCaptainForm = () => {
     }
 
     if (
-      playersCount.GOA !== 1 &&
-      playersCount.DEF < 3 &&
-      playersCount.MID < 3 &&
+      playersCount.GOA !== 1 ||
+      playersCount.DEF < 3 ||
+      playersCount.MID < 3 ||
       playersCount.STR < 2
     ) {
       toast.error('Jamoa da yetarli futbolchilar yoq')
@@ -106,7 +106,7 @@ const ChangeCaptainForm = () => {
           width={24}
           height={24}
           draggable={false}
-          className="filter-white size-6 md:size-7"
+          className="filter-white size-6 h-full w-full md:size-7"
         />
         <p className="hidden sm:block lg:hidden xl:block">Avto yigish</p>
       </button>
@@ -135,4 +135,4 @@ const ChangeCaptainForm = () => {
   )
 }
 
-export default ChangeCaptainForm
+export default TransferStadiumForm

@@ -7,7 +7,7 @@ const Matches = () => {
   const { currentTour } = useSelector((state) => state.tours)
 
   return (
-    <div className="flex min-h-[36rem] w-full max-w-96 flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 xl:w-1/3">
+    <div className="flex min-h-[40rem] w-full flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 sm:max-h-[36rem] xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
         <button>
           <Image

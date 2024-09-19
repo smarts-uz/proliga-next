@@ -2,9 +2,9 @@ import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
 import Gutter from '../../../../../components/Gutter'
 import GameBrief from './GameBrief'
-import ChangeCaptainForm from '../ChangeCaptainForm'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
+import ProfileStadiumForm from './ProfileStadiumForm'
 
 const GameProfile = () => {
   const { currentTour } = useSelector((store) => store.tours)
@@ -24,7 +24,7 @@ const GameProfile = () => {
             <PlayersStructure allowDelete={false} />
           </div>
           {currentTour?.status === TOUR.notStartedTransfer && (
-            <ChangeCaptainForm />
+            <ProfileStadiumForm />
           )}
         </div>
         <GameBrief />

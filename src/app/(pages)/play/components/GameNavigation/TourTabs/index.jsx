@@ -42,7 +42,9 @@ export default function TourTabs() {
   }
 
   const handleClick = (index) => {
-    dispatch(emptyTeamPlayers())
+    if (currentTourIndex !== index) {
+      dispatch(emptyTeamPlayers())
+    }
     dispatch(setCurrentTourTeamIndex(index))
     dispatch(setCurrentTourIndex(index))
   }
@@ -54,7 +56,7 @@ export default function TourTabs() {
         bgcolor: '#000',
         color: '#fff',
         borderRadius: '4px',
-        // height: '60px',
+        minHeight: '64px',
       }}
       width={'100%'}
     >

@@ -3,8 +3,8 @@ import Gutter from '../../../../../components/Gutter'
 const Journal = () => {
   return (
     <Gutter>
-      <div className='flex gap-4'>
-        <section className="flex w-2/3 flex-col rounded-2xl bg-black p-6 text-neutral-300">
+      <div className="flex gap-4">
+        <section className="flex w-full flex-col rounded-2xl bg-black p-6 text-neutral-300 md:w-2/3">
           <div className="">
             {data.map((item, index) => (
               <div
