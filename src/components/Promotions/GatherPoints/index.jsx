@@ -7,10 +7,10 @@ const PromotionGatherPoints = () => {
       <Gutter>
         <article className="flex w-full flex-col justify-between gap-4 md:flex-row md:gap-0">
           <div className="my-auto flex flex-col gap-4 xl:gap-8">
-            <h2 className="promotion-header font-bold">BALLARNI YIG’ING</h2>
+            <h2 className="promotion-header font-bold">OCHKOLAR YIG’ING</h2>
             <p className="promotion-text text-neutral-400 md:max-w-lg xl:max-w-xl">
               Har bir o&apos;yinchi haqiqiy o&apos;yinlarda qilgan harakatlari
-              uchun ochko oladi yoki yo&apos;qotadi. Ballar soni
+              uchun ochko oladi yoki yo&apos;qotadi. Ochkolar soni
               o&apos;yinchining roliga qarab farq qilishi mumkin. Masalan,
               himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi
             </p>

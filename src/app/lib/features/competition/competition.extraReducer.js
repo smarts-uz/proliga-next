@@ -7,20 +7,11 @@ export const competitionExtraReducer = (builder) => {
     })
     .addCase(fetchCompetition.fulfilled, (state, action) => {
       state.isLoading = false
-      state.competition = action.payload.data
+      if (action.payload.data?.length > 0) {
+        state.competition = action.payload.data
+      }
     })
     .addCase(fetchCompetition.rejected, (state, action) => {
-      state.isLoading = false
-      state.error = action.payload.error.message ?? null
-    })
-    .addCase(fetchCompetitionStats.pending, (state) => {
-      state.isLoading = true
-    })
-    .addCase(fetchCompetitionStats.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.competitionStats = action.payload.data
-    })
-    .addCase(fetchCompetitionStats.rejected, (state, action) => {
       state.isLoading = false
       state.error = action.payload.error.message ?? null
     })

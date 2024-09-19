@@ -13,7 +13,7 @@ const PromotionMakeTransfers = () => {
           <p className="promotion-text mt-6 self-center text-center text-neutral-400 md:w-3/4 xl:mt-10">
             Agar sizning jamoangizdagi o&apos;yinchilardan biri jarohat olgan
             bo&apos;lsa yoki shunchaki yomon o&apos;ynasa, har bir turda ochko
-            to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 2
+            to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 4
             tagacha transferni amalga oshirishingiz mumkin
           </p>
 

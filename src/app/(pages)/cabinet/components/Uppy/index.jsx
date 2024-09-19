@@ -3,7 +3,6 @@
 import React from 'react'
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
-import { Webcam } from 'uppy'
 import { Dashboard } from '@uppy/react'
 import { useState } from 'react'
 import '@uppy/core/dist/style.css'

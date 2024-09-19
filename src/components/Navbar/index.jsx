@@ -1,22 +1,20 @@
 'use client'
 
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
 import Gutter from '../Gutter'
-import { useSelector } from 'react-redux'
-import { usePathname } from 'next/navigation'
 import Notification from './Notification/Notification'
-import DefaultLinks from './DefaultLinks'
-import PlayLinks from './PlayLinks'
+import PlayLinks from './Links'
 
 const Navbar = () => {
   const path = usePathname()
   const [isDropdownOpen, toggleDropdown] = useState(false)
   const [isNotificationsOpen, toggleNotificationsOpen] = useState(false)
   const { userAuth } = useSelector((state) => state.auth)
-  const linksCondition = path.split('/').includes('play')
 
   const handleToggleDropdown = () => {
     if (isNotificationsOpen) {
@@ -32,13 +30,16 @@ const Navbar = () => {
     }
     toggleNotificationsOpen(!isNotificationsOpen)
   }
-  console.log(path.split('/').includes('play'))
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 py-4 backdrop-blur-md">
       <Gutter>
         <div className="relative flex w-full items-center justify-between text-white">
-          <Link href="/">
+          <Link
+            href={
+              path.split('/').includes('championships') ? '/' : '/championships'
+            }
+          >
             <Image
               src="/icons/proliga-full.svg"
               alt="Proliga"
@@ -49,7 +50,7 @@ const Navbar = () => {
               className="w-28 cursor-pointer sm:w-36"
             />
           </Link>
-          {linksCondition ? <PlayLinks /> : <DefaultLinks />}
+          <PlayLinks />
           <div className="flex w-max items-center justify-center gap-4">
             <button onClick={handleToggleNotifications}>
               <Image

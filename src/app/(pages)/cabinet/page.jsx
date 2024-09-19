@@ -13,7 +13,9 @@ import Link from 'next/link'
 import { useUploadFile } from 'app/hooks/user/useUploadFile/useUploadFile'
 import { useDownloadFile } from 'app/hooks/user/useDownloadFile/useDownloadFile'
 import { useSelector } from 'react-redux'
-function Page() {
+import { toast } from 'react-toastify'
+
+function UserCabinet() {
   const [startDate, setStartDate] = useState(new Date())
   const { updateData, error, isLoading } = useUpdateUserData()
   const { uploadFile, isLoading: uploadLoading } = useUploadFile()
@@ -62,19 +64,18 @@ function Page() {
         formik.values.gender,
         startDate
       )
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
-  const auth_container =
-    'mx-4 flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 max-w-72 xs:max-w-[36rem] sm:max-w-[40rem] shadow shadow-neutral-500 md:p-8;'
-  const auth_input =
-    'h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base'
+  console.log(formik)
   return (
     <Gutter>
       <div className="z-10 mt-24 flex min-h-svh items-center justify-center py-6 text-gray-200">
         <form
           onSubmit={formik.handleSubmit}
           className={
-            'max-w-[80rem] items-center justify-center gap-2 ' + auth_container
+            'flex w-full flex-col items-center justify-center gap-2 rounded-xl bg-neutral-950 px-4 py-6 shadow shadow-neutral-500 sm:max-w-96 md:max-w-[30rem] md:gap-4 md:px-6 md:py-6'
           }
         >
           <h3 className="flex gap-4 text-xl">Ma&apos;lumot</h3>
@@ -85,24 +86,28 @@ function Page() {
             <div className="group relative">
               <img
                 src={imgPreview ? imgPreview : img ? img : '/icons/user.svg'}
-                className="rounded-full border-2 border-neutral-50 bg-neutral-300 xs:size-32 sm:size-36 md:size-40 lg:size-48 xl:size-56"
+                className="rounded-full border-2 border-neutral-50 bg-neutral-300 xs:size-32 sm:size-36 md:size-40 lg:size-48"
                 width={100}
                 height={100}
                 key={img}
-                alt="img"
+                alt="user avatar"
               />
-              <div className="bg-neutral-400">
+              <label
+                htmlFor="img"
+                type="button"
+                style={{ left: 'calc(50% - 24px)', top: 'calc(50% - 24px)' }}
+                className="absolute top-0 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-neutral-50 group-hover:flex"
+              >
                 <Image
-                  width={100}
-                  height={100}
-                  alt={'edit'}
-                  src={'/icons/edit.svg'}
-                  style={{ left: 'calc(50% - 24px)', top: 'calc(50% - 24px)' }}
-                  className="filter-neutral-950 absolute top-0 hidden h-12 w-12 xl:group-hover:block"
+                  width={48}
+                  height={48}
+                  alt="edit"
+                  src="/icons/edit.svg"
+                  className="filter-neutral-950 size-10"
                 />
-              </div>
+              </label>
             </div>
-            <h2 className="pt-4 text-center text-blue-600 hover:underline xl:hidden">
+            <h2 className="pt-4 text-center text-primary hover:underline xl:hidden">
               Su&apos;rat qo&apos;shish
             </h2>
           </label>
@@ -110,6 +115,7 @@ function Page() {
             type="file"
             onChange={handleFileChange}
             id="img"
+            accept="image/*"
             className="hidden"
           />
           <button
@@ -123,153 +129,152 @@ function Page() {
           >
             Yuklash
           </button>
-          <div className="flex">
-            <div className="my-4 min-w-72 xs:max-w-96 sm:max-w-[36rem]">
-              <label
-                className="my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="text"
-                disabled
-                placeholder={userTable?.email ?? 'example@email.com'}
-                className={auth_input}
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <label
-                className="my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="firstName"
-              >
-                Ism
-              </label>
-              <input
-                placeholder={userTable?.name ?? 'Ism'}
-                id="firstName"
-                name="firstName"
-                type="text"
-                className={auth_input}
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
-              />
-              <label
-                className="my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="lastName"
-              >
-                Familiya
-              </label>
-              <input
-                id="lastName"
-                name="lastName"
-                placeholder={userTable?.last_name ?? 'Familiya'}
-                type="text"
-                className={auth_input}
-                onChange={formik.handleChange}
-                value={formik.values.lastName}
-              />
-
-              <label
-                className="my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="middleName"
-              >
-                Sharif
-              </label>
-              <input
-                id="middleName"
-                name="middleName"
-                placeholder={userTable?.midde_name ?? 'Sharif'}
-                type="text"
-                className={auth_input}
-                onChange={formik.handleChange}
-                value={formik.values.middleName}
-              />
-
-              <label
-                className="my-2 block text-sm font-bold text-neutral-300"
-                htmlFor="bio"
-              >
-                Siz haqingizda
-              </label>
-              <textarea
-                id="bio"
-                placeholder={userTable?.bio ?? 'Siz haqingizda'}
-                name="bio"
-                type="date"
-                cols={1}
-                rows={5}
-                className={auth_input + ' min-h-64 gap-4'}
-                onChange={formik.handleChange}
-                value={formik.values.bio}
-              />
-              <div className="py-4 lg:flex">
-                <div>
-                  <label
-                    className="mx-2 my-2 block text-sm font-bold text-neutral-300"
-                    htmlFor="gender"
-                  >
-                    Jins
-                  </label>
-                  <select
-                    id="gender"
-                    className={auth_input + 'mx-2 mr-2 lg:w-64'}
-                    onChange={formik.handleChange}
-                    value={formik.values.gender}
-                  >
-                    <option value="null">{'Tanlang'}</option>
-                    <option value="male">Erkak</option>
-                    <option value="female">Ayol</option>
-                    <option value="unset">Belgilanmagan</option>
-                  </select>
-                </div>
-                <div>
-                  <label
-                    className="my-2 block text-sm font-bold text-neutral-300"
-                    htmlFor="birthdate"
-                  >
-                    Tug&apos;ilgan kuni
-                  </label>
-                  <DatePicker
-                    id="birthdate"
-                    selected={startDate}
-                    className={
-                      auth_input +
-                      'mx-2 w-[288px] xs:w-[384px] sm:w-[576px] lg:w-72'
-                    }
-                    onChange={(date) => setStartDate(date)}
-                  />
-                </div>
-              </div>
-              <div className="flex">
-                <Link
-                  className="text-blue-500 hover:underline"
-                  href={'/cabinet/update'}
-                >
-                  Hisobni to&apos;ldirish
-                </Link>
-                <Link
-                  className="mx-3 text-blue-500 hover:underline"
-                  href={'/cabinet/update'}
-                >
-                  Parolni yangilash
-                </Link>
-              </div>
-              <button
-                className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
-                type="submit"
-                onClick={() => update()}
-              >
-                Tahrirlash
-              </button>
-            </div>
+          <div className="w-full">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              disabled
+              placeholder={userTable?.email ?? 'example@email.com'}
+              className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
           </div>
+          <div className="w-full">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="firstName"
+            >
+              Ism
+            </label>
+            <input
+              placeholder={userTable?.name ?? 'Ism'}
+              id="firstName"
+              name="firstName"
+              type="text"
+              className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.firstName}
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="lastName"
+            >
+              Familiya
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              placeholder={userTable?.last_name ?? 'Familiya'}
+              type="text"
+              className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.lastName}
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="middleName"
+            >
+              Sharif
+            </label>
+            <input
+              id="middleName"
+              name="middleName"
+              placeholder={userTable?.midde_name ?? 'Sharif'}
+              type="text"
+              className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.middleName}
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="bio"
+            >
+              Siz haqingizda
+            </label>
+            <textarea
+              id="bio"
+              placeholder={userTable?.bio ?? 'Siz haqingizda'}
+              name="bio"
+              type="date"
+              cols={1}
+              rows={5}
+              className="h-10 min-h-64 w-full gap-4 rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.bio}
+            />
+          </div>
+          <div className="w-full">
+            <label
+              className="mx-2 my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="gender"
+            >
+              Jins
+            </label>
+            <select
+              id="gender"
+              className="mr-2 h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={formik.handleChange}
+              value={formik.values.gender}
+            >
+              <option value="null">{'Tanlang'}</option>
+              <option value="male">Erkak</option>
+              <option value="female">Ayol</option>
+              <option value="unset">Belgilanmagan</option>
+            </select>
+          </div>
+          <div className="flex w-full flex-col">
+            <label
+              className="my-2 block text-sm font-bold text-neutral-300"
+              htmlFor="birthdate"
+            >
+              Tug&apos;ilgan kuni
+            </label>
+            <DatePicker
+              id="birthdate"
+              selected={startDate}
+              className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+              onChange={(date) => setStartDate(date)}
+            />
+          </div>
+          <div className="flex w-full justify-between">
+            <Link
+              className="text-primary hover:underline"
+              href={'/cabinet/update'}
+            >
+              Hisobni to&apos;ldirish
+            </Link>
+            <Link
+              className="mx-3 text-primary hover:underline"
+              href={'/cabinet/update'}
+            >
+              Parolni yangilash
+            </Link>
+          </div>
+          <button
+            className="mt-4 w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
+            type="submit"
+            onClick={() => update()}
+          >
+            Tahrirlash
+          </button>
         </form>
       </div>
     </Gutter>
   )
 }
 
-export default Page
+export default UserCabinet

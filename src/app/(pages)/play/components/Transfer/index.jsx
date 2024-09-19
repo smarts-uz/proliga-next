@@ -1,3 +1,4 @@
+'use client'
 import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
 import PlayersStructure from '../PlayersStructure'
@@ -24,6 +25,36 @@ const Transfer = () => {
             />
             {currentTour?.status === TOUR.notStartedTransfer && (
               <PlayersStructure />
+            )}
+            {currentTour?.status === TOUR.notStartedTransfer && (
+              <div className="absolute bottom-5 left-7 z-20 flex items-center justify-center gap-1">
+                <button
+                  className="flex rounded-md border-2 border-transparent p-0.5 text-neutral-100 transition-all hover:border-primary"
+                  title="Avto jamoa yigish"
+                >
+                  <Image
+                    src="/icons/auto.svg"
+                    alt="auto assemble team"
+                    width={24}
+                    height={24}
+                    draggable={false}
+                    className="filter-white size-6 md:size-7"
+                  />
+                </button>
+                <button
+                  title="jamoani tozalash"
+                  className="flex rounded-md border-2 border-transparent p-0.5 text-neutral-100 transition-all hover:border-primary"
+                >
+                  <Image
+                    src="/icons/trash.svg"
+                    alt="auto assemble team"
+                    width={24}
+                    height={24}
+                    draggable={false}
+                    className="filter-white size-6 md:size-7"
+                  />
+                </button>
+              </div>
             )}
             {currentTour?.status === TOUR.completed && (
               <PlayersStructure allowDelete={false} />

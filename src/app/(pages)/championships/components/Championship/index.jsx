@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Championship = ({ game }) => {
-  const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
   const router = useRouter()
@@ -41,7 +40,7 @@ const Championship = ({ game }) => {
   return (
     <>
       <article
-        className="relative flex cursor-pointer items-center gap-4 rounded-sm border border-neutral-500 bg-neutral-800 p-4 transition-all hover:bg-neutral-700"
+        className={`relative flex cursor-pointer items-center gap-4 rounded-sm border border-neutral-500 bg-neutral-800 p-4 transition-all hover:bg-neutral-700`}
         onClick={handleClick}
       >
         <img
