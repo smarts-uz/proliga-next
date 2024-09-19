@@ -68,7 +68,6 @@ function UserCabinet() {
       toast.error(error.message)
     }
   }
-  console.log(formik)
   return (
     <Gutter>
       <div className="z-10 mt-24 flex min-h-svh items-center justify-center py-6 text-gray-200">

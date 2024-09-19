@@ -10,6 +10,7 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -32,6 +33,10 @@ const Play = ({ params }) => {
       dispatch(setCurrentCompetition(params.league))
     }
   }, [dispatch, params.league, competition])
+
+  useEffect(() => {
+    dispatch(setLastVisitedTeam(`${params.league}/${params.id}`))
+  }, [currentTeam, dispatch])
 
   useEffect(() => {
     if (currentTeam?.competition_id?.id) {

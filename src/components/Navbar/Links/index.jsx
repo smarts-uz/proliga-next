@@ -12,6 +12,8 @@ const PlayLinks = () => {
   const passive = 'before:hidden hover:before:block'
   const disabled =
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
+  const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
+  console.log(!path.includes('play') && lastVisitedTeam)
 
   return (
     <section className="hidden items-center gap-4 text-neutral-400 sm:text-sm lg:flex lg:gap-6 lg:text-base">
@@ -46,6 +48,45 @@ const PlayLinks = () => {
             tab={TABS.Journal}
           />
           <Tab
+            title="Statistika"
+            disabled={disabled}
+            passive={passive}
+            active={active}
+            tab={TABS.Statistics}
+          />
+        </>
+      )}
+      {!path.includes('play') && lastVisitedTeam && (
+        <>
+          <TabLink
+            title="Profil"
+            passive={passive}
+            active={active}
+            disabled={disabled}
+            tab={TABS.GameProfile}
+          />
+          <TabLink
+            title="Transfer"
+            passive={passive}
+            disabled={disabled}
+            active={active}
+            tab={TABS.Transfer}
+          />
+          <TabLink
+            title="Turnir"
+            passive={passive}
+            disabled={disabled}
+            active={active}
+            tab={TABS.Tournament}
+          />
+          <TabLink
+            title="Jurnal"
+            passive={passive}
+            disabled={disabled}
+            active={active}
+            tab={TABS.Journal}
+          />
+          <TabLink
             title="Statistika"
             disabled={disabled}
             passive={passive}
@@ -91,4 +132,19 @@ const Tab = ({ title, tab, passive, active, disabled }) => {
   )
 }
 
+const TabLink = ({ title, tab, passive, active, disabled }) => {
+  const dispatch = useDispatch()
+  const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
+  const { gameTab } = useSelector((state) => state.tours)
+
+  return (
+    <Link
+      className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${passive}`}
+      onClick={() => dispatch(setTab(tab))}
+      href={'/play/' + lastVisitedTeam}
+    >
+      {title}
+    </Link>
+  )
+}
 export default PlayLinks

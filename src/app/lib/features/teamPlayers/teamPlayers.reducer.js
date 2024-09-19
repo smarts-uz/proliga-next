@@ -92,9 +92,9 @@ export const addTeamPlayerReducer = (state, action) => {
   const addPlayerSlugToExistingClubs = (clubSlug) => {
     if (!state.existingClubs[clubSlug] || state.existingClubs[clubSlug] === 0) {
       state.existingClubs[clubSlug] = 1
-      return
+    } else {
+      state.existingClubs[clubSlug] += 1
     }
-    state.existingClubs[clubSlug] += 1
   }
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
@@ -231,3 +231,5 @@ export const setCaptainReducer = (state, action) => {
   })
   return state
 }
+
+export const clearTeamPlayers = (state, action) => {}

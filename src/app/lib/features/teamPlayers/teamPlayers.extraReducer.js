@@ -25,56 +25,44 @@ export const teamPlayersExtraReducer = (builder) => {
             state.GOA.push(player)
             if (player.name) {
               state.playersCount.GOA++
-              if (
-                !state.existingClubs[clubSlug] ||
-                state.existingClubs[clubSlug] === 0
-              ) {
+              if (!state.existingClubs[clubSlug]) {
                 state.existingClubs[clubSlug] = 1
-                return
+              } else {
+                state.existingClubs[clubSlug] += 1
               }
-              state.existingClubs[clubSlug] += 1
             }
           }
           if (player.position === PLAYERS.DEF) {
             state.DEF.push(player)
             if (player.name) {
               state.playersCount.DEF++
-              if (
-                !state.existingClubs[clubSlug] ||
-                state.existingClubs[clubSlug] === 0
-              ) {
+              if (!state.existingClubs[clubSlug]) {
                 state.existingClubs[clubSlug] = 1
-                return
+              } else {
+                state.existingClubs[clubSlug] += 1
               }
-              state.existingClubs[clubSlug] += 1
             }
           }
           if (player.position === PLAYERS.MID) {
             state.MID.push(player)
             if (player.name) {
               state.playersCount.MID++
-              if (
-                !state.existingClubs[clubSlug] ||
-                state.existingClubs[clubSlug] === 0
-              ) {
+              if (!state.existingClubs[clubSlug]) {
                 state.existingClubs[clubSlug] = 1
-                return
+              } else {
+                state.existingClubs[clubSlug] += 1
               }
-              state.existingClubs[clubSlug] += 1
             }
           }
           if (player.position === PLAYERS.STR) {
             state.STR.push(player)
             if (player.name) {
               state.playersCount.STR++
-              if (
-                !state.existingClubs[clubSlug] ||
-                state.existingClubs[clubSlug] === 0
-              ) {
+              if (!state.existingClubs[clubSlug]) {
                 state.existingClubs[clubSlug] = 1
-                return
+              } else {
+                state.existingClubs[clubSlug] += 1
               }
-              state.existingClubs[clubSlug] += 1
             }
           }
         })

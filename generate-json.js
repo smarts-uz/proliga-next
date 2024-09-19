@@ -41,7 +41,6 @@ async function generation(lan,key) {
                 }
             }
         };
-        console.log(jsonContent);
         
     }
 }

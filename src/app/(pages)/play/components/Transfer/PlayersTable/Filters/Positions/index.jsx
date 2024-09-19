@@ -31,7 +31,7 @@ const DATA = [
     key: 'DEF',
   },
   {
-    title: 'Yarim himoyachi',
+    title: 'Y Himoyachi',
     key: 'MID',
   },
   {

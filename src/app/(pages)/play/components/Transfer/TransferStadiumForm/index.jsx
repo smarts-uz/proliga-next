@@ -30,7 +30,6 @@ const TransferStadiumForm = () => {
     isLoading: teamLoading,
     error: teamError,
   } = useUpdateTeam()
-  console.log(path.split('/')[3])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
