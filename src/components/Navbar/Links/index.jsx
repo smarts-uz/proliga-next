@@ -13,7 +13,6 @@ const PlayLinks = () => {
   const disabled =
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
   const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
-  console.log(!path.includes('play') && lastVisitedTeam)
 
   return (
     <section className="hidden items-center gap-4 text-neutral-400 sm:text-sm lg:flex lg:gap-6 lg:text-base">

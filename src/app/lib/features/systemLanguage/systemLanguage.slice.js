@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useTranslation } from 'react-i18next'
 
 const initialState = {
   lang: 'uz',

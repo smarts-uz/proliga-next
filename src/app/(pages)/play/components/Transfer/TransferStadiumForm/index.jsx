@@ -18,8 +18,10 @@ const TransferStadiumForm = () => {
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
-  const { teamBalance, teamPrice } = useSelector((state) => state.currentTeam)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { teamBalance, teamPrice, currentTeam } = useSelector(
+    (state) => state.currentTeam
+  )
+  const { currentTour } = useSelector((state) => state.tours)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -70,7 +72,11 @@ const TransferStadiumForm = () => {
       return
     }
 
-    await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
+    await updateTeamPlayers({
+      team: teamConcat,
+      team_id: currentTeam.id,
+      tour_id: currentTour.id,
+    })
     if (currentTeam.is_team_created === false) {
       await updateTeam({ team_id: currentTeam.id })
     }

@@ -14,9 +14,15 @@ export const useGenerateLanguage = () => {
     try {
       setIsLoading(true)
 
+      //uz
       const { data, error } = await supabase
         .from('system_language')
-        .select('id, name, ru')
+        .select('id, name, uz')
+
+      //ru
+      // const { data, error } = await supabase
+      // .from('system_language')
+      // .select('id, name, ru')
 
       if (error) {
         setError(error.message)
@@ -26,12 +32,8 @@ export const useGenerateLanguage = () => {
       if (data) {
         setData(data)
         let obj = {}
-        const blah = data.map(
-          (item) => (obj = { ...obj, [item.name]: item.ru })
-        )
-        console.log(JSON.parse(JSON.stringify(obj)))
-
-        toast.success('til olindi', data[0])
+        data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
+        // data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
       }
     } catch (error) {
       setError(error.message)

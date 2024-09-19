@@ -7,6 +7,9 @@ import { motion } from 'framer-motion'
 const Dropdown = () => {
   const { logOut } = useLogOut()
   const { userAuth } = useSelector((state) => state.auth)
+  const activeStyle = 'bg-neutral-800 border-primary text-neutral-50'
+  const passiveStyle = 'bg-transparent text-neutral-300 border-transparent'
+  const style = false ? activeStyle : passiveStyle
 
   return (
     <motion.section
@@ -19,6 +22,32 @@ const Dropdown = () => {
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
         <p>Chempionat</p>
       </NavLink>
+      <div className="flex">
+        <button
+          className={`flex w-full items-center gap-1 rounded-sm border p-1 ${activeStyle}`}
+        >
+          <Image
+            className="size-6"
+            src="/icons/russia.svg"
+            alt="russia"
+            width={24}
+            height={24}
+          />
+          RU
+        </button>
+        <button
+          className={`flex w-full items-center gap-1 rounded-sm border p-1 ${passiveStyle}`}
+        >
+          <Image
+            src="/icons/uzbekistan.svg"
+            alt="russia"
+            width={24}
+            height={24}
+            className="size-6"
+          />
+          UZ
+        </button>
+      </div>
       {userAuth ? (
         <>
           <NavLink href="/cabinet">
