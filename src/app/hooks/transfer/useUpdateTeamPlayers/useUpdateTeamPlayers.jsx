@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 
 export const useUpdateTeamPlayers = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState(null)
-  const dispatch = useDispatch()
 
   const updateTeamPlayers = async ({ team, team_id }) => {
     setIsLoading(false)
@@ -24,25 +22,11 @@ export const useUpdateTeamPlayers = () => {
         is_captain: player.is_captain,
       }))
 
-      newTeam.map(async (player) => {
-        const { data, error } = await supabase
-          .from('team_player')
-          .update(player)
-          .eq('id', player.id)
-          .select()
-
-        if (error) {
-          setError(error.message)
-          toast.error(error.message)
-        }
-      })
+      const { error } = await supabase.from('team_player').upsert(newTeam)
 
       if (error) {
         setError(error.message)
         toast.error(error.message)
-      }
-      if (data) {
-        setData(data)
       }
     } catch (error) {
       setError(error.message)
@@ -51,5 +35,5 @@ export const useUpdateTeamPlayers = () => {
       setIsLoading(false)
     }
   }
-  return { updateTeamPlayers, isLoading, error, data }
+  return { updateTeamPlayers, isLoading, error }
 }

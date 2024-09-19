@@ -10,6 +10,7 @@ import TeamPlayersSlice from './features/teamPlayers/teamPlayers.slice.js'
 import ToursSlice from './features/tours/tours.slice.js'
 import TourTeamsSlice from './features/tourTeams/tourTeams.slice.js'
 import SeasonSlice from './features/season/season.slice.js'
+import SystemLanguageSlice from './features/systemLanguage/systemLanguage.slice.js'
 
 export const rootReducer = combineReducers({
   auth: AuthSlice,
@@ -23,4 +24,5 @@ export const rootReducer = combineReducers({
   tours: ToursSlice,
   season: SeasonSlice,
   tourTeams: TourTeamsSlice,
+  systemLanguage: SystemLanguageSlice,
 })
