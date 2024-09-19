@@ -13,7 +13,10 @@ const Transfer = () => {
   return (
     <Gutter>
       <main className="flex flex-col justify-between gap-2 fade-in md:min-h-max lg:flex-row">
-        <div className="flex h-full flex-col lg:w-1/2">
+        <div className="flex h-full flex-col-reverse md:flex-col lg:w-1/2">
+          {currentTour?.status === TOUR.notStartedTransfer && (
+            <ChangeCaptainForm />
+          )}
           <div className="relative h-full w-full lg:w-full">
             <Image
               src="/icons/stadium.svg"
@@ -26,36 +29,6 @@ const Transfer = () => {
             {currentTour?.status === TOUR.notStartedTransfer && (
               <PlayersStructure />
             )}
-            {currentTour?.status === TOUR.notStartedTransfer && (
-              <div className="absolute bottom-5 left-7 z-20 flex items-center justify-center gap-1">
-                <button
-                  className="flex rounded-md border-2 border-transparent p-0.5 text-neutral-100 transition-all hover:border-primary"
-                  title="Avto jamoa yigish"
-                >
-                  <Image
-                    src="/icons/auto.svg"
-                    alt="auto assemble team"
-                    width={24}
-                    height={24}
-                    draggable={false}
-                    className="filter-white size-6 md:size-7"
-                  />
-                </button>
-                <button
-                  title="jamoani tozalash"
-                  className="flex rounded-md border-2 border-transparent p-0.5 text-neutral-100 transition-all hover:border-primary"
-                >
-                  <Image
-                    src="/icons/trash.svg"
-                    alt="auto assemble team"
-                    width={24}
-                    height={24}
-                    draggable={false}
-                    className="filter-white size-6 md:size-7"
-                  />
-                </button>
-              </div>
-            )}
             {currentTour?.status === TOUR.completed && (
               <PlayersStructure allowDelete={false} />
             )}
@@ -63,9 +36,6 @@ const Transfer = () => {
               <PlayersStructure allowDelete={false} />
             )}
           </div>
-          {currentTour?.status === TOUR.notStartedTransfer && (
-            <ChangeCaptainForm />
-          )}
         </div>
         <PlayersTable />
       </main>

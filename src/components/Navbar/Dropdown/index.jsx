@@ -2,14 +2,18 @@ import Image from 'next/image'
 import NavLink from './NavLink'
 import { useLogOut } from '../../../app/hooks/auth/useLogOut/useLogOut'
 import { useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 
 const Dropdown = () => {
   const { logOut } = useLogOut()
   const { userAuth } = useSelector((state) => state.auth)
 
   return (
-    <section
-      className={`fade-in-fast absolute right-0 top-[4.25rem] flex w-56 flex-col gap-4 rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500`}
+    <motion.section
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0.25, y: -20 }}
+      className={`absolute right-0 top-12 flex w-56 flex-col gap-4 rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500`}
     >
       <NavLink href="/championships">
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
@@ -47,7 +51,7 @@ const Dropdown = () => {
           </NavLink>
         </>
       )}
-    </section>
+    </motion.section>
   )
 }
 

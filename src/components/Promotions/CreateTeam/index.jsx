@@ -18,7 +18,7 @@ const PromotionCreateTeam = () => {
               </h2>
               <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
                 100 millionlik byudjetdan foydalaning va chempionatning eng
-                yaxshifutbolchilaridan iborat jamoani to&apos;plang
+                yaxshi futbolchilaridan iborat jamoani to&apos;plang
               </p>
               <div className="relative hidden h-full w-full self-start md:block">
                 <Image

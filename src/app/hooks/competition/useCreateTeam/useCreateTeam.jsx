@@ -59,7 +59,7 @@ export const useCreateTeam = () => {
       if (data) {
         setData(data[0])
         dispatch(addGameToTeam(data[0]))
-        toast.success('Jomoa muvaffaqiyatli yaratildi')
+        toast.success('Jamoa muvaffaqiyatli yaratildi')
       }
     } catch (error) {
       setError(error.message)

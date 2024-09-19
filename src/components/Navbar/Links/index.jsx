@@ -14,7 +14,7 @@ const PlayLinks = () => {
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
 
   return (
-    <section className="hidden items-center gap-4 text-neutral-400 sm:flex sm:text-sm lg:gap-6 lg:text-base">
+    <section className="hidden items-center gap-4 text-neutral-400 sm:text-sm lg:flex lg:gap-6 lg:text-base">
       {path.includes('play') && (
         <>
           <Tab

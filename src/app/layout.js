@@ -4,16 +4,11 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ReduxProvider from './store.provider'
 import GetInitialState from './GetInitialState'
-import { Archivo, Poppins, DM_Sans } from 'next/font/google'
+import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-phone-number-input/style.css'
-
-const archivo = Archivo({
-  subsets: ['latin', 'latin-ext'],
-  weight: ['400', '700'],
-})
 
 const dmSans = DM_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -21,8 +16,10 @@ const dmSans = DM_Sans({
 })
 
 export default function RootLayout({ children }) {
+  const currentLocale = 'uz'
+
   return (
-    <html lang="en">
+    <html lang={currentLocale}>
       <head>
         <title>Proliga.uz</title>
         <meta name="description" content="Bu sportlar haqida web sayt" />

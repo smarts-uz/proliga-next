@@ -47,7 +47,7 @@ function PlayersTable() {
   })
 
   return (
-    <div className="h-min min-h-[30rem] border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2 xl:text-base">
+    <div className="h-min min-h-full border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2 xl:text-base">
       <TeamOverview />
       <div className="grid w-full grid-cols-4 gap-x-1 gap-y-2 text-xs md:gap-2 md:text-sm xl:gap-y-4">
         {table
@@ -63,14 +63,6 @@ function PlayersTable() {
         <TransferTableBody table={table} flexRender={flexRender} />
       </table>
       <TransferTablePagination table={table} />
-      {/* <div className="flex w-full justify-between py-2">
-        <button className="-skew-x-12 rounded-sm border border-primary px-6 text-lg text-primary transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10">
-          Avto
-        </button>
-        <button className="-skew-x-12 rounded-sm border bg-black px-6 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black md:px-10">
-          Saqlash
-        </button>
-      </div> */}
     </div>
   )
 }
