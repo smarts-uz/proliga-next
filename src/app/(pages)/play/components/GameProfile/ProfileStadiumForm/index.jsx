@@ -3,7 +3,6 @@ import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/us
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
-import Image from 'next/image'
 
 const ProfileStadiumForm = () => {
   const dispatch = useDispatch()
@@ -67,7 +66,7 @@ const ProfileStadiumForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex justify-between gap-x-1 text-black md:mb-2 md:mt-0"
+      className="mt-2 flex justify-between gap-x-1 text-black"
     >
       <select
         name="formation"
@@ -95,7 +94,6 @@ const ProfileStadiumForm = () => {
             )
         )}
       </select>
-
       <button
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"

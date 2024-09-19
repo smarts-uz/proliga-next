@@ -5,10 +5,12 @@ import { useSelector } from 'react-redux'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
-  const { tours, currentTourIndex, currentTour, teamPrice, teamBalance } =
-    useSelector((store) => store.tours)
+  const { tours, currentTourIndex, currentTour } = useSelector(
+    (store) => store.tours
+  )
   const { currentTeam } = useSelector((store) => store.currentTeam)
   const { currentCompetition } = useSelector((store) => store.competition)
+  const { teamPrice, teamBalance } = useSelector((store) => store.tourTeams)
 
   useEffect(() => {
     if (tours.length > 0) {
@@ -24,7 +26,7 @@ const GameBrief = () => {
   const minutes = date.getMinutes()
 
   return (
-    <section className="mx-auto flex h-min w-full max-w-[30rem] flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all fade-in hover:border-opacity-100 md:max-w-[40rem] lg:mx-0 lg:w-1/2">
+    <section className="mx-auto flex h-min w-full max-w-[30rem] flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all hover:border-opacity-100 md:max-w-[40rem] lg:mx-0 lg:w-1/2">
       <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">Keyingi Tur</p>

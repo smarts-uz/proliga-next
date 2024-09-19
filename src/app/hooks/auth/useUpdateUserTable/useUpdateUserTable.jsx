@@ -16,8 +16,8 @@ export const useUpdateUserTable = () => {
     setError(null)
 
     if (!id || !phone || !email) {
-      setError('Email va Telefon kirilmagan')
-      toast.error('Email va Telefon kiritilmagan')
+      setError('Email yoki Telefon kirilmagan')
+      toast.error('Email yokiTelefon kiritilmagan')
       return
     }
 

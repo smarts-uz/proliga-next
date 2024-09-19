@@ -1,7 +1,7 @@
 'use client'
 import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
-import PlayersStructure from '../PlayersStructure'
+import PlayersStructure from './PlayersStructure'
 import PlayersTable from './PlayersTable'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
@@ -12,9 +12,8 @@ const Transfer = () => {
 
   return (
     <Gutter>
-      <main className="flex flex-col justify-between gap-2 fade-in md:min-h-max lg:flex-row">
-        <div className="flex h-full flex-col-reverse md:flex-col lg:w-1/2">
-          <TransferStadiumForm />
+      <main className="flex flex-col justify-between gap-2 md:min-h-max lg:flex-row">
+        <div className="flex h-full flex-col lg:w-1/2">
           <div className="relative h-full w-full lg:w-full">
             <Image
               src="/icons/stadium.svg"
@@ -34,6 +33,7 @@ const Transfer = () => {
               <PlayersStructure allowDelete={false} />
             )}
           </div>
+          <TransferStadiumForm />
         </div>
         <PlayersTable />
       </main>

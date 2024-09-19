@@ -1,7 +1,7 @@
 import Player from './Player'
 import { useSelector } from 'react-redux'
 
-const PlayersStructure = ({ allowDelete = true }) => {
+const TransferPlayersStructure = ({ allowDelete = true }) => {
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
 
   return (
@@ -32,4 +32,4 @@ const PlayersStructure = ({ allowDelete = true }) => {
   )
 }
 
-export default PlayersStructure
+export default TransferPlayersStructure

@@ -7,8 +7,9 @@ import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-  InputOTPSeparator,
 } from '@/components/ui/input-otp'
+import { motion } from 'framer-motion'
+
 const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
   const [code, setCode] = useState()
 
@@ -18,9 +19,11 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
 
   return (
     <Backdrop>
-      <dialog
+      <motion.dialog
         onClick={(e) => e.stopPropagation()}
-        className="fade-in-fast flex flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500"
+        initial={{ opacity: 0, scale: 0.75 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="flex flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500"
       >
         <form className="flex flex-col items-start gap-6">
           <label htmlFor="" className="text-xl font-medium">
@@ -44,7 +47,7 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
             Tasdiqlash
           </button>
         </form>
-      </dialog>
+      </motion.dialog>
     </Backdrop>
   )
 }

@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useMemo } from 'react'
-import Image from 'next/image'
+import { useEffect, useMemo } from 'react'
 import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 const TransferStadiumForm = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const TransferStadiumForm = () => {
     [GOA, DEF, MID, STR]
   )
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
+  const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -64,10 +66,16 @@ const TransferStadiumForm = () => {
     }
   }
 
+  useEffect(() => {
+    if (currentTeam.is_team_created === false) {
+      toggleTeamCreateBtns(true)
+    }
+  }, [currentTeam])
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex justify-between gap-x-1 text-black md:mb-2 md:mt-0"
+      className="mt-2 flex justify-between gap-x-1 text-black"
     >
       <select
         name="formation"
@@ -95,36 +103,44 @@ const TransferStadiumForm = () => {
             )
         )}
       </select>
-      <button
-        type="button"
-        className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
-        title="Avto jamoa yigish"
-      >
-        <Image
-          src="/icons/auto.svg"
-          alt="auto assemble team"
-          width={24}
-          height={24}
-          draggable={false}
-          className="filter-white size-6 h-full w-full md:size-7"
-        />
-        <p className="hidden sm:block lg:hidden xl:block">Avto yigish</p>
-      </button>
-      <button
-        title="jamoani tozalash"
-        type="button"
-        className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
-      >
-        <Image
-          src="/icons/trash.svg"
-          alt="auto assemble team"
-          width={24}
-          height={24}
-          draggable={false}
-          className="filter-white size-6 md:size-7"
-        />
-        <p className="hidden sm:block lg:hidden xl:block">Jamoa tozalash</p>
-      </button>
+      {teamCreateBtns && (
+        <>
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            type="button"
+            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+            title="Avto jamoa yigish"
+          >
+            <Image
+              src="/icons/auto.svg"
+              alt="auto assemble team"
+              width={24}
+              height={24}
+              draggable={false}
+              className="filter-white size-6 md:size-7"
+            />
+            <p className="hidden sm:block lg:hidden xl:block">Avto yigish</p>
+          </motion.button>
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            title="jamoani tozalash"
+            type="button"
+            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+          >
+            <Image
+              src="/icons/trash.svg"
+              alt="auto assemble team"
+              width={24}
+              height={24}
+              draggable={false}
+              className="filter-white size-6 md:size-7"
+            />
+            <p className="hidden sm:block lg:hidden xl:block">Jamoa tozalash</p>
+          </motion.button>
+        </>
+      )}
       <button
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"

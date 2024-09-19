@@ -6,6 +6,7 @@ import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
+import { motion } from 'framer-motion'
 
 const CompetitionModal = ({ toggleModal, competition }) => {
   const dispatch = useDispatch()
@@ -48,8 +49,10 @@ const CompetitionModal = ({ toggleModal, competition }) => {
 
   return (
     <Backdrop onClick={() => toggleModal(false)}>
-      <dialog
-        className="flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 fade-in md:p-6 lg:w-1/3"
+      <motion.dialog
+        initial={{ opacity: 0, scale: 0.75 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between pb-4">
@@ -136,7 +139,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
             )}
           </button>
         </form>
-      </dialog>
+      </motion.dialog>
     </Backdrop>
   )
 }

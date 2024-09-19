@@ -1,12 +1,15 @@
 import Backdrop from 'components/Backdrop'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const ConfirmationModal = ({ onConfirm, onCancel }) => {
   return (
     <Backdrop onClick={onCancel}>
-      <dialog
+      <motion.dialog
+        initial={{ opacity: 0, scale: 0.75 }}
+        animate={{ opacity: 1, scale: 1 }}
         onClick={(e) => e.stopPropagation()}
-        className="fade-in-fast flex flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100"
+        className="flex flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100"
       >
         <Image
           src="/icons/close.svg"
@@ -34,7 +37,7 @@ const ConfirmationModal = ({ onConfirm, onCancel }) => {
             Qaytish
           </button>
         </div>
-      </dialog>
+      </motion.dialog>
     </Backdrop>
   )
 }

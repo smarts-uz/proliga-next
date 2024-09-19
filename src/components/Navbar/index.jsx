@@ -1,8 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from './Dropdown'
@@ -10,6 +7,9 @@ import Gutter from '../Gutter'
 import Notification from './Notification/Notification'
 import PlayLinks from './Links'
 import MobileModal from './Modal'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
   const path = usePathname()

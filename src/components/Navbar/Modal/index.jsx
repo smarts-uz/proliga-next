@@ -1,12 +1,11 @@
 import Backdrop from 'components/Backdrop'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
 import { TABS } from 'app/utils/tabs.util'
-import Link from 'next/link'
 import { setTab } from 'app/lib/features/tours/tours.slice'
-import Dropdown from '../Dropdown'
 import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 
 const MobileModal = ({ onCancel }) => {

@@ -16,8 +16,8 @@ export const useGetUserTable = () => {
     setError(null)
 
     if (!phone) {
-      setError('Email va Telefon kirilmagan')
-      toast.error('Email va Telefon kiritilmagan')
+      setError('Email yoki Telefon kirilmagan')
+      toast.error('Email yoki Telefon kiritilmagan')
       return
     }
 

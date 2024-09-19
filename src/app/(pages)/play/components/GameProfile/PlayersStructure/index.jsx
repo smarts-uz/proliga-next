@@ -1,11 +1,12 @@
 import Player from './Player'
 import { useSelector } from 'react-redux'
 
-const PlayersStructure = ({ allowDelete = true }) => {
+
+const ProfilePlayersStructure = ({ allowDelete = true }) => {
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 pb-3 pt-4 sm:py-2 sm:pb-0 sm:pt-6 md:pb-8 md:pt-8">
+    <div className="absolute fade-in-fast bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 pb-3 pt-4 sm:py-2 sm:pb-0 sm:pt-6 md:pb-8 md:pt-8">
       <div className={`flex w-full items-start justify-center`}>
         {GOA.map((player) => (
           <Player deletePlayer={allowDelete} key={player.id} player={player} />
@@ -32,4 +33,4 @@ const PlayersStructure = ({ allowDelete = true }) => {
   )
 }
 
-export default PlayersStructure
+export default ProfilePlayersStructure
