@@ -5,9 +5,16 @@ import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/us
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
+import { setTab } from 'app/lib/features/tours/tours.slice'
+import { TABS } from 'app/utils/tabs.util'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const TransferStadiumForm = () => {
   const dispatch = useDispatch()
+  const path = usePathname()
+  const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
@@ -18,7 +25,12 @@ const TransferStadiumForm = () => {
     [GOA, DEF, MID, STR]
   )
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
-  const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
+  const {
+    updateTeam,
+    isLoading: teamLoading,
+    error: teamError,
+  } = useUpdateTeam()
+  console.log(path.split('/')[3])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -60,9 +72,12 @@ const TransferStadiumForm = () => {
     }
 
     await updateTeamPlayers({ team: teamConcat, team_id: currentTeam.id })
-
+    if (currentTeam.is_team_created === false) {
+      await updateTeam({ team_id: currentTeam.id })
+    }
     if (!error && !isLoading) {
       toast.success('Jamoa muvaffaqiyatli yangilandi')
+      dispatch(setTab(TABS.GameProfile))
     }
   }
 

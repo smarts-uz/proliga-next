@@ -2,24 +2,31 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
+import { setCurrentTeamCreated } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 export const useUpdateTeam = () => {
+  const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
+  const { userAuth } = useSelector((state) => state.auth)
 
-  const updateTeam = async ({  team_id, tour_id }) => {
+  const updateTeam = async ({ team_id }) => {
     setIsLoading(false)
     setError(null)
+
+    if (!team_id) {
+      setError('Team ID kiritilmagan!')
+      toast.error('Team ID kiritilmagan!')
+    }
 
     try {
       setIsLoading(true)
 
       const { data, error } = await supabase
-        .from('tour_team')
-        .update({ captain_id })
-        .eq('team_id', team_id)
-        .eq('tour_id', tour_id)
+        .from('team')
+        .update({ is_team_created: true })
+        .eq('id', team_id)
         .select()
 
       if (error) {
@@ -28,6 +35,7 @@ export const useUpdateTeam = () => {
       }
       if (data) {
         setData(data)
+        dispatch(setCurrentTeamCreated(true))
       }
     } catch (error) {
       setError(error.message)

@@ -64,7 +64,7 @@ export default function TourTabs() {
         value={currentTourIndex}
         variant="scrollable"
         scrollButtons="auto"
-        className="mt-4 rounded text-neutral-50 disabled:text-neutral-500"
+        className="mt-4 rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
       >
         {selectedTours?.map((item, index) => (

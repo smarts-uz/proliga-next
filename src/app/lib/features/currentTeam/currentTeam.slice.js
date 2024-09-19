@@ -11,11 +11,13 @@ const currentTeamSlice = createSlice({
   name: 'currentTeam',
   initialState,
   reducers: {
-    setCurrentTeam: (state, action) => {
-      state.currentTeam = action.payload
+    setCurrentTeamCreated: (state, action) => {
+      state.currentTeam.is_team_created = action.payload
     },
   },
   extraReducers: currentTeamExtraReducer,
 })
+
+export const { setCurrentTeamCreated } = currentTeamSlice.actions
 
 export default currentTeamSlice.reducer

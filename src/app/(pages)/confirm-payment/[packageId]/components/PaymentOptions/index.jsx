@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import WalletPaymentOption from './Wallet'
 import ClickUpPaymentOption from './ClickUp'
 import PaymePaymentOption from './Payme'

@@ -1,6 +1,5 @@
 import Gutter from '../../../../../components/Gutter'
 import Tabs from './TourTabs'
-import NavigationTabs from './NavigationTabs'
 import { useSelector } from 'react-redux'
 import { TABS } from '../../../../utils/tabs.util'
 
@@ -9,7 +8,6 @@ const GameNavigation = () => {
 
   return (
     <Gutter>
-      <NavigationTabs />
       {gameTab === TABS.Transfer && <Tabs />}
       {gameTab === TABS.GameProfile && <Tabs />}
     </Gutter>

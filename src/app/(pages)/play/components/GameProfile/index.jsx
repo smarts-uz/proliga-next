@@ -12,7 +12,7 @@ const GameProfile = () => {
   return (
     <Gutter>
       <main className="flex flex-col justify-between gap-2 lg:flex-row lg:gap-4">
-        <div className="h-full w-full lg:w-3/5">
+        <div className="h-full w-full lg:w-1/2">
           <div className="relative h-full w-full">
             <Image
               src="/icons/stadium.svg"
