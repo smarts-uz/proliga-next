@@ -142,6 +142,7 @@
   "GOA": null,
   "OCHKOLAR YIG’ING": "OCHKOLAR YIG’ING",
   "user_activity_change_captain": "{team_name} uchun {club_name} futbolchisi {player_name} kapitan sifatida tayinlandi",
+  "Siz haqingizda": "Siz haqingizda",
   "transfer text": "Agar sizning jamoangizdagi o'yinchilardan biri jarohat olgan bo'lsa yoki shunchaki yomon o'ynasa, har bir turda ochko to'plamasa, tarkibni optimalroq o'zgartirish uchun 4 tagacha transferni amalga oshirishingiz mumkin\r\n\r\n",
   "Umumiy qoidalar": "Umumiy qoidalar",
   "compete_header": "RAQOBATLASHING\r\n",
@@ -168,7 +169,6 @@
   "Jamoa yarating": "Jamoa yarating",
   "Jamoa Ismi": "Jamoa Ismi",
   "championship": "Chempionat",
-  "Siz haqingizda": "Siz haqingizda",
   "jamoa yig'ing": "jamoa yig'ing",
   "Transferlar": "Transferlar",
   "Jurnal": "Jurnal",
@@ -250,5 +250,8 @@
   "Raqobatlashing": "Raqobatlashing",
   "Boshqa foydalanuvchilar": "Boshqa foydalanuvchilar bilan umuimiy ligada qatnashing, Ulardan ko‘proq ochko ishlashga harakat qiling va mavsum so‘ngida g‘olib bo‘ling!",
   "Sovrinlarni yutib oling": "Sovrinlarni yutib oling",
-  "Eng ko‘p ball": "Eng ko‘p ball to‘plagan foydalanuvchilar sovg‘alarga ega bo‘lishadi"
+  "Eng ko‘p ball": "Eng ko‘p ball to‘plagan foydalanuvchilar sovg‘alarga ega bo‘lishadi",
+  "Tahrirlash": "Tahrirlash",
+  "Yuklash": "Yuklash",
+  "Su’rat qo‘shish": "Su’rat qo‘shish"
 }
