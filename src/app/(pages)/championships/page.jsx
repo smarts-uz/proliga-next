@@ -10,6 +10,7 @@ import { selectCompetition } from 'app/lib/features/competition/competition.sele
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { TABS } from 'app/utils/tabs.util'
+import { fetchNews } from 'app/lib/features/news/news.thunk'
 
 const Championships = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const Championships = () => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())
   }, [dispatch])
+  dispatch(fetchNews())
 
   useEffect(() => {
     if (userTable) {
