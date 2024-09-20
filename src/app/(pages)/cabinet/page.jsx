@@ -14,6 +14,7 @@ import { useUploadFile } from 'app/hooks/user/useUploadFile/useUploadFile'
 import { useDownloadFile } from 'app/hooks/user/useDownloadFile/useDownloadFile'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 function UserCabinet() {
   const [startDate, setStartDate] = useState(new Date())
@@ -23,6 +24,7 @@ function UserCabinet() {
   const [photo, setPhoto] = useState(null)
   const [imgPreview, setImgPreview] = useState(img)
   const { userTable } = useSelector((store) => store.auth)
+  const { t } = useTranslation()
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -77,7 +79,7 @@ function UserCabinet() {
             'flex w-full flex-col items-center justify-center gap-2 rounded-xl bg-neutral-950 px-4 py-6 shadow shadow-neutral-500 sm:max-w-96 md:max-w-[30rem] md:gap-4 md:px-6 md:py-6'
           }
         >
-          <h3 className="flex gap-4 text-xl">Ma&apos;lumot</h3>
+          <h3 className="flex gap-4 text-xl"> {t("Ma'lumot")}</h3>
           <label
             className="my-2 block text-sm font-bold text-neutral-300"
             htmlFor="img"
@@ -107,7 +109,7 @@ function UserCabinet() {
               </label>
             </div>
             <h2 className="pt-4 text-center text-primary hover:underline xl:hidden">
-              Su&apos;rat qo&apos;shish
+            {t("Su’rat qo‘shish")}
             </h2>
           </label>
           <input
@@ -126,14 +128,14 @@ function UserCabinet() {
             }
             onClick={() => uploadImage()}
           >
-            Yuklash
+             {t("Yuklash")}
           </button>
           <div className="w-full">
             <label
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="email"
             >
-              Email
+              email
             </label>
             <input
               id="email"
@@ -151,10 +153,10 @@ function UserCabinet() {
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="firstName"
             >
-              Ism
+              {t("Ism")}
             </label>
             <input
-              placeholder={userTable?.name ?? 'Ism'}
+              placeholder={userTable?.name ??  t("Ism")}
               id="firstName"
               name="firstName"
               type="text"
@@ -168,12 +170,12 @@ function UserCabinet() {
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="lastName"
             >
-              Familiya
+              {t("Familiya")}
             </label>
             <input
               id="lastName"
               name="lastName"
-              placeholder={userTable?.last_name ?? 'Familiya'}
+              placeholder={userTable?.last_name ?? t("Familiya")}
               type="text"
               className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
               onChange={formik.handleChange}
@@ -185,12 +187,12 @@ function UserCabinet() {
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="middleName"
             >
-              Sharif
+              {t("Sharif")}
             </label>
             <input
               id="middleName"
               name="middleName"
-              placeholder={userTable?.midde_name ?? 'Sharif'}
+              placeholder={userTable?.midde_name ?? t("Sharif")}
               type="text"
               className="h-10 w-full rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
               onChange={formik.handleChange}
@@ -202,11 +204,11 @@ function UserCabinet() {
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="bio"
             >
-              Siz haqingizda
+              {t("Siz haqingizda")}
             </label>
             <textarea
               id="bio"
-              placeholder={userTable?.bio ?? 'Siz haqingizda'}
+              placeholder={userTable?.bio ?? t("Siz haqingizda")}
               name="bio"
               type="date"
               cols={1}
@@ -221,7 +223,7 @@ function UserCabinet() {
               className="mx-2 my-2 block text-sm font-bold text-neutral-300"
               htmlFor="gender"
             >
-              Jins
+              {t("Jins")}
             </label>
             <select
               id="gender"
@@ -229,10 +231,10 @@ function UserCabinet() {
               onChange={formik.handleChange}
               value={formik.values.gender}
             >
-              <option value="null">{'Tanlang'}</option>
-              <option value="male">Erkak</option>
-              <option value="female">Ayol</option>
-              <option value="unset">Belgilanmagan</option>
+              <option value="null">{t("Tanlang")}</option>
+              <option value="male"> {t("Erkak")}</option>
+              <option value="female">{t("Ayol")}</option>
+              <option value="unset">{t("Belgilanmagan")}</option>
             </select>
           </div>
           <div className="flex w-full flex-col">
@@ -240,7 +242,7 @@ function UserCabinet() {
               className="my-2 block text-sm font-bold text-neutral-300"
               htmlFor="birthdate"
             >
-              Tug&apos;ilgan kuni
+              {t("Tug'ilgan kuni")}
             </label>
             <DatePicker
               id="birthdate"
@@ -254,13 +256,13 @@ function UserCabinet() {
               className="text-primary hover:underline"
               href={'/cabinet/update'}
             >
-              Hisobni to&apos;ldirish
+              {t("Hisobni to'ldirish")}
             </Link>
             <Link
               className="mx-3 text-primary hover:underline"
               href={'/cabinet/update'}
             >
-              Parolni yangilash
+               {t("Parolni yangilash")}
             </Link>
           </div>
           <button
@@ -268,7 +270,7 @@ function UserCabinet() {
             type="submit"
             onClick={() => update()}
           >
-            Tahrirlash
+           {t("Tahrirlash")}
           </button>
         </form>
       </div>
