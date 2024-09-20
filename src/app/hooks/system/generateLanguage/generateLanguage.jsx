@@ -13,16 +13,14 @@ export const useGenerateLanguage = () => {
 
     try {
       setIsLoading(true)
-
       //uz
+      const { data, error } = await supabase
+        .from('system_language')
+        .select('id, name, uz')
+      //ru
       // const { data, error } = await supabase
       //   .from('system_language')
-      //   .select('id, name, uz')
-
-      //ru
-      const { data, error } = await supabase
-      .from('system_language')
-      .select('id, name, ru')
+      //   .select('id, name, ru')
 
       if (error) {
         setError(error.message)
@@ -32,8 +30,8 @@ export const useGenerateLanguage = () => {
       if (data) {
         setData(data)
         let obj = {}
-        // data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
-        data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
+        data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
+        // data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
         console.log(obj)
       }
     } catch (error) {

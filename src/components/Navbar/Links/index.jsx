@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { TABS } from 'app/utils/tabs.util'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 
 const PlayLinks = () => {
   const path = usePathname()
@@ -13,41 +14,41 @@ const PlayLinks = () => {
   const disabled =
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
   const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
-
+  const { t } = useTranslation()
   return (
     <section className="hidden items-center gap-4 text-neutral-400 sm:text-sm lg:flex lg:gap-6 lg:text-base">
       {path.includes('play') && (
         <>
           <Tab
-            title="Profil"
+            title={t('Profil')}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <Tab
-            title="Transfer"
+            title={t('Transfer')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <Tab
-            title="Turnir"
+            title={t('Turnir')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <Tab
-            title="Jurnal"
+            title={t('Jurnal')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <Tab
-            title="Statistika"
+            title={t('Statistika')}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -58,35 +59,35 @@ const PlayLinks = () => {
       {!path.includes('play') && lastVisitedTeam && (
         <>
           <TabLink
-            title="Profil"
+            title={t('Profil')}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <TabLink
-            title="Transfer"
+            title={t('Transfer')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <TabLink
-            title="Turnir"
+            title={t('Turnir')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <TabLink
-            title="Jurnal"
+            title={t('Jurnal')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <TabLink
-            title="Statistika"
+            title={t('Statistika')}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -98,19 +99,19 @@ const PlayLinks = () => {
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('championships') ? active : passive}`}
         href="/championships"
       >
-        Chempionat
+        {t('Chempionat')}
       </Link>
       <Link
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
         href="/prizes"
       >
-        Yutuqlar
+        {t('Yutuqlar')}
       </Link>
       <Link
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
         href="/regulation"
       >
-        Qoida
+        {t('Qoida')}
       </Link>
     </section>
   )
