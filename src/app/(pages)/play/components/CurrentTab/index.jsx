@@ -11,6 +11,8 @@ import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { useEffect } from 'react'
 import { fetchMatches } from 'app/lib/features/matches/mathes.thunk'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
+import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { fetchNews } from 'app/lib/features/news/news.thunk'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -18,6 +20,11 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { season } = useSelector((state) => state.season)
+  const { teamPrice } = useSelector((store) => store.teamPlayers)
+
+  useEffect(() => {
+    dispatch(fetchNews())
+  }, [dispatch])
 
   useEffect(() => {
     if (userAuth && userTable && paramsId) {
@@ -54,6 +61,15 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       dispatch(fetchMatches({ season_id: season.id }))
     }
   }, [season, dispatch])
+
+  useEffect(() => {
+    dispatch(
+      setTeamBalance({
+        price: teamPrice ?? 0,
+        balance: currentTeam?.balance ?? 100,
+      })
+    )
+  }, [teamPrice, dispatch, currentTeam])
 
   return (
     <>

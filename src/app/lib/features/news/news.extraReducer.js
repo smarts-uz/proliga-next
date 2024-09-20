@@ -13,6 +13,6 @@ export const newsExtraReducer = (builder) => {
     })
     .addCase(fetchNews.rejected, (state, action) => {
       state.isLoading = false
-      state.error = action.payload.error.message ?? null
+      state.error = action.payload.error?.message ?? null
     })
 }

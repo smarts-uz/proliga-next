@@ -23,7 +23,6 @@ const Championships = () => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())
   }, [dispatch])
-  dispatch(fetchNews())
 
   useEffect(() => {
     if (userTable) {

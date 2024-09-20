@@ -7,26 +7,9 @@ import PlayersTable from './PlayersTable'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import TransferStadiumForm from './TransferStadiumForm'
-import { useEffect } from 'react'
-import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
-import { useDispatch } from 'react-redux'
 
 const Transfer = () => {
-  const dispatch = useDispatch()
   const { currentTour } = useSelector((state) => state.tours)
-  const { teamPrice } = useSelector((store) => store.teamPlayers)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
-
-  useEffect(() => {
-    if (teamPrice) {
-      dispatch(
-        setTeamBalance({
-          price: teamPrice,
-          balance: currentTeam?.balance ?? 100,
-        })
-      )
-    }
-  }, [teamPrice, dispatch, currentTeam])
 
   return (
     <Gutter>
