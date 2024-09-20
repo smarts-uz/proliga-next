@@ -8,16 +8,12 @@ import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import { selectCompetition } from 'app/lib/features/competition/competition.selector'
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
-import { setTab } from 'app/lib/features/tours/tours.slice'
-import { TABS } from 'app/utils/tabs.util'
-import { fetchNews } from 'app/lib/features/news/news.thunk'
 
 const Championships = () => {
   const dispatch = useDispatch()
   const { userTable } = useSelector((state) => state.auth)
   const selectedCompetition = useSelector(selectCompetition)
   const { isLoading } = useSelector((state) => state.competition)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -33,14 +29,6 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable])
-
-  useEffect(() => {
-    if (currentTeam?.is_team_created) {
-      dispatch(setTab(TABS.GameProfile))
-      return
-    }
-    dispatch(setTab(TABS.Transfer))
-  }, [dispatch, currentTeam])
 
   return (
     <Gutter>
