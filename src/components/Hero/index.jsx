@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
 const Hero = () => {
+  const { t } = useTranslation()
   const btnStyles =
     'border-2 border-primary transition-all text-center max-w-48 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full md:w-56 xl:w-56 -skew-x-12'
 

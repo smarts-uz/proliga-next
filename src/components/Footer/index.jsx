@@ -1,30 +1,32 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Gutter from '../Gutter'
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <footer className="border-t border-neutral-400 bg-neutral-950">
       <Gutter>
         <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-16 pt-8 text-neutral-200 xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/contact" className="hover:underline">
-              Biz haqimizda
+              {t('Biz haqimizda')}
             </Link>
           </div>
           <span className="hidden rounded-md border-2 border-neutral-300 xl:block" />
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/" className="hover:underline">
-              Qoidalarimiz va maxfiylik
+              {t('Qoidalarimiz va maxfiylik')}
             </Link>
             <Link href="/" className="hover:underline">
-              Foydalanuvchi shartnomasi
+              {t('Foydalanuvchi shartnomasi')}
             </Link>
           </div>
           <span className="hidden rounded-md border-2 border-neutral-300 xl:block" />
           <section className="flex min-w-80 flex-col gap-4">
             <h3 className="cursor-default font-medium">
-              Bizning ijtimoiy tarmoqlarimiz
+              {t('Bizning ijtimoiy tarmoqlarimiz')}
             </h3>
             <div className="flex items-center gap-4">
               <Link href="https://www.instagram.com/proliga.uz1">
