@@ -4,6 +4,9 @@ import { toast } from 'react-toastify'
 export const deleteTeamPlayerReducer = (state, action) => {
   const { player } = action.payload
 
+  const clubId = player?.club?.id || player.club_id.id
+  console.log(clubId)
+
   const calcTeamPrice = () => {
     state.teamPrice =
       state.GOA.reduce((acc, player) => acc + player.price, 0) +
@@ -25,6 +28,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.GOA.push(deletedPlayerObj(player))
     state.playersCount.GOA--
     calcTeamPrice()
+    if (state.duplicatesMap[clubId] > 0) {
+      state.duplicatesMap[clubId]--
+    }
     return state
   }
   if (player.position === PLAYERS.DEF) {
@@ -36,6 +42,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.DEF.push(deletedPlayerObj(player))
     state.playersCount.DEF--
     calcTeamPrice()
+    if (state.duplicatesMap[clubId] > 0) {
+      state.duplicatesMap[clubId]--
+    }
     return state
   }
   if (player.position === PLAYERS.MID) {
@@ -47,6 +56,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.MID.push(deletedPlayerObj(player))
     state.playersCount.MID--
     calcTeamPrice()
+    if (state.duplicatesMap[clubId] > 0) {
+      state.duplicatesMap[clubId]--
+    }
     return state
   }
   if (player.position === PLAYERS.STR) {
@@ -58,12 +70,15 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.STR.push(deletedPlayerObj(player))
     state.playersCount.STR--
     calcTeamPrice()
+    if (state.duplicatesMap[clubId] > 0) {
+      state.duplicatesMap[clubId]--
+    }
     return state
   }
 }
 
 export const addTeamPlayerReducer = (state, action) => {
-  const { player, team, teamConcat } = action.payload
+  const { player, team, teamConcat, maxTeamPlayers = 2 } = action.payload
 
   const calcTeamPrice = () => {
     state.teamPrice =
@@ -99,14 +114,26 @@ export const addTeamPlayerReducer = (state, action) => {
   }
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
+
   if (!emptyPlayer) {
     toast.warning('Boshqa oyinchi qoshish mumkin emas!')
     return
   }
+
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
+
   if (existingPlayer) {
     toast.warning('Ushbu oyinchi allaqachon oyinda!')
     return
+  }
+
+  const clubId = player?.club?.id || player.club_id.id
+  console.log(maxTeamPlayers - 1)
+  if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
+    toast.warning(
+      `Ushbu clubga ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
+    )
+    return state
   }
 
   if (
@@ -120,6 +147,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
   if (
@@ -132,6 +160,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
   if (
@@ -145,6 +174,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.DEF.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.DEF++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
   if (
@@ -157,6 +187,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.MID.push(newPlayer)
     state.playersCount.MID++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
   if (
@@ -164,6 +195,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.playersCount.MID >= state.MID.length &&
     state.MID.length < 5
   ) {
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     softDeleteEmptyPlayer(emptyPlayer)
     const newPlayer = createUpdatedPlayer(player)
     delete newPlayer.club
@@ -182,6 +214,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.STR.push(newPlayer)
     state.playersCount.STR++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
   if (
@@ -195,6 +228,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.STR.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.STR++
     calcTeamPrice()
+    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
 }
