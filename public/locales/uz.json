@@ -152,7 +152,7 @@
   "promotion_text": "\r\n100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
   "compete_text": "Boshqa foydalanuvchilar bilan umuimiy ligada qatnashing, Ulardan ko'proq ochko ishlashga harakat qiling va mavsum so'ngida g'olib bo'ling!",
   "Turnir": "Turnir",
-  "TRANSFERLARNI AMALGA OSHIRIN": "TRANSFERLARNI AMALGA OSHIRING\r\n",
+  "Transferlarni amalga oshirin": "Transferlarni amalga oshirin",
   "\r\nQoida": "\r\nQoida",
   "Statistika": "Statistika",
   "Jamoa narxi": "Jamoa narxi",
@@ -168,7 +168,7 @@
   "Ligalar": "Ligalar",
   "Jamoa yarating": "Jamoa yarating",
   "Jamoa Ismi": "Jamoa Ismi",
-  "championship": "Chempionat",
+  "Chempionat": "Chempionat",
   "jamoa yig'ing": "jamoa yig'ing",
   "Transferlar": "Transferlar",
   "Jurnal": "Jurnal",
@@ -228,7 +228,6 @@
   "Turdagi ochkolar": "Turdagi ochkolar",
   "Turnirdagi ochkolar": "Turnirdagi ochkolar",
   "Turnirdagi o'rtacha ochkolar": "Turnirdagi o'rtacha ochkolar",
-  "Chempionat": "Chempionat",
   "Ligadagi o'rin": "Ligadagi o'rin",
   "Balans": "Balans",
   "Ro'yxatdan otish": "Ro'yxatdan otish",
@@ -253,5 +252,11 @@
   "Eng ko‘p ball": "Eng ko‘p ball to‘plagan foydalanuvchilar sovg‘alarga ega bo‘lishadi",
   "Tahrirlash": "Tahrirlash",
   "Yuklash": "Yuklash",
-  "Su’rat qo‘shish": "Su’rat qo‘shish"
+  "Su’rat qo‘shish": "Su’rat qo‘shish",
+  "Tizimdan chiqish": "Tizimdan chiqish",
+  "Xabarnomalar": "Xabarnomalar",
+  "Hozicha habarlar yoq": "Hozicha habarlar yoq!",
+  "Ishonchingiz komilmi": "Ishonchingiz komilmi?",
+  "Qaytish": "Qaytish",
+  "Tasdiqlash": "  Tasdiqlash"
 }
