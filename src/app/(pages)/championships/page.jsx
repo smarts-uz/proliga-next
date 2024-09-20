@@ -5,19 +5,18 @@ import Championship from './components/Championship'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTeams } from 'app/lib/features/teams/teams.thunk'
-import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import {
-  fetchCompetition,
-  fetchCompetitionStats,
-} from 'app/lib/features/competition/competition.thunk'
+import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import { selectCompetition } from 'app/lib/features/competition/competition.selector'
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
+import { setTab } from 'app/lib/features/tours/tours.slice'
+import { TABS } from 'app/utils/tabs.util'
 
 const Championships = () => {
   const dispatch = useDispatch()
   const { userTable } = useSelector((state) => state.auth)
   const selectedCompetition = useSelector(selectCompetition)
   const { isLoading } = useSelector((state) => state.competition)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -33,6 +32,14 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable])
+
+  useEffect(() => {
+    if (currentTeam?.is_team_created) {
+      dispatch(setTab(TABS.GameProfile))
+      return
+    }
+    dispatch(setTab(TABS.Transfer))
+  }, [dispatch, currentTeam])
 
   return (
     <Gutter>

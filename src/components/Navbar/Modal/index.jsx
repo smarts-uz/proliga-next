@@ -15,6 +15,7 @@ const MobileModal = ({ onCancel }) => {
   const disabled =
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
   const { userAuth } = useSelector((state) => state.auth)
+  const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
   const { logOut } = useLogOut()
 
   const handleLogOut = () => {
@@ -28,7 +29,7 @@ const MobileModal = ({ onCancel }) => {
         initial={{ opacity: 0, x: '1rem' }}
         animate={{ opacity: 1, x: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="right-0 mr-0 flex h-full min-w-80 flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 text-neutral-200 xs:min-w-96 sm:min-w-[32rem] md:p-6"
+        className="right-0 mr-0 flex h-full min-w-80 flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 pb-6 text-neutral-200 xs:min-w-96 sm:min-w-[32rem] sm:p-6"
       >
         <button className="self-end">
           <Image
@@ -77,6 +78,50 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Journal}
               />
               <Tab
+                title="Statistika"
+                disabled={disabled}
+                toggleModal={onCancel}
+                passive={passive}
+                active={active}
+                tab={TABS.Statistics}
+              />
+            </>
+          )}
+          {!path.includes('play') && lastVisitedTeam && (
+            <>
+              <TabLink
+                toggleModal={onCancel}
+                title="Profil"
+                passive={passive}
+                active={active}
+                disabled={disabled}
+                tab={TABS.GameProfile}
+              />
+              <TabLink
+                title="Transfer"
+                passive={passive}
+                disabled={disabled}
+                active={active}
+                toggleModal={onCancel}
+                tab={TABS.Transfer}
+              />
+              <TabLink
+                title="Turnir"
+                passive={passive}
+                toggleModal={onCancel}
+                disabled={disabled}
+                active={active}
+                tab={TABS.Tournament}
+              />
+              <TabLink
+                title="Jurnal"
+                toggleModal={onCancel}
+                passive={passive}
+                disabled={disabled}
+                active={active}
+                tab={TABS.Journal}
+              />
+              <TabLink
                 title="Statistika"
                 disabled={disabled}
                 toggleModal={onCancel}
@@ -173,6 +218,26 @@ const Tab = ({ title, tab, passive, active, disabled, toggleModal }) => {
     >
       {title}
     </button>
+  )
+}
+
+const TabLink = ({ title, tab, passive, toggleModal }) => {
+  const dispatch = useDispatch()
+  const { lastVisitedTeam } = useSelector((state) => state.currentTeam)
+
+  const handleClick = () => {
+    dispatch(setTab(tab))
+    toggleModal()
+  }
+
+  return (
+    <Link
+      className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${passive}`}
+      onClick={handleClick}
+      href={'/play/' + lastVisitedTeam}
+    >
+      {title}
+    </Link>
   )
 }
 

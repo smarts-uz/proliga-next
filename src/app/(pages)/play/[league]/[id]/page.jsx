@@ -36,7 +36,7 @@ const Play = ({ params }) => {
 
   useEffect(() => {
     dispatch(setLastVisitedTeam(`${params.league}/${params.id}`))
-  }, [currentTeam, dispatch])
+  }, [currentTeam, dispatch, params])
 
   useEffect(() => {
     if (currentTeam?.competition_id?.id) {

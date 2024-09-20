@@ -32,30 +32,17 @@ const Dropdown = () => {
         onChange={(e) => dispatch(setLanguage(e.target.value))}
       >
         <option
+          className="bg-neutral-950 checked:bg-neutral-800"
+          value={LANGUAGE.uz}
+          defaultChecked
+        >
+          UZ
+        </option>
+        <option
           value={LANGUAGE.ru}
           className="bg-neutral-950 p-1 checked:bg-neutral-800"
         >
-          {/* <Image
-            className="size-12"
-            src="/icons/russia.svg"
-            alt="russia block p-2"
-            width={24}
-            height={24}
-          /> */}
           RU
-        </option>
-        <option
-          className="bg-neutral-950 checked:bg-neutral-800"
-          value={LANGUAGE.uz}
-        >
-          {/* <Image
-            src="/icons/uzbekistan.svg"
-            alt="russia"
-            width={24}
-            height={24}
-            className="block size-6"
-          /> */}
-          UZ
         </option>
       </select>
       {userAuth ? (
