@@ -50,6 +50,13 @@ export const teamPlayersExtraReducer = (builder) => {
             }
           }
         })
+
+      state.teamPrice =
+        state.GOA.reduce((acc, player) => acc + player.price, 0) +
+        state.DEF.reduce((acc, player) => acc + player.price, 0) +
+        state.MID.reduce((acc, player) => acc + player.price, 0) +
+        state.STR.reduce((acc, player) => acc + player.price, 0)
+
       state.isLoading = false
     })
     .addCase(fetchTeamPlayers.rejected, (state, action) => {
