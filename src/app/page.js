@@ -6,7 +6,7 @@ import Hero from '../components/Hero'
 import { useEffect } from 'react'
 
 function Home() {
-  const { generate } = useGenerateLanguage()
+  // const { generate } = useGenerateLanguage()
 
   // useEffect(() => {
   //   generate()

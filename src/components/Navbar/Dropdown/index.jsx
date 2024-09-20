@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import NavLink from './NavLink'
 import { useLogOut } from '../../../app/hooks/auth/useLogOut/useLogOut'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import { LANGUAGE } from 'app/utils/languages.util'
+import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
 
 const Dropdown = () => {
+  const dispatch = useDispatch()
   const { logOut } = useLogOut()
   const { userAuth } = useSelector((state) => state.auth)
   const activeStyle = 'bg-neutral-800 border-primary text-neutral-50'
@@ -22,32 +25,39 @@ const Dropdown = () => {
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
         <p>Chempionat</p>
       </NavLink>
-      <div className="flex">
-        <button
-          className={`flex w-full items-center gap-1 rounded-sm border p-1 ${activeStyle}`}
+      <select
+        className="rounded-sm border bg-neutral-950 bg-transparent p-1"
+        name="language"
+        id="language"
+        onChange={(e) => dispatch(setLanguage(e.target.value))}
+      >
+        <option
+          value={LANGUAGE.ru}
+          className="bg-neutral-950 p-1 checked:bg-neutral-800"
         >
-          <Image
-            className="size-6"
+          {/* <Image
+            className="size-12"
             src="/icons/russia.svg"
-            alt="russia"
+            alt="russia block p-2"
             width={24}
             height={24}
-          />
+          /> */}
           RU
-        </button>
-        <button
-          className={`flex w-full items-center gap-1 rounded-sm border p-1 ${passiveStyle}`}
+        </option>
+        <option
+          className="bg-neutral-950 checked:bg-neutral-800"
+          value={LANGUAGE.uz}
         >
-          <Image
+          {/* <Image
             src="/icons/uzbekistan.svg"
             alt="russia"
             width={24}
             height={24}
-            className="size-6"
-          />
+            className="block size-6"
+          /> */}
           UZ
-        </button>
-      </div>
+        </option>
+      </select>
       {userAuth ? (
         <>
           <NavLink href="/cabinet">

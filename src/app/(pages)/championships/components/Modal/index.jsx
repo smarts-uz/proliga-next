@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const CompetitionModal = ({ toggleModal, competition }) => {
   const dispatch = useDispatch()
@@ -16,6 +17,10 @@ const CompetitionModal = ({ toggleModal, competition }) => {
   const router = useRouter()
   const selectedTeams = useSelector(selectTeams)
 
+  const { t, i18n } = useTranslation()
+
+  const activeLocale = i18n.resolvedLanguage
+  // i18n.changeLanguage("ru")
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
@@ -56,7 +61,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between pb-4">
-          <h3 className="text-2xl font-semibold">Jamoa yarating</h3>
+          <h3 className="text-2xl font-semibold">{t('Jamoa yarating')}</h3>
           <button onClick={() => toggleModal(false)}>
             <Image
               src="/icons/close.svg"

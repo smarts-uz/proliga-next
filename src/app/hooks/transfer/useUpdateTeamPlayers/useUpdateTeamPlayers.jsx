@@ -29,8 +29,6 @@ export const useUpdateTeamPlayers = () => {
         .upsert(newTeam)
         .select()
 
-      console.log(data, error)
-
       if (error) {
         setError(error.message)
         toast.error(error.message)

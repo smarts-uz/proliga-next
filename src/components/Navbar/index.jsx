@@ -7,9 +7,10 @@ import Gutter from '../Gutter'
 import Notification from './Notification/Notification'
 import PlayLinks from './Links'
 import MobileModal from './Modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const path = usePathname()
@@ -17,6 +18,8 @@ const Navbar = () => {
   const [isNotificationsOpen, toggleNotificationsOpen] = useState(false)
   const { userAuth } = useSelector((state) => state.auth)
   const [isModalOpen, toggleModal] = useState(false)
+  const { i18n } = useTranslation()
+  const { lang } = useSelector((state) => state.systemLanguage)
 
   const handleToggleDropdown = () => {
     if (isNotificationsOpen) {
@@ -51,6 +54,10 @@ const Navbar = () => {
       }
     }
   }
+
+  useEffect(() => {
+    i18n.changeLanguage(lang)
+  }, [lang, i18n])
 
   return (
     <>
