@@ -23,7 +23,7 @@ const DATA = [
     key: '',
   },
   {
-    title: 'Darvazabon',
+    title: 'Darvozabon',
     key: 'GOA',
   },
   {
@@ -35,7 +35,7 @@ const DATA = [
     key: 'MID',
   },
   {
-    title: 'Hujimchi',
+    title: 'Hujumchi',
     key: 'STR',
   },
 ]

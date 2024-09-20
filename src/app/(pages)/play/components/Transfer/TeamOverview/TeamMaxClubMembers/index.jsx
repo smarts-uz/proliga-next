@@ -4,8 +4,8 @@ import TeamMaxClubMembersModal from './Modal'
 import { useSelector } from 'react-redux'
 
 export default function TeamMaxClubMembers() {
-  const [isModalOpen, toggleModal] = useState(false)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const [isModalOpen, toggleModal] = useState(false)
 
   const handleModal = () => {
     if (isModalOpen) {

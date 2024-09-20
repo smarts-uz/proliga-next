@@ -13,6 +13,7 @@ import { fetchMatches } from 'app/lib/features/matches/mathes.thunk'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { fetchNews } from 'app/lib/features/news/news.thunk'
+import { setTab } from 'app/lib/features/tours/tours.slice'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -21,6 +22,14 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { season } = useSelector((state) => state.season)
   const { teamPrice } = useSelector((store) => store.teamPlayers)
+
+  useEffect(() => {
+    if (currentTeam?.is_team_created) {
+      dispatch(setTab(TABS.GameProfile))
+    } else {
+      dispatch(setTab(TABS.Transfer))
+    }
+  }, [dispatch, currentTeam])
 
   useEffect(() => {
     dispatch(fetchNews())
