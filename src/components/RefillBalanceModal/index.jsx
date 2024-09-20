@@ -82,7 +82,10 @@ const RefillBalanceModal = ({ toggleModal }) => {
               className="flex h-10 w-full rounded-md border border-neutral-600 bg-neutral-900 px-3 py-2 text-sm text-neutral-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus:border-none disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
-          <button type='submit' className="mt-4 rounded border border-primary py-3 font-bold transition-all hover:bg-primary hover:text-black">
+          <button
+            type="submit"
+            className="mt-4 rounded border border-primary py-3 font-bold transition-all hover:bg-primary hover:text-black"
+          >
             Tolash
           </button>
         </form>

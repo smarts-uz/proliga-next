@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 const Hero = () => {
   const { t } = useTranslation()
   const btnStyles =
-    'border-2 border-primary transition-all text-center max-w-48 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full md:w-56 xl:w-56 -skew-x-12'
+    'border-2 border-primary transition-all text-center max-w-64 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full  -skew-x-12'
 
   return (
     <section
@@ -13,7 +13,7 @@ const Hero = () => {
     >
       <div className="flex h-screen flex-col items-center justify-center gap-6 text-white xl:gap-6">
         <div className="flex flex-col gap-2 text-center">
-          <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl xl:text-4xl">
+          <h2 className="text-xl font-semibold uppercase sm:text-2xl md:text-3xl xl:text-4xl">
             {t("O'z futbol jamoangizni")}
           </h2>
           <h2 className="text-3xl font-bold uppercase md:text-4xl lg:text-5xl xl:text-6xl">

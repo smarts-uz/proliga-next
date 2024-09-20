@@ -43,7 +43,7 @@ export default function TeamMaxClubMembers() {
           />
         </header>
         <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
-          2/{currentTeam?.count_of_transfers ?? '0'}
+          {currentTeam?.count_of_transfers ?? '0'}
         </p>
       </div>
       {isModalOpen && <TeamMaxClubMembersModal handleModal={handleModal} />}

@@ -65,10 +65,13 @@ const TransferStadiumForm = () => {
     if (
       playersCount.GOA !== 1 ||
       playersCount.DEF < 3 ||
+      playersCount.DEF > 5 ||
       playersCount.MID < 3 ||
-      playersCount.STR < 2
+      playersCount.MID > 5 ||
+      playersCount.STR < 2 ||
+      playersCount.STR > 3
     ) {
-      toast.error('Jamoa da yetarli futbolchilar yoq')
+      toast.error('Jamoa formatsiyasi notogri')
       return
     }
 
