@@ -19,6 +19,7 @@ const initialState = {
   },
   teamPrice: 0,
   existingClubs: [],
+  duplicatesMap: {},
   error: null,
   isLoading: false,
 }

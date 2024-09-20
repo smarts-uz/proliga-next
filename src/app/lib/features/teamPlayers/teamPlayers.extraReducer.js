@@ -19,34 +19,38 @@ export const teamPlayersExtraReducer = (builder) => {
       const team = action.payload.data
       team?.length > 0 &&
         team.forEach((player) => {
-          const clubSlug = player?.club_id?.slug ?? ''
+          const clubSlug = player?.club_id?.id ?? ''
 
           if (player.position === PLAYERS.GOA) {
             state.GOA.push(player)
             if (player.name) {
               state.playersCount.GOA++
-              state.existingClubs.push(clubSlug)
+              state.duplicatesMap[clubSlug] =
+                (state.duplicatesMap[clubSlug] || 0) + 1
             }
           }
           if (player.position === PLAYERS.DEF) {
             state.DEF.push(player)
             if (player.name) {
               state.playersCount.DEF++
-              state.existingClubs.push(clubSlug)
+              state.duplicatesMap[clubSlug] =
+                (state.duplicatesMap[clubSlug] || 0) + 1
             }
           }
           if (player.position === PLAYERS.MID) {
             state.MID.push(player)
             if (player.name) {
               state.playersCount.MID++
-              state.existingClubs.push(clubSlug)
+              state.duplicatesMap[clubSlug] =
+                (state.duplicatesMap[clubSlug] || 0) + 1
             }
           }
           if (player.position === PLAYERS.STR) {
             state.STR.push(player)
             if (player.name) {
               state.playersCount.STR++
-              state.existingClubs.push(clubSlug)
+              state.duplicatesMap[clubSlug] =
+                (state.duplicatesMap[clubSlug] || 0) + 1
             }
           }
         })
