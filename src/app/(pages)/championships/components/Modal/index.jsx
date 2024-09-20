@@ -17,10 +17,8 @@ const CompetitionModal = ({ toggleModal, competition }) => {
   const router = useRouter()
   const selectedTeams = useSelector(selectTeams)
 
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
-  const activeLocale = i18n.resolvedLanguage
-  // i18n.changeLanguage("ru")
   const { createTeam, isLoading, error, data } = useCreateTeam()
 
   const handleSubmit = async (e) => {
@@ -74,7 +72,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
         </div>
         <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <label htmlFor="name">Jamoa Ismi</label>
+            <label htmlFor="name">{t('Jamoa Ismi')}</label>
             <input
               type="text"
               id="team-title"

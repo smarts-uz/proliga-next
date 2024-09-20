@@ -4,6 +4,14 @@ import { toast } from 'react-toastify'
 export const deleteTeamPlayerReducer = (state, action) => {
   const { player } = action.payload
 
+  const calcTeamPrice = () => {
+    state.teamPrice =
+      state.GOA.reduce((acc, player) => acc + player.price, 0) +
+      state.DEF.reduce((acc, player) => acc + player.price, 0) +
+      state.MID.reduce((acc, player) => acc + player.price, 0) +
+      state.STR.reduce((acc, player) => acc + player.price, 0)
+  }
+
   const deletedPlayerObj = (prevPlayer) => ({
     ...prevPlayer,
     player_id: null,
@@ -12,19 +20,11 @@ export const deleteTeamPlayerReducer = (state, action) => {
     price: null,
   })
 
-  const deletePlayerSlugToExistingClubs = (clubSlug) => {
-    if (state.existingClubs[clubSlug] === 1) {
-      state.existingClubs[clubSlug] = 0
-      return
-    }
-    state.existingClubs[clubSlug] -= 1
-  }
-
   if (player.position === PLAYERS.GOA) {
     state.GOA = state.GOA.filter((p) => p.id !== player.id)
     state.GOA.push(deletedPlayerObj(player))
-    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.GOA--
+    calcTeamPrice()
     return state
   }
   if (player.position === PLAYERS.DEF) {
@@ -34,8 +34,8 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
     state.DEF.push(deletedPlayerObj(player))
-    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.DEF--
+    calcTeamPrice()
     return state
   }
   if (player.position === PLAYERS.MID) {
@@ -45,8 +45,8 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.MID = state.MID.filter((p) => p.id !== player.id)
     state.MID.push(deletedPlayerObj(player))
-    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.MID--
+    calcTeamPrice()
     return state
   }
   if (player.position === PLAYERS.STR) {
@@ -56,14 +56,22 @@ export const deleteTeamPlayerReducer = (state, action) => {
     }
     state.STR = state.STR.filter((p) => p.id !== player.id)
     state.STR.push(deletedPlayerObj(player))
-    deletePlayerSlugToExistingClubs(player.club_id.slug)
     state.playersCount.STR--
+    calcTeamPrice()
     return state
   }
 }
 
 export const addTeamPlayerReducer = (state, action) => {
   const { player, team, teamConcat } = action.payload
+
+  const calcTeamPrice = () => {
+    state.teamPrice =
+      state.GOA.reduce((acc, player) => acc + player.price, 0) +
+      state.DEF.reduce((acc, player) => acc + player.price, 0) +
+      state.MID.reduce((acc, player) => acc + player.price, 0) +
+      state.STR.reduce((acc, player) => acc + player.price, 0)
+  }
 
   const createUpdatedPlayer = (prevPlayer) => ({
     ...prevPlayer,
@@ -89,13 +97,6 @@ export const addTeamPlayerReducer = (state, action) => {
       state.STR = state.STR.filter((p) => p.id !== emptyPlayer.id)
     }
   }
-  const addPlayerSlugToExistingClubs = (clubSlug) => {
-    if (!state.existingClubs[clubSlug] || state.existingClubs[clubSlug] === 0) {
-      state.existingClubs[clubSlug] = 1
-    } else {
-      state.existingClubs[clubSlug] += 1
-    }
-  }
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
   if (!emptyPlayer) {
@@ -118,7 +119,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.GOA = state.GOA.filter((p) => p.id !== emptyGOAPlayer.id)
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -130,7 +131,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.DEF = state.DEF.filter((p) => p.id !== emptyDEFPlayer.id)
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -143,7 +144,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.DEF.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.DEF++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -155,7 +156,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.MID = state.MID.filter((p) => p.id !== emptyMIDPlayer.id)
     state.MID.push(newPlayer)
     state.playersCount.MID++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -168,7 +169,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.MID.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.MID++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -180,7 +181,7 @@ export const addTeamPlayerReducer = (state, action) => {
     state.STR = state.STR.filter((p) => p.id !== emptySTRPlayer.id)
     state.STR.push(newPlayer)
     state.playersCount.STR++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
   if (
@@ -193,7 +194,7 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.STR.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.STR++
-    addPlayerSlugToExistingClubs(newPlayer.club_id.slug)
+    calcTeamPrice()
     return state
   }
 }

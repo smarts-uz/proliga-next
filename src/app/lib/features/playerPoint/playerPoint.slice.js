@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { playerPointExtraReducer } from './playerPoint.extraReducer'
 
 const initialState = {
   playerPoint: [],
@@ -10,9 +11,7 @@ export const playerPointSlice = createSlice({
   name: 'playerPoint',
   initialState,
   reducers: {},
-  extraReducers: playersExtraReducer,
+  extraReducers: playerPointExtraReducer,
 })
-
-export const {} = playerPointSlice.actions
 
 export default playerPointSlice.reducer

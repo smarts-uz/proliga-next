@@ -25,47 +25,38 @@ export const teamPlayersExtraReducer = (builder) => {
             state.GOA.push(player)
             if (player.name) {
               state.playersCount.GOA++
-              if (!state.existingClubs[clubSlug]) {
-                state.existingClubs[clubSlug] = 1
-              } else {
-                state.existingClubs[clubSlug] += 1
-              }
+              state.existingClubs.push(clubSlug)
             }
           }
           if (player.position === PLAYERS.DEF) {
             state.DEF.push(player)
             if (player.name) {
               state.playersCount.DEF++
-              if (!state.existingClubs[clubSlug]) {
-                state.existingClubs[clubSlug] = 1
-              } else {
-                state.existingClubs[clubSlug] += 1
-              }
+              state.existingClubs.push(clubSlug)
             }
           }
           if (player.position === PLAYERS.MID) {
             state.MID.push(player)
             if (player.name) {
               state.playersCount.MID++
-              if (!state.existingClubs[clubSlug]) {
-                state.existingClubs[clubSlug] = 1
-              } else {
-                state.existingClubs[clubSlug] += 1
-              }
+              state.existingClubs.push(clubSlug)
             }
           }
           if (player.position === PLAYERS.STR) {
             state.STR.push(player)
             if (player.name) {
               state.playersCount.STR++
-              if (!state.existingClubs[clubSlug]) {
-                state.existingClubs[clubSlug] = 1
-              } else {
-                state.existingClubs[clubSlug] += 1
-              }
+              state.existingClubs.push(clubSlug)
             }
           }
         })
+
+      state.teamPrice =
+        state.GOA.reduce((acc, player) => acc + player.price, 0) +
+        state.DEF.reduce((acc, player) => acc + player.price, 0) +
+        state.MID.reduce((acc, player) => acc + player.price, 0) +
+        state.STR.reduce((acc, player) => acc + player.price, 0)
+
       state.isLoading = false
     })
     .addCase(fetchTeamPlayers.rejected, (state, action) => {

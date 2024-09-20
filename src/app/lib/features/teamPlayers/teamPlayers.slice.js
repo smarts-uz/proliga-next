@@ -17,7 +17,8 @@ const initialState = {
     MID: 0,
     STR: 0,
   },
-  existingClubs: {},
+  teamPrice: 0,
+  existingClubs: [],
   error: null,
   isLoading: false,
 }
