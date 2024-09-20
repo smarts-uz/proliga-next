@@ -1,8 +1,10 @@
 import Backdrop from 'components/Backdrop'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const ConfirmationModal = ({ onConfirm, onCancel }) => {
+  const { t } = useTranslation()
   return (
     <Backdrop onClick={onCancel}>
       <motion.dialog
@@ -20,7 +22,7 @@ const ConfirmationModal = ({ onConfirm, onCancel }) => {
           onClick={onCancel}
         />
         <h3 className="mb-12 mt-6 cursor-default text-xl font-bold md:tracking-wide">
-          Ishonchingiz komilmi?
+          {t('Ishonchingiz komilmi')}
         </h3>
         <div className="flex items-center gap-4">
           <button
@@ -28,13 +30,13 @@ const ConfirmationModal = ({ onConfirm, onCancel }) => {
             onClick={onConfirm}
             tabIndex={0}
           >
-            Tasdiqlash
+            {t('Tasdiqlash')}
           </button>
           <button
             className="h-auto select-none rounded-md border-2 border-neutral-600 px-8 py-2 font-medium transition-all hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-50"
             onClick={onCancel}
           >
-            Qaytish
+            {t('Qaytish')}
           </button>
         </div>
       </motion.dialog>

@@ -9,10 +9,11 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
   const [code, setCode] = useState()
-
+  const { t } = useTranslation()
   useEffect(() => {
     toast.success('Sizga SMS kod jonatildi')
   }, [])
@@ -27,7 +28,7 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
       >
         <form className="flex flex-col items-start gap-6">
           <label htmlFor="" className="text-xl font-medium">
-            SMS Kod Tasdiqlash
+            {t('SMS Kod Tasdiqlash')}
           </label>
           <InputOTP
             maxLength={6}
@@ -44,7 +45,7 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
             </InputOTPGroup>
           </InputOTP>
           <button className="w-full rounded border border-primary bg-neutral-900 py-1.5 transition-all hover:bg-black">
-            Tasdiqlash
+            {t('Tasdiqlash')}
           </button>
         </form>
       </motion.dialog>

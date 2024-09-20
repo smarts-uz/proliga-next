@@ -152,7 +152,7 @@
   "promotion_text": "Используйте бюджет в 100 миллионов и соберите команду из лучших игроков чемпионата.",
   "compete_text": "Участвуйте в общей лиге с другими пользователями, постарайтесь заработать больше очков, чем они, и одержите победу в конце сезона!",
   "Turnir": "Турнир",
-  "TRANSFERLARNI AMALGA OSHIRIN": "ВЫПОЛНИТЬ ПЕРЕВОДЫ",
+  "Transferlarni amalga oshirin": "Осуществляйте переводы",
   "\r\nQoida": "Правило",
   "Statistika": "статистика",
   "Jamoa narxi": "Цена команды",
@@ -168,7 +168,7 @@
   "Ligalar": "Лиги",
   "Jamoa yarating": "Создать команду",
   "Jamoa Ismi": "Название команды",
-  "championship": "Чемпионат",
+  "Chempionat": "Чемпионат",
   "jamoa yig'ing": "собрать команду",
   "Transferlar": "Передача",
   "Jurnal": "Журнал",
@@ -228,7 +228,6 @@
   "Turdagi ochkolar": "Очки в Туре",
   "Turnirdagi ochkolar": "Турнирные очки",
   "Turnirdagi o'rtacha ochkolar": "Среднее количество очков в турнире",
-  "Chempionat": "Чемпионат",
   "Ligadagi o'rin": "Позиция в лиге",
   "Balans": "Баланс",
   "Ro'yxatdan otish": "Зарегистрироваться",
@@ -253,5 +252,11 @@
   "Eng ko‘p ball": "Пользователи, набравшие наибольшее количество очков, получат подарки.",
   "Tahrirlash": "Редактировать",
   "Yuklash": "Загрузить",
-  "Su’rat qo‘shish": "Добавить картинку"
+  "Su’rat qo‘shish": "Добавить картинку",
+  "Tizimdan chiqish": "Выход из системы",
+  "Xabarnomalar": "Уведомления",
+  "Hozicha habarlar yoq": "Пока нет сообщений!",
+  "Ishonchingiz komilmi": "Вы уверены?",
+  "Qaytish": "Вернуться",
+  "Tasdiqlash": "Подтверждение"
 }
