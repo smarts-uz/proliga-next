@@ -8,9 +8,9 @@ import { useEffect } from 'react'
 function Home() {
   const { generate } = useGenerateLanguage()
 
-  useEffect(() => {
-    generate()
-  }, [])
+  // useEffect(() => {
+  //   generate()
+  // }, [])
 
   return (
     <section>
