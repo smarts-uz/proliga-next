@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Gutter from '../../Gutter'
+import { useTranslation } from 'react-i18next'
 
 const PromotionCreateTeam = () => {
+  const { t } = useTranslation()
   return (
     <section className="bg-neutral-800 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
@@ -9,16 +11,15 @@ const PromotionCreateTeam = () => {
           <div className="mt-8 flex flex-1 flex-col flex-wrap">
             <div className="mb-6 w-5/6 max-w-[24rem] -skew-x-12 self-start rounded-sm bg-primary md:mb-12 md:max-w-[32rem]">
               <h3 className="promotion-header text-center font-bold capitalize text-black">
-                Umumiy qoidalar
+              {t("Umumiy qoidalar")}
               </h3>
             </div>
             <div className="flex flex-col flex-wrap justify-center gap-4 self-center md:self-start lg:pl-8">
               <h2 className="promotion-header font-bold uppercase">
-                jamoa yig&apos;ing
+              {t("jamoa yig'ing")}
               </h2>
               <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
-                100 millionlik byudjetdan foydalaning va chempionatning eng
-                yaxshi futbolchilaridan iborat jamoani to&apos;plang
+              {t("100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang")}
               </p>
               <div className="relative hidden h-full w-full self-start md:block">
                 <Image

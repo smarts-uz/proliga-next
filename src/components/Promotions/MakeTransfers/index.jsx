@@ -1,20 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
 import Gutter from '../../Gutter'
+import { useTranslation } from 'react-i18next'
 
 const PromotionMakeTransfers = () => {
+  const { t } = useTranslation()
   return (
     <div className="w-full bg-neutral-800 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
         <div className="bg-custom-image align-center flex flex-col bg-cover">
           <h2 className="promotion-header self-center text-center font-bold uppercase xs:justify-start xs:text-start">
-            TRANSFERLARNI AMALGA OSHIRING
+            {t('Transferlarni amalga oshiring')}
           </h2>
           <p className="promotion-text mt-6 self-center text-center text-neutral-400 md:w-3/4 xl:mt-10">
-            Agar sizning jamoangizdagi o&apos;yinchilardan biri jarohat olgan
-            bo&apos;lsa yoki shunchaki yomon o&apos;ynasa, har bir turda ochko
-            to&apos;plamasa, tarkibni optimalroq o&apos;zgartirish uchun 4
-            tagacha transferni amalga oshirishingiz mumkin
+            {t('Agar sizning jamoangizdagi')}
           </p>
 
           <div className="mx-auto mt-10 w-full flex-1 md:w-auto md:items-center md:justify-center">

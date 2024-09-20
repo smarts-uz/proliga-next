@@ -1,8 +1,10 @@
 'use client'
 import Image from 'next/image'
 import Gutter from '../../Gutter'
+import { useTranslation } from 'react-i18next'
 
 const PromotionCompete = () => {
+  const { t } = useTranslation()
   return (
     <div className="relative h-full w-full bg-neutral-900 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
@@ -18,12 +20,10 @@ const PromotionCompete = () => {
           </div>
           <div className="flex flex-1 flex-col items-start gap-4 md:gap-8">
             <h2 className="promotion-header font-bold uppercase">
-              RAQOBATLASHING
+            {t("Raqobatlashing")}
             </h2>
             <p className="promotion-text max-w-lg text-neutral-400">
-              Boshqa foydalanuvchilar bilan umuimiy ligada qatnashing, Ulardan
-              ko&apos;proq ochko ishlashga harakat qiling va mavsum
-              so&apos;ngida g&apos;olib bo&apos;ling!
+            {t("Boshqa foydalanuvchilar")}
             </p>
           </div>
         </section>
