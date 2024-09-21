@@ -22,6 +22,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { season } = useSelector((state) => state.season)
   const { teamPrice } = useSelector((store) => store.teamPlayers)
+  const { currentCompetition } = useSelector((state) => state.competition)
 
   useEffect(() => {
     if (currentTeam?.is_team_created) {
@@ -66,10 +67,15 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [currentTeam, dispatch])
 
   useEffect(() => {
-    if (season?.id) {
-      dispatch(fetchMatches({ season_id: season.id }))
+    if (season?.id && currentCompetition?.id) {
+      dispatch(
+        fetchMatches({
+          season_id: season.id,
+          competition_id: currentCompetition.id,
+        })
+      )
     }
-  }, [season, dispatch])
+  }, [season, dispatch, currentCompetition])
 
   useEffect(() => {
     dispatch(
