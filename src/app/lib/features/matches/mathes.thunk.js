@@ -9,6 +9,7 @@ export const fetchMatches = createAsyncThunk(
       .select('*')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
+      .range(0, 9)
 
     return { data, error }
   }

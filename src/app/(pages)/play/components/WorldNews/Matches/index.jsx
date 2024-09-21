@@ -31,7 +31,7 @@ const Matches = () => {
           />
         </button>
       </div>
-      <div className="grid flex-1 grid-rows-8 gap-1">
+      <div className="mt-4 grid overflow-hidden flex-1 grid-rows-8 gap-1">
         {matches?.length === 0 && (
           <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
             Matchlar topilmadi!

@@ -19,7 +19,13 @@ const Match = ({ match }) => {
       setAwayClub(currentAwayClub)
     }
   }, [clubs, match])
-  console.log(match.status === MATCHSTATUS.NOT_STARTED)
+  console.log(match.status === MATCHSTATUS.NOT_STARTED, match)
+
+  const date = new Date(match?.started_date)
+  const day = date.getDate()
+  const month = date.getMonth()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
 
   return (
     <div
@@ -27,24 +33,30 @@ const Match = ({ match }) => {
       className="flex items-center justify-center gap-1 rounded-lg bg-neutral-800 px-4 py-2"
     >
       <div className="flex w-full items-center justify-end gap-2">
-        <p className="text-sm font-medium">{homeClub.name}</p>
+        <p className="text-sm font-medium">{homeClub?.name}</p>
         <Image
-          src={`/club-jpg/${homeClub.slug}/app.jpeg`}
+          src={`/club-jpg/${homeClub?.slug}/app.jpeg`}
           alt="home club"
           width={48}
           height={48}
-          onError={(e) => (e.target.src = '/images/proliga.png')}
           draggable={false}
           className="size-10 rounded-full bg-neutral-400"
         />
       </div>
-      <div className="flex h-full w-40 flex-col items-center justify-center gap-1 rounded-sm bg-neutral-950">
-        {match.status === MATCHSTATUS.NOT_STARTED && (
-          <p className="text-sm font-medium">{match?.started_date}</p>
+      <div className="flex h-full w-40 flex-col items-center justify-center gap-0 rounded-sm bg-neutral-800">
+        {match?.status === MATCHSTATUS.NOT_STARTED && (
+          <>
+            <p className="text-sm font-medium text-neutral-300">
+              {day}/{month}
+            </p>
+            <p className="font-bold">
+              {hours}:{minutes}
+            </p>
+          </>
         )}
-        {match.status === MATCHSTATUS.FINISHED && (
+        {match?.status === MATCHSTATUS.FINISHED && (
           <p className="font-bold">
-            {match.home_club_result ?? '00'}-{match.away_club_result ?? '00'}
+            {match?.home_club_result ?? '00'}-{match?.away_club_result ?? '00'}
           </p>
         )}
       </div>
@@ -54,11 +66,10 @@ const Match = ({ match }) => {
           alt="home club"
           width={48}
           height={48}
-          onError={(e) => (e.target.src = '/images/proliga.png')}
           draggable={false}
           className="size-10 rounded-full bg-neutral-400"
         />
-        <p className="text-sm font-medium">{awayClub.name}</p>
+        <p className="text-sm font-medium">{awayClub?.name}</p>
       </div>
     </div>
   )

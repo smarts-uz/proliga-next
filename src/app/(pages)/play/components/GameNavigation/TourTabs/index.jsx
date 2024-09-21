@@ -8,6 +8,7 @@ import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
 import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { useTranslation } from 'react-i18next'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -27,16 +28,16 @@ export default function TourTabs() {
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
-
+  const { t } = useTranslation()
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
-      return 'Boshlanmagan'
+      return t('Boshlanmagan')
     } else if (status === TOUR.completed) {
-      return 'Tugagan'
+      return t('Tugagan')
     } else if (status === TOUR.notStartedTransfer) {
-      return 'Boshlanmagan transfer mumkin'
+      return t('Boshlanmagan transfer mumkin')
     } else if (status === 'in_process') {
-      return 'Jarayonda'
+      return t('Jarayonda')
     }
     return 'Unidentified Status'
   }
