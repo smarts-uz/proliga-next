@@ -2,11 +2,12 @@ import Image from 'next/image'
 import { useState } from 'react'
 import TeamMaxClubMembersModal from './Modal'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 export default function TeamMaxClubMembers() {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const [isModalOpen, toggleModal] = useState(false)
-
+  const { t } = useTranslation()
   const handleModal = () => {
     if (isModalOpen) {
       toggleModal(false)
@@ -32,7 +33,7 @@ export default function TeamMaxClubMembers() {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs xs:text-sm"
           >
-            Bir jamoadan
+            {t("Bir jamoadan")}
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"

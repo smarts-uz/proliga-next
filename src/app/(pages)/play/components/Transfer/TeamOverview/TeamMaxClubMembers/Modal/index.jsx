@@ -2,8 +2,10 @@ import Backdrop from 'components/Backdrop'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const TeamMaxClubMembersModal = ({ handleModal }) => {
+  const { t } = useTranslation()
   return (
     <Backdrop bgOpacity={'bg-opacity-50'} onClick={handleModal}>
       <motion.dialog
@@ -17,23 +19,18 @@ const TeamMaxClubMembersModal = ({ handleModal }) => {
         </button>
         <header className="space-y-1">
           <h3 className="text-xl font-semibold">
-            Bir jamoadan oyinchilarni sonini oshirishni hoxlaysizmi?
+            {t("Bir jamoadan oyinchilarni sonini oshirishni hoxlaysizmi?")}
           </h3>
           <p className="text-sm text-neutral-300 md:text-base">
-            Musobaqada g‘alaba qozonish uchun bir jamoadan ikkita o‘yinchi
-            etarli bo‘lmasligi mumkin. Foydalanuvchiga qo‘shimcha ravishda har
-            bir jamoadan yana 3 tagacha o‘yinchi (jami 5 o‘yinchi) sotib
-            olishlari mumkin bo‘ladi. Shu sababli, foydalanuvchilar bir jamoadan
-            qo‘shimcha futbolchilar limitini sotib olib, chempionlik sari qadam
-            tashlaydi
+          {t("Musobaqada g‘alaba qozonish")}
           </p>
         </header>
         <section className="flex flex-col gap-2 text-sm xs:text-base">
           {maxClubMembers.map((item) => (
             <Link key={item.id} href={`/confirm-payment/${item.id}`}>
               <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
-                Bir jamoadan <span className="font-bold">{item.amount}ta</span>
-                futbolchi sotib olish
+              {t("Bir jamoadan")}<span className="font-bold">{item.amount}</span>
+                {t("ta futbolchi sotib olish")}
               </div>
             </Link>
           ))}
