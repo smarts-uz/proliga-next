@@ -6,20 +6,26 @@ const ConfirmPaymentTab = ({ currentPackage }) => {
       <div className="space-x-1 text-base font-medium md:text-lg">
         <p className="inline-block">Ummumiy to&apos;lov miqdori:</p>
         <span className="inline-block text-xl font-bold md:text-2xl">
-          {currentPackage.price}
+          {currentPackage?.price}
         </span>
         <p className="inline-block font-medium">so&apos;m</p>
       </div>
       <div className="flex items-center gap-1 self-end font-medium md:self-auto">
+        <span className="mr-4 rounded-full bg-green-700 px-4 py-0.5 text-xs md:text-sm">
+          test
+        </span>
         <Link
           href="/packages"
           className="flex h-10 w-32 items-center justify-center rounded border border-neutral-300 bg-neutral-950 text-center text-neutral-300 transition-all hover:border-neutral-100 hover:bg-opacity-75 hover:text-neutral-100"
         >
           Qaytish
         </Link>
-        <button className="h-10 w-32 rounded border border-primary bg-neutral-950 text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary">
+        <Link
+          href="/championships"
+          className="flex h-10 w-32 items-center justify-center rounded border border-primary bg-neutral-950 text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary"
+        >
           Tolash
-        </button>
+        </Link>
       </div>
     </div>
   )

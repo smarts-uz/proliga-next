@@ -4,7 +4,7 @@ import PaymePaymentOption from './Payme'
 import { useState } from 'react'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 
-const PaymentOptions = () => {
+const PaymentOptions = ({ toggleModal }) => {
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
@@ -25,6 +25,7 @@ const PaymentOptions = () => {
           setPaymentOption={setPaymentOption}
           active={active}
           passive={passive}
+          toggleModal={toggleModal}
         />
         <ClickUpPaymentOption
           paymentOption={paymentOption}

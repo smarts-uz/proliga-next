@@ -44,5 +44,4 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   
 }
 
-
 export default PositionsFilter

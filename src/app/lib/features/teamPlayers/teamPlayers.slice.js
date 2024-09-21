@@ -3,6 +3,7 @@ import {
   addTeamPlayerReducer,
   deleteTeamPlayerReducer,
   setCaptainReducer,
+  clearTeamPlayersReducer,
 } from './teamPlayers.reducer'
 import { teamPlayersExtraReducer } from './teamPlayers.extraReducer'
 
@@ -31,12 +32,18 @@ const teamPlayersSlice = createSlice({
     addTeamPlayer: addTeamPlayerReducer,
     deleteTeamPlayer: deleteTeamPlayerReducer,
     setCaptain: setCaptainReducer,
+    clearTeamPlayers: clearTeamPlayersReducer,
     emptyTeamPlayers: () => initialState,
   },
   extraReducers: teamPlayersExtraReducer,
 })
 
-export const { addTeamPlayer, deleteTeamPlayer, setCaptain, emptyTeamPlayers } =
-  teamPlayersSlice.actions
+export const {
+  addTeamPlayer,
+  deleteTeamPlayer,
+  setCaptain,
+  emptyTeamPlayers,
+  clearTeamPlayers,
+} = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

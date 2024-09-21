@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { TABS } from 'app/utils/tabs.util'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
+import { useTranslation } from 'react-i18next'
 
 const MobileModal = ({ onCancel }) => {
   const path = usePathname()
@@ -22,7 +23,7 @@ const MobileModal = ({ onCancel }) => {
     logOut()
     onCancel()
   }
-
+  const { t } = useTranslation()
   return (
     <Backdrop onClick={onCancel}>
       <motion.dialog
@@ -46,7 +47,7 @@ const MobileModal = ({ onCancel }) => {
           {path.includes('play') && (
             <>
               <Tab
-                title="Profil"
+                title={t("Profil")}
                 passive={passive}
                 active={active}
                 toggleModal={onCancel}
@@ -54,7 +55,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.GameProfile}
               />
               <Tab
-                title="Transfer"
+                title={t("Transferlar")}
                 passive={passive}
                 disabled={disabled}
                 active={active}
@@ -62,7 +63,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Transfer}
               />
               <Tab
-                title="Turnir"
+                title={t("Turnir")}
                 passive={passive}
                 disabled={disabled}
                 active={active}
@@ -70,7 +71,7 @@ const MobileModal = ({ onCancel }) => {
                 toggleModal={onCancel}
               />
               <Tab
-                title="Jurnal"
+                title={t("Jurnal")}
                 passive={passive}
                 disabled={disabled}
                 active={active}
@@ -78,7 +79,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Journal}
               />
               <Tab
-                title="Statistika"
+                title={t("Statistika")}
                 disabled={disabled}
                 toggleModal={onCancel}
                 passive={passive}
@@ -91,14 +92,14 @@ const MobileModal = ({ onCancel }) => {
             <>
               <TabLink
                 toggleModal={onCancel}
-                title="Profil"
+                title={t("Profil")}
                 passive={passive}
                 active={active}
                 disabled={disabled}
                 tab={TABS.GameProfile}
               />
               <TabLink
-                title="Transfer"
+                title={t("Transferlar")}
                 passive={passive}
                 disabled={disabled}
                 active={active}
@@ -106,7 +107,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Transfer}
               />
               <TabLink
-                title="Turnir"
+                title={t("Turnir")}
                 passive={passive}
                 toggleModal={onCancel}
                 disabled={disabled}
@@ -114,7 +115,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Tournament}
               />
               <TabLink
-                title="Jurnal"
+                title={t("Jurnal")}
                 toggleModal={onCancel}
                 passive={passive}
                 disabled={disabled}
@@ -122,7 +123,7 @@ const MobileModal = ({ onCancel }) => {
                 tab={TABS.Journal}
               />
               <TabLink
-                title="Statistika"
+                title={t("Statistika")}
                 disabled={disabled}
                 toggleModal={onCancel}
                 passive={passive}
@@ -136,21 +137,21 @@ const MobileModal = ({ onCancel }) => {
             href="/championships"
             onClick={onCancel}
           >
-            Chempionat
+             {t("Chempionat")}
           </Link>
           <Link
             className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
             onClick={onCancel}
             href="/prizes"
           >
-            Yutuqlar
+            {t("Yutuqlar")}
           </Link>
           <Link
             className={`relative transition-all before:absolute before:-left-16 before:h-full before:w-2 before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
             onClick={onCancel}
             href="/regulation"
           >
-            Qoida
+             {t("Qoida")}
           </Link>
         </div>
         <section
@@ -165,7 +166,7 @@ const MobileModal = ({ onCancel }) => {
                   alt="settings"
                   src="/icons/gear.svg"
                 />
-                <p>Sozlamalar</p>
+                <p>{t("Sozlamalar")}</p>
               </NavLink>
               <button
                 onClick={handleLogOut}
@@ -177,7 +178,7 @@ const MobileModal = ({ onCancel }) => {
                   width={24}
                   height={24}
                 />
-                <p>Tizimdan chiqish</p>
+                <p>{t("Tizimdan chiqish")}</p>
               </button>
             </>
           ) : (
@@ -189,7 +190,7 @@ const MobileModal = ({ onCancel }) => {
                   width={24}
                   height={24}
                 />
-                <p>Tizimga Kirish</p>
+                <p>{t("Tizimga Kirish")}</p>
               </NavLink>
             </>
           )}

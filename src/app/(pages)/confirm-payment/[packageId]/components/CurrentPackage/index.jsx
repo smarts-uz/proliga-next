@@ -1,8 +1,8 @@
 const CurrentPackage = ({ currentPackage }) => {
   const getPackageText = (currentPackage) => {
-    if (currentPackage.type === 'balance') return 'Balansni'
-    if (currentPackage.type === 'transfer') return 'Transferlar sonini'
-    if (currentPackage.type === 'maxClubMembers')
+    if (currentPackage?.type === 'balance') return 'Balansni'
+    if (currentPackage?.type === 'transfer') return 'Transferlar sonini'
+    if (currentPackage?.type === 'maxClubMembers')
       return "Maksimum klub oyi'nchilarini"
   }
   return (
@@ -14,13 +14,13 @@ const CurrentPackage = ({ currentPackage }) => {
         <div className="space-x-2 text-lg md:text-xl">
           {getPackageText(currentPackage)}
           <span className="text-lg font-bold xs:text-xl md:text-2xl">
-            {' ' + currentPackage.amount}
+            {' ' + currentPackage?.amount}
           </span>{' '}
           ga oshirish
         </div>
         <div className="text-lg font-medium text-neutral-100 xs:text-xl md:text-2xl">
           <span className="text-xl font-bold xs:text-2xl md:text-3xl">
-            {currentPackage.price + ' '}
+            {currentPackage?.price + ' '}
           </span>
           so&apos;m
         </div>

@@ -6,6 +6,7 @@ const WalletPaymentOption = ({
   paymentOption,
   active,
   passive,
+  toggleModal,
 }) => {
   return (
     <div
@@ -27,7 +28,10 @@ const WalletPaymentOption = ({
           so&apos;m
         </p>
       </div>
-      <button className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900">
+      <button
+        onClick={toggleModal}
+        className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+      >
         Hisobni toldirish
       </button>
     </div>
