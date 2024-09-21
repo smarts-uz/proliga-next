@@ -14,8 +14,8 @@ const TransferTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? 'cursor-pointer select-none px-0.5 md:p-1 text-start'
-                    : ' px-0.5 md:p-1 text-start',
+                    ? 'cursor-pointer select-none px-0.5 md:p-1 text-start min-w-16  sm:min-w-max'
+                    : ' px-0.5 md:p-1 text-start ',
                   onClick: header.column.getToggleSortingHandler(),
                 }}
               >
@@ -26,23 +26,31 @@ const TransferTableHead = ({ table }) => {
                 {{
                   asc: (
                     <Image
-                      src="/icons/arrow-triangle.svg"
+                      src="/icons/arrow-active-top.svg"
                       alt="triangle arrow"
                       width={12}
                       height={12}
-                      className="ml-1 inline-block size-4 md:size-5"
+                      className="inline-block size-4 rotate-180 xs:size-4 md:size-5"
                     />
                   ),
                   desc: (
                     <Image
-                      src="/icons/arrow-triangle.svg"
+                      src="/icons/arrow-active-top.svg"
                       alt="triangle arrow"
                       width={12}
                       height={12}
-                      className="ml-1 inline-block size-4 rotate-180 md:size-5"
+                      className="inline-block size-4 xs:size-4 md:size-5"
                     />
                   ),
-                }[header.column.getIsSorted()] ?? null}
+                }[header.column.getIsSorted()] ?? (
+                  <Image
+                    src="/icons/arrow-inactive.svg"
+                    alt="triangle arrow"
+                    width={12}
+                    height={12}
+                    className="inline-block size-4 rotate-180 xs:size-4 md:size-5"
+                  />
+                )}
               </th>
             )
           })}

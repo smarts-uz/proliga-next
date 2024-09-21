@@ -27,7 +27,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   ]
 
   return (
-    <div className="col-span-4 flex w-full gap-2 overflow-x-scroll lg:gap-4">
+    <div className="col-span-4 flex w-full gap-2 overflow-x-scroll text-xs xs:text-sm lg:gap-4 lg:text-base">
       {DATA.map((obj, index) => (
         <button
           key={index}

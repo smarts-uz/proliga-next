@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 const PlayerNameFilter = ({ column, columnFilterValue }) => {
   const { t } = useTranslation()
   return (
-    <div className="relative col-span-2 w-full">
+    <div className="relative w-full sm:col-span-2">
       <input
         className="h-8 w-full rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 shadow placeholder:text-neutral-300 md:px-2"
         onChange={(e) => column.setFilterValue(e.target.value)}
@@ -22,5 +22,4 @@ const PlayerNameFilter = ({ column, columnFilterValue }) => {
     </div>
   )
 }
-
 export default PlayerNameFilter

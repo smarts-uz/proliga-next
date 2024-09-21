@@ -2,10 +2,7 @@
 
 import Image from 'next/image'
 
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-
- 
 
 import { useSelector, useDispatch } from 'react-redux'
 import Match from './Match'
@@ -49,7 +46,7 @@ const Matches = () => {
       dispatch(setMatchesTourIndex(tourIndex - 1))
     }
   }
-  
+
   return (
     <div className="flex min-h-[40rem] w-full flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
@@ -84,7 +81,7 @@ const Matches = () => {
       <div className="mt-4 flex flex-1 flex-col gap-1 overflow-x-scroll">
         {matches?.length === 0 && (
           <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
-            {t("Matchlar topilmadi!")}
+            {t('Matchlar topilmadi!')}
           </p>
         )}
         {matches?.map((match) => (
