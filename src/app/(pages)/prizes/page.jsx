@@ -1,10 +1,11 @@
+'use client'
 import Gutter from 'components/Gutter'
 import { useTranslation } from 'react-i18next'
 const Prizes = () => {
   const { t } = useTranslation()
   return (
     <Gutter>
-      <div className="text-2xl mt-8">{t("Yutuqlar")}</div>
+      <div className="mt-8 text-2xl">{t('Yutuqlar')}</div>
     </Gutter>
   )
 }
