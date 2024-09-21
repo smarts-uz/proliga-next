@@ -1,18 +1,18 @@
-import React from 'react'
+'use client'
+
 import Gutter from '../../../components/Gutter'
 import { useTranslation } from 'react-i18next'
 
-function page(props) {
+function Contact() {
   const { t } = useTranslation()
   return (
     <Gutter>
-      <div className="min-h-screen">
-        <h1 className="mt-[100px] text-center text-5xl">
-        {t("Biz bilan bog‘lanish")}
-        </h1>
-      </div>
+      <div
+        className="mb-8 mt-24 min-h-screen table-auto border-collapse rounded-md border border-solid bg-neutral-900 p-6"
+        dangerouslySetInnerHTML={{ __html: t('about_us') }}
+      />
     </Gutter>
   )
 }
 
-export default page
+export default Contact
