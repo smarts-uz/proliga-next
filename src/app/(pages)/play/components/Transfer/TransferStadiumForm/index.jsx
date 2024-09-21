@@ -12,7 +12,7 @@ import { clearTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 const TransferStadiumForm = () => {
-   const { t } = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
@@ -50,15 +50,15 @@ const TransferStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning(t("Kapitan tanlanmagan"))
+      toast.warning(t('Kapitan tanlanmagan'))
       return
     }
     if (captains.length > 1) {
-      toast.warning(t("Ko`p kapitan tanlangan"))
+      toast.warning(t('Ko`p kapitan tanlangan'))
       return
     }
     if (teamBalance < teamPrice) {
-      toast.error(t("Balansingiz yetarli emas"))
+      toast.error(t('Balansingiz yetarli emas'))
       return
     }
 
@@ -84,7 +84,7 @@ const TransferStadiumForm = () => {
       await updateTeam({ team_id: currentTeam.id })
     }
     if (!error && !isLoading) {
-      toast.success(t("Jamoa muvaffaqiyatli yangilandi"))
+      toast.success(t('Jamoa muvaffaqiyatli yangilandi'))
       dispatch(setTab(TABS.GameProfile))
     }
   }
@@ -96,7 +96,6 @@ const TransferStadiumForm = () => {
   }, [currentTeam])
   // const { t } = useTranslation()
   return (
-    
     <form
       onSubmit={handleSubmit}
       className="mt-2 flex justify-between gap-x-1 text-black"
@@ -111,7 +110,7 @@ const TransferStadiumForm = () => {
           value=""
           className="checked:bg-neutral-700 active:bg-neutral-800"
         >
-          {t("Kapitan")}
+          {t('Kapitan')}
         </option>
         {teamConcat.map(
           (player) =>
@@ -133,8 +132,8 @@ const TransferStadiumForm = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             type="button"
-            className="flex w-16 max-w-16 flex-1 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
             title="Avto jamoa yigish"
+            className="flex w-16 max-w-20 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
@@ -144,14 +143,16 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">{t("Avto yigish")}</p>
+            <p className="hidden sm:block lg:hidden xl:block">
+              {t('Avto yigish')}
+            </p>
           </motion.button>
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            title="jamoani tozalash"
             type="button"
             onClick={() => dispatch(clearTeamPlayers())}
+            title="jamoani tozalash"
             className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
           >
             <Image
@@ -162,7 +163,9 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">{t("Jamoa tozalash")}</p>
+            <p className="hidden sm:block lg:hidden xl:block">
+              {t('Jamoa tozalash')}
+            </p>
           </motion.button>
         </>
       )}
@@ -170,7 +173,7 @@ const TransferStadiumForm = () => {
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
       >
-        {t("Saqlash")}
+        {t('Saqlash')}
       </button>
     </form>
   )

@@ -29,7 +29,7 @@ const News = () => {
   // })
   const { t } = useTranslation()
   return (
-    <div className="flex h-auto sm:min-h-[36rem] w-full flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 xl:w-1/3">
+    <div className="flex h-auto sm:min-h-[36rem] max-h-[40rem] w-full flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 xl:w-1/3">
       <h3 className="items-start self-start text-xl font-semibold">
         {t("Yangiliklar")}
       </h3>

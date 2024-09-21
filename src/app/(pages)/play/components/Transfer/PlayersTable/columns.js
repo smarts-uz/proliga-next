@@ -37,11 +37,17 @@ export const columns = [
       filterVariant: 'price',
     },
   }),
+  columnHelper.accessor((row) => row.point, {
+    accessorFn: (row) => row.point,
+    id: 'point',
+    cell: (info) => info.getValue(),
+    header: 'Ochko',
+  }),
   columnHelper.accessor((row) => row.position, {
     accessorFn: (row) => row.position,
     id: 'position',
     cell: (info) => <i>{info.getValue()}</i>,
-    header: 'Pozitsiya',
+    header: 'Poz',
     meta: {
       filterVariant: 'position',
     },

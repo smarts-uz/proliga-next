@@ -24,6 +24,7 @@ export const useGenerateLanguage = () => {
       // .from('system_language')
       // .select('id, name, ru')
 
+
       if (error) {
         setError(error.message)
         toast.error(error.message)
@@ -36,7 +37,6 @@ export const useGenerateLanguage = () => {
         data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
         //ru
         // data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
-        console.log(obj)
       }
     } catch (error) {
       setError(error.message)

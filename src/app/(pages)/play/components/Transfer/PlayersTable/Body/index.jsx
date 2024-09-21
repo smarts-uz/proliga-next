@@ -25,7 +25,7 @@ const TransferTableBody = ({ table, flexRender }) => {
           className="mx-auto border-b border-neutral-700 bg-neutral-950 odd:bg-neutral-900"
         >
           {row.getVisibleCells().map((cell) => (
-            <td className="w-auto px-2 py-1 capitalize" key={cell.id}>
+            <td className="w-auto px-0.5 md:p-1 capitalize" key={cell.id}>
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </td>
           ))}
