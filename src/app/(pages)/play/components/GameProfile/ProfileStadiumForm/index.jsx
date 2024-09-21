@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { useMemo } from 'react'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
+import { useTranslation } from 'react-i18next'
 
 const ProfileStadiumForm = () => {
   const dispatch = useDispatch()
@@ -65,7 +66,7 @@ const ProfileStadiumForm = () => {
       toast.success('Kapitan yangilandi')
     }
   }
-
+  const { t } = useTranslation()
   return (
     <form
       onSubmit={handleSubmit}
@@ -101,7 +102,7 @@ const ProfileStadiumForm = () => {
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
       >
-        Saqlash
+        {t("Saqlash")}
       </button>
     </form>
   )

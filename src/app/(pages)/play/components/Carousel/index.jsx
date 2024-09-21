@@ -4,7 +4,7 @@ import Gutter from '../../../../../components/Gutter'
 import Slide from './Slide'
 import Image from 'next/image'
 import SliderPin from './Slide/pin'
-
+import { useTranslation } from 'react-i18next'
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [active, setActive] = useState(false)
@@ -42,7 +42,53 @@ const Carousel = () => {
     const interval = setInterval(nextSlide, 5000)
     return () => clearInterval(interval)
   }, [])
-
+  const { t } = useTranslation()
+const data = [
+  
+  {
+    header: t("Umumiy qoidalar"),
+    title: t("jamoa yig'ing"),
+    description:
+    t("100 millionlik byudjetdan"),
+    images: '/images/promotion-1.png',
+    mainImage: '/images/footballers-tile.png',
+    type: 1,
+  },
+  {
+    title: t("Ochkolar yiging"),
+    description:
+    t("Har bir o'yinchi"),
+    mainImage: '/images/promotion-2.png',
+    type: 2,
+  },
+  {
+    header: t("Umumiy qoidalar"),
+    title: t('Transferlarni amalga oshiring'),
+    description:
+    t('Agar sizning jamoangizdagi'),
+    images: '/images/transfer-removebg-preview.png',
+    mainImage: '/images/promotion-transfer.png',
+    type: 3,
+  },
+  {
+    header: t("Raqobatlashing"),
+    description: t("Boshqa foydalanuvchilar"),
+    mainImage: '/images/promotion-stats.png',
+    type: 4,
+  },
+  {
+    header: t("Sovrinlarni yutib oling"),
+    title:
+    t("Eng ko‘p ball"),
+    type: 5,
+    images: [
+      { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
+      { name: 'Playstation 5', img: '/images/promotion-price2.png' },
+      { name: 'TV Samsung  55', img: '/images/promotion-price3.png' },
+      { name: 'Apple iPad Pro ', img: '/images/promotion-price4.png' },
+    ],
+  },
+]
   return (
     <section className="overflow-hidden bg-neutral-800">
       <Gutter>
@@ -104,51 +150,6 @@ const Carousel = () => {
   )
 }
 
-const data = [
-  {
-    header: 'Umumiy qoidalar',
-    title: "Jamoa yig'ing",
-    description:
-      "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-    images: '/images/promotion-1.png',
-    mainImage: '/images/footballers-tile.png',
-    type: 1,
-  },
-  {
-    title: 'BALLARNI YiG’ING',
-    description:
-      "Har bir o'yinchi haqiqiy o'yinlarda qilgan harakatlari uchun ochko oladi yoki yo'qotadi. Ballar soni o'yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi",
-    mainImage: '/images/promotion-2.png',
-    type: 2,
-  },
-  {
-    header: 'Umumiy qoidalar',
-    title: 'TRANSFERLARNI AMALGA OSHIRING',
-    description:
-      'Agar sizning jamoangizdagi o’yinchilardan biri jarohat olgan bo’lsa yoki shunchaki yomon o’ynasa, har bir turda ochko to’plamasa, tarkibni optimalroq o’zgartirish uchun 2 tagacha transferni amalga oshirishingiz mumkin',
-    images: '/images/transfer-removebg-preview.png',
-    mainImage: '/images/promotion-transfer.png',
-    type: 3,
-  },
-  {
-    header: 'Raqobatlashing',
-    description: `
-Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko ishlashga harakat qiling va mavsum so'ngida g'olib bo'ling!`,
-    mainImage: '/images/promotion-stats.png',
-    type: 4,
-  },
-  {
-    header: "sovg'alarni yutib oling ",
-    title:
-      "Eng ko'p ball to'plagan foydalanuvchilar sovg'alarga ega bo'lishadi.",
-    type: 5,
-    images: [
-      { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
-      { name: 'Playstation 5', img: '/images/promotion-price2.png' },
-      { name: 'TV Samsung  55', img: '/images/promotion-price3.png' },
-      { name: 'Apple iPad Pro ', img: '/images/promotion-price4.png' },
-    ],
-  },
 
   // {
   //   header: 'Umumiy qoidalar',
@@ -168,6 +169,6 @@ Boshqa foydalanuvchilar bilan umumiy ligada qatnashing, Ulardan ko'proq ochko is
   //     mainImage: '/images/promotion-3.png',
   //     type: 1,
   //   },
-]
+
 
 export default Carousel
