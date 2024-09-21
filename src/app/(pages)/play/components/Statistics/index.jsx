@@ -5,12 +5,12 @@ import { toast } from 'react-toastify'
 import Image from 'next/image'
 import { useGetPlayerStats } from 'app/hooks/statistics/useGetPlayerStats/useGetPlayerStats'
 import { useSelector } from 'react-redux'
-
+import { useTranslation } from 'react-i18next'
 const Statistics = () => {
   const [players, setPlayers] = useState([])
   const { statistics } = useSelector((state) => state.statistics)
   const { getPlayerStats, isLoading, error } = useGetPlayerStats()
-
+  const { t } = useTranslation()
   useEffect(() => {
     const fetch = async () => {
       await getPlayerStats()
@@ -26,8 +26,8 @@ const Statistics = () => {
           <table class="w-full table-auto border-spacing-0">
             <thead>
               <tr>
-                <th>Player</th>
-                <th>Position</th>
+                <th>{t("O‘yinchi")}</th>
+                <th>{t("Pozitsiya")}</th>
                 <th title="Goal">G</th>
                 <th title="Goal Assist">GA</th>
                 <th title="Missed Penalty">MP</th>

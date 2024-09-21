@@ -2,8 +2,9 @@ import Backdrop from 'components/Backdrop'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-
+import { useTranslation } from 'react-i18next'
 const TeamBalanceModal = ({ handleModal }) => {
+  const { t } = useTranslation()
   return (
     <Backdrop onClick={handleModal}>
       <motion.dialog
@@ -17,23 +18,19 @@ const TeamBalanceModal = ({ handleModal }) => {
         </button>
         <header className="space-y-1">
           <h3 className="text-xl font-semibold">
-            Balans miqdorini oshirishni hoxlaysizmi?
+            {t("Balans miqdorini oshirishni hoxlaysizmi")}
           </h3>
           <p className="text-sm text-neutral-300 md:text-base">
-            Musobaqada g‘alaba qozonish uchun balansdagi 100 tanga etarli
-            bo‘lmasligi mumkin. Tangalarni ko‘paytirish uchun foydalanuvchiga
-            qo‘shimcha 50 tangagacha sotib olish imkoniyatiga ega bo‘ladi. Shu
-            sababli, foydalanuvchilar balansni oshirib, chempionlik sari qadam
-            tashlaydi
+             {t("update balance txt")}
           </p>
         </header>
         <section className="flex flex-col gap-2 text-sm xs:text-base">
           {balance.map((item) => (
             <Link key={item.id} href={`/confirm-payment/${item.id}`}>
               <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
-                Tangalar miqdorini
-                <span className="font-bold">{item.amount}</span> tangaga
-                oshirish
+                {t("Tangalar miqdorini")}
+                <span className="font-bold">{item.amount}</span> 
+                {t("tangaga oshirish")}
               </div>
             </Link>
           ))}

@@ -1,6 +1,8 @@
 import Gutter from '../../../../../components/Gutter'
+import { useTranslation } from 'react-i18next'
 
 const Journal = () => {
+  const { t } = useTranslation()
   return (
     <Gutter>
       <div className="flex gap-4">
@@ -18,7 +20,7 @@ const Journal = () => {
           </div>
           <div className="flex items-center justify-between py-4">
             <button className="capitalize text-white hover:underline">
-              Oldigisi
+              {t("Oldigisi")}
             </button>
             <div className="flex gap-2">
               <button className="rounded border bg-white px-2 py-1 text-black">
@@ -28,7 +30,7 @@ const Journal = () => {
               <button className="rounded border px-2 py-1">3</button>
             </div>
             <button className="capitalize text-white hover:underline">
-              Keyingisi
+              {t("Keyingisi")}
             </button>
           </div>
         </section>

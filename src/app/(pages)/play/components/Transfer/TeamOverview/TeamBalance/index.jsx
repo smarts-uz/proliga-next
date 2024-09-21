@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import { useState } from 'react'
 import TeamBalanceModal from './Modal'
+import { useTranslation } from 'react-i18next'
 
 const TeamBalance = () => {
   const { teamBalance } = useSelector((store) => store.tourTeams)
   const [isModalOpen, toggleModal] = useState(false)
-
+  const { t } = useTranslation()
   const handleModal = () => {
     if (isModalOpen) {
       toggleModal(false)
@@ -32,7 +33,7 @@ const TeamBalance = () => {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs sm:text-sm"
           >
-            balans
+            {t("Balans")}
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"
