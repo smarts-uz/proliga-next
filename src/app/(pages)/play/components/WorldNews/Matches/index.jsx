@@ -1,9 +1,6 @@
 'use client'
-
 import Image from 'next/image'
-
 import { useTranslation } from 'react-i18next'
-
 import { useSelector, useDispatch } from 'react-redux'
 import Match from './Match'
 import { useEffect, useState } from 'react'

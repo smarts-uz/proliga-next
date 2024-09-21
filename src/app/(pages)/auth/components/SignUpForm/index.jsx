@@ -8,6 +8,7 @@ import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
+import { useTranslation } from 'react-i18next'
 
 const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -72,23 +73,25 @@ const SignUpForm = ({ onClick }) => {
     }
   }, [active, router, userAuth, userTable])
 
+  const { t } = useTranslation()
+
   return (
     <form
       onSubmit={handleSubmit}
       className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
     >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
-        Ro&apos;yxatdan o&apos;tish
+        {t("Ro'yxatdan o'tish")}
       </h2>
       <div className="relative flex flex-col gap-1">
         <label
           htmlFor="username"
           className="text-xs text-neutral-400 md:text-base"
         >
-          Telefon raqam:
+          {t("Telefon raqam")}:
         </label>
         <PhoneInput
-          placeholder="Telefon raqam"
+          placeholder= {t("Telefon raqam")}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-white"
           value={phone}
@@ -100,7 +103,7 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="username"
           className="text-xs text-neutral-400 md:text-base"
         >
-          Elektron pochta:
+          {t("Elektron pochta")}:
         </label>
         <input
           type="email"
@@ -124,13 +127,13 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="password"
           className="text-xs text-neutral-400 md:text-base"
         >
-          Parol:
+          {t("Parol")}:
         </label>
         <input
           type={showPassword ? 'text' : 'password'}
           name="confirmPassword"
           id="confirmPassword"
-          placeholder="Parol"
+          placeholder={t("Parol")}
           className="auth-input pl-9"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -164,13 +167,13 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="password"
           className="text-xs text-neutral-400 md:text-base"
         >
-          Parol tasdiqlash:
+          {t("Parol tasdiqlash")}:
         </label>
         <input
           type={showConfirmPassword ? 'text' : 'password'}
           name="password"
           id="password"
-          placeholder="Parol"
+          placeholder={t("Parol")}
           className="auth-input pl-9"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -205,7 +208,7 @@ const SignUpForm = ({ onClick }) => {
         onClick={onClick}
         className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
-        Akkauntingiz bormi?
+        {t("Akkauntingiz bormi ?")}
       </button>
       <button
         type="submit"
@@ -221,7 +224,7 @@ const SignUpForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          'Akkaunt Ochish'
+          t("Akkaunt Ochish")
         )}
       </button>
     </form>
