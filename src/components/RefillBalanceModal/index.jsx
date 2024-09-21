@@ -5,7 +5,7 @@ import Backdrop from 'components/Backdrop'
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-
+import { useTranslation } from 'react-i18next'
 const RefillBalanceModal = ({ toggleModal }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
   const router = useRouter()
@@ -17,7 +17,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
     e.preventDefault()
     router.push('/championships')
   }
-
+  const { t } = useTranslation()
   return (
     <Backdrop onClick={toggleModal}>
       <motion.dialog
@@ -36,11 +36,11 @@ const RefillBalanceModal = ({ toggleModal }) => {
           />
         </button>
         <h2 className="text-xl font-bold sm:text-2xl">
-          Balansingizni toldiring
+          {t("Balansingizni toldiring")}
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="w-full space-y-2">
-            <h3 className="text-neutral-300">Tolash metodini tanlang</h3>
+            <h3 className="text-neutral-300">{t("To'lov usulini tanlang")}</h3>
             <section className="flex justify-center gap-2 xs:gap-4 sm:justify-start">
               <button
                 onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
@@ -72,7 +72,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
           </div>
           <div className="w-full space-y-2">
             <label className="text-neutral-300" htmlFor="money">
-              Tolash summasini tering
+            {t("To'lash summasini tering")}
             </label>
             <input
               type="number"
@@ -86,7 +86,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
             type="submit"
             className="mt-4 rounded border border-primary py-3 font-bold transition-all hover:bg-primary hover:text-black"
           >
-            Tolash
+            {t("To'lash")}
           </button>
         </form>
       </motion.dialog>

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import TeamMaxTransfersModal from './Modal'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const TeamMaxTransfers = () => {
   const [isModalOpen, toggleModal] = useState(false)
@@ -20,7 +21,7 @@ const TeamMaxTransfers = () => {
       }
     }
   }
-
+  const { t } = useTranslation()
   return (
     <>
       <div
@@ -32,7 +33,7 @@ const TeamMaxTransfers = () => {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs xs:text-sm"
           >
-            transferlar
+            {t("transferlar")}
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"
