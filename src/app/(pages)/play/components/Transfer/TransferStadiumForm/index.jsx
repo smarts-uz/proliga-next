@@ -8,12 +8,11 @@ import { useState } from 'react'
 import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { TABS } from 'app/utils/tabs.util'
+import { clearTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 
 const TransferStadiumForm = () => {
   const dispatch = useDispatch()
-  const path = usePathname()
   const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
@@ -132,7 +131,7 @@ const TransferStadiumForm = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             type="button"
-            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+            className="flex w-16 max-w-16 flex-1 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
             title="Avto jamoa yigish"
           >
             <Image
@@ -141,7 +140,7 @@ const TransferStadiumForm = () => {
               width={24}
               height={24}
               draggable={false}
-              className="filter-white size-6 md:size-7"
+              className="filter-white size-6"
             />
             <p className="hidden sm:block lg:hidden xl:block">Avto yigish</p>
           </motion.button>
@@ -150,7 +149,8 @@ const TransferStadiumForm = () => {
             animate={{ opacity: 1 }}
             title="jamoani tozalash"
             type="button"
-            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+            onClick={() => dispatch(clearTeamPlayers())}
+            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
           >
             <Image
               src="/icons/trash.svg"
@@ -158,7 +158,7 @@ const TransferStadiumForm = () => {
               width={24}
               height={24}
               draggable={false}
-              className="filter-white size-6 md:size-7"
+              className="filter-white size-6"
             />
             <p className="hidden sm:block lg:hidden xl:block">Jamoa tozalash</p>
           </motion.button>
@@ -166,7 +166,7 @@ const TransferStadiumForm = () => {
       )}
       <button
         type="submit"
-        className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
+        className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
       >
         Saqlash
       </button>

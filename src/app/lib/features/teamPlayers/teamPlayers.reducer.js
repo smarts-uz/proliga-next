@@ -267,4 +267,25 @@ export const setCaptainReducer = (state, action) => {
   return state
 }
 
-export const clearTeamPlayers = (state, action) => {}
+export const clearTeamPlayersReducer = (state, action) => {
+  const deletedPlayerObj = (prevPlayer) => ({
+    ...prevPlayer,
+    player_id: null,
+    name: null,
+    club_id: null,
+    price: null,
+  })
+
+  const prevGOA = state.GOA.filter((p) => deletedPlayerObj(p))
+  console.log(prevGOA)
+  state.GOA = state.GOA.filter((p) => ({
+    ...p,
+    player_id: null,
+    name: null,
+    club_id: null,
+    price: null,
+  }))
+  state.DEF = state.DEF.filter((p) => deletedPlayerObj(p))
+  state.MID = state.MID.filter((p) => deletedPlayerObj(p))
+  state.STR = state.STR.filter((p) => deletedPlayerObj(p))
+}
