@@ -1,11 +1,10 @@
 import { createColumnHelper } from '@tanstack/react-table'
-
 const columnHelper = createColumnHelper()
 export const columns = [
   columnHelper.accessor('name', {
     accessorKey: 'name',
     cell: (info) => info.getValue(),
-    header: 'Ism',
+    header: "Ism",
     meta: {
       filterVariant: 'name',
     },
