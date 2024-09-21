@@ -21,7 +21,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
       key: 'MID',
     },
     {
-      title: t('Hujimchi'),
+      title: t('Hujumchi'),
       key: 'STR',
     },
   ]
