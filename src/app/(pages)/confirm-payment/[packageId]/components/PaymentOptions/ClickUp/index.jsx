@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useTranslation } from 'react-i18next'
 
 const ClickUpPaymentOption = ({
   setPaymentOption,
@@ -7,6 +8,7 @@ const ClickUpPaymentOption = ({
   active,
   passive,
 }) => {
+  const { t } = useTranslation()
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.CLICKUP)}
@@ -22,7 +24,7 @@ const ClickUpPaymentOption = ({
       />
       <div className="w-full self-center text-center">
         <h4 className="text-lg font-medium">Click Up</h4>
-        <p className="text-sm text-neutral-400">Click up orqali tolov qilish</p>
+        <p className="text-sm text-neutral-400">{t("Click up orqali tolov qilish")}</p>
       </div>
     </div>
   )

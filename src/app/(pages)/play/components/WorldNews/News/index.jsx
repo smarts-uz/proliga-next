@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Article from './Article'
+import { useTranslation } from 'react-i18next'
 
 const itemsPerPage = 4
 
@@ -26,10 +27,11 @@ const News = () => {
   // useEffect(() => {
   //   getNews()
   // })
+  const { t } = useTranslation()
   return (
     <div className="flex h-auto sm:min-h-[36rem] w-full flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 xl:w-1/3">
       <h3 className="items-start self-start text-xl font-semibold">
-        Yangiliklar
+        {t("Yangiliklar")}
       </h3>
       <div className="flex-1">
         {currentItems?.length > 0 &&
@@ -52,7 +54,7 @@ const News = () => {
           }`}
           disabled={true}
         >
-          Oldingi
+          {t("Oldingi")}
         </button>
         {Array.from({ length: totalPages }, (_, i) => (
           <button
@@ -76,7 +78,7 @@ const News = () => {
           }`}
           disabled={true}
         >
-          Keyingi
+          {t("Keyingi")}
         </button>
       </div>
     </div>
