@@ -5,7 +5,6 @@ export const deleteTeamPlayerReducer = (state, action) => {
   const { player } = action.payload
 
   const clubId = player?.club?.id || player.club_id.id
-  console.log(clubId)
 
   const calcTeamPrice = () => {
     state.teamPrice =
@@ -128,7 +127,6 @@ export const addTeamPlayerReducer = (state, action) => {
   }
 
   const clubId = player?.club?.id || player.club_id.id
-  console.log(maxTeamPlayers - 1)
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
       `Ushbu clubga ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
@@ -277,7 +275,6 @@ export const clearTeamPlayersReducer = (state, action) => {
   })
 
   const prevGOA = state.GOA.filter((p) => deletedPlayerObj(p))
-  console.log(prevGOA)
   state.GOA = state.GOA.filter((p) => ({
     ...p,
     player_id: null,

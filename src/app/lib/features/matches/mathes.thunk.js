@@ -3,13 +3,16 @@ import { supabase } from 'app/lib/supabaseClient'
 
 export const fetchMatches = createAsyncThunk(
   'matches/fetchMatches',
-  async ({ season_id, competition_id }) => {
+  async ({ season_id, competition_id, tour_id }) => {
     const { data, error } = await supabase
       .from('match')
-      .select('*')
+      .select(
+        'status, home_club_result, away_club_result, winner_club_id,started_date, finished_date, home_club_id:club!fk_match_home_id(name, slug, id), away_club_id:club!fk_match_away_id(name, slug, id)'
+      )
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
-      .range(0, 9)
+      .eq('tour_id', tour_id)
+      .limit(20)
 
     return { data, error }
   }

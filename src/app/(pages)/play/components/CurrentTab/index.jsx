@@ -9,7 +9,6 @@ import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { useEffect } from 'react'
-import { fetchMatches } from 'app/lib/features/matches/mathes.thunk'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { fetchNews } from 'app/lib/features/news/news.thunk'
@@ -65,17 +64,6 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       fetch()
     }
   }, [currentTeam, dispatch])
-
-  useEffect(() => {
-    if (season?.id && currentCompetition?.id) {
-      dispatch(
-        fetchMatches({
-          season_id: season.id,
-          competition_id: currentCompetition.id,
-        })
-      )
-    }
-  }, [season, dispatch, currentCompetition])
 
   useEffect(() => {
     dispatch(

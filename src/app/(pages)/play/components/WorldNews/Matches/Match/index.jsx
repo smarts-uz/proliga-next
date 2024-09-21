@@ -3,23 +3,21 @@ import { useSelector } from 'react-redux'
 import Image from 'next/image'
 
 const Match = ({ match }) => {
-  const { clubs } = useSelector((state) => state.clubs)
-  const [homeClub, setHomeClub] = useState('')
-  const [awayClub, setAwayClub] = useState('')
+  const homeClub = match?.home_club_id ?? null
+  const awayClub = match?.away_club_id ?? null
 
-  useEffect(() => {
-    if (match && clubs?.length > 0) {
-      const currentHomeClub = clubs.find(
-        (club) => club.id === match.home_club_id
-      )
-      setHomeClub(currentHomeClub)
-      const currentAwayClub = clubs.find(
-        (club) => club.id === match.away_club_id
-      )
-      setAwayClub(currentAwayClub)
-    }
-  }, [clubs, match])
-  console.log(match.status === MATCHSTATUS.NOT_STARTED, match)
+  // useEffect(() => {
+  //   if (match && clubs?.length > 0) {
+  //     const currentHomeClub = clubs.find(
+  //       (club) => club.id === match.home_club_id
+  //     )
+  //     setHomeClub(currentHomeClub)
+  //     const currentAwayClub = clubs.find(
+  //       (club) => club.id === match.away_club_id
+  //     )
+  //     setAwayClub(currentAwayClub)
+  //   }
+  // }, [clubs, match])
 
   const date = new Date(match?.started_date)
   const day = date.getDate()
@@ -28,19 +26,16 @@ const Match = ({ match }) => {
   const minutes = date.getMinutes()
 
   return (
-    <div
-      key={match.id}
-      className="flex items-center justify-center gap-1 rounded-lg bg-neutral-800 px-4 py-2"
-    >
+    <div className="flex items-center justify-center gap-1 rounded-lg bg-neutral-800 px-0 py-2 xs:px-4">
       <div className="flex w-full items-center justify-end gap-2">
-        <p className="text-sm font-medium">{homeClub?.name}</p>
+        <p className="text-xs font-medium xs:text-sm">{homeClub?.name}</p>
         <Image
           src={`/club-jpg/${homeClub?.slug}/app.jpeg`}
           alt="home club"
           width={48}
           height={48}
           draggable={false}
-          className="size-10 rounded-full bg-neutral-400"
+          className="size-8 rounded-full bg-neutral-400 xs:size-10"
         />
       </div>
       <div className="flex h-full w-40 flex-col items-center justify-center gap-0 rounded-sm bg-neutral-800">
@@ -62,14 +57,14 @@ const Match = ({ match }) => {
       </div>
       <div className="flex w-full items-center gap-2">
         <Image
-          src={`/club-jpg/${awayClub.slug}/app.jpeg`}
+          src={`/club-jpg/${awayClub?.slug}/app.jpeg`}
           alt="home club"
           width={48}
           height={48}
           draggable={false}
-          className="size-10 rounded-full bg-neutral-400"
+          className="size-8 rounded-full bg-neutral-400 xs:size-10"
         />
-        <p className="text-sm font-medium">{awayClub?.name}</p>
+        <p className="text-xs font-medium xs:text-sm">{awayClub?.name}</p>
       </div>
     </div>
   )

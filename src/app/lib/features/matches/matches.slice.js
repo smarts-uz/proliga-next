@@ -3,6 +3,7 @@ import { matchesExtraReducer } from './matches.extraReducer'
 
 const initialState = {
   matches: [],
+  tourIndex: 0,
   isLoading: false,
   error: null,
 }
@@ -10,8 +11,14 @@ const initialState = {
 const matchesSlice = createSlice({
   name: 'matches',
   initialState,
-  reducers: {},
+  reducers: {
+    setMatchesTourIndex: (state, action) => {
+      state.tourIndex = action.payload
+    },
+  },
   extraReducers: matchesExtraReducer,
 })
+
+export const { setMatchesTourIndex } = matchesSlice.actions
 
 export default matchesSlice.reducer

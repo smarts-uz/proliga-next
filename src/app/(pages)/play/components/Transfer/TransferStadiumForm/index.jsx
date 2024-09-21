@@ -131,8 +131,8 @@ const TransferStadiumForm = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             type="button"
-            className="flex w-16 max-w-16 flex-1 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
             title="Avto jamoa yigish"
+            className="flex w-16 max-w-20 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
@@ -147,9 +147,9 @@ const TransferStadiumForm = () => {
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            title="jamoani tozalash"
             type="button"
             onClick={() => dispatch(clearTeamPlayers())}
+            title="jamoani tozalash"
             className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
           >
             <Image
