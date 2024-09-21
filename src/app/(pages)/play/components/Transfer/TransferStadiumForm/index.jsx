@@ -10,8 +10,9 @@ import { setTab } from 'app/lib/features/tours/tours.slice'
 import { TABS } from 'app/utils/tabs.util'
 import { clearTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import Image from 'next/image'
-
+import { useTranslation } from 'react-i18next'
 const TransferStadiumForm = () => {
+   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
@@ -49,15 +50,15 @@ const TransferStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning('Kapitan tanlanmagan')
+      toast.warning(t("Kapitan tanlanmagan"))
       return
     }
     if (captains.length > 1) {
-      toast.warning('Ko`p kapitan tanlangan')
+      toast.warning(t("Ko`p kapitan tanlangan"))
       return
     }
     if (teamBalance < teamPrice) {
-      toast.error('Balansingiz yetarli emas')
+      toast.error(t("Balansingiz yetarli emas"))
       return
     }
 
@@ -70,7 +71,7 @@ const TransferStadiumForm = () => {
       playersCount.STR < 2 ||
       playersCount.STR > 3
     ) {
-      toast.error('Jamoa formatsiyasi notogri')
+      toast.error(t('Jamoa formatsiyasi notogri'))
       return
     }
 
@@ -83,7 +84,7 @@ const TransferStadiumForm = () => {
       await updateTeam({ team_id: currentTeam.id })
     }
     if (!error && !isLoading) {
-      toast.success('Jamoa muvaffaqiyatli yangilandi')
+      toast.success(t("Jamoa muvaffaqiyatli yangilandi"))
       dispatch(setTab(TABS.GameProfile))
     }
   }
@@ -93,8 +94,9 @@ const TransferStadiumForm = () => {
       toggleTeamCreateBtns(true)
     }
   }, [currentTeam])
-
+  // const { t } = useTranslation()
   return (
+    
     <form
       onSubmit={handleSubmit}
       className="mt-2 flex justify-between gap-x-1 text-black"
@@ -109,7 +111,7 @@ const TransferStadiumForm = () => {
           value=""
           className="checked:bg-neutral-700 active:bg-neutral-800"
         >
-          Kapitan
+          {t("Kapitan")}
         </option>
         {teamConcat.map(
           (player) =>
@@ -142,7 +144,7 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">Avto yigish</p>
+            <p className="hidden sm:block lg:hidden xl:block">{t("Avto yigish")}</p>
           </motion.button>
           <motion.button
             initial={{ opacity: 0 }}
@@ -160,7 +162,7 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">Jamoa tozalash</p>
+            <p className="hidden sm:block lg:hidden xl:block">{t("Jamoa tozalash")}</p>
           </motion.button>
         </>
       )}
@@ -168,7 +170,7 @@ const TransferStadiumForm = () => {
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
       >
-        Saqlash
+        {t("Saqlash")}
       </button>
     </form>
   )

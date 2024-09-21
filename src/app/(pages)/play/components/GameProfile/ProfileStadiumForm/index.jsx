@@ -6,7 +6,9 @@ import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/us
 import { useTranslation } from 'react-i18next'
 
 const ProfileStadiumForm = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
+  
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
@@ -17,7 +19,7 @@ const ProfileStadiumForm = () => {
   )
   const { currentTour } = useSelector((state) => state.tours)
   const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -35,11 +37,11 @@ const ProfileStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning('Kapitan tanlanmagan')
+      toast.warning(t("Kapitan tanlanmagan"))
       return
     }
     if (captains.length > 1) {
-      toast.warning('Ko`p kapitan tanlangan')
+      toast.warning(t("Ko`p kapitan tanlangan"))
       return
     }
 
@@ -52,7 +54,7 @@ const ProfileStadiumForm = () => {
       playersCount.STR < 2 ||
       playersCount.STR > 3
     ) {
-      toast.error('Jamoa formatsiyasi notogri')
+      toast.error(t("Jamoa formatsiyasi notogri"))
       return
     }
 
@@ -63,10 +65,10 @@ const ProfileStadiumForm = () => {
     })
 
     if (!error && !isLoading) {
-      toast.success('Kapitan yangilandi')
+      toast.success(t("Kapitan yangilandi"))
     }
   }
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   return (
     <form
       onSubmit={handleSubmit}
@@ -82,7 +84,7 @@ const ProfileStadiumForm = () => {
           value=""
           className="checked:bg-neutral-700 active:bg-neutral-800"
         >
-          Kapitan
+          {t("Kapitan")}
         </option>
         {teamConcat.map(
           (player) =>
