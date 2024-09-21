@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useTranslation } from 'react-i18next'
 
 const PaymePaymentOption = ({
   setPaymentOption,
@@ -7,6 +8,7 @@ const PaymePaymentOption = ({
   active,
   passive,
 }) => {
+  const { t } = useTranslation()
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.PAYME)}
@@ -22,7 +24,7 @@ const PaymePaymentOption = ({
       />
       <div className="w-full self-center text-center">
         <h4 className="text-lg font-medium">Payme</h4>
-        <p className="text-sm text-neutral-400">Payme orqali tolov qilish</p>
+        <p className="text-sm text-neutral-400">{t("Payme orqali tolov qilish")}</p>
       </div>
     </div>
   )

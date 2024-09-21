@@ -3,11 +3,14 @@ import ClickUpPaymentOption from './ClickUp'
 import PaymePaymentOption from './Payme'
 import { useState } from 'react'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useTranslation } from 'react-i18next'
+
 
 const PaymentOptions = ({ toggleModal }) => {
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
+  const { t } = useTranslation()
 
   return (
     <div className="mt-4">
@@ -16,7 +19,7 @@ const PaymentOptions = ({ toggleModal }) => {
           2
         </span>
         <h3 className="text-lg font-medium sm:text-xl">
-          Qanday qilib tolov qilmoqchisiz?
+        {t("To'lov usulini tanlang")}
         </h3>
       </div>
       <section className="flex flex-wrap justify-center gap-4 sm:justify-start md:gap-6">

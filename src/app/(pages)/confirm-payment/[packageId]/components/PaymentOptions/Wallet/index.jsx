@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
-
+import { useTranslation } from 'react-i18next'
 const WalletPaymentOption = ({
   setPaymentOption,
   paymentOption,
@@ -8,6 +8,7 @@ const WalletPaymentOption = ({
   passive,
   toggleModal,
 }) => {
+  const { t } = useTranslation()
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.WALLET)}
@@ -22,17 +23,17 @@ const WalletPaymentOption = ({
         alt="wallet"
       />
       <div className="w-full self-center text-center">
-        <h4 className="text-lg font-medium">Proliga hisobi</h4>
+        <h4 className="text-lg font-medium">{t("Proliga hisobi")}</h4>
         <p className="text-sm text-neutral-400">
-          Hisobda: <span className="font-bold text-neutral-50">4000 </span>
-          so&apos;m
+          {t("Hisobda")}: <span className="font-bold text-neutral-50">4000 </span>
+          {t("so'm")}
         </p>
       </div>
       <button
         onClick={toggleModal}
         className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
       >
-        Hisobni toldirish
+        {t("Hisobni toldirish")}
       </button>
     </div>
   )
