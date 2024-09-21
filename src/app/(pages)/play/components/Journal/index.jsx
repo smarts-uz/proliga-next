@@ -1,14 +1,16 @@
 import Gutter from '../../../../../components/Gutter'
 import { useTranslation } from 'react-i18next'
+import TopTeams from '../TopTeams'
 
 const Journal = () => {
   const { t } = useTranslation()
+
   return (
     <Gutter>
-      <div className="flex gap-4">
+      <div className="mt-4 flex min-h-[36rem] w-full gap-4 text-sm md:text-base">
         <section className="flex w-full flex-col rounded-2xl bg-black p-6 text-neutral-300 md:w-2/3">
           <div className="">
-            {data.map((item, index) => (
+            {/* {data.map((item, index) => (
               <div
                 key={index}
                 className="flex gap-4 border-b border-neutral-700 py-2 text-neutral-200"
@@ -16,94 +18,21 @@ const Journal = () => {
                 <p>{item.date}</p>
                 <p>{item.text}</p>
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="flex items-center justify-between py-4">
-            <button className="capitalize text-white hover:underline">
-              {t("Oldigisi")}
+            <button className="rounded border px-4 py-1 capitalize text-white hover:underline">
+              {t('Oldigisi')}
             </button>
-            <div className="flex gap-2">
-              <button className="rounded border bg-white px-2 py-1 text-black">
-                1
-              </button>
-              <button className="rounded border px-2 py-1">2</button>
-              <button className="rounded border px-2 py-1">3</button>
-            </div>
-            <button className="capitalize text-white hover:underline">
-              {t("Keyingisi")}
+            <button className="rounded border px-4 py-1 capitalize text-white hover:underline">
+              {t('Keyingisi')}
             </button>
           </div>
         </section>
-        {/* <div className="flex h-min w-1/3 flex-col gap-8">
-          <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-            <h3 className="text-xl font-bold">ENG KUCHLI TOP 3 - JAMOALAR</h3>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-            </div>
-          </div>
-          <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-            <h3 className="text-xl font-bold">
-              ENG KUCHLI TOP 3 - Futbolchilar
-            </h3>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-            </div>
-          </div>
-        </div> */}
+        <TopTeams />
       </div>
     </Gutter>
   )
 }
-
-const data = [
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-  {
-    date: '16.09.24 | 16:24 da',
-    text: '“Real” futbolchisi Mbappe sotib olindi',
-  },
-]
 
 export default Journal

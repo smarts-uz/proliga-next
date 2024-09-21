@@ -25,9 +25,9 @@ const GameBrief = () => {
   const month = date.toLocaleString('default', { month: 'long' })
   const hours = date.getHours()
   const minutes = date.getMinutes()
-  
+
   return (
-    <section className="fade-in-fast mx-auto flex h-min w-full max-w-[30rem] flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all hover:border-opacity-100 md:max-w-[40rem] lg:mx-0 lg:w-1/2">
+    <section className="fade-in-fast mx-auto flex h-min w-full max-w-[32rem] flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all hover:border-opacity-100 md:max-w-[40rem] lg:mx-0 lg:w-1/2 xl:w-[55%]">
       <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100"> {t('Keyingi Tur')}</p>

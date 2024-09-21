@@ -77,7 +77,8 @@ export const deleteTeamPlayerReducer = (state, action) => {
 }
 
 export const addTeamPlayerReducer = (state, action) => {
-  const { player, team, teamConcat, maxTeamPlayers = 2 } = action.payload
+  const { player, team, teamConcat } = action.payload
+  const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
   const calcTeamPrice = () => {
     state.teamPrice =

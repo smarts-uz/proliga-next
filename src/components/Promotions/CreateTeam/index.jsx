@@ -11,15 +11,17 @@ const PromotionCreateTeam = () => {
           <div className="mt-8 flex flex-1 flex-col flex-wrap">
             <div className="mb-6 w-5/6 max-w-[24rem] -skew-x-12 self-start rounded-sm bg-primary md:mb-12 md:max-w-[32rem]">
               <h3 className="promotion-header text-center font-bold capitalize text-black">
-              {t("Umumiy qoidalar")}
+                {t('Umumiy qoidalar')}
               </h3>
             </div>
             <div className="flex flex-col flex-wrap justify-center gap-4 self-center md:self-start lg:pl-8">
               <h2 className="promotion-header font-bold uppercase">
-              {t("jamoa yig'ing")}
+                {t("jamoa yig'ing")}
               </h2>
               <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
-              {t("100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang")}
+                {t(
+                  "100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang"
+                )}
               </p>
               <div className="relative hidden h-full w-full self-start md:block">
                 <Image
@@ -28,6 +30,7 @@ const PromotionCreateTeam = () => {
                   alt="footballers images"
                   className="h-full w-full"
                   src="/images/footballers-tile.png"
+                  unoptimized
                 />
               </div>
             </div>

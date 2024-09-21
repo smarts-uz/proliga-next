@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { useGetPlayerStats } from 'app/hooks/statistics/useGetPlayerStats/useGetPlayerStats'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import TopTeams from '../TopTeams'
+
 const Statistics = () => {
   const [players, setPlayers] = useState([])
   const { statistics } = useSelector((state) => state.statistics)
@@ -22,12 +24,12 @@ const Statistics = () => {
   return (
     <Gutter>
       <section className="flex gap-4">
-        <div className="h-min max-h-[36rem] min-h-[36rem] table-auto overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/3">
+        <div className="h-min max-h-[36rem] min-h-[36rem] w-full table-auto overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-xs text-neutral-200 sm:text-sm md:w-2/3 md:text-base">
           <table class="w-full table-auto border-spacing-0">
             <thead>
               <tr>
-                <th>{t("O‘yinchi")}</th>
-                <th>{t("Pozitsiya")}</th>
+                <th>{t('O‘yinchi')}</th>
+                <th>{t('Pozitsiya')}</th>
                 <th title="Goal">G</th>
                 <th title="Goal Assist">GA</th>
                 <th title="Missed Penalty">MP</th>
@@ -54,26 +56,7 @@ const Statistics = () => {
           </table>
           <div className="h-4" />
         </div>
-        {/* <div className="flex h-min w-1/3 flex-col gap-8">
-          <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-            <h3 className="text-xl font-bold">ENG KUCHLI TOP 3 - JAMOALAR</h3>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-            </div>
-          </div>
-          <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-            <h3 className="text-xl font-bold">
-              ENG KUCHLI TOP 3 - Futbolchilar
-            </h3>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-              <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-            </div>
-          </div>
-        </div> */}
+        <TopTeams />
       </section>
     </Gutter>
   )

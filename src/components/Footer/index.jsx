@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
           <span className="hidden rounded-md border-2 border-neutral-300 xl:block" />
           <div className="flex min-w-80 flex-col gap-4">
-            <Link href="/" className="hover:underline">
+            <Link href="/regulation" className="hover:underline">
               {t('Qoidalarimiz va maxfiylik')}
             </Link>
             <Link href="/" className="hover:underline">
@@ -38,9 +38,9 @@ const Footer = () => {
                   className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
-              <Link href="https://www.facebook.com">
+              <Link href="mailto:proliga.uz1@gmail.com">
                 <Image
-                  src={'/icons/facebook.svg'}
+                  src={'/icons/mail.svg'}
                   alt="facebook"
                   width={24}
                   height={24}
