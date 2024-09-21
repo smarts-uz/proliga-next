@@ -1,11 +1,8 @@
 const PriceFilter = ({ column, columnFilterValue }) => {
   return (
-    <div className="col-span-1 text-sm md:text-base flex w-full items-center gap-0.5 md:gap-1">
-      {/* <h3 className="mr-1 hidden text-sm font-semibold md:block md:text-base">
-        Narx
-      </h3> */}
+    <div className="flex w-full items-center gap-0.5 text-sm sm:col-span-1 md:gap-1 md:text-base">
       <select
-        className="h-8 min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 md:px-1 text-neutral-200 w-full md:min-w-max"
+        className="h-8 w-full min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 md:min-w-max md:px-1"
         onChange={(e) =>
           column.setFilterValue(() => ({
             min: e.target.value,
@@ -25,7 +22,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
         ))}
       </select>
       <select
-        className="h-8 min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 md:px-1 text-neutral-200 w-full md:min-w-max"
+        className="h-8 w-full min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 md:min-w-max md:px-1"
         onChange={(e) =>
           column.setFilterValue(() => ({
             min: columnFilterValue?.min ?? MIN[0],

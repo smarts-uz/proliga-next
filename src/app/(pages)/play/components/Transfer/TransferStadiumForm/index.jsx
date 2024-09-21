@@ -127,7 +127,7 @@ const TransferStadiumForm = () => {
         )}
       </select>
       {teamCreateBtns && (
-        <>
+        <div className="flex w-full max-w-[25%] gap-1">
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -143,9 +143,6 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">
-              {t('Avto yigish')}
-            </p>
           </motion.button>
           <motion.button
             initial={{ opacity: 0 }}
@@ -153,7 +150,7 @@ const TransferStadiumForm = () => {
             type="button"
             onClick={() => dispatch(clearTeamPlayers())}
             title="jamoani tozalash"
-            className="flex w-16 max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+            className="flex w-full max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
           >
             <Image
               src="/icons/trash.svg"
@@ -163,11 +160,8 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-            <p className="hidden sm:block lg:hidden xl:block">
-              {t('Jamoa tozalash')}
-            </p>
           </motion.button>
-        </>
+        </div>
       )}
       <button
         type="submit"
