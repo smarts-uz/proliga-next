@@ -18,7 +18,7 @@ const {t} = useTranslation()
             className={`flex-1 select-none rounded py-1.5 text-sm font-medium capitalize transition-all ${currentTab === tabs.login ? active : passive}`}
             onClick={() => setCurrentTab(tabs.login)}
           >
-            {t("Tizimga kirish")}
+            {t("Tizimga kirish_1")}
           </button>
           <button
             className={`flex-1 select-none rounded py-1.5 text-sm font-medium transition-all ${currentTab === tabs.signup ? active : passive}`}

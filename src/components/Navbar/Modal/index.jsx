@@ -190,7 +190,7 @@ const MobileModal = ({ onCancel }) => {
                   width={24}
                   height={24}
                 />
-                <p>{t("Tizimga Kirish")}</p>
+                <p>{t("Tizimga kirish_1")}</p>
               </NavLink>
             </>
           )}
