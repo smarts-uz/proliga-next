@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
+import { useTranslation } from 'react-i18next'
 
 const LoginForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -51,21 +52,21 @@ const LoginForm = ({ onClick }) => {
       setActive(false)
     }
   }, [active, router, userAuth, userTable])
-
+  const { t } = useTranslation()
   return (
     <form
       onSubmit={handleSubmit}
       className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
     >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
-        Tizimga kirish
+        {t("Tizimga kirish_1")}
       </h2>
       <div className="relative flex flex-col gap-1">
         <label htmlFor="username" className="text-xs md:text-base">
-          Login:
+          {t("Login")}:
         </label>
         <PhoneInput
-          placeholder="Telefon raqam"
+          placeholder={t("Telefon raqam")}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-neutral-200 placeholder:text-neutral-500"
           value={phone}
@@ -74,13 +75,13 @@ const LoginForm = ({ onClick }) => {
       </div>
       <div className="relative flex flex-col gap-1">
         <label htmlFor="password" className="text-xs md:text-base">
-          Parol:
+          {t("Parol")}:
         </label>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
           id="password"
-          placeholder="Parol"
+          placeholder={t("Parol")}
           className="auth-input pl-9"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -114,7 +115,7 @@ const LoginForm = ({ onClick }) => {
         onClick={onClick}
         className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
-        Akkaunt ochish?
+        {t("Ro'yxatdan o'tish")}
       </button>
       <button
         type="submit"
@@ -130,7 +131,7 @@ const LoginForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          'Kirish'
+          t("Tizimga kirish_2")
         )}
       </button>
     </form>
