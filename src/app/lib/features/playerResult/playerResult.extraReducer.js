@@ -7,6 +7,7 @@ export const playerResultExtraReducer = (builder) => {
     })
     .addCase(fetchPlayerResult.fulfilled, (state, action) => {
       state.isLoading = false
+      state.players = []
       state.players = action.payload.data
     })
     .addCase(fetchPlayerResult.rejected, (state, action) => {

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import SliderPin from './Slide/pin'
 import { useTranslation } from 'react-i18next'
 const Carousel = () => {
+  const { t } = useTranslation()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [active, setActive] = useState(false)
   const [imageAnimation, setImageAnimation] = useState('fade-in')
@@ -42,53 +43,47 @@ const Carousel = () => {
     const interval = setInterval(nextSlide, 5000)
     return () => clearInterval(interval)
   }, [])
-  const { t } = useTranslation()
-const data = [
-  
-  {
-    header: t("Umumiy qoidalar"),
-    title: t("jamoa yig'ing"),
-    description:
-    t("promotion_text"),
-    images: '/images/promotion-1.png',
-    mainImage: '/images/footballers-tile.png',
-    type: 1,
-  },
-  {
-    title: t("Ochkolar yiging"),
-    description:
-    t("Har bir o'yinchi"),
-    mainImage: '/images/promotion-2.png',
-    type: 2,
-  },
-  {
-    header: t("Umumiy qoidalar"),
-    title: t('Transferlarni amalga oshiring'),
-    description:
-    t('Agar sizning jamoangizdagi'),
-    images: '/images/transfer-removebg-preview.png',
-    mainImage: '/images/promotion-transfer.png',
-    type: 3,
-  },
-  {
-    header: t("Raqobatlashing"),
-    description: t("Boshqa foydalanuvchilar"),
-    mainImage: '/images/promotion-stats.png',
-    type: 4,
-  },
-  {
-    header: t("Sovrinlarni yutib oling"),
-    title:
-    t("Eng ko‘p ball"),
-    type: 5,
-    images: [
-      { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
-      { name: 'Playstation 5', img: '/images/promotion-price2.png' },
-      { name: 'TV Samsung  55', img: '/images/promotion-price3.png' },
-      { name: 'Apple iPad Pro ', img: '/images/promotion-price4.png' },
-    ],
-  },
-]
+  const data = [
+    {
+      header: t('Umumiy qoidalar'),
+      title: t("jamoa yig'ing"),
+      description: t('promotion_text'),
+      images: '/images/promotion-1.png',
+      mainImage: '/images/footballers-tile.png',
+      type: 1,
+    },
+    {
+      title: t('Ochkolar yiging'),
+      description: t("Har bir o'yinchi"),
+      mainImage: '/images/promotion-2.png',
+      type: 2,
+    },
+    {
+      header: t('Umumiy qoidalar'),
+      title: t('Transferlarni amalga oshiring'),
+      description: t('Agar sizning jamoangizdagi'),
+      images: '/images/transfer-removebg-preview.png',
+      mainImage: '/images/promotion-transfer.png',
+      type: 3,
+    },
+    {
+      header: t('Raqobatlashing'),
+      description: t('Boshqa foydalanuvchilar'),
+      mainImage: '/images/promotion-stats.png',
+      type: 4,
+    },
+    {
+      header: t('Sovrinlarni yutib oling'),
+      title: t('Eng ko‘p ball'),
+      type: 5,
+      images: [
+        { name: 'Iphone 15 Pro Max', img: '/images/promotion-price1.png' },
+        { name: 'Playstation 5', img: '/images/promotion-price2.png' },
+        { name: 'TV Samsung  55', img: '/images/promotion-price3.png' },
+        { name: 'Apple iPad Pro ', img: '/images/promotion-price4.png' },
+      ],
+    },
+  ]
   return (
     <section className="overflow-hidden bg-neutral-800">
       <Gutter>
@@ -150,25 +145,23 @@ const data = [
   )
 }
 
-
-  // {
-  //   header: 'Umumiy qoidalar',
-  //   title: "Jamoa yig'ing",
-  //   description:
-  //     "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-  //   images: '/promotions-tiles.png',
-  //   mainImage: '/images/promotion-3.png',
-  //   type: 3,
-  // },
-  //   {
-  //     header: 'Umumiy qoidalar',
-  //     title: "Jamoa yig'ing",
-  //     description:
-  //       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-  //     images: '/promotions-tiles.png',
-  //     mainImage: '/images/promotion-3.png',
-  //     type: 1,
-  //   },
-
+// {
+//   header: 'Umumiy qoidalar',
+//   title: "Jamoa yig'ing",
+//   description:
+//     "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+//   images: '/promotions-tiles.png',
+//   mainImage: '/images/promotion-3.png',
+//   type: 3,
+// },
+//   {
+//     header: 'Umumiy qoidalar',
+//     title: "Jamoa yig'ing",
+//     description:
+//       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+//     images: '/promotions-tiles.png',
+//     mainImage: '/images/promotion-3.png',
+//     type: 1,
+//   },
 
 export default Carousel

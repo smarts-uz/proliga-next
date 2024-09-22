@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { userActivityExtraReducer } from './userActivity.extraReducer'
 
 const initialState = {
   activities: [],
@@ -6,13 +7,10 @@ const initialState = {
   error: null,
 }
 
-const teamsSlice = createSlice({
+const userActivity = createSlice({
   name: 'teams',
   initialState,
-  reducers: {},
-  // extraReducers:,
+  extraReducers: userActivityExtraReducer,
 })
 
-export const { setTeams, addGameToTeam } = teamsSlice.actions
-
-export default teamsSlice.reducer
+export default userActivity.reducer

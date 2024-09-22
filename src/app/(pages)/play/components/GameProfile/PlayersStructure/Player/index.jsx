@@ -1,8 +1,20 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { useSelector } from 'react-redux'
 
-const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
+const Player = ({ player }) => {
+  const [currentPlayerPoint, setCurrentPlayerPoint] = useState()
+  const { playerPoint } = useSelector((state) => state.playerPoint)
+  console.log(currentPlayerPoint)
+
+  useEffect(() => {
+    if (playerPoint?.length > 0) {
+      setCurrentPlayerPoint(playerPoint.find((item) => item.player_id === player.player_id))
+    }
+  }, [playerPoint, player])
+
   const imageErr = (e) => {
     e.target.src = '/icons/player-tshirt.svg'
   }
@@ -53,20 +65,18 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              {additionalInfo && (
-                <button>
-                  <Image
-                    width={16}
-                    height={16}
-                    draggable={false}
-                    src="/icons/info.svg"
-                    alt="additional info"
-                    className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
-                  />
-                </button>
-              )}
+              <button>
+                <Image
+                  width={16}
+                  height={16}
+                  draggable={false}
+                  src="/icons/info.svg"
+                  alt="additional info"
+                  className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
+                />
+              </button>
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-primary text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
-                -
+                {currentPlayerPoint?.point ?? 0}
               </div>
             </div>
           </>

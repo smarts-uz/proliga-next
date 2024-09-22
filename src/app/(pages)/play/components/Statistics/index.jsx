@@ -5,7 +5,6 @@ import TopTeams from '../TopTeams'
 import { useDispatch } from 'react-redux'
 import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
 import StatisticsTable from './Table'
-import PlayersTable from '../Transfer/PlayersTable'
 import StatisticsPagination from './Pagination'
 
 const Statistics = () => {

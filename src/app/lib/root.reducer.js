@@ -1,7 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import AuthSlice from './features/auth/auth.slice.js'
 import CompetitionSlice from './features/competition/competition.slice.js'
-import StatisticsSlice from './features/statistics/statistics.slice.js'
 import PlayersSlice from './features/players/players.slice.js'
 import TeamSlice from './features/teams/teams.slice.js'
 import CurrentTeamSlice from './features/currentTeam/currentTeam.slice.js'
@@ -19,7 +18,6 @@ import PlayerResultSlice from './features/playerResult/playerResult.slice.js'
 export const rootReducer = combineReducers({
   auth: AuthSlice,
   competition: CompetitionSlice,
-  statistics: StatisticsSlice,
   players: PlayersSlice,
   teams: TeamSlice,
   teamPlayers: TeamPlayersSlice,
