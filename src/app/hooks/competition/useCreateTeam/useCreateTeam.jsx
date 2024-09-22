@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { addGameToTeam } from 'app/lib/features/teams/teams.slice'
-
+import { useTranslation } from 'react-i18next'
 export const useCreateTeam = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
@@ -12,27 +12,27 @@ export const useCreateTeam = () => {
   const [data, setData] = useState(null)
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const router = useRouter()
-
+  const { t } = useTranslation()
   const createTeam = async ({ title, formation, competition_id }) => {
     setIsLoading(false)
     setError(null)
 
     if (!userTable && !userAuth) {
-      setError('You must be logged in to create a team')
-      toast.error('You must be logged in to create a team')
+      setError('"Jamoa tuzish uchun tizimga kirishingiz kerak')
+      toast.error(t("Jamoa tuzish uchun tizimga kirishingiz kerak"))
       router.push('/auth')
       return
     }
 
     if (!title) {
-      setError('Ism bolishi shart')
-      toast.error('ism bolishi shart')
+      setError("Ism bolishi shart")
+      toast.error(t("Ism bolishi shart"))
       return
     }
 
     if (!formation) {
-      setError('Taktika bolishi shart')
-      toast.error('Taktika bolishi shart')
+      setError("Taktika bolishi shart")
+      toast.error(t("Taktika bolishi shart"))
       return
     }
 
@@ -57,7 +57,7 @@ export const useCreateTeam = () => {
       if (data) {
         setData(data[0])
         dispatch(addGameToTeam(data[0]))
-        toast.success('Jamoa muvaffaqiyatli yaratildi')
+        toast.success(t("Jamoa muvaffaqiyatli yaratildi"))
       }
     } catch (error) {
       setError(error.message)

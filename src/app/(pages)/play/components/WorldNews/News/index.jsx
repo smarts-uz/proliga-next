@@ -28,7 +28,7 @@ const News = () => {
         ))}
         {news?.length === 0 && (
           <p className="mt-2 text-center text-neutral-400">
-            Yangiliklar mavjud emas!
+            {t("Yangiliklar mavjud emas!")}
           </p>
         )}
       </div>

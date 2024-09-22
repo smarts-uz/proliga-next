@@ -4,13 +4,13 @@ import LeagueModal from '../Modal/index'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-
+import { useTranslation } from 'react-i18next'
 const Championship = ({ game }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
   const router = useRouter()
   const { teams } = useSelector((state) => state.teams)
-
+  const { t } = useTranslation()
   const toggleModal = useCallback(() => {
     if (isModalOpen) {
       setModalOpen(false)
@@ -38,7 +38,7 @@ const Championship = ({ game }) => {
         toggleModal(true)
       }
     } else {
-      toast.warning('Bu liga hozr active emas')
+      toast.warning(t("Bu liga hozr active emas"))
     }
   }
 

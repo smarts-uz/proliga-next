@@ -2,12 +2,13 @@ import { supabase } from 'app/lib/supabaseClient'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 export const useUploadFile = () => {
   const [error, setError] = useState(null)
   const { userAuth } = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = useState(false)
-
+  const { t } = useTranslation()
   const uploadFile = async (file) => {
     try {
       setIsLoading(true)
@@ -21,7 +22,7 @@ export const useUploadFile = () => {
           })
         if (data) {
           localStorage.setItem('photo_path', data.path)
-          toast.success("Su'rat taxrirlandi")
+          toast.success(t("Su'rat taxrirlandi"))
         }
         if (error) {
           setError(error.message)
@@ -37,12 +38,12 @@ export const useUploadFile = () => {
           })
         if (data) {
           localStorage.setItem('photo_path', data.path)
-          toast.success("Su'rat qo'shildi")
+          toast.success(t("Su'rat qo'shildi"))
         }
 
         if (error) {
           setError(error.message)
-          toast.warning("Surat qo'shishda xatolik")
+          toast.warning(t("Surat qo'shishda xatolik"))
           return
         }
       }

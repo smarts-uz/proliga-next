@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import ArticleModal from '../Modal'
-
+import { useTranslation } from 'react-i18next'
 const Article = ({ item }) => {
   const [isModalOpen, setModalOpen] = useState(false)
 
@@ -23,7 +23,7 @@ const Article = ({ item }) => {
   const day = date.getDate()
   const month = date.toLocaleString('default', { month: 'long' })
   const year = date.getFullYear()
-
+  const { t } = useTranslation()
   return (
     <>
       <article
@@ -45,7 +45,7 @@ const Article = ({ item }) => {
           {item.name}
         </h5>
         <p className="mt-2 text-end text-sm capitalize text-yellow-600 group-hover:text-primary">
-          yangiliklarni ko&apos;rsatish
+        {t("Yangiliklarni ko'rsatish")}
         </p>
         <hr />
       </article>

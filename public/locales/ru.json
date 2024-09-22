@@ -173,7 +173,7 @@
   "Jamoangizni nomi": "Назовите свою команду",
   "Jamoa muvaffaqiyatli yaratildi": "Команда создана успешно",
   "Jamoa tozalash": "Сброс команды",
-  "Yangiliklar mavjud emas!": "Новостей нет",
+  "Yangiliklar mavjud emas!": "Новостей нет!",
   "Barchasi": "Все",
   "Darvazabon": "Вратарь",
   "Himoyachi": "Защитник",
@@ -306,5 +306,15 @@
   "Tizimga kirish_1": "Авторизация",
   "Tizimga kirish_2": "Войти",
   "competition_id": null,
-  "Akkaunt Ochish": "Зарегистрироваться"
+  "Akkaunt Ochish": "Зарегистрироваться",
+  "Yangiliklarni ko'rsatish": "Посмотреть новости",
+  "Keyingi": "Следующий",
+  "Eng kuchli top 3 jamoalar": "Топ 3 - сильнейших команд",
+  "Eng kuchli top 3 - futbolchilar": "Топ 3 - сильнейших игроков",
+  "Hammasi": "Все",
+  "Parol Yangilash": "Обновление пароля",
+  "Eski parol": "Старый пароль",
+  "Yangi parol": "Новый пароль",
+  "Yangi parolni qayta kiriting": "Повторите новый пароль",
+  "O‘zgarishlarni saqlash": "Сохранить изменения"
 }

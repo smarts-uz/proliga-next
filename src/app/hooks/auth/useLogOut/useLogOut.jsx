@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import {
   setUserAuth,
   setUserTable,
@@ -11,7 +12,7 @@ export const useLogOut = () => {
   const dispatch = useDispatch()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const router = useRouter()
-
+const { t } = useTranslation()
   const logOut = async () => {
     try {
       dispatch(setUserAuth(null))
@@ -26,7 +27,7 @@ export const useLogOut = () => {
     } catch (error) {
       toast.error(error.message)
     } finally {
-      toast.success('Tizimdan chiqdingiz')
+      toast.success(t("Tizimdan chiqdingiz"))
     }
   }
 
