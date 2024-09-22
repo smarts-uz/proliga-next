@@ -9,11 +9,13 @@ import { fetchCompetition } from 'app/lib/features/competition/competition.thunk
 import { selectCompetition } from 'app/lib/features/competition/competition.selector'
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { useTranslation } from 'react-i18next'
+
 const Championships = () => {
   const dispatch = useDispatch()
   const { userTable } = useSelector((state) => state.auth)
   const selectedCompetition = useSelector(selectCompetition)
   const { isLoading } = useSelector((state) => state.competition)
+  const { t } = useTranslation()
   const { season } = useSelector((state) => state.season)
 
   useEffect(() => {
@@ -31,7 +33,6 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable, season.id])
-  const { t } = useTranslation()
   return (
     <Gutter>
       <section className="my-8 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">
