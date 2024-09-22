@@ -147,7 +147,7 @@
   "user_activity_player_buy": "{team_name} uchun {club_name} klubi  futbolchisi {new_player_name}  {club_name}  futbolchisi {old_player_name} orniga qo'shildi ",
   "Eng ko'p ball to'plagan foydalanuvchilar sovg'alarga ega bo'lishadi.": "Eng ko'p ball to'plagan foydalanuvchilar sovg'alarga ega bo'lishadi.",
   "Profil": "Profil",
-  "promotion_text": "\r\n100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
+  "promotion_text": "100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
   "Turnir": "Turnir",
   "Transferlarni amalga oshirin": "Transferlarni amalga oshirin",
   "Qoidalarimiz va maxfiylik": "Qoidalarimiz va maxfiylik",
@@ -306,5 +306,15 @@
   "Tizimga kirish_1": "Tizimga kirish",
   "Tizimga kirish_2": "Tizimga kirish",
   "competition_id": "<h1>&ldquo;Yigitlarni o&lsquo;limning og&lsquo;ziga olib borishgan&rdquo; &ndash; M25 konida halok bo&lsquo;lganlarning yaqinlari</h1>\r\n<div>\r\n<p dir=\"auto\">17 sentabr kuni Boysundagi M25 konida sodir bo&lsquo;lgan avariya 4 kishini hayotdan olib ketdi. Marhumlarning yaqinlariga ko&lsquo;ra, konning boshqa quduqlarida ishlovchi xodimlar o&lsquo;sha kuni tozalash ishlarini bajarish uchun &ldquo;og&lsquo;zi yopilgan&rdquo; quduqqa jalb qilingan. Kutilmagan avariya esa halokatli yakunlangan. Boysunda bo&lsquo;lib turgan Kun.uz muxbiri marhumlarning yaqinlari bilan suhbatlashdi.</p>\r\n<figure><iframe src=\"https://www.youtube.com/embed/z-ag6h_ugn8\" width=\"800\" height=\"450\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\" data-mce-fragment=\"1\"></iframe></figure>\r\n<p dir=\"auto\">M25 konida avariya sodir bo&lsquo;lishi oqibatida 4 kishi halok bo&lsquo;lgan va 11 kishi jarohatlangandi. Kun.uz muxbiri baxtsiz hodisada halok bo&lsquo;lgan xodimlarning yaqinlari bilan suhbatlashdi.</p>\r\n<p dir=\"auto\">Marhumlarning yaqinlari bu halokatda texnik nosozlik deyilgani bilan mas&rsquo;ullarning ham aybi borligini, ishchilarni bir necha kun o&lsquo;tmasdan &ldquo;zalivka&rdquo; qilingan quduq yoniga olib borishganini aytishmoqda.</p>\r\n<p dir=\"auto\">Jumladan, marhumlardan birining qarindoshi Salomat Tangirqulova shunday deydi:</p>\r\n<p dir=\"auto\">&ldquo;<em>Birinchi portlash 1 sentabrda bo&lsquo;ldi. Ha</em></p>\r\n</div>",
-  "Akkaunt Ochish": "Akkaunt Ochish"
+  "Akkaunt Ochish": "Akkaunt Ochish",
+  "Yangiliklarni ko'rsatish": "Yangiliklarni ko'rsatish",
+  "Keyingi": "Keyingi",
+  "Eng kuchli top 3 jamoalar": "Eng kuchli top 3 jamoalar",
+  "Eng kuchli top 3 - futbolchilar": "Eng kuchli top 3 - futbolchilar",
+  "Hammasi": "Hammasi",
+  "Parol Yangilash": "Parol Yangilash",
+  "Eski parol": "Eski parol",
+  "Yangi parol": "Yangi parol",
+  "Yangi parolni qayta kiriting": "Yangi parolni qayta kiriting",
+  "O‘zgarishlarni saqlash": "O‘zgarishlarni saqlash"
 }

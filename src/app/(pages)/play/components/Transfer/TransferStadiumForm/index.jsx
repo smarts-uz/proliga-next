@@ -40,7 +40,8 @@ const TransferStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          `identifikatori ${player.id} bo'lgan va ${player.position} holatidagi o'yinchi yaroqsiz`
+          
+          t("identifikatori") + player.id + t("bo'lgan va") + player.position + t("holatidagi o'yinchi yaroqsiz")
         )
         return
       }

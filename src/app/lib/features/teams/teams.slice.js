@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { teamsExtraReducer } from './teams.extraReducer'
 
 const initialState = {
+  allTeams: [],
+  teamsLoading: false,
+  teamsError: null,
   teams: [],
   isLoading: false,
   error: null,

@@ -3,13 +3,14 @@ import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 const Championship = ({ game }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
   const router = useRouter()
   const { teams } = useSelector((state) => state.teams)
-
+  const { t } = useTranslation()
   const toggleModal = useCallback(() => {
     if (isModalOpen) {
       setModalOpen(false)
@@ -30,10 +31,14 @@ const Championship = ({ game }) => {
   }, [teams, game.id])
 
   const handleClick = () => {
-    if (currentGame) {
-      router.push(`/play/${game.slug}/${currentGame.id}`)
+    if (game.can_register) {
+      if (currentGame) {
+        router.push(`/play/${game.slug}/${currentGame.id}`)
+      } else {
+        toggleModal(true)
+      }
     } else {
-      toggleModal(true)
+      toast.warning(t("Bu liga hozr active emas"))
     }
   }
 
@@ -58,7 +63,7 @@ const Championship = ({ game }) => {
           </h3>
         </div>
       </article>
-      {isModalOpen && (
+      {game.can_register && isModalOpen && (
         <LeagueModal toggleModal={toggleModal} competition={game} />
       )}
     </>

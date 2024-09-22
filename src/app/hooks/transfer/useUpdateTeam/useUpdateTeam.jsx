@@ -3,21 +3,21 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setCurrentTeamCreated } from 'app/lib/features/currentTeam/currentTeam.slice'
-
+import { useTranslation } from 'react-i18next'
 export const useUpdateTeam = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { userAuth } = useSelector((state) => state.auth)
-
+  const { t } = useTranslation()
   const updateTeam = async ({ team_id }) => {
     setIsLoading(false)
     setError(null)
 
     if (!team_id) {
-      setError('Team ID kiritilmagan!')
-      toast.error('Team ID kiritilmagan!')
+      setError(t("Jamoa ID kiritilmagan!"))
+      toast.error(t("Jamoa ID kiritilmagan!"))
     }
 
     try {

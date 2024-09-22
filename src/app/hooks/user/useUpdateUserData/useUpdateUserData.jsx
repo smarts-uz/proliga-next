@@ -3,11 +3,12 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setUserAuth } from 'app/lib/features/auth/auth.slice'
+import { useTranslation } from 'react-i18next'
 export const useUpdateUserData = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const { userAuth } = useSelector((state) => state.auth)
-
+  const { t } = useTranslation()
   const updateData = async (
     firstName,
     lastName,
@@ -41,7 +42,7 @@ export const useUpdateUserData = () => {
       if (data?.user && data?.session) {
         dispatch(setUserAuth(data))
         setData(data)
-        toast.success("ma'lumot taxrirlandi")
+        toast.success(t("ma'lumot taxrirlandi"))
       }
     } catch (error) {
       setError(error.message)

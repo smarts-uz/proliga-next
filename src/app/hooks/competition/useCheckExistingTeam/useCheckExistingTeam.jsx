@@ -3,28 +3,28 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
-
+import { useTranslation } from 'react-i18next'
 export const useCheckExistingTeam = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const router = useRouter()
-
+  const { t } = useTranslation()
   const checkTeam = async ({ competition_id, season_id }) => {
     setIsLoading(false)
     setError(null)
 
     if (!userTable && !userAuth) {
-      setError('You must be logged in to create a team')
-      toast.error('You must be logged in to create a team')
+      setError("Jamoa tuzish uchun avtorizatsiya qilish kerak")
+      toast.error(t("Jamoa tuzish uchun avtorizatsiya qilish kerak"))
       router.push('/auth')
       return
     }
 
     if (!competition_id || !season_id) {
-      setError('Competition and season are required')
-      toast.error('Competition and season are required')
+      setError("Musobaqa va mavsum majburiy")
+      toast.error(t("Musobaqa va mavsum majburiy"))
       return
     }
 

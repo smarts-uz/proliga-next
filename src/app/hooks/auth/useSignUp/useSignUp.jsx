@@ -17,16 +17,17 @@ export const useSignUp = () => {
 
     if (password.length < 6) {
       setError("Parol 6 ta belgidan kam bo'lmaydi")
-      toast.error("Parol 6 ta belgidan kam bo'lmasligi kerak")
+      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"))
+      
       return
     }
     if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
-      return toast.error("Barcha maydonlar to'ldirilishi shart")
+      return toast.error(t("Barcha maydonlar to'ldirilishi shart"))
     }
     if (password !== confirmPassword) {
       setError('Parollar mos kelmadi')
-      toast.error('Parollar mos kelmadi')
+      toast.error(t("Parollar mos kelmadi"))
       return
     }
 
@@ -45,7 +46,7 @@ export const useSignUp = () => {
       if (data?.user && data?.session) {
         setData(data)
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        toast.success('Tizimga muvaffaqiyatli kirdingiz')
+        toast.success(t("Tizimga muvaffaqiyatli kirdingiz"))
         dispatch(setUserAuth(data))
       }
     } catch (error) {

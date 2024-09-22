@@ -20,7 +20,7 @@ const PromotionCreateTeam = () => {
               </h2>
               <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
                 {t(
-                  "100 millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang"
+                  "promotion_text"
                 )}
               </p>
               <div className="relative hidden h-full w-full self-start md:block">

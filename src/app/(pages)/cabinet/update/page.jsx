@@ -4,7 +4,7 @@ import Gutter from 'components/Gutter'
 import { useFormik } from 'formik'
 import { useUpdatePassword } from 'app/hooks/auth/useUpdatePassword/useUpdatePassword'
 import { useState } from 'react'
-
+import { useTranslation } from 'react-i18next'
 const UpdatePassword = () => {
   const { updatePassword, error, isLoading } = useUpdatePassword()
   const [showPassword, setShowPassword] = useState(false)
@@ -29,6 +29,7 @@ const UpdatePassword = () => {
       )
     } catch (error) {}
   }
+  const { t } = useTranslation()
   return (
     <Gutter>
       <div className="z-10 flex min-h-svh items-center justify-center pt-24 text-gray-200">
@@ -37,14 +38,14 @@ const UpdatePassword = () => {
           onSubmit={formik.handleSubmit}
         >
           <h3 className="texl-lg mb-4 text-center font-bold md:text-xl">
-            Parol Yangilash
+            {t("Parol Yangilash")}
           </h3>
           <div>
             <label
               className="mb-2 block text-sm font-bold text-neutral-300"
               htmlFor="oldPassword"
             >
-              Eski parol
+              {t("Eski parol")}
             </label>
             <input
               id="oldPassword"
@@ -60,7 +61,7 @@ const UpdatePassword = () => {
               className="mb-2 block text-sm font-bold text-neutral-300"
               htmlFor="newPassword"
             >
-              Yangi parol
+              {t("Yangi parol")}
             </label>
             <input
               id="newPassword"
@@ -76,7 +77,7 @@ const UpdatePassword = () => {
               className="mb-2 block text-sm font-bold text-neutral-300"
               htmlFor="confirmPassword"
             >
-              Yangi parolni qayta kiriting
+              {t("Yangi parolni qayta kiriting")}
             </label>
             <input
               id="confirmPassword"
@@ -92,7 +93,7 @@ const UpdatePassword = () => {
             type="submit"
             onClick={() => update()}
           >
-            Tahrirlash
+            {t("O‘zgarishlarni saqlash")}
           </button>
         </form>
       </div>

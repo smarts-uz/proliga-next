@@ -20,7 +20,7 @@ const NavigationTabs = () => {
 
       return dispatch(setTab(key))
     }
-    return toast.error('Tanlangan tab mavjud emas!')
+    return toast.error(t("Tanlangan tab mavjud emas!"))
   }
 
   return (

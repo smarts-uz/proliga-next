@@ -1,8 +1,9 @@
 import { supabase } from 'app/lib/supabaseClient'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-
+import { useTranslation } from 'react-i18next'
 export const useUpdatePassword = () => {
+  const { t } = useTranslation()
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -22,10 +23,10 @@ export const useUpdatePassword = () => {
         }
         if (data?.user) {
           setData(data)
-          toast.success("ma'lumot taxrirlandi")
+          toast.success(t("Ma'lumot taxrirlandi"))
         }
       } else {
-        toast.error('parolda xatolik')
+        toast.error(t("Parolda xatolik"))
       }
     } catch (error) {
       setError(error.message)

@@ -49,7 +49,7 @@ const data = [
     header: t("Umumiy qoidalar"),
     title: t("jamoa yig'ing"),
     description:
-    t("100 millionlik byudjetdan"),
+    t("promotion_text"),
     images: '/images/promotion-1.png',
     mainImage: '/images/footballers-tile.png',
     type: 1,
