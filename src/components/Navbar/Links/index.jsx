@@ -6,6 +6,8 @@ import { TABS } from 'app/utils/tabs.util'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
+import { TOUR } from 'app/utils/tour.util'
+import { act } from 'react'
 
 const PlayLinks = () => {
   const path = usePathname()
@@ -20,35 +22,35 @@ const PlayLinks = () => {
       {path.includes('play') && (
         <>
           <Tab
-            title={t("Profil")}
+            title={t('Profil')}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <Tab
-            title={t("Transferlar")}
+            title={t('Transferlar')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <Tab
-            title={t("Turnir")}
+            title={t('Turnir')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <Tab
-            title={t("Jurnal")}
+            title={t('Jurnal')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <Tab
-            title={t("Statistika")}
+            title={t('Statistika')}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -59,35 +61,35 @@ const PlayLinks = () => {
       {!path.includes('play') && lastVisitedTeam && (
         <>
           <TabLink
-            title={t("Profil")}
+            title={t('Profil')}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <TabLink
-            title={t("Transferlar")}
+            title={t('Transferlar')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <TabLink
-            title={t("Turnir")}
+            title={t('Turnir')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <TabLink
-            title={t("Jurnal")}
+            title={t('Jurnal')}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <TabLink
-            title={t("Statistika")}
+            title={t('Statistika')}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -99,19 +101,19 @@ const PlayLinks = () => {
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('championships') ? active : passive}`}
         href="/championships"
       >
-        {t("Chempionat")}
+        {t('Chempionat')}
       </Link>
       <Link
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
         href="/prizes"
       >
-        {t("Yutuqlar")}
+        {t('Yutuqlar')}
       </Link>
       <Link
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
         href="/regulation"
       >
-        {t("Qoida")}
+        {t('Qoida')}
       </Link>
     </section>
   )
@@ -119,13 +121,35 @@ const PlayLinks = () => {
 
 const Tab = ({ title, tab, passive, active, disabled }) => {
   const dispatch = useDispatch()
-  const { gameTab } = useSelector((state) => state.tours)
+  const { gameTab, currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+
+  console.log(
+    tab === TABS.Transfer && currentTour.status === TOUR.notStartedTransfer
+  )
+
+  const handleClick = () => {
+    if (currentTeam?.is_team_created && tab !== TABS.Transfer) {
+      dispatch(setTab(tab))
+    }
+    if (
+      tab === TABS.Transfer &&
+      currentTour.status === TOUR.notStartedTransfer
+    ) {
+      dispatch(setTab(tab))
+    }
+  }
+
+  const condition = currentTeam?.is_team_created
+    ? gameTab === tab
+      ? active
+      : passive
+    : disabled
 
   return (
     <button
-      className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${currentTeam?.is_team_created ? (gameTab === tab ? active : passive) : disabled}`}
-      onClick={() => currentTeam?.is_team_created && dispatch(setTab(tab))}
+      className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${condition}`}
+      onClick={handleClick}
     >
       {title}
     </button>

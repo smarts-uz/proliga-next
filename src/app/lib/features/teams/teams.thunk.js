@@ -1,13 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { supabase } from 'app/lib/supabaseClient'
 
-export const fetchTeams = createAsyncThunk(
+export const fetchUserTeams = createAsyncThunk(
   'teams/fetchTeams',
-  async ({ user_id }) => {
+  async ({ user_id, season_id }) => {
     const { data, error } = await supabase
       .from('team')
       .select('*')
       .eq('user_id', user_id)
+      .eq('season_id', season_id)
+
+    return { data, error }
+  }
+)
+
+export const fetchAllTeams = createAsyncThunk(
+  'teams/fetchAllTeams',
+  async ({ season_id, competition_id, page, perPage }) => {
+    let from = page * perPage
+    let to = from + perPage
+
+    const { data, error } = await supabase
+      .from('team')
+      .select('*, user_id(phone)')
+      .eq('season_id', season_id)
+      .eq('competition_id', competition_id)
+      .range(from, to)
+      .order('point', { ascending: true })
+
     return { data, error }
   }
 )

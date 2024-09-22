@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopTeams = () => {
   return (
-    <div className="flex h-min w-1/3 flex-col gap-8">
+    <div className="flex h-min w-full flex-col gap-8 lg:w-1/3">
       <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
         <h3 className="text-xl font-bold">ENG KUCHLI TOP 3 - JAMOALAR</h3>
         <div className="mt-4 grid grid-cols-3 gap-2">
