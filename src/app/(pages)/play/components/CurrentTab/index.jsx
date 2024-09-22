@@ -11,7 +11,6 @@ import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { useEffect } from 'react'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
-import { fetchNews } from 'app/lib/features/news/news.thunk'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
@@ -19,9 +18,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { season } = useSelector((state) => state.season)
   const { teamPrice } = useSelector((store) => store.teamPlayers)
-  const { currentCompetition } = useSelector((state) => state.competition)
 
   useEffect(() => {
     if (currentTeam?.is_team_created) {
@@ -30,10 +27,6 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       dispatch(setTab(TABS.Transfer))
     }
   }, [dispatch, currentTeam])
-
-  useEffect(() => {
-    dispatch(fetchNews())
-  }, [dispatch])
 
   useEffect(() => {
     if (userAuth && userTable && paramsId) {

@@ -15,7 +15,13 @@ const TransferTableBody = ({ table, flexRender }) => {
   )
 
   const handleAddPlayer = (player) => {
-    dispatch(addTeamPlayer({ player, team: currentTeam, teamConcat }))
+    dispatch(
+      addTeamPlayer({
+        player,
+        team: currentTeam,
+        teamConcat,
+      })
+    )
   }
   return (
     <tbody>

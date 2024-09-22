@@ -57,7 +57,7 @@ const Match = ({ match }) => {
       </div>
       <div className="flex w-full items-center gap-2">
         <Image
-          src={`/club-jpg/${awayClub?.slug}/app.jpeg`}
+          src={`/club-jpg/${awayClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
           height={48}

@@ -39,21 +39,21 @@ function PlayersTable() {
     columnHelper.accessor('name', {
       accessorKey: 'name',
       cell: (info) => info.getValue(),
-      header: t("Ism"),
+      header: t('Ism'),
       meta: {
         filterVariant: 'name',
       },
     }),
     columnHelper.accessor('club.name', {
       accessorKey: 'club.name',
-      header: t("Klub"),
+      header: t('Klub'),
       meta: {
         filterVariant: 'club',
       },
     }),
     columnHelper.accessor('price', {
       accessorKey: 'price',
-      header: t("Narx"),
+      header: t('Narx'),
       cell: (info) => info.renderValue(),
       filterFn: (row, id, filterValues) => {
         const price = row.getValue(id)
@@ -75,13 +75,13 @@ function PlayersTable() {
       accessorFn: (row) => row.point,
       id: 'point',
       cell: (info) => info.getValue(),
-      header: t("Ochko"),
+      header: t('Ochko'),
     }),
     columnHelper.accessor((row) => row.position, {
       accessorFn: (row) => row.position,
       id: 'position',
       cell: (info) => <i>{info.getValue()}</i>,
-      header: t("Poz"),
+      header: t('Poz'),
       meta: {
         filterVariant: 'position',
       },

@@ -4,13 +4,12 @@ import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam
 import { useEffect, useState } from 'react'
 import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 const CompetitionModal = ({ toggleModal, competition }) => {
-  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
   const [active, setActive] = useState(false)
@@ -55,7 +54,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex min-w-96 flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 md:p-6 lg:w-1/3"
+        className="mx-4 flex flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between pb-4">
