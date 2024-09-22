@@ -10,14 +10,7 @@ const initialState = {
 export const playersSlice = createSlice({
   name: 'players',
   initialState,
-  reducers: {
-    setPlayers: (state, action) => {
-      state.players = action.payload
-    },
-  },
   extraReducers: playersExtraReducer,
 })
-
-export const { setPlayers } = playersSlice.actions
 
 export default playersSlice.reducer

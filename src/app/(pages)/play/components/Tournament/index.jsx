@@ -4,7 +4,7 @@ import { fetchAllTeams } from 'app/lib/features/teams/teams.thunk'
 import { useDispatch } from 'react-redux'
 import Gutter from '../../../../../components/Gutter'
 import TopTeams from '../TopTeams'
-import TournamentTable from './PlayersTable'
+import TournamentTable from './Table'
 import TournamentPagination from './Pagination'
 
 const Tournament = () => {
@@ -37,7 +37,7 @@ const Tournament = () => {
   return (
     <Gutter>
       <section className="flex flex-col gap-4 lg:flex-row">
-        <div className="flex h-full max-h-[40rem] min-h-[40rem] w-full table-auto flex-col overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 md:w-2/3">
+        <div className="flex h-full max-h-[40rem] min-h-[40rem] w-full table-auto flex-col overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-neutral-200 lg:w-2/3">
           <TournamentTable />
           <TournamentPagination
             incrementPage={incrementPage}

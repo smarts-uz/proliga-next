@@ -1,60 +1,50 @@
 import Gutter from '../../../../../components/Gutter'
-import { useState, useReducer, useEffect } from 'react'
-import { supabase } from '../../../../lib/supabaseClient'
-import { toast } from 'react-toastify'
-import Image from 'next/image'
-import { useGetPlayerStats } from 'app/hooks/statistics/useGetPlayerStats/useGetPlayerStats'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
 import TopTeams from '../TopTeams'
+import { useDispatch } from 'react-redux'
+import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
+import StatisticsTable from './Table'
+import PlayersTable from '../Transfer/PlayersTable'
+import StatisticsPagination from './Pagination'
 
 const Statistics = () => {
-  const [players, setPlayers] = useState([])
-  const { statistics } = useSelector((state) => state.statistics)
-  const { getPlayerStats, isLoading, error } = useGetPlayerStats()
-  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const [page, setPage] = useState(0)
+  const [perPage, setPerPage] = useState(14)
+  const { currentCompetition } = useSelector((store) => store.competition)
+  const { season } = useSelector((state) => state.season)
+
   useEffect(() => {
-    const fetch = async () => {
-      await getPlayerStats()
+    if (currentCompetition?.id && season?.id) {
+      dispatch(
+        fetchPlayerResult({
+          competition_id: currentCompetition?.id,
+          season_id: season?.id,
+          page,
+          perPage,
+        })
+      )
     }
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch, currentCompetition, season, page, perPage])
+
+  const incrementPage = () => {
+    setPage((prevPage) => prevPage + 1)
+  }
+  const decrementPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 0))
+  }
 
   return (
     <Gutter>
-      <section className="flex gap-4">
-        <div className="h-min max-h-[36rem] min-h-[36rem] w-full table-auto overflow-x-auto rounded-2xl bg-neutral-950 p-6 text-xs text-neutral-200 sm:text-sm md:w-2/3 md:text-base">
-          <table class="w-full table-auto border-spacing-0">
-            <thead>
-              <tr>
-                <th>{t('O‘yinchi')}</th>
-                <th>{t('Pozitsiya')}</th>
-                <th title="Goal">G</th>
-                <th title="Goal Assist">GA</th>
-                <th title="Missed Penalty">MP</th>
-                <th title="Yellow Card">YC</th>
-                <th title="Red Card">RC</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {statistics.map((player) => (
-                <tr key={player.id} className="text-center">
-                  <td className="w-1/4 truncate">
-                    {player?.player_id?.name ?? 'Oyinchi Ismi'}
-                  </td>
-                  <td className="w-1/4 truncate">{player.position}</td>
-                  <td className="w-1/8 truncate">{player.goal}</td>
-                  <td className="w-1/8 truncate">{player.goal_asist}</td>
-                  <td className="w-1/8 truncate">{player.missed_penalty}</td>
-                  <td className="w-1/8 truncate">{player.yellow_card}</td>
-                  <td className="w-1/8 truncate">{player.red_card}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="h-4" />
+      <section className="flex w-full flex-col gap-4 lg:flex-row">
+        <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-6 text-neutral-200 lg:w-2/3">
+          <StatisticsTable />
+          <StatisticsPagination
+            incrementPage={incrementPage}
+            decrementPage={decrementPage}
+            page={page}
+          />
         </div>
         <TopTeams />
       </section>

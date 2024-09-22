@@ -124,10 +124,6 @@ const Tab = ({ title, tab, passive, active, disabled }) => {
   const { gameTab, currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
 
-  console.log(
-    tab === TABS.Transfer && currentTour.status === TOUR.notStartedTransfer
-  )
-
   const handleClick = () => {
     if (currentTeam?.is_team_created && tab !== TABS.Transfer) {
       dispatch(setTab(tab))
