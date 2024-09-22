@@ -35,7 +35,7 @@ function JournalTable() {
     columnHelper.accessor('name', {
       accessorKey: 'name',
       cell: (info) => info.getValue(),
-      header: 'Oyinchi ismi',
+      header: t('Oyinchi ismi'),
       id: 'name',
     }),
   ]

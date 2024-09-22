@@ -38,7 +38,7 @@ function StatisticsTable() {
     columnHelper.accessor('player_id.name', {
       accessorKey: 'player_id.name',
       cell: (info) => info.getValue(),
-      header: 'Oyinchi ismi',
+      header: t('Oyinchi ismi'),
       id: 'player-name',
       meta: {
         title: 'oyinchini toliq ismi',
