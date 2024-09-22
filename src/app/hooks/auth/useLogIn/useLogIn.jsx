@@ -49,6 +49,7 @@ export const useLogIn = () => {
       if (data?.user && data?.session) {
         dispatch(setUserAuth(data))
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         setData(data)
         toast.success(t("Tizimga muvaffaqiyatli kirdingiz"))
       }

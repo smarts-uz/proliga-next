@@ -1,7 +1,7 @@
 'use client'
 import { useTranslation } from 'react-i18next'
 
-const StatisticsPagination = ({ decrementPage, incrementPage, page }) => {
+const JournalPagination = ({ decrementPage, incrementPage, page }) => {
   const { t } = useTranslation()
 
   return (
@@ -25,4 +25,4 @@ const StatisticsPagination = ({ decrementPage, incrementPage, page }) => {
   )
 }
 
-export default StatisticsPagination
+export default JournalPagination

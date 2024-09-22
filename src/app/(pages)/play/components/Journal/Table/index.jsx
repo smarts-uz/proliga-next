@@ -15,7 +15,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 const columnHelper = createColumnHelper()
 
-function StatisticsTable() {
+function JournalTable() {
   const { t } = useTranslation()
   const { players } = useSelector((state) => state.playerResult)
   const [data, setData] = useState(players ?? [])
@@ -27,76 +27,16 @@ function StatisticsTable() {
   }, [players])
 
   const columns = [
-    columnHelper.accessor('player_id.position', {
+    columnHelper.accessor('created_at', {
       accessorFn: (row) => row.player_id.position,
-      id: 'player-position',
-      header: 'Poz',
-      meta: {
-        title: 'blah2',
-      },
+      id: 'date',
+      header: 'date',
     }),
-    columnHelper.accessor('player_id.name', {
-      accessorKey: 'player_id.name',
+    columnHelper.accessor('name', {
+      accessorKey: 'name',
       cell: (info) => info.getValue(),
       header: 'Oyinchi ismi',
-      id: 'player-name',
-      meta: {
-        title: 'oyinchini toliq ismi',
-      },
-    }),
-    columnHelper.accessor((row) => row.goal, {
-      accessorFn: (row) => row.goal,
-      id: 'gol',
-      cell: (info) => info.getValue(),
-      header: t('G'),
-      meta: {
-        title: 'blah2',
-      },
-    }),
-    columnHelper.accessor((row) => row.goal_asist, {
-      accessorFn: (row) => row.goal_asist,
-      id: 'gol assist',
-      cell: (info) => info.getValue(),
-      header: t('GA'),
-      meta: {
-        title: 'blah2',
-      },
-    }),
-    columnHelper.accessor((row) => row.played_min, {
-      accessorFn: (row) => row.played_min,
-      id: 'played min',
-      cell: (info) => info.getValue(),
-      header: t('PM'),
-      meta: {
-        title: 'blah2',
-      },
-    }),
-    columnHelper.accessor((row) => row.missed_penalty, {
-      accessorFn: (row) => row.missed_penalty,
-      id: 'missed penalty',
-      cell: (info) => info.getValue(),
-      header: t('MP'),
-      meta: {
-        title: 'blah2',
-      },
-    }),
-    columnHelper.accessor((row) => row.yellow_card, {
-      accessorFn: (row) => row.yellow_card,
-      id: 'Yellow Card',
-      cell: (info) => <i>{info.getValue()}</i>,
-      header: t('YC'),
-      meta: {
-        title: 'blah2',
-      },
-    }),
-    columnHelper.accessor((row) => row.red_card, {
-      accessorFn: (row) => row.red_card,
-      id: 'Red Card',
-      cell: (info) => info.getValue(),
-      header: t('RC'),
-      meta: {
-        title: 'blah2',
-      },
+      id: 'name',
     }),
   ]
 
@@ -116,4 +56,4 @@ function StatisticsTable() {
   )
 }
 
-export default StatisticsTable
+export default JournalTable

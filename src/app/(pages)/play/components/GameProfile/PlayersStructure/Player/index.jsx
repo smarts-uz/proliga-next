@@ -11,7 +11,9 @@ const Player = ({ player }) => {
 
   useEffect(() => {
     if (playerPoint?.length > 0) {
-      setCurrentPlayerPoint(playerPoint.find((item) => item.player_id === player.player_id))
+      setCurrentPlayerPoint(
+        playerPoint.find((item) => item.player_id === player.player_id)
+      )
     }
   }, [playerPoint, player])
 
