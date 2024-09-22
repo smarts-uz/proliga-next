@@ -3,6 +3,7 @@ import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 export const useSignUp = () => {
   const [error, setError] = useState(null)
@@ -10,6 +11,7 @@ export const useSignUp = () => {
   const [data, setData] = useState(null)
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   const signUp = async ({ email, password, confirmPassword }) => {
     setIsLoading(false)
