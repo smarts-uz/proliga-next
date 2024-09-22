@@ -15,7 +15,6 @@ const CompetitionModal = ({ toggleModal, competition }) => {
   const [active, setActive] = useState(false)
   const router = useRouter()
   const selectedTeams = useSelector(selectTeams)
-
   const { t } = useTranslation()
 
   const { createTeam, isLoading, error, data } = useCreateTeam()
@@ -78,12 +77,12 @@ const CompetitionModal = ({ toggleModal, competition }) => {
               value={title}
               autoFocus
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Jamoangizni nomi"
+              placeholder={t('Jamoangizni nomi')}
               className="h-12 w-full rounded-lg border border-neutral-700 bg-transparent p-2 outline-none"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="email">Taktika</label>
+            <label htmlFor="email">{t('Taktika')}</label>
             <select
               name=""
               id=""
@@ -137,7 +136,7 @@ const CompetitionModal = ({ toggleModal, competition }) => {
                 className="filter-neutral-50 mx-auto size-6 animate-spin"
               />
             ) : (
-              'Saqlash'
+              <>{t('Saqlash')}</>
             )}
           </button>
         </form>

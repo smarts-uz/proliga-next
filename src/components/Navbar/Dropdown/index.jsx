@@ -74,7 +74,7 @@ const Dropdown = () => {
         <>
           <NavLink href="/auth">
             <Image src={'/icons/login.svg'} alt="user" width={24} height={24} />
-            <p>{t("Tizimga kirish_1")}</p>
+            <p>{t("Tizimga kirish_2")}</p>
           </NavLink>
         </>
       )}

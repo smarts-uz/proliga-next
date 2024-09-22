@@ -11,6 +11,7 @@ export const useLogIn = () => {
   const dispatch = useDispatch()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const { t } = useTranslation()
+  
   const logIn = async ({ email, password }) => {
     setIsLoading(false)
     setError(null)
@@ -51,7 +52,7 @@ export const useLogIn = () => {
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         setData(data)
-        toast.success(t("Tizimga muvaffaqiyatli kirdingiz"))
+        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'))
       }
     } catch (error) {
       setError(error.message)
