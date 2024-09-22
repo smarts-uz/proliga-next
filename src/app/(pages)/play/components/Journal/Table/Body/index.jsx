@@ -8,7 +8,7 @@ const TransferTableBody = ({ table, flexRender }) => {
         >
           {row.getVisibleCells().map((cell) => (
             <td
-              className={`${cell.column.id === 'player-name' ? 'w-full min-w-32' : cell.column.id === 'player-position' ? 'w-min min-w-16 px-1' : 'w-auto min-w-14 px-1'} h-8 w-full py-1 capitalize`}
+              className={`${cell.column.id === 'date' ? 'w-min min-w-32 px-1 text-xs md:text-sm' : cell.column.id === 'name' ? 'w-max' : 'w-auto'} h-8 w-full py-1 capitalize`}
               key={cell.id}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}

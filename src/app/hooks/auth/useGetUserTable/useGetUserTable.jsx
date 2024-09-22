@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+
 export const useGetUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
@@ -16,8 +17,8 @@ export const useGetUserTable = () => {
     setError(null)
 
     if (!phone) {
-      setError('Email yoki Telefon kirilmagan')
-      toast.error(t("Email yoki Telefon kiritilmagan"))
+      setError(t('Email yoki Telefon kiritilmagan'))
+      toast.error(t('Email yoki Telefon kiritilmagan'))
       return
     }
 
@@ -35,8 +36,8 @@ export const useGetUserTable = () => {
         return
       }
       if (!data[0]) {
-        setError('Parol yoki telefon raqam notogri kiritilgan')
-        toast.error(t("Parol yoki telefon raqam notogri kiritilgan"))
+        setError(t('Parol yoki telefon raqam notogri kiritilgan'))
+        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'))
         return
       }
       if (data && data[0]) {

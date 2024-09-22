@@ -14,6 +14,7 @@ import PlayerPointSlice from './features/playerPoint/playerPoint.slice.js'
 import MatchesSlice from './features/matches/matches.slice.js'
 import NewsSlice from './features/news/news.slice.js'
 import PlayerResultSlice from './features/playerResult/playerResult.slice.js'
+import UserActivitySlice from './features/userActivity/userActivity.slice.js'
 
 export const rootReducer = combineReducers({
   auth: AuthSlice,
@@ -31,4 +32,5 @@ export const rootReducer = combineReducers({
   playerResult: PlayerResultSlice,
   matches: MatchesSlice,
   news: NewsSlice,
+  userActivity: UserActivitySlice,
 })

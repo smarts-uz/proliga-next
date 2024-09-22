@@ -63,7 +63,6 @@ const SignUpForm = ({ onClick }) => {
       setPassword('')
       setConfirmPassword('')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth, active])
 
   useEffect(() => {
@@ -88,10 +87,10 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="username"
           className="text-xs text-neutral-400 md:text-base"
         >
-          {t("Telefon raqam")}:
+          {t('Telefon raqam')}:
         </label>
         <PhoneInput
-          placeholder= {t("Telefon raqam")}
+          placeholder={t('Telefon raqam')}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-white"
           value={phone}
@@ -103,7 +102,7 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="username"
           className="text-xs text-neutral-400 md:text-base"
         >
-          {t("Elektron pochta")}:
+          {t('Elektron pochta')}:
         </label>
         <input
           type="email"
@@ -127,13 +126,13 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="password"
           className="text-xs text-neutral-400 md:text-base"
         >
-          {t("Parol")}:
+          {t('Parol')}:
         </label>
         <input
           type={showPassword ? 'text' : 'password'}
           name="confirmPassword"
           id="confirmPassword"
-          placeholder={t("Parol")}
+          placeholder={t('Parol')}
           className="auth-input pl-9"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -167,13 +166,13 @@ const SignUpForm = ({ onClick }) => {
           htmlFor="password"
           className="text-xs text-neutral-400 md:text-base"
         >
-          {t("Parol tasdiqlash")}:
+          {t('Parol tasdiqlash')}:
         </label>
         <input
           type={showConfirmPassword ? 'text' : 'password'}
           name="password"
           id="password"
-          placeholder={t("Parol")}
+          placeholder={t('Parol')}
           className="auth-input pl-9"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -208,7 +207,7 @@ const SignUpForm = ({ onClick }) => {
         onClick={onClick}
         className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
-        {t("Akkauntingiz bormi ?")}
+        {t('Akkauntingiz bormi ?')}
       </button>
       <button
         type="submit"
@@ -224,7 +223,7 @@ const SignUpForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          t("Akkaunt Ochish")
+          t('Akkaunt Ochish')
         )}
       </button>
     </form>
