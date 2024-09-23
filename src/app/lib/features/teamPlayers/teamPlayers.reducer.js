@@ -102,6 +102,9 @@ export const addTeamPlayerReducer = (state, action) => {
   })
 
   const softDeleteEmptyPlayer = (emptyPlayer) => {
+    if (emptyPlayer.position === PLAYERS.GOA) {
+      state.GOA = state.GOA.filter((p) => p.id !== emptyPlayer.id)
+    }
     if (emptyPlayer.position === PLAYERS.DEF) {
       state.DEF = state.DEF.filter((p) => p.id !== emptyPlayer.id)
     }

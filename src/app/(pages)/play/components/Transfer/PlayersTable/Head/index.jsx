@@ -14,7 +14,7 @@ const TransferTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? 'cursor-pointer select-none px-0.5 md:p-1 text-start min-w- sm:min-w-max'
+                    ? 'cursor-pointer text-center select-none px-0.5 py-1 text-xs xs:text-sm lg:text-base font-medium md:p-1 md:text-start min-w-6 sm:min-w-max'
                     : ' px-0.5 md:p-1 text-start ',
                   onClick: header.column.getToggleSortingHandler(),
                 }}
