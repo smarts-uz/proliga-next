@@ -11,7 +11,7 @@ const ConfirmationModal = ({ onConfirm, onCancel }) => {
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100"
+        className="flex flex-col items-center max-w-[45rem] justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100"
       >
         <Image
           src="/icons/close.svg"

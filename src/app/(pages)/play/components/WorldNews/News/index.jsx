@@ -10,12 +10,20 @@ import { useDispatch } from 'react-redux'
 const News = () => {
   const dispatch = useDispatch()
   const { news } = useSelector((store) => store.news)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [page, setPage] = useState(0)
+  const [perPage, setPerPage] = useState(14)
   const { t } = useTranslation()
 
   useEffect(() => {
-    dispatch(fetchNews())
-  }, [dispatch])
+    dispatch(fetchNews({ page, perPage }))
+  }, [dispatch, page, perPage])
+
+  const incrementPage = () => {
+    setPage((prevPage) => prevPage + 1)
+  }
+  const decrementPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 0))
+  }
 
   return (
     <div className="flex h-auto min-h-[36rem] w-full flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 sm:min-h-[36rem] xl:w-1/3">
@@ -28,29 +36,23 @@ const News = () => {
         ))}
         {news?.length === 0 && (
           <p className="mt-2 text-center text-neutral-400">
-            {t("Yangiliklar mavjud emas!")}
+            {t('Yangiliklar mavjud emas!')}
           </p>
         )}
       </div>
       <div className="flex justify-center space-x-1">
         <button
-          onClick={() => goToPage(currentPage - 1)}
-          className={`rounded border px-4 py-2 text-gray-200 ${
-            currentPage === 1
-              ? 'cursor-default opacity-75'
-              : 'bg-opacity-50 hover:border-primary hover:text-primary'
-          }`}
-          disabled={true}
+          onClick={decrementPage}
+          className="rounded border px-4 py-2 text-neutral-200 hover:opacity-75"
         >
           {t('Oldingi')}
         </button>
+        <span className="flex w-10 items-center justify-center rounded border px-4 text-center text-white">
+          {page + 1}
+        </span>
         <button
-          className={`rounded border px-4 py-2 text-neutral-300 ${
-            true
-              ? 'cursor-default opacity-75'
-              : 'hover:border-primary hover:text-primary'
-          }`}
-          disabled={true}
+          className="rounded border px-4 py-2 text-neutral-200 hover:opacity-75"
+          onClick={incrementPage}
         >
           {t('Keyingi')}
         </button>

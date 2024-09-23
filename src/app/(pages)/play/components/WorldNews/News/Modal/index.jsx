@@ -9,7 +9,7 @@ const ArticleModal = ({ item, toggleModal }) => {
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[90vh] w-auto flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-4/5 sm:w-2/3 md:w-1/2 md:p-6 xl:w-1/3"
+        className="mx-4 flex max-h-[90vh] w-auto max-w-[60rem] flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-4/5 sm:w-2/3 md:w-1/2 md:p-6 xl:w-2/3"
       >
         <button onClick={toggleModal} type="button" className="self-end">
           <Image

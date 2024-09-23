@@ -30,7 +30,7 @@ const MobileModal = ({ onCancel }) => {
         initial={{ opacity: 0, x: '1rem' }}
         animate={{ opacity: 1, x: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="right-0 mr-0 flex h-full min-w-80 flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 pb-6 text-neutral-200 xs:min-w-96 sm:min-w-[32rem] sm:p-6"
+        className="right-0 mr-0 flex h-full min-w-80 max-w-[45rem] flex-col gap-4 self-end overflow-y-auto overflow-x-hidden rounded-s-xl bg-neutral-950 p-4 pb-6 text-neutral-200 xs:min-w-96 sm:min-w-[32rem] sm:p-6"
       >
         <button className="self-end">
           <Image

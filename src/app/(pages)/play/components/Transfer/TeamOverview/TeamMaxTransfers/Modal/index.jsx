@@ -11,7 +11,7 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
+        className="mx-4 flex flex-col gap-4 max-w-[45rem] overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={handleModal} className="self-end">

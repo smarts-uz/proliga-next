@@ -3,7 +3,7 @@ import {
   addTeamPlayerReducer,
   deleteTeamPlayerReducer,
   setCaptainReducer,
-  clearTeamPlayersReducer,
+  revertTeamPlayersReducer,
 } from './teamPlayers.reducer'
 import { teamPlayersExtraReducer } from './teamPlayers.extraReducer'
 
@@ -19,8 +19,8 @@ const initialState = {
     STR: 0,
   },
   teamPrice: 0,
-  existingClubs: [],
   duplicatesMap: {},
+  prevTeam: [],
   error: null,
   isLoading: false,
 }
@@ -32,7 +32,7 @@ const teamPlayersSlice = createSlice({
     addTeamPlayer: addTeamPlayerReducer,
     deleteTeamPlayer: deleteTeamPlayerReducer,
     setCaptain: setCaptainReducer,
-    clearTeamPlayers: clearTeamPlayersReducer,
+    revertTeamPlayers: revertTeamPlayersReducer,
     emptyTeamPlayers: () => initialState,
   },
   extraReducers: teamPlayersExtraReducer,
@@ -43,7 +43,7 @@ export const {
   deleteTeamPlayer,
   setCaptain,
   emptyTeamPlayers,
-  clearTeamPlayers,
+  revertTeamPlayers,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

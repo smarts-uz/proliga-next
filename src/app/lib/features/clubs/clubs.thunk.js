@@ -8,6 +8,8 @@ export const fetchClubs = createAsyncThunk(
       .from('club')
       .select('id, name, slug')
       .eq('competition_id', competition_id)
+      .order('name')
+
     return { data, error }
   }
 )
