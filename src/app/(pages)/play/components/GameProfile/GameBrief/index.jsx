@@ -32,7 +32,7 @@ const GameBrief = () => {
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100"> {t('Keyingi Tur')}</p>
           <p className="text-sm uppercase text-primary md:text-base">
-            {nextTour?.name ?? 'Keyingi Tur'}
+            {nextTour?.name ??  t('Keyingi Tur')}
           </p>
         </div>
         <div className="flex justify-between text-lg">
@@ -46,7 +46,7 @@ const GameBrief = () => {
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">{t('Tur')}</p>
           <p className="text-sm uppercase text-primary md:text-base">
-            {currentTour?.name ?? 'Hozirgi Tur'}
+            {currentTour?.name ?? t('Hozirgi Tur')}
           </p>
         </div>
         <div className="flex justify-between text-lg">

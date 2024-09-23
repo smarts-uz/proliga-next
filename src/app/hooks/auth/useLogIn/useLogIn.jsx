@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setUserAuth } from '../../../lib/features/auth/auth.slice'
+import {
+  setUserAuth,
+  setUserTable,
+} from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 export const useLogIn = () => {
   const [error, setError] = useState(null)
@@ -50,7 +53,6 @@ export const useLogIn = () => {
       if (data?.user && data?.session) {
         dispatch(setUserAuth(data))
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         setData(data)
         toast.success(t('Tizimga muvaffaqiyatli kirdingiz'))
       }

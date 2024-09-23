@@ -7,36 +7,54 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
+import { LANGUAGE } from 'app/utils/languages.util'
 const columnHelper = createColumnHelper()
 
 function JournalTable() {
   const { t } = useTranslation()
-  const { players } = useSelector((state) => state.playerResult)
-  const [data, setData] = useState(players ?? [])
+  const { activities } = useSelector((state) => state.userActivity)
+  const { lang } = useSelector((state) => state.systemLanguage)
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    if (players) {
-      setData(players)
+    if (activities) {
+      const newData = []
+      activities.map((item) => {
+        const date = new Date(item?.created_at)
+        const day = date.getDate()
+        const month = date.getMonth() + 1
+        const hours = date.getHours()
+        const minutes = date.getMinutes()
+        const year = date.getFullYear()
+
+        newData.push({
+          ...item,
+          created_at: `${day}.${month}.${year} | ${hours}:${minutes === 0 ? '00' : minutes}`,
+        })
+      })
+      setData(newData)
     }
-  }, [players])
+  }, [activities])
 
   const columns = [
     columnHelper.accessor('created_at', {
-      accessorFn: (row) => row.player_id.position,
       id: 'date',
-      header: 'date',
+      header: t("Sana"),
+      accessorFn: (row) => row.created_at,
     }),
     columnHelper.accessor('name', {
       accessorKey: 'name',
       cell: (info) => info.getValue(),
       header: t('Oyinchi ismi'),
       id: 'name',
+      header: t('Xabar'),
+      accessorFn: (row) => (lang === LANGUAGE.uz ? row.name_uz : row.name_ru),
     }),
   ]
 

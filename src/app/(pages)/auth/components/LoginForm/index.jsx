@@ -43,7 +43,6 @@ const LoginForm = ({ onClick }) => {
       setPhone('')
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTable, active])
 
   useEffect(() => {

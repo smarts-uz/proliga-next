@@ -7,9 +7,9 @@ export const userActivityExtraReducer = (builder) => {
     })
     .addCase(fetchUserActivity.fulfilled, (state, action) => {
       state.isLoading = false
-      state.tourTeams = []
+      state.activities = []
       if (action.payload.data.length > 0) {
-        state.tourTeams = action.payload.data
+        state.activities = action.payload.data
       }
     })
     .addCase(fetchUserActivity.rejected, (state, action) => {
