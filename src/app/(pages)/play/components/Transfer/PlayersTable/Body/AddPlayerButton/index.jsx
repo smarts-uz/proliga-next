@@ -8,7 +8,7 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team, teamBalance }) => {
       <motion.td
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full cursor-pointer items-center justify-center px-2 py-1 md:w-auto"
+        className="flex h-full w-full bg-red-400 cursor-pointer items-center justify-center px-0 py-1 sm:px-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
