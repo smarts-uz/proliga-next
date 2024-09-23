@@ -9,7 +9,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
       key: '',
     },
     {
-      title: t('Darvazabon'),
+      title: t('Darvozabon'),
       key: 'GOA',
     },
     {
