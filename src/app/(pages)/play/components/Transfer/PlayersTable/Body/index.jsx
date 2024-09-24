@@ -1,7 +1,10 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
-import { addTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import {
+  addTeamPlayer,
+  updateTeamPlayer,
+} from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
@@ -15,13 +18,23 @@ const TransferTableBody = ({ table, flexRender }) => {
   )
 
   const handleAddPlayer = (player) => {
-    dispatch(
-      addTeamPlayer({
-        player,
-        team: currentTeam,
-        teamConcat,
-      })
-    )
+    if (currentTeam?.is_team_created) {
+      dispatch(
+        addTeamPlayer({
+          player,
+          team: currentTeam,
+          teamConcat,
+        })
+      )
+    } else {
+      dispatch(
+        updateTeamPlayer({
+          player,
+          team: currentTeam,
+          teamConcat,
+        })
+      )
+    }
   }
   return (
     <tbody>
@@ -32,7 +45,7 @@ const TransferTableBody = ({ table, flexRender }) => {
         >
           {row.getVisibleCells().map((cell) => (
             <td
-              className={`${cell.column.id === 'name' ? 'min-w-1/4' : 'w-min sm:w-auto'} text-center sm:text-start text-[10px] xs:text-xs sm:text-sm lg:text-base px-0 capitalize md:p-1`}
+              className={`${cell.column.id === 'name' ? 'min-w-1/4' : 'w-min sm:w-auto'} px-0 text-center text-[10px] capitalize xs:text-xs sm:text-start sm:text-sm md:p-1 lg:text-base`}
               key={cell.id}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}

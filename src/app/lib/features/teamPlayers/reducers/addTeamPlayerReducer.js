@@ -1,81 +1,6 @@
 import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
-export const deleteTeamPlayerReducer = (state, action) => {
-  const { player } = action.payload
-
-  const clubId = player?.club?.id || player.club_id.id
-
-  const calcTeamPrice = () => {
-    state.teamPrice =
-      state.GOA.reduce((acc, player) => acc + player.price, 0) +
-      state.DEF.reduce((acc, player) => acc + player.price, 0) +
-      state.MID.reduce((acc, player) => acc + player.price, 0) +
-      state.STR.reduce((acc, player) => acc + player.price, 0)
-  }
-
-  const deletedPlayerObj = (prevPlayer) => ({
-    ...prevPlayer,
-    player_id: null,
-    name: null,
-    club_id: null,
-    price: null,
-  })
-
-  if (player.position === PLAYERS.GOA) {
-    state.GOA = state.GOA.filter((p) => p.id !== player.id)
-    state.GOA.push(deletedPlayerObj(player))
-    state.playersCount.GOA--
-    calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
-    return state
-  }
-  if (player.position === PLAYERS.DEF) {
-    if (state.playersCount.DEF < 4) {
-      toast.warning('Sizda kamida 3 hiboyachi bolishi shart!')
-      return state
-    }
-    state.DEF = state.DEF.filter((p) => p.id !== player.id)
-    state.DEF.push(deletedPlayerObj(player))
-    state.playersCount.DEF--
-    calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
-    return state
-  }
-  if (player.position === PLAYERS.MID) {
-    if (state.playersCount.MID < 4) {
-      toast.warning('Sizda kamida 3 yarim himoyachi bolishi shart!')
-      return state
-    }
-    state.MID = state.MID.filter((p) => p.id !== player.id)
-    state.MID.push(deletedPlayerObj(player))
-    state.playersCount.MID--
-    calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
-    return state
-  }
-  if (player.position === PLAYERS.STR) {
-    if (state.playersCount.STR < 3) {
-      toast.warning('Sizda kamida 2 hujumchi bolishi shart!')
-      return state
-    }
-    state.STR = state.STR.filter((p) => p.id !== player.id)
-    state.STR.push(deletedPlayerObj(player))
-    state.playersCount.STR--
-    calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
-    return state
-  }
-}
-
 export const addTeamPlayerReducer = (state, action) => {
   const { player, team, teamConcat } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
@@ -120,14 +45,14 @@ export const addTeamPlayerReducer = (state, action) => {
 
   if (!emptyPlayer) {
     toast.warning('Boshqa oyinchi qoshish mumkin emas!')
-    return
+    return state
   }
 
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
 
   if (existingPlayer) {
     toast.warning('Ushbu oyinchi allaqachon oyinda!')
-    return
+    return state
   }
 
   const clubId = player?.club?.id || player.club_id.id
@@ -233,98 +158,4 @@ export const addTeamPlayerReducer = (state, action) => {
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     return state
   }
-}
-
-export const setCaptainReducer = (state, action) => {
-  const playerId = action.payload
-
-  if (!playerId) {
-    return state
-  }
-
-  state.GOA = state.GOA.map((player) => {
-    if (player.player_id === +playerId) {
-      return { ...player, is_captain: true }
-    }
-    return { ...player, is_captain: false }
-  })
-  state.DEF = state.DEF.map((player) => {
-    if (player.player_id === +playerId) {
-      return { ...player, is_captain: true }
-    }
-    return { ...player, is_captain: false }
-  })
-  state.MID = state.MID.map((player) => {
-    if (player.player_id === +playerId) {
-      return { ...player, is_captain: true }
-    }
-    return { ...player, is_captain: false }
-  })
-  state.STR = state.STR.map((player) => {
-    if (player.player_id === +playerId) {
-      return { ...player, is_captain: true }
-    }
-    return { ...player, is_captain: false }
-  })
-  return state
-}
-
-export const revertTeamPlayersReducer = (state, action) => {
-  state.GOA = []
-  state.DEF = []
-  state.MID = []
-  state.STR = []
-  state.playersCount = {
-    GOA: 0,
-    DEF: 0,
-    MID: 0,
-    STR: 0,
-  }
-  state.teamPrice = 0
-  state.duplicatesMap = {}
-
-  const team = state.prevTeam
-  team?.length > 0 &&
-    team.forEach((player) => {
-      const clubSlug = player?.club_id?.id ?? ''
-
-      if (player.position === PLAYERS.GOA) {
-        state.GOA.push(player)
-        if (player.name) {
-          state.playersCount.GOA++
-          state.duplicatesMap[clubSlug] =
-            (state.duplicatesMap[clubSlug] || 0) + 1
-        }
-      }
-      if (player.position === PLAYERS.DEF) {
-        state.DEF.push(player)
-        if (player.name) {
-          state.playersCount.DEF++
-          state.duplicatesMap[clubSlug] =
-            (state.duplicatesMap[clubSlug] || 0) + 1
-        }
-      }
-      if (player.position === PLAYERS.MID) {
-        state.MID.push(player)
-        if (player.name) {
-          state.playersCount.MID++
-          state.duplicatesMap[clubSlug] =
-            (state.duplicatesMap[clubSlug] || 0) + 1
-        }
-      }
-      if (player.position === PLAYERS.STR) {
-        state.STR.push(player)
-        if (player.name) {
-          state.playersCount.STR++
-          state.duplicatesMap[clubSlug] =
-            (state.duplicatesMap[clubSlug] || 0) + 1
-        }
-      }
-    })
-
-  state.teamPrice =
-    state.GOA.reduce((acc, player) => acc + player.price, 0) +
-    state.DEF.reduce((acc, player) => acc + player.price, 0) +
-    state.MID.reduce((acc, player) => acc + player.price, 0) +
-    state.STR.reduce((acc, player) => acc + player.price, 0)
 }

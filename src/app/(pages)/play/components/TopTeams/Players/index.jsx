@@ -21,6 +21,10 @@ const RankingPlayers = () => {
 }
 
 const PlayerPlace = ({ player, index }) => {
+  const imageErr = (e) => {
+    e.target.src = `/club/${player?.club_id?.slug}/app.svg`
+  }
+
   return (
     <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
@@ -29,9 +33,7 @@ const PlayerPlace = ({ player, index }) => {
           alt="top team place"
           width={24}
           height={24}
-          onError={(e) => {
-            e.currentTarget.src = `/club/${player?.club_id.slug}/app.svg`
-          }}
+          onError={imageErr}
           className="size-6 rounded-full md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
