@@ -30,7 +30,7 @@ const Match = ({ match }) => {
       <div className="flex w-full items-center justify-end gap-2">
         <p className="text-xs font-medium xs:text-sm">{homeClub?.name}</p>
         <Image
-          src={`/club-jpg/${homeClub?.slug}/app.jpeg`}
+          src={`/club-jpg/${homeClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
           height={48}
@@ -51,7 +51,14 @@ const Match = ({ match }) => {
         )}
         {match?.status === MATCHSTATUS.FINISHED && (
           <p className="font-bold">
-            {match?.home_club_result ?? '00'}-{match?.away_club_result ?? '00'}
+            <span>{match?.home_club_result ?? '00'}</span>-
+            <span>{match?.away_club_result ?? '00'}</span>
+          </p>
+        )}
+        {match?.status === MATCHSTATUS.INPROCESS && (
+          <p className="font-bold">
+            <span>{match?.home_club_result ?? '00'}</span>-
+            <span>{match?.away_club_result ?? '00'}</span>
           </p>
         )}
       </div>
@@ -72,6 +79,7 @@ const Match = ({ match }) => {
 
 const MATCHSTATUS = {
   NOT_STARTED: 'not_started',
+  INPROCESS: 'in_process',
   FINISHED: 'finished',
 }
 

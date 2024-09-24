@@ -8,7 +8,7 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team, teamBalance }) => {
       <motion.td
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full bg-red-400 cursor-pointer items-center justify-center px-0 py-1 sm:px-1 md:w-auto"
+        className="flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -17,7 +17,7 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team, teamBalance }) => {
           width={24}
           draggable={false}
           height={24}
-          className="filter-green-500 h-full w-full min-w-4 max-w-6 select-none sm:size-6"
+          className="filter-green-500 size-5 select-none sm:size-6"
         />
       </motion.td>
     )
@@ -26,7 +26,7 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team, teamBalance }) => {
       <motion.td
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full cursor-pointer items-center justify-center px-2 py-1 md:w-auto"
+        className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
         onClick={condition ? () => handleAddPlayer(cell.row.original) : null}
       >
@@ -35,7 +35,7 @@ const AddPlayerButton = ({ cell, handleAddPlayer, team, teamBalance }) => {
           alt="plus"
           width={24}
           draggable={false}
-          className={`${condition ? 'filter-primary' : 'filter-neutral-400'} h-full w-full min-w-4 max-w-6 select-none sm:size-6`}
+          className={`${condition ? 'filter-primary' : 'filter-neutral-400'} size-5 select-none sm:size-6`}
           height={24}
         />
       </motion.td>

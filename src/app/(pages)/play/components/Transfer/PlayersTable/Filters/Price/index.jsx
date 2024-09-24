@@ -1,6 +1,6 @@
 const PriceFilter = ({ column, columnFilterValue }) => {
   return (
-    <div className="flex w-full items-center gap-0.5 text-sm sm:col-span-1 md:gap-1 md:text-base">
+    <div className="flex w-full items-center  text-sm sm:col-span-1 gap-1 md:text-base">
       <select
         className="h-8 w-full min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 md:min-w-max md:px-1"
         onChange={(e) =>
@@ -22,7 +22,7 @@ const PriceFilter = ({ column, columnFilterValue }) => {
         ))}
       </select>
       <select
-        className="h-8 w-full min-w-12 rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 md:min-w-max md:px-1"
+        className="h-8 w-full min-w-10 rounded border border-neutral-500 bg-neutral-950 px-0.5 text-neutral-200 md:min-w-max md:px-1"
         onChange={(e) =>
           column.setFilterValue(() => ({
             min: columnFilterValue?.min ?? MIN[0],

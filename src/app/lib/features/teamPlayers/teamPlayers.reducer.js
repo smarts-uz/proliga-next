@@ -102,6 +102,9 @@ export const addTeamPlayerReducer = (state, action) => {
   })
 
   const softDeleteEmptyPlayer = (emptyPlayer) => {
+    if (emptyPlayer.position === PLAYERS.GOA) {
+      state.GOA = state.GOA.filter((p) => p.id !== emptyPlayer.id)
+    }
     if (emptyPlayer.position === PLAYERS.DEF) {
       state.DEF = state.DEF.filter((p) => p.id !== emptyPlayer.id)
     }
@@ -266,24 +269,62 @@ export const setCaptainReducer = (state, action) => {
   return state
 }
 
-export const clearTeamPlayersReducer = (state, action) => {
-  const deletedPlayerObj = (prevPlayer) => ({
-    ...prevPlayer,
-    player_id: null,
-    name: null,
-    club_id: null,
-    price: null,
-  })
+export const revertTeamPlayersReducer = (state, action) => {
+  state.GOA = []
+  state.DEF = []
+  state.MID = []
+  state.STR = []
+  state.playersCount = {
+    GOA: 0,
+    DEF: 0,
+    MID: 0,
+    STR: 0,
+  }
+  state.teamPrice = 0
+  state.duplicatesMap = {}
 
-  const prevGOA = state.GOA.filter((p) => deletedPlayerObj(p))
-  state.GOA = state.GOA.filter((p) => ({
-    ...p,
-    player_id: null,
-    name: null,
-    club_id: null,
-    price: null,
-  }))
-  state.DEF = state.DEF.filter((p) => deletedPlayerObj(p))
-  state.MID = state.MID.filter((p) => deletedPlayerObj(p))
-  state.STR = state.STR.filter((p) => deletedPlayerObj(p))
+  const team = state.prevTeam
+  team?.length > 0 &&
+    team.forEach((player) => {
+      const clubSlug = player?.club_id?.id ?? ''
+
+      if (player.position === PLAYERS.GOA) {
+        state.GOA.push(player)
+        if (player.name) {
+          state.playersCount.GOA++
+          state.duplicatesMap[clubSlug] =
+            (state.duplicatesMap[clubSlug] || 0) + 1
+        }
+      }
+      if (player.position === PLAYERS.DEF) {
+        state.DEF.push(player)
+        if (player.name) {
+          state.playersCount.DEF++
+          state.duplicatesMap[clubSlug] =
+            (state.duplicatesMap[clubSlug] || 0) + 1
+        }
+      }
+      if (player.position === PLAYERS.MID) {
+        state.MID.push(player)
+        if (player.name) {
+          state.playersCount.MID++
+          state.duplicatesMap[clubSlug] =
+            (state.duplicatesMap[clubSlug] || 0) + 1
+        }
+      }
+      if (player.position === PLAYERS.STR) {
+        state.STR.push(player)
+        if (player.name) {
+          state.playersCount.STR++
+          state.duplicatesMap[clubSlug] =
+            (state.duplicatesMap[clubSlug] || 0) + 1
+        }
+      }
+    })
+
+  state.teamPrice =
+    state.GOA.reduce((acc, player) => acc + player.price, 0) +
+    state.DEF.reduce((acc, player) => acc + player.price, 0) +
+    state.MID.reduce((acc, player) => acc + player.price, 0) +
+    state.STR.reduce((acc, player) => acc + player.price, 0)
 }

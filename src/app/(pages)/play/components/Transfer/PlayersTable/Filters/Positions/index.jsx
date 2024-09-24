@@ -17,7 +17,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
       key: 'DEF',
     },
     {
-      title: t('Y Himoyachi'),
+      title: t('Yar Himoyachi'),
       key: 'MID',
     },
     {
@@ -31,7 +31,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
       {DATA.map((obj, index) => (
         <button
           key={index}
-          className={`text-nowrap rounded px-1 py-1 font-medium uppercase transition-all md:px-4 md:text-sm 2xl:px-2 ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
+          className={`text-nowrap rounded px-2 py-1 font-bold capitalize transition-all md:px-4 md:text-sm 2xl:px-2 ${obj.key === '' && typeof columnFilterValue === 'undefined' ? active : obj.key === columnFilterValue ? active : passive}`}
           onClick={() => column.setFilterValue(obj.key)}
         >
           {obj.title}

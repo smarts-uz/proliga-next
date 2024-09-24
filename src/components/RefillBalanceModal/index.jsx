@@ -23,7 +23,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[80vh] min-h-[50vh] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
+        className="mx-4 flex max-h-[80vh] min-h-[50vh] max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button className="self-end" onClick={toggleModal}>
@@ -36,7 +36,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
           />
         </button>
         <h2 className="text-xl font-bold sm:text-2xl">
-          {t("Balansingizni toldiring")}
+          {t('Balansingizni toldiring')}
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="w-full space-y-2">
@@ -72,7 +72,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
           </div>
           <div className="w-full space-y-2">
             <label className="text-neutral-300" htmlFor="money">
-            {t("To'lash summasini tering")}
+              {t("To'lash summasini tering")}
             </label>
             <input
               type="number"

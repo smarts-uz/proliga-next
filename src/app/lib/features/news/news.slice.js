@@ -10,7 +10,6 @@ const initialState = {
 const newsSlice = createSlice({
   name: 'news',
   initialState,
-  reducers: {},
   extraReducers: newsExtraReducer,
 })
 

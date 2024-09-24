@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { TABS } from 'app/utils/tabs.util'
-import { clearTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { revertTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 const TransferStadiumForm = () => {
@@ -40,8 +40,11 @@ const TransferStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          
-          t("identifikatori") + player.id + t("bo'lgan va") + player.position + t("holatidagi o'yinchi yaroqsiz")
+          t('identifikatori') +
+            player.id +
+            t("bo'lgan va") +
+            player.position +
+            t("holatidagi o'yinchi yaroqsiz")
         )
         return
       }
@@ -127,8 +130,8 @@ const TransferStadiumForm = () => {
             )
         )}
       </select>
-      {teamCreateBtns && (
-        <div className="flex w-full max-w-[25%] gap-1">
+      <div className="flex w-full max-w-[25%] justify-center gap-1">
+        {teamCreateBtns && (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -145,25 +148,25 @@ const TransferStadiumForm = () => {
               className="filter-white size-6"
             />
           </motion.button>
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            type="button"
-            onClick={() => dispatch(clearTeamPlayers())}
-            title="jamoani tozalash"
-            className="flex w-full max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
-          >
-            <Image
-              src="/icons/trash.svg"
-              alt="auto assemble team"
-              width={24}
-              height={24}
-              draggable={false}
-              className="filter-white size-6"
-            />
-          </motion.button>
-        </div>
-      )}
+        )}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          type="button"
+          onClick={() => dispatch(revertTeamPlayers())}
+          title="jamoani tozalash"
+          className="flex w-full max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
+        >
+          <Image
+            src="/icons/revert.svg"
+            alt="auto assemble team"
+            width={24}
+            height={24}
+            draggable={false}
+            className="filter-white size-6"
+          />
+        </motion.button>
+      </div>
       <button
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"

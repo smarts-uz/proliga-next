@@ -17,7 +17,7 @@ const TransferTablePagination = ({ table }) => {
         src="arrow-down.svg"
         imgClassName={'rotate-90'}
       />
-      {Array.from({ length: 3 }, (_, i) => i + currentIndex - 1).map(
+      {Array.from({ length: 5 }, (_, i) => i + currentIndex - 1).map(
         (page) =>
           page !== -1 &&
           page < table.getPageCount() && (
