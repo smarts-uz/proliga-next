@@ -33,8 +33,9 @@ function TournamentTable() {
       cell: (info) => info.getValue(),
       header: t('Jamoa'),
     }),
-    columnHelper.accessor('user_id.phone', {
-      accessorKey: 'user_id.phone',
+    columnHelper.accessor('user', {
+      accessorFn: (row) =>
+        row.user_id.email.replace(/(\w{3})[\w.-]+@([\w.]+\w)/, '$1***@$2'),
       header: t('Foydalanuvchi'),
     }),
     columnHelper.accessor((row) => row.point, {
@@ -60,7 +61,7 @@ function TournamentTable() {
   })
 
   return (
-    <table className="h-full w-full min-w-80 table-auto text-sm md:min-w-[25rem]">
+    <table className="] h-full w-full min-w-80 table-auto text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody table={table} flexRender={flexRender} />
     </table>

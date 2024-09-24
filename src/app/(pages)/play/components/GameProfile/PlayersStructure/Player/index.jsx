@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 const Player = ({ player }) => {
   const [currentPlayerPoint, setCurrentPlayerPoint] = useState()
   const { playerPoint } = useSelector((state) => state.playerPoint)
-  console.log(currentPlayerPoint)
 
   useEffect(() => {
     if (playerPoint?.length > 0) {

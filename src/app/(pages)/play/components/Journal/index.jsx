@@ -15,19 +15,29 @@ const Journal = () => {
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
   const { userTable } = useSelector((state) => state.auth)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
 
   useEffect(() => {
-    if (currentCompetition?.id && season?.id) {
+    if (currentCompetition?.id && season?.id && currentTeam?.id) {
       dispatch(
         fetchUserActivity({
           competition_id: currentCompetition?.id,
           user_id: userTable?.id,
+          team_id: currentTeam?.id,
           page,
           perPage,
         })
       )
     }
-  }, [dispatch, currentCompetition, season, page, perPage])
+  }, [
+    dispatch,
+    currentCompetition,
+    season,
+    page,
+    perPage,
+    userTable,
+    currentTeam,
+  ])
 
   const incrementPage = () => {
     setPage((prevPage) => prevPage + 1)
@@ -39,7 +49,7 @@ const Journal = () => {
   return (
     <Gutter>
       <div className="flex w-full flex-col gap-4 lg:flex-row">
-        <section className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-6 text-neutral-200 lg:w-2/3">
+        <section className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 md:p-6 text-neutral-200 lg:w-2/3">
           <JournalTable />
           <JournalPagination
             incrementPage={incrementPage}

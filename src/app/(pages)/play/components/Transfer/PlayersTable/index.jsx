@@ -113,7 +113,7 @@ function PlayersTable() {
             ))
           )}
       </div>
-      <table className="w-full min-w-80 table-auto text-sm md:min-w-[25rem]">
+      <table className="w-full min-w-80 table-auto text-sm ">
         <TransferTableHead table={table} />
         <TransferTableBody table={table} flexRender={flexRender} />
       </table>

@@ -1,4 +1,4 @@
-import { fetchUserTeams, fetchAllTeams } from './teams.thunk'
+import { fetchUserTeams, fetchAllTeams, fetchTopTeams } from './teams.thunk'
 
 export const teamsExtraReducer = (builder) => {
   builder
@@ -23,5 +23,18 @@ export const teamsExtraReducer = (builder) => {
     .addCase(fetchAllTeams.rejected, (state, action) => {
       state.teamsLoading = false
       state.teamsError = action.payload.error.message ?? null
+    })
+    .addCase(fetchTopTeams.pending, (state) => {
+      state.topTeamsLoading = true
+    })
+    .addCase(fetchTopTeams.fulfilled, (state, action) => {
+      state.topTeamsLoading = false
+      if (action.payload.data?.length > 0) {
+        state.topTeams = action.payload.data
+      }
+    })
+    .addCase(fetchTopTeams.rejected, (state, action) => {
+      state.topTeamsLoading = false
+      state.topTeamsError = action.payload?.error?.message ?? null
     })
 }

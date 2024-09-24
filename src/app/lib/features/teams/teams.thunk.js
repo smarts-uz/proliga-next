@@ -22,11 +22,26 @@ export const fetchAllTeams = createAsyncThunk(
 
     const { data, error } = await supabase
       .from('team')
-      .select('*, user_id(phone)')
+      .select('*, user_id(email)')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .range(from, to)
       .order('point', { ascending: true })
+
+    return { data, error }
+  }
+)
+
+export const fetchTopTeams = createAsyncThunk(
+  'teams/fetchTopTeams',
+  async ({ season_id, competition_id }) => {
+    const { data, error } = await supabase
+      .from('team')
+      .select('*, user_id(email)')
+      .eq('season_id', season_id)
+      .eq('competition_id', competition_id)
+      .order('point', { ascending: true })
+      .limit(3)
 
     return { data, error }
   }
