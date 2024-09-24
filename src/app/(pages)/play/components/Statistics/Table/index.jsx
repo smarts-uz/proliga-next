@@ -135,7 +135,7 @@ function StatisticsTable() {
     }),
     columnHelper.accessor((row) => row.played_min, {
       accessorFn: (row) => row.played_min,
-      id: 'played min',
+      id: 'played-min',
       cell: (info) => info.getValue(),
       header: t('MIN'),
       meta: {

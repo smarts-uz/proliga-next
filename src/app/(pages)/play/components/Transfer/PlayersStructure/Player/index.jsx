@@ -2,14 +2,35 @@
 
 import Image from 'next/image'
 import ConfirmationModal from 'components/ConfirmationModal'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { motion } from 'framer-motion'
+import PlayerTransferModal from './TransferModal'
 
-const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
+const Player = ({
+  player,
+  currentTeam,
+  additionalInfo = true,
+  deletePlayer = true,
+}) => {
   const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
+
+  const toggleModal = useCallback(() => {
+    if (isModalOpen) {
+      setModalOpen(false)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'auto'
+      }
+    } else {
+      setModalOpen(true)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden'
+      }
+    }
+  }, [isModalOpen])
 
   const toggleDeleteModal = () => {
     if (deleteModalVisible) {
@@ -26,7 +47,12 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
   }
 
   const handleDeletePlayer = () => {
-    dispatch(deleteTeamPlayer({ player }))
+    dispatch(
+      deleteTeamPlayer({
+        player,
+        is_team_created: currentTeam?.is_team_created,
+      })
+    )
     toggleDeleteModal()
   }
 
@@ -85,14 +111,14 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
             </p>
             <div className="flex items-center gap-1">
               {additionalInfo && (
-                <button>
+                <button onClick={toggleModal}>
                   <Image
                     width={16}
                     height={16}
                     draggable={false}
-                    src="/icons/info.svg"
+                    src="/icons/swap.svg"
                     alt="additional info"
-                    className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
+                    className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
                   />
                 </button>
               )}
@@ -104,9 +130,9 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
                   <Image
                     width={16}
                     height={16}
-                    src="/icons/delete-player.svg"
+                    src="/icons/close-red-circle.svg"
                     alt="delete player"
-                    className="size-3 hover:opacity-70 xs:size-4 2xl:size-[18px]"
+                    className="size-3 rounded-sm hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
                   />
                 </button>
               )}
@@ -118,6 +144,13 @@ const Player = ({ player, additionalInfo = true, deletePlayer = true }) => {
         <ConfirmationModal
           onConfirm={handleDeletePlayer}
           onCancel={toggleDeleteModal}
+        />
+      )}
+      {isModalOpen && (
+        <PlayerTransferModal
+          prevPlayer={player}
+          handleModal={toggleModal}
+          currentTeam={currentTeam}
         />
       )}
     </>

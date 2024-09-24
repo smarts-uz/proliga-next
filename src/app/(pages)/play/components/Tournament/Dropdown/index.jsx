@@ -11,7 +11,7 @@ const TournamentSelectedTour = ({ tour, setTour }) => {
   return (
     <div className="w-full">
       <select
-        className="mb-2 h-8 w-full max-w-48 rounded border border-yellow-700 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
+        className="mb-2 h-8 w-full max-w-48 rounded border border-neutral-500 bg-neutral-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-500 md:text-base"
         name="tournament-tours"
         id="tournament-tours"
         onChange={handleSelectTour}

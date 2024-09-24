@@ -38,7 +38,7 @@ const GameBrief = () => {
         <div className="flex justify-between text-lg">
           <p className="text-neutral-100">{t('Tugatish Muddati')}</p>
           <p className="text-sm uppercase text-primary md:text-base">
-            {`${day}-${month}`} | {`${hours}:${minutes}`}
+            {`${day}-${month}`} | {`${hours}:${minutes === 0 ? "00" : minutes}`}
           </p>
         </div>
       </div>

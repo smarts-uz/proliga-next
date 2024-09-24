@@ -73,8 +73,8 @@ export const addTeamPlayerReducer = (state, action) => {
     state.GOA = state.GOA.filter((p) => p.id !== emptyGOAPlayer.id)
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
   if (
@@ -86,8 +86,8 @@ export const addTeamPlayerReducer = (state, action) => {
     state.DEF = state.DEF.filter((p) => p.id !== emptyDEFPlayer.id)
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
   if (
@@ -100,8 +100,8 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.DEF.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.DEF++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
   if (
@@ -113,8 +113,8 @@ export const addTeamPlayerReducer = (state, action) => {
     state.MID = state.MID.filter((p) => p.id !== emptyMIDPlayer.id)
     state.MID.push(newPlayer)
     state.playersCount.MID++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
   if (
@@ -140,8 +140,8 @@ export const addTeamPlayerReducer = (state, action) => {
     state.STR = state.STR.filter((p) => p.id !== emptySTRPlayer.id)
     state.STR.push(newPlayer)
     state.playersCount.STR++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
   if (
@@ -154,8 +154,8 @@ export const addTeamPlayerReducer = (state, action) => {
     delete newPlayer.club
     state.STR.push({ ...newPlayer, id: emptyPlayer.id })
     state.playersCount.STR++
-    calcTeamPrice()
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    calcTeamPrice()
     return state
   }
 }

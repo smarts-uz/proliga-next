@@ -5,6 +5,7 @@ import { setCaptainReducer } from './reducers/setCaptainReducer'
 import { addTeamPlayerReducer } from './reducers/addTeamPlayerReducer'
 import { updateTeamPlayerReducer } from './reducers/updateTeamPlayerReducer'
 import { deleteTeamPlayerReducer } from './reducers/deleteTeamPlayerReducer'
+import { swapTeamPlayerReducer } from './reducers/swapTeamPlayerReducer'
 
 const initialState = {
   GOA: [],
@@ -33,6 +34,7 @@ const teamPlayersSlice = createSlice({
     setCaptain: setCaptainReducer,
     revertTeamPlayers: revertTeamPlayersReducer,
     updateTeamPlayer: updateTeamPlayerReducer,
+    swapTeamPlayer: swapTeamPlayerReducer,
     emptyTeamPlayers: () => initialState,
   },
   extraReducers: teamPlayersExtraReducer,
@@ -45,6 +47,7 @@ export const {
   emptyTeamPlayers,
   revertTeamPlayers,
   updateTeamPlayer,
+  swapTeamPlayer,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

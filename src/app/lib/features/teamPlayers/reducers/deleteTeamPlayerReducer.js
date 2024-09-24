@@ -2,7 +2,7 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const deleteTeamPlayerReducer = (state, action) => {
-  const { player } = action.payload
+  const { player, is_team_created } = action.payload
 
   const clubId = player?.club?.id || player.club_id.id
 
@@ -33,7 +33,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     return state
   }
   if (player.position === PLAYERS.DEF) {
-    if (state.playersCount.DEF < 4) {
+    if (state.playersCount.DEF < 4 && is_team_created) {
       toast.warning('Sizda kamida 3 hiboyachi bolishi shart!')
       return state
     }
@@ -47,7 +47,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     return state
   }
   if (player.position === PLAYERS.MID) {
-    if (state.playersCount.MID < 4) {
+    if (state.playersCount.MID < 4 && is_team_created) {
       toast.warning('Sizda kamida 3 yarim himoyachi bolishi shart!')
       return state
     }
@@ -61,7 +61,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     return state
   }
   if (player.position === PLAYERS.STR) {
-    if (state.playersCount.STR < 3) {
+    if (state.playersCount.STR < 3 && is_team_created) {
       toast.warning('Sizda kamida 2 hujumchi bolishi shart!')
       return state
     }
