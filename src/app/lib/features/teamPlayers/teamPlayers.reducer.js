@@ -133,7 +133,7 @@ export const addTeamPlayerReducer = (state, action) => {
   const clubId = player?.club?.id || player.club_id.id
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
-      `Ushbu clubga ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
+      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
     )
     return state
   }

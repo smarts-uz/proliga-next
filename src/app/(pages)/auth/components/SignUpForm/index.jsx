@@ -57,7 +57,6 @@ const SignUpForm = ({ onClick }) => {
         })
       }
       fetch()
-
       setPhone('')
       setEmail('')
       setPassword('')

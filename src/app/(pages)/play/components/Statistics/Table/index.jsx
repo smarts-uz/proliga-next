@@ -30,18 +30,18 @@ function StatisticsTable() {
     columnHelper.accessor('player_id.position', {
       accessorFn: (row) => row.player_id.position,
       id: 'player-position',
-      header: 'Poz',
+      header: t('POZ'),
       meta: {
-        title: 'blah2',
+        title: t("O‘yinchining pozitsiyasi"),
       },
     }),
     columnHelper.accessor('player_id.name', {
       accessorKey: 'player_id.name',
       cell: (info) => info.getValue(),
-      header: 'Oyinchi ismi',
+      header: t("O'yinchi ismi"),
       id: 'player-name',
       meta: {
-        title: 'oyinchini toliq ismi',
+        title: t("O'yinchini toliq ismi"),
       },
     }),
     columnHelper.accessor((row) => row.goal, {
@@ -50,7 +50,7 @@ function StatisticsTable() {
       cell: (info) => info.getValue(),
       header: t('G'),
       meta: {
-        title: 'blah2',
+        title: t("Gol"),
       },
     }),
     columnHelper.accessor((row) => row.goal_asist, {
@@ -59,43 +59,43 @@ function StatisticsTable() {
       cell: (info) => info.getValue(),
       header: t('GA'),
       meta: {
-        title: 'blah2',
+        title: t('Assist'),
       },
     }),
     columnHelper.accessor((row) => row.played_min, {
       accessorFn: (row) => row.played_min,
       id: 'played min',
       cell: (info) => info.getValue(),
-      header: t('PM'),
+      header: t("O'Y"),
       meta: {
-        title: 'blah2',
+        title: t('O‘ynagan vaqti'),
       },
     }),
     columnHelper.accessor((row) => row.missed_penalty, {
       accessorFn: (row) => row.missed_penalty,
       id: 'missed penalty',
       cell: (info) => info.getValue(),
-      header: t('MP'),
+      header: t('PN'),
       meta: {
-        title: 'blah2',
+        title: t('Penalti o‘tkazib yuborgan'),
       },
     }),
     columnHelper.accessor((row) => row.yellow_card, {
       accessorFn: (row) => row.yellow_card,
       id: 'Yellow Card',
       cell: (info) => <i>{info.getValue()}</i>,
-      header: t('YC'),
+      header: t('SR'),
       meta: {
-        title: 'blah2',
+        title: t('Sariq kartochka'),
       },
     }),
     columnHelper.accessor((row) => row.red_card, {
       accessorFn: (row) => row.red_card,
       id: 'Red Card',
       cell: (info) => info.getValue(),
-      header: t('RC'),
+      header: t('QZ'),
       meta: {
-        title: 'blah2',
+        title: t('Qizil kartochka'),
       },
     }),
   ]

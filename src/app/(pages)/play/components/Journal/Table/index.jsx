@@ -45,12 +45,15 @@ function JournalTable() {
   const columns = [
     columnHelper.accessor('created_at', {
       id: 'date',
-      header: 'Date',
+      header: t("Sana"),
       accessorFn: (row) => row.created_at,
     }),
     columnHelper.accessor('name', {
+      accessorKey: 'name',
+      cell: (info) => info.getValue(),
+      header: t('Oyinchi ismi'),
       id: 'name',
-      header: 'Message',
+      header: t('Xabar'),
       accessorFn: (row) => (lang === LANGUAGE.uz ? row.name_uz : row.name_ru),
     }),
   ]
