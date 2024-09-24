@@ -37,15 +37,11 @@ const Article = ({ item }) => {
             {year}
           </p>
         </div>
-        <h5 className="w-full text-sm text-neutral-300 hover:underline">
-          {item.name}
-          {item.name}
-          {item.name}
-          {item.name}
+        <h5 className="w-full break-words text-sm text-neutral-300 hover:underline">
           {item.name}
         </h5>
         <p className="mt-2 text-end text-sm capitalize text-yellow-600 group-hover:text-primary">
-        {t("Yangiliklarni ko'rsatish")}
+          {t("Yangiliklarni ko'rsatish")}
         </p>
         <hr />
       </article>

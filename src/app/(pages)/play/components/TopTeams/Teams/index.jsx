@@ -20,7 +20,7 @@ const RankingTeams = () => {
 
 const TeamPlace = ({ team, index }) => {
   return (
-    <div className="relative min-h-32 rounded-lg bg-white p-2">
+    <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <Image
           src={`/icons/${index + 1}-place.svg`}
@@ -29,7 +29,7 @@ const TeamPlace = ({ team, index }) => {
           height={24}
           className="size-6 md:size-8"
         />
-        <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-medium text-black sm:text-base">
+        <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
           {team?.point ?? '00'}
         </span>
       </div>
@@ -39,7 +39,7 @@ const TeamPlace = ({ team, index }) => {
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
         {team.user_id.email.replace(/(\w{3})[\w.-]+@([\w.]+\w)/, '$1***@$2')}
       </p>
-      <span className="absolute bottom-0 right-0 flex size-7 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary font-extrabold text-black">
+      <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}
       </span>
     </div>

@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { playersExtraReducer } from './players.extraReducer'
 
 const initialState = {
+  topPlayers: [],
+  topPlayersLoading: false,
+  topPlayersError: null,
   players: [],
   isLoading: false,
   error: null,

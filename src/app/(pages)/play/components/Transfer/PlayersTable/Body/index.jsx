@@ -32,7 +32,7 @@ const TransferTableBody = ({ table, flexRender }) => {
         >
           {row.getVisibleCells().map((cell) => (
             <td
-              className={`${cell.column.id === 'name' ? 'min-w-1/3' : 'w-min sm:w-auto'} text-center sm:text-start text-[10px] xs:text-xs sm:text-sm lg:text-base px-0 capitalize md:p-1`}
+              className={`${cell.column.id === 'name' ? 'min-w-1/4' : 'w-min sm:w-auto'} text-center sm:text-start text-[10px] xs:text-xs sm:text-sm lg:text-base px-0 capitalize md:p-1`}
               key={cell.id}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
