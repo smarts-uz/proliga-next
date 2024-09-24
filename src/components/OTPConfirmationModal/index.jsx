@@ -24,7 +24,7 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center justify-between gap-2 max-w-[45rem] rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500"
+        className="flex max-w-[45rem] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500"
       >
         <form className="flex flex-col items-start gap-6">
           <label htmlFor="" className="text-xl font-medium">

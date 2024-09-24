@@ -1,25 +1,43 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
+import RankingTeams from './Teams'
+import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import RankingPlayers from './Players'
+import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
+
 const TopTeams = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { currentCompetition } = useSelector((state) => state.competition)
+  const { season } = useSelector((state) => state.season)
+
+  useEffect(() => {
+    if (currentCompetition?.id && season?.id) {
+      dispatch(
+        fetchTopTeams({
+          competition_id: currentCompetition?.id,
+          season_id: season?.id,
+        })
+      )
+    }
+  }, [currentCompetition, season, dispatch])
+
+  useEffect(() => {
+    if (currentCompetition?.id && season?.id) {
+      dispatch(
+        fetchTopPlayers({
+          
+          competition_id: currentCompetition?.id,
+        })
+      )
+    }
+  }, [currentCompetition, season, dispatch])
+
   return (
     <div className="flex h-min w-full flex-col gap-8 lg:w-1/3">
-      <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-        <h3 className="text-xl font-bold">{t("Eng kuchli top 3 jamoalar")}</h3>
-        <div className="mt-4 grid grid-cols-3 gap-2">
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-        </div>
-      </div>
-      <div className="w-full rounded-xl bg-black p-8 text-neutral-100">
-        <h3 className="text-xl font-bold">{t("Eng kuchli top 3 - futbolchilar")}</h3>
-        <div className="mt-4 grid grid-cols-3 gap-2">
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-          <div className="size-20 rounded-xl bg-white 2xl:size-28"></div>
-        </div>
-      </div>
+      <RankingTeams />
+      <RankingPlayers />
     </div>
   )
 }

@@ -9,7 +9,7 @@ const ArticleModal = ({ item, toggleModal }) => {
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[90vh] w-auto max-w-[60rem] flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-4/5 sm:w-2/3 md:w-1/2 md:p-6 xl:w-2/3"
+        className="mx-auto flex max-h-[90vh] w-[90%] max-w-[60rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:w-5/6 sm:w-4/5 md:w-3/4 md:p-6 xl:w-2/3"
       >
         <button onClick={toggleModal} type="button" className="self-end">
           <Image
@@ -25,7 +25,7 @@ const ArticleModal = ({ item, toggleModal }) => {
           <p className="max-w-xs">{item.date}</p>
         </div>
         <div
-          className="w-full text-sm xl:text-base"
+          className="w-auto text-sm xl:text-base"
           dangerouslySetInnerHTML={{ __html: item.desc }}
         />
       </motion.dialog>

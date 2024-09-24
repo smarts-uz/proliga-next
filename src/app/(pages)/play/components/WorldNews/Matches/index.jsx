@@ -45,7 +45,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="flex min-h-[40rem] w-full flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 xl:w-1/3">
+    <div className="flex min-h-[40rem] mx-auto lg:mx-0 max-w-[40rem] w-full flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
         <button
           disabled={tourIndex === 0}
@@ -81,8 +81,8 @@ const Matches = () => {
             {t('Matchlar topilmadi!')}
           </p>
         )}
-        {matches?.map((match) => (
-          <Match match={match} key={match.id} />
+        {matches?.map((match, index) => (
+          <Match match={match} key={index} />
         ))}
       </div>
     </div>
