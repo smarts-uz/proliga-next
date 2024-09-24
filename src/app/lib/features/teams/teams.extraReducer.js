@@ -18,7 +18,10 @@ export const teamsExtraReducer = (builder) => {
     })
     .addCase(fetchAllTeams.fulfilled, (state, action) => {
       state.teamsLoading = false
-      state.allTeams = action.payload.data
+      state.allTeams = []
+      if (action.payload.data?.length > 0) {
+        state.allTeams = action.payload.data
+      }
     })
     .addCase(fetchAllTeams.rejected, (state, action) => {
       state.teamsLoading = false

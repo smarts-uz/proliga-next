@@ -67,7 +67,6 @@ function PlayersTable() {
         return 'HJ'
       }
     }
-    console.log(position)
     return position
   }
 

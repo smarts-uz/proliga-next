@@ -11,7 +11,7 @@ const RankingPlayers = () => {
       <h3 className="text-xl font-bold">
         {t('Eng kuchli top 3 - futbolchilar')}
       </h3>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-2 gap-2 xs:grid-cols-3">
         {topPlayers?.map((player, index) => (
           <PlayerPlace key={index} player={player} index={index} />
         ))}

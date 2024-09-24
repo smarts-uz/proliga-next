@@ -9,7 +9,7 @@ const RankingTeams = () => {
   return (
     <div className="w-full rounded-lg bg-black p-6 text-neutral-100">
       <h3 className="text-xl font-bold">{t('Eng kuchli top 3 jamoalar')}</h3>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid  grid-cols-2 xs:grid-cols-3 gap-2">
         {topTeams?.map((team, index) => (
           <TeamPlace team={team} index={index} key={index} />
         ))}

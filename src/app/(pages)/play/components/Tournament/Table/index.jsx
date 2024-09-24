@@ -29,7 +29,7 @@ function TournamentTable() {
 
   const columns = [
     columnHelper.accessor('name', {
-      accessorKey: 'name',
+      accessorFn: (row) => row?.team?.name ?? 'name',
       cell: (info) => info.getValue(),
       header: t('Jamoa'),
     }),
@@ -45,7 +45,7 @@ function TournamentTable() {
       header: t('Tur'),
     }),
     columnHelper.accessor((row) => row.point, {
-      accessorFn: (row) => row.point,
+      accessorFn: (row) => row.team.point,
       id: 'hammasi',
       cell: (info) => <i>{info.getValue()}</i>,
       header: t('Hammasi'),

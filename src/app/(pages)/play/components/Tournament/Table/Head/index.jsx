@@ -30,7 +30,7 @@ const TransferTableHead = ({ table }) => {
                       alt="triangle arrow"
                       width={12}
                       height={12}
-                      className="inline-block size-4 rotate-180 xs:size-4 md:size-5"
+                      className="hidden size-4 rotate-180 xs:size-4 sm:inline-block md:size-5"
                     />
                   ),
                   desc: (
@@ -39,7 +39,7 @@ const TransferTableHead = ({ table }) => {
                       alt="triangle arrow"
                       width={12}
                       height={12}
-                      className="inline-block size-4 xs:size-4 md:size-5"
+                      className="hidden size-4 xs:size-4 sm:inline-block md:size-5"
                     />
                   ),
                 }[header.column.getIsSorted()] ?? (
@@ -48,7 +48,7 @@ const TransferTableHead = ({ table }) => {
                     alt="triangle arrow"
                     width={12}
                     height={12}
-                    className="inline-block size-4 rotate-180 xs:size-4 md:size-5"
+                    className="hidden size-4 rotate-180 xs:size-4 sm:inline-block md:size-5"
                   />
                 )}
               </th>

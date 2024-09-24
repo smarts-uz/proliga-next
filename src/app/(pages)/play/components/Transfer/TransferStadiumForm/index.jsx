@@ -154,7 +154,7 @@ const TransferStadiumForm = () => {
           animate={{ opacity: 1 }}
           type="button"
           onClick={() => dispatch(revertTeamPlayers())}
-          title="jamoani tozalash"
+          title="orqaga qaytish "
           className="flex w-full max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
         >
           <Image
