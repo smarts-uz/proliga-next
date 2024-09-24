@@ -15,6 +15,7 @@ const Matches = () => {
   const { matches, tourIndex } = useSelector((state) => state.matches)
   const [currentTour, setCurrentTour] = useState(null)
   const { t } = useTranslation()
+  
   useEffect(() => {
     if (tours?.length > 0) {
       setCurrentTour(tours[tourIndex])

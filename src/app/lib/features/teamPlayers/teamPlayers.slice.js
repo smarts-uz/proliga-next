@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  addTeamPlayerReducer,
-  deleteTeamPlayerReducer,
-  setCaptainReducer,
-  revertTeamPlayersReducer,
-} from './teamPlayers.reducer'
 import { teamPlayersExtraReducer } from './teamPlayers.extraReducer'
+import { revertTeamPlayersReducer } from './reducers/revertTeamPlayersReducer'
+import { setCaptainReducer } from './reducers/setCaptainReducer'
+import { addTeamPlayerReducer } from './reducers/addTeamPlayerReducer'
+import { updateTeamPlayerReducer } from './reducers/updateTeamPlayerReducer'
+import { deleteTeamPlayerReducer } from './reducers/deleteTeamPlayerReducer'
 
 const initialState = {
   GOA: [],
@@ -33,6 +32,7 @@ const teamPlayersSlice = createSlice({
     deleteTeamPlayer: deleteTeamPlayerReducer,
     setCaptain: setCaptainReducer,
     revertTeamPlayers: revertTeamPlayersReducer,
+    updateTeamPlayer: updateTeamPlayerReducer,
     emptyTeamPlayers: () => initialState,
   },
   extraReducers: teamPlayersExtraReducer,
@@ -44,6 +44,7 @@ export const {
   setCaptain,
   emptyTeamPlayers,
   revertTeamPlayers,
+  updateTeamPlayer,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

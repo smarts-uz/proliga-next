@@ -17,7 +17,7 @@ const Player = ({ player }) => {
   }, [playerPoint, player])
 
   const imageErr = (e) => {
-    e.target.src = '/icons/player-tshirt.svg'
+    e.target.src = '/icons/player.svg'
   }
 
   const clubPath = player.name ? player?.club_id?.slug : ''

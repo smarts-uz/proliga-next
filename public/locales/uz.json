@@ -176,7 +176,7 @@
   "Yangiliklar mavjud emas!": "Yangiliklar mavjud emas!",
   "Barchasi": "Barchasi",
   "Himoyachi": "Himoyachi",
-  "Y Himoyachi": "Y Himoyachi",
+  "Yar Himoyachi": "Y Himoyachi",
   "Hujumchi": "Hujumchi",
   "update balance txt": "Musobaqada g‘alaba qozonish uchun balansdagi 100 tanga etarli bo‘lmasligi mumkin. Tangalarni ko‘paytirish uchun foydalanuvchiga qo‘shimcha 50 tangagacha sotib olish imkoniyatiga ega bo‘ladi. Shu sababli, foydalanuvchilar balansni oshirib, chempionlik sari qadam tashlaydi",
   "Saqlash": "Saqlash",
@@ -358,7 +358,12 @@
   "O'yinchini toliq ismi": "O'yinchini toliq ismi",
   "Xabar": "Xabar",
   "Sana": "Sana",
+<<<<<<< HEAD
   "Hozirgi Tur": "Hozirgi Tur",
   "O‘ynagan vaqti": "O‘yn vaqti",
   "Assist": "Gol Assist"
 }
+=======
+  "Hozirgi Tur": "Hozirgi Tur"
+}
+>>>>>>> 05497978f8f3c3e730a5a0eac5fc94e5552ba960

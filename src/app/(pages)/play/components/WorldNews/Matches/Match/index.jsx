@@ -1,23 +1,8 @@
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import Image from 'next/image'
 
 const Match = ({ match }) => {
   const homeClub = match?.home_club_id ?? null
   const awayClub = match?.away_club_id ?? null
-
-  // useEffect(() => {
-  //   if (match && clubs?.length > 0) {
-  //     const currentHomeClub = clubs.find(
-  //       (club) => club.id === match.home_club_id
-  //     )
-  //     setHomeClub(currentHomeClub)
-  //     const currentAwayClub = clubs.find(
-  //       (club) => club.id === match.away_club_id
-  //     )
-  //     setAwayClub(currentAwayClub)
-  //   }
-  // }, [clubs, match])
 
   const date = new Date(match?.started_date)
   const day = date.getDate()
@@ -30,7 +15,11 @@ const Match = ({ match }) => {
       <div className="flex w-full items-center justify-end gap-2">
         <p className="text-xs font-medium xs:text-sm">{homeClub?.name}</p>
         <Image
-          src={`/club-jpg/${homeClub?.slug}/logo.jpeg`}
+          src={
+            homeClub?.slug
+              ? `/club-jpg/${homeClub?.slug}/logo.jpeg`
+              : '/icons/football.svg'
+          }
           alt="home club"
           width={48}
           height={48}
