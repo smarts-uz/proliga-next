@@ -176,7 +176,7 @@
   "Yangiliklar mavjud emas!": "Yangiliklar mavjud emas!",
   "Barchasi": "Barchasi",
   "Himoyachi": "Himoyachi",
-  "Yar Himoyachi": "Y Himoyachi",
+  "Y Himoyachi": "Y Himoyachi",
   "Hujumchi": "Hujumchi",
   "update balance txt": "Musobaqada g‘alaba qozonish uchun balansdagi 100 tanga etarli bo‘lmasligi mumkin. Tangalarni ko‘paytirish uchun foydalanuvchiga qo‘shimcha 50 tangagacha sotib olish imkoniyatiga ega bo‘ladi. Shu sababli, foydalanuvchilar balansni oshirib, chempionlik sari qadam tashlaydi",
   "Saqlash": "Saqlash",
@@ -345,25 +345,24 @@
   "O'yinchi ismi": "O'yinchi ismi",
   "O‘yinchining pozitsiyasi": "O‘yinchining pozitsiyasi",
   "Qizil kartochka": "Qizil kartochka",
-  "QZ": "QZ",
   "Sariq kartochka": "Sariq kartochka",
   "SR": "SR",
   "Penalti o‘tkazib yuborgan": "Penalti o‘tkazib yuborgan",
   "PN": "PN",
   "O'Y": "O'Y",
   "Gol": "Gol",
-  "GA": "GA",
   "G": "G",
   "POZ": "POZ",
   "O'yinchini toliq ismi": "O'yinchini toliq ismi",
   "Xabar": "Xabar",
   "Sana": "Sana",
-<<<<<<< HEAD
   "Hozirgi Tur": "Hozirgi Tur",
   "O‘ynagan vaqti": "O‘yn vaqti",
-  "Assist": "Gol Assist"
+  "Assist": "Gol Assist",
+  "GA": "A",
+  "QZ": "QK",
+  "MIN": "MIN",
+  "Qaytarilgan penalti": "Qaytarilgan penalti",
+  "QP": "QP",
+  "SK": "SK"
 }
-=======
-  "Hozirgi Tur": "Hozirgi Tur"
-}
->>>>>>> 05497978f8f3c3e730a5a0eac5fc94e5552ba960

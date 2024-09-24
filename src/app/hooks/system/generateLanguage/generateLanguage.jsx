@@ -35,7 +35,7 @@ export const useGenerateLanguage = () => {
         // uz
         data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
         //ru
-        data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
+        // data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
         console.log(obj);
       }
     } catch (error) {

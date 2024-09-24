@@ -128,7 +128,7 @@ function StatisticsTable() {
       accessorFn: (row) => row.red_card,
       id: 'Red Card',
       cell: (info) => info.getValue(),
-      header: t('QK'),
+      header: t('QZ'),
       meta: {
         title: t('Qizil kartochka'),
       },
