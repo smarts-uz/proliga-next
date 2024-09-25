@@ -12,7 +12,7 @@ function UserCabinet() {
 
   return (
     <Gutter>
-      <main className="mb-8 mt-24 flex h-full min-h-screen flex-col gap-4 lg:min-h-[85vh] lg:flex-row">
+      <main className="lg:min-h-auto 2xl:min-h-auto mb-8 mt-24 flex h-full min-h-screen flex-col gap-4 md:min-h-max lg:min-h-[48rem] lg:flex-row">
         <SettingsNavigation
           currentTab={tab}
           tabs={SETTINGSTAB}

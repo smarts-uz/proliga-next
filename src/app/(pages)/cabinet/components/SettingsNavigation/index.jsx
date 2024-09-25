@@ -58,7 +58,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
     <button
       key={tab}
       onClick={() => setTab(tab)}
-      className={`mx-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 sm:justify-start lg:w-auto lg:px-8 xl:mx-4 xl:gap-4 ${isActive ? containerActive : containerPassive}`}
+      className={`mx-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 sm:justify-start lg:mx-4 lg:w-auto lg:px-8 xl:mx-4 xl:gap-4 ${isActive ? containerActive : containerPassive}`}
     >
       <Image
         src={`/icons/${getCorrectIcon(tab)}.svg`}
