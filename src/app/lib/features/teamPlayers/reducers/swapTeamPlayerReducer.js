@@ -2,7 +2,7 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const swapTeamPlayerReducer = (state, action) => {
-  const { player, team, previousPlayer } = action.payload
+  const { player, team, previousPlayer, handleModal, t } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
   const calcTeamPrice = () => {
@@ -14,12 +14,15 @@ export const swapTeamPlayerReducer = (state, action) => {
   }
 
   const createUpdatedPlayer = (prevPlayer, newPlayer) => ({
-    ...newPlayer,
+    ...prevPlayer,
     id: prevPlayer.id,
     club_id: {
       slug: newPlayer.club.slug,
       id: newPlayer.club.id,
     },
+    name: newPlayer.name,
+    position: newPlayer.position,
+    player_id: newPlayer.id,
     price: newPlayer.price,
     competition_id: team.competition_id.id,
     user_id: team.user_id,
@@ -36,54 +39,66 @@ export const swapTeamPlayerReducer = (state, action) => {
 
   if (state.GOA.length > 0 && player.position === PLAYERS.GOA) {
     const prevPlayer = state.GOA.find((p) => previousPlayer.id === p.id)
-    state.GOA = state.GOA.map((p) =>
-      p.id === player.id ? createUpdatedPlayer(prevPlayer, player) : p
+    const prevPlayerIndex = state.GOA.findIndex(
+      (p) => previousPlayer.id === p.id
     )
+    state.GOA[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
     if (state.duplicatesMap[prevClubId] > 0) {
       state.duplicatesMap[prevClubId]--
     }
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     calcTeamPrice()
+    handleModal()
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
     return state
   }
   if (player.position === PLAYERS.DEF && state.DEF.length > 0) {
     const prevPlayer = state.DEF.find((p) => previousPlayer.id === p.id)
-    state.DEF = state.DEF.map((p) =>
-      p.id === player.id ? createUpdatedPlayer(prevPlayer, player) : p
+    const prevPlayerIndex = state.DEF.findIndex(
+      (p) => previousPlayer.id === p.id
     )
+    state.DEF[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
     if (state.duplicatesMap[prevClubId] > 0) {
       state.duplicatesMap[prevClubId]--
     }
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     calcTeamPrice()
+    handleModal()
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
     return state
   }
   if (player.position === PLAYERS.MID && state.MID.length > 0) {
     const prevPlayer = state.MID.find((p) => previousPlayer.id === p.id)
-    state.MID = state.MID.map((p) =>
-      p.id === player.id ? createUpdatedPlayer(prevPlayer, player) : p
+    const prevPlayerIndex = state.MID.findIndex(
+      (p) => previousPlayer.id === p.id
     )
+    state.MID[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
     if (state.duplicatesMap[prevClubId] > 0) {
       state.duplicatesMap[prevClubId]--
     }
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     calcTeamPrice()
+    handleModal()
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
     return state
   }
   if (player.position === PLAYERS.STR && state.STR.length > 0) {
     const prevPlayer = state.STR.find((p) => previousPlayer.id === p.id)
-    state.STR = state.STR.map((p) =>
-      p.id === player.id ? createUpdatedPlayer(prevPlayer, player) : p
+    const prevPlayerIndex = state.STR.findIndex(
+      (p) => previousPlayer.id === p.id
     )
+    state.STR[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
     if (state.duplicatesMap[prevClubId] > 0) {
       state.duplicatesMap[prevClubId]--
     }
     state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
     calcTeamPrice()
+    handleModal()
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
     return state
   }
 }

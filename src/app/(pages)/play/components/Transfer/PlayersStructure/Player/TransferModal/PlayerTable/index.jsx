@@ -21,7 +21,7 @@ const columnHelper = createColumnHelper()
 import { LANGUAGE } from 'app/utils/languages.util'
 import { PLAYERS } from 'app/utils/players.util'
 
-function PlayerTable({ prevPlayer }) {
+function PlayerTable({ prevPlayer, handleModal }) {
   const { t } = useTranslation()
   const { lang } = useSelector((state) => state.systemLanguage)
   const [data, setData] = useState([])
@@ -129,6 +129,8 @@ function PlayerTable({ prevPlayer }) {
     onPaginationChange: setPagination,
     state: {
       pagination,
+    },
+    initialState: {
       columnFilters: [
         {
           id: 'position',
@@ -155,6 +157,7 @@ function PlayerTable({ prevPlayer }) {
           prevPlayer={prevPlayer}
           table={table}
           flexRender={flexRender}
+          handleModal={handleModal}
         />
       </table>
       <TransferTablePagination table={table} />

@@ -8,29 +8,10 @@ import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice
 import { motion } from 'framer-motion'
 import PlayerTransferModal from './TransferModal'
 
-const Player = ({
-  player,
-  currentTeam,
-  additionalInfo = true,
-  deletePlayer = true,
-}) => {
+const Player = ({ player, currentTeam }) => {
   const dispatch = useDispatch()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const [isModalOpen, setModalOpen] = useState(false)
-
-  const toggleModal = useCallback(() => {
-    if (isModalOpen) {
-      setModalOpen(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setModalOpen(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }, [isModalOpen])
 
   const toggleDeleteModal = () => {
     if (deleteModalVisible) {
@@ -55,6 +36,20 @@ const Player = ({
     )
     toggleDeleteModal()
   }
+
+  const toggleModal = useCallback(() => {
+    if (isModalOpen) {
+      setModalOpen(false)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'auto'
+      }
+    } else {
+      setModalOpen(true)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden'
+      }
+    }
+  }, [isModalOpen])
 
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
@@ -110,32 +105,28 @@ const Player = ({
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              {additionalInfo && (
-                <button onClick={toggleModal}>
-                  <Image
-                    width={16}
-                    height={16}
-                    draggable={false}
-                    src="/icons/swap.svg"
-                    alt="additional info"
-                    className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
-                  />
-                </button>
-              )}
+              <button onClick={toggleModal}>
+                <Image
+                  width={16}
+                  height={16}
+                  draggable={false}
+                  src="/icons/swap.svg"
+                  alt="additional info"
+                  className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
+                />
+              </button>
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.price ?? '00'}
               </div>
-              {deletePlayer && (
-                <button onClick={toggleDeleteModal}>
-                  <Image
-                    width={16}
-                    height={16}
-                    src="/icons/close-red-circle.svg"
-                    alt="delete player"
-                    className="size-3 rounded-sm hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
-                  />
-                </button>
-              )}
+              <button onClick={toggleDeleteModal}>
+                <Image
+                  width={16}
+                  height={16}
+                  src="/icons/close-red-circle.svg"
+                  alt="delete player"
+                  className="size-3 rounded-sm hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
+                />
+              </button>
             </div>
           </>
         )}
