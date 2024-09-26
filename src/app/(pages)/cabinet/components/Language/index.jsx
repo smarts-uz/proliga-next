@@ -12,7 +12,7 @@ import { LANGUAGE } from 'app/utils/languages.util'
 const CabinetLanguageTab = () => {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.25 }}
       animate={{ opacity: 1 }}
       className="flex w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >

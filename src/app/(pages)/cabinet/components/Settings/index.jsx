@@ -30,7 +30,7 @@ const CabinetSettingsTab = () => {
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.25 }}
       animate={{ opacity: 1 }}
       className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
@@ -177,7 +177,6 @@ const CabinetSettingsTab = () => {
         <button
           className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
           type="submit"
-          onClick={() => update()}
         >
           {t('Saqlash')}
         </button>

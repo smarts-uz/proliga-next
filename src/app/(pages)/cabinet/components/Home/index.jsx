@@ -15,7 +15,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.25 }}
       animate={{ opacity: 1 }}
       className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
@@ -96,7 +96,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
       </section>
       <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
         <div
-          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 p-4 transition-all sm:size-64 sm:p-6`}
+          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border-neutral-400 border bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
         >
           <Image
             src="/icons/wallet.svg"
@@ -119,7 +119,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
           </button>
         </div>
         <div
-          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 p-4 transition-all sm:size-64 sm:p-6`}
+          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
         >
           <Image
             src="/icons/call.svg"
