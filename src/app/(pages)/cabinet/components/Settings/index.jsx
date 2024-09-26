@@ -1,9 +1,11 @@
+'use client'
 import './datepicker.scss'
 import Image from 'next/image'
 import DatePicker from 'react-datepicker'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const CabinetSettingsTab = () => {
   const { t } = useTranslation()
@@ -27,7 +29,11 @@ const CabinetSettingsTab = () => {
   console.log(file, firstName, lastName, middleName, abous, date, gender)
 
   return (
-    <section className="h-full w-full flex-1 rounded-xl  bg-neutral-900 bg-opacity-90 p-4 lg:h-auto xl:p-6">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+    >
       <form className="flex flex-col gap-2">
         <section className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="cursor-pointer space-y-1">
@@ -176,7 +182,7 @@ const CabinetSettingsTab = () => {
           {t('Saqlash')}
         </button>
       </form>
-    </section>
+    </motion.section>
   )
 }
 
