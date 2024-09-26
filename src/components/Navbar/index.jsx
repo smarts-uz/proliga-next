@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-20 bg-black bg-opacity-80 py-4 backdrop-blur-md">
+      <nav className="fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 py-4 backdrop-blur-md">
         <Gutter>
           <div className="relative flex w-full items-center justify-between text-white">
             <Link
