@@ -96,7 +96,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
       </section>
       <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
         <div
-          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border-neutral-400 border bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
+          className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
         >
           <Image
             src="/icons/wallet.svg"

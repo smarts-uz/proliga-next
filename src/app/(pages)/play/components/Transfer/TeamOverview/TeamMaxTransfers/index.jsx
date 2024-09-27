@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 const TeamMaxTransfers = () => {
   const [isModalOpen, toggleModal] = useState(false)
   const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { currentTourTeam } = useSelector((store) => store.tourTeams)
 
   const handleModal = () => {
     if (isModalOpen) {
@@ -22,6 +23,10 @@ const TeamMaxTransfers = () => {
     }
   }
   const { t } = useTranslation()
+  const currentTransferCount =
+    currentTeam?.transfers_from_one_team -
+    currentTourTeam?.current_count_of_transfers
+
   return (
     <>
       <div
@@ -33,7 +38,7 @@ const TeamMaxTransfers = () => {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs xs:text-sm"
           >
-            {t("transferlar")}
+            {t('transferlar')}
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"
@@ -44,7 +49,14 @@ const TeamMaxTransfers = () => {
           />
         </header>
         <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
-          2/{currentTeam?.transfers_from_one_team ?? 0}
+          <span
+            className={
+              +currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'
+            }
+          >
+            {currentTransferCount}
+          </span>
+          /{currentTeam?.transfers_from_one_team ?? 0}
         </p>
       </div>
       {isModalOpen && <TeamMaxTransfersModal handleModal={handleModal} />}

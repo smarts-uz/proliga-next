@@ -11,22 +11,31 @@ import { TABS } from 'app/utils/tabs.util'
 import { revertTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import { useUpdateTourTeam } from 'app/hooks/transfer/useUpdateTourTeam/useUpdateTourTeam.index'
+
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
-  const { GOA, DEF, MID, STR, playersCount } = useSelector(
+  const { GOA, DEF, MID, STR, playersCount, prevTeam } = useSelector(
     (state) => state.teamPlayers
   )
   const { teamBalance, teamPrice, currentTeam } = useSelector(
     (state) => state.currentTeam
   )
   const { currentTour } = useSelector((state) => state.tours)
+  const { currentTourTeam } = useSelector((state) => state.tourTeams)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
   const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
+  const {
+    updateTourTeam,
+    isLoading: tourTeamLoading,
+    error: tourTeamError,
+  } = useUpdateTourTeam()
+
   const {
     updateTeam,
     isLoading: teamLoading,
@@ -36,7 +45,13 @@ const TransferStadiumForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const prevTeamPlayersId = []
+    const curTeamPlayersId = []
     const captains = []
+    let countOfTransfers = 0
+
+    prevTeam.forEach((p) => p.name && prevTeamPlayersId.push(p.player_id))
+
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
@@ -46,11 +61,12 @@ const TransferStadiumForm = () => {
             player.position +
             t("holatidagi o'yinchi yaroqsiz")
         )
-        return
+        return player
       }
       if (player.is_captain) {
         captains.push(player.player_id)
       }
+      player.name && curTeamPlayersId.push(player.player_id)
     })
 
     if (captains.length === 0) {
@@ -79,14 +95,39 @@ const TransferStadiumForm = () => {
       return
     }
 
+    for (let i = 0; i < prevTeamPlayersId.length; i++) {
+      if (!curTeamPlayersId.includes(prevTeamPlayersId[i])) {
+        countOfTransfers++
+      }
+    }
+
+    if (
+      currentTeam.is_team_created &&
+      currentTourTeam.current_count_of_transfers < countOfTransfers
+    ) {
+      toast.error(t('Siz limitdan oshiq transfer amalga oshirdingiz'))
+      return
+    }
+
+    if (currentTeam.is_team_created === false) {
+      await updateTeam({ team_id: currentTeam.id })
+    }
+
+    if (currentTeam.is_team_created === true) {
+      await updateTourTeam({
+        team_id: currentTeam.id,
+        tour_id: currentTour.id,
+        count_of_transfers:
+          Math.round(+countOfTransfers / 2) +
+          currentTourTeam.current_count_of_transfers,
+      })
+    }
+
     await updateTeamPlayers({
       team: teamConcat,
       team_id: currentTeam.id,
       tour_id: currentTour.id,
     })
-    if (currentTeam.is_team_created === false) {
-      await updateTeam({ team_id: currentTeam.id })
-    }
     if (!error && !isLoading) {
       toast.success(t('Jamoa muvaffaqiyatli yangilandi'))
       dispatch(setTab(TABS.GameProfile))
@@ -98,7 +139,7 @@ const TransferStadiumForm = () => {
       toggleTeamCreateBtns(true)
     }
   }, [currentTeam])
-  // const { t } = useTranslation()
+
   return (
     <form
       onSubmit={handleSubmit}

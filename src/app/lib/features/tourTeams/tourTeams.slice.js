@@ -27,10 +27,17 @@ const tourTeamSlice = createSlice({
       state.teamPrice = price
       state.teamBalance = balance - price
     },
+    setCurrentTourTeamTransfersCount: (state, action) => {
+      state.currentTourTeam.current_count_of_transfers = action.payload
+    },
   },
   extraReducers: tourTeamExtraReducer,
 })
 
-export const { setCurrentTourTeamIndex, setTeamBalance } = tourTeamSlice.actions
+export const {
+  setCurrentTourTeamIndex,
+  setTeamBalance,
+  setCurrentTourTeamTransfersCount,
+} = tourTeamSlice.actions
 
 export default tourTeamSlice.reducer
