@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
-  const { tours, currentTourIndex, currentTour } = useSelector(
+  const { tours, currentTourIndex, currentTour, isLoading } = useSelector(
     (store) => store.tours
   )
   const { currentTeam } = useSelector((store) => store.currentTeam)
@@ -22,7 +22,8 @@ const GameBrief = () => {
 
   const date = new Date(nextTour?.datetime_end)
   const day = date.getDate()
-  const month = date.toLocaleString('default', { month: 'long' })
+  const month = date.getUTCMonth()
+  const year = date.getFullYear()
   const hours = date.getHours()
   const minutes = date.getMinutes()
 
@@ -38,7 +39,8 @@ const GameBrief = () => {
         <Item>
           <Title>{t('Tugatish Muddati')}</Title>
           <Content className="text-end text-sm uppercase text-primary md:text-base">
-            {`${day}-${month}`} | {`${hours}:${minutes === 0 ? '00' : minutes}`}
+            {`${day}/${month}/${year}`} |{' '}
+            {`${hours}:${minutes === 0 ? '00' : minutes}`}
           </Content>
         </Item>
       </Container>

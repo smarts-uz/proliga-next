@@ -3,10 +3,10 @@ import Gutter from '../../../../../components/Gutter'
 import GameBrief from './GameBrief'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import ProfileStadiumForm from './ProfileStadiumForm'
-import ProfilePlayersStructure from './PlayersStructure'
 import { useEffect } from 'react'
 import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
+import ProfileStadiumForm from './ProfileStadiumForm'
+import ProfilePlayersStructure from './PlayersStructure'
 
 const GameProfile = () => {
   const dispatch = useDispatch()
@@ -15,7 +15,6 @@ const GameProfile = () => {
   const { season } = useSelector((store) => store.season)
   const page = 0
   const perPage = 1000
-
 
   return (
     <Gutter>

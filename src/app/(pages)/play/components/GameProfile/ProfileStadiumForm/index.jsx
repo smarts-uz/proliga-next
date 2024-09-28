@@ -24,7 +24,7 @@ const ProfileStadiumForm = () => {
     e.preventDefault()
 
     const captains = []
-    
+
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
