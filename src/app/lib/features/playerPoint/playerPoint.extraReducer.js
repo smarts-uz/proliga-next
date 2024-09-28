@@ -7,6 +7,7 @@ export const playerPointExtraReducer = (builder) => {
     })
     .addCase(fetchPlayerPoint.fulfilled, (state, action) => {
       state.isLoading = false
+      state.playerPoint = []
       if (action.payload?.data?.length > 0) {
         state.playerPoint = action.payload.data
       }

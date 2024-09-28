@@ -1,20 +1,13 @@
 import Image from 'next/image'
 import Gutter from '../../../../../components/Gutter'
 import GameBrief from './GameBrief'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import { useEffect } from 'react'
-import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
 import ProfileStadiumForm from './ProfileStadiumForm'
 import ProfilePlayersStructure from './PlayersStructure'
 
 const GameProfile = () => {
-  const dispatch = useDispatch()
   const { currentTour } = useSelector((store) => store.tours)
-  const { currentCompetition } = useSelector((store) => store.competition)
-  const { season } = useSelector((store) => store.season)
-  const page = 0
-  const perPage = 1000
 
   return (
     <Gutter>
