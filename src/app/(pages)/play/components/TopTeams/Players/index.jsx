@@ -37,7 +37,6 @@ const PlayerPlace = ({ player, index }) => {
           alt="top team place"
           width={24}
           height={24}
-          // onError={imageErr}
           className="size-6 rounded-full md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">

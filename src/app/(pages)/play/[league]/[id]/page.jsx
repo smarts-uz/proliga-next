@@ -51,11 +51,13 @@ const Play = ({ params }) => {
   }, [dispatch, currentTeam])
 
   useEffect(() => {
-    if (currentTour?.id && currentTeam?.competition?.id) {
+    if (currentTour?.id && currentTeam?.competition_id?.id) {
       dispatch(
         fetchPlayerPoint({
           competition_id: currentTeam.competition_id.id,
           tour_id: currentTour.id,
+          page: 0,
+          perPage: 1000,
         })
       )
     }

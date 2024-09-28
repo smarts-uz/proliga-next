@@ -27,7 +27,6 @@ const TopTeams = () => {
     if (currentCompetition?.id && season?.id) {
       dispatch(
         fetchTopPlayers({
-          
           competition_id: currentCompetition?.id,
         })
       )

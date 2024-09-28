@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 const ProfileStadiumForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  
+
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
@@ -19,15 +19,20 @@ const ProfileStadiumForm = () => {
   )
   const { currentTour } = useSelector((state) => state.tours)
   const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const captains = []
+    
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          t("identifikatori") + player.id + t("bo'lgan va") + player.position + t("holatidagi o'yinchi yaroqsiz")
+          t('identifikatori') +
+            player.id +
+            t("bo'lgan va") +
+            player.position +
+            t("holatidagi o'yinchi yaroqsiz")
         )
         return
       }
@@ -37,11 +42,11 @@ const ProfileStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning(t("Kapitan tanlanmagan"))
+      toast.warning(t('Kapitan tanlanmagan'))
       return
     }
     if (captains.length > 1) {
-      toast.warning(t("Ko`p kapitan tanlangan"))
+      toast.warning(t('Ko`p kapitan tanlangan'))
       return
     }
 
@@ -54,7 +59,7 @@ const ProfileStadiumForm = () => {
       playersCount.STR < 2 ||
       playersCount.STR > 3
     ) {
-      toast.error(t("Jamoa formatsiyasi notogri"))
+      toast.error(t('Jamoa formatsiyasi notogri'))
       return
     }
 
@@ -65,10 +70,10 @@ const ProfileStadiumForm = () => {
     })
 
     if (!error && !isLoading) {
-      toast.success(t("Kapitan yangilandi"))
+      toast.success(t('Kapitan yangilandi'))
     }
   }
-  // const { t } = useTranslation()
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -84,7 +89,7 @@ const ProfileStadiumForm = () => {
           value=""
           className="checked:bg-neutral-700 active:bg-neutral-800"
         >
-          {t("Kapitan")}
+          {t('Kapitan')}
         </option>
         {teamConcat.map(
           (player) =>
@@ -104,7 +109,7 @@ const ProfileStadiumForm = () => {
         type="submit"
         className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
       >
-        {t("Saqlash")}
+        {t('Saqlash')}
       </button>
     </form>
   )
