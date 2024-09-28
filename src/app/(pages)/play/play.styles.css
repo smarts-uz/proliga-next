@@ -1,0 +1,28 @@
+table {
+  border-collapse: inherit;
+  width: inherit;
+  max-width: inherit;
+  table-layout: inherit;
+}
+
+td,
+th {
+  border: inherit;
+  padding: inherit;
+}
+
+tr:nth-child(even) {
+  background-color: inherit;
+}
+
+tr:hover {
+  background-color: inherit;
+}
+
+th {
+  padding-top: inherit;
+  padding-bottom: inherit;
+  text-align: inherit;
+  background-color: initial;
+  color: inherit;
+}

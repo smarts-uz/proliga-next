@@ -1,5 +1,6 @@
 'use client'
 
+import '../../play.styles.css'
 import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
 import { useSelector, useDispatch } from 'react-redux'

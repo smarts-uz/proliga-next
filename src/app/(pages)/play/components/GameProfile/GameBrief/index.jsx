@@ -27,83 +27,109 @@ const GameBrief = () => {
   const minutes = date.getMinutes()
 
   return (
-    <section className="fade-in-fast mx-auto flex h-min w-full max-w-[32rem] flex-col justify-between gap-6 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-10 py-6 transition-all hover:border-opacity-100 md:max-w-[40rem] lg:mx-0 lg:w-1/2 xl:w-[55%]">
-      <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100"> {t('Keyingi Tur')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
-            {nextTour?.name ??  t('Keyingi Tur')}
-          </p>
-        </div>
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Tugatish Muddati')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
-            {`${day}-${month}`} | {`${hours}:${minutes === 0 ? "00" : minutes}`}
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Tur')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+    <section className="fade-in-fast mx-auto flex h-min w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-6 md:px-10 lg:mx-0 lg:w-1/2 xl:w-[55%]">
+      <Container className="border-b border-neutral-700">
+        <Item>
+          <Title> {t('Keyingi Tur')}</Title>
+          <Content className="text-sm uppercase text-primary md:text-base">
+            {nextTour?.name ?? t('Keyingi Tur')}
+          </Content>
+        </Item>
+        <Item>
+          <Title>{t('Tugatish Muddati')}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
+            {`${day}-${month}`} | {`${hours}:${minutes === 0 ? '00' : minutes}`}
+          </Content>
+        </Item>
+      </Container>
+      <Container className="border-b border-neutral-700">
+        <Item>
+          <Title>{t('Tur')}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
             {currentTour?.name ?? t('Hozirgi Tur')}
-          </p>
-        </div>
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Turdagi ochkolar')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+        <Item>
+          <Title>{t('Turdagi ochkolar')}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
             {currentTour?.point ?? '00'}
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Turnirdagi ochkolar')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+      </Container>
+      <Container className="border-b border-neutral-700">
+        <Item>
+          <Title>{t('Turnirdagi ochkolar')}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
             {currentTeam?.point ?? '000'}
-          </p>
-        </div>
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">
-            {t("Turnirdagi o'rtacha ochkolar")}
-          </p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+        <Item>
+          <Title>{t("Turnirdagi o'rtacha ochkolar")}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
             {currentCompetition?.averate_team_point ?? '00.0'}
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-6 border-b border-neutral-700 pb-2">
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Chempionat')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+      </Container>
+      <Container className="border-b border-neutral-700">
+        <Item>
+          <Title>{t('Chempionat')}</Title>
+          <Content className="text-end text-sm uppercase text-primary md:text-base">
             {currentTeam?.competition_id?.title}
-          </p>
-        </div>
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t("Ligadagi o'rin")}</p>
-          <p className="space-x-1 text-sm uppercase text-neutral-300 md:text-base">
-            <span className="text-pretty text-base font-medium text-primary md:text-lg">
-              {currentTeam?.order ?? '00'}{' '}
-            </span>
-            / {currentCompetition?.team_count ?? '0000'}
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-6 pb-2">
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Jamoa narxi')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+        <Item>
+          <Title className="text-neutral-100">{t("Ligadagi o'rin")}</Title>
+          <Content className="space-x-1">
+            {currentTeam?.order ?? '00'} /{' '}
+            {currentCompetition?.team_count ?? '0000'}
+          </Content>
+        </Item>
+      </Container>
+      <Container>
+        <Item>
+          <Title>{t('Jamoa narxi')}</Title>
+          <Content className="uppercase text-primary md:text-base">
             {teamPrice ?? 0}
-          </p>
-        </div>
-        <div className="flex justify-between text-lg">
-          <p className="text-neutral-100">{t('Balans')}</p>
-          <p className="text-sm uppercase text-primary md:text-base">
+          </Content>
+        </Item>
+        <Item>
+          <Title>{t('Balans')}</Title>
+          <Content className="text-sm uppercase text-primary md:text-base">
             {teamBalance ?? 100}
-          </p>
-        </div>
-      </div>
+          </Content>
+        </Item>
+      </Container>
     </section>
+  )
+}
+
+const Container = ({ children, className }) => {
+  return (
+    <div className={`flex flex-col gap-2 pb-2 md:gap-6 ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+const Item = ({ children, className }) => {
+  return (
+    <div className={`flex justify-between gap-1 ${className}`}>{children}</div>
+  )
+}
+
+const Title = ({ children, className }) => {
+  return (
+    <h3 className={`text-base text-neutral-100 md:text-lg ${className}`}>
+      {children}
+    </h3>
+  )
+}
+
+const Content = ({ children, className }) => {
+  return (
+    <p className={`text-sm uppercase text-primary md:text-base ${className}`}>
+      {children}
+    </p>
   )
 }
 
