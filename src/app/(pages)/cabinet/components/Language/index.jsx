@@ -8,8 +8,11 @@ import {
 } from '@/components/ui/select'
 import Image from 'next/image'
 import { LANGUAGE } from 'app/utils/languages.util'
+import { useTranslation } from 'react-i18next'
 
 const CabinetLanguageTab = () => {
+  const { t } = useTranslation()
+
   return (
     <motion.section
       initial={{ opacity: 0.25 }}
@@ -47,6 +50,12 @@ const CabinetLanguageTab = () => {
           </SelectItem>
         </SelectContent>
       </Select>
+      <button
+        className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-40"
+        type="submit"
+      >
+        {t('Til Yangilash')}
+      </button>
     </motion.section>
   )
 }

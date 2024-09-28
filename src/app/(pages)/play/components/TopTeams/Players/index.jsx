@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import Image from 'next/image'
 import { useSelector } from 'react-redux'
+import Image from 'next/image'
 
 const RankingPlayers = () => {
   const { t } = useTranslation()
@@ -29,11 +29,15 @@ const PlayerPlace = ({ player, index }) => {
     <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <Image
-          src={player?.image}
+          src={
+            player?.image
+              ? player?.image
+              : `/club/${player?.club_id?.slug}/app.svg`
+          }
           alt="top team place"
           width={24}
           height={24}
-          onError={imageErr}
+          // onError={imageErr}
           className="size-6 rounded-full md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
