@@ -11,7 +11,6 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
-import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -22,7 +21,6 @@ const Play = ({ params }) => {
   const { currentTeam, isLoading: teamLoading } = useSelector(
     (state) => state.currentTeam
   )
-  const { currentTour } = useSelector((store) => store.tours)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -49,19 +47,6 @@ const Play = ({ params }) => {
       dispatch(fetchClubs({ competition_id: currentTeam.competition_id.id }))
     }
   }, [dispatch, currentTeam])
-
-  useEffect(() => {
-    if (currentTour?.id && currentTeam?.competition_id?.id) {
-      dispatch(
-        fetchPlayerPoint({
-          competition_id: currentTeam.competition_id.id,
-          tour_id: currentTour.id,
-          page: 0,
-          perPage: 1000,
-        })
-      )
-    }
-  }, [dispatch, currentTour, currentTeam])
 
   return (
     <section className="flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 text-neutral-700">

@@ -4,6 +4,7 @@ export const currentTeamExtraReducer = (builder) => {
   builder
     .addCase(fetchCurrentTeam.pending, (state) => {
       state.isLoading = true
+      state.currentTeam = {}
     })
     .addCase(fetchCurrentTeam.fulfilled, (state, action) => {
       state.isLoading = false

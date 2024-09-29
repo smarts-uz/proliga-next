@@ -4,10 +4,10 @@ export const userActivityExtraReducer = (builder) => {
   builder
     .addCase(fetchUserActivity.pending, (state) => {
       state.isLoading = true
+      state.activities = []
     })
     .addCase(fetchUserActivity.fulfilled, (state, action) => {
       state.isLoading = false
-      state.activities = []
       if (action.payload.data.length > 0) {
         state.activities = action.payload.data
       }

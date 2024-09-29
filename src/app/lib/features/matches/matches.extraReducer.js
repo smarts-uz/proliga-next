@@ -4,10 +4,10 @@ export const matchesExtraReducer = (builder) => {
   builder
     .addCase(fetchMatches.pending, (state) => {
       state.isLoading = true
+      state.matches = []
     })
     .addCase(fetchMatches.fulfilled, (state, action) => {
       state.isLoading = false
-      state.matches = []
       if (action.payload.data?.length > 0) {
         state.matches = action.payload.data
       }
