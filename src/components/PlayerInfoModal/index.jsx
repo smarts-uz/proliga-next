@@ -1,15 +1,23 @@
 'use client'
 
-import Backdrop from 'components/Backdrop'
 import { motion } from 'framer-motion'
-import { useSelector } from 'react-redux'
-import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { PLAYERS } from 'app/utils/players.util'
+import { useEffect } from 'react'
+import { fetchCurrentPlayerResult } from 'app/lib/features/players/players.thunk'
+import Backdrop from 'components/Backdrop'
+import Image from 'next/image'
+import PlayerPhoto from './PlayerPhoto'
+import PlayerStatisticsTable from './Table'
 
 const PlayerInfoModal = ({ toggleModal }) => {
+  const dispatch = useDispatch()
+  const { currentCompetition } = useSelector((store) => store.competition)
+  const { season } = useSelector((store) => store.season)
   const { currentPlayer } = useSelector((store) => store.players)
   const { lang } = useSelector((store) => store.systemLanguage)
+  const { currentTour } = useSelector((store) => store.tours)
 
   const getCorrentPlayerPosition = (position, lang) => {
     if (lang === LANGUAGE.ru) {
@@ -43,50 +51,66 @@ const PlayerInfoModal = ({ toggleModal }) => {
     return position
   }
 
+  useEffect(() => {
+    if (
+      currentPlayer?.id &&
+      season?.id &&
+      currentCompetition?.id &&
+      currentTour?.id
+    ) {
+      dispatch(
+        fetchCurrentPlayerResult({
+          player_id: currentPlayer?.id,
+          season_id: season?.id,
+          competition_id: currentCompetition?.id,
+          tour_id: currentTour?.id,
+        })
+      )
+    }
+  }, [currentPlayer, season, currentCompetition, dispatch, currentTour])
+
   return (
     <Backdrop onClick={toggleModal}>
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="z-30 flex w-4/5 max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-6 text-neutral-200 xs:mx-auto sm:w-2/3 md:p-6 lg:w-1/3"
+        className="xl:2/3 z-50 flex min-h-[65vh] w-[96%] max-w-[60rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-6 text-neutral-200 xs:mx-auto xs:w-[92%] sm:w-4/5 md:p-6 lg:w-3/4"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex gap-2">
+        <button onClick={toggleModal} className="ml-auto w-auto self-start">
           <Image
-            src={
-              currentPlayer?.image
-                ? currentPlayer?.image
-                : `/club/${currentPlayer?.club_id?.slug}/app.svg`
-            }
-            alt="player image"
+            src="/icons/close.svg"
+            alt="close"
             width={24}
             height={24}
-            unoptimized
-            className="size-12 rounded-md md:size-20"
+            className="filter-neutral-100 size-5 md:size-6"
           />
-          <div className="flex flex-col gap-1">
-            <h3 className="text-xl font-bold md:text-2xl">
-              {currentPlayer.name}
-            </h3>
-            <div className="flex items-center gap-2">
-              <Image
-                src={
-                  currentPlayer?.club?.slug
-                    ? `/club-jpg/${currentPlayer?.club?.slug}/logo.jpeg`
-                    : '/icons/football.svg'
-                }
-                alt="home club"
-                width={48}
-                height={48}
-                draggable={false}
-                unoptimized
-                className="h-full w-8 rounded-full bg-neutral-400"
-              />
-              <span>|</span>
-              <p>{getCorrentPlayerPosition(currentPlayer.position, lang)}</p>
-            </div>
+        </button>
+        <PlayerPhoto
+          currentPlayer={currentPlayer}
+          position={getCorrentPlayerPosition(currentPlayer.position, lang)}
+        />
+        <div className="flex w-full flex-wrap gap-1">
+          <div className="flex-1 rounded-sm border border-neutral-500 bg-neutral-800 px-2 py-1 text-center text-xs md:text-sm">
+            <p className="font-semibold text-neutral-50">
+              {currentPlayer.price ?? 0}
+            </p>
+            <p className="text-xs text-neutral-300">Narx</p>
+          </div>
+          <div className="flex-1 rounded-sm border border-neutral-500 bg-neutral-800 px-2 py-1 text-center text-xs md:text-sm">
+            <p className="font-semibold text-neutral-50">
+              {currentPlayer.point ?? 0}
+            </p>
+            <p className="text-xs text-neutral-300">Ochko</p>
+          </div>
+          <div className="flex-1 rounded-sm border border-neutral-500 bg-neutral-800 px-2 py-1 text-center text-xs md:text-sm">
+            <p className="font-semibold text-neutral-50">
+              {currentPlayer.percentage ?? 0}%
+            </p>
+            <p className="text-xs text-neutral-300">Sotib Olgan</p>
           </div>
         </div>
+        <PlayerStatisticsTable />
       </motion.dialog>
     </Backdrop>
   )

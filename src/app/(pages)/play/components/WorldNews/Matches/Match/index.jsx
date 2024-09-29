@@ -14,15 +14,12 @@ const Match = ({ match }) => {
     <div className="flex items-center justify-center gap-1 rounded-lg bg-neutral-800 px-0 py-2 xs:px-4">
       <div className="flex w-full items-center justify-end gap-2">
         <p className="text-xs font-medium xs:text-sm">{homeClub?.name}</p>
-        <Image
-          src={
-            homeClub?.slug
-              ? `/club-jpg/${homeClub?.slug}/logo.jpeg`
-              : '/icons/football.svg'
-          }
+        <img
+          src={`/club-jpg/${homeClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
           height={48}
+          onError={(e) => (e.target.src = '/icons/football.svg')}
           draggable={false}
           className="size-8 rounded-full bg-neutral-400 xs:size-10"
         />
@@ -52,11 +49,12 @@ const Match = ({ match }) => {
         )}
       </div>
       <div className="flex w-full items-center gap-2">
-        <Image
+        <img
           src={`/club-jpg/${awayClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
           height={48}
+          onError={(e) => (e.target.src = '/icons/football.svg')}
           draggable={false}
           className="size-8 rounded-full bg-neutral-400 xs:size-10"
         />

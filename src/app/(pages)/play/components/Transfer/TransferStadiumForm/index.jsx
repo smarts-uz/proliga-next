@@ -103,8 +103,11 @@ const TransferStadiumForm = () => {
 
     if (
       currentTeam.is_team_created &&
-      currentTourTeam.current_count_of_transfers < countOfTransfers
+      currentTeam?.transfers_from_one_team <
+        Math.round(+countOfTransfers / 2) +
+          currentTourTeam?.current_count_of_transfers
     ) {
+      console.log(currentTourTeam.current_count_of_transfers, countOfTransfers)
       toast.error(t('Siz limitdan oshiq transfer amalga oshirdingiz'))
       return
     }

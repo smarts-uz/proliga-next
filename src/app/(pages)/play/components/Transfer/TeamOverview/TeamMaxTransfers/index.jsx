@@ -25,7 +25,9 @@ const TeamMaxTransfers = () => {
   const { t } = useTranslation()
   const currentTransferCount =
     currentTeam?.transfers_from_one_team -
-      currentTourTeam?.current_count_of_transfers ?? 0
+    currentTourTeam?.current_count_of_transfers
+
+  console.log(currentTourTeam.current_count_of_transfers)
 
   return (
     <>

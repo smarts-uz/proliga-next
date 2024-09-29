@@ -35,7 +35,7 @@ const GameBrief = () => {
     }
   }, [currentTourIndex, tours, tourTeams])
 
-  const date = new Date(nextTour?.datetime_end)
+  const date = new Date(nextTour?.datetime_start)
   const day = date.getDate()
   const month = date.getUTCMonth() + 1
   const year = date.getFullYear()
@@ -67,7 +67,7 @@ const GameBrief = () => {
             </Content>
           ) : (
             <Content>
-              {`${curDate.getDay()}/${curDate.getUTCMonth() + 1}/${curDate.getFullYear()}`}{' '}
+              {`${curDate.getDate()}/${curDate.getUTCMonth() + 1}/${curDate.getFullYear()}`}{' '}
               |{' '}
               {`${curDate.getHours()}:${curDate.getMinutes() === 0 ? '00' : curDate.getMinutes()}`}
             </Content>

@@ -24,6 +24,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     price: player.price,
     competition_id: team.competition_id.id,
     user_id: team.user_id,
+    percentage: player.percentage ?? null,
     image: player.image,
   })
 

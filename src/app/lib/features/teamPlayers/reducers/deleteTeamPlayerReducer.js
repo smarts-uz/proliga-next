@@ -20,6 +20,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     name: null,
     club_id: null,
     price: null,
+    percentage: null,
     image: null,
   })
 

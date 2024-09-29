@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import Image from 'next/image'
 
 const RankingPlayers = () => {
   const { t } = useTranslation()
@@ -21,23 +21,16 @@ const RankingPlayers = () => {
 }
 
 const PlayerPlace = ({ player, index }) => {
-  const imageErr = (e) => {
-    e.target.src = `/club/${player?.club_id?.slug}/app.svg`
-  }
-
   return (
     <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
-        <Image
-          src={
-            player?.image
-              ? player?.image
-              : `/club/${player?.club_id?.slug}/app.svg`
-          }
-          alt="top team place"
+        <img
+          src={player?.image}
+          alt="player"
           width={24}
           height={24}
-          className="size-6 rounded-full md:size-8"
+          onError={(e) => (e.target.src = '/images/placeholder-user.png')}
+          className="size-6 rounded-full text-black md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
           {player?.point ?? '00'}

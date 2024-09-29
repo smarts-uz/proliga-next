@@ -5,6 +5,8 @@ export const teamPlayersExtraReducer = (builder) => {
   builder
     .addCase(fetchTeamPlayers.pending, (state) => {
       state.isLoading = true
+    })
+    .addCase(fetchTeamPlayers.fulfilled, (state, action) => {
       state.GOA = []
       state.playersCount.GOA = 0
       state.DEF = []
@@ -13,8 +15,6 @@ export const teamPlayersExtraReducer = (builder) => {
       state.playersCount.MID = 0
       state.STR = []
       state.playersCount.STR = 0
-    })
-    .addCase(fetchTeamPlayers.fulfilled, (state, action) => {
       const team = action.payload.data
       team?.length > 0 && (state.prevTeam = team)
       team?.length > 0 &&
