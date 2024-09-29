@@ -24,6 +24,7 @@ export const addTeamPlayerReducer = (state, action) => {
     price: player.price,
     competition_id: team.competition_id.id,
     user_id: team.user_id,
+    image: player.image,
   })
 
   const softDeleteEmptyPlayer = (emptyPlayer) => {

@@ -18,8 +18,7 @@ import { selectPlayers } from 'app/lib/features/players/players.selector'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 const columnHelper = createColumnHelper()
-import { LANGUAGE } from 'app/utils/languages.util'
-import { PLAYERS } from 'app/utils/players.util'
+import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
 
 function PlayerTable({ prevPlayer, handleModal }) {
   const { t } = useTranslation()
@@ -36,38 +35,6 @@ function PlayerTable({ prevPlayer, handleModal }) {
       setData(selectedPlayers)
     }
   }, [selectedPlayers])
-
-  const getCorrentPlayerPosition = (position) => {
-    if (lang === LANGUAGE.ru) {
-      if (position === PLAYERS.GOA) {
-        return 'ВР'
-      }
-      if (position === PLAYERS.DEF) {
-        return 'ЗЩ'
-      }
-      if (position === PLAYERS.MID) {
-        return 'ПЗ'
-      }
-      if (position === PLAYERS.STR) {
-        return 'НП'
-      }
-    }
-    if (lang === LANGUAGE.uz) {
-      if (position === PLAYERS.GOA) {
-        return 'DR'
-      }
-      if (position === PLAYERS.DEF) {
-        return 'HM'
-      }
-      if (position === PLAYERS.MID) {
-        return 'YH'
-      }
-      if (position === PLAYERS.STR) {
-        return 'HJ'
-      }
-    }
-    return position
-  }
 
   const columns = [
     columnHelper.accessor('name', {
@@ -112,7 +79,7 @@ function PlayerTable({ prevPlayer, handleModal }) {
       header: t('Ochko'),
     }),
     columnHelper.accessor('position', {
-      accessorFn: (row) => getCorrentPlayerPosition(row.position),
+      accessorFn: (row) => getCorrentPlayerPosition(row.position, lang),
       id: 'position',
       cell: (info) => <i>{info.getValue()}</i>,
       header: t('Poz'),

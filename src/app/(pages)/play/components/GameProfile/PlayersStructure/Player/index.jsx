@@ -1,12 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
-import { useSelector } from 'react-redux'
+import PlayerInfoModal from 'components/PlayerInfoModal'
+import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
 
 const Player = ({ player }) => {
-  const [currentPlayerPoint, setCurrentPlayerPoint] = useState()
+  const dispatch = useDispatch()
   const { playerPoint } = useSelector((state) => state.playerPoint)
+  const [currentPlayerPoint, setCurrentPlayerPoint] = useState()
+  const [infoModal, setInfoModal] = useState(false)
 
   useEffect(() => {
     if (playerPoint?.length > 0) {
@@ -18,6 +22,21 @@ const Player = ({ player }) => {
 
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
+  }
+
+  const handleInfoModal = () => {
+    dispatch(setCurrentPlayer(player.player_id))
+    if (infoModal) {
+      setInfoModal(false)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'auto'
+      }
+    } else {
+      setInfoModal(true)
+      if (typeof window != 'undefined' && window.document) {
+        document.body.style.overflow = 'hidden'
+      }
+    }
   }
 
   const clubPath = player.name ? player?.club_id?.slug : ''
@@ -66,7 +85,7 @@ const Player = ({ player }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              <button>
+              <button onClick={handleInfoModal}>
                 <Image
                   width={16}
                   height={16}
@@ -83,6 +102,9 @@ const Player = ({ player }) => {
           </>
         )}
       </div>
+      {infoModal && (
+        <PlayerInfoModal toggleModal={handleInfoModal} />
+      )}
     </>
   )
 }

@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import AddPlayerButton from './AddPlayerButton'
-import {
-  swapTeamPlayer,
-} from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { swapTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
 
 const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
@@ -12,9 +10,14 @@ const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
   const { t } = useTranslation()
 
   const handleAddPlayer = (player) => {
-    console.log(player)
     dispatch(
-      swapTeamPlayer({ player, previousPlayer: prevPlayer, team: currentTeam, handleModal, t })
+      swapTeamPlayer({
+        player,
+        previousPlayer: prevPlayer,
+        team: currentTeam,
+        handleModal,
+        t,
+      })
     )
   }
 

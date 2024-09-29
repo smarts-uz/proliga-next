@@ -26,8 +26,6 @@ const CabinetSettingsTab = () => {
     setFile(e.target.files[0])
   }
 
-  console.log(file, firstName, lastName, middleName, abous, date, gender)
-
   return (
     <motion.section
       initial={{ opacity: 0.25 }}

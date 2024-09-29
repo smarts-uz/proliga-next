@@ -13,8 +13,8 @@ import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
-import { LANGUAGE } from 'app/utils/languages.util'
-import { PLAYERS } from 'app/utils/players.util'
+import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+
 const columnHelper = createColumnHelper()
 
 function StatisticsTable() {
@@ -29,41 +29,10 @@ function StatisticsTable() {
     }
   }, [players])
 
-  const getCorrentPlayerPosition = (position) => {
-    if (lang === LANGUAGE.ru) {
-      if (position === PLAYERS.GOA) {
-        return 'ВР'
-      }
-      if (position === PLAYERS.DEF) {
-        return 'ЗЩ'
-      }
-      if (position === PLAYERS.MID) {
-        return 'ПЗ'
-      }
-      if (position === PLAYERS.STR) {
-        return 'НП'
-      }
-    }
-    if (lang === LANGUAGE.uz) {
-      if (position === PLAYERS.GOA) {
-        return 'DRVZB'
-      }
-      if (position === PLAYERS.DEF) {
-        return 'HMCH'
-      }
-      if (position === PLAYERS.MID) {
-        return 'YHMCH'
-      }
-      if (position === PLAYERS.STR) {
-        return 'HJMCH'
-      }
-    }
-    return position
-  }
-
   const columns = [
     columnHelper.accessor('player_id.position', {
-      accessorFn: (row) => getCorrentPlayerPosition(row.player_id.position),
+      accessorFn: (row) =>
+        getCorrentPlayerPosition(row.player_id.position, lang),
       id: 'player-position',
       header: t('POZ'),
       meta: {

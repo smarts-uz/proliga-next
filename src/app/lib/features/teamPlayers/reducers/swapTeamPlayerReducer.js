@@ -26,6 +26,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     price: newPlayer.price,
     competition_id: team.competition_id.id,
     user_id: team.user_id,
+    image: newPlayer.image,
   })
 
   const clubId = player?.club?.id || player.club_id.id

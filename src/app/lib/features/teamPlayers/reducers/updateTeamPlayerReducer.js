@@ -24,6 +24,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     price: player.price,
     competition_id: team.competition_id.id,
     user_id: team.user_id,
+    image: player.image,
   })
 
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
