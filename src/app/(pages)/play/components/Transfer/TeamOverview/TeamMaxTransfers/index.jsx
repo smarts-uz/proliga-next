@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { useState } from 'react'
 import TeamMaxTransfersModal from './Modal'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -27,7 +27,6 @@ const TeamMaxTransfers = () => {
     currentTeam?.transfers_from_one_team -
     currentTourTeam?.current_count_of_transfers
 
-  console.log(currentTourTeam.current_count_of_transfers)
 
   return (
     <>

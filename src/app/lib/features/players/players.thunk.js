@@ -31,21 +31,15 @@ export const fetchTopPlayers = createAsyncThunk(
 
 export const fetchCurrentPlayerResult = createAsyncThunk(
   'players/fetchCurrentPlayerResult',
-  async ({ player_id, season_id, competition_id, tour_id }) => {
+  async ({ player_id, season_id, competition_id }) => {
     const { data, error } = await supabase
-      .from('player_result')
-      .select('*')
+      .from('player_point')
+      .select('*, match_id(*), player_result_id(*)')
       .eq('player_id', player_id)
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
-      .eq('tour_id', tour_id)
-      .order('id')
+      .order('created_at')
 
     return { data, error }
   }
 )
-
-// export const fetchCurrentPlayerMatches = createAsyncThunk(
-//   'players/fetchCurrentPlayerMatches',
-//   async({})
-// )

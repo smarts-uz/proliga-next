@@ -17,7 +17,6 @@ const PlayerInfoModal = ({ toggleModal }) => {
   const { season } = useSelector((store) => store.season)
   const { currentPlayer } = useSelector((store) => store.players)
   const { lang } = useSelector((store) => store.systemLanguage)
-  const { currentTour } = useSelector((store) => store.tours)
 
   const getCorrentPlayerPosition = (position, lang) => {
     if (lang === LANGUAGE.ru) {
@@ -52,29 +51,23 @@ const PlayerInfoModal = ({ toggleModal }) => {
   }
 
   useEffect(() => {
-    if (
-      currentPlayer?.id &&
-      season?.id &&
-      currentCompetition?.id &&
-      currentTour?.id
-    ) {
+    if (currentPlayer?.id && season?.id && currentCompetition?.id) {
       dispatch(
         fetchCurrentPlayerResult({
           player_id: currentPlayer?.id,
           season_id: season?.id,
           competition_id: currentCompetition?.id,
-          tour_id: currentTour?.id,
         })
       )
     }
-  }, [currentPlayer, season, currentCompetition, dispatch, currentTour])
+  }, [currentPlayer, season, currentCompetition, dispatch])
 
   return (
     <Backdrop onClick={toggleModal}>
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="xl:2/3 z-50 flex min-h-[65vh] w-[96%] max-w-[60rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-6 text-neutral-200 xs:mx-auto xs:w-[92%] sm:w-4/5 md:p-6 lg:w-3/4"
+        className="overflox-y-auto z-50 flex max-h-[80vh] min-h-[65vh] w-[98%] max-w-[64rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-500 bg-neutral-900 px-2 py-4 text-neutral-200 xs:mx-auto xs:w-[96%] xs:p-4 sm:w-4/5 md:p-6 lg:w-3/4 xl:w-3/5"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={toggleModal} className="ml-auto w-auto self-start">

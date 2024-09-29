@@ -18,108 +18,126 @@ const columnHelper = createColumnHelper()
 
 function PlayerStatisticsTable() {
   const { t } = useTranslation()
-  const { players } = useSelector((state) => state.playerResult)
-  const [data, setData] = useState(players ?? [])
+  const [data, setData] = useState([])
   const { lang } = useSelector((state) => state.systemLanguage)
+  const { currentPlayerResult, currentPlayer } = useSelector(
+    (store) => store.players
+  )
+  const [styles, setStyles] = useState('border-transparent rounded-sm')
+  const { clubs } = useSelector((store) => store.clubs)
 
   useEffect(() => {
-    if (players) {
-      setData(players)
+    if (currentPlayerResult) {
+      setData(currentPlayerResult)
     }
-  }, [players])
+  }, [currentPlayerResult])
+
+  const getCorrectDate = (startDate) => {
+    const date = new Date(startDate)
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    const year = date.getFullYear()
+
+    return `${day}.${month}.${year}`
+  }
+
+  const getClubInfoById = (id) => {
+    return clubs.find((c) => c.id === id)
+  }
+
+  const getCorrectCompetitor = (match) => {
+    if (match.home_club_id === currentPlayer.club.id) {
+      return getClubInfoById(match.away_club_id)?.name
+    } else if (match.away_club_id === currentPlayer.club.id) {
+      return getClubInfoById(match.home_club_id)?.name
+    }
+  }
+
+  const getCorrectCompetitorStatus = (match) => {
+    if (match.home_club_id === currentPlayer.club.id) {
+      return 'Uyda '
+    } else if (match.away_club_id === currentPlayer.club.id) {
+      return 'Mehmonda'
+    }
+  }
+
+  const getCorrectScore = (match) => {
+    if (match.home_club_id === currentPlayer.club.id) {
+      match.home_club_result > match.away_club_result
+        ? setStyles('border-green-500 rounded-md')
+        : setStyles('border-yellow-500 rounded-md')
+      return `${match.home_club_result}-${match.away_club_result}`
+    } else if (match.away_club_id === currentPlayer.club.id) {
+      match.away_club_result > match.home_club_result
+        ? setStyles('border-green-500 rounded-md')
+        : setStyles('border-yellow-500 rounded-md')
+      return `${match.away_club_result}-${match.home_club_result}`
+    }
+  }
 
   const columns = [
     columnHelper.accessor('Sana', {
-      accessorFn: (row) => row.created_at.slice(0, 9),
+      accessorFn: (row) => getCorrectDate(row.match_id.started_date),
       id: 'sana',
       header: t('Sana'),
-      meta: {
-        title: t('O‘yinchining pozitsiyasi'),
-      },
     }),
-    columnHelper.accessor('player_id.name', {
-      accessorKey: 'player_id.name',
-      cell: (info) => info.getValue(),
+    columnHelper.accessor('Competititor', {
+      accessorFn: (row) => getCorrectCompetitor(row.match_id),
       header: t('Raqib'),
-      id: 'player-name',
-      meta: {
-        title: t('Raqib'),
-      },
+      id: 'competitor',
     }),
-    columnHelper.accessor('', {
-      id: 'player-name',
+    columnHelper.accessor('Status', {
+      header: '',
+      accessorFn: (row) => getCorrectCompetitorStatus(row.match_id),
+      id: 'status',
     }),
-    columnHelper.accessor('player_id.name', {
-      accessorKey: 'player_id.name',
-      cell: (info) => info.getValue(),
+    columnHelper.accessor('score', {
+      accessorFn: (row) => getCorrectScore(row.match_id),
       header: t('Hisob'),
-      id: 'player-name',
-      meta: {
-        title: t('Raqib'),
-      },
+      id: 'score',
     }),
-    columnHelper.accessor((row) => row.goal, {
-      accessorFn: (row) => row.goal,
+    columnHelper.accessor('G', {
+      accessorFn: (row) => row?.player_result_id?.goal,
       id: 'gol',
       cell: (info) => info.getValue(),
       header: t('G'),
-      meta: {
-        title: t('Gol'),
-      },
     }),
     columnHelper.accessor('GA', {
-      accessorFn: (row) => row.goal_asist,
+      accessorFn: (row) => row.player_result_id.goal_asist,
       id: 'gol assist',
       cell: (info) => info.getValue(),
       header: t('GA'),
-      meta: {
-        title: t('Assist'),
-      },
     }),
-    columnHelper.accessor((row) => row.missed_penalty, {
-      accessorFn: (row) => row.missed_penalty,
-      id: 'returned penalty',
-      cell: (info) => info.getValue(),
-      header: t('QP'),
-      meta: {
-        title: t('Qaytarilgan penalti'),
-      },
-    }),
+    // columnHelper.accessor((row) => row.missed_penalty, {
+    //   accessorFn: (row) => row?.player_result_id?.missed_penalty,
+    //   id: 'returned penalty',
+    //   cell: (info) => info.getValue(),
+    //   header: t('QP'),
+    // }),
     columnHelper.accessor((row) => row.yellow_card, {
-      accessorFn: (row) => row.yellow_card,
+      accessorFn: (row) => row?.player_result_id?.yellow_card ?? 0,
       id: 'Yellow Card',
-      cell: (info) => <i>{info.getValue()}</i>,
       header: t('SK'),
-      meta: {
-        title: t('Sariq kartochka'),
-      },
     }),
-    columnHelper.accessor((row) => row.red_card, {
-      accessorFn: (row) => row.red_card,
+    columnHelper.accessor((row) => row.is_red_card, {
+      accessorFn: (row) => (row?.player_result_id?.is_red_card ? 1 : 0),
       id: 'Red Card',
       cell: (info) => info.getValue(),
       header: t('QZ'),
-      meta: {
-        title: t('Qizil kartochka'),
-      },
     }),
-    columnHelper.accessor((row) => row.played_min, {
-      accessorFn: (row) => row.played_min,
+    columnHelper.accessor('Played min', {
+      accessorFn: (row) => row?.player_result_id?.played_min,
       id: 'played-min',
       cell: (info) => info.getValue(),
       header: t('MIN'),
-      meta: {
-        title: t('O‘ynagan vaqti'),
-      },
     }),
     columnHelper.accessor('ochko', {
-      accessorFn: (row) => row?.player_id?.point,
+      accessorFn: (row) => row?.point,
       id: 'ochko',
       cell: (info) => info.getValue(),
       header: t('O'),
-      meta: {
-        title: t('Ochko'),
-      },
     }),
   ]
 
@@ -132,9 +150,13 @@ function PlayerStatisticsTable() {
   })
 
   return (
-    <table className="h-full w-full min-w-80 table-auto text-xs md:text-sm">
+    <table className="h-full w-full table-auto text-xs md:text-sm">
       <TransferTableHead table={table} />
-      <TransferTableBody table={table} flexRender={flexRender} />
+      <TransferTableBody
+        scoreStyles={styles}
+        table={table}
+        flexRender={flexRender}
+      />
     </table>
   )
 }

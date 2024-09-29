@@ -28,9 +28,10 @@ export const playersExtraReducer = (builder) => {
       state.topPlayersLoading = false
       state.topPlayersError = action.payload.error.message ?? null
     })
+
     .addCase(fetchCurrentPlayerResult.pending, (state) => {
       state.currentPlayerResultLoading = true
-      state.currentPlayerResult = {}
+      state.currentPlayerResult = []
     })
     .addCase(fetchCurrentPlayerResult.fulfilled, (state, action) => {
       state.currentPlayerResultLoading = false
