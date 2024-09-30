@@ -40,6 +40,7 @@ export const fetchCurrentPlayerResult = createAsyncThunk(
       .eq('player_id', player_id)
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
+      .is('deleted_at', null)
       .order('created_at')
 
     return { data, error }

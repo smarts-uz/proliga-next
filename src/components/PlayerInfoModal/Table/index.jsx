@@ -18,26 +18,25 @@ const columnHelper = createColumnHelper()
 
 function PlayerStatisticsTable() {
   const { t } = useTranslation()
-  const [data, setData] = useState([])
   const { lang } = useSelector((state) => state.systemLanguage)
   const { currentPlayerResult, currentPlayer } = useSelector(
     (store) => store.players
   )
+  const [data, setData] = useState(currentPlayerResult ?? [])
   const [styles, setStyles] = useState('border-transparent rounded-sm')
   const { clubs } = useSelector((store) => store.clubs)
+  console.log(data)
 
   useEffect(() => {
-    if (currentPlayerResult) {
+    if (currentPlayerResult && !data) {
       setData(currentPlayerResult)
     }
-  }, [currentPlayerResult])
+  }, [currentPlayerResult, data])
 
   const getCorrectDate = (startDate) => {
     const date = new Date(startDate)
     const day = date.getDate()
     const month = date.getMonth() + 1
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
     const year = date.getFullYear()
 
     return `${day}.${month}.${year}`
@@ -52,14 +51,6 @@ function PlayerStatisticsTable() {
       return getClubInfoById(match.away_club_id)?.name
     } else if (match.away_club_id === currentPlayer.club.id) {
       return getClubInfoById(match.home_club_id)?.name
-    }
-  }
-
-  const getCorrectCompetitorStatus = (match) => {
-    if (match.home_club_id === currentPlayer.club.id) {
-      return t('Uyda ')
-    } else if (match.away_club_id === currentPlayer.club.id) {
-      return t('Mehmonda')
     }
   }
 
@@ -88,16 +79,35 @@ function PlayerStatisticsTable() {
       header: t('Raqib'),
       id: 'competitor',
     }),
-    columnHelper.accessor('Status', {
-      header: '',
-      accessorFn: (row) => getCorrectCompetitorStatus(row.match_id),
-      id: 'status',
-    }),
-    columnHelper.accessor('score', {
+    columnHelper.accessor('Score', {
       accessorFn: (row) => getCorrectScore(row.match_id),
       header: t('Hisob'),
       id: 'score',
     }),
+    columnHelper.accessor('Quriq Oyin', {
+      accessorFn: (row) => 'yoq',
+      header: t('QO’'),
+      id: 'QO’',
+      meta: {
+        title: 'quriq oyin',
+      },
+    }),
+    columnHelper.accessor('Qaytarilagan Penalti', {
+      accessorFn: (row) => 5,
+      header: t('QP'),
+      id: 'QP',
+    }),
+    columnHelper.accessor('Avto Gol', {
+      accessorFn: (row) => 0,
+      header: t('AG'),
+      id: 'AG',
+    }),
+    columnHelper.accessor('Otkazib yuborilgan har 2 top farqi', {
+      accessorFn: (row) => 1,
+      header: t('O’2'),
+      id: 'O’2',
+    }),
+
     columnHelper.accessor('G', {
       accessorFn: (row) => row?.player_result_id?.goal,
       id: 'gol',
@@ -110,12 +120,6 @@ function PlayerStatisticsTable() {
       cell: (info) => info.getValue(),
       header: t('GA'),
     }),
-    // columnHelper.accessor((row) => row.missed_penalty, {
-    //   accessorFn: (row) => row?.player_result_id?.missed_penalty,
-    //   id: 'returned penalty',
-    //   cell: (info) => info.getValue(),
-    //   header: t('QP'),
-    // }),
     columnHelper.accessor((row) => row.yellow_card, {
       accessorFn: (row) => row?.player_result_id?.yellow_card ?? 0,
       id: 'Yellow Card',
