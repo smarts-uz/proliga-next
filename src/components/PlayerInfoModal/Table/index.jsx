@@ -57,9 +57,9 @@ function PlayerStatisticsTable() {
 
   const getCorrectCompetitorStatus = (match) => {
     if (match.home_club_id === currentPlayer.club.id) {
-      return t("Uyda ")
+      return t('Uyda ')
     } else if (match.away_club_id === currentPlayer.club.id) {
-      return t("Mehmonda")
+      return t('Mehmonda')
     }
   }
 
@@ -105,7 +105,7 @@ function PlayerStatisticsTable() {
       header: t('G'),
     }),
     columnHelper.accessor('GA', {
-      accessorFn: (row) => row.player_result_id.goal_asist,
+      accessorFn: (row) => row?.player_result_id?.goal_asist,
       id: 'gol assist',
       cell: (info) => info.getValue(),
       header: t('GA'),
