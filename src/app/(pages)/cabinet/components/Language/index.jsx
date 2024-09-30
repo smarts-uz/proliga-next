@@ -19,10 +19,10 @@ const CabinetLanguageTab = () => {
       animate={{ opacity: 1 }}
       className="flex w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
-      <h3>Language</h3>
+      <h3>{t("Tilni almashtirish")}</h3>
       <Select>
         <SelectTrigger className="w-auto sm:w-80">
-          <SelectValue placeholder="Language" />
+          <SelectValue placeholder={t("Language")} />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value={LANGUAGE.uz}>
@@ -54,7 +54,7 @@ const CabinetLanguageTab = () => {
         className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-40"
         type="submit"
       >
-        {t('Til Yangilash')}
+        {t('almashtirish')}
       </button>
     </motion.section>
   )

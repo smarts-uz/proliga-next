@@ -85,7 +85,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
           </button>
         </div>
         <section className="flex flex-col gap-2">
-          <h3 className="text-lg font-medium md:text-xl">Qisqacha Malumot:</h3>
+          <h3 className="text-lg font-medium md:text-xl">{t("Qisqacha Malumot")}:</h3>
           <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
             <div className="flex gap-2 rounded border border-neutral-500 bg-neutral-800 p-2">
               <div className="flex gap-1 capitalize">
@@ -129,7 +129,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
           </div>
         </section>
         <section>
-          <h3 className="text-lg font-medium md:text-xl">Bio:</h3>
+          <h3 className="text-lg font-medium md:text-xl">{t("Bio")}:</h3>
           <div className="scroll-y-auto h-40 rounded border border-neutral-500 bg-neutral-800 p-2">
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>

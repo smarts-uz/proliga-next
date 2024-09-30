@@ -213,7 +213,7 @@
   "Parolni yangilash": "Parolni yangilash",
   "Har bir o'yinchi haqiqiy": "Har bir o'yinchi haqiqiy o'yinlarda qilgan harakatlari uchun ochko oladi yoki yo'qotadi. Ochkolar soni o'yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi",
   "Keyingi Tur": "Keyingi Tur",
-  "Ro'yxatdan otish": "RO'YXATDAN O'TISH",
+  "Ro'yxatdan otish": "RO'YXATDAN OTISH",
   "Tur": "Tur",
   "Turdagi ochkolar": "Turdagi ochkolar",
   "Turnirdagi o'rtacha ochkolar": "Turnirdagi o'rtacha ochkolar",
@@ -364,5 +364,12 @@
   "MIN": "MIN",
   "Qaytarilgan penalti": "Qaytarilgan penalti",
   "QP": "QP",
-  "SK": "SK"
+  "SK": "SK",
+  "Sizning Rasmingiz": "Sizning Rasmingiz",
+  "Rasmni yuklash": "Rasmni yuklash",
+  "Bio": "Bio",
+  "Qisqacha Malumot": "Qisqacha Malumot",
+  "Ma'lumot yo'q": "Ma'lumot yo'q",
+  "Tilni almashtirish": "Tilni almashtirish",
+  "almashtirish": "almashtirish"
 }
