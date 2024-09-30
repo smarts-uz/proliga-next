@@ -35,7 +35,7 @@ const CabinetSettingsTab = () => {
       <form className="flex flex-col gap-2">
         <section className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="cursor-pointer space-y-1">
-            <p className="text-neutral-200">Sizning Rasmingiz:</p>
+            <p className="text-neutral-200">{t("Sizning Rasmingiz")}:</p>
             <label
               htmlFor="img"
               className="flex size-32 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 p-6 transition-all hover:from-neutral-900 hover:to-stone-900"
@@ -55,7 +55,7 @@ const CabinetSettingsTab = () => {
                 className="hidden"
               />
               <p className="break-words text-center text-xs text-neutral-300">
-                Rasmni yuklang
+              {t("Rasmni yuklash")}
               </p>
             </label>
           </div>

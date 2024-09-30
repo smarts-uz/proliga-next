@@ -57,9 +57,9 @@ function PlayerStatisticsTable() {
 
   const getCorrectCompetitorStatus = (match) => {
     if (match.home_club_id === currentPlayer.club.id) {
-      return 'Uyda '
+      return t("Uyda ")
     } else if (match.away_club_id === currentPlayer.club.id) {
-      return 'Mehmonda'
+      return t("Mehmonda")
     }
   }
 
