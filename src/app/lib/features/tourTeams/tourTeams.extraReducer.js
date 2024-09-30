@@ -4,6 +4,7 @@ export const tourTeamExtraReducer = (builder) => {
   builder
     .addCase(fetchTourTeams.pending, (state) => {
       state.isLoading = true
+      
     })
     .addCase(fetchTourTeams.fulfilled, (state, action) => {
       state.isLoading = false

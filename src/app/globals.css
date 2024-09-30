@@ -56,7 +56,7 @@
     @apply text-sm xs:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-xl;
   }
   .promotion-header {
-    @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl;
+    @apply text-lg xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl uppercase;
   }
   .loader {
     border: 16px solid #121212;

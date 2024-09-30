@@ -1,10 +1,66 @@
-import React from 'react'
+'use client'
+import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 const CabinetChangePasswordTab = () => {
+  const { t } = useTranslation()
+
   return (
-    <section className="h-full w-full flex-1 rounded-xl bg-neutral-900 bg-opacity-90 p-4 xl:h-auto xl:p-6">
-      pass
-    </section>
+    <motion.section
+      initial={{ opacity: 0.25 }}
+      animate={{ opacity: 1 }}
+      className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 xl:h-auto xl:p-6"
+    >
+      <h3 className="texl-lg font-bold md:text-xl">{t('Parol Yangilash')}</h3>
+      <div>
+        <label
+          className="mb-2 block text-sm font-bold text-neutral-300"
+          htmlFor="oldPassword"
+        >
+          {t('Eski parol')}
+        </label>
+        <input
+          id="oldPassword"
+          name="oldPassword"
+          className="h-10 w-full rounded border border-neutral-500 bg-neutral-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-500 sm:max-w-96 md:text-base"
+          type="password"
+        />
+      </div>
+      <div>
+        <label
+          className="mb-2 block text-sm font-bold text-neutral-300"
+          htmlFor="newPassword"
+        >
+          {t('Yangi parol')}
+        </label>
+        <input
+          id="newPassword"
+          name="newPassword"
+          className="h-10 w-full rounded border border-neutral-500 bg-neutral-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-500 sm:max-w-96 md:text-base"
+          type="password"
+        />
+      </div>
+      <div>
+        <label
+          className="mb-2 block text-sm font-bold text-neutral-300"
+          htmlFor="confirmPassword"
+        >
+          {t('Yangi parolni qayta kiriting')}
+        </label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          className="h-10 w-full rounded border border-neutral-500 bg-neutral-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-500 sm:max-w-96 md:text-base"
+          type="password"
+        />
+      </div>
+      <button
+        className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-48"
+        type="submit"
+      >
+        {t('Parol yangilash')}
+      </button>
+    </motion.section>
   )
 }
 

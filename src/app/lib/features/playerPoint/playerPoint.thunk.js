@@ -3,7 +3,7 @@ import { supabase } from 'app/lib/supabaseClient'
 
 export const fetchPlayerPoint = createAsyncThunk(
   'playerPoint/fetchPlayerPoint',
-  async ({ competition_id, tour_id }) => {
+  async ({ competition_id, tour_id, page, perPage }) => {
     let from = page * perPage
     let to = from + perPage
 

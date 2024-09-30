@@ -15,10 +15,10 @@ export const teamsExtraReducer = (builder) => {
     })
     .addCase(fetchAllTeams.pending, (state) => {
       state.teamsLoading = true
+      state.allTeams = []
     })
     .addCase(fetchAllTeams.fulfilled, (state, action) => {
       state.teamsLoading = false
-      state.allTeams = []
       if (action.payload.data?.length > 0) {
         state.allTeams = action.payload.data
       }
@@ -29,6 +29,7 @@ export const teamsExtraReducer = (builder) => {
     })
     .addCase(fetchTopTeams.pending, (state) => {
       state.topTeamsLoading = true
+      state.topTeams = []
     })
     .addCase(fetchTopTeams.fulfilled, (state, action) => {
       state.topTeamsLoading = false

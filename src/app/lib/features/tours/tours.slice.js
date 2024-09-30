@@ -19,9 +19,10 @@ export const tourSlice = createSlice({
     setCurrentTourIndex: (state, action) => {
       state.currentTour = state.tours[action.payload]
       state.currentTourIndex = action.payload
-      if (state.currentTour.status === TOUR.notStartedTransfer) {
-        state.gameTab = TABS.Transfer
-      } else {
+      if (
+        state.gameTab === TABS.Transfer &&
+        state.currentTour.status !== TOUR.notStartedTransfer
+      ) {
         state.gameTab = TABS.GameProfile
       }
     },

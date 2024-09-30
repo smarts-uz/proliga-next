@@ -23,7 +23,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[80vh] min-h-[50vh] max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
+        className="mx-4 flex max-h-[80vh] max-w-[36rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button className="self-end" onClick={toggleModal}>
@@ -44,6 +44,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
             <section className="flex justify-center gap-2 xs:gap-4 sm:justify-start">
               <button
                 onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
+                type="button"
                 className={`h-16 w-full rounded-xl border bg-stone-950 p-4 transition-all sm:h-20 sm:p-6 ${paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive}`}
               >
                 <Image
@@ -56,6 +57,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
                 />
               </button>
               <button
+                type="button"
                 onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
                 className={`h-16 w-full rounded-xl border bg-stone-950 p-4 transition-all sm:h-20 sm:p-6 ${paymentOption === BALANCEOPTIONS.PAYME ? active : passive}`}
               >

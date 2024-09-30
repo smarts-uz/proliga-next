@@ -279,11 +279,10 @@ function UserCabinet() {
   )
 }
 
-const CABINETTAB={
-  GENERAL: "GENERAL",
-  LANGUAGE: "LANGUAGE",
-  PASSWORD: "CHANGEPASSWORD",
-  
+const CABINETTAB = {
+  GENERAL: 'GENERAL',
+  LANGUAGE: 'LANGUAGE',
+  PASSWORD: 'CHANGEPASSWORD',
 }
 
 export default UserCabinet

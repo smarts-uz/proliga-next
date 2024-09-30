@@ -1,9 +1,11 @@
+'use client'
 import './datepicker.scss'
 import Image from 'next/image'
 import DatePicker from 'react-datepicker'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const CabinetSettingsTab = () => {
   const { t } = useTranslation()
@@ -24,14 +26,16 @@ const CabinetSettingsTab = () => {
     setFile(e.target.files[0])
   }
 
-  console.log(file, firstName, lastName, middleName, abous, date, gender)
-
   return (
-    <section className="h-full w-full flex-1 rounded-xl bg-neutral-900 bg-opacity-90 p-4 lg:h-auto xl:p-6">
+    <motion.section
+      initial={{ opacity: 0.25 }}
+      animate={{ opacity: 1 }}
+      className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+    >
       <form className="flex flex-col gap-2">
         <section className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="cursor-pointer space-y-1">
-            <p className="text-neutral-200">{t('Sizning Rasmingiz')}:</p>
+            <p className="text-neutral-200">Sizning Rasmingiz:</p>
             <label
               htmlFor="img"
               className="flex size-32 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 p-6 transition-all hover:from-neutral-900 hover:to-stone-900"
@@ -51,7 +55,7 @@ const CabinetSettingsTab = () => {
                 className="hidden"
               />
               <p className="break-words text-center text-xs text-neutral-300">
-                {t('Rasmni yuklash')}
+                Rasmni yuklang
               </p>
             </label>
           </div>
@@ -171,12 +175,11 @@ const CabinetSettingsTab = () => {
         <button
           className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
           type="submit"
-          onClick={() => update()}
         >
           {t('Saqlash')}
         </button>
       </form>
-    </section>
+    </motion.section>
   )
 }
 

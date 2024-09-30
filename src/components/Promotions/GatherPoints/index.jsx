@@ -9,7 +9,10 @@ const PromotionGatherPoints = () => {
       <Gutter>
         <article className="flex w-full flex-col justify-between gap-4 md:flex-row md:gap-0">
           <div className="my-auto flex flex-col gap-4 xl:gap-8">
-            <h2 className="promotion-header font-bold"> {t("Ochkolar yiging")}</h2>
+            <h2 className="promotion-header font-bold">
+              {' '}
+              {t('Ochkolar yiging')}
+            </h2>
             <p className="promotion-text text-neutral-400 md:max-w-lg xl:max-w-xl">
               {t("Har bir o'yinchi")}
             </p>

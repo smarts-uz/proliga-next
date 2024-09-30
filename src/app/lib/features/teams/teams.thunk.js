@@ -27,7 +27,8 @@ export const fetchAllTeams = createAsyncThunk(
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
       .range(from, to)
-      .order('point', { ascending: true })
+      .order('point', { ascending: false })
+      .order('point')
 
     return { data, error }
   }

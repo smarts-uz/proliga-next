@@ -6,6 +6,13 @@ const initialState = {
   topPlayersLoading: false,
   topPlayersError: null,
   players: [],
+  currentPlayer: {},
+  currentPlayerResult: [],
+  currentPlayerResultError: null,
+  currentPlayerResultLoading: false,
+  currentPlayerMatches: [],
+  currentPlayerMatchesLoading: false,
+  currentPlayerMatchesError: null,
   isLoading: false,
   error: null,
 }
@@ -13,7 +20,15 @@ const initialState = {
 export const playersSlice = createSlice({
   name: 'players',
   initialState,
+  reducers: {
+    setCurrentPlayer: (state, action) => {
+      state.currentPlayer =
+        state.players.find((p) => p.id === action.payload) ?? {}
+    },
+  },
   extraReducers: playersExtraReducer,
 })
+
+export const { setCurrentPlayer } = playersSlice.actions
 
 export default playersSlice.reducer

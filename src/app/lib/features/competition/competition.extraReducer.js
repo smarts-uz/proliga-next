@@ -4,6 +4,7 @@ export const competitionExtraReducer = (builder) => {
   builder
     .addCase(fetchCompetition.pending, (state) => {
       state.isLoading = true
+      state.competition = []
     })
     .addCase(fetchCompetition.fulfilled, (state, action) => {
       state.isLoading = false

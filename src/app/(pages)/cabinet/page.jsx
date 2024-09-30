@@ -2,10 +2,15 @@
 import { useState } from 'react'
 import SettingsNavigation from './components/SettingsNavigation'
 import Gutter from 'components/Gutter'
-import CabinetGeneralTab from './components/Home'
+// import CabinetGeneralTab from './components/Home'
 import CabinetSettingsTab from './components/Settings'
 import CabinetChangePasswordTab from './components/ChangePassword'
 import CabinetLanguageTab from './components/Language'
+import dynamic from 'next/dynamic'
+
+const CabinetHomeTab = dynamic(() => import('./components/Home'), {
+  ssr: false,
+})
 
 function UserCabinet() {
   const [tab, setTab] = useState(SETTINGSTAB.HOME)
@@ -18,7 +23,9 @@ function UserCabinet() {
           tabs={SETTINGSTAB}
           setTab={setTab}
         />
-        {tab === SETTINGSTAB.HOME && <CabinetGeneralTab />}
+        {tab === SETTINGSTAB.HOME && (
+          <CabinetHomeTab setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />
+        )}
         {tab === SETTINGSTAB.SETTINGS && <CabinetSettingsTab />}
         {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
         {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />}
@@ -28,7 +35,7 @@ function UserCabinet() {
 }
 
 const SETTINGSTAB = {
-  HOME: 'Home',
+  HOME: 'Profil',
   SETTINGS: 'Settings',
   LANGUAGE: 'Language',
   PASSWORD: 'Change Password',

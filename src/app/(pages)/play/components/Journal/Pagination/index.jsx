@@ -5,7 +5,7 @@ const JournalPagination = ({ decrementPage, incrementPage, page }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="mt-auto flex items-center justify-center gap-2 py-4">
+    <div className="mt-auto flex items-center justify-center gap-2 py-2">
       <button
         onClick={decrementPage}
         className="rounded border px-3 py-1 capitalize text-white hover:underline"

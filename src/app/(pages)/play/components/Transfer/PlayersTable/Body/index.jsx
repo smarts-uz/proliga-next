@@ -36,6 +36,7 @@ const TransferTableBody = ({ table, flexRender }) => {
       )
     }
   }
+
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (

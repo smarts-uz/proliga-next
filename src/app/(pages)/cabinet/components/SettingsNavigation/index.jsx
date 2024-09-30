@@ -1,13 +1,18 @@
 import Image from 'next/image'
 import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 
 const SettingsNavigation = ({ tabs, setTab, currentTab }) => {
   const { t } = useTranslation()
   const { logOut } = useLogOut()
 
   return (
-    <div className="flex w-full flex-row justify-between gap-1 rounded-xl bg-neutral-900 bg-opacity-90 py-2 lg:w-80 lg:flex-col xl:py-4">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex w-full flex-row justify-between gap-1 rounded-xl bg-neutral-900 bg-opacity-90 py-2 lg:w-80 lg:flex-col xl:py-4"
+    >
       {Object.keys(tabs).map((tab) => (
         <Tab
           key={tab}
@@ -25,7 +30,7 @@ const SettingsNavigation = ({ tabs, setTab, currentTab }) => {
           {t('Tizimdan chiqish')}
         </p>
       </button>
-    </div>
+    </motion.section>
   )
 }
 
@@ -39,8 +44,8 @@ const Tab = ({ tab, setTab, currentTab }) => {
   const containerPassive = 'bg-transparent'
 
   const getCorrectIcon = (tab) => {
-    if (tab === 'Home') {
-      return 'home'
+    if (tab === 'Profil') {
+      return 'user'
     }
     if (tab === 'Settings') {
       return 'gear'
