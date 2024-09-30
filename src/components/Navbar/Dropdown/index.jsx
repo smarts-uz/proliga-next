@@ -27,7 +27,7 @@ const Dropdown = () => {
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
         <p> {t('Chempionat')}</p>
       </NavLink>
-      <select
+      {/* <select
         className="rounded-sm border bg-neutral-950 bg-transparent p-1"
         name="language"
         id="language"
@@ -46,7 +46,7 @@ const Dropdown = () => {
         >
           RU
         </option>
-      </select>
+      </select> */}
       {userAuth ? (
         <>
           <NavLink href="/cabinet">

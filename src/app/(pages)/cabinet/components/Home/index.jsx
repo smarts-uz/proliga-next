@@ -66,14 +66,16 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
             </div>
           )}
           <div className="flex flex-col justify-center gap-2 text-sm md:text-base">
-            <div className="flex gap-1 font-bold capitalize text-neutral-50">
-              <div>
+            <div className="flex max-w-64 gap-1 font-bold capitalize text-neutral-50">
+              <p className="truncate">
                 {userTable?.lastName ? userTable?.lastName : t('Familiya')}
-              </div>
-              <div>{userTable?.name ? userTable?.name : t('Ism')}</div>
-              <div>
+              </p>
+              <p className="truncate">
+                {userTable?.name ? userTable?.name : t('Ism')}
+              </p>
+              <p className="truncate">
                 {userTable?.middleName ? userTable?.middleName : t('Sharif')}
-              </div>
+              </p>
             </div>
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
@@ -85,10 +87,12 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
           </button>
         </div>
         <section className="flex flex-col gap-2">
-          <h3 className="text-lg font-medium md:text-xl">{t("Qisqacha Malumot")}:</h3>
+          <h3 className="font-medium capitalize xs:text-lg md:text-xl">
+            {t('Qisqacha Malumot')}:
+          </h3>
           <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
             <div className="flex gap-2 rounded border border-neutral-500 bg-neutral-800 p-2">
-              <div className="flex gap-1 capitalize">
+              <div className="flex items-center gap-1 capitalize">
                 <Image
                   src="/icons/call.svg"
                   className="filter-neutral-50 size-5 sm:size-6"
@@ -101,7 +105,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
               <p>{userTable?.phone}</p>
             </div>
             <div className="flex gap-2 rounded border border-neutral-500 bg-neutral-800 p-2">
-              <div className="flex gap-1 capitalize">
+              <div className="flex items-center gap-1 capitalize">
                 <Image
                   src="/icons/calendar.svg"
                   alt="phone"
@@ -129,14 +133,14 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
           </div>
         </section>
         <section>
-          <h3 className="text-lg font-medium md:text-xl">{t("Bio")}:</h3>
+          <h3 className="font-medium xs:text-lg md:text-xl">{t('Bio')}:</h3>
           <div className="scroll-y-auto h-40 rounded border border-neutral-500 bg-neutral-800 p-2">
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>
         </section>
         <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
           <div
-            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
+            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent p-4 transition-all sm:size-56 sm:p-6 2xl:size-64`}
           >
             <Image
               src="/icons/wallet.svg"
@@ -162,7 +166,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
             </button>
           </div>
           <div
-            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent p-4 transition-all sm:size-64 sm:p-6`}
+            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent p-4 transition-all sm:size-56 sm:p-6 2xl:size-64`}
           >
             <Image
               src="/icons/call.svg"

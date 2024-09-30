@@ -102,9 +102,7 @@ const Player = ({ player }) => {
           </>
         )}
       </div>
-      {infoModal && (
-        <PlayerInfoModal toggleModal={handleInfoModal} />
-      )}
+      {infoModal && <PlayerInfoModal toggleModal={handleInfoModal} />}
     </>
   )
 }

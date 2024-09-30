@@ -8,6 +8,8 @@ export const fetchCurrentTeam = createAsyncThunk(
       .from('team')
       .select('*, competition_id(title, id)')
       .eq('id', id)
+      .is('deleted_at', null)
+
     return { data, error }
   }
 )

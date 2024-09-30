@@ -2,9 +2,10 @@
 import { useRouter } from 'next/navigation'
 import LeagueModal from '../Modal/index'
 import { useCallback, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+
 const Championship = ({ game }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
@@ -38,9 +39,16 @@ const Championship = ({ game }) => {
         toggleModal(true)
       }
     } else {
-      toast.warning(t("Bu liga hozr active emas"))
+      toast.warning(t('Bu liga hozr active emas'))
     }
   }
+
+  const date = new Date(game.deadline)
+  const day = date.getDate()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
 
   return (
     <>
@@ -61,6 +69,10 @@ const Championship = ({ game }) => {
           <h3 className="text-base font-bold capitalize xs:text-lg md:text-xl">
             {game.title}
           </h3>
+          <div className="flex gap-1 text-xs text-neutral-400 sm:text-sm">
+            <p>Deadline:</p>
+            <span className="text-neutral-100">{`${day}/${month}/${year}-${hours}:${minutes === 0 ? '00' : minutes}`}</span>
+          </div>
         </div>
       </article>
       {game.can_register && isModalOpen && (

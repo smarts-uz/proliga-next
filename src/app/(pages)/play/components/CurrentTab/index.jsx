@@ -50,9 +50,14 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [paramsId, userTable, currentTour, dispatch])
 
   useEffect(() => {
-    if (currentTeam?.competition_id) {
+    if (currentTeam?.competition_id && currentTeam?.registered_tour_id) {
       const fetch = async () => {
-        dispatch(fetchTours({ competition_id: currentTeam.competition_id.id }))
+        dispatch(
+          fetchTours({
+            competition_id: currentTeam.competition_id.id,
+            registered_tour_id: currentTeam.registered_tour_id,
+          })
+        )
       }
       fetch()
     }

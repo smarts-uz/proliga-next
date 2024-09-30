@@ -16,8 +16,8 @@ export const useUpdateTeam = () => {
     setError(null)
 
     if (!team_id) {
-      setError(t("Jamoa ID kiritilmagan!"))
-      toast.error(t("Jamoa ID kiritilmagan!"))
+      setError(t('Jamoa ID kiritilmagan!'))
+      toast.error(t('Jamoa ID kiritilmagan!'))
     }
 
     try {

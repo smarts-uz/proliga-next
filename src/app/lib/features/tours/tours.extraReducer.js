@@ -9,21 +9,17 @@ export const toursExtraReducer = (builder) => {
     .addCase(fetchTours.fulfilled, (state, action) => {
       state.isLoading = false
       state.tours = action.payload.data
+      state.registeredTourId = action.payload.registered_tour_id
       let tour = state.tours.find(
-        (tour) => tour.status === TOUR.notStartedTransfer
+        (tour) =>
+          tour.status === TOUR.notStartedTransfer ||
+          (tour.status === TOUR.completed &&
+            tour.id >= action.payload.registered_tour_id) ||
+          tour.status === TOUR.inProcess
       )
-      let tourIndex = state.tours.findIndex(
-        (tour) => tour.status === TOUR.notStartedTransfer
-      )
-      if (!tour) {
-        tour = state.tours.find((tour) => tour.status === TOUR.completed)
-        tourIndex = state.tours.findIndex(
-          (tour) => tour.status === TOUR.completed
-        )
-      }
       if (tour) {
         state.currentTour = tour
-        state.currentTourIndex = tourIndex
+        state.currentTourIndex = state.tours.indexOf(tour)
       }
     })
     .addCase(fetchTours.rejected, (state, action) => {

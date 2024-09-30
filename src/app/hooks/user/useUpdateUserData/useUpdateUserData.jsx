@@ -34,6 +34,7 @@ export const useUpdateUserData = () => {
         })
         .eq('guid', userAuth.user.id)
         .select()
+
       if (error) {
         setError(error.message)
         toast.error(error.message)

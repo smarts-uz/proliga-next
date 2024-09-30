@@ -8,6 +8,7 @@ const initialState = {
   currentTour: 0,
   currentTourIndex: 0,
   gameTab: TABS.GameProfile,
+  registeredTourId: 0,
   error: null,
   isLoading: false,
 }

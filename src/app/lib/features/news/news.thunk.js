@@ -11,6 +11,7 @@ export const fetchNews = createAsyncThunk(
       .from('news')
       .select('*')
       .range(from, to)
+      .is('deleted_at', null)
       .order('created_at', { ascending: false })
 
     return { data, error }

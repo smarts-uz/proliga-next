@@ -12,6 +12,7 @@ export const fetchMatches = createAsyncThunk(
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
+      .is('deleted_at', null)
       .limit(20)
 
     return { data, error }
