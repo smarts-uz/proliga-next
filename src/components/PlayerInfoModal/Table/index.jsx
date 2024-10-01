@@ -106,7 +106,7 @@ function PlayerStatisticsTable() {
     }),
     columnHelper.accessor('GA', {
       accessorFn: (row) => row.player_result_id.goal_asist,
-      id: 'goal assist',
+      id: 'gol assist',
       cell: (info) => info.getValue(),
       header: t('GA'),
     }),
