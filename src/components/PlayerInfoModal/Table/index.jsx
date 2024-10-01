@@ -88,7 +88,7 @@ function PlayerStatisticsTable({ matches }) {
       id: 'QP',
     }),
     columnHelper.accessor('Avto Gol', {
-      accessorFn: (row) => row?.player_result_id.autogoal ?? 0,
+      accessorFn: (row) => row?.player_result_id?.autogoal ?? 0,
       header: t('AG'),
       id: 'AG',
     }),
