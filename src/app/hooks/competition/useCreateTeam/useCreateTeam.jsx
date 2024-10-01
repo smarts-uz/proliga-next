@@ -19,20 +19,20 @@ export const useCreateTeam = () => {
 
     if (!userTable && !userAuth) {
       setError('"Jamoa tuzish uchun tizimga kirishingiz kerak')
-      toast.error(t("Jamoa tuzish uchun tizimga kirishingiz kerak"))
+      toast.error(t('Jamoa tuzish uchun tizimga kirishingiz kerak'))
       router.push('/auth')
       return
     }
 
     if (!title) {
-      setError("Ism bolishi shart")
-      toast.error(t("Ism bolishi shart"))
+      setError('Ism bolishi shart')
+      toast.error(t('Ism bolishi shart'))
       return
     }
 
     if (!formation) {
-      setError("Taktika bolishi shart")
-      toast.error(t("Taktika bolishi shart"))
+      setError('Taktika bolishi shart')
+      toast.error(t('Taktika bolishi shart'))
       return
     }
 
@@ -57,7 +57,7 @@ export const useCreateTeam = () => {
       if (data) {
         setData(data[0])
         dispatch(addGameToTeam(data[0]))
-        toast.success(t("Jamoa muvaffaqiyatli yaratildi"))
+        toast.success(t('Jamoa muvaffaqiyatli yaratildi'))
       }
     } catch (error) {
       setError(error.message)

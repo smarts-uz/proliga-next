@@ -14,6 +14,7 @@ export const fetchPlayerPoint = createAsyncThunk(
       .eq('tour_id', tour_id)
       .range(from, to)
       .order('id', { ascending: true })
+      .is('deleted_at', null)
 
     return { data, error }
   }

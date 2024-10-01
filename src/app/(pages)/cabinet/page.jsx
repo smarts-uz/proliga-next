@@ -1,8 +1,8 @@
 'use client'
+
 import { useState } from 'react'
 import SettingsNavigation from './components/SettingsNavigation'
 import Gutter from 'components/Gutter'
-// import CabinetGeneralTab from './components/Home'
 import CabinetSettingsTab from './components/Settings'
 import CabinetChangePasswordTab from './components/ChangePassword'
 import CabinetLanguageTab from './components/Language'
@@ -17,7 +17,7 @@ function UserCabinet() {
 
   return (
     <Gutter>
-      <main className="lg:min-h-auto 2xl:min-h-auto mb-8 mt-24 flex h-full min-h-screen flex-col gap-4 md:min-h-max lg:min-h-[48rem] lg:flex-row">
+      <main className="lg:min-h-auto 2xl:min-h-auto mb-8 mt-24 flex h-full min-h-[90vh] flex-col gap-4 md:min-h-max lg:min-h-[80vh] lg:flex-row 2xl:min-h-[48rem]">
         <SettingsNavigation
           currentTab={tab}
           tabs={SETTINGSTAB}

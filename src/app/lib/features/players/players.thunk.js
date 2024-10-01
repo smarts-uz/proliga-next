@@ -10,6 +10,7 @@ export const fetchPlayers = createAsyncThunk(
         'id, name, position, club(id, name, slug), price, point, image, percentage'
       )
       .eq('competition_id', competition_id)
+      .is('deleted_at', null)
 
     return { data, error }
   }
@@ -24,6 +25,7 @@ export const fetchTopPlayers = createAsyncThunk(
       .eq('competition_id', competition_id)
       .order('point')
       .limit(3)
+      .is('deleted_at', null)
 
     return { data, error }
   }
@@ -38,6 +40,7 @@ export const fetchCurrentPlayerResult = createAsyncThunk(
       .eq('player_id', player_id)
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
+      .is('deleted_at', null)
       .order('created_at')
 
     return { data, error }

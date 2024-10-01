@@ -8,6 +8,7 @@ export const fetchCompetition = createAsyncThunk(
       .from('competition')
       .select('*')
       .is('deleted_at', null)
+      
     return { data, error }
   }
 )

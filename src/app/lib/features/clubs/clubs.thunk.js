@@ -9,6 +9,7 @@ export const fetchClubs = createAsyncThunk(
       .select('id, name, slug')
       .eq('competition_id', competition_id)
       .order('name')
+      .is('deleted_at', null)
 
     return { data, error }
   }

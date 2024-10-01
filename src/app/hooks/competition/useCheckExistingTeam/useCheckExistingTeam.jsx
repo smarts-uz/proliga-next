@@ -16,15 +16,15 @@ export const useCheckExistingTeam = () => {
     setError(null)
 
     if (!userTable && !userAuth) {
-      setError("Jamoa tuzish uchun avtorizatsiya qilish kerak")
-      toast.error(t("Jamoa tuzish uchun avtorizatsiya qilish kerak"))
+      setError('Jamoa tuzish uchun avtorizatsiya qilish kerak')
+      toast.error(t('Jamoa tuzish uchun avtorizatsiya qilish kerak'))
       router.push('/auth')
       return
     }
 
     if (!competition_id || !season_id) {
-      setError("Musobaqa va mavsum majburiy")
-      toast.error(t("Musobaqa va mavsum majburiy"))
+      setError('Musobaqa va mavsum majburiy')
+      toast.error(t('Musobaqa va mavsum majburiy'))
       return
     }
 

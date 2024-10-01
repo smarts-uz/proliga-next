@@ -14,6 +14,7 @@ export const fetchPlayerResult = createAsyncThunk(
       .eq('season_id', season_id)
       .range(from, to)
       .order('id', { ascending: true })
+      .is('deleted_at', null)
 
     return { data, error }
   }

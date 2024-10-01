@@ -15,6 +15,7 @@ export const fetchUserActivity = createAsyncThunk(
       .eq('team_id', team_id)
       .range(from, to)
       .order('created_at', { ascending: false })
+      .is('deleted_at', null)
 
     return { data, error }
   }

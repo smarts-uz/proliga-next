@@ -35,7 +35,9 @@ const CabinetSettingsTab = () => {
       <form className="flex flex-col gap-2">
         <section className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="cursor-pointer space-y-1">
-            <p className="text-neutral-200">{t("Sizning Rasmingiz")}:</p>
+            <p className="capitalize text-neutral-200">
+              {t('Sizning Rasmingiz')}:
+            </p>
             <label
               htmlFor="img"
               className="flex size-32 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 p-6 transition-all hover:from-neutral-900 hover:to-stone-900"
@@ -55,14 +57,14 @@ const CabinetSettingsTab = () => {
                 className="hidden"
               />
               <p className="break-words text-center text-xs text-neutral-300">
-              {t("Rasmni yuklash")}
+                {t('Rasmni yuklash')}
               </p>
             </label>
           </div>
           <div className="flex w-auto min-w-80 flex-col items-start justify-start self-start">
             <div className="w-full">
               <label
-                className="mx-2 my-2 block text-sm font-bold text-neutral-300"
+                className="mx-2 my-2 block text-sm font-bold capitalize text-neutral-300"
                 htmlFor="gender"
               >
                 {t('Jins')}
@@ -70,7 +72,7 @@ const CabinetSettingsTab = () => {
               <select
                 id="gender"
                 onChange={(e) => setGender(e.target.value)}
-                className="mr-2 h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 px-2 py-1 text-sm text-neutral-200 placeholder:text-neutral-300 md:text-base"
+                className="mr-2 h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 px-2 py-1 text-sm capitalize text-neutral-200 placeholder:text-neutral-300 md:text-base"
               >
                 <option
                   className="bg-neutral-800 checked:bg-neutral-700"
@@ -156,7 +158,7 @@ const CabinetSettingsTab = () => {
           </div>
           <div className="col-span-2 w-full">
             <label
-              className="my-2 block text-sm font-bold text-neutral-300"
+              className="my-2 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="bio"
             >
               {t('Siz haqingizda')}
@@ -168,7 +170,7 @@ const CabinetSettingsTab = () => {
               type="date"
               cols={1}
               rows={5}
-              className="h-10 min-h-64 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base"
+              className="h-10 min-h-56 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base 2xl:min-h-64"
             />
           </div>
         </section>

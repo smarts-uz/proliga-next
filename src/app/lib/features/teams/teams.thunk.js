@@ -8,6 +8,8 @@ export const fetchUserTeams = createAsyncThunk(
       .from('team')
       .select('*')
       .eq('user_id', user_id)
+      .is('deleted_at', null)
+      .order('id', { ascending: true })
       .eq('season_id', season_id)
 
     return { data, error }
@@ -27,7 +29,7 @@ export const fetchAllTeams = createAsyncThunk(
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
       .range(from, to)
-      .order('point', { ascending: false })
+      .is('deleted_at', null)
       .order('point')
 
     return { data, error }
@@ -43,6 +45,7 @@ export const fetchTopTeams = createAsyncThunk(
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .order('point', { ascending: true })
+      .order('id', { ascending: true })
       .limit(3)
 
     return { data, error }
