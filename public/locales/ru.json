@@ -280,7 +280,6 @@
   "transferlar": "трансферы",
   "Transferla sonini": "Увеличить количество переводов на ",
   "ga oshirish": " ",
-  "Maksimum klub oyi'nchilarini": "Увеличение максимального количества игроков клуба на ",
   "Balansni": "Увеличение баланса до",
   "To'lov usulini tanlang": "Выберите способ оплаты",
   "Payme orqali tolov qilish": "Оплата через Payme",
@@ -378,5 +377,7 @@
   "Mehmonda": "Гостья",
   "Transfer Amalga Oshirish": "Выполненит трансфера",
   "Sotib Olgan": "Купленный",
-  "Telefon raqam tasdiqlash": "Подтверждение номера телефона"
+  "Telefon raqam tasdiqlash": "Подтверждение номера телефона",
+  "Maksimum klub oyi'nchilarini": "Увеличь максимальное количество игроков из одного клуба на",
+  "Deadline": "Дедлайн"
 }

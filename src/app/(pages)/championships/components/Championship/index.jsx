@@ -49,7 +49,7 @@ const Championship = ({ game }) => {
   const year = date.getFullYear()
   const hours = date.getHours()
   const minutes = date.getMinutes()
-
+  
   return (
     <>
       <article
@@ -70,7 +70,7 @@ const Championship = ({ game }) => {
             {game.title}
           </h3>
           <div className="flex gap-1 text-xs text-neutral-400 sm:text-sm">
-            <p>Deadline:</p>
+            <p>{t("Deadline")}:</p>
             <span className="text-neutral-100">{`${day}/${month}/${year}-${hours}:${minutes === 0 ? '00' : minutes}`}</span>
           </div>
         </div>

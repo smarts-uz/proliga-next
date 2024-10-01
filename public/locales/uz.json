@@ -280,7 +280,6 @@
   "transferlar": "transferlar",
   "Transferla sonini": "Transferla sonini",
   "ga oshirish": "ga oshirish",
-  "Maksimum klub oyi'nchilarini": "Maksimum klub oyi'nchilarini",
   "Balansni": "Balansni",
   "To'lov usulini tanlang": "To'lov usulini tanlang",
   "Payme orqali tolov qilish": "Payme orqali tolov qilish",
@@ -378,5 +377,7 @@
   "Mehmonda": "Mehmonda",
   "Transfer Amalga Oshirish": "Transfer Amalga Oshirish",
   "Sotib Olgan": "Sotib Olgan",
-  "Telefon raqam tasdiqlash": "Telefon raqam tasdiqlash"
+  "Telefon raqam tasdiqlash": "Telefon raqam tasdiqlash",
+  "Maksimum klub oyi'nchilarini": "Maksimum klub oyi'nchilarini",
+  "Deadline": "Deadline"
 }
