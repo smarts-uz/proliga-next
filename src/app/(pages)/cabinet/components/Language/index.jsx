@@ -22,7 +22,7 @@ const CabinetLanguageTab = () => {
       <h3>{t("Tilni almashtirish")}</h3>
       <Select>
         <SelectTrigger className="w-auto sm:w-80">
-          <SelectValue placeholder={t("Language")} />
+          <SelectValue placeholder={t("Til")} />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value={LANGUAGE.uz}>

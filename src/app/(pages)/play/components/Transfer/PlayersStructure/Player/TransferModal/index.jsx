@@ -3,8 +3,9 @@ import Backdrop from 'components/Backdrop'
 import { motion } from 'framer-motion'
 import PlayerTable from './PlayerTable'
 import Image from 'next/image'
-
+import { useTranslation } from 'react-i18next'
 const PlayerTransferModal = ({ prevPlayer, handleModal }) => {
+  const { t } = useTranslation()
   return (
     <Backdrop onClick={handleModal}>
       <motion.dialog
