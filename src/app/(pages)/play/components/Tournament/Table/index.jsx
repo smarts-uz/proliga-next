@@ -35,7 +35,9 @@ function TournamentTable() {
     }),
     columnHelper.accessor('user', {
       accessorFn: (row) =>
-        row.user_id.email.replace(/(\w{3})[\w.-]+@([\w.]+\w)/, '$1***@$2'),
+        console.log(row.user_id.name) && row.user_id.name === undefined
+          ? 'Ism kiritilmagan'
+          : row.user_id.name,
       header: t('Foydalanuvchi'),
     }),
     columnHelper.accessor((row) => row.point, {

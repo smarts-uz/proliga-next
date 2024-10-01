@@ -24,13 +24,13 @@ export const fetchAllTeams = createAsyncThunk(
 
     const { data, error } = await supabase
       .from('tour_team')
-      .select('*, user_id(email), team(*)')
+      .select('*, user_id(name), team(*)')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
       .range(from, to)
+      .order('point', { ascending: true })
       .is('deleted_at', null)
-      .order('point')
 
     return { data, error }
   }
@@ -41,11 +41,12 @@ export const fetchTopTeams = createAsyncThunk(
   async ({ season_id, competition_id }) => {
     const { data, error } = await supabase
       .from('team')
-      .select('*, user_id(email)')
+      .select('*, user_id( name)')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
-      .order('point', { ascending: true })
-      .order('id', { ascending: true })
+      .order('order', {
+        ascending: true,
+      })
       .limit(3)
 
     return { data, error }

@@ -30,7 +30,9 @@ export default function TourTabs() {
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
+
   const { t } = useTranslation()
+
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
       return t('Boshlanmagan')
@@ -78,7 +80,7 @@ export default function TourTabs() {
             className="w-44 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             disabled={
               item.status === 'not_started' ||
-              currentTeam.registered_tour_id > item.id
+              item.id < currentTeam.registered_tour_id
             }
             label={
               <div className="flex flex-col items-center justify-center gap-1">

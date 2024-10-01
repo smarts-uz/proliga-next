@@ -37,7 +37,7 @@ const TeamPlace = ({ team, index }) => {
         {team?.name ?? 'team'}
       </h4>
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
-        {team.user_id.email.replace(/(\w{3})[\w.-]+@([\w.]+\w)/, '$1***@$2')}
+        {team.user_id.name}
       </p>
       <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}

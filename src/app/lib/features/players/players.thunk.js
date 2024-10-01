@@ -41,7 +41,6 @@ export const fetchCurrentPlayerResult = createAsyncThunk(
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .is('deleted_at', null)
-      .order('created_at')
 
     return { data, error }
   }

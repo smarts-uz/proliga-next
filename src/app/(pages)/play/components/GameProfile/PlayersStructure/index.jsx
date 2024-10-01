@@ -8,8 +8,6 @@ const ProfilePlayersStructure = ({ allowDelete = true }) => {
   const dispatch = useDispatch()
   const [infoModal, setInfoModal] = useState(false)
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
-  const condition =
-    GOA.length === 0 && DEF.length === 0 && MID.length === 0 && STR.length === 0
 
   const handleInfoModal = (player) => {
     dispatch(setCurrentPlayer(player.player_id))
@@ -43,13 +41,6 @@ const ProfilePlayersStructure = ({ allowDelete = true }) => {
   return (
     <>
       <div className="fade-in-fast absolute bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 pb-3 pt-4 sm:py-2 sm:pb-0 sm:pt-6 md:pb-8 md:pt-8">
-        {condition && (
-          <div className="flex items-center justify-center">
-            <p className="text-shadow text-sm font-bold text-neutral-50 xs:text-base sm:text-lg">
-              Bu turda sizi jamoangiz yoq!
-            </p>
-          </div>
-        )}
         <div className={`flex w-full items-start justify-center`}>
           {GOA.map((player) => (
             <Player

@@ -10,7 +10,7 @@ const Footer = () => {
       <Gutter>
         <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-16 pt-8 text-neutral-200 xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
-            <Link href="/contact" className="hover:underline">
+            <Link href="/contact" className="capitalize hover:underline">
               {t('Biz haqimizda')}
             </Link>
           </div>
