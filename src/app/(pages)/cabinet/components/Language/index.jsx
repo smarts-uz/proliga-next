@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux'
 import { motion } from 'framer-motion'
 import {
   Select,
@@ -10,13 +9,18 @@ import {
 import Image from 'next/image'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
+import { useEffect } from 'react'
 
 const CabinetLanguageTab = () => {
   const dispatch = useDispatch()
   const { lang } = useSelector((store) => store.systemLanguage)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    i18n.changeLanguage(lang)
+  }, [lang, i18n])
 
   return (
     <motion.section
