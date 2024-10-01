@@ -45,7 +45,7 @@ function JournalTable() {
   const columns = [
     columnHelper.accessor('created_at', {
       id: 'date',
-      header: t("Sana"),
+      header: t('Sana'),
       accessorFn: (row) => row.created_at,
     }),
     columnHelper.accessor('name', {

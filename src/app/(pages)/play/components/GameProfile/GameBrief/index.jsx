@@ -131,7 +131,7 @@ const GameBrief = () => {
 
 const Container = ({ children, className }) => {
   return (
-    <div className={`flex flex-col gap-2 pb-2 md:gap-6 ${className}`}>
+    <div className={`flex flex-col gap-2 pb-2 md:gap-4 ${className}`}>
       {children}
     </div>
   )

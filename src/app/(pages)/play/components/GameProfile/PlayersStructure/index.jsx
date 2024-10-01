@@ -84,7 +84,9 @@ const ProfilePlayersStructure = ({ allowDelete = true }) => {
           ))}
         </div>
       </div>
-      {infoModal && <PlayerInfoModal toggleModal={toggleModal} />}
+      {infoModal && (
+        <PlayerInfoModal infoModal={infoModal} toggleModal={toggleModal} />
+      )}
     </>
   )
 }

@@ -3,17 +3,13 @@ import { supabase } from 'app/lib/supabaseClient'
 
 export const fetchPlayerPoint = createAsyncThunk(
   'playerPoint/fetchPlayerPoint',
-  async ({ competition_id, tour_id, page, perPage }) => {
-    let from = page * perPage
-    let to = from + perPage
-
+  async ({ competition_id, tour_id, playerIds }) => {
     const { data, error } = await supabase
       .from('player_point')
-      .select('*')
+      .select('id, point, player_id, match_id(*), player_result_id(*)')
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
-      .range(from, to)
-      .order('id', { ascending: true })
+      .in('player_id', playerIds)
       .is('deleted_at', null)
 
     return { data, error }

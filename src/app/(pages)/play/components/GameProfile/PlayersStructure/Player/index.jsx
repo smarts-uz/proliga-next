@@ -5,10 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 
 const Player = ({ player, handleInfoModal }) => {
-  const dispatch = useDispatch()
   const { playerPoint } = useSelector((state) => state.playerPoint)
   const [currentPlayerPoint, setCurrentPlayerPoint] = useState()
-  const [infoModal, setInfoModal] = useState(false)
 
   useEffect(() => {
     if (playerPoint?.length > 0) {

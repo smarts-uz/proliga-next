@@ -41,12 +41,11 @@ export const fetchTopTeams = createAsyncThunk(
   async ({ season_id, competition_id }) => {
     const { data, error } = await supabase
       .from('team')
-      .select('*, user_id( name)')
+      .select('*, user_id(name)')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
-      .order('order', {
-        ascending: true,
-      })
+      .order('point')
+      // .order('order')
       .limit(3)
 
     return { data, error }

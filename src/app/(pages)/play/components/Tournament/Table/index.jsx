@@ -34,10 +34,7 @@ function TournamentTable() {
       header: t('Jamoa'),
     }),
     columnHelper.accessor('user', {
-      accessorFn: (row) =>
-        console.log(row.user_id.name) && row.user_id.name === undefined
-          ? 'Ism kiritilmagan'
-          : row.user_id.name,
+      accessorFn: (row) => row?.user_id?.name ?? 'Ism kiritilmagan',
       header: t('Foydalanuvchi'),
     }),
     columnHelper.accessor((row) => row.point, {

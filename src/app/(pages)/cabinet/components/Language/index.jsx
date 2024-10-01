@@ -62,7 +62,7 @@ const CabinetLanguageTab = () => {
         className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold capitalize text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-40"
         type="submit"
       >
-        {t('almashtirish')}
+        {t('Saqlash')}
       </button>
     </motion.section>
   )

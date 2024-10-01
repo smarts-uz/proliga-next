@@ -1,8 +1,4 @@
-import {
-  fetchPlayers,
-  fetchTopPlayers,
-  fetchCurrentPlayerResult,
-} from './players.thunk'
+import { fetchPlayers, fetchTopPlayers } from './players.thunk'
 
 export const playersExtraReducer = (builder) => {
   builder
@@ -27,18 +23,5 @@ export const playersExtraReducer = (builder) => {
     .addCase(fetchTopPlayers.rejected, (state, action) => {
       state.topPlayersLoading = false
       state.topPlayersError = action.payload.error.message ?? null
-    })
-
-    .addCase(fetchCurrentPlayerResult.pending, (state) => {
-      state.currentPlayerResultLoading = true
-      state.currentPlayerResult = []
-    })
-    .addCase(fetchCurrentPlayerResult.fulfilled, (state, action) => {
-      state.currentPlayerResultLoading = false
-      state.currentPlayerResult = action.payload?.data
-    })
-    .addCase(fetchCurrentPlayerResult.rejected, (state, action) => {
-      state.currentPlayerResultLoading = false
-      state.currentPlayerResultError = action.payload?.error
     })
 }

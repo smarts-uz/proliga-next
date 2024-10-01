@@ -14,4 +14,6 @@ export const playerPointSlice = createSlice({
   extraReducers: playerPointExtraReducer,
 })
 
+export const { setCurrentPlayerPoint } = playerPointSlice.actions
+
 export default playerPointSlice.reducer

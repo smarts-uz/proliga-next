@@ -23,24 +23,9 @@ export const fetchTopPlayers = createAsyncThunk(
       .from('player')
       .select('id, name, image, position, club(id, name, slug), price, point')
       .eq('competition_id', competition_id)
-      .order('point')
+      .order('point', { ascending: true })
+      .is('deleted_at', null)
       .limit(3)
-      .is('deleted_at', null)
-
-    return { data, error }
-  }
-)
-
-export const fetchCurrentPlayerResult = createAsyncThunk(
-  'players/fetchCurrentPlayerResult',
-  async ({ player_id, season_id, competition_id }) => {
-    const { data, error } = await supabase
-      .from('player_point')
-      .select('*, match_id(*), player_result_id(*)')
-      .eq('player_id', player_id)
-      .eq('season_id', season_id)
-      .eq('competition_id', competition_id)
-      .is('deleted_at', null)
 
     return { data, error }
   }

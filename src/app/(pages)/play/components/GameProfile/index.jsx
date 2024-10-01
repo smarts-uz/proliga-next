@@ -1,30 +1,39 @@
 import Image from 'next/image'
 import Gutter from '../../../../../components/Gutter'
 import GameBrief from './GameBrief'
-import { useDispatch, useSelector } from 'react-redux'
-import { TOUR } from 'app/utils/tour.util'
 import ProfileStadiumForm from './ProfileStadiumForm'
 import ProfilePlayersStructure from './PlayersStructure'
-import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { TOUR } from 'app/utils/tour.util'
+import { useEffect, useMemo } from 'react'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 
 const GameProfile = () => {
   const dispatch = useDispatch()
   const { currentTour } = useSelector((store) => store.tours)
   const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
+  const teamConcat = useMemo(
+    () => GOA.concat(DEF, MID, STR),
+    [GOA, DEF, MID, STR]
+  )
 
   useEffect(() => {
+    const teamPlayersId = []
+    teamConcat.forEach((player) => {
+      player.name && teamPlayersId.push(player.player_id)
+    })
+
     if (currentTour?.id && currentTeam?.competition_id?.id) {
       dispatch(
         fetchPlayerPoint({
           competition_id: currentTeam.competition_id.id,
           tour_id: currentTour.id,
-          page: 0,
-          perPage: 1000,
+          playerIds: teamPlayersId,
         })
       )
     }
-  }, [dispatch, currentTour, currentTeam])
+  }, [dispatch, currentTour, currentTeam, teamConcat])
 
   return (
     <Gutter>
