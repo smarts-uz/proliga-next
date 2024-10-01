@@ -10,14 +10,14 @@ import Backdrop from 'components/Backdrop'
 import Image from 'next/image'
 import PlayerPhoto from './PlayerPhoto'
 import PlayerStatisticsTable from './Table'
-
+import { useTranslation } from 'react-i18next'
 const PlayerInfoModal = ({ toggleModal }) => {
   const dispatch = useDispatch()
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((store) => store.season)
   const { currentPlayer } = useSelector((store) => store.players)
   const { lang } = useSelector((store) => store.systemLanguage)
-
+  const { t } = useTranslation()
   const getCorrentPlayerPosition = (position, lang) => {
     if (lang === LANGUAGE.ru) {
       if (position === PLAYERS.GOA) {
@@ -88,19 +88,19 @@ const PlayerInfoModal = ({ toggleModal }) => {
             <p className="font-semibold text-neutral-50">
               {currentPlayer.price ?? 0}
             </p>
-            <p className="text-xs text-neutral-300">Narx</p>
+            <p className="text-xs text-neutral-300">{t("Narx")}</p>
           </div>
           <div className="flex-1 rounded-sm border border-neutral-500 bg-neutral-800 px-2 py-1 text-center text-xs md:text-sm">
             <p className="font-semibold text-neutral-50">
               {currentPlayer.point ?? 0}
             </p>
-            <p className="text-xs text-neutral-300">Ochko</p>
+            <p className="text-xs text-neutral-300">{t("Ochko")}</p>
           </div>
           <div className="flex-1 rounded-sm border border-neutral-500 bg-neutral-800 px-2 py-1 text-center text-xs md:text-sm">
             <p className="font-semibold text-neutral-50">
               {currentPlayer.percentage ?? 0}%
             </p>
-            <p className="text-xs text-neutral-300">Sotib Olgan</p>
+            <p className="text-xs text-neutral-300">{t("Sotib Olgan")}</p>
           </div>
         </div>
         <PlayerStatisticsTable />
