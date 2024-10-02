@@ -13,6 +13,19 @@ export const updateTeamPlayerReducer = (state, action) => {
       state.STR.reduce((acc, player) => acc + player.price, 0)
   }
 
+  const evaluateTeamClubId = () => {
+    state.duplicatesMap = {}
+    const newTeam = [...state.GOA, ...state.DEF, ...state.MID, ...state.STR]
+
+    newTeam.forEach((player) => {
+      const clubSlug = player?.club_id?.id ?? ''
+
+      if (player.name) {
+        state.duplicatesMap[clubSlug] = (state.duplicatesMap[clubSlug] || 0) + 1
+      }
+    })
+  }
+
   const createUpdatedPlayer = (prevPlayer) => ({
     ...prevPlayer,
     player_id: player.id,
@@ -55,7 +68,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     state.GOA.push(newPlayer)
     state.playersCount.GOA++
     calcTeamPrice()
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     return state
   }
   if (
@@ -68,7 +81,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     state.DEF.push(newPlayer)
     state.playersCount.DEF++
     calcTeamPrice()
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     return state
   }
   if (
@@ -81,7 +94,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     state.MID.push(newPlayer)
     state.playersCount.MID++
     calcTeamPrice()
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     return state
   }
   if (
@@ -94,7 +107,7 @@ export const updateTeamPlayerReducer = (state, action) => {
     state.STR.push(newPlayer)
     state.playersCount.STR++
     calcTeamPrice()
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     return state
   }
 }

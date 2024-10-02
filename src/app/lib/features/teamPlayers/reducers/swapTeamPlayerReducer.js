@@ -5,6 +5,19 @@ export const swapTeamPlayerReducer = (state, action) => {
   const { player, team, previousPlayer, handleModal, t } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
+  const evaluateTeamClubId = () => {
+    state.duplicatesMap = {}
+    const newTeam = [...state.GOA, ...state.DEF, ...state.MID, ...state.STR]
+
+    newTeam.forEach((player) => {
+      const clubSlug = player?.club_id?.id ?? ''
+
+      if (player.name) {
+        state.duplicatesMap[clubSlug] = (state.duplicatesMap[clubSlug] || 0) + 1
+      }
+    })
+  }
+
   const calcTeamPrice = () => {
     state.teamPrice =
       state.GOA.reduce((acc, player) => acc + player.price, 0) +
@@ -45,11 +58,7 @@ export const swapTeamPlayerReducer = (state, action) => {
       (p) => previousPlayer.id === p.id
     )
     state.GOA[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
-    const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
-    if (state.duplicatesMap[prevClubId] > 0) {
-      state.duplicatesMap[prevClubId]--
-    }
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
@@ -61,11 +70,7 @@ export const swapTeamPlayerReducer = (state, action) => {
       (p) => previousPlayer.id === p.id
     )
     state.DEF[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
-    const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
-    if (state.duplicatesMap[prevClubId] > 0) {
-      state.duplicatesMap[prevClubId]--
-    }
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
@@ -77,11 +82,7 @@ export const swapTeamPlayerReducer = (state, action) => {
       (p) => previousPlayer.id === p.id
     )
     state.MID[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
-    const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
-    if (state.duplicatesMap[prevClubId] > 0) {
-      state.duplicatesMap[prevClubId]--
-    }
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
@@ -93,11 +94,7 @@ export const swapTeamPlayerReducer = (state, action) => {
       (p) => previousPlayer.id === p.id
     )
     state.STR[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
-    const prevClubId = prevPlayer?.club?.id || prevPlayer.club_id.id
-    if (state.duplicatesMap[prevClubId] > 0) {
-      state.duplicatesMap[prevClubId]--
-    }
-    state.duplicatesMap[clubId] = (state.duplicatesMap[clubId] || 0) + 1
+    evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")

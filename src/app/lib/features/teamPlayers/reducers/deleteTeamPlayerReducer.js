@@ -4,7 +4,18 @@ import { toast } from 'react-toastify'
 export const deleteTeamPlayerReducer = (state, action) => {
   const { player, is_team_created } = action.payload
 
-  const clubId = player?.club?.id || player.club_id.id
+  const evaluateTeamClubId = () => {
+    state.duplicatesMap = {}
+    const newTeam = [...state.GOA, ...state.DEF, ...state.MID, ...state.STR]
+
+    newTeam.forEach((player) => {
+      const clubSlug = player?.club_id?.id ?? ''
+
+      if (player.name) {
+        state.duplicatesMap[clubSlug] = (state.duplicatesMap[clubSlug] || 0) + 1
+      }
+    })
+  }
 
   const calcTeamPrice = () => {
     state.teamPrice =
@@ -29,9 +40,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.GOA.push(deletedPlayerObj(player))
     state.playersCount.GOA--
     calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
+    evaluateTeamClubId()
     return state
   }
   if (player.position === PLAYERS.DEF) {
@@ -43,9 +52,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.DEF.push(deletedPlayerObj(player))
     state.playersCount.DEF--
     calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
+    evaluateTeamClubId()
     return state
   }
   if (player.position === PLAYERS.MID) {
@@ -57,9 +64,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.MID.push(deletedPlayerObj(player))
     state.playersCount.MID--
     calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
+    evaluateTeamClubId()
     return state
   }
   if (player.position === PLAYERS.STR) {
@@ -71,9 +76,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
     state.STR.push(deletedPlayerObj(player))
     state.playersCount.STR--
     calcTeamPrice()
-    if (state.duplicatesMap[clubId] > 0) {
-      state.duplicatesMap[clubId]--
-    }
+    evaluateTeamClubId()
     return state
   }
 }

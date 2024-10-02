@@ -24,8 +24,8 @@ const TeamMaxTransfers = () => {
   }
   const { t } = useTranslation()
   const currentTransferCount =
-    currentTeam?.transfers_from_one_team -
-    currentTourTeam?.current_count_of_transfers
+    +currentTeam?.transfers_from_one_team -
+    +currentTourTeam?.current_count_of_transfers
 
   return (
     <>
@@ -54,9 +54,7 @@ const TeamMaxTransfers = () => {
               +currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'
             }
           >
-            {typeof !currentTransferCount === 'number'
-              ? 0
-              : currentTransferCount}
+            {currentTransferCount === NaN ? 0 : currentTransferCount}
           </span>
           /{currentTeam?.transfers_from_one_team ?? 0}
         </p>

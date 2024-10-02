@@ -8,8 +8,16 @@ const GameNavigation = () => {
 
   return (
     <>
-      {gameTab === TABS.GameProfile && <Tabs />}
-      {gameTab === TABS.Transfer && <Tabs />}
+      <div className="hidden lg:block">
+        <Gutter>
+          {gameTab === TABS.GameProfile && <Tabs />}
+          {gameTab === TABS.Transfer && <Tabs />}
+        </Gutter>
+      </div>
+      <div className="block lg:hidden">
+        {gameTab === TABS.GameProfile && <Tabs />}
+        {gameTab === TABS.Transfer && <Tabs />}
+      </div>
     </>
   )
 }
