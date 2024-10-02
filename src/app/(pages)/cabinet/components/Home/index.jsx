@@ -83,7 +83,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
             onClick={setSettingsTab}
             className="ml-auto rounded border border-primary bg-black px-2 py-1 text-neutral-100 transition-all hover:bg-primary hover:text-black"
           >
-            Edit
+            {t("Tahrirlash")}
           </button>
         </div>
         <section className="flex flex-col gap-2">
