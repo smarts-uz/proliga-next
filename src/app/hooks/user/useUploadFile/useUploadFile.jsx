@@ -1,5 +1,5 @@
 import { supabase } from 'app/lib/supabaseClient'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
@@ -9,10 +9,12 @@ export const useUploadFile = () => {
   const { userAuth } = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = useState(false)
   const { t } = useTranslation()
-  const uploadFile = async (file) => {
+
+  const uploadFile = async ({ file }) => {
     try {
       setIsLoading(true)
       setError('')
+
       if (localStorage.getItem('photo_path')) {
         const { data, error } = await supabase.storage
           .from('avatars')

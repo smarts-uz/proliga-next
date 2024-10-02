@@ -151,7 +151,9 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
               alt="wallet"
             />
             <div className="w-full self-center text-center">
-              <h4 className="font-medium sm:text-lg">{t('Proliga hisobi')}</h4>
+              <h4 className="text-sm font-medium xs:text-base sm:text-lg">
+                {t('Proliga hisobi')}
+              </h4>
               <p className="text-sm text-neutral-400">
                 {t('Hisobda')}:{' '}
                 <span className="font-bold text-neutral-50">4000 </span>
@@ -177,7 +179,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
               alt="wallet"
             />
             <div className="w-full self-center text-center">
-              <h4 className="font-medium sm:text-lg">
+              <h4 className="text-sm font-medium xs:text-base sm:text-lg">
                 {t('Telefon raqam tasdiqlash')}
               </h4>
             </div>

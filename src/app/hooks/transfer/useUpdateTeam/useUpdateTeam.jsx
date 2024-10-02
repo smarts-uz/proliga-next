@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setCurrentTeamCreated } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { useTranslation } from 'react-i18next'
 export const useUpdateTeam = () => {
   const dispatch = useDispatch()
@@ -35,7 +34,6 @@ export const useUpdateTeam = () => {
       }
       if (data) {
         setData(data)
-        dispatch(setCurrentTeamCreated(true))
       }
     } catch (error) {
       setError(error.message)

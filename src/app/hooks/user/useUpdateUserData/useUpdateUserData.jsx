@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setUserAuth } from 'app/lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+
 export const useUpdateUserData = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -16,7 +17,7 @@ export const useUpdateUserData = () => {
     bio,
     gender,
     birthdate,
-    password
+    photo
   ) => {
     try {
       setIsLoading(true)
@@ -31,6 +32,7 @@ export const useUpdateUserData = () => {
           bio: bio,
           gender: gender,
           birth_date: birthdate,
+          photo,
         })
         .eq('guid', userAuth.user.id)
         .select()
@@ -40,10 +42,8 @@ export const useUpdateUserData = () => {
         toast.error(error.message)
         return
       }
-      if (data?.user && data?.session) {
+      if (data) {
         dispatch(setUserAuth(data))
-        setData(data)
-        toast.success(t("ma'lumot taxrirlandi"))
       }
     } catch (error) {
       setError(error.message)

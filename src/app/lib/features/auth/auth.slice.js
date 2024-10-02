@@ -18,9 +18,12 @@ const authSlice = createSlice({
     setUserTable: (state, action) => {
       state.userTable = action.payload
     },
+    setUserPhoto: (state, action) => {
+      state.userTable.photo = action.payload
+    },
   },
 })
 
-export const { setUserAuth, setUserTable } = authSlice.actions
+export const { setUserAuth, setUserTable, setUserPhoto } = authSlice.actions
 
 export default authSlice.reducer

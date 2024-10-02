@@ -6,20 +6,30 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useUploadImage } from 'app/hooks/user/useUploadImage/useUploadImage'
 
 const CabinetSettingsTab = () => {
   const { t } = useTranslation()
   const { userTable } = useSelector((store) => store.auth)
+  const [date, setDate] = useState(new Date())
   const [file, setFile] = useState(null)
+  const [imagePath, setImagePath] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [middleName, setMiddleName] = useState('')
   const [abous, setAbout] = useState('')
-  const [date, setDate] = useState(new Date())
   const [gender, setGender] = useState(GENDERS.UNSET)
+  const { uploadImage, isLoading, error } = useUploadImage()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (file) {
+      uploadImage({ file, setImagePath })
+    }
+
+    
+
   }
 
   const handleFileChange = (e) => {
@@ -32,7 +42,7 @@ const CabinetSettingsTab = () => {
       animate={{ opacity: 1 }}
       className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
-      <form className="flex flex-col gap-2">
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
         <section className="flex w-full flex-col gap-4 lg:flex-row">
           <div className="cursor-pointer space-y-1">
             <p className="capitalize text-neutral-200">
@@ -113,7 +123,7 @@ const CabinetSettingsTab = () => {
         <section className="mb-4 grid grid-cols-1 gap-2 lg:grid-cols-2">
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold text-neutral-300"
+              className="my-2 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="firstName"
             >
               {t('Ism')}
@@ -128,7 +138,7 @@ const CabinetSettingsTab = () => {
           </div>
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold text-neutral-300"
+              className="my-2 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="lastName"
             >
               {t('Familiya')}
@@ -143,7 +153,7 @@ const CabinetSettingsTab = () => {
           </div>
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold text-neutral-300"
+              className="my-2 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="middleName"
             >
               {t('Sharif')}
