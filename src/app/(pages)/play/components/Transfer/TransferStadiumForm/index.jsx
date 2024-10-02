@@ -12,6 +12,7 @@ import { revertTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slic
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import { useUpdateTourTeam } from 'app/hooks/transfer/useUpdateTourTeam/useUpdateTourTeam.index'
+import { useAutoGenerateTeamPlayers } from 'app/hooks/transfer/useAutoGenerateTeamPlayers/useAutoGenerateTeamPlayers'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -35,12 +36,21 @@ const TransferStadiumForm = () => {
     isLoading: tourTeamLoading,
     error: tourTeamError,
   } = useUpdateTourTeam()
+  const {
+    generateTeamPlayers,
+    isLoading: teamPlayersLoading,
+    error: teamPlayersError,
+  } = useAutoGenerateTeamPlayers()
 
   const {
     updateTeam,
     isLoading: teamLoading,
     error: teamError,
   } = useUpdateTeam()
+
+  const handleAutoGenerateTeamPlayers = async () => {
+    await generateTeamPlayers({ team_id: currentTeam.id })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -178,6 +188,7 @@ const TransferStadiumForm = () => {
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            onClick={handleAutoGenerateTeamPlayers}
             type="button"
             title="Avto jamoa yigish"
             className="flex w-16 max-w-20 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
