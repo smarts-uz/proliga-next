@@ -70,14 +70,14 @@ export default function TourTabs() {
         value={currentTourIndex}
         variant="scrollable"
         scrollButtons="auto"
-        className="mt-4 rounded text-neutral-50 fade-in disabled:text-neutral-500"
+        className="rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
             onClick={() => handleClick(index)}
-            className="w-44 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
+            className="w-40 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             disabled={
               item.status === 'not_started' ||
               item.id < currentTeam.registered_tour_id
@@ -87,7 +87,7 @@ export default function TourTabs() {
                 <h3 className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
                   {item.name}
                 </h3>
-                <p className="text-[10px] capitalize text-neutral-200 sm:text-xs md:text-sm">
+                <p className="text-[9px] capitalize text-neutral-200 sm:text-xs md:text-sm">
                   {getStatus(item.status)}
                 </p>
               </div>

@@ -7,10 +7,10 @@ const GameNavigation = () => {
   const { gameTab } = useSelector((state) => state.tours)
 
   return (
-    <Gutter>
-      {gameTab === TABS.Transfer && <Tabs />}
+    <>
       {gameTab === TABS.GameProfile && <Tabs />}
-    </Gutter>
+      {gameTab === TABS.Transfer && <Tabs />}
+    </>
   )
 }
 
