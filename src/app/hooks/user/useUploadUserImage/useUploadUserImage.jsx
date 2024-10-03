@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserPhoto } from 'app/lib/features/auth/auth.slice'
 
-export const useUploadImage = () => {
+export const useUploadUserImage = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { t } = useTranslation()
 
-  const uploadImage = async ({ file, setImagePath }) => {
+  const uploadUserImage = async ({ file }) => {
     setIsLoading(true)
     setError('')
 
@@ -48,7 +48,6 @@ export const useUploadImage = () => {
           return
         }
         if (data) {
-          setImagePath(data?.fullPath)
           dispatch(setUserPhoto(data?.fullPath))
         }
       }
@@ -59,5 +58,5 @@ export const useUploadImage = () => {
       setIsLoading(false)
     }
   }
-  return { uploadImage, isLoading, error }
+  return { uploadUserImage, isLoading, error }
 }

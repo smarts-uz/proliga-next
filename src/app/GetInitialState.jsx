@@ -18,7 +18,7 @@ const GetInitialState = ({ children }) => {
       localStorage.getItem(`user-table-${sbUrl}`) &&
       JSON.parse(localStorage.getItem(`user-table-${sbUrl}`))
 
-    if (auth && auth?.session.access_token && !userAuth) {
+    if (auth && auth?.session?.access_token && !userAuth) {
       dispatch(setUserAuth(auth))
     }
     if (table && table.email && !userTable) {
@@ -28,20 +28,6 @@ const GetInitialState = ({ children }) => {
       router.push('/')
     }
   }, [dispatch, userAuth, userTable, router, path])
-
-  // useEffect(() => {
-  //   if (userAuth && userAuth.session.expiresAt >= Date.now()) {
-  //     return async () => {
-  //       const { data, error } = await supabase.auth.refreshSession({
-  //         refresh_token: state.user.refresh_token,
-  //       })
-
-  //       if (error) {
-  //         toast.error(error.message)
-  //       }
-  //     }
-  //   }
-  // }, [userAuth])
 
   return <>{children}</>
 }

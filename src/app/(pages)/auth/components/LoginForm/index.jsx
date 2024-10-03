@@ -34,7 +34,7 @@ const LoginForm = ({ onClick }) => {
   }
 
   useEffect(() => {
-    if (userTable && active) {
+    if (userTable && active && password.length > 6) {
       const fetch = async () =>
         await logIn({ email: userTable.email, password })
       fetch()
@@ -43,7 +43,8 @@ const LoginForm = ({ onClick }) => {
       setPhone('')
     }
 
-  }, [userTable, active])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userTable, active, password])
 
   useEffect(() => {
     if (userTable && userAuth && active) {
@@ -58,14 +59,14 @@ const LoginForm = ({ onClick }) => {
       className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
     >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
-        {t("Tizimga kirish_1")}
+        {t('Tizimga kirish_1')}
       </h2>
       <div className="relative flex flex-col gap-1">
         <label htmlFor="username" className="text-xs md:text-base">
-          {t("Login")}:
+          {t('Login')}:
         </label>
         <PhoneInput
-          placeholder={t("Telefon raqam")}
+          placeholder={t('Telefon raqam')}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-neutral-200 placeholder:text-neutral-500"
           value={phone}
@@ -74,13 +75,13 @@ const LoginForm = ({ onClick }) => {
       </div>
       <div className="relative flex flex-col gap-1">
         <label htmlFor="password" className="text-xs md:text-base">
-          {t("Parol")}:
+          {t('Parol')}:
         </label>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
           id="password"
-          placeholder={t("Parol")}
+          placeholder={t('Parol')}
           className="auth-input pl-9"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -130,7 +131,7 @@ const LoginForm = ({ onClick }) => {
             className="mx-auto size-6 animate-spin"
           />
         ) : (
-          t("Tizimga kirish_2")
+          t('Tizimga kirish_2')
         )}
       </button>
     </form>

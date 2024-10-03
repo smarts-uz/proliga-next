@@ -1,11 +1,12 @@
 'use client'
+
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import Image from 'next/image'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
-import { useState } from 'react'
 
 const CabinetHomeTab = ({ setSettingsTab }) => {
   const { userAuth, userTable, isLoading } = useSelector((store) => store.auth)
@@ -52,6 +53,16 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
     }
   }
 
+  const getCorrectGenderText = (gender) => {
+    if (gender === 'male') {
+      return t('Erkak')
+    } else if (gender === 'female') {
+      return t('Ayol')
+    } else {
+      return t('Belgilanmagan')
+    }
+  }
+
   return (
     <>
       <motion.section
@@ -66,15 +77,15 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
             </div>
           )}
           <div className="flex flex-col justify-center gap-2 text-sm md:text-base">
-            <div className="flex max-w-64 gap-1 font-bold capitalize text-neutral-50">
+            <div className="flex max-w-64 gap-1 text-sm font-bold capitalize text-neutral-50 md:max-w-96 md:text-base">
               <p className="truncate">
-                {userTable?.lastName ? userTable?.lastName : t('Familiya')}
+                {userTable?.last_name ? userTable?.last_name : t('Familiya')}
               </p>
               <p className="truncate">
                 {userTable?.name ? userTable?.name : t('Ism')}
               </p>
               <p className="truncate">
-                {userTable?.middleName ? userTable?.middleName : t('Sharif')}
+                {userTable?.middle_name ? userTable?.middle_name : t('Sharif')}
               </p>
             </div>
             <span className="text-neutral-300">{userTable?.email}</span>
@@ -83,11 +94,11 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
             onClick={setSettingsTab}
             className="ml-auto rounded border border-primary bg-black px-2 py-1 text-neutral-100 transition-all hover:bg-primary hover:text-black"
           >
-            {t("Tahrirlash")}
+            {t('Tahrirlash')}
           </button>
         </div>
         <section className="flex flex-col gap-2">
-          <h3 className="font-medium capitalize xs:text-lg md:text-xl">
+          <h3 className="font-medium capitalize xs:text-lg">
             {t('Qisqacha Malumot')}:
           </h3>
           <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
@@ -128,12 +139,14 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
                 />
                 <p className="text-sm sm:text-base">{t('Jins')} :</p>
               </div>
-              <p>{userTable.gender ?? 'Belgilanmagan'}</p>
+              <p>
+                {getCorrectGenderText(userTable?.gender) ?? t('Belgilanmagan')}
+              </p>
             </div>
           </div>
         </section>
         <section>
-          <h3 className="font-medium xs:text-lg md:text-xl">{t('Bio')}:</h3>
+          <h3 className="font-medium xs:text-lg">{t('Bio')}:</h3>
           <div className="scroll-y-auto h-40 rounded border border-neutral-500 bg-neutral-800 p-2">
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>

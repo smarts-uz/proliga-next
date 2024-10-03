@@ -14,7 +14,7 @@ export const useLogIn = () => {
   const dispatch = useDispatch()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const { t } = useTranslation()
-  
+
   const logIn = async ({ email, password }) => {
     setIsLoading(false)
     setError(null)

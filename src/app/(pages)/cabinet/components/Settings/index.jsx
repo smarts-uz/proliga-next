@@ -2,34 +2,52 @@
 import './datepicker.scss'
 import Image from 'next/image'
 import DatePicker from 'react-datepicker'
+
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useUploadImage } from 'app/hooks/user/useUploadImage/useUploadImage'
+import { useUploadUserImage } from 'app/hooks/user/useUploadUserImage/useUploadUserImage'
+import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 
 const CabinetSettingsTab = () => {
   const { t } = useTranslation()
   const { userTable } = useSelector((store) => store.auth)
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(userTable?.birth_date ?? new Date())
   const [file, setFile] = useState(null)
-  const [imagePath, setImagePath] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [middleName, setMiddleName] = useState('')
-  const [abous, setAbout] = useState('')
-  const [gender, setGender] = useState(GENDERS.UNSET)
-  const { uploadImage, isLoading, error } = useUploadImage()
+  const [firstName, setFirstName] = useState(userTable?.name ?? '')
+  const [lastName, setLastName] = useState(userTable?.last_name ?? '')
+  const [middleName, setMiddleName] = useState(userTable?.middle_name ?? '')
+  const [bio, setBio] = useState(userTable?.bio ?? '')
+  const [gender, setGender] = useState(userTable?.gender ?? GENDERS.UNSET)
+  const { uploadUserImage, isLoading, error } = useUploadUserImage()
+  const {
+    updateUserData,
+    isLoading: updateUserLoading,
+    error: updateUserError,
+  } = useUpdateUserData()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (file) {
-      uploadImage({ file, setImagePath })
+    if (!firstName) {
+      toast.warning('Iltimos ismni kiriting')
+    }
+    if (!lastName) {
+      toast.warning('Iltimos familiyangizni kiriting')
+    }
+    if (!gender) {
+      toast.warning('Iltimos jiningizni tanlang')
+    }
+    if (!bio || bio.length < 8) {
+      toast.warning('Iltimos bio kiriting')
     }
 
-    
+    if (file) {
+      uploadUserImage({ file })
+    }
 
+    await updateUserData(firstName, lastName, middleName, bio, gender, date)
   }
 
   const handleFileChange = (e) => {
@@ -82,6 +100,7 @@ const CabinetSettingsTab = () => {
               <select
                 id="gender"
                 onChange={(e) => setGender(e.target.value)}
+                value={gender}
                 className="mr-2 h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 px-2 py-1 text-sm capitalize text-neutral-200 placeholder:text-neutral-300 md:text-base"
               >
                 <option
@@ -133,6 +152,8 @@ const CabinetSettingsTab = () => {
               id="firstName"
               name="firstName"
               type="text"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
               className="h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base"
             />
           </div>
@@ -148,21 +169,24 @@ const CabinetSettingsTab = () => {
               name="lastName"
               placeholder={userTable?.last_name ?? t('Familiya')}
               type="text"
+              onChange={(e) => setLastName(e.target.value)}
               className="h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base"
             />
           </div>
           <div className="col-span-2 w-full lg:col-span-1">
             <label
               className="my-2 block text-sm font-bold capitalize text-neutral-300"
-              htmlFor="middleName"
+              htmlFor="surname"
             >
               {t('Sharif')}
             </label>
             <input
-              id="sirName"
-              name="sirName"
+              id="surname"
+              name="surname"
               placeholder={userTable?.midde_name ?? t('Sharif')}
               type="text"
+              value={middleName}
+              onChange={(e) => setMiddleName(e.target.value)}
               className="h-10 w-full rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base"
             />
           </div>
@@ -180,6 +204,8 @@ const CabinetSettingsTab = () => {
               type="date"
               cols={1}
               rows={5}
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
               className="h-10 min-h-56 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base 2xl:min-h-64"
             />
           </div>
@@ -188,7 +214,17 @@ const CabinetSettingsTab = () => {
           className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
           type="submit"
         >
-          {t('Saqlash')}
+          {updateUserLoading ? (
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="mx-auto size-6 animate-spin"
+            />
+          ) : (
+            t('Saqlash')
+          )}
         </button>
       </form>
     </motion.section>
