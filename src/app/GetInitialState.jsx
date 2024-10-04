@@ -35,11 +35,11 @@ const GetInitialState = ({ children }) => {
   }, [dispatch, userAuth, userTable, router, path])
 
   useEffect(() => {
-    if (lang !== userTable?.language) {
+    if (lang !== userTable?.language && userTable?.id) {
       dispatch(setLanguage(userTable?.language ?? LANGUAGE.uz))
       i18n.changeLanguage(userTable?.language ?? LANGUAGE.uz)
     }
-  }, [dispatch, lang, userTable?.language, i18n])
+  }, [dispatch, lang, userTable?.language, i18n, userTable])
 
   return <>{children}</>
 }

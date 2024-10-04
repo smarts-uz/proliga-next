@@ -8,23 +8,30 @@ import {
 import Image from 'next/image'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useUpdateUserLanguage } from 'app/hooks/user/useUpdateUserLanguage/useUpdateUserLanguage'
+import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
 
 const ChangeLanguageDropdown = () => {
+  const dispatch = useDispatch()
   const { lang } = useSelector((store) => store.systemLanguage)
   const { userTable } = useSelector((store) => store.auth)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { updateUserLanguage, error, isLoading } = useUpdateUserLanguage()
 
   const handleChange = async (lang) => {
-    await updateUserLanguage({ lang })
+    if (userTable?.id) {
+      return await updateUserLanguage({ lang })
+    } else {
+      dispatch(setLanguage(lang))
+      i18n.changeLanguage(lang)
+    }
   }
 
   return (
     <Select
       onValueChange={(value) => handleChange(value)}
-      defaultValue={userTable?.language ?? LANGUAGE.uz}
+      defaultValue={userTable?.language ?? lang}
       className="border-none"
     >
       <SelectTrigger className="w-auto px-1 md:w-20 xl:w-24 xl:px-2">
