@@ -4,7 +4,10 @@ import StyledTabs from './StyledTabs'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
+import {
+  setCurrentTourIndex,
+  setRegisteredTour,
+} from 'app/lib/features/tours/tours.slice'
 import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
@@ -15,7 +18,9 @@ export default function TourTabs() {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const selectedTours = useSelector(selectTours)
-  const { currentTourIndex } = useSelector((state) => state.tours)
+  const { currentTourIndex, tours, registeredTour } = useSelector(
+    (state) => state.tours
+  )
   const { currentTourTeamIndex, tourTeams } = useSelector(
     (state) => state.tourTeams
   )
@@ -55,6 +60,12 @@ export default function TourTabs() {
     dispatch(setMatchesTourIndex(index))
   }
 
+  useEffect(() => {
+    if (currentTeam?.registered_tour_id && tours?.length > 0) {
+      dispatch(setRegisteredTour(currentTeam?.registered_tour_id))
+    }
+  }, [currentTeam, tours, dispatch])
+
   return (
     <Box
       sx={{
@@ -80,7 +91,7 @@ export default function TourTabs() {
             className="w-40 space-y-0 hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
             disabled={
               item.status === 'not_started' ||
-              item.id < currentTeam.registered_tour_id
+              item.order < registeredTour?.order
             }
             label={
               <div className="flex flex-col items-center justify-center gap-1">

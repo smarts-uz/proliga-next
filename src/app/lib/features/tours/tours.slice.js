@@ -8,7 +8,7 @@ const initialState = {
   currentTour: 0,
   currentTourIndex: 0,
   gameTab: TABS.GameProfile,
-  registeredTourId: 0,
+  registeredTour: {},
   error: null,
   isLoading: false,
 }
@@ -20,20 +20,25 @@ export const tourSlice = createSlice({
     setCurrentTourIndex: (state, action) => {
       state.currentTour = state.tours[action.payload]
       state.currentTourIndex = action.payload
-      // if (
-      //   state.gameTab === TABS.Transfer &&
-      //   state.currentTour.status !== TOUR.notStartedTransfer
-      // ) {
-      //   state.gameTab = TABS.GameProfile
-      // }
+      if (
+        state.gameTab === TABS.Transfer &&
+        state.currentTour.status !== TOUR.notStartedTransfer
+      ) {
+        state.gameTab = TABS.GameProfile
+      }
     },
     setTab: (state, action) => {
       state.gameTab = action.payload
+    },
+    setRegisteredTour: (state, action) => {
+      const tourId = action.payload
+      state.registeredTour = state.tours.find((tour) => tour.id === tourId)
     },
   },
   extraReducers: toursExtraReducer,
 })
 
-export const { setCurrentTourIndex, setTab } = tourSlice.actions
+export const { setCurrentTourIndex, setTab, setRegisteredTour } =
+  tourSlice.actions
 
 export default tourSlice.reducer

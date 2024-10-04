@@ -9,8 +9,7 @@ export const useGetUserPhoto = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const { userAuth, userTable } = useSelector((state) => state.auth)
-  const { t } = useTranslation()
+  const { userTable } = useSelector((state) => state.auth)
 
   const getUserPhoto = async () => {
     setIsLoading(true)
@@ -27,7 +26,6 @@ export const useGetUserPhoto = () => {
       }
       if (data) {
         dispatch(setPublicUrl(data.publicUrl))
-        console.log(data)
       }
     } catch (error) {
       setError(error.message)

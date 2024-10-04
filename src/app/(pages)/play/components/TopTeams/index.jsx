@@ -1,13 +1,11 @@
-import { useTranslation } from 'react-i18next'
 import RankingTeams from './Teams'
+import RankingPlayers from './Players'
 import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import RankingPlayers from './Players'
 import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
 
 const TopTeams = () => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { currentCompetition } = useSelector((state) => state.competition)
   const { season } = useSelector((state) => state.season)
@@ -20,11 +18,6 @@ const TopTeams = () => {
           season_id: season?.id,
         })
       )
-    }
-  }, [currentCompetition, season, dispatch])
-
-  useEffect(() => {
-    if (currentCompetition?.id && season?.id) {
       dispatch(
         fetchTopPlayers({
           competition_id: currentCompetition?.id,

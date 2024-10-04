@@ -55,7 +55,6 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         dispatch(
           fetchTours({
             competition_id: currentTeam.competition_id.id,
-            registered_tour_id: currentTeam.registered_tour_id,
           })
         )
       }
