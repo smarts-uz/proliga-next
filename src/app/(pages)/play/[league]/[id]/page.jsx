@@ -4,12 +4,13 @@ import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { setCurrentCompetition } from 'app/lib/features/competition/competition.slice'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
-import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -24,6 +25,7 @@ const Play = ({ params }) => {
   useEffect(() => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())
+    dispatch(fetchPackages())
   }, [dispatch])
 
   useEffect(() => {

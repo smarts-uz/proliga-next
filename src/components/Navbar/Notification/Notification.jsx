@@ -1,9 +1,13 @@
 'use client'
+
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 const Notification = () => {
+  const { userTable } = useSelector((store) => store.auth)
   const { t } = useTranslation()
+
   return (
     <motion.section
       initial={{ opacity: 0, y: -20 }}

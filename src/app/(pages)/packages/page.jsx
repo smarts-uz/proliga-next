@@ -1,8 +1,17 @@
 'use client'
+import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import Gutter from 'components/Gutter'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 const Packages = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPackages())
+  }, [dispatch])
+
   const { t } = useTranslation()
   return (
     <Gutter>
@@ -20,10 +29,10 @@ const Packages = () => {
                   className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
                 >
                   <span className="font-bold text-neutral-50">
-                  {t("gacha oshirish ru")} {item.amount} {t("gacha oshirish")}
+                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
                   </span>
                   <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                    {t("Tanlang")}
+                    {t('Tanlang')}
                   </button>
                 </div>
               ))}
@@ -31,7 +40,7 @@ const Packages = () => {
           </div>
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
             <h2 className="text-lg font-medium md:text-xl">
-              {t("Transfer paketlari")}
+              {t('Transfer paketlari')}
             </h2>
             <div className="flex flex-col gap-4">
               {transfers.map((item, index) => (
@@ -40,10 +49,10 @@ const Packages = () => {
                   className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
                 >
                   <span className="font-bold text-neutral-50">
-                  {t("gacha oshirish ru")} {item.amount} {t("gacha oshirish")}
+                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
                   </span>
                   <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                    {t("Tanlang")}
+                    {t('Tanlang')}
                   </button>
                 </div>
               ))}
@@ -51,7 +60,7 @@ const Packages = () => {
           </div>
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
             <h2 className="text-lg font-medium md:text-xl">
-              {t("Bitta jamoadan oyinchisi paketlari")}
+              {t('Bitta jamoadan oyinchisi paketlari')}
             </h2>
             <div className="flex flex-col gap-4">
               {maxClubMembers.map((item, index) => (
@@ -60,10 +69,10 @@ const Packages = () => {
                   className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
                 >
                   <span className="font-bold text-neutral-50">
-                  {t("gacha oshirish ru")} {item.amount} {t("gacha oshirish")}
+                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
                   </span>
                   <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                  {t("Tanlang")}
+                    {t('Tanlang')}
                   </button>
                 </div>
               ))}

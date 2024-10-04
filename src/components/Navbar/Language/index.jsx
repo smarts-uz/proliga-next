@@ -32,7 +32,6 @@ const ChangeLanguageDropdown = () => {
     <Select
       onValueChange={(value) => handleChange(value)}
       defaultValue={userTable?.language ?? lang}
-      className="border-none"
     >
       <SelectTrigger className="w-auto px-1 md:w-20 xl:w-24 xl:px-2">
         <SelectValue placeholder={t('Til')} />

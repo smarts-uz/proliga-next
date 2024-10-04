@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 export default function TeamMaxClubMembers() {
+  const { packages } = useSelector((state) => state.packages)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const [isModalOpen, toggleModal] = useState(false)
   const { t } = useTranslation()
