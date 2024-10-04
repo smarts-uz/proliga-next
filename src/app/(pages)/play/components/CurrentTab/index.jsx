@@ -29,9 +29,9 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [dispatch, currentTeam])
 
   useEffect(() => {
-    if (userAuth && userTable && paramsId) {
+    if (userAuth && userTable?.id && paramsId) {
       const fetch = async () => {
-        dispatch(fetchCurrentTeam({ id: paramsId }))
+        dispatch(fetchCurrentTeam({ id: paramsId, user_id: userTable?.id }))
       }
       fetch()
     }

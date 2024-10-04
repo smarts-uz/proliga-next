@@ -1,56 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import ConfirmationModal from 'components/ConfirmationModal'
-import { useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { motion } from 'framer-motion'
-import PlayerTransferModal from './TransferModal'
 
-const Player = ({ player, currentTeam }) => {
-  const dispatch = useDispatch()
-  const [deleteModalVisible, setDeleteModalVisible] = useState(false)
-  const [isModalOpen, setModalOpen] = useState(false)
-
-  const toggleDeleteModal = () => {
-    if (deleteModalVisible) {
-      setDeleteModalVisible(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setDeleteModalVisible(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
-
-  const handleDeletePlayer = () => {
-    dispatch(
-      deleteTeamPlayer({
-        player,
-        is_team_created: currentTeam?.is_team_created,
-      })
-    )
-    toggleDeleteModal()
-  }
-
-  const toggleModal = useCallback(() => {
-    if (isModalOpen) {
-      setModalOpen(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setModalOpen(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }, [isModalOpen])
-
+const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
   }
@@ -58,6 +11,16 @@ const Player = ({ player, currentTeam }) => {
   const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
+
+  const handleTransferModal = () => {
+    setPlayer(player)
+    toggleModal()
+  }
+
+  const handleDeletePlayer = () => {
+    setPlayer(player)
+    toggleDeleteModal()
+  }
 
   return (
     <>
@@ -105,7 +68,7 @@ const Player = ({ player, currentTeam }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              <button onClick={toggleModal}>
+              <button onClick={handleTransferModal}>
                 <Image
                   width={16}
                   height={16}
@@ -118,7 +81,7 @@ const Player = ({ player, currentTeam }) => {
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.price ?? '00'}
               </div>
-              <button onClick={toggleDeleteModal}>
+              <button onClick={handleDeletePlayer}>
                 <Image
                   width={16}
                   height={16}
@@ -131,19 +94,6 @@ const Player = ({ player, currentTeam }) => {
           </>
         )}
       </motion.div>
-      {deleteModalVisible && (
-        <ConfirmationModal
-          onConfirm={handleDeletePlayer}
-          onCancel={toggleDeleteModal}
-        />
-      )}
-      {isModalOpen && (
-        <PlayerTransferModal
-          prevPlayer={player}
-          handleModal={toggleModal}
-          currentTeam={currentTeam}
-        />
-      )}
     </>
   )
 }

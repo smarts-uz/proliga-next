@@ -50,7 +50,7 @@ export const {
   revertTeamPlayers,
   updateTeamPlayer,
   swapTeamPlayer,
-  autoAssembleTeam
+  autoAssembleTeam,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

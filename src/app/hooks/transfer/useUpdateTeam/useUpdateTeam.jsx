@@ -10,13 +10,17 @@ export const useUpdateTeam = () => {
   const [data, setData] = useState(null)
   const { userAuth } = useSelector((state) => state.auth)
   const { t } = useTranslation()
-  const updateTeam = async ({ team_id }) => {
+
+  const updateTeam = async ({ team_id, is_team_created }) => {
     setIsLoading(false)
     setError(null)
 
     if (!team_id) {
       setError(t('Jamoa ID kiritilmagan!'))
       toast.error(t('Jamoa ID kiritilmagan!'))
+    }
+    if (is_team_created) {
+      return
     }
 
     try {

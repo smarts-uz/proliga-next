@@ -121,19 +121,19 @@ const TransferStadiumForm = () => {
       return
     }
 
-    if (currentTeam.is_team_created === false) {
-      await updateTeam({ team_id: currentTeam.id })
-    }
+    await updateTeam({
+      team_id: currentTeam.id,
+      is_team_created: currentTeam?.is_team_created,
+    })
 
-    if (currentTeam.is_team_created === true) {
-      await updateTourTeam({
-        team_id: currentTeam.id,
-        tour_id: currentTour.id,
-        count_of_transfers:
-          Math.round(+countOfTransfers / 2) +
-          currentTourTeam.current_count_of_transfers,
-      })
-    }
+    await updateTourTeam({
+      team_id: currentTeam.id,
+      tour_id: currentTour.id,
+      count_of_transfers:
+        Math.round(+countOfTransfers / 2) +
+        currentTourTeam.current_count_of_transfers,
+      is_team_created: currentTeam.is_team_created,
+    })
 
     await updateTeamPlayers({
       team: teamConcat,

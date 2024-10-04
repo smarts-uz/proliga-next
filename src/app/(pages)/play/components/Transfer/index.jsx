@@ -27,12 +27,6 @@ const Transfer = () => {
             {currentTour?.status === TOUR.notStartedTransfer && (
               <PlayersStructure />
             )}
-            {currentTour?.status === TOUR.completed && (
-              <PlayersStructure allowDelete={false} />
-            )}
-            {currentTour?.status === TOUR.inProcess && (
-              <PlayersStructure allowDelete={false} />
-            )}
           </div>
           <TransferStadiumForm />
         </div>

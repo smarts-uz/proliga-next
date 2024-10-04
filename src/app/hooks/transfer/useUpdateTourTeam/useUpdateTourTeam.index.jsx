@@ -13,7 +13,12 @@ export const useUpdateTourTeam = () => {
   const { userAuth } = useSelector((state) => state.auth)
   const { t } = useTranslation()
 
-  const updateTourTeam = async ({ team_id, tour_id, count_of_transfers }) => {
+  const updateTourTeam = async ({
+    team_id,
+    tour_id,
+    count_of_transfers = 0,
+    is_team_created,
+  }) => {
     setIsLoading(false)
     setError(null)
 
@@ -28,6 +33,9 @@ export const useUpdateTourTeam = () => {
     if (!count_of_transfers) {
       setError(t('Transfer soni kiritilmagan!'))
       toast.error(t('Transfer soni kiritilmagan!'))
+    }
+    if (!is_team_created) {
+      return
     }
 
     try {

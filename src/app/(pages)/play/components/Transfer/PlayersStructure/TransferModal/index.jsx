@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import PlayerTable from './PlayerTable'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+
 const PlayerTransferModal = ({ prevPlayer, handleModal }) => {
   const { t } = useTranslation()
   return (
@@ -16,7 +17,7 @@ const PlayerTransferModal = ({ prevPlayer, handleModal }) => {
       >
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-medium xs:text-base xl:text-lg">
-            {t("Transfer Amalga Oshirish")}
+            {t('Transfer Amalga Oshirish')}
           </h2>
           <button>
             <Image
