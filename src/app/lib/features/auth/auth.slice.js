@@ -6,6 +6,7 @@ const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 const initialState = {
   userAuth: null,
   userTable: null,
+  publicUrl: '',
 }
 
 const authSlice = createSlice({
@@ -21,9 +22,13 @@ const authSlice = createSlice({
     setUserPhoto: (state, action) => {
       state.userTable.photo = action.payload
     },
+    setPublicUrl: (state, action) => {
+      state.publicUrl = action.payload
+    },
   },
 })
 
-export const { setUserAuth, setUserTable, setUserPhoto } = authSlice.actions
+export const { setUserAuth, setUserTable, setUserPhoto, setPublicUrl } =
+  authSlice.actions
 
 export default authSlice.reducer

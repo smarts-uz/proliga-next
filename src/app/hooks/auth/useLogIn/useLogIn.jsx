@@ -2,11 +2,9 @@ import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import {
-  setUserAuth,
-  setUserTable,
-} from '../../../lib/features/auth/auth.slice'
+import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+
 export const useLogIn = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)

@@ -46,7 +46,7 @@ export const useUpdateUserData = () => {
       }
       if (data) {
         dispatch(setUserTable(data[0]))
-        localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
       }
     } catch (error) {
       setError(error.message)

@@ -3,22 +3,22 @@ import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setUserPhoto } from 'app/lib/features/auth/auth.slice'
+import { setPublicUrl } from 'app/lib/features/auth/auth.slice'
 
-export const useUploadImage = () => {
+export const useGetUserPhoto = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { t } = useTranslation()
 
-  const uploadImage = async ({ file }) => {
+  const getUserPhoto = async () => {
     setIsLoading(true)
     setError('')
 
     try {
       const { data, error } = supabase.storage
-        .from('public-bucket')
+        .from('avatars')
         .getPublicUrl(userTable?.photo)
 
       if (error) {
@@ -26,8 +26,8 @@ export const useUploadImage = () => {
         return
       }
       if (data) {
+        dispatch(setPublicUrl(data.publicUrl))
         console.log(data)
-        toast.success(t("Su'rat qo'shildi"))
       }
     } catch (error) {
       setError(error.message)
@@ -36,5 +36,5 @@ export const useUploadImage = () => {
       setIsLoading(false)
     }
   }
-  return { uploadImage, isLoading, error }
+  return { getUserPhoto, isLoading, error }
 }

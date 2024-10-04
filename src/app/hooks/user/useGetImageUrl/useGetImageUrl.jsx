@@ -17,7 +17,7 @@ export const useUploadUserImage = () => {
     setError('')
 
     try {
-      if (userTable?.photo) {
+      if (userTable.photo) {
         const { data, error } = await supabase.storage
           .from('avatars')
           .update(userTable?.photo, file, {

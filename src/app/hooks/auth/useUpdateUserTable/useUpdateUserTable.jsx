@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+
 export const useUpdateUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
@@ -11,13 +12,14 @@ export const useUpdateUserTable = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  
   const updateUserTable = async ({ id, email, phone }) => {
     setIsLoading(false)
     setError(null)
 
     if (!id || !phone || !email) {
       setError('Email yoki Telefon kirilmagan')
-      toast.error(t("Email yokiTelefon kiritilmagan"))
+      toast.error(t('Email yokiTelefon kiritilmagan'))
       return
     }
 

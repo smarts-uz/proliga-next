@@ -26,7 +26,9 @@ function UserCabinet() {
         {tab === SETTINGSTAB.HOME && (
           <CabinetHomeTab setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />
         )}
-        {tab === SETTINGSTAB.SETTINGS && <CabinetSettingsTab />}
+        {tab === SETTINGSTAB.SETTINGS && (
+          <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.HOME)} />
+        )}
         {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
         {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />}
       </main>

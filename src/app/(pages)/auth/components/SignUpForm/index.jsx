@@ -48,7 +48,7 @@ const SignUpForm = ({ onClick }) => {
   }
 
   useEffect(() => {
-    if (userAuth && userAuth.user && active) {
+    if (userAuth && userAuth.user && active && phone) {
       const fetch = async () => {
         await updateUserTable({
           id: userAuth.user.id,
@@ -62,7 +62,8 @@ const SignUpForm = ({ onClick }) => {
       setPassword('')
       setConfirmPassword('')
     }
-  }, [userAuth, active])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAuth, active, phone])
 
   useEffect(() => {
     if (userAuth && userTable && active) {

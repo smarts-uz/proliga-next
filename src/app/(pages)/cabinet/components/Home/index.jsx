@@ -1,18 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import Image from 'next/image'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
 
 const CabinetHomeTab = ({ setSettingsTab }) => {
-  const { userAuth, userTable, isLoading } = useSelector((store) => store.auth)
+  const { userTable, publicUrl } = useSelector((store) => store.auth)
   const { t } = useTranslation()
   const [otpModal, setOtpModal] = useState(false)
   const [balanceModal, setBalanceModal] = useState(false)
+  const { getUserPhoto } = useGetUserPhoto()
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
@@ -63,6 +66,14 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
     }
   }
 
+  useEffect(() => {
+    if (userTable?.photo) {
+      const fetch = async () => await getUserPhoto()
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userTable])
+
   return (
     <>
       <motion.section
@@ -71,20 +82,40 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
         className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
       >
         <div className="flex items-center gap-2 md:gap-4">
-          {userAuth?.user?.email && (
+          {userTable?.email && (
             <div className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-4xl font-bold uppercase text-black md:size-24">
-              {userAuth.user.email.slice(0, 1)}
+              {userTable.email.slice(0, 1)}
             </div>
           )}
+          {publicUrl && (
+            <img
+              src={publicUrl}
+              className="flex size-8 select-none rounded-full md:size-12"
+              alt="user avatar"
+              width={24}
+              height={24}
+            />
+          )}
+
           <div className="flex flex-col justify-center gap-2 text-sm md:text-base">
-            <div className="flex max-w-64 gap-1 text-sm font-bold capitalize text-neutral-50 md:max-w-96 md:text-base">
-              <p className="truncate">
-                {userTable?.last_name ? userTable?.last_name : t('Familiya')}
-              </p>
+            <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 md:max-w-96 md:text-base">
               <p className="truncate">
                 {userTable?.name ? userTable?.name : t('Ism')}
               </p>
-              <p className="truncate">
+              <p className="truncate lg:hidden">
+                {userTable?.last_name
+                  ? userTable?.last_name.slice(0, 1) + '.'
+                  : t('Familiya')}
+              </p>
+              <p className="hidden truncate lg:block">
+                {userTable?.last_name ? userTable?.last_name : t('Familiya')}
+              </p>
+              <p className="truncate lg:hidden">
+                {userTable?.middle_name
+                  ? userTable?.middle_name.slice(0, 1) + '.'
+                  : t('Sharif')}
+              </p>
+              <p className="hidden truncate lg:block">
                 {userTable?.middle_name ? userTable?.middle_name : t('Sharif')}
               </p>
             </div>
