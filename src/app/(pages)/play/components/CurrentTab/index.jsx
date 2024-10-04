@@ -7,13 +7,14 @@ import Journal from '../Journal'
 import Tournament from '../Tournament'
 import { TABS } from '../../../../utils/tabs.util'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useMemo } from 'react'
+import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { setTab } from 'app/lib/features/tours/tours.slice'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
-import { useEffect } from 'react'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
-import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
-import { setTab } from 'app/lib/features/tours/tours.slice'
+import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -21,6 +22,12 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { teamPrice } = useSelector((store) => store.teamPlayers)
+
+  const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
+  const teamConcat = useMemo(
+    () => GOA.concat(DEF, MID, STR),
+    [GOA, DEF, MID, STR]
+  )
 
   useEffect(() => {
     if (currentTeam?.is_team_created) {
@@ -40,11 +47,22 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [userAuth, paramsId, userTable, dispatch])
 
   useEffect(() => {
-    if (userTable && paramsId && currentTour?.id) {
+    if (paramsId && currentTour?.id) {
       const fetch = async () => {
         dispatch(
-          fetchTeamPlayers({ team_id: paramsId, tour_id: currentTour.id })
+          fetchTeamPlayers({
+            team_id: paramsId,
+            tour_id: currentTour.id,
+          })
         )
+      }
+      fetch()
+    }
+  }, [paramsId, userTable, currentTour, dispatch])
+
+  useEffect(() => {
+    if (paramsId) {
+      const fetch = async () => {
         dispatch(fetchTourTeams({ team_id: paramsId }))
       }
       fetch()
@@ -72,6 +90,23 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       })
     )
   }, [teamPrice, dispatch, currentTeam])
+
+  useEffect(() => {
+    const teamPlayersId = []
+    teamConcat.forEach((player) => {
+      player.name && teamPlayersId.push(player.player_id)
+    })
+
+    if (currentTour?.id && currentTeam?.competition_id?.id) {
+      dispatch(
+        fetchPlayerPoint({
+          competition_id: currentTeam.competition_id.id,
+          tour_id: currentTour.id,
+          playerIds: teamPlayersId,
+        })
+      )
+    }
+  }, [dispatch, currentTour, currentTeam, teamConcat])
 
   return (
     <>

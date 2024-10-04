@@ -18,22 +18,22 @@ const GameProfile = () => {
     [GOA, DEF, MID, STR]
   )
 
-  useEffect(() => {
-    const teamPlayersId = []
-    teamConcat.forEach((player) => {
-      player.name && teamPlayersId.push(player.player_id)
-    })
+  // useEffect(() => {
+  //   const teamPlayersId = []
+  //   teamConcat.forEach((player) => {
+  //     player.name && teamPlayersId.push(player.player_id)
+  //   })
 
-    if (currentTour?.id && currentTeam?.competition_id?.id) {
-      dispatch(
-        fetchPlayerPoint({
-          competition_id: currentTeam.competition_id.id,
-          tour_id: currentTour.id,
-          playerIds: teamPlayersId,
-        })
-      )
-    }
-  }, [dispatch, currentTour, currentTeam, teamConcat])
+  //   if (currentTour?.id && currentTeam?.competition_id?.id) {
+  //     dispatch(
+  //       fetchPlayerPoint({
+  //         competition_id: currentTeam.competition_id.id,
+  //         tour_id: currentTour.id,
+  //         playerIds: teamPlayersId,
+  //       })
+  //     )
+  //   }
+  // }, [dispatch, currentTour, currentTeam, teamConcat])
 
   return (
     <Gutter>

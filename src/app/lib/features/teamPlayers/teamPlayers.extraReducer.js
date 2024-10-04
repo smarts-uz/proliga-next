@@ -16,6 +16,7 @@ export const teamPlayersExtraReducer = (builder) => {
       state.STR = []
       state.playersCount.STR = 0
       state.duplicatesMap = {}
+
       const team = action.payload.data
       team?.length > 0 && (state.prevTeam = team)
       team?.length > 0 &&

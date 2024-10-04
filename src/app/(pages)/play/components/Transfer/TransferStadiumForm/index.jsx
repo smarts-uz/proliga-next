@@ -140,6 +140,7 @@ const TransferStadiumForm = () => {
       team_id: currentTeam.id,
       tour_id: currentTour.id,
     })
+
     if (!error && !isLoading) {
       toast.success(t('Jamoa muvaffaqiyatli yangilandi'))
       dispatch(setTab(TABS.GameProfile))

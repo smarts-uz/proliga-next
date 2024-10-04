@@ -3,6 +3,8 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useTranslation } from 'react-i18next'
+import { setIsTeamCreated } from 'app/lib/features/currentTeam/currentTeam.slice'
+
 export const useUpdateTeam = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
@@ -15,12 +17,12 @@ export const useUpdateTeam = () => {
     setIsLoading(false)
     setError(null)
 
+    if (is_team_created) {
+      return
+    }
     if (!team_id) {
       setError(t('Jamoa ID kiritilmagan!'))
       toast.error(t('Jamoa ID kiritilmagan!'))
-    }
-    if (is_team_created) {
-      return
     }
 
     try {
@@ -37,7 +39,8 @@ export const useUpdateTeam = () => {
         toast.error(error.message)
       }
       if (data) {
-        setData(data)
+        setData(data[0])
+        dispatch(setIsTeamCreated(data[0]?.is_team_created ?? true))
       }
     } catch (error) {
       setError(error.message)
