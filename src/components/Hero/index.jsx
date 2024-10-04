@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 const Hero = () => {
   const { t } = useTranslation()
   const btnStyles =
-    'border-2 uppercase border-primary transition-all text-center max-w-64 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full  -skew-x-12'
+    'border-2 uppercase border-primary transition-all text-center max-w-64 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full -skew-x-12'
 
   return (
     <section

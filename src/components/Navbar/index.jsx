@@ -10,7 +10,7 @@ import MobileModal from './Modal'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
+import ChangeLanguageDropdown from './Language'
 
 const Navbar = () => {
   const path = usePathname()
@@ -109,6 +109,7 @@ const MobileProfile = ({
 }) => {
   return (
     <div className="flex w-max items-center justify-center gap-4 lg:hidden">
+      <ChangeLanguageDropdown />
       <button onClick={handleToggleNotifications}>
         <Image
           src={'/icons/bell.svg'}
@@ -153,6 +154,7 @@ const DesktopProfile = ({
 }) => {
   return (
     <div className="hidden w-max items-center justify-center gap-4 lg:flex">
+      <ChangeLanguageDropdown />
       <button onClick={handleToggleNotifications}>
         <Image
           src={'/icons/bell.svg'}
@@ -183,7 +185,7 @@ const DesktopProfile = ({
         )}
         <Image
           src={'/icons/arrow-down.svg'}
-          className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden size-5 select-none transition-all sm:block`}
+          className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden size-5 select-none transition-all sm:block lg:hidden xl:block`}
           alt="arrow down"
           width={20}
           draggable={false}

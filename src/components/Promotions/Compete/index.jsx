@@ -20,10 +20,10 @@ const PromotionCompete = () => {
           </div>
           <div className="flex flex-1 flex-col items-start gap-4 md:gap-8">
             <h2 className="promotion-header font-bold uppercase">
-            {t("Raqobatlashing")}
+              {t('Raqobatlashing')}
             </h2>
             <p className="promotion-text max-w-lg text-neutral-400">
-            {t("Boshqa foydalanuvchilar")}
+              {t('Boshqa foydalanuvchilar')}
             </p>
           </div>
         </section>

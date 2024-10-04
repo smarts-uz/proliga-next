@@ -1,5 +1,9 @@
 import WorldNews from './components/WorldNews'
-import Carousel from './components/Carousel'
+import dynamic from 'next/dynamic'
+
+const Carousel = dynamic(() => import('./components/Carousel'), {
+  ssr: false,
+})
 
 const PlayLayout = ({ children }) => {
   return (

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setUserTable } from 'app/lib/features/auth/auth.slice'
 import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
+import { useTranslation } from 'react-i18next'
+import { LANGUAGE } from 'app/utils/languages.util'
 
 export const useUpdateUserLanguage = () => {
   const dispatch = useDispatch()
@@ -13,6 +15,7 @@ export const useUpdateUserLanguage = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const { userTable } = useSelector((state) => state.auth)
+  const { i18n } = useTranslation()
 
   const updateUserLanguage = async ({ lang }) => {
     try {
@@ -35,6 +38,7 @@ export const useUpdateUserLanguage = () => {
       if (data) {
         dispatch(setUserTable(data[0]))
         dispatch(setLanguage(lang))
+        i18n.changeLanguage(data[0]?.language ?? LANGUAGE.uz)
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
       }
     } catch (error) {

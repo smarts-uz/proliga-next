@@ -9,11 +9,11 @@ import {
 import Image from 'next/image'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useTranslation } from 'react-i18next'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useUpdateUserLanguage } from 'app/hooks/user/useUpdateUserLanguage/useUpdateUserLanguage'
 
 const CabinetLanguageTab = () => {
-  const { lang } = useSelector((store) => store.systemLanguage)
+  const { userTable } = useSelector((store) => store.auth)
   const { t } = useTranslation()
   const { updateUserLanguage, error, isLoading } = useUpdateUserLanguage()
 
@@ -30,7 +30,7 @@ const CabinetLanguageTab = () => {
       <h3>{t('Tilni almashtirish')}</h3>
       <Select
         onValueChange={(value) => handleChange(value)}
-        defaultValue={lang ?? LANGUAGE.uz}
+        defaultValue={userTable?.language ?? LANGUAGE.uz}
       >
         <SelectTrigger className="w-auto sm:w-80">
           <SelectValue placeholder={t('Til')} />

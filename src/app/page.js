@@ -1,16 +1,20 @@
 'use client'
-import { useGenerateLanguage } from './hooks/system/generateLanguage/generateLanguage'
 
-import Promotions from '../components/Promotions'
-import Hero from '../components/Hero'
-import { useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import { useGenerateLanguage } from './hooks/system/generateLanguage/generateLanguage'
+const Hero = dynamic(() => import('../components/Hero'), {
+  ssr: false,
+})
+const Promotions = dynamic(() => import('../components/Promotions'), {
+  ssr: false,
+})
 
 function Home() {
   const { generate } = useGenerateLanguage()
 
-  useEffect(() => {
-    generate()
-  }, [])
+  // useEffect(() => {
+  //   generate()
+  // }, [])
 
   return (
     <section>

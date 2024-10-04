@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { TOUR } from 'app/utils/tour.util'
+
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
   const [prevTour, setPrevTour] = useState(null)

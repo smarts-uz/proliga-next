@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux'
 import { selectPlayers } from 'app/lib/features/players/players.selector'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
-// import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { PLAYERS } from 'app/utils/players.util'
 

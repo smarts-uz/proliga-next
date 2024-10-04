@@ -27,26 +27,6 @@ const Dropdown = () => {
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
         <p> {t('Chempionat')}</p>
       </NavLink>
-      {/* <select
-        className="rounded-sm border bg-neutral-950 bg-transparent p-1"
-        name="language"
-        id="language"
-        onChange={(e) => dispatch(setLanguage(e.target.value))}
-      >
-        <option
-          className="bg-neutral-950 checked:bg-neutral-800"
-          value={LANGUAGE.uz}
-          defaultChecked
-        >
-          UZ
-        </option>
-        <option
-          value={LANGUAGE.ru}
-          className="bg-neutral-950 p-1 checked:bg-neutral-800"
-        >
-          RU
-        </option>
-      </select> */}
       {userAuth ? (
         <>
           <NavLink href="/cabinet">

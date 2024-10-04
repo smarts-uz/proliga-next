@@ -1,8 +1,9 @@
 'use client'
+
 import Image from 'next/image'
+import Match from './Match'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import Match from './Match'
 import { useEffect, useState } from 'react'
 import { fetchMatches } from 'app/lib/features/matches/mathes.thunk'
 import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
@@ -15,7 +16,7 @@ const Matches = () => {
   const { matches, tourIndex } = useSelector((state) => state.matches)
   const [currentTour, setCurrentTour] = useState(null)
   const { t } = useTranslation()
-  
+
   useEffect(() => {
     if (tours?.length > 0) {
       setCurrentTour(tours[tourIndex])
@@ -46,7 +47,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="flex min-h-[40rem] mx-auto lg:mx-0 max-w-[40rem] w-full flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 xl:w-1/3">
+    <div className="mx-auto flex min-h-[40rem] w-full max-w-[40rem] flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 lg:mx-0 xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
         <button
           disabled={tourIndex === 0}

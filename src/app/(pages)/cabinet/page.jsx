@@ -1,14 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SettingsNavigation from './components/SettingsNavigation'
 import Gutter from 'components/Gutter'
 import CabinetSettingsTab from './components/Settings'
 import CabinetChangePasswordTab from './components/ChangePassword'
 import CabinetLanguageTab from './components/Language'
 import dynamic from 'next/dynamic'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
 import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 
 const CabinetHomeTab = dynamic(() => import('./components/Home'), {
@@ -17,12 +15,6 @@ const CabinetHomeTab = dynamic(() => import('./components/Home'), {
 
 function UserCabinet() {
   const [tab, setTab] = useState(SETTINGSTAB.HOME)
-  const { lang } = useSelector((state) => state.systemLanguage)
-  const { i18n } = useTranslation()
-
-  useEffect(() => {
-    i18n.changeLanguage(lang)
-  }, [lang, i18n])
 
   return (
     <Gutter>

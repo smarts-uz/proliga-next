@@ -1,6 +1,11 @@
-import News from './News'
-import Matches from './Matches'
 import Gutter from '../../../../../components/Gutter'
+import dynamic from 'next/dynamic'
+const Matches = dynamic(() => import('./Matches'), {
+  ssr: false,
+})
+const News = dynamic(() => import('./News'), {
+  ssr: false,
+})
 
 const WorldNews = () => {
   return (

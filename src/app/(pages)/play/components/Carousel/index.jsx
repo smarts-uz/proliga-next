@@ -145,23 +145,4 @@ const Carousel = () => {
   )
 }
 
-// {
-//   header: 'Umumiy qoidalar',
-//   title: "Jamoa yig'ing",
-//   description:
-//     "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-//   images: '/promotions-tiles.png',
-//   mainImage: '/images/promotion-3.png',
-//   type: 3,
-// },
-//   {
-//     header: 'Umumiy qoidalar',
-//     title: "Jamoa yig'ing",
-//     description:
-//       "100 - millionlik byudjetdan foydalaning va chempionatning eng yaxshi futbolchilaridan iborat jamoani to'plang",
-//     images: '/promotions-tiles.png',
-//     mainImage: '/images/promotion-3.png',
-//     type: 1,
-//   },
-
 export default Carousel

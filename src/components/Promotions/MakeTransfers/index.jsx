@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 import Gutter from '../../Gutter'
 import { useTranslation } from 'react-i18next'

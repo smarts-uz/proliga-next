@@ -19,9 +19,7 @@ const PromotionCreateTeam = () => {
                 {t("jamoa yig'ing")}
               </h2>
               <p className="max-w-xl text-sm text-neutral-300 xs:text-base lg:text-lg xl:text-xl">
-                {t(
-                  "promotion_text"
-                )}
+                {t('promotion_text')}
               </p>
               <div className="relative hidden h-full w-full self-start md:block">
                 <Image

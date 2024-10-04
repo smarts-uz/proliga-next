@@ -7,7 +7,6 @@ import { setTab } from 'app/lib/features/tours/tours.slice'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { TOUR } from 'app/utils/tour.util'
-import { act } from 'react'
 
 const PlayLinks = () => {
   const path = usePathname()
@@ -17,40 +16,41 @@ const PlayLinks = () => {
     'text-neutral-600 cursor-default hover:text-neutral-500 before:hidden'
   const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
   const { t } = useTranslation()
+
   return (
-    <section className="hidden items-center gap-4 text-neutral-400 sm:text-sm lg:flex lg:gap-6 lg:text-base">
+    <section className="hidden items-center gap-1 text-neutral-400 sm:text-sm lg:flex lg:gap-2 lg:text-base xl:gap-4 2xl:gap-6">
       {path.includes('play') && (
         <>
           <Tab
-            title={t('Profil')}
+            title={'Profil'}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <Tab
-            title={t('Transferlar')}
+            title={'Transferlar'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <Tab
-            title={t('Turnir')}
+            title={'Turnir'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <Tab
-            title={t('Jurnal')}
+            title={'Jurnal'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <Tab
-            title={t('Statistika')}
+            title={'Statistika'}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -61,35 +61,35 @@ const PlayLinks = () => {
       {!path.includes('play') && lastVisitedTeam && (
         <>
           <TabLink
-            title={t('Profil')}
+            title={'Profil'}
             passive={passive}
             active={active}
             disabled={disabled}
             tab={TABS.GameProfile}
           />
           <TabLink
-            title={t('Transferlar')}
+            title={'Transferlar'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Transfer}
           />
           <TabLink
-            title={t('Turnir')}
+            title={'Turnir'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Tournament}
           />
           <TabLink
-            title={t('Jurnal')}
+            title={'Jurnal'}
             passive={passive}
             disabled={disabled}
             active={active}
             tab={TABS.Journal}
           />
           <TabLink
-            title={t('Statistika')}
+            title={'Statistika'}
             disabled={disabled}
             passive={passive}
             active={active}
@@ -123,6 +123,7 @@ const Tab = ({ title, tab, passive, active, disabled }) => {
   const dispatch = useDispatch()
   const { gameTab, currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { t } = useTranslation()
 
   const handleClick = () => {
     if (currentTeam?.is_team_created && tab !== TABS.Transfer) {
@@ -147,7 +148,7 @@ const Tab = ({ title, tab, passive, active, disabled }) => {
       className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${condition}`}
       onClick={handleClick}
     >
-      {title}
+      {t(title)}
     </button>
   )
 }
@@ -155,7 +156,7 @@ const Tab = ({ title, tab, passive, active, disabled }) => {
 const TabLink = ({ title, tab, passive, active, disabled }) => {
   const dispatch = useDispatch()
   const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
-  const { gameTab } = useSelector((state) => state.tours)
+  const { t } = useTranslation()
 
   return (
     <Link
@@ -163,7 +164,7 @@ const TabLink = ({ title, tab, passive, active, disabled }) => {
       onClick={() => dispatch(setTab(tab))}
       href={'/play/' + lastVisitedTeam}
     >
-      {title}
+      {t(title)}
     </Link>
   )
 }
