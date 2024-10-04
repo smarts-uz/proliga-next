@@ -10,17 +10,16 @@ import Image from 'next/image'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
-import { useEffect } from 'react'
+import { useUpdateUserLanguage } from 'app/hooks/user/useUpdateUserLanguage/useUpdateUserLanguage'
 
 const CabinetLanguageTab = () => {
-  const dispatch = useDispatch()
   const { lang } = useSelector((store) => store.systemLanguage)
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+  const { updateUserLanguage, error, isLoading } = useUpdateUserLanguage()
 
-  useEffect(() => {
-    i18n.changeLanguage(lang)
-  }, [lang, i18n])
+  const handleChange = async (lang) => {
+    await updateUserLanguage({ lang })
+  }
 
   return (
     <motion.section
@@ -30,7 +29,7 @@ const CabinetLanguageTab = () => {
     >
       <h3>{t('Tilni almashtirish')}</h3>
       <Select
-        onValueChange={(value) => dispatch(setLanguage(value))}
+        onValueChange={(value) => handleChange(value)}
         defaultValue={lang ?? LANGUAGE.uz}
       >
         <SelectTrigger className="w-auto sm:w-80">
@@ -66,7 +65,17 @@ const CabinetLanguageTab = () => {
         className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold capitalize text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-40"
         type="submit"
       >
-        {t('Saqlash')}
+        {isLoading ? (
+          <Image
+            src="/icons/loading.svg"
+            width={24}
+            height={24}
+            alt="loading"
+            className="filter-neutral-950 mx-auto size-5 animate-spin"
+          />
+        ) : (
+          t('Saqlash')
+        )}
       </button>
     </motion.section>
   )

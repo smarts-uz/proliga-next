@@ -1,3 +1,5 @@
+'use client'
+
 import GameProfile from '../GameProfile'
 import Statistics from '../Statistics'
 import Transfer from '../Transfer'

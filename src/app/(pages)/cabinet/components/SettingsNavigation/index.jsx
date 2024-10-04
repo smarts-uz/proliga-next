@@ -1,46 +1,17 @@
+'use client'
+
 import Image from 'next/image'
+import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import { useSelector } from 'react-redux'
 import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { LANGUAGE } from 'app/utils/languages.util'
+import { useState, useEffect } from 'react'
 
-const SettingsNavigation = ({ tabs, setTab, currentTab }) => {
+const SettingsNavigation = ({ setTab, currentTab }) => {
   const { t } = useTranslation()
   const { logOut } = useLogOut()
-  const { lang } = useSelector((state) => state.systemLanguage)
-
-  const getCorrectSettingsTab = (tab) => {
-    if (lang === LANGUAGE.ru) {
-      if (tab === tabs.HOME) {
-        return 'Профиль'
-      }
-      if (tab === tabs.SETTINGS) {
-        return 'Настройки'
-      }
-      if (tab === tabs.LANGUAGE) {
-        return 'Язык'
-      }
-      if (tab === tabs.PASSWORD) {
-        return 'Изменить Пароль'
-      }
-    }
-    if (lang === LANGUAGE.uz) {
-      if (tab === tabs.HOME) {
-        return 'Profil'
-      }
-      if (tab === tabs.SETTINGS) {
-        return 'Sozlamalar'
-      }
-      if (tab === tabs.LANGUAGE) {
-        return 'Til'
-      }
-      if (tab === tabs.PASSWORD) {
-        return 'Parol Ozgartirish'
-      }
-    }
-    return tab
-  }
 
   return (
     <motion.section
@@ -48,13 +19,12 @@ const SettingsNavigation = ({ tabs, setTab, currentTab }) => {
       animate={{ opacity: 1 }}
       className="flex w-full flex-row justify-between gap-1 rounded-xl bg-neutral-900 bg-opacity-90 py-2 lg:w-80 lg:flex-col xl:py-4"
     >
-      {Object.keys(tabs).map((tab) => (
+      {Object.keys(SETTINGSTAB).map((tab) => (
         <Tab
           key={tab}
-          tab={tabs[tab]}
+          tab={SETTINGSTAB[tab]}
           setTab={setTab}
           currentTab={currentTab}
-          title={getCorrectSettingsTab(tabs[tab])}
         />
       ))}
       <button
@@ -70,7 +40,7 @@ const SettingsNavigation = ({ tabs, setTab, currentTab }) => {
   )
 }
 
-const Tab = ({ tab, setTab, currentTab, title }) => {
+const Tab = ({ tab, setTab, currentTab }) => {
   const isActive = tab === currentTab
   const active = 'text-primary'
   const passive = 'text-neutral-300 '
@@ -78,6 +48,40 @@ const Tab = ({ tab, setTab, currentTab, title }) => {
   const passiveIcon = 'filter-neutral-300'
   const containerActive = 'bg-neutral-800'
   const containerPassive = 'bg-transparent'
+  const { lang } = useSelector((state) => state.systemLanguage)
+  const [title, setTitle] = useState('')
+
+  useEffect(() => {
+    if (lang === LANGUAGE.ru) {
+      if (tab === SETTINGSTAB.HOME) {
+        return setTitle('Профиль')
+      }
+      if (tab === SETTINGSTAB.SETTINGS) {
+        return setTitle('Настройки')
+      }
+      if (tab === SETTINGSTAB.LANGUAGE) {
+        return setTitle('Язык')
+      }
+      if (tab === SETTINGSTAB.PASSWORD) {
+        return setTitle('Изменить Пароль')
+      }
+    }
+    if (lang === LANGUAGE.uz) {
+      if (tab === SETTINGSTAB.HOME) {
+        return setTitle('Profil')
+      }
+      if (tab === SETTINGSTAB.SETTINGS) {
+        return setTitle('Sozlamalar')
+      }
+      if (tab === SETTINGSTAB.LANGUAGE) {
+        return setTitle('Til')
+      }
+      if (tab === SETTINGSTAB.PASSWORD) {
+        return setTitle('Parol Ozgartirish')
+      }
+    }
+    return setTitle(tab)
+  }, [tab, lang])
 
   const getCorrectIcon = (tab) => {
     if (tab === 'Profil') {
@@ -108,11 +112,11 @@ const Tab = ({ tab, setTab, currentTab, title }) => {
         alt={tab}
         className={`size-6 ${isActive ? activeIcon : passiveIcon}`}
       />
-      <p
+      <div
         className={`hidden text-xs sm:block md:text-sm xl:text-lg ${isActive ? active : passive}`}
       >
         {title}
-      </p>
+      </div>
     </button>
   )
 }

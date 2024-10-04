@@ -2,10 +2,13 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth, setUserTable } from './lib/features/auth/auth.slice'
 import { usePathname, useRouter } from 'next/navigation'
+import { setLanguage } from './lib/features/systemLanguage/systemLanguage.slice'
+import { LANGUAGE } from './utils/languages.util'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { lang } = useSelector((state) => state.systemLanguage)
   const path = usePathname()
   const router = useRouter()
 
@@ -28,6 +31,12 @@ const GetInitialState = ({ children }) => {
       router.push('/')
     }
   }, [dispatch, userAuth, userTable, router, path])
+
+  useEffect(() => {
+    if (lang !== userTable?.language) {
+      dispatch(setLanguage(userTable?.language ?? LANGUAGE.uz))
+    }
+  })
 
   return <>{children}</>
 }
