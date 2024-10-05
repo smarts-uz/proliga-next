@@ -162,7 +162,7 @@ const TransferStadiumForm = () => {
         name="formation"
         id="formation"
         onChange={(e) => dispatch(setCaptain(e.target.value))}
-        className="w-36 flex-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none 2xs:w-36 xs:w-40 xs:max-w-80 sm:w-max"
+        className="w-36 flex-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none 2xs:w-36 xs:w-40 xs:max-w-80 sm:w-max lg:min-w-56"
       >
         <option
           value=""
@@ -192,7 +192,7 @@ const TransferStadiumForm = () => {
             onClick={handleAutoGenerateTeamPlayers}
             type="button"
             title="Avto jamoa yigish"
-            className="flex items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-min sm:max-w-max"
+            className="flex w-full max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
