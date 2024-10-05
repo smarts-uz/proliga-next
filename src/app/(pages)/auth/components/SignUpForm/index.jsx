@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
-import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
+import { useInsertUserTable } from 'app/hooks/auth/useInsertUserTable/useInsertUserTable'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import { useTranslation } from 'react-i18next'
 
@@ -24,8 +24,8 @@ const SignUpForm = ({ onClick }) => {
     isLoading: tableIsLoading,
     error: tableError,
     data: tableData,
-    updateUserTable,
-  } = useUpdateUserTable()
+    insertUserTable,
+  } = useInsertUserTable()
 
   const router = useRouter()
 
@@ -48,9 +48,9 @@ const SignUpForm = ({ onClick }) => {
   }
 
   useEffect(() => {
-    if (userAuth && userAuth.user && active && phone) {
+    if (userAuth?.user && active && phone) {
       const fetch = async () => {
-        await updateUserTable({
+        await insertUserTable({
           id: userAuth.user.id,
           email: userAuth.user.email,
           phone,

@@ -48,7 +48,6 @@ export const useSignUp = () => {
       if (data?.user && data?.session) {
         setData(data)
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         toast.success(t('Tizimga muvaffaqiyatli kirdingiz'))
         dispatch(setUserAuth(data))
       }

@@ -12,6 +12,7 @@ export const useGetUserTable = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  
   const getUserTable = async ({ phone }) => {
     setIsLoading(false)
     setError(null)

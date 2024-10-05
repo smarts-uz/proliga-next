@@ -1,9 +1,10 @@
 'use client'
-import Backdrop from 'components/Backdrop'
+
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
+import Backdrop from 'components/Backdrop'
 import PlayerTable from './PlayerTable'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
 
 const PlayerTransferModal = ({ prevPlayer, handleModal }) => {
   const { t } = useTranslation()

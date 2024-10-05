@@ -52,7 +52,9 @@ const LoginForm = ({ onClick }) => {
       setActive(false)
     }
   }, [active, router, userAuth, userTable])
+
   const { t } = useTranslation()
+
   return (
     <form
       onSubmit={handleSubmit}

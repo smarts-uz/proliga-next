@@ -20,8 +20,13 @@ const GetInitialState = ({ children }) => {
       localStorage.getItem(`user-auth-${sbUrl}`) &&
       JSON.parse(localStorage.getItem(`user-auth-${sbUrl}`))
     const table =
-      localStorage.getItem(`user-table-${sbUrl}`) &&
+      localStorage.getItem(`user-table-${sbUrl}`) !== 'undefined' &&
       JSON.parse(localStorage.getItem(`user-table-${sbUrl}`))
+
+    if (!auth || !table) {
+      localStorage.removeItem(`user-auth-${sbUrl}`)
+      localStorage.removeItem(`user-table-${sbUrl}`)
+    }
 
     if (auth && auth?.session?.access_token && !userAuth) {
       dispatch(setUserAuth(auth))

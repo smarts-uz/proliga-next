@@ -1,15 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { PLAYERS } from 'app/utils/players.util'
+import { useTranslation } from 'react-i18next'
+import PlayerStatisticsTable from './Table'
 import Backdrop from 'components/Backdrop'
 import Image from 'next/image'
 import PlayerPhoto from './PlayerPhoto'
-import PlayerStatisticsTable from './Table'
-import { useTranslation } from 'react-i18next'
-import { useEffect, useState } from 'react'
 
 const PlayerInfoModal = ({ toggleModal }) => {
   const { currentPlayer } = useSelector((store) => store.players)

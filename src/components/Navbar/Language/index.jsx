@@ -33,7 +33,7 @@ const ChangeLanguageDropdown = () => {
       onValueChange={(value) => handleChange(value)}
       defaultValue={userTable?.language ?? lang}
     >
-      <SelectTrigger className="w-auto px-1 md:w-20 xl:w-24 xl:px-2">
+      <SelectTrigger className="w-16 px-2 md:w-24 xl:w-24">
         <SelectValue placeholder={t('Til')} />
       </SelectTrigger>
       <SelectContent className="w-min">
