@@ -30,6 +30,7 @@ function PlayerTable({ prevPlayer, handleModal }) {
     pageIndex: 0,
     pageSize: 10,
   })
+
   const selectedPlayers = useSelector(selectPlayers)
 
   useEffect(() => {

@@ -23,6 +23,12 @@ import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.uti
 const columnHelper = createColumnHelper()
 
 function PlayersTable() {
+  const [sorting, setSorting] = useState([
+    {
+      id: 'price',
+      desc: true,
+    },
+  ])
   const { t } = useTranslation()
   const { lang } = useSelector((state) => state.systemLanguage)
   const [data, setData] = useState([])
@@ -99,8 +105,10 @@ function PlayersTable() {
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     state: {
       pagination,
+      sorting,
     },
   })
 

@@ -9,8 +9,15 @@ import {
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
+  const { GOA, DEF, MID, STR, playersCount } = useSelector(
+    (state) => state.teamPlayers
+  )
   const { teamBalance } = useSelector((state) => state.tourTeams)
+  const totalPlayersCount =
+    playersCount?.GOA +
+    playersCount?.DEF +
+    playersCount?.MID +
+    playersCount?.STR
 
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -63,6 +70,7 @@ const TransferTableBody = ({ table, flexRender }) => {
                     cell={cell}
                     team={teamConcat}
                     handleAddPlayer={handleAddPlayer}
+                    totalPlayersCount={totalPlayersCount}
                   />
                 )
             )}
