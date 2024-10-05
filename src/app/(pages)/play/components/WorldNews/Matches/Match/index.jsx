@@ -6,7 +6,8 @@ const Match = ({ match }) => {
 
   const date = new Date(match?.started_date)
   const day = date.getDate()
-  const month = date.getMonth()
+  // const month = date.getMonth()
+  const month = date.toLocaleString('default', { month: 'short' })
   const hours = date.getHours()
   const minutes = date.getMinutes()
 

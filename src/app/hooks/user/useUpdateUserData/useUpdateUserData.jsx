@@ -36,7 +36,7 @@ export const useUpdateUserData = () => {
           birth_date: birthdate,
           photo: userTable.photo,
         })
-        .eq('guid', userAuth.user.id)
+        .eq('email', userAuth.user.email)
         .select()
 
       if (error) {

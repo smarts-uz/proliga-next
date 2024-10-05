@@ -156,13 +156,13 @@ const TransferStadiumForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex justify-between gap-x-1 text-black"
+      className="mt-2 flex justify-between gap-x-0.5 text-black xs:gap-x-1"
     >
       <select
         name="formation"
         id="formation"
         onChange={(e) => dispatch(setCaptain(e.target.value))}
-        className="w-full max-w-56 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none"
+        className="w-36 flex-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none 2xs:w-36 xs:w-40 xs:max-w-80 sm:w-max"
       >
         <option
           value=""
@@ -184,7 +184,7 @@ const TransferStadiumForm = () => {
             )
         )}
       </select>
-      <div className="flex w-full max-w-[25%] justify-center gap-1">
+      <div className="flex w-full justify-center gap-0.5 xs:gap-1">
         {teamCreateBtns && (
           <motion.button
             initial={{ opacity: 0 }}
@@ -192,7 +192,7 @@ const TransferStadiumForm = () => {
             onClick={handleAutoGenerateTeamPlayers}
             type="button"
             title="Avto jamoa yigish"
-            className="flex w-16 max-w-20 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-full sm:max-w-max"
+            className="flex items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary xs:w-min sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
@@ -210,7 +210,7 @@ const TransferStadiumForm = () => {
           type="button"
           onClick={() => dispatch(revertTeamPlayers())}
           title="orqaga qaytish "
-          className="flex w-full max-w-16 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
+          className="flex w-full max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
         >
           <Image
             src="/icons/revert.svg"
