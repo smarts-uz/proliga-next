@@ -2,7 +2,17 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-
+import PlayerTransferModal from 'components/PlayerTransferModal'
+import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
@@ -23,7 +33,7 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
   }
 
   return (
-    <>
+    <Dialog>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -68,7 +78,8 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              <button onClick={handleTransferModal}>
+              {/* <button onClick={handleTransferModal}> */}
+              <DialogTrigger asChild>
                 <Image
                   width={16}
                   height={16}
@@ -77,7 +88,8 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
                   alt="additional info"
                   className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
                 />
-              </button>
+              </DialogTrigger>
+              {/* </button> */}
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.price ?? '00'}
               </div>
@@ -94,7 +106,8 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
           </>
         )}
       </motion.div>
-    </>
+      <PlayerTransferModal prevPlayer={player} />
+    </Dialog>
   )
 }
 

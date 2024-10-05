@@ -108,13 +108,12 @@ const TransferPlayersStructure = () => {
           onCancel={toggleDeleteModal}
         />
       )}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <PlayerTransferModal
           prevPlayer={currentPlayer}
           handleModal={toggleModal}
-          currentTeam={currentTeam}
         />
-      )}
+      )} */}
     </>
   )
 }

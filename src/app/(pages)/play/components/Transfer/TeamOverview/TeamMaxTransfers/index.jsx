@@ -54,7 +54,7 @@ const TeamMaxTransfers = () => {
               +currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'
             }
           >
-            {currentTransferCount === NaN ? 0 : currentTransferCount}
+            {currentTransferCount === NaN || 'NaN' ? 0 : currentTransferCount}
           </span>
           /{currentTeam?.transfers_from_one_team ?? 0}
         </p>
