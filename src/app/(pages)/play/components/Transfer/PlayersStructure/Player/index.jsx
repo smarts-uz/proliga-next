@@ -5,8 +5,9 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { useState } from 'react'
+import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
 
-const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
+const Player = ({ player, setPlayer, toggleDeleteModal }) => {
   const [isModalOpen, setModalOpen] = useState(false)
 
   const imageErr = (e) => {
@@ -17,11 +18,6 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
 
-  const handleTransferModal = () => {
-    setPlayer(player)
-    toggleModal()
-  }
-
   const handleDeletePlayer = () => {
     setPlayer(player)
     toggleDeleteModal()
@@ -29,6 +25,10 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
 
   const handleModal = () => {
     setModalOpen(!isModalOpen)
+  }
+
+  const handleTransfer = () => {
+    setCurrentPlayer(player)
   }
 
   return (
@@ -77,8 +77,7 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              {/* <button onClick={handleTransferModal}> */}
-              <DialogTrigger asChild>
+              <DialogTrigger asChild onClick={() => handleTransfer}>
                 <Image
                   width={16}
                   height={16}
@@ -88,7 +87,6 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
                   className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
                 />
               </DialogTrigger>
-              {/* </button> */}
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.price ?? '00'}
               </div>

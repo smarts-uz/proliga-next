@@ -5,6 +5,7 @@ const initialState = {
   topPlayers: [],
   topPlayersLoading: false,
   topPlayersError: null,
+  currentPlayer: {},
   players: [],
   isLoading: false,
   error: null,
