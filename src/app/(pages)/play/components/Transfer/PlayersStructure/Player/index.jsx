@@ -1,19 +1,14 @@
 'use client'
 
+import PlayerTransferModal from 'components/PlayerTransferModal'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import PlayerTransferModal from 'components/PlayerTransferModal'
-import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import { useState } from 'react'
+
 const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
+  const [isModalOpen, setModalOpen] = useState(false)
+
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
   }
@@ -32,8 +27,12 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
     toggleDeleteModal()
   }
 
+  const handleModal = () => {
+    setModalOpen(!isModalOpen)
+  }
+
   return (
-    <Dialog>
+    <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -106,7 +105,7 @@ const Player = ({ player, setPlayer, toggleModal, toggleDeleteModal }) => {
           </>
         )}
       </motion.div>
-      <PlayerTransferModal prevPlayer={player} />
+      <PlayerTransferModal prevPlayer={player} handleModal={handleModal} />
     </Dialog>
   )
 }

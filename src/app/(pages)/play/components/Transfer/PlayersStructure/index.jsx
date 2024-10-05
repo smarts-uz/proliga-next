@@ -1,16 +1,13 @@
 import Player from './Player'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import ConfirmationModal from 'components/ConfirmationModal'
-// import PlayerTransferModal from './TransferModal'
-import PlayerTransferModal from 'components/PlayerTransferModal'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const TransferPlayersStructure = () => {
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((state) => state.teamPlayers)
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  const [isModalOpen, setModalOpen] = useState(false)
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const [currentPlayer, setCurrentPlayer] = useState(null)
 
@@ -38,20 +35,6 @@ const TransferPlayersStructure = () => {
     toggleDeleteModal()
   }
 
-  const toggleModal = useCallback(() => {
-    if (isModalOpen) {
-      setModalOpen(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setModalOpen(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }, [isModalOpen])
-
   return (
     <>
       <section className="absolute bottom-0 left-0 right-0 top-0 z-10 grid grid-rows-4 pb-3 pt-4 sm:py-2 sm:pb-0 sm:pt-6 md:pb-8 md:pt-8">
@@ -62,7 +45,6 @@ const TransferPlayersStructure = () => {
               player={player}
               setPlayer={setCurrentPlayer}
               toggleDeleteModal={toggleDeleteModal}
-              toggleModal={toggleModal}
             />
           ))}
         </div>
@@ -75,7 +57,6 @@ const TransferPlayersStructure = () => {
               player={player}
               setPlayer={setCurrentPlayer}
               toggleDeleteModal={toggleDeleteModal}
-              toggleModal={toggleModal}
             />
           ))}
         </div>
@@ -86,7 +67,6 @@ const TransferPlayersStructure = () => {
               player={player}
               setPlayer={setCurrentPlayer}
               toggleDeleteModal={toggleDeleteModal}
-              toggleModal={toggleModal}
             />
           ))}
         </div>
@@ -97,7 +77,6 @@ const TransferPlayersStructure = () => {
               player={player}
               setPlayer={setCurrentPlayer}
               toggleDeleteModal={toggleDeleteModal}
-              toggleModal={toggleModal}
             />
           ))}
         </div>
@@ -108,12 +87,6 @@ const TransferPlayersStructure = () => {
           onCancel={toggleDeleteModal}
         />
       )}
-      {/* {isModalOpen && (
-        <PlayerTransferModal
-          prevPlayer={currentPlayer}
-          handleModal={toggleModal}
-        />
-      )} */}
     </>
   )
 }
