@@ -7,9 +7,9 @@ const CabinetChangePasswordTab = () => {
 
   return (
     <motion.section
-      initial={{ opacity: 0.25 }}
+      initial={{ opacity: 0.75 }}
       animate={{ opacity: 1 }}
-      className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 xl:h-auto xl:p-6"
+      className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
       <h3 className="texl-lg font-bold md:text-xl">{t('Parol Yangilash')}</h3>
       <div>

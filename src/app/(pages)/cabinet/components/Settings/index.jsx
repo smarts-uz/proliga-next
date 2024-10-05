@@ -59,12 +59,12 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
 
   return (
     <motion.section
-      initial={{ opacity: 0.25 }}
+      initial={{ opacity: 0.75 }}
       animate={{ opacity: 1 }}
       className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
       <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-        <section className="flex w-full flex-col gap-4 lg:flex-row">
+        <section className="flex w-full flex-col gap-4 sm:flex-row">
           <div className="cursor-pointer space-y-1">
             <p className="capitalize text-neutral-200">
               {t('Sizning Rasmingiz')}:
@@ -105,7 +105,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               />
             </label>
           </div>
-          <div className="flex w-auto min-w-80 flex-col items-start justify-start self-start">
+          <div className="flex w-full flex-col items-start justify-start gap-2 self-start xs:w-auto xs:min-w-80 xs:gap-0">
             <div className="w-full">
               <label
                 className="mx-2 my-2 block text-sm font-bold capitalize text-neutral-300"

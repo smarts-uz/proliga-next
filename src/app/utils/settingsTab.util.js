@@ -1,6 +1,7 @@
 export const SETTINGSTAB = {
-  HOME: 'Profil',
+  PROFILE: 'Profil',
   SETTINGS: 'Settings',
   LANGUAGE: 'Language',
+  TRANSACTIONHISTORY: 'Transactions',
   PASSWORD: 'Change Password',
 }

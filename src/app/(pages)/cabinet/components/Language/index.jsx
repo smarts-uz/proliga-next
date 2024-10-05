@@ -23,7 +23,7 @@ const CabinetLanguageTab = () => {
 
   return (
     <motion.section
-      initial={{ opacity: 0.25 }}
+      initial={{ opacity: 0.75 }}
       animate={{ opacity: 1 }}
       className="flex w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
@@ -31,6 +31,7 @@ const CabinetLanguageTab = () => {
       <Select
         onValueChange={(value) => handleChange(value)}
         defaultValue={userTable?.language ?? LANGUAGE.uz}
+        key={userTable?.language ?? LANGUAGE.uz}
       >
         <SelectTrigger className="w-auto sm:w-80">
           <SelectValue placeholder={t('Til')} />

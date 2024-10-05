@@ -10,7 +10,7 @@ import Image from 'next/image'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
 
-const CabinetHomeTab = ({ setSettingsTab }) => {
+const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, publicUrl } = useSelector((store) => store.auth)
   const { t } = useTranslation()
   const [otpModal, setOtpModal] = useState(false)
@@ -77,7 +77,7 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
   return (
     <>
       <motion.section
-        initial={{ opacity: 0.25 }}
+        initial={{ opacity: 0.75 }}
         animate={{ opacity: 1 }}
         className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
       >
@@ -242,4 +242,4 @@ const CabinetHomeTab = ({ setSettingsTab }) => {
   )
 }
 
-export default CabinetHomeTab
+export default CabinetProfileTab

@@ -8,8 +8,9 @@ import CabinetChangePasswordTab from './components/ChangePassword'
 import CabinetLanguageTab from './components/Language'
 import dynamic from 'next/dynamic'
 import { SETTINGSTAB } from 'app/utils/settingsTab.util'
+import CabinetTransactionsHistory from './components/TransactionsHistory'
 
-const CabinetHomeTab = dynamic(() => import('./components/Home'), {
+const CabinetProfileTab = dynamic(() => import('./components/Profile'), {
   ssr: false,
 })
 
@@ -24,14 +25,19 @@ function UserCabinet() {
           tabs={SETTINGSTAB}
           setTab={setTab}
         />
-        {tab === SETTINGSTAB.HOME && (
-          <CabinetHomeTab setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />
+        {tab === SETTINGSTAB.PROFILE && (
+          <CabinetProfileTab
+            setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)}
+          />
         )}
         {tab === SETTINGSTAB.SETTINGS && (
           <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.HOME)} />
         )}
         {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
         {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />}
+        {tab === SETTINGSTAB.TRANSACTIONHISTORY && (
+          <CabinetTransactionsHistory />
+        )}
       </main>
     </Gutter>
   )

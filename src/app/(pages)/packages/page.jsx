@@ -4,6 +4,10 @@ import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import dynamic from 'next/dynamic'
+const PackagesTitle = dynamic(() => import('./components/Title'), {
+  ssr: false,
+})
 
 const Packages = () => {
   const dispatch = useDispatch()
@@ -16,7 +20,7 @@ const Packages = () => {
   return (
     <Gutter>
       <section className="my-8 h-full space-y-6 rounded-xl bg-neutral-900 p-6 text-neutral-200">
-        <h1 className="text-3xl font-bold">{t('Paketlar')}</h1>
+        <PackagesTitle />
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 xl:gap-6">
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
             <h2 className="text-lg font-medium md:text-xl">
