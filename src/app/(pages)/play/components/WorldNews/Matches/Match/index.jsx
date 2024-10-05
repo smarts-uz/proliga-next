@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 const Match = ({ match }) => {
   const homeClub = match?.home_club_id ?? null
   const awayClub = match?.away_club_id ?? null

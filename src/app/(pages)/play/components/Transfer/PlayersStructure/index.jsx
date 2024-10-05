@@ -2,7 +2,8 @@ import Player from './Player'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useCallback } from 'react'
 import ConfirmationModal from 'components/ConfirmationModal'
-import PlayerTransferModal from './TransferModal'
+// import PlayerTransferModal from './TransferModal'
+import PlayerTransferModal from 'components/PlayerTransferModal'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const TransferPlayersStructure = () => {

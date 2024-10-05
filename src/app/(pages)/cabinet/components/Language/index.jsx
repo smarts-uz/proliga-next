@@ -45,7 +45,7 @@ const CabinetLanguageTab = () => {
                 height={24}
                 className="size-6"
               />
-              <p>Uzbekistan</p>
+              <p>Uzbekcha</p>
             </div>
           </SelectItem>
           <SelectItem value={LANGUAGE.ru}>
@@ -56,7 +56,7 @@ const CabinetLanguageTab = () => {
                 width={24}
                 height={24}
               />
-              <p>Russia</p>
+              <p>Русский</p>
             </div>
           </SelectItem>
         </SelectContent>
