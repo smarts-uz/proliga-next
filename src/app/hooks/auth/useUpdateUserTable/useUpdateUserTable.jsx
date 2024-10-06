@@ -5,7 +5,7 @@ import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 
-export const useInsertUserTable = () => {
+export const useUpdateUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -13,7 +13,7 @@ export const useInsertUserTable = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const insertUserTable = async ({ id, email, phone }) => {
+  const updateUserTable = async ({ id, email, phone }) => {
     setIsLoading(false)
     setError(null)
 
@@ -28,7 +28,8 @@ export const useInsertUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .insert({ phone, email })
+        .update({ phone, email })
+        .eq('guid', id)
         .select()
 
       if (error) {
@@ -48,5 +49,5 @@ export const useInsertUserTable = () => {
       setIsLoading(false)
     }
   }
-  return { insertUserTable, isLoading, error, data }
+  return { updateUserTable, isLoading, error, data }
 }

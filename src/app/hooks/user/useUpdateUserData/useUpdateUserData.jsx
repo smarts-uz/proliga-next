@@ -21,6 +21,27 @@ export const useUpdateUserData = () => {
     gender,
     birthdate
   ) => {
+    if (!firstName) {
+      setError(t('Ism kiriting'))
+      toast.warning(t('Ism kiriting'))
+      return
+    }
+    if (!gender) {
+      setError(t('Jinsni tanlang'))
+      toast.warning(t('Jinsni tanlang'))
+      return
+    }
+    if (!birthdate) {
+      setError(t("Tug'ilgan yilingizni kiriting"))
+      toast.warning(t("Tug'ilgan yilingizni kiriting"))
+      return
+    }
+    if (!userAuth) {
+      setError('User not authenticated')
+      toast.error('User not authenticated')
+      return
+    }
+
     try {
       setIsLoading(true)
       setError('')
@@ -36,7 +57,7 @@ export const useUpdateUserData = () => {
           birth_date: birthdate,
           photo: userTable.photo,
         })
-        .eq('email', userAuth.user.email)
+        .eq('guid', userAuth.user.id)
         .select()
 
       if (error) {

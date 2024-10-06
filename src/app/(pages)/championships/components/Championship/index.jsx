@@ -5,12 +5,14 @@ import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import { LANGUAGE } from 'app/utils/languages.util'
 
 const Championship = ({ game }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
   const router = useRouter()
   const { teams } = useSelector((state) => state.teams)
+  const { lang } = useSelector((state) => state.systemLanguage)
   const { t } = useTranslation()
   const toggleModal = useCallback(() => {
     if (isModalOpen) {
@@ -49,7 +51,7 @@ const Championship = ({ game }) => {
   const year = date.getFullYear()
   const hours = date.getHours()
   const minutes = date.getMinutes()
-  
+
   return (
     <>
       <article
@@ -66,11 +68,11 @@ const Championship = ({ game }) => {
           className={`absolute bottom-0 left-0 top-0 h-full w-10 ${currentGame ? 'bg-primary' : 'bg-neutral-800'}`}
         />
         <div>
-          <h3 className="text-base font-bold capitalize xs:text-lg md:text-xl">
-            {game.title}
+          <h3 className="text-base font-bold capitalize md:text-lg">
+            {lang === LANGUAGE.uz ? game.name : game.name_ru}
           </h3>
           <div className="flex gap-1 text-xs text-neutral-400 sm:text-sm">
-            <p>{t("Deadline")}:</p>
+            <p>{t('Deadline')}:</p>
             <span className="text-neutral-100">{`${day}/${month}/${year}-${hours}:${minutes === 0 ? '00' : minutes}`}</span>
           </div>
         </div>
