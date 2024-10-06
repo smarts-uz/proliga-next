@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image'
+import { DialogTitle } from '@radix-ui/react-dialog'
 
 const PlayerPhoto = ({ currentPlayer, position }) => {
   return (
-    <div className="flex gap-2 md:gap-4">
+    <DialogTitle className="flex gap-2 md:gap-4">
       <img
         src={
           currentPlayer?.image
@@ -33,7 +33,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
           <p className="text-sm md:text-base">{position}</p>
         </div>
       </div>
-    </div>
+    </DialogTitle>
   )
 }
 

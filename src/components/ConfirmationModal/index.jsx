@@ -1,29 +1,25 @@
-import Backdrop from 'components/Backdrop'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import {
+  DialogContent,
+  Dialog,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'
 
-const ConfirmationModal = ({ onConfirm, onCancel }) => {
+const ConfirmationModal = ({
+  onConfirm,
+  onCancel,
+  isModalOpen,
+  setModalOpen,
+}) => {
   const { t } = useTranslation()
+
   return (
-    <Backdrop onClick={onCancel}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        onClick={(e) => e.stopPropagation()}
-        className="flex max-w-[45rem] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100"
-      >
-        <Image
-          src="/icons/close.svg"
-          width={32}
-          height={32}
-          alt="close"
-          className="filter-neutral-400 hover:filter-neutral-200 size-5 cursor-pointer self-end"
-          onClick={onCancel}
-        />
-        <h3 className="mb-12 mt-6 cursor-default text-xl font-bold md:tracking-wide">
+    <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
+      <DialogContent className="flex max-w-96 flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 xl:max-w-[30rem]">
+        <DialogTitle className="mb-12 mt-6 cursor-default text-xl font-bold md:tracking-wide">
           {t('Ishonchingiz komilmi')}
-        </h3>
+        </DialogTitle>
         <div className="flex items-center gap-4">
           <button
             className="h-auto select-none rounded-md border-2 border-red-600 bg-red-600 px-8 py-2 font-medium text-neutral-50 transition-all hover:bg-red-800"
@@ -39,8 +35,11 @@ const ConfirmationModal = ({ onConfirm, onCancel }) => {
             {t('Qaytish')}
           </button>
         </div>
-      </motion.dialog>
-    </Backdrop>
+        <DialogDescription className="hidden">
+          {t('Ishonchingizni tasdiqlaysizmi')}
+        </DialogDescription>
+      </DialogContent>
+    </Dialog>
   )
 }
 

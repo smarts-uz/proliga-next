@@ -8,6 +8,7 @@ const TeamMaxTransfers = () => {
   const [isModalOpen, toggleModal] = useState(false)
   const { currentTeam } = useSelector((store) => store.currentTeam)
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
+  const { t } = useTranslation()
 
   const handleModal = () => {
     if (isModalOpen) {
@@ -22,10 +23,10 @@ const TeamMaxTransfers = () => {
       }
     }
   }
-  const { t } = useTranslation()
-  const currentTransferCount =
-    +currentTeam?.transfers_from_one_team -
-    +currentTourTeam?.current_count_of_transfers
+  const currentCountOfTransfers =
+    +currentTourTeam?.current_count_of_transfers ?? 0
+  const maxTransfersFromOneTeam = +currentTeam?.transfers_from_one_team ?? 2
+  const currentTransferCount = maxTransfersFromOneTeam - currentCountOfTransfers
 
   return (
     <>
@@ -51,10 +52,10 @@ const TeamMaxTransfers = () => {
         <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
           <span
             className={
-              +currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'
+              currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'
             }
           >
-            {currentTransferCount === NaN || 'NaN' ? 0 : currentTransferCount}
+            {currentTransferCount === 'NaN' ? 0 : currentTransferCount}
           </span>
           /{currentTeam?.transfers_from_one_team ?? 0}
         </p>

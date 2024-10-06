@@ -1,38 +1,50 @@
 'use client'
 
 import PlayerTransferModal from 'components/PlayerTransferModal'
+import ConfirmationModal from 'components/ConfirmationModal'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { useState } from 'react'
 import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
-const Player = ({ player, setPlayer, toggleDeleteModal }) => {
+const Player = ({ player }) => {
+  const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
-
-  const imageErr = (e) => {
-    e.target.src = '/icons/player.svg'
-  }
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
+  const { currentTeam } = useSelector((state) => state.teams)
 
   const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
 
-  const handleDeletePlayer = () => {
-    setPlayer(player)
-    toggleDeleteModal()
+  const imageErr = (e) => {
+    e.target.src = '/icons/player.svg'
   }
 
-  const handleModal = () => {
+  const handleDeletePlayer = () => {
+    dispatch(
+      deleteTeamPlayer({
+        player,
+        is_team_created: currentTeam?.is_team_created,
+      })
+    )
+    toggleDeleteModal()
+  }
+  const handleTransfer = () => {
+    setCurrentPlayer(player)
+    toggleModal()
+  }
+  const toggleDeleteModal = () => {
+    setDeleteModalOpen(!isDeleteModalOpen)
+  }
+  const toggleModal = () => {
     setModalOpen(!isModalOpen)
   }
 
-  const handleTransfer = () => {
-    setCurrentPlayer(player)
-  }
-
   return (
-    <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
+    <>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -77,7 +89,7 @@ const Player = ({ player, setPlayer, toggleDeleteModal }) => {
               {firstName} {lastName.slice(0, 1).toUpperCase()} {lastName && '.'}
             </p>
             <div className="flex items-center gap-1">
-              <DialogTrigger asChild onClick={() => handleTransfer}>
+              <button onClick={handleTransfer}>
                 <Image
                   width={16}
                   height={16}
@@ -86,11 +98,11 @@ const Player = ({ player, setPlayer, toggleDeleteModal }) => {
                   alt="additional info"
                   className="size-3 rounded-sm bg-black p-[1px] hover:opacity-70 xs:size-4 md:rounded 2xl:size-[18px]"
                 />
-              </DialogTrigger>
+              </button>
               <div className="flex h-4 w-6 cursor-default items-center justify-center rounded-md bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.price ?? '00'}
               </div>
-              <button onClick={handleDeletePlayer}>
+              <button onClick={toggleDeleteModal}>
                 <Image
                   width={16}
                   height={16}
@@ -103,8 +115,19 @@ const Player = ({ player, setPlayer, toggleDeleteModal }) => {
           </>
         )}
       </motion.div>
-      <PlayerTransferModal prevPlayer={player} handleModal={handleModal} />
-    </Dialog>
+      <PlayerTransferModal
+        prevPlayer={player}
+        isModalOpen={isModalOpen}
+        setModalOpen={setModalOpen}
+        handleModal={toggleModal}
+      />
+      <ConfirmationModal
+        onConfirm={handleDeletePlayer}
+        onCancel={toggleDeleteModal}
+        isModalOpen={isDeleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+      />
+    </>
   )
 }
 

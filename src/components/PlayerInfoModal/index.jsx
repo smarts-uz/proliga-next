@@ -1,17 +1,19 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { PLAYERS } from 'app/utils/players.util'
 import { useTranslation } from 'react-i18next'
 import PlayerStatisticsTable from './Table'
-import Backdrop from 'components/Backdrop'
-import Image from 'next/image'
 import PlayerPhoto from './PlayerPhoto'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+} from '@/components/ui/dialog'
 
-const PlayerInfoModal = ({ toggleModal }) => {
+const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
   const { currentPlayer } = useSelector((store) => store.players)
   const { lang } = useSelector((store) => store.systemLanguage)
   const { playerPoint } = useSelector((store) => store.playerPoint)
@@ -61,22 +63,8 @@ const PlayerInfoModal = ({ toggleModal }) => {
   }
 
   return (
-    <Backdrop onClick={toggleModal}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="overflox-y-auto z-50 flex max-h-[90vh] min-h-[65vh] w-[98%] max-w-[64rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-500 bg-neutral-900 px-2 py-4 text-neutral-200 xs:mx-auto xs:w-[96%] xs:p-4 sm:w-4/5 md:p-6 lg:w-3/4 xl:w-3/5"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button onClick={toggleModal} className="ml-auto w-auto self-start">
-          <Image
-            src="/icons/close.svg"
-            alt="close"
-            width={24}
-            height={24}
-            className="filter-neutral-100 size-5 md:size-6"
-          />
-        </button>
+    <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
+      <DialogContent className="overflox-y-auto z-50 flex max-h-[90vh] min-h-[65vh] w-[98%] max-w-[64rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-500 bg-neutral-900 px-2 py-4 text-neutral-200 xs:mx-auto xs:w-[96%] xs:p-4 sm:w-4/5 md:p-6 lg:w-3/4 xl:w-3/5">
         <PlayerPhoto
           currentPlayer={currentPlayer}
           position={getCorrentPlayerPosition(currentPlayer.position, lang)}
@@ -102,8 +90,11 @@ const PlayerInfoModal = ({ toggleModal }) => {
           </div>
         </div>
         <PlayerStatisticsTable matches={matches} />
-      </motion.dialog>
-    </Backdrop>
+        <DialogDescription className="hidden">
+          This is a player information modal
+        </DialogDescription>
+      </DialogContent>
+    </Dialog>
   )
 }
 

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+
 const TeamBalanceModal = ({ handleModal }) => {
   const { t } = useTranslation()
   return (

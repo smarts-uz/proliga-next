@@ -15,7 +15,7 @@ const CabinetProfileTab = dynamic(() => import('./components/Profile'), {
 })
 
 function UserCabinet() {
-  const [tab, setTab] = useState(SETTINGSTAB.HOME)
+  const [tab, setTab] = useState(SETTINGSTAB.PROFILE)
 
   return (
     <Gutter>

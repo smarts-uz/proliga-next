@@ -3,8 +3,6 @@ import NavLink from './NavLink'
 import { useLogOut } from '../../../app/hooks/auth/useLogOut/useLogOut'
 import { useDispatch, useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
-import { LANGUAGE } from 'app/utils/languages.util'
-import { setLanguage } from 'app/lib/features/systemLanguage/systemLanguage.slice'
 import { useTranslation } from 'react-i18next'
 
 const Dropdown = () => {
@@ -21,7 +19,7 @@ const Dropdown = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0.25, y: -20 }}
-      className={`absolute right-0 top-12 flex w-56 flex-col gap-4 rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500`}
+      className={`absolute right-0 top-14 flex w-56 flex-col gap-4 rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500`}
     >
       <NavLink href="/championships">
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
