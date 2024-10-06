@@ -14,18 +14,18 @@ const Notification = () => {
   const channel = supabase
     .channel('public:system_notification')
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'system_notification' }, (payload) => {
-      console.log(payload, 'notification received')
+      // console.log(payload, 'notification received')
 
       const { name, desc, is_broadcast, user_id } = payload.new
 
       // If it's a broadcast or the notification is for the current user
       if (is_broadcast || user_id === userTable.id) {
         setNotification({ name, desc })
-        console.log(desc, 'notification content')
+        // console.log(desc, 'notification content')
       }
     })
     .subscribe()
-  console.log(notification, 'ddddddddd')
+  // console.log(notification, 'ddddddddd')
 
   return (
     <motion.section
