@@ -36,7 +36,7 @@ export const useUpdateTeam = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
       }
       if (data) {
         setData(data[0])
@@ -44,7 +44,7 @@ export const useUpdateTeam = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

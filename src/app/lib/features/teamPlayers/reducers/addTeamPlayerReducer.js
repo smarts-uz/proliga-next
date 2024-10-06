@@ -58,20 +58,21 @@ export const addTeamPlayerReducer = (state, action) => {
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
   if (!emptyPlayer) {
-    toast.warning('Boshqa oyinchi qoshish mumkin emas!')
+    toast.warning('Boshqa oyinchi qoshish mumkin emas!', { theme: 'dark' })
     return state
   }
 
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
   if (existingPlayer) {
-    toast.warning('Ushbu oyinchi allaqachon oyinda!')
+    toast.warning('Ushbu oyinchi allaqachon oyinda!', { theme: 'dark' })
     return state
   }
 
   const clubId = player?.club?.id || player.club_id.id
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
-      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
+      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`,
+      { theme: 'dark' }
     )
     return state
   }

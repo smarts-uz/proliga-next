@@ -23,22 +23,22 @@ export const useUpdateUserData = () => {
   ) => {
     if (!firstName) {
       setError(t('Ism kiriting'))
-      toast.warning(t('Ism kiriting'))
+      toast.warning(t('Ism kiriting'), { theme: 'dark' })
       return
     }
     if (!gender) {
       setError(t('Jinsni tanlang'))
-      toast.warning(t('Jinsni tanlang'))
+      toast.warning(t('Jinsni tanlang'), { theme: 'dark' })
       return
     }
     if (!birthdate) {
       setError(t("Tug'ilgan yilingizni kiriting"))
-      toast.warning(t("Tug'ilgan yilingizni kiriting"))
+      toast.warning(t("Tug'ilgan yilingizni kiriting"), { theme: 'dark' })
       return
     }
     if (!userAuth) {
       setError('User not authenticated')
-      toast.error('User not authenticated')
+      toast.error('User not authenticated', { theme: 'dark' })
       return
     }
 

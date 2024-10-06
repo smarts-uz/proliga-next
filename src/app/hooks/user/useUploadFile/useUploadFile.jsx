@@ -24,11 +24,11 @@ export const useUploadFile = () => {
           })
         if (data) {
           localStorage.setItem('photo_path', data.path)
-          toast.success(t("Su'rat taxrirlandi"))
+          toast.success(t("Su'rat taxrirlandi"), { theme: 'dark' })
         }
         if (error) {
           setError(error.message)
-          toast.warning(error.message)
+          toast.warning(error.message, { theme: 'dark' })
           return
         }
       } else {
@@ -40,18 +40,18 @@ export const useUploadFile = () => {
           })
         if (data) {
           localStorage.setItem('photo_path', data.path)
-          toast.success(t("Su'rat qo'shildi"))
+          toast.success(t("Su'rat qo'shildi"), { theme: 'dark' })
         }
 
         if (error) {
           setError(error.message)
-          toast.warning(t("Surat qo'shishda xatolik"))
+          toast.warning(t("Surat qo'shishda xatolik"), { theme: 'dark' })
           return
         }
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

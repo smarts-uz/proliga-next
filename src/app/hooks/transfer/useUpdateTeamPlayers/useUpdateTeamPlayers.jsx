@@ -35,7 +35,7 @@ export const useUpdateTeamPlayers = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
       }
       if (data) {
         dispatch(
@@ -47,7 +47,7 @@ export const useUpdateTeamPlayers = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

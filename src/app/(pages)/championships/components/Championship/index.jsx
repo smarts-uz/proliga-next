@@ -8,12 +8,13 @@ import { useTranslation } from 'react-i18next'
 import { LANGUAGE } from 'app/utils/languages.util'
 
 const Championship = ({ game }) => {
+  const { t } = useTranslation()
+  const { lang } = useSelector((state) => state.systemLanguage)
+  const { teams } = useSelector((state) => state.teams)
+  const router = useRouter()
   const [isModalOpen, setModalOpen] = useState(false)
   const [currentGame, setCurrentGame] = useState(null)
-  const router = useRouter()
-  const { teams } = useSelector((state) => state.teams)
-  const { lang } = useSelector((state) => state.systemLanguage)
-  const { t } = useTranslation()
+
   const toggleModal = useCallback(() => {
     if (isModalOpen) {
       setModalOpen(false)
@@ -41,7 +42,7 @@ const Championship = ({ game }) => {
         toggleModal(true)
       }
     } else {
-      toast.warning(t('Bu liga hozr active emas'))
+      toast.warning(t('Bu liga hozr active emas', { theme: 'dark' }))
     }
   }
 

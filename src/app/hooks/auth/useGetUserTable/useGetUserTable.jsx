@@ -19,7 +19,7 @@ export const useGetUserTable = () => {
 
     if (!phone) {
       setError(t('Email yoki Telefon kiritilmagan'))
-      toast.error(t('Email yoki Telefon kiritilmagan'))
+      toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
       return
     }
 
@@ -38,7 +38,7 @@ export const useGetUserTable = () => {
       }
       if (!data[0]) {
         setError(t('Parol yoki telefon raqam notogri kiritilgan'))
-        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'))
+        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'), { theme: 'dark' })
         return
       }
       if (data && data[0]) {
@@ -48,7 +48,7 @@ export const useGetUserTable = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

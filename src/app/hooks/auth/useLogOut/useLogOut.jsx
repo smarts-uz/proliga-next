@@ -25,9 +25,9 @@ export const useLogOut = () => {
 
       router.push('/')
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
-      toast.success(t('Tizimdan chiqdingiz'))
+      toast.success(t('Tizimdan chiqdingiz'), { theme: 'dark' })
     }
   }
 

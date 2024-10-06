@@ -15,7 +15,7 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
   const [code, setCode] = useState()
   const { t } = useTranslation()
   // useEffect(() => {
-  //   toast.success(t("Sizga SMS kod jonatildi"))
+  //   toast.success(t("Sizga SMS kod jonatildi"), { theme: 'dark' })
   // }, [])
 
   return (

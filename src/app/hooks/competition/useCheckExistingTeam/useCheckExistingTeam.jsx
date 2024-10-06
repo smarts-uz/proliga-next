@@ -17,14 +17,16 @@ export const useCheckExistingTeam = () => {
 
     if (!userTable && !userAuth) {
       setError('Jamoa tuzish uchun avtorizatsiya qilish kerak')
-      toast.error(t('Jamoa tuzish uchun avtorizatsiya qilish kerak'))
+      toast.error(t('Jamoa tuzish uchun avtorizatsiya qilish kerak'), {
+        theme: 'dark',
+      })
       router.push('/auth')
       return
     }
 
     if (!competition_id || !season_id) {
       setError('Musobaqa va mavsum majburiy')
-      toast.error(t('Musobaqa va mavsum majburiy'))
+      toast.error(t('Musobaqa va mavsum majburiy'), { theme: 'dark' })
       return
     }
 
@@ -40,7 +42,7 @@ export const useCheckExistingTeam = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
@@ -48,7 +50,7 @@ export const useCheckExistingTeam = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

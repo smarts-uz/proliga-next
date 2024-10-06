@@ -27,7 +27,9 @@ const CabinetLanguageTab = () => {
       animate={{ opacity: 1 }}
       className="flex w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
-      <h3>{t('Tilni almashtirish')}</h3>
+      <h3 className="text-base font-medium lg:text-lg">
+        {t('Tilni almashtirish')}
+      </h3>
       <Select
         onValueChange={(value) => handleChange(value)}
         defaultValue={userTable?.language ?? LANGUAGE.uz}
@@ -62,7 +64,7 @@ const CabinetLanguageTab = () => {
           </SelectItem>
         </SelectContent>
       </Select>
-      <button
+      {/* <button
         className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold capitalize text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-40"
         type="submit"
       >
@@ -77,7 +79,7 @@ const CabinetLanguageTab = () => {
         ) : (
           t('Saqlash')
         )}
-      </button>
+      </button> */}
     </motion.section>
   )
 }

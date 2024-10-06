@@ -19,7 +19,7 @@ export const useUpdateUserTable = () => {
 
     if (!id || !phone || !email) {
       setError('Email yoki Telefon kirilmagan')
-      toast.error(t('Email yokiTelefon kiritilmagan'))
+      toast.error(t('Email yokiTelefon kiritilmagan'), { theme: 'dark' })
       return
     }
 
@@ -34,7 +34,7 @@ export const useUpdateUserTable = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
@@ -44,7 +44,7 @@ export const useUpdateUserTable = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

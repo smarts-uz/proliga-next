@@ -32,7 +32,7 @@ export const useUpdateUserLanguage = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
@@ -43,7 +43,7 @@ export const useUpdateUserLanguage = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

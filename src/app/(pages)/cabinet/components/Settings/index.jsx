@@ -31,16 +31,16 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
     e.preventDefault()
 
     if (!firstName) {
-      toast.warning('Iltimos ismni kiriting')
+      toast.warning('Iltimos ismni kiriting', { theme: 'dark' })
     }
     if (!lastName) {
-      toast.warning('Iltimos familiyangizni kiriting')
+      toast.warning('Iltimos familiyangizni kiriting', { theme: 'dark' })
     }
     if (!gender) {
-      toast.warning('Iltimos jiningizni tanlang')
+      toast.warning('Iltimos jiningizni tanlang', { theme: 'dark' })
     }
     if (!bio || bio.length < 8) {
-      toast.warning('Iltimos bio kiriting')
+      toast.warning('Iltimos bio kiriting', { theme: 'dark' })
     }
 
     if (file) {

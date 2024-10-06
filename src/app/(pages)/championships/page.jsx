@@ -1,13 +1,13 @@
 'use client'
 
-import Gutter from '../../../components/Gutter'
-import dynamic from 'next/dynamic'
 const Championship = dynamic(() => import('./components/Championship'), {
   ssr: false,
 })
 const ChampionshipsTitle = dynamic(() => import('./components/Title'), {
   ssr: false,
 })
+import Gutter from '../../../components/Gutter'
+import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserTeams } from 'app/lib/features/teams/teams.thunk'
@@ -39,6 +39,7 @@ const Championships = () => {
       )
     }
   }, [dispatch, userTable, season.id])
+
   return (
     <Gutter>
       <section className="my-8 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">

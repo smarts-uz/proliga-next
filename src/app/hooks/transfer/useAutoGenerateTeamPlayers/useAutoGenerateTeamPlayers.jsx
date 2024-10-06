@@ -22,7 +22,7 @@ export const useAutoGenerateTeamPlayers = () => {
 
     if (!team_id) {
       setError(t('Jamoa ID kiritilmagan!'))
-      toast.error(t('Jamoa ID kiritilmagan!'))
+      toast.error(t('Jamoa ID kiritilmagan!'), { theme: 'dark' })
     }
 
     try {
@@ -36,7 +36,7 @@ export const useAutoGenerateTeamPlayers = () => {
       )
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
       }
       if (data) {
         setData(data)
@@ -51,7 +51,7 @@ export const useAutoGenerateTeamPlayers = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

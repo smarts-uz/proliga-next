@@ -47,7 +47,8 @@ export const swapTeamPlayerReducer = (state, action) => {
 
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
-      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`
+      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`,
+      { theme: 'dark' }
     )
     return state
   }
@@ -61,7 +62,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
-    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
   if (player.position === PLAYERS.DEF && state.DEF.length > 0) {
@@ -73,7 +74,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
-    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
   if (player.position === PLAYERS.MID && state.MID.length > 0) {
@@ -85,7 +86,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
-    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
   if (player.position === PLAYERS.STR && state.STR.length > 0) {
@@ -97,7 +98,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     evaluateTeamClubId()
     calcTeamPrice()
     handleModal()
-    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!")
+    toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
 }

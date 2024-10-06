@@ -1,5 +1,4 @@
 import { PLAYERS } from 'app/utils/players.util'
-import { toast } from 'react-toastify'
 
 export const autoAssembleTeamReducer = (state, action) => {
   const { allPlayers, playerIds, team } = action.payload

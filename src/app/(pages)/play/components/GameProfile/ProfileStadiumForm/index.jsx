@@ -32,7 +32,8 @@ const ProfileStadiumForm = () => {
             player.id +
             t("bo'lgan va") +
             player.position +
-            t("holatidagi o'yinchi yaroqsiz")
+            t("holatidagi o'yinchi yaroqsiz"),
+          { theme: 'dark' }
         )
         return
       }
@@ -42,11 +43,11 @@ const ProfileStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning(t('Kapitan tanlanmagan'))
+      toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
       return
     }
     if (captains.length > 1) {
-      toast.warning(t('Ko`p kapitan tanlangan'))
+      toast.warning(t('Ko`p kapitan tanlangan'), { theme: 'dark' })
       return
     }
 
@@ -59,7 +60,7 @@ const ProfileStadiumForm = () => {
       playersCount.STR < 2 ||
       playersCount.STR > 3
     ) {
-      toast.error(t('Jamoa formatsiyasi notogri'))
+      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
       return
     }
 
@@ -70,7 +71,7 @@ const ProfileStadiumForm = () => {
     })
 
     if (!error && !isLoading) {
-      toast.success(t('Kapitan yangilandi'))
+      toast.success(t('Kapitan yangilandi'), { theme: 'dark' })
     }
   }
 

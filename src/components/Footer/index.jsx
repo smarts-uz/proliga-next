@@ -1,10 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Gutter from '../Gutter'
-import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
   const { t } = useTranslation()
+
   return (
     <footer className="w-full border-t border-neutral-400 bg-neutral-950">
       <Gutter>
@@ -12,6 +13,9 @@ const Footer = () => {
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/contact" className="capitalize hover:underline">
               {t('Biz haqimizda')}
+            </Link>
+            <Link href="/packages" className="capitalize hover:underline">
+              {t('Paketlar')}
             </Link>
           </div>
           <span className="hidden rounded-md border-2 border-neutral-300 xl:block" />

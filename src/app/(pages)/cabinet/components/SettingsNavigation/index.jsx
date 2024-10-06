@@ -1,13 +1,13 @@
 'use client'
 
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 const SettingsSidebarLogOut = dynamic(() => import('./LogOut/LogOut'), {
   ssr: false,
 })
@@ -17,7 +17,7 @@ const SettingsNavigation = ({ setTab, currentTab }) => {
 
   return (
     <motion.section
-      initial={{ opacity: 0.5 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="flex w-full flex-row justify-between rounded-xl bg-neutral-900 bg-opacity-90 px-4 py-2 lg:w-80 lg:flex-col lg:py-4 xl:gap-1"
     >
@@ -60,7 +60,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
         return setTitle('Пароль')
       }
       if (tab === SETTINGSTAB.TRANSACTIONHISTORY) {
-        return setTitle('История Платежей')
+        return setTitle('Платежи')
       }
     }
     if (lang === LANGUAGE.uz) {
@@ -77,7 +77,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
         return setTitle('Parol')
       }
       if (tab === SETTINGSTAB.TRANSACTIONHISTORY) {
-        return setTitle('Xarajatlar Tarixi')
+        return setTitle('Xarajatlar')
       }
     }
     return setTitle(tab)

@@ -69,7 +69,8 @@ const TransferStadiumForm = () => {
             player.id +
             t("bo'lgan va") +
             player.position +
-            t("holatidagi o'yinchi yaroqsiz")
+            t("holatidagi o'yinchi yaroqsiz"),
+          { theme: 'dark' }
         )
         return player
       }
@@ -80,15 +81,15 @@ const TransferStadiumForm = () => {
     })
 
     if (captains.length === 0) {
-      toast.warning(t('Kapitan tanlanmagan'))
+      toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
       return
     }
     if (captains.length > 1) {
-      toast.warning(t('Ko`p kapitan tanlangan'))
+      toast.warning(t('Ko`p kapitan tanlangan'), { theme: 'dark' })
       return
     }
     if (teamBalance < teamPrice) {
-      toast.error(t('Balansingiz yetarli emas'))
+      toast.error(t('Balansingiz yetarli emas'), { theme: 'dark' })
       return
     }
 
@@ -101,7 +102,7 @@ const TransferStadiumForm = () => {
       playersCount.STR < 2 ||
       playersCount.STR > 3
     ) {
-      toast.error(t('Jamoa formatsiyasi notogri'))
+      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
       return
     }
 
@@ -117,7 +118,9 @@ const TransferStadiumForm = () => {
         Math.round(+countOfTransfers / 2) +
           currentTourTeam?.current_count_of_transfers
     ) {
-      toast.error(t('Siz limitdan oshiq transfer amalga oshirdingiz'))
+      toast.error(t('Siz limitdan oshiq transfer amalga oshirdingiz'), {
+        theme: 'dark',
+      })
       return
     }
 
@@ -142,7 +145,7 @@ const TransferStadiumForm = () => {
     })
 
     if (!error && !isLoading) {
-      toast.success(t('Jamoa muvaffaqiyatli yangilandi'))
+      toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
       dispatch(setTab(TABS.GameProfile))
     }
   }

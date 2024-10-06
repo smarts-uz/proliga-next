@@ -19,17 +19,17 @@ export const useSignUp = () => {
 
     if (password.length < 6) {
       setError("Parol 6 ta belgidan kam bo'lmaydi")
-      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"))
+      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), { theme: 'dark' })
 
       return
     }
     if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
-      return toast.error(t("Barcha maydonlar to'ldirilishi shart"))
+      return toast.error(t("Barcha maydonlar to'ldirilishi shart"), { theme: 'dark' })
     }
     if (password !== confirmPassword) {
       setError('Parollar mos kelmadi')
-      toast.error(t('Parollar mos kelmadi'))
+      toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
 
@@ -42,18 +42,18 @@ export const useSignUp = () => {
       })
 
       if (error) {
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         setError(error.message)
       }
       if (data?.user && data?.session) {
         setData(data)
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'))
+        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
         dispatch(setUserAuth(data))
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

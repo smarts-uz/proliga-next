@@ -45,7 +45,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
   }
   if (player.position === PLAYERS.DEF) {
     if (state.playersCount.DEF < 4 && is_team_created) {
-      toast.warning('Sizda kamida 3 hiboyachi bolishi shart!')
+      toast.warning('Sizda kamida 3 hiboyachi bolishi shart!', {
+        theme: 'dark',
+      })
       return state
     }
     state.DEF = state.DEF.filter((p) => p.id !== player.id)
@@ -57,7 +59,9 @@ export const deleteTeamPlayerReducer = (state, action) => {
   }
   if (player.position === PLAYERS.MID) {
     if (state.playersCount.MID < 4 && is_team_created) {
-      toast.warning('Sizda kamida 3 yarim himoyachi bolishi shart!')
+      toast.warning('Sizda kamida 3 yarim himoyachi bolishi shart!', {
+        theme: 'dark',
+      })
       return state
     }
     state.MID = state.MID.filter((p) => p.id !== player.id)
@@ -69,7 +73,7 @@ export const deleteTeamPlayerReducer = (state, action) => {
   }
   if (player.position === PLAYERS.STR) {
     if (state.playersCount.STR < 3 && is_team_created) {
-      toast.warning('Sizda kamida 2 hujumchi bolishi shart!')
+      toast.warning('Sizda kamida 2 hujumchi bolishi shart!', { theme: 'dark' })
       return state
     }
     state.STR = state.STR.filter((p) => p.id !== player.id)

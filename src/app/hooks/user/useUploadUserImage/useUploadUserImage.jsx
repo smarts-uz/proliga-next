@@ -27,7 +27,7 @@ export const useUploadUserImage = () => {
 
         if (error) {
           setError(error.message)
-          toast.warning(error.message)
+          toast.warning(error.message, { theme: 'dark' })
           return
         }
         if (data) {
@@ -44,7 +44,7 @@ export const useUploadUserImage = () => {
 
         if (error) {
           setError(error.message)
-          toast.warning(t("Surat qo'shishda xatolik"))
+          toast.warning(t("Surat qo'shishda xatolik"), { theme: 'dark' })
           return
         }
         if (data) {
@@ -53,7 +53,7 @@ export const useUploadUserImage = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

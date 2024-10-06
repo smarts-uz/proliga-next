@@ -18,19 +18,19 @@ export const useUpdatePassword = () => {
         })
         if (error) {
           setError(error.message)
-          toast.error(error.message)
+          toast.error(error.message, { theme: 'dark' })
           return
         }
         if (data?.user) {
           setData(data)
-          toast.success(t("Ma'lumot taxrirlandi"))
+          toast.success(t("Ma'lumot taxrirlandi"), { theme: 'dark' })
         }
       } else {
-        toast.error(t("Parolda xatolik"))
+        toast.error(t("Parolda xatolik"), { theme: 'dark' })
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

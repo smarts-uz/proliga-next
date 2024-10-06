@@ -27,15 +27,15 @@ export const useUpdateTourTeam = () => {
     }
     if (!team_id) {
       setError(t('Jamoa ID kiritilmagan!'))
-      toast.error(t('Jamoa ID kiritilmagan!'))
+      toast.error(t('Jamoa ID kiritilmagan!'), { theme: 'dark' })
     }
     if (!tour_id) {
       setError(t('Turnir ID kiritilmagan!'))
-      toast.error(t('Turnir ID kiritilmagan!'))
+      toast.error(t('Turnir ID kiritilmagan!'), { theme: 'dark' })
     }
     if (!count_of_transfers) {
       setError(t('Transfer soni kiritilmagan!'))
-      toast.error(t('Transfer soni kiritilmagan!'))
+      toast.error(t('Transfer soni kiritilmagan!'), { theme: 'dark' })
     }
 
     try {
@@ -50,7 +50,7 @@ export const useUpdateTourTeam = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
       }
       if (data) {
         setData(data)
@@ -58,7 +58,7 @@ export const useUpdateTourTeam = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }
