@@ -13,18 +13,21 @@ import TransactionsTableBody from './Body'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { LANGUAGE } from 'app/utils/languages.util'
 import CabinetTablePagination from '../Pagination'
+import { useState } from 'react'
 
 const columnHelper = createColumnHelper()
 
-function CabinetTransactionsBalanceTable() {
+function CabinetTransactionsExpensesTable() {
   const { t } = useTranslation()
-  const { balance } = useSelector((store) => store.payBalance)
+  const { expenses } = useSelector((store) => store.payExpense)
+  const { lang } = useSelector((store) => store.systemLanguage)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   })
+
   const getCorrectDate = (startDate) => {
     const date = new Date(startDate)
     const day = date.getDate()
@@ -47,8 +50,16 @@ function CabinetTransactionsBalanceTable() {
       id: 'code',
       header: t('Code'),
     }),
-    columnHelper.accessor('System', {
-      accessorFn: (row) => row?.system,
+    columnHelper.accessor('Team', {
+      accessorFn: (row) => row?.team_id?.name,
+      id: 'team',
+      header: t('Jamoa'),
+    }),
+    columnHelper.accessor('Title', {
+      accessorFn: (row) =>
+        lang === LANGUAGE.uz
+          ? row?.pay_package_id?.name_uz
+          : row?.pay_package_id?.name_ru,
       id: 'title',
       header: t('System'),
     }),
@@ -61,7 +72,7 @@ function CabinetTransactionsBalanceTable() {
 
   const table = useReactTable({
     columns,
-    data: balance ?? [],
+    data: expenses ?? [],
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -78,9 +89,9 @@ function CabinetTransactionsBalanceTable() {
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />
       </table>
-      {balance?.length > 9 && <CabinetTablePagination table={table} />}
+      {expenses?.length > 9 && <CabinetTablePagination table={table} />}
     </section>
   )
 }
 
-export default CabinetTransactionsBalanceTable
+export default CabinetTransactionsExpensesTable

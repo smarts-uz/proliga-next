@@ -1,24 +1,30 @@
 'use client'
 
 import CabinetTransactionsBalanceTable from './BalanceTable'
-import { useDispatch } from 'react-redux'
+import CabinetTransactionsExpensesTable from './ExpensesTable'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { fetchPayBalance } from 'app/lib/features/payBalance/payBalance.thunk'
-import { fetchPayExpense } from 'app/lib/features/payExpense/payExpense.thunk'
+import { fetchPayExpenses } from 'app/lib/features/payExpense/payExpense.thunk'
 
 const CabinetTransactionsHistory = () => {
+  const { userTable } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [currentTab, setCurrentTab] = useState(TRANSACTIONTABS.BALANCE)
+  const { balance } = useSelector((state) => state.payBalance)
+  const { expenses } = useSelector((store) => store.payExpense)
 
   const active = 'bg-black text-primary opacity-100 font-bold'
   const passive = 'bg-transparent text-neutral-400'
 
   useEffect(() => {
-    dispatch(fetchPayBalance())
-    dispatch(fetchPayExpense())
+    if (userTable?.id) {
+      dispatch(fetchPayBalance({ user_id: userTable?.id }))
+      dispatch(fetchPayExpenses({ user_id: userTable?.id }))
+    }
   }, [])
 
   return (
@@ -47,7 +53,22 @@ const CabinetTransactionsHistory = () => {
         </div>
         {currentTab === TRANSACTIONTABS.BALANCE && (
           <div className="flex w-full flex-col">
-            <CabinetTransactionsBalanceTable />
+            {balance?.length > 0 && <CabinetTransactionsBalanceTable />}
+            {balance?.length === 0 && (
+              <p className="fade-in-fast text-center text-neutral-300">
+                {t('Balans haqida malumot topilmadi!')}
+              </p>
+            )}
+          </div>
+        )}
+        {currentTab === TRANSACTIONTABS.EXPENSES && (
+          <div className="flex w-full flex-col">
+            {expenses?.length > 0 && <CabinetTransactionsExpensesTable />}
+            {expenses?.length === 0 && (
+              <p className="fade-in-fast text-center text-neutral-300">
+                {t('Paketlar haqida malumoti topilmadi!')}
+              </p>
+            )}
           </div>
         )}
       </motion.section>
