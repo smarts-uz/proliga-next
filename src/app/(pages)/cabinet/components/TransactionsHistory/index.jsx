@@ -1,4 +1,5 @@
 'use client'
+import CabinetTransactionsTable from './Table'
 
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -11,12 +12,14 @@ const CabinetTransactionsHistory = () => {
       <motion.section
         initial={{ opacity: 0.75 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+        className="h-full w-full space-y-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
       >
-        <h3 className='font-medium'>
-
-        {t('Xarajatlar tarixi')}
+        <h3 className="lg:texl-lg text-base xl:text-xl">
+          {t('Xarajatlar tarixi')}
         </h3>
+        <div className="flex w-full flex-col">
+          <CabinetTransactionsTable />
+        </div>
       </motion.section>
     </>
   )

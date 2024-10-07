@@ -11,7 +11,9 @@ const CabinetChangePasswordTab = () => {
       animate={{ opacity: 1 }}
       className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
-      <h3 className="texl-lg font-bold md:text-xl">{t('Parol Yangilash')}</h3>
+      <h3 className="lg:texl-lg text-base xl:text-xl">
+        {t('Parol Yangilash')}
+      </h3>
       <div>
         <label
           className="mb-2 block text-sm font-bold text-neutral-300"

@@ -27,7 +27,7 @@ const CabinetLanguageTab = () => {
       animate={{ opacity: 1 }}
       className="flex w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
     >
-      <h3 className="text-base font-medium lg:text-lg">
+      <h3 className="lg:texl-lg text-base xl:text-xl">
         {t('Tilni almashtirish')}
       </h3>
       <Select
