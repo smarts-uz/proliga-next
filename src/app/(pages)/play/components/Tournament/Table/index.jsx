@@ -20,6 +20,12 @@ function TournamentTable() {
   const { t } = useTranslation()
   const { allTeams } = useSelector((store) => store.teams)
   const [data, setData] = useState(allTeams ?? [])
+  const [sorting, setSorting] = useState([
+    {
+      id: 'hammasi',
+      desc: true,
+    },
+  ])
 
   useEffect(() => {
     if (allTeams) {
@@ -57,6 +63,10 @@ function TournamentTable() {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
   })
 
   return (

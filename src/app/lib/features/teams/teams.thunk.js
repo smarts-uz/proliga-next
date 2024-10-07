@@ -44,8 +44,7 @@ export const fetchTopTeams = createAsyncThunk(
       .select('*, user_id(name)')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
-      .order('point')
-      // .order('order')
+      .order('point', { ascending: true })
       .limit(3)
 
     return { data, error }
