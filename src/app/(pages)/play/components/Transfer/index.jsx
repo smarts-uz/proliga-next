@@ -4,9 +4,9 @@ import Gutter from '../../../../../components/Gutter'
 import Image from 'next/image'
 import PlayersStructure from './PlayersStructure'
 import PlayersTable from './PlayersTable'
+import TransferStadiumForm from './TransferStadiumForm'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import TransferStadiumForm from './TransferStadiumForm'
 
 const Transfer = () => {
   const { currentTour } = useSelector((state) => state.tours)

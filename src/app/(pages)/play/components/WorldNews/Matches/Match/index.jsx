@@ -4,8 +4,7 @@ const Match = ({ match }) => {
 
   const date = new Date(match?.started_date)
   const day = date.getDate()
-  // const month = date.getMonth()
-  const month = date.toLocaleString('default', { month: 'short' })
+  const month = date.getMonth()
   const hours = date.getHours()
   const minutes = date.getMinutes()
 
@@ -30,7 +29,8 @@ const Match = ({ match }) => {
               {day}/{month}
             </p>
             <p className="font-bold">
-              {hours}:{minutes}
+              {hours}:
+              {minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}
             </p>
           </>
         )}

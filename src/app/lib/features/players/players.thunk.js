@@ -11,6 +11,7 @@ export const fetchPlayers = createAsyncThunk(
       )
       .eq('competition_id', competition_id)
       .is('deleted_at', null)
+      .limit(2000)
 
     return { data, error }
   }

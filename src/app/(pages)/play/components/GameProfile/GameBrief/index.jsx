@@ -64,7 +64,7 @@ const GameBrief = () => {
           {currentTour.status !== TOUR.notStartedTransfer ? (
             <Content>
               {`${day}/${month}/${year}`} |{' '}
-              {`${hours}:${minutes === 0 ? '00' : minutes}`}
+              {`${hours}:${minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}`}
             </Content>
           ) : (
             <Content>

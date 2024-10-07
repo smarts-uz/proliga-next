@@ -17,7 +17,9 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
         className="h-full w-full max-w-14 rounded-md md:max-w-20 xl:max-w-36"
       />
       <div className="flex flex-col gap-1">
-        <h3 className="text-xl font-bold md:text-2xl">{currentPlayer.name}</h3>
+        <h3 className="max-w-56 truncate text-base font-bold sm:max-w-64 md:max-w-80 md:text-lg xl:max-w-96 xl:text-xl">
+          {currentPlayer.name}
+        </h3>
         <div className="flex items-center gap-2 text-neutral-100">
           <img
             src={`/club-jpg/${currentPlayer?.club?.slug}/logo.jpeg`}

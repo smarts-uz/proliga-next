@@ -74,7 +74,7 @@ const Championship = ({ game }) => {
           </h3>
           <div className="flex gap-1 text-xs text-neutral-400 sm:text-sm">
             <p>{t('Deadline')}:</p>
-            <span className="text-neutral-100">{`${day}/${month}/${year}-${hours}:${minutes === 0 ? '00' : minutes}`}</span>
+            <span className="text-neutral-100">{`${day}/${month}/${year}-${hours}:${minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}`}</span>
           </div>
         </div>
       </article>

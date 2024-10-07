@@ -35,7 +35,8 @@ function JournalTable() {
 
         newData.push({
           ...item,
-          created_at: `${day}.${month}.${year} | ${hours}:${minutes === 0 ? '00' : minutes}`,
+          minutes,
+          created_at: `${day}.${month}.${year} | ${hours}:${minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}`,
         })
       })
       setData(newData)
