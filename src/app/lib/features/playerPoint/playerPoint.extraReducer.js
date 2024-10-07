@@ -16,4 +16,4 @@ export const playerPointExtraReducer = (builder) => {
       state.isLoading = false
       state.error = action.payload?.error?.message ?? null
     })
-}
+} /*  */

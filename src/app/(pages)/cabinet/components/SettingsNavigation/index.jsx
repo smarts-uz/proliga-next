@@ -106,7 +106,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
     <button
       key={tab}
       onClick={() => setTab(tab)}
-      className={`flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 sm:justify-start lg:w-auto lg:px-8 xl:gap-4 ${isActive ? containerActive : containerPassive}`}
+      className={`flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 lg:w-auto lg:justify-start lg:px-8 xl:gap-4 ${isActive ? containerActive : containerPassive}`}
     >
       <Image
         src={`/icons/${getCorrectIcon(tab)}.svg`}
@@ -116,7 +116,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
         className={`size-6 ${isActive ? activeIcon : passiveIcon}`}
       />
       <div
-        className={`hidden text-xs sm:block md:text-xs lg:text-base xl:text-lg ${isActive ? active : passive}`}
+        className={`hidden lg:block lg:text-sm xl:text-base ${isActive ? active : passive}`}
       >
         {title}
       </div>

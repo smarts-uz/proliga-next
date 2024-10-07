@@ -140,6 +140,7 @@ function PlayerStatisticsTable({ matches }) {
     }),
   ]
 
+  console.log(matches)
   const table = useReactTable({
     columns,
     data: matches ?? [],

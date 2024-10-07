@@ -22,6 +22,7 @@ const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
 
   useEffect(() => {
     if (playerPoint?.length > 0) {
+      setMatches([])
       playerPoint.forEach((item) => {
         if (item.player_id === currentPlayer.id) {
           setMatches((prevMatch) => [...prevMatch, item])

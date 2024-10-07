@@ -37,17 +37,17 @@ function CabinetTransactionsBalanceTable() {
       header: t('Date'),
     }),
     columnHelper.accessor('Kod', {
-      accessorFn: (row) => row.code,
+      accessorFn: (row) => row.transaction_id ?? '',
       id: 'code',
       header: t('Code'),
     }),
-    columnHelper.accessor('Ismi', {
-      accessorFn: (row) => row.title,
+    columnHelper.accessor('System', {
+      accessorFn: (row) => row.system,
       id: 'title',
-      header: t('Title'),
+      header: t('System'),
     }),
     columnHelper.accessor('sum', {
-      accessorFn: (row) => row.sum,
+      accessorFn: (row) => row.price,
       id: 'sum',
       header: t('Sum'),
     }),
@@ -62,7 +62,7 @@ function CabinetTransactionsBalanceTable() {
   })
 
   return (
-    <table className="flex-1 table-auto text-xs md:text-sm lg:text-base">
+    <table className="flex-1 table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">
       <TransactionsTableHead table={table} />
       <TransactionsTableBody table={table} flexRender={flexRender} />
     </table>

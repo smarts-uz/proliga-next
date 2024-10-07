@@ -14,7 +14,7 @@ const TransactionsTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? 'cursor-pointer text-center bg-neutral-800 select-none text-xs xs:text-sm lg:text-base font-medium p-1 md:text-start min-w-6 sm:min-w-max'
+                    ? 'cursor-pointer text-center select-none text-xs xs:text-sm lg:text-base font-medium p-1 md:text-start min-w-6 sm:min-w-max'
                     : ' px-0.5 md:p-1 text-start ',
                   onClick: header.column.getToggleSortingHandler(),
                 }}

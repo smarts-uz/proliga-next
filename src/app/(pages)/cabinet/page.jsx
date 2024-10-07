@@ -34,7 +34,7 @@ function UserCabinet() {
           <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.HOME)} />
         )}
         {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
-        {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />}
+        {/* {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />} */}
         {tab === SETTINGSTAB.TRANSACTIONHISTORY && (
           <CabinetTransactionsHistory />
         )}
