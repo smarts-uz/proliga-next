@@ -2,31 +2,30 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../app/lib/supabaseClient'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { fetchSystemNotification, setupNotificationListener } from 'app/lib/features/systemNotification/systemNotification.thunk'
 
 const Notification = () => {
   const { userTable } = useSelector((store) => store.auth)
   const { t } = useTranslation()
-  const [notification, setNotification] = useState(null)
+  const dispatch = useDispatch(); 
+  const { systemNotifications, isLoading, error, isLoaded } = useSelector((state) => state.systemNotifications);
 
-  const channel = supabase
-    .channel('public:system_notification')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'system_notification' }, (payload) => {
-      // console.log(payload, 'notification received')
+  useEffect(() => {
+    if (userTable?.id) {
+      // Dispatch fetch notifications if not already loaded
+      dispatch(fetchSystemNotification({ userId: userTable.id, isLoaded }));
+      // Dispatch setup real-time listener if not already set up
+      dispatch(setupNotificationListener(userTable.id));
+    }
+  }, [dispatch, userTable, isLoaded]);
 
-      const { name, desc, is_broadcast, user_id } = payload.new
-
-      // If it's a broadcast or the notification is for the current user
-      if (is_broadcast || user_id === userTable.id) {
-        setNotification({ name, desc })
-        // console.log(desc, 'notification content')
-      }
-    })
-    .subscribe()
-  // console.log(notification, 'ddddddddd')
-
+  // Memoize notifications to prevent unnecessary re-renders
+  const memoizedNotifications = useMemo(() => systemNotifications, [systemNotifications]);
+  console.log(systemNotifications, 'sssss00')
+  console.log(memoizedNotifications, 'mmmmm')
   return (
     <motion.section
       initial={{ opacity: 0, y: -20 }}

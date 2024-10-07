@@ -16,6 +16,7 @@ import NewsSlice from './features/news/news.slice.js'
 import PlayerResultSlice from './features/playerResult/playerResult.slice.js'
 import UserActivitySlice from './features/userActivity/userActivity.slice.js'
 import PackagesSlice from './features/packages/packages.slice.js'
+import { systemNotificationSlice } from './features/systemNotification/systemNotification.slice.js'
 
 export const rootReducer = combineReducers({
   auth: AuthSlice,
@@ -35,4 +36,5 @@ export const rootReducer = combineReducers({
   news: NewsSlice,
   userActivity: UserActivitySlice,
   packages: PackagesSlice,
+  systemNotifications: systemNotificationSlice.reducer,
 })
