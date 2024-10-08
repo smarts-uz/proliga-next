@@ -35,6 +35,8 @@ export const useUpdateUserTable = () => {
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
+        localStorage.removeItem(`user-table-${sbUrl}`)
+        localStorage.removeItem(`user-auth-${sbUrl}`)
         return
       }
       if (data) {
@@ -45,6 +47,8 @@ export const useUpdateUserTable = () => {
     } catch (error) {
       setError(error.message)
       toast.error(error.message, { theme: 'dark' })
+      localStorage.removeItem(`user-table-${sbUrl}`)
+      localStorage.removeItem(`user-auth-${sbUrl}`)
     } finally {
       setIsLoading(false)
     }

@@ -180,6 +180,7 @@ const DesktopProfile = ({
             width={32}
             draggable={false}
             height={32}
+            key={userAuth?.user.email}
             className="size-8 rounded-full bg-white"
           />
         )}

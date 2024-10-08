@@ -34,21 +34,10 @@ const SignUpForm = ({ onClick }) => {
 
     setActive(true)
     await signUp({ email, password, confirmPassword })
-
-    if (
-      !error &&
-      !tableError &&
-      !isLoading &&
-      !tableIsLoading &&
-      tableData &&
-      data
-    ) {
-      setTimeout(() => router.push('/championships'), 250)
-    }
   }
 
   useEffect(() => {
-    if (userAuth?.user && active && phone) {
+    if (userAuth?.user && active && phone && !error && !isLoading && data) {
       const fetch = async () => {
         await updateUserTable({
           id: userAuth.user.id,
@@ -62,12 +51,20 @@ const SignUpForm = ({ onClick }) => {
       setPassword('')
       setConfirmPassword('')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, active, phone])
+  }, [userAuth, active, phone, isLoading, error])
 
   useEffect(() => {
     if (userAuth && userTable && active) {
-      router.push('/championships')
+      if (
+        !error &&
+        !tableError &&
+        !isLoading &&
+        !tableIsLoading &&
+        tableData &&
+        data
+      ) {
+        setTimeout(() => router.push('/championships'), 250)
+      }
       setActive(false)
     }
   }, [active, router, userAuth, userTable])
