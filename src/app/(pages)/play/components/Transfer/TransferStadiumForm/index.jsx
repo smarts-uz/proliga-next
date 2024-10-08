@@ -116,6 +116,7 @@ const TransferStadiumForm = () => {
       toast.error(t('Siz limitdan oshiq transfer amalga oshiraolmaysiz'), {
         theme: 'dark',
       })
+      dispatch(revertTeamPlayers())
       return
     }
 
