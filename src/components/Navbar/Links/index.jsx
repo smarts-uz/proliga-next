@@ -18,7 +18,7 @@ const PlayLinks = () => {
   const { t } = useTranslation()
 
   return (
-    <section className="hidden items-center gap-1 text-neutral-400 sm:text-sm lg:flex lg:gap-2 lg:text-base xl:gap-4 2xl:gap-6">
+    <section className="hidden items-center gap-1 text-neutral-400 sm:text-sm lg:flex xl:gap-4 xl:text-base 2xl:gap-6">
       {path.includes('play') && (
         <>
           <Tab

@@ -55,16 +55,7 @@ const SignUpForm = ({ onClick }) => {
 
   useEffect(() => {
     if (userAuth && userTable && active) {
-      if (
-        !error &&
-        !tableError &&
-        !isLoading &&
-        !tableIsLoading &&
-        tableData &&
-        data
-      ) {
-        setTimeout(() => router.push('/championships'), 250)
-      }
+      setTimeout(() => router.push('/championships'), 250)
       setActive(false)
     }
   }, [active, router, userAuth, userTable])

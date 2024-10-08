@@ -17,6 +17,7 @@ import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
 export default function TourTabs() {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { currentCompetition } = useSelector((state) => state.competition)
   const selectedTours = useSelector(selectTours)
   const { currentTourIndex, tours, registeredTour } = useSelector(
     (state) => state.tours
@@ -35,6 +36,18 @@ export default function TourTabs() {
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
+
+  useEffect(() => {
+    if (
+      currentCompetition?.id &&
+      currentTourIndex &&
+      selectTours?.length > 0 &&
+      tourTeams?.length > 0
+    ) {
+      dispatch(setMatchesTourIndex(currentTourIndex))
+      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+    }
+  }, [dispatch, currentCompetition, currentTourIndex, selectTours, tourTeams])
 
   const { t } = useTranslation()
 

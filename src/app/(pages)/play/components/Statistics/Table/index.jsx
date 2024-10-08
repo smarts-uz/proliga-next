@@ -32,7 +32,7 @@ function StatisticsTable() {
   const columns = [
     columnHelper.accessor('player_id.position', {
       accessorFn: (row) =>
-        getCorrentPlayerPosition(row.player_id.position, lang),
+        getCorrentPlayerPosition(row?.player_id?.position, lang),
       id: 'player-position',
       header: t('POZ'),
       meta: {

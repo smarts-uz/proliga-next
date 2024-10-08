@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useEffect, useMemo } from 'react'
@@ -9,7 +10,6 @@ import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { TABS } from 'app/utils/tabs.util'
 import { revertTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
-import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import { useUpdateTourTeam } from 'app/hooks/transfer/useUpdateTourTeam/useUpdateTourTeam.index'
 import { useAutoGenerateTeamPlayers } from 'app/hooks/transfer/useAutoGenerateTeamPlayers/useAutoGenerateTeamPlayers'
@@ -58,8 +58,6 @@ const TransferStadiumForm = () => {
     const prevTeamPlayersId = []
     const curTeamPlayersId = []
     const captains = []
-    let countOfTransfers = 0
-
     prevTeam.forEach((p) => p.name && prevTeamPlayersId.push(p.player_id))
 
     teamConcat.forEach((player) => {
@@ -105,20 +103,17 @@ const TransferStadiumForm = () => {
       toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
       return
     }
-
-    for (let i = 0; i < prevTeamPlayersId.length; i++) {
-      if (!curTeamPlayersId.includes(prevTeamPlayersId[i])) {
-        countOfTransfers++
-      }
-    }
+    let difference = curTeamPlayersId.filter(
+      (x) => !prevTeamPlayersId.includes(x)
+    )
+    let countOfTransfers = Math.ceil(+difference.length)
 
     if (
       currentTeam.is_team_created &&
       currentTeam?.transfers_from_one_team <
-        Math.round(+countOfTransfers / 2) +
-          currentTourTeam?.current_count_of_transfers
+        countOfTransfers + currentTourTeam?.current_count_of_transfers
     ) {
-      toast.error(t('Siz limitdan oshiq transfer amalga oshirdingiz'), {
+      toast.error(t('Siz limitdan oshiq transfer amalga oshiraolmaysiz'), {
         theme: 'dark',
       })
       return
@@ -133,8 +128,7 @@ const TransferStadiumForm = () => {
       team_id: currentTeam.id,
       tour_id: currentTour.id,
       count_of_transfers:
-        Math.round(+countOfTransfers / 2) +
-        currentTourTeam.current_count_of_transfers,
+        countOfTransfers + currentTourTeam.current_count_of_transfers,
       is_team_created: currentTeam.is_team_created,
     })
 
@@ -195,7 +189,7 @@ const TransferStadiumForm = () => {
             onClick={handleAutoGenerateTeamPlayers}
             type="button"
             title="Avto jamoa yigish"
-            className="flex w-full max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
+            className="flex w-full min-w-5 max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
