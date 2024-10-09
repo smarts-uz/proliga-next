@@ -1,11 +1,13 @@
+import { PACKAGES } from 'app/utils/packages.util'
 import { useTranslation } from 'react-i18next'
 
 const CurrentPackage = ({ currentPackage }) => {
   const { t } = useTranslation()
   const getPackageText = (currentPackage) => {
-    if (currentPackage?.type === 'balance') return t('Balansni')
-    if (currentPackage?.type === 'transfer') return t('Transferla sonini')
-    if (currentPackage?.type === 'maxClubMembers')
+    if (currentPackage?.type === PACKAGES.team_balance) return t('Balansni')
+    if (currentPackage?.type === PACKAGES.transfer_count)
+      return t('Transferla sonini')
+    if (currentPackage?.type === PACKAGES.single_club_count)
       return t("Maksimum klub oyi'nchilarini")
   }
   return (

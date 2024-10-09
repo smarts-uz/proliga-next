@@ -24,20 +24,14 @@ const ConfirmPayment = ({ params }) => {
   const { packages } = useSelector((store) => store.packages)
   const [currentPackage, setCurrentPackage] = useState({})
 
-  console.log(currentPackage, +params.packageId)
-
   useEffect(() => {
-    if (packages?.length > 0) {
-      setCurrentPackage(packages.find((item) => console.log(item)))
-    }
-  }, [])
+    setCurrentPackage(packages.find((item) => +item.id === +params.packageId))
+  }, [params, packages])
 
   useEffect(() => {
     dispatch(fetchPackages())
   }, [dispatch])
 
-  // packages.find((item) => item.id === +params.packageId)
-  console.log(currentPackage)
   const [isModalOpen, toggleModal] = useState(false)
 
   const handleModal = () => {

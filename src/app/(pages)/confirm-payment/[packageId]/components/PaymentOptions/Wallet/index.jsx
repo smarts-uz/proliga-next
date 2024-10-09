@@ -23,9 +23,9 @@ const WalletPaymentOption = ({
         alt="wallet"
       />
       <div className="w-full self-center text-center">
-        <h4 className="text-lg font-medium">{t("Proliga hisobi")}</h4>
+        <h4 className="text-lg font-medium">{t('Proliga hisobi')}</h4>
         <p className="text-sm text-neutral-400">
-          {t("Hisobda")}: <span className="font-bold text-neutral-50">4000 </span>
+          {t('Hisobda')}: <span className="font-bold text-neutral-50">0 </span>
           {t("so'm")}
         </p>
       </div>
@@ -33,7 +33,7 @@ const WalletPaymentOption = ({
         onClick={toggleModal}
         className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
       >
-        {t("Hisobni toldirish")}
+        {t('Hisobni toldirish')}
       </button>
     </div>
   )
