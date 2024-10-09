@@ -6,12 +6,11 @@ import CurrentPackage from './components/CurrentPackage'
 import PaymentOptions from './components/PaymentOptions'
 import ConfirmPaymentTab from './components/ConfirmPaymentTab'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const ConfirmPayment = ({ params }) => {
-  const allPackages = [...balance, ...transfers, ...maxClubMembers]
-  const currentPackage = allPackages.find(
-    (item) => item.id === +params.packageId
-  )
+  const { packages } = useSelector((store) => store.packages)
+  const currentPackage = packages.find((item) => item.id === +params.packageId)
   const [isModalOpen, toggleModal] = useState(false)
 
   const handleModal = () => {

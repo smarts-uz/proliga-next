@@ -15,7 +15,7 @@ const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
         player,
         previousPlayer: prevPlayer,
         team: currentTeam,
-        handleModal,
+        handleModal: JSON.stringify(handleModal),
         t,
       })
     )

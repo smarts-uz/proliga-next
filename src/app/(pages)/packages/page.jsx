@@ -3,14 +3,17 @@ import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
+import { PACKAGES } from 'app/utils/packages.util'
+
 const PackagesTitle = dynamic(() => import('./components/Title'), {
   ssr: false,
 })
 
 const Packages = () => {
   const dispatch = useDispatch()
+  const { packages } = useSelector((store) => store.packages)
 
   useEffect(() => {
     dispatch(fetchPackages())
@@ -27,19 +30,23 @@ const Packages = () => {
               {t('Balans paketlari')}
             </h2>
             <div className="flex flex-col gap-4">
-              {balance.map((item, index) => (
-                <div
-                  key={index}
-                  className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
-                >
-                  <span className="font-bold text-neutral-50">
-                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
-                  </span>
-                  <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                    {t('Tanlang')}
-                  </button>
-                </div>
-              ))}
+              {packages.map(
+                (item, index) =>
+                  item.type === PACKAGES.team_balance && (
+                    <div
+                      key={index}
+                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                    >
+                      <span className="font-bold text-neutral-50">
+                        {t('gacha oshirish ru')} {item.amount}{' '}
+                        {t('gacha oshirish')}
+                      </span>
+                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                        {t('Tanlang')}
+                      </button>
+                    </div>
+                  )
+              )}
             </div>
           </div>
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
@@ -47,19 +54,23 @@ const Packages = () => {
               {t('Transfer paketlari')}
             </h2>
             <div className="flex flex-col gap-4">
-              {transfers.map((item, index) => (
-                <div
-                  key={index}
-                  className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
-                >
-                  <span className="font-bold text-neutral-50">
-                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
-                  </span>
-                  <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                    {t('Tanlang')}
-                  </button>
-                </div>
-              ))}
+              {packages.map(
+                (item, index) =>
+                  item.type === PACKAGES.transfer_count && (
+                    <div
+                      key={index}
+                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                    >
+                      <span className="font-bold text-neutral-50">
+                        {t('gacha oshirish ru')} {item.amount}{' '}
+                        {t('gacha oshirish')}
+                      </span>
+                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                        {t('Tanlang')}
+                      </button>
+                    </div>
+                  )
+              )}
             </div>
           </div>
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
@@ -67,19 +78,23 @@ const Packages = () => {
               {t('Bitta jamoadan oyinchisi paketlari')}
             </h2>
             <div className="flex flex-col gap-4">
-              {maxClubMembers.map((item, index) => (
-                <div
-                  key={index}
-                  className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
-                >
-                  <span className="font-bold text-neutral-50">
-                    {t('gacha oshirish ru')} {item.amount} {t('gacha oshirish')}
-                  </span>
-                  <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
-                    {t('Tanlang')}
-                  </button>
-                </div>
-              ))}
+              {packages.map(
+                (item, index) =>
+                  item.type === PACKAGES.single_club_count && (
+                    <div
+                      key={index}
+                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                    >
+                      <span className="font-bold text-neutral-50">
+                        {t('gacha oshirish ru')} {item.amount}{' '}
+                        {t('gacha oshirish')}
+                      </span>
+                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                        {t('Tanlang')}
+                      </button>
+                    </div>
+                  )
+              )}
             </div>
           </div>
         </div>
@@ -87,58 +102,5 @@ const Packages = () => {
     </Gutter>
   )
 }
-const balance = [
-  {
-    id: 1,
-    amount: 115,
-    price: 25000,
-  },
-  {
-    id: 2,
-    amount: 125,
-    price: 35000,
-  },
-  {
-    id: 3,
-    amount: 150,
-    price: 65000,
-  },
-]
-
-const transfers = [
-  {
-    id: 4,
-    amount: 3,
-    price: 25000,
-  },
-  {
-    id: 5,
-    amount: 4,
-    price: 35000,
-  },
-  {
-    id: 6,
-    amount: 5,
-    price: 65000,
-  },
-]
-
-const maxClubMembers = [
-  {
-    id: 7,
-    amount: 3,
-    price: 25000,
-  },
-  {
-    id: 8,
-    amount: 4,
-    price: 35000,
-  },
-  {
-    id: 9,
-    amount: 5,
-    price: 65000,
-  },
-]
 
 export default Packages

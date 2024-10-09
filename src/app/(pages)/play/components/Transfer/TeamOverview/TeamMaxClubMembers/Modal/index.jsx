@@ -3,9 +3,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { PACKAGES } from 'app/utils/packages.util'
+import { useSelector } from 'react-redux'
 
 const TeamMaxClubMembersModal = ({ handleModal }) => {
   const { t } = useTranslation()
+  const { packages } = useSelector((store) => store.packages)
   return (
     <Backdrop bgOpacity={'bg-opacity-50'} onClick={handleModal}>
       <motion.dialog
@@ -26,15 +29,18 @@ const TeamMaxClubMembersModal = ({ handleModal }) => {
           </p>
         </header>
         <section className="flex flex-col gap-2 text-sm xs:text-base">
-          {maxClubMembers.map((item) => (
-            <Link key={item.id} href={`/confirm-payment/${item.id}`}>
-              <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
-                {t('Bir jamoadan')}
-                <span className="font-bold">{item.amount}</span>
-                {t('ta futbolchi sotib olish')}
-              </div>
-            </Link>
-          ))}
+          {packages.map(
+            (item) =>
+              item.type === PACKAGES.single_club_count && (
+                <Link key={item.id} href={`/confirm-payment/${item.id}`}>
+                  <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
+                    {t('Bir jamoadan')}
+                    <span className="font-bold">{item.amount}</span>
+                    {t('ta futbolchi sotib olish')}
+                  </div>
+                </Link>
+              )
+          )}
         </section>
       </motion.dialog>
     </Backdrop>

@@ -3,8 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { PACKAGES } from 'app/utils/packages.util'
 
 const TeamBalanceModal = ({ handleModal }) => {
+  const { packages } = useSelector((store) => store.packages)
   const { t } = useTranslation()
   return (
     <Backdrop onClick={handleModal}>
@@ -26,15 +29,18 @@ const TeamBalanceModal = ({ handleModal }) => {
           </p>
         </header>
         <section className="flex flex-col gap-2 text-sm xs:text-base">
-          {balance.map((item) => (
-            <Link key={item.id} href={`/confirm-payment/${item.id}`}>
-              <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
-                {t('Tangalar miqdorini')}
-                <span className="font-bold">{item.amount}</span>
-                {t('tangaga oshirish')}
-              </div>
-            </Link>
-          ))}
+          {packages.map(
+            (item) =>
+              item.type === PACKAGES.team_balance && (
+                <Link key={item.id} href={`/confirm-payment/${item.id}`}>
+                  <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
+                    {t('Tangalar miqdorini')}
+                    <span className="font-bold">{item.amount}</span>
+                    {t('tangaga oshirish')}
+                  </div>
+                </Link>
+              )
+          )}
         </section>
       </motion.dialog>
     </Backdrop>

@@ -3,9 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { PACKAGES } from 'app/utils/packages.util'
 
 const TeamMaxTransfersModal = ({ handleModal }) => {
   const { t } = useTranslation()
+  const { packages } = useSelector((store) => store.packages)
   return (
     <Backdrop onClick={handleModal}>
       <motion.dialog
@@ -26,15 +29,21 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
           </p>
         </header>
         <section className="flex flex-col gap-2 text-sm xs:text-base">
-          {transfers.map((transfer) => (
-            <Link key={transfer.id} href={`/confirm-payment/${transfer.id}`}>
-              <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
-                {t('Transfer limitni')}
-                <span className="font-bold">{transfer.amount} </span>
-                {t('taga oshirish')}
-              </div>
-            </Link>
-          ))}
+          {packages.map(
+            (transfer) =>
+              transfer.type === PACKAGES.transfer_count && (
+                <Link
+                  key={transfer.id}
+                  href={`/confirm-payment/${transfer.id}`}
+                >
+                  <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
+                    {t('Transfer limitni')}
+                    <span className="font-bold">{transfer.amount} </span>
+                    {t('taga oshirish')}
+                  </div>
+                </Link>
+              )
+          )}
         </section>
       </motion.dialog>
     </Backdrop>
