@@ -2,15 +2,36 @@
 
 import RefillBalanceModal from 'components/RefillBalanceModal'
 import Gutter from 'components/Gutter'
-import CurrentPackage from './components/CurrentPackage'
-import PaymentOptions from './components/PaymentOptions'
-import ConfirmPaymentTab from './components/ConfirmPaymentTab'
-import { useState } from 'react'
+import dynamic from 'next/dynamic'
+const CurrentPackage = dynamic(() => import('./components/CurrentPackage'), {
+  ssr: false,
+})
+const PaymentOptions = dynamic(() => import('./components/PaymentOptions'), {
+  ssr: false,
+})
+const ConfirmPaymentTab = dynamic(
+  () => import('./components/ConfirmPaymentTab'),
+  {
+    ssr: false,
+  }
+)
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const ConfirmPayment = ({ params }) => {
   const { packages } = useSelector((store) => store.packages)
-  const currentPackage = packages.find((item) => item.id === +params.packageId)
+  const [currentPackage, setCurrentPackage] = useState({})
+
+  console.log(currentPackage, +params.packageId)
+
+  useEffect(() => {
+    if (packages?.length > 0) {
+      setCurrentPackage(packages.find((item) => console.log(item)))
+    }
+  }, [])
+
+  // packages.find((item) => item.id === +params.packageId)
+  console.log(currentPackage)
   const [isModalOpen, toggleModal] = useState(false)
 
   const handleModal = () => {

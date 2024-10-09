@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 export const swapTeamPlayerReducer = (state, action) => {
   const { player, team, previousPlayer, handleModal, t } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
-  const newHandleModal = JSON.parse(handleModal)
+  const newHandleModal = handleModal
 
   const evaluateTeamClubId = () => {
     state.duplicatesMap = {}

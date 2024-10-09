@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
 const CurrentPackage = ({ currentPackage }) => {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
   const getPackageText = (currentPackage) => {
-    if (currentPackage?.type === 'balance') return t("Balansni")
-    if (currentPackage?.type === 'transfer') return t("Transferla sonini")
+    if (currentPackage?.type === 'balance') return t('Balansni')
+    if (currentPackage?.type === 'transfer') return t('Transferla sonini')
     if (currentPackage?.type === 'maxClubMembers')
       return t("Maksimum klub oyi'nchilarini")
   }
@@ -19,7 +19,7 @@ const CurrentPackage = ({ currentPackage }) => {
           <span className="text-lg font-bold xs:text-xl md:text-2xl">
             {' ' + currentPackage?.amount}
           </span>{' '}
-          {t("ga oshirish")}
+          {t('ga oshirish')}
         </div>
         <div className="text-lg font-medium text-neutral-100 xs:text-xl md:text-2xl">
           <span className="text-xl font-bold xs:text-2xl md:text-3xl">
