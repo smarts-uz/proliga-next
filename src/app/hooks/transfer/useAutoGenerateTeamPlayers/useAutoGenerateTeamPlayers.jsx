@@ -29,7 +29,7 @@ export const useAutoGenerateTeamPlayers = () => {
       setIsLoading(true)
 
       let { data, error } = await supabase.rpc(
-        'get_auto_added_player_by_team_id',
+        'get__auto_added_player_by_team_id',
         {
           i_team_id: team_id,
         }

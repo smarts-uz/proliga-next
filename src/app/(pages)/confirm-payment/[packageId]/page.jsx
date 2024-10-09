@@ -16,9 +16,11 @@ const ConfirmPaymentTab = dynamic(
   }
 )
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 
 const ConfirmPayment = ({ params }) => {
+  const dispatch = useDispatch()
   const { packages } = useSelector((store) => store.packages)
   const [currentPackage, setCurrentPackage] = useState({})
 
@@ -29,6 +31,10 @@ const ConfirmPayment = ({ params }) => {
       setCurrentPackage(packages.find((item) => console.log(item)))
     }
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchPackages())
+  }, [dispatch])
 
   // packages.find((item) => item.id === +params.packageId)
   console.log(currentPackage)
