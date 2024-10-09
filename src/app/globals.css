@@ -33,7 +33,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px rgb(80, 80, 40) inset !important;
+    -webkit-box-shadow: 0 0 0 30px rgb(65, 65, 26) inset !important;
     -webkit-text-fill-color: rgb(240, 208, 52);
   }
   select option:checked,

@@ -5,11 +5,17 @@ import { usePathname, useRouter } from 'next/navigation'
 import { setLanguage } from './lib/features/systemLanguage/systemLanguage.slice'
 import { LANGUAGE } from './utils/languages.util'
 import { useTranslation } from 'react-i18next'
-import { fetchSystemNotification, setupNotificationListener } from './lib/features/systemNotification/systemNotification.thunk'
+import {
+  fetchSystemNotification,
+  setupNotificationListener,
+} from './lib/features/systemNotification/systemNotification.thunk'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { systemNotifications } = useSelector(
+    (state) => state.systemNotifications
+  )
   const { lang } = useSelector((state) => state.systemLanguage)
   const { i18n } = useTranslation()
   const path = usePathname()
@@ -34,13 +40,14 @@ const GetInitialState = ({ children }) => {
       router.push('/')
     }
   }, [dispatch, userAuth, userTable, router, path])
-  
+
   useEffect(() => {
     if (userTable?.id) {
-      dispatch(fetchSystemNotification({ userId: userTable.id })); 
-      dispatch(setupNotificationListener(userTable.id)); 
+      dispatch(fetchSystemNotification({ userId: userTable.id }))
+      // systemNotifications?.length === 0 &&
+      //   dispatch(setupNotificationListener({ userId: userTable.id }))
     }
-  }, [dispatch, userTable]);
+  }, [dispatch, userTable])
 
   useEffect(() => {
     if (lang !== userTable?.language && userTable?.id) {

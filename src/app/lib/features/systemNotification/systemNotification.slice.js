@@ -1,25 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { systemNotificationExtraReducer } from "./systemNotification.extraReducer";
+import { createSlice } from '@reduxjs/toolkit'
+import { systemNotificationExtraReducer } from './systemNotification.extraReducer'
 
 const initialState = {
-    systemNotifications: [],
-    isLoading: false,
-    error: null,
-    isListening: false,
-};
-// arr?.length > 0
+  systemNotifications: [],
+  isLoading: false,
+  error: null,
+  isListening: false,
+}
+
 export const systemNotificationSlice = createSlice({
-    name: 'systemNotifications',
-    initialState,
-    reducers: {
-        addNotification: (state, action) => {
-          state.systemNotifications.push(action.payload);
-        },
-      },
-    extraReducers: systemNotificationExtraReducer,
+  name: 'systemNotifications',
+  initialState,
+  reducers: {
+    addNotification: (state, action) => {
+      state.systemNotifications.push(action.payload)
+    },
+    clearNotifications: (state) => {
+      state.systemNotifications = []
+    },
+  },
+  extraReducers: systemNotificationExtraReducer,
 })
 
-export const { addNotification } = systemNotificationSlice.actions;
+export const { addNotification, clearNotifications } =
+  systemNotificationSlice.actions
 export default systemNotificationSlice.reducer
-
-
