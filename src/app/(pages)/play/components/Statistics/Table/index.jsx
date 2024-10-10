@@ -48,6 +48,15 @@ function StatisticsTable() {
         title: t("O'yinchini toliq ismi"),
       },
     }),
+    columnHelper.accessor('club_id.name', {
+      accessorKey: 'club_id.name',
+      cell: (info) => info.getValue(),
+      header: t('Klub'),
+      id: 'club',
+      meta: {
+        title: t('Clubni nomi'),
+      },
+    }),
     columnHelper.accessor('ochko', {
       accessorFn: (row) => row?.player_id?.point,
       id: 'ochko',
@@ -122,7 +131,7 @@ function StatisticsTable() {
   })
 
   return (
-    <table className="h-full w-full min-w-[24rem] text-sm">
+    <table className="h-full w-full min-w-[18rem] text-[10px] xs:text-xs md:text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody table={table} flexRender={flexRender} />
     </table>

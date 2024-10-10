@@ -37,7 +37,7 @@ const Statistics = () => {
   return (
     <Gutter>
       <section className="flex w-full flex-col gap-4 lg:flex-row">
-        <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-6 text-neutral-200 lg:w-2/3">
+        <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 md:p-6 text-neutral-200 lg:w-2/3">
           <StatisticsTable />
           <StatisticsPagination
             incrementPage={incrementPage}

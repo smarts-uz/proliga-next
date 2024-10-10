@@ -9,7 +9,10 @@ export const fetchPlayerResult = createAsyncThunk(
 
     const { data, error } = await supabase
       .from('player_result')
-      .select('*, player_id(name, position, point)')
+      .select('*, player_id(name, position, point), club_id(id, name, slug)', {
+        count: 'exact',
+        head: false,
+      })
       .eq('competition_id', competition_id)
       .eq('season_id', season_id)
       .range(from, to)
