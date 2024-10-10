@@ -46,7 +46,6 @@ export const useLogIn = () => {
         email,
         password,
       })
-      console.log('auth')
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })

@@ -100,7 +100,7 @@ const GameBrief = () => {
         </Item>
         <Item>
           <Title>{t("Turnirdagi o'rtacha ochkolar")}</Title>
-          <Content>{currentCompetition?.averate_team_point ?? '00.0'}</Content>
+          <Content>{currentCompetition?.average_team_point ?? '00.0'}</Content>
         </Item>
       </Container>
       <Container className="border-b border-neutral-700">

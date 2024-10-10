@@ -58,6 +58,12 @@
   .promotion-header {
     @apply text-lg uppercase xs:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl;
   }
+  .carousel-header {
+    @apply text-base xs:text-lg md:text-xl xl:text-2xl 2xl:text-3xl;
+  }
+  .carousel-text {
+    @apply text-xs text-neutral-300 xs:text-sm lg:text-base xl:text-lg;
+  }
   .loader {
     border: 16px solid #121212;
     border-top: 16px solid #fff400;

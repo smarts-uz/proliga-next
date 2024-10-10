@@ -14,7 +14,6 @@ const PromotionMakeTransfers = () => {
           <p className="promotion-text mt-6 self-center text-center text-neutral-400 md:w-3/4 xl:mt-10">
             {t('Agar sizning jamoangizdagi')}
           </p>
-
           <div className="mx-auto mt-10 w-full flex-1 md:w-auto md:items-center md:justify-center">
             <Image
               width={536}

@@ -15,13 +15,14 @@ const ConfirmPaymentTab = dynamic(
     ssr: false,
   }
 )
+import Spinner from 'components/Spinner'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 
 const ConfirmPayment = ({ params }) => {
   const dispatch = useDispatch()
-  const { packages } = useSelector((store) => store.packages)
+  const { packages, isLoading } = useSelector((store) => store.packages)
   const [currentPackage, setCurrentPackage] = useState({})
 
   useEffect(() => {
@@ -51,11 +52,17 @@ const ConfirmPayment = ({ params }) => {
   return (
     <>
       <Gutter>
-        <section className="my-8 w-full">
-          <CurrentPackage currentPackage={currentPackage} />
-          <PaymentOptions toggleModal={handleModal} />
-          <ConfirmPaymentTab currentPackage={currentPackage} />
-        </section>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          currentPackage && (
+            <section className="my-8 w-full">
+              <CurrentPackage currentPackage={currentPackage} />
+              <PaymentOptions toggleModal={handleModal} />
+              <ConfirmPaymentTab currentPackage={currentPackage} />
+            </section>
+          )
+        )}
       </Gutter>
       {isModalOpen && <RefillBalanceModal toggleModal={handleModal} />}
     </>

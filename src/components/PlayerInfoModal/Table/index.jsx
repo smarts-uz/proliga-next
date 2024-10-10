@@ -28,15 +28,6 @@ function PlayerStatisticsTable({ matches }) {
     pageSize: 10,
   })
 
-  const getCorrectDate = (startDate) => {
-    const date = new Date(startDate)
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-
-    return `${day}.${month}.${year}`
-  }
-
   const getClubInfoById = (id) => {
     return clubs.find((c) => c.id === id)
   }

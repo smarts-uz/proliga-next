@@ -35,7 +35,7 @@ function TournamentTable() {
 
   const columns = [
     columnHelper.accessor('name', {
-      accessorFn: (row) => row?.team?.name ?? 'name',
+      accessorFn: (row) => row?.team?.name ?? '',
       cell: (info) => info.getValue(),
       header: t('Jamoa'),
     }),
