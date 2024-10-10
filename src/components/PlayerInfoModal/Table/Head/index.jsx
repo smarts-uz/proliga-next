@@ -1,11 +1,5 @@
 'use client'
 import { flexRender } from '@tanstack/react-table'
-import Image from 'next/image'
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui/hover-card'
 
 const TransferTableHead = ({ table }) => {
   return (
@@ -19,7 +13,7 @@ const TransferTableHead = ({ table }) => {
                 colSpan={header.colSpan}
                 {...{
                   className: header.column.getCanSort()
-                    ? ' group relative select-none p-0.5 md:p-1 text-start '
+                    ? ' group relative select-none p-0.5 md:p-1 text-center '
                     : ' px-0.5 md:p-1 relative group text-start ',
                   onClick: header.column.getToggleSortingHandler(),
                 }}

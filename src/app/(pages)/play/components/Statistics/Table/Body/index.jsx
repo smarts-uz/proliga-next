@@ -4,8 +4,6 @@ const TransferTableBody = ({ table, flexRender }) => {
     if (id === 'player-position' || 'club' || 'played-min')
       return 'w-min px-0.5 sm:min-w-12 sm:px-1'
     return 'w-min px-0.5 sm:min-w-10 sm:px-1 bg-red-400'
-    // if (id === 'played-min') return 'w-min px-0.5 sm:min-w-12 sm:px-1'
-    // if (id === 'club') return 'w-min px-0.5 sm:min-w-12 sm:px-1'
   }
 
   return (

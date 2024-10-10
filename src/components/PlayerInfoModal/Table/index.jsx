@@ -51,24 +51,32 @@ function PlayerStatisticsTable({ matches }) {
 
   const getCorrectScore = (match) => {
     if (match.home_club_id === currentPlayer?.club?.id) {
-      match.home_club_result > match.away_club_result
-        ? setStyles('border-green-500 rounded-md')
-        : setStyles('border-red-500 rounded-md')
+      if (match.home_club_result > match?.away_club_result) {
+        setStyles('border-green-500 rounded-md')
+      } else if (match.home_club_result < match?.away_club_result) {
+        setStyles('border-red-500 rounded-md')
+      } else {
+        setStyles('border-yellow-500 rounded-md')
+      }
       return `${match.home_club_result ?? 0}-${match.away_club_result ?? 0}`
     } else if (match.away_club_id === currentPlayer?.club?.id) {
-      match.away_club_result > match.home_club_result
-        ? setStyles('border-green-500 rounded-md')
-        : setStyles('border-red-500 rounded-md')
-      return `${match.away_club_result ?? 0}-${match.home_club_result ?? 0}`
+      if (match?.away_club_result > match?.home_club_result) {
+        setStyles('border-green-500 rounded-md')
+      } else if (match?.away_club_result < match?.home_club_result) {
+        setStyles('border-red-500 rounded-md')
+      } else {
+        setStyles('border-yellow-500 rounded-md')
+
+        return `${match.away_club_result ?? 0}-${match.home_club_result ?? 0}`
+      }
     }
   }
 
   const columns = [
-    columnHelper.accessor('Sana', {
-      accessorFn: (row) =>
-        getCorrectDate(row?.match_id?.started_date ?? Date.now()),
+    columnHelper.accessor('', {
+      accessorFn: (row) => row?.tour_id?.name,
       id: 'sana',
-      header: t('Sana'),
+      header: t('Tur'),
     }),
     columnHelper.accessor('Competititor', {
       accessorFn: (row) => getCorrectCompetitor(row.match_id),
@@ -155,7 +163,7 @@ function PlayerStatisticsTable({ matches }) {
 
   return (
     <section className="h-auto">
-      <table className="h-full w-full table-auto text-[10px] 2xs:text-[11px] md:text-xs xl:text-sm">
+      <table className="h-full w-full min-w-80 table-auto text-[10px] 2xs:text-[11px] md:text-xs xl:text-sm">
         <TransferTableHead table={table} />
         <TransferTableBody
           scoreStyles={styles}

@@ -8,7 +8,8 @@ const TournamentPagination = ({ decrementPage, incrementPage, page }) => {
     <div className="mt-auto flex items-center justify-center gap-2 py-4">
       <button
         onClick={decrementPage}
-        className="rounded border px-3 py-1 capitalize text-white hover:underline"
+        disabled={page === 0}
+        className="rounded border px-3 py-1 capitalize text-white hover:underline disabled:opacity-75 disabled:hover:cursor-default disabled:hover:no-underline"
       >
         {t('Oldigisi')}
       </button>
