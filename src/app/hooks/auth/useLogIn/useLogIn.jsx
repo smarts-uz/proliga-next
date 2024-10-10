@@ -19,7 +19,9 @@ export const useLogIn = () => {
 
     if (password.length < 6) {
       setError("Parol 6 ta belgidan kam bo'lmasligi kerak")
-      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), { theme: 'dark' })
+      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
+        theme: 'dark',
+      })
       return
     }
 
@@ -31,7 +33,9 @@ export const useLogIn = () => {
 
     if (!email.includes('@')) {
       setError("Elektron pochta manzili notog'ri kiritildi")
-      toast.error(t("Elektron pochta manzili notog'ri kiritildi"), { theme: 'dark' })
+      toast.error(t("Elektron pochta manzili notog'ri kiritildi"), {
+        theme: 'dark',
+      })
       return
     }
 
@@ -42,13 +46,13 @@ export const useLogIn = () => {
         email,
         password,
       })
-
+      console.log('auth')
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
         return
       }
-      if (data?.user && data?.session) {
+      if (data?.user) {
         dispatch(setUserAuth(data))
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
         setData(data)

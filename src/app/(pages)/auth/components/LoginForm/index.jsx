@@ -28,15 +28,12 @@ const LoginForm = ({ onClick }) => {
 
     setActive(true)
     await getUserTable({ phone })
-    if (userTable && userAuth) {
-      router.push('/championships')
-    }
   }
 
   useEffect(() => {
-    if (userTable && active && password.length > 6) {
+    if (userTable && active && password.length > 5) {
       const fetch = async () =>
-        await logIn({ email: userTable.email, password })
+        await logIn({ email: userTable?.email, password })
       fetch()
 
       setPassword('')
