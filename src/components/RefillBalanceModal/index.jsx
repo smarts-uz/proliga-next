@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 const RefillBalanceModal = ({ toggleModal }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
+  const { t } = useTranslation()
   const router = useRouter()
 
   const active = 'border-primary'
@@ -17,13 +18,13 @@ const RefillBalanceModal = ({ toggleModal }) => {
     e.preventDefault()
     router.push('/championships')
   }
-  const { t } = useTranslation()
+
   return (
     <Backdrop onClick={toggleModal}>
       <motion.dialog
         initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[80vh] max-w-[36rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
+        className="mx-4 flex max-h-[80vh] max-w-[36rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-600 bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
         onClick={(e) => e.stopPropagation()}
       >
         <button className="self-end" onClick={toggleModal}>

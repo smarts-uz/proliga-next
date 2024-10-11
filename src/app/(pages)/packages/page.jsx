@@ -6,10 +6,22 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
 import { PACKAGES } from 'app/utils/packages.util'
-
+import Link from 'next/link'
+const BalanceTitle = dynamic(() => import('./components/BalanceTitle'), {
+  ssr: false,
+})
+const TransferTitle = dynamic(() => import('./components/TransferTitle'), {
+  ssr: false,
+})
 const PackagesTitle = dynamic(() => import('./components/Title'), {
   ssr: false,
 })
+const SameTeamPlayerTitle = dynamic(
+  () => import('./components/SameTeamPlayerTitle'),
+  {
+    ssr: false,
+  }
+)
 
 const Packages = () => {
   const dispatch = useDispatch()
@@ -22,13 +34,11 @@ const Packages = () => {
   const { t } = useTranslation()
   return (
     <Gutter>
-      <section className="my-8 h-full space-y-6 rounded-xl bg-neutral-900 p-6 text-neutral-200">
+      <section className="my-8 h-full space-y-6 rounded-xl border border-primary border-opacity-50 bg-neutral-900 p-6 text-neutral-200 transition-all hover:border-opacity-100">
         <PackagesTitle />
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 xl:gap-6">
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
-            <h2 className="text-lg font-medium md:text-xl">
-              {t('Balans paketlari')}
-            </h2>
+            <BalanceTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
                 (item, index) =>
@@ -41,18 +51,19 @@ const Packages = () => {
                         {t('gacha oshirish ru')} {item.amount}{' '}
                         {t('gacha oshirish')}
                       </span>
-                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                      <Link
+                        href={`/confirm-payment/${item.id}`}
+                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                      >
                         {t('Tanlang')}
-                      </button>
+                      </Link>
                     </div>
                   )
               )}
             </div>
           </div>
           <div className="min-h-96 space-y-4 rounded-xl border p-4">
-            <h2 className="text-lg font-medium md:text-xl">
-              {t('Transfer paketlari')}
-            </h2>
+            <TransferTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
                 (item, index) =>
@@ -65,18 +76,19 @@ const Packages = () => {
                         {t('gacha oshirish ru')} {item.amount}{' '}
                         {t('gacha oshirish')}
                       </span>
-                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                      <Link
+                        href={`/confirm-payment/${item.id}`}
+                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                      >
                         {t('Tanlang')}
-                      </button>
+                      </Link>
                     </div>
                   )
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border p-4">
-            <h2 className="text-lg font-medium md:text-xl">
-              {t('Bitta jamoadan oyinchisi paketlari')}
-            </h2>
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black bg-opacity-20 p-4 backdrop-blur-sm">
+            <SameTeamPlayerTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
                 (item, index) =>
@@ -89,9 +101,12 @@ const Packages = () => {
                         {t('gacha oshirish ru')} {item.amount}{' '}
                         {t('gacha oshirish')}
                       </span>
-                      <button className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary">
+                      <Link
+                        href={`/confirm-payment/${item.id}`}
+                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                      >
                         {t('Tanlang')}
-                      </button>
+                      </Link>
                     </div>
                   )
               )}

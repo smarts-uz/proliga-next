@@ -18,7 +18,8 @@ import UserActivitySlice from './features/userActivity/userActivity.slice.js'
 import PackagesSlice from './features/packages/packages.slice.js'
 import PayBalanceSlice from './features/payBalance/payBalance.slice.js'
 import PayExpenseSlice from './features/payExpense/payExpense.slice.js'
-import SystemNotificationSlice  from './features/systemNotification/systemNotification.slice.js'
+import SystemNotificationSlice from './features/systemNotification/systemNotification.slice.js'
+import PrizesSlice from './features/prize/prize.slice.js'
 
 export const rootReducer = combineReducers({
   auth: AuthSlice,
@@ -41,5 +42,5 @@ export const rootReducer = combineReducers({
   payBalance: PayBalanceSlice,
   payExpense: PayExpenseSlice,
   systemNotifications: SystemNotificationSlice,
-
+  prizes: PrizesSlice,
 })

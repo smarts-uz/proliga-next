@@ -13,7 +13,9 @@ const Matches = () => {
   const { currentCompetition } = useSelector((state) => state.competition)
   const { season } = useSelector((state) => state.season)
   const { tours } = useSelector((state) => state.tours)
-  const { matches, tourIndex } = useSelector((state) => state.matches)
+  const { matches, tourIndex, isLoading } = useSelector(
+    (state) => state.matches
+  )
   const [currentTour, setCurrentTour] = useState(null)
   const { t } = useTranslation()
 
@@ -47,7 +49,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="mx-auto flex min-h-[40rem] w-full max-w-[40rem] flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 lg:mx-0 xl:w-1/3">
+    <div className="relative mx-auto flex min-h-[40rem] w-full max-w-[40rem] flex-col gap-2 rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-600 lg:mx-0 xl:w-1/3">
       <div className="flex w-full items-center justify-center gap-4">
         <button
           disabled={tourIndex === 0}
@@ -78,14 +80,28 @@ const Matches = () => {
         </button>
       </div>
       <div className="mt-4 flex flex-1 flex-col gap-1 overflow-x-scroll">
-        {matches?.length === 0 && (
-          <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
-            {t('Matchlar topilmadi!')}
-          </p>
+        {isLoading ? (
+          <div className="absolute bottom-0 left-0 right-0 top-[45%] w-full text-center">
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="mx-auto size-8 animate-spin"
+            />
+          </div>
+        ) : (
+          <>
+            {matches?.length === 0 && (
+              <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
+                {t('Matchlar topilmadi!')}
+              </p>
+            )}
+            {matches?.map((match, index) => (
+              <Match match={match} key={index} />
+            ))}
+          </>
         )}
-        {matches?.map((match, index) => (
-          <Match match={match} key={index} />
-        ))}
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ export const fetchPackages = createAsyncThunk(
       .from('pay_package')
       .select('*')
       .order('priority', { ascending: true })
+      .is('deleted_at', null)
 
     return { data, error }
   }

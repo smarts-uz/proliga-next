@@ -8,6 +8,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { setTeams } from 'app/lib/features/teams/teams.slice'
 import { clearNotifications } from 'app/lib/features/systemNotification/systemNotification.slice'
+import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 export const useLogOut = () => {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export const useLogOut = () => {
       dispatch(setUserTable(null))
       dispatch(setTeams([]))
       dispatch(clearNotifications())
+      dispatch(setLastVisitedTeam(''))
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)

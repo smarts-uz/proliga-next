@@ -9,7 +9,7 @@ const RankingTeams = () => {
   return (
     <div className="w-full rounded-lg bg-black p-6 text-neutral-100">
       <h3 className="text-xl font-bold">{t('Eng kuchli top 3 jamoalar')}</h3>
-      <div className="mt-4 grid grid-cols-2 gap-2 xs:grid-cols-3">
+      <div className="mt-4 grid min-h-32 grid-cols-2 gap-2 xs:grid-cols-3">
         {topTeams?.map((team, index) => (
           <TeamPlace team={team} index={index} key={index} />
         ))}
@@ -20,7 +20,7 @@ const RankingTeams = () => {
 
 const TeamPlace = ({ team, index }) => {
   return (
-    <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
+    <div className="fade-in-fast relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <Image
           src={`/icons/${index + 1}-place.svg`}

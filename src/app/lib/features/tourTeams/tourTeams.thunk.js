@@ -8,6 +8,7 @@ export const fetchTourTeams = createAsyncThunk(
       .from('tour_team')
       .select('*')
       .eq('team_id', team_id)
+      .is('deleted_at', null)
       .order('tour_id', { ascending: true })
 
     return { data, error }

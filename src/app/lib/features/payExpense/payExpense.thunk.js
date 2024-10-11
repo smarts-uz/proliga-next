@@ -9,6 +9,7 @@ export const fetchPayExpenses = createAsyncThunk(
       .select('*, pay_package_id(id, name_uz, name_ru), team_id(id, name)')
       .order('created_at', { ascending: true })
       .eq('user_id', user_id)
+      .is('deleted_at', null)
 
     return { data, error }
   }

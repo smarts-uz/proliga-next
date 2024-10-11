@@ -8,6 +8,7 @@ export const fetchSystemNotification = createAsyncThunk(
     const { data, error } = await supabase
       .from('system_notification')
       .select('*')
+      .is('deleted_at', null)
       .eq('is_broadcast', true)
 
     return { data, error }
@@ -20,6 +21,7 @@ export const fetchPersonalNotification = createAsyncThunk(
     const { data, error } = await supabase
       .from('system_notification')
       .select('*')
+      .is('deleted_at', null)
       .eq('user_id', userId)
 
     return { data, error }

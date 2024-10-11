@@ -6,10 +6,11 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { fetchNews } from 'app/lib/features/news/news.thunk'
 import { useDispatch } from 'react-redux'
+import Image from 'next/image'
 
 const News = () => {
   const dispatch = useDispatch()
-  const { news } = useSelector((store) => store.news)
+  const { news, isLoading } = useSelector((store) => store.news)
   const [page, setPage] = useState(0)
   const [perPage, setPerPage] = useState(14)
   const { t } = useTranslation()
@@ -26,18 +27,32 @@ const News = () => {
   }
 
   return (
-    <div className="mx-auto flex h-auto min-h-[36rem] w-full max-w-[40rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 sm:min-h-[36rem] lg:mx-0 xl:w-1/3">
+    <div className="mx-auto relative flex h-auto min-h-[36rem] w-full max-w-[40rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 sm:min-h-[36rem] lg:mx-0 xl:w-1/3">
       <h3 className="items-start self-start text-xl font-semibold">
         {t('Yangiliklar')}
       </h3>
       <div className="mt-2 w-full flex-1">
-        {news?.map((item, index) => (
-          <Article key={index} item={item} />
-        ))}
-        {news?.length === 0 && (
-          <p className="mt-2 text-center text-neutral-400">
-            {t('Yangiliklar mavjud emas!')}
-          </p>
+        {isLoading ? (
+          <div className="absolute bottom-0 left-0 right-0 top-[45%] w-full text-center">
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="mx-auto size-8 animate-spin"
+            />
+          </div>
+        ) : (
+          <>
+            {news?.map((item, index) => (
+              <Article key={index} item={item} />
+            ))}
+            {news?.length === 0 && (
+              <p className="mt-2 text-center text-neutral-400">
+                {t('Yangiliklar mavjud emas!')}
+              </p>
+            )}
+          </>
         )}
       </div>
       <div className="flex justify-center space-x-1">

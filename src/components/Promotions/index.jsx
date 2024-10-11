@@ -1,3 +1,4 @@
+'use client'
 import PromotionCompete from './Compete'
 import PromotionCreateTeam from './CreateTeam'
 import PromotionGatherPoints from './GatherPoints'

@@ -13,6 +13,10 @@ import GatherPointsSlide from './GatherPointsSlide'
 import MakeTransfersSlide from './MakeTransfersSlide'
 import CompeteSlide from './CompeteSlide'
 import { useTranslation } from 'react-i18next'
+import dynamic from 'next/dynamic'
+const RulesSliderTitle = dynamic(() => import('./RulesSliderTitle'), {
+  ssr: false,
+})
 
 function RulesSlider() {
   const { t } = useTranslation()
@@ -20,11 +24,7 @@ function RulesSlider() {
   return (
     <Gutter>
       <Carousel opts={{ loop: true }}>
-        <div className="mb-2 w-3/4 max-w-[24rem] -skew-x-12 self-start rounded-sm bg-primary md:mb-12 md:max-w-[30rem]">
-          <h3 className="carousel-header text-center font-bold capitalize text-black">
-            {t('Umumiy qoidalar')}
-          </h3>
-        </div>
+        <RulesSliderTitle />
         <CarouselContent className="mx-0 my-4 xl:mx-0 2xl:mx-0">
           <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
             <CreateTeamSlide />

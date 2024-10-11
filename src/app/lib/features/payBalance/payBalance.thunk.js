@@ -9,6 +9,7 @@ export const fetchPayBalance = createAsyncThunk(
       .select('*')
       .order('created_at', { ascending: true })
       .eq('user_id', user_id)
+      .is('deleted_at', null)
 
     return { data, error }
   }
