@@ -17,13 +17,14 @@ import dynamic from 'next/dynamic'
 const RulesSliderTitle = dynamic(() => import('./RulesSliderTitle'), {
   ssr: false,
 })
+import WinPrizesSlide from './WinPrizesSlide'
 
 function RulesSlider() {
   const { t } = useTranslation()
 
   return (
     <Gutter>
-      <Carousel opts={{ loop: true }}>
+      <Carousel opts={{ loop: true }} className="mx-6 xl:mx-8">
         <RulesSliderTitle />
         <CarouselContent className="mx-0 my-4 xl:mx-0 2xl:mx-0">
           <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
@@ -38,9 +39,12 @@ function RulesSlider() {
           <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
             <CompeteSlide />
           </CarouselItem>
+          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+            <WinPrizesSlide />
+          </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious className="left-1 sm:-left-6 xl:-left-0 2xl:-left-12" />
-        <CarouselNext className="right-1 sm:-right-6 xl:-right-0 2xl:-right-12" />
+        <CarouselPrevious className="-left-8" />
+        <CarouselNext className="-right-8" />
       </Carousel>
     </Gutter>
   )

@@ -3,7 +3,6 @@
 import { useDispatch } from 'react-redux'
 import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
@@ -26,25 +25,28 @@ const Prizes = () => {
 
   return (
     <Gutter>
-      <section className="mb-8 mt-4">
+      <section className="mt-4 pb-12">
         <PrizesTitle />
-        <div className="grid grid-rows-4 gap-2">
+        <div className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
           {competition?.map((competition, index) => (
-            <div key={index} className="flex flex-col">
-              <div className="flex items-center gap-2">
+            <div
+              key={index}
+              className="flex flex-col rounded-xl border bg-neutral-800 p-2"
+            >
+              <div className="mb-2 flex items-center gap-2 border-b border-neutral-600 pb-4">
                 <img
                   src={competition.flag}
                   alt={competition.title}
                   className="z-10 size-10 select-none rounded-full bg-white p-1"
                   draggable={false}
                 />
-                <h2 className="mb-1 text-lg md:mb-2 xl:text-xl">
+                <h2 className="text-lg xl:text-xl">
                   {lang === LANGUAGE.uz
                     ? competition?.name
                     : competition?.name_ru}
                 </h2>
               </div>
-              <div className="flex xl:flex-row flex-col gap-1">
+              <div className="flex flex-col gap-2 xl:flex-row">
                 {prizes.map(
                   (prize) =>
                     prize.competition_id.id === competition.id && (
@@ -62,7 +64,7 @@ const Prizes = () => {
 
 const Prize = ({ prize }) => {
   return (
-    <div className="flex max-h-64 max-w-64 flex-col items-center justify-center">
+    <div className="flex h-full w-full flex-col items-center justify-center">
       <p className="mb-1 text-sm md:mb-2 xl:text-base">{prize?.name}</p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
@@ -71,6 +73,10 @@ const Prize = ({ prize }) => {
           className="aspect-auto h-auto w-auto bg-cover"
         />
       </div>
+      <p className="text-lg">
+        <span className="text-3xl font-bold md:text-xl">{prize.order}</span>{' '}
+        O&apos;rin
+      </p>
     </div>
   )
 }

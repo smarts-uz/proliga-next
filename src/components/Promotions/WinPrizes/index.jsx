@@ -24,7 +24,7 @@ const PromotionWinPrizes = () => {
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {limitedData.map(
               (prize, index) =>
-                prize?.image && <Link prize={prize} key={index} />
+                prize?.image && <Prize prize={prize} key={index} />
             )}
           </div>
         </div>
@@ -33,7 +33,7 @@ const PromotionWinPrizes = () => {
   )
 }
 
-const Link = ({ prize }) => {
+const Prize = ({ prize }) => {
   return (
     <div className="flex flex-col items-center justify-center">
       <p className="mb-1 text-lg md:mb-2 xl:text-xl">{prize?.name}</p>
