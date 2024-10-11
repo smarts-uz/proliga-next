@@ -1,9 +1,13 @@
-import Image from 'next/image'
+/* eslint-disable @next/next/no-img-element */
 import Gutter from '../../Gutter'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 const PromotionWinPrizes = () => {
   const { t } = useTranslation()
+  const { prizes } = useSelector((store) => store.prizes)
+
+  const limitedData = prizes?.filter((prize) => prize?.order === 1).slice(0, 4)
 
   return (
     <section className="w-full bg-neutral-800 py-6 md:py-8 xl:py-10 2xl:py-12">
@@ -18,49 +22,29 @@ const PromotionWinPrizes = () => {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="flex flex-col items-center justify-center">
-              <p className="mb-1 text-2xl md:mb-2">Iphone 15 Pro Max</p>
-              <Image
-                width={336}
-                height={319}
-                src="/images/promotion-price1.png"
-                alt="Iphone 15 Pro Max"
-              />
-            </div>
-
-            <div className="flex flex-col items-center justify-center">
-              <p className="mb-1 text-2xl md:mb-2">Playstation 5</p>
-              <Image
-                width={336}
-                height={319}
-                src="/images/promotion-price2.png"
-                alt="Iphone 15 Pro Max"
-              />
-            </div>
-
-            <div className="flex flex-col items-center justify-center">
-              <p className="mb-1 text-2xl md:mb-2">TV Samsung 55</p>
-              <Image
-                width={336}
-                height={319}
-                src="/images/promotion-price3.png"
-                alt="Iphone 15 Pro Max"
-              />
-            </div>
-
-            <div className="flex flex-col items-center justify-center">
-              <p className="mb-1 text-2xl md:mb-2">Apple iPad Pro</p>
-              <Image
-                width={336}
-                height={319}
-                src="/images/promotion-price4.png"
-                alt="Iphone 15 Pro Max"
-              />
-            </div>
+            {limitedData.map(
+              (prize, index) =>
+                prize?.image && <Link prize={prize} key={index} />
+            )}
           </div>
         </div>
       </Gutter>
     </section>
+  )
+}
+
+const Link = ({ prize }) => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <p className="mb-1 text-lg md:mb-2 xl:text-xl">{prize?.name}</p>
+      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
+        <img
+          src={prize?.image}
+          alt={prize?.name}
+          className="aspect-auto h-auto w-auto bg-cover"
+        />
+      </div>
+    </div>
   )
 }
 

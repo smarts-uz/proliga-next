@@ -6,7 +6,7 @@ export const fetchPrizes = createAsyncThunk('prizes/fetchPrizes', async () => {
     .from('prize')
     .select('*')
     .is('deleted_at', null)
-    .order('order', { ascending: false })
+    .order('order', { ascending: true })
 
   return { data, error }
 })
