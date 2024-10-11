@@ -25,7 +25,7 @@ const CabinetTransactionsHistory = () => {
       dispatch(fetchPayBalance({ user_id: userTable?.id }))
       dispatch(fetchPayExpenses({ user_id: userTable?.id }))
     }
-  }, [])
+  }, [dispatch, userTable])
 
   return (
     <>

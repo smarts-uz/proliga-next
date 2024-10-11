@@ -2,8 +2,8 @@
 
 import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
-import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { setCurrentCompetition } from 'app/lib/features/competition/competition.slice'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'

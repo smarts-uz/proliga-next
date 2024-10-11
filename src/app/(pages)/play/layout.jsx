@@ -1,5 +1,8 @@
 import WorldNews from './components/WorldNews'
-import RulesSlider from './components/RulesSlider'
+import dynamic from 'next/dynamic'
+const RulesSlider = dynamic(() => import('./components/RulesSlider'), {
+  ssr: false,
+})
 
 const PlayLayout = ({ children }) => {
   return (

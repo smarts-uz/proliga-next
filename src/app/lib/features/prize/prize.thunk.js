@@ -4,7 +4,7 @@ import { supabase } from 'app/lib/supabaseClient'
 export const fetchPrizes = createAsyncThunk('prizes/fetchPrizes', async () => {
   const { data, error } = await supabase
     .from('prize')
-    .select('*')
+    .select('*, competition_id(id, name, flag)')
     .is('deleted_at', null)
     .order('order', { ascending: true })
 

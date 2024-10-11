@@ -16,6 +16,7 @@ const PromotionCompete = () => {
               width={400}
               className="mx-auto w-full xs:w-3/4 md:mx-0 md:size-80 xl:size-96"
               height={400}
+              draggable={false}
             />
           </div>
           <div className="flex flex-1 flex-col items-start gap-4 md:gap-8">

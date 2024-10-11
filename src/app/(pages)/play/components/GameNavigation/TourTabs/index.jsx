@@ -47,7 +47,7 @@ export default function TourTabs() {
       dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
-  }, [dispatch, currentCompetition, currentTourIndex, selectTours, tourTeams])
+  }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
 
   const { t } = useTranslation()
 
