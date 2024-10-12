@@ -16,11 +16,13 @@ const PromotionMakeTransfers = () => {
           </p>
           <div className="mx-auto mt-10 w-full flex-1 md:w-auto md:items-center md:justify-center">
             <Image
-              width={536}
-              height={193}
+              width={540}
+              height={200}
               src="/images/promotion-transfer.png"
               alt="transfer players"
               className="mx-auto h-full w-full md:mx-0"
+              unoptimized
+              draggable={false}
             />
           </div>
         </div>

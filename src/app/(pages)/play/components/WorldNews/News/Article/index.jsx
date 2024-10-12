@@ -28,7 +28,7 @@ const Article = ({ item }) => {
     <>
       <article
         onClick={toggleModal}
-        className="group w-full p-4 hover:cursor-pointer"
+        className="group w-full py-2 hover:cursor-pointer"
       >
         <div className="flex items-center text-xs text-neutral-400">
           <p className="mr-auto max-w-xs">

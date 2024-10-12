@@ -13,8 +13,8 @@ const PromotionCompete = () => {
             <Image
               src="/images/promotion-stats.png"
               alt="competition"
-              width={400}
               className="mx-auto w-full xs:w-3/4 md:mx-0 md:size-80 xl:size-96"
+              width={400}
               height={400}
               draggable={false}
             />

@@ -12,7 +12,7 @@ const News = () => {
   const dispatch = useDispatch()
   const { news, isLoading } = useSelector((store) => store.news)
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(14)
+  const [perPage, setPerPage] = useState(5)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const News = () => {
   }
 
   return (
-    <div className="mx-auto relative flex h-auto min-h-[36rem] w-full max-w-[40rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 sm:min-h-[36rem] lg:mx-0 xl:w-1/3">
+    <div className="relative mx-auto flex h-auto min-h-[36rem] w-full max-w-[40rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-6 shadow shadow-neutral-600 sm:min-h-[36rem] lg:mx-0 xl:w-1/3">
       <h3 className="items-start self-start text-xl font-semibold">
         {t('Yangiliklar')}
       </h3>
@@ -55,12 +55,13 @@ const News = () => {
           </>
         )}
       </div>
-      <div className="flex justify-center space-x-1">
+      <div className="mt-2 flex justify-center space-x-1">
         <button
           onClick={decrementPage}
-          className="rounded border px-4 py-2 text-neutral-200 hover:opacity-75"
+          disabled={page === 0}
+          className="rounded border px-3 py-1 capitalize text-white hover:underline disabled:opacity-75 disabled:hover:cursor-default disabled:hover:no-underline"
         >
-          {t('Oldingi')}
+          {t('Oldigisi')}
         </button>
         <span className="flex w-10 items-center justify-center rounded border px-4 text-center text-white">
           {page + 1}

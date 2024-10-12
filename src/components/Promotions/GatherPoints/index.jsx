@@ -23,6 +23,7 @@ const PromotionGatherPoints = () => {
               alt="football"
               width={400}
               height={400}
+              draggable={false}
               className="h-full w-full"
             />
           </div>

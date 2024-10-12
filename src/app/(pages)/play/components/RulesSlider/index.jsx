@@ -26,7 +26,7 @@ function RulesSlider() {
     <Gutter>
       <Carousel opts={{ loop: true }} className="mx-6 xl:mx-8">
         <RulesSliderTitle />
-        <CarouselContent className="mx-0 my-4 xl:mx-0 2xl:mx-0">
+        <CarouselContent className="mb-6">
           <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
             <CreateTeamSlide />
           </CarouselItem>
@@ -43,8 +43,8 @@ function RulesSlider() {
             <WinPrizesSlide />
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious className="-left-8" />
-        <CarouselNext className="-right-8" />
+        <CarouselPrevious className="-left-8 xl:-left-10 2xl:-left-12" />
+        <CarouselNext className="-right-8 xl:-right-10 2xl:-right-12" />
       </Carousel>
     </Gutter>
   )

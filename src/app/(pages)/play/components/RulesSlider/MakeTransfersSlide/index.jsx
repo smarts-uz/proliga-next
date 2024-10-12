@@ -9,7 +9,7 @@ const MakeTransfersSlide = () => {
       <h2 className="carousel-header self-center text-center font-bold uppercase xs:justify-start xs:text-start">
         {t('Transferlarni amalga oshiring')}
       </h2>
-      <p className="carousel-text mt-6 self-center text-center text-neutral-400 md:w-3/4 xl:mt-10">
+      <p className="carousel-text mt-4 self-center text-center text-neutral-400 md:w-3/4 xl:mt-8">
         {t('Agar sizning jamoangizdagi')}
       </p>
       <div className="mx-auto mt-10 w-full flex-1 md:w-auto md:items-center md:justify-center">

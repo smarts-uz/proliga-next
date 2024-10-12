@@ -28,6 +28,7 @@ const PromotionCreateTeam = () => {
                   alt="footballers images"
                   className="h-full w-full"
                   src="/images/footballers-tile.png"
+                  draggable={false}
                   unoptimized
                 />
               </div>
@@ -39,6 +40,7 @@ const PromotionCreateTeam = () => {
               width={600}
               height={600}
               className="aspect-[1/1.025] h-full w-full"
+              draggable={false}
               alt="interactive stadium"
             />
           </div>
