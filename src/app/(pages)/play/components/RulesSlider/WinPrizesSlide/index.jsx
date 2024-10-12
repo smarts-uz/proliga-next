@@ -17,14 +17,14 @@ const WinPrizesSlide = () => {
   }, [dispatch])
   const { t } = useTranslation()
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex h-auto flex-col space-y-4 md:space-y-6">
       <div className="space-y-2">
         <h2 className="carousel-header font-bold uppercase">
           {t('Sovrinlarni yutib oling')}
         </h2>
         <p className="carousel-text text-neutral-300">{t('Eng ko‘p ball')}</p>
       </div>
-      <div className="grid grid-cols-2 items-center justify-between gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-2 grid-rows-2 flex-wrap items-center gap-2 sm:grid-cols-3 sm:grid-rows-1 md:gap-4">
         {prizes.map(
           (prize, index) =>
             prize?.competition_id.id === currentCompetition.id && (
@@ -40,9 +40,9 @@ const Prize = ({ prize }) => {
   const { t } = useTranslation()
   const { lang } = useSelector((store) => store.systemLanguage) 
   return (
-    <div className="flex h-full w-full min-w-24 max-w-80 flex-col items-center justify-center">
-      <p className="mb-1 text-sm md:mb-2 md:text-lg xl:text-xl">
-      {lang === LANGUAGE.uz
+    <div className="flex min-w-16 md:max-w-80 flex-col items-center justify-center">
+      <p className="mb-1 text-xs xs:text-sm md:mb-2 md:text-lg xl:text-xl">
+             {lang === LANGUAGE.uz
           ? prize?.name
           : prize?.name_ru}
       </p>

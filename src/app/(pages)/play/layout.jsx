@@ -10,6 +10,9 @@ const PlayLayout = ({ children }) => {
       {children}
       <WorldNews />
       <RulesSlider />
+      {/* <div className="pb-4">
+        <div className="mx-auto h-24 w-full max-w-[1200px] rounded bg-red-400"></div>
+      </div> */}
     </main>
   )
 }

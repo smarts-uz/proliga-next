@@ -12,7 +12,6 @@ import CreateTeamSlide from './CreateTeamSlide'
 import GatherPointsSlide from './GatherPointsSlide'
 import MakeTransfersSlide from './MakeTransfersSlide'
 import CompeteSlide from './CompeteSlide'
-import { useTranslation } from 'react-i18next'
 import dynamic from 'next/dynamic'
 const RulesSliderTitle = dynamic(() => import('./RulesSliderTitle'), {
   ssr: false,
@@ -20,31 +19,29 @@ const RulesSliderTitle = dynamic(() => import('./RulesSliderTitle'), {
 import WinPrizesSlide from './WinPrizesSlide'
 
 function RulesSlider() {
-  const { t } = useTranslation()
-
   return (
     <Gutter>
-      <Carousel opts={{ loop: true }} className="mx-6 xl:mx-8">
+      <Carousel opts={{ loop: true }} className="mx-7 xl:mx-8">
         <RulesSliderTitle />
         <CarouselContent className="mb-6">
-          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+          <CarouselItem className="min-h-[32rem] lg:min-h-[36rem]">
             <CreateTeamSlide />
           </CarouselItem>
-          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+          <CarouselItem className="min-h-[32rem] lg:min-h-[36rem]">
             <GatherPointsSlide />
           </CarouselItem>
-          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+          <CarouselItem className="min-h-[32rem] lg:min-h-[36rem]">
             <MakeTransfersSlide />
           </CarouselItem>
-          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+          <CarouselItem className="min-h-[32rem] lg:min-h-[36rem]">
             <CompeteSlide />
           </CarouselItem>
-          <CarouselItem className="max-h-[36rem] min-h-[30rem] md:min-h-[32rem] lg:min-h-[36rem]">
+          <CarouselItem className="min-h-[32rem] lg:min-h-[36rem]">
             <WinPrizesSlide />
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious className="-left-8 xl:-left-10 2xl:-left-12" />
-        <CarouselNext className="-right-8 xl:-right-10 2xl:-right-12" />
+        <CarouselPrevious className="-left-9 xl:-left-11 2xl:-left-14" />
+        <CarouselNext className="-right-9 xl:-right-11 2xl:-right-14" />
       </Carousel>
     </Gutter>
   )
