@@ -6,12 +6,14 @@ const Matches = dynamic(() => import('./Matches'), {
 const News = dynamic(() => import('./News'), {
   ssr: false,
 })
+import Banner from './Banner'
 
 const WorldNews = () => {
   return (
     <Gutter>
       <section className="mb-6 flex flex-col justify-between gap-4 py-6 lg:flex-row">
         <Matches />
+        <Banner />
         <News />
       </section>
     </Gutter>

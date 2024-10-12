@@ -11,6 +11,7 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
+import { fetchBanners } from 'app/lib/features/banner/banner.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const Play = ({ params }) => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())
     dispatch(fetchPackages())
+    dispatch(fetchBanners())
   }, [dispatch])
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { useTranslation } from 'react-i18next'
+
 const WalletPaymentOption = ({
   setPaymentOption,
   paymentOption,
