@@ -44,8 +44,8 @@ const GetInitialState = ({ children }) => {
   useEffect(() => {
     if (userTable?.id) {
       dispatch(fetchSystemNotification({ userId: userTable.id }))
-      // systemNotifications?.length === 0 &&
-      //   dispatch(setupNotificationListener({ userId: userTable.id }))
+      systemNotifications?.length === 0 &&
+        dispatch(setupNotificationListener({ userId: userTable.id }))
     }
   }, [dispatch, userTable])
 

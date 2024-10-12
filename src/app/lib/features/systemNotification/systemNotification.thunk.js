@@ -8,7 +8,6 @@ export const fetchSystemNotification = createAsyncThunk(
     const { data, error } = await supabase
       .from('system_notification')
       .select('*')
-      .is('deleted_at', null)
       .eq('is_broadcast', true)
 
     return { data, error }
@@ -21,7 +20,6 @@ export const fetchPersonalNotification = createAsyncThunk(
     const { data, error } = await supabase
       .from('system_notification')
       .select('*')
-      .is('deleted_at', null)
       .eq('user_id', userId)
 
     return { data, error }
@@ -30,7 +28,7 @@ export const fetchPersonalNotification = createAsyncThunk(
 
 export const setupNotificationListener = createAsyncThunk(
   'systemNotification/setupNotificationListener',
-  async ({ userId }) => {
+  async ({ userId }, { dispatch }) => {
     try {
       const channel = supabase
         .channel('public:system_notification')
@@ -38,20 +36,20 @@ export const setupNotificationListener = createAsyncThunk(
           'postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'system_notification' },
           (payload) => {
-            const { name, desc, is_broadcast, user_id, created_at } =
-              payload.new
-            console.log(payload)
+            const { name, desc, is_broadcast, user_id } = payload.new;
+            console.log(payload);
 
             if (is_broadcast || user_id === userId) {
-              dispatch(addNotification({ name, desc }))
+              dispatch(addNotification({ name, desc }));
             }
           }
         )
-        .subscribe()
+        .subscribe();
 
-      return channel
+      // Do not dispatch the channel itself
+      return; // If needed, handle channel separately outside Redux
     } catch (error) {
-      toast.error(error.message, { theme: 'dark' })
+      toast.error(error.message, { theme: 'dark' });
     }
   }
-)
+);
