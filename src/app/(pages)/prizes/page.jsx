@@ -8,6 +8,7 @@ import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import dynamic from 'next/dynamic'
 import { LANGUAGE } from 'app/utils/languages.util'
+import { useTranslation } from 'react-i18next'
 const PrizesTitle = dynamic(() => import('./components/PrizesTitle'), {
   ssr: false,
 })
@@ -22,7 +23,7 @@ const Prizes = () => {
     dispatch(fetchPrizes())
     dispatch(fetchCompetition())
   }, [dispatch])
-
+const { t } = useTranslation()
   return (
     <Gutter>
       <section className="mt-4 pb-12">
@@ -64,9 +65,15 @@ const Prizes = () => {
 }
 
 const Prize = ({ prize }) => {
+  const { lang } = useSelector((store) => store.systemLanguage)
+  const { t } = useTranslation()
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <p className="mb-1 text-sm md:mb-2 xl:text-base">{prize?.name}</p>
+      <p className="mb-1 text-sm md:mb-2 xl:text-base">
+         {lang === LANGUAGE.uz
+          ? prize?.name
+          : prize?.name_ru}
+      </p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
           src={prize?.image}
@@ -76,7 +83,7 @@ const Prize = ({ prize }) => {
       </div>
       <p className="text-lg">
         <span className="text-3xl font-bold md:text-xl">{prize.order}</span>{' '}
-        O&apos;rin
+        {t("O'RIN")}
       </p>
     </div>
   )

@@ -4,16 +4,18 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { LANGUAGE } from 'app/utils/languages.util'
+
 const WinPrizesSlide = () => {
   const dispatch = useDispatch()
-  const { t } = useTranslation()
+
   const { prizes } = useSelector((store) => store.prizes)
   const { currentCompetition } = useSelector((store) => store.competition)
 
   useEffect(() => {
     dispatch(fetchPrizes())
   }, [dispatch])
-
+  const { t } = useTranslation()
   return (
     <div className="flex h-auto flex-col space-y-4 md:space-y-6">
       <div className="space-y-2">
@@ -35,10 +37,14 @@ const WinPrizesSlide = () => {
 }
 
 const Prize = ({ prize }) => {
+  const { t } = useTranslation()
+  const { lang } = useSelector((store) => store.systemLanguage) 
   return (
     <div className="flex min-w-16 md:max-w-80 flex-col items-center justify-center">
       <p className="mb-1 text-xs xs:text-sm md:mb-2 md:text-lg xl:text-xl">
-        {prize?.name}
+             {lang === LANGUAGE.uz
+          ? prize?.name
+          : prize?.name_ru}
       </p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
@@ -48,7 +54,8 @@ const Prize = ({ prize }) => {
         />
       </div>
       <p>
-        <span className="font-bold md:text-xl">{prize.order}</span> O&apos;rin
+        <span className="font-bold md:text-xl">{prize.order} </span>
+         {t("O'RIN")}
       </p>
     </div>
   )

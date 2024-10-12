@@ -3,6 +3,8 @@ import Gutter from '../../Gutter'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { LANGUAGE } from 'app/utils/languages.util'
+
 const PromotionWinPrizes = () => {
   const { t } = useTranslation()
   const { prizes } = useSelector((store) => store.prizes)
@@ -34,9 +36,13 @@ const PromotionWinPrizes = () => {
 }
 
 const Prize = ({ prize }) => {
+  const { lang } = useSelector((store) => store.systemLanguage)
   return (
     <div className="flex flex-col items-center justify-center">
-      <p className="mb-1 text-lg md:mb-2 xl:text-xl">{prize?.name}</p>
+      <p className="mb-1 text-lg md:mb-2 xl:text-xl"> 
+        {lang === LANGUAGE.uz
+          ? prize?.name
+          : prize?.name_ru}</p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
           src={prize?.image}
