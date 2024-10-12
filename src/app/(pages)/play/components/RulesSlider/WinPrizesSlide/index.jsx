@@ -15,14 +15,14 @@ const WinPrizesSlide = () => {
   }, [dispatch])
 
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex h-auto flex-col space-y-4 md:space-y-6">
       <div className="space-y-2">
         <h2 className="carousel-header font-bold uppercase">
           {t('Sovrinlarni yutib oling')}
         </h2>
         <p className="carousel-text text-neutral-300">{t('Eng ko‘p ball')}</p>
       </div>
-      <div className="grid grid-cols-2 items-center justify-between gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-2 items-center justify-between gap-2 md:grid-cols-3 md:gap-4">
         {prizes.map(
           (prize, index) =>
             prize?.competition_id.id === currentCompetition.id && (

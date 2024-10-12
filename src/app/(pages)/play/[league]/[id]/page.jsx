@@ -12,6 +12,7 @@ import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import { fetchBanners } from 'app/lib/features/banner/banner.thunk'
+import Gutter from 'components/Gutter'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -56,6 +57,7 @@ const Play = ({ params }) => {
       <section className="flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 pt-20 text-neutral-700">
         <GameNavigation currentTab={gameTab} />
         <CurrentTab paramsId={params.id} currentTab={gameTab} />
+       
       </section>
     </>
   )
