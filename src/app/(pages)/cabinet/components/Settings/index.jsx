@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useUploadUserImage } from 'app/hooks/user/useUploadUserImage/useUploadUserImage'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
+import { toast } from 'react-toastify'
 
 const CabinetSettingsTab = ({ setHomeTab }) => {
   const { t } = useTranslation()
@@ -33,14 +34,9 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
     if (!firstName) {
       toast.warning('Iltimos ismni kiriting', { theme: 'dark' })
     }
-    if (!lastName) {
-      toast.warning('Iltimos familiyangizni kiriting', { theme: 'dark' })
-    }
+
     if (!gender) {
       toast.warning('Iltimos jiningizni tanlang', { theme: 'dark' })
-    }
-    if (!bio || bio.length < 8) {
-      toast.warning('Iltimos bio kiriting', { theme: 'dark' })
     }
 
     if (file) {
