@@ -45,7 +45,7 @@ const Notification = () => {
               </p>
               <p>{notification.created_at}</p>
               <button className="w-auto rounded-md border border-amber-400 p-1 text-xs font-bold">
-                Show
+              {t("Ko'rish")}
               </button>
             </div>
           ))

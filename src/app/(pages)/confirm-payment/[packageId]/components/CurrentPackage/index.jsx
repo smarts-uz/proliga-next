@@ -27,7 +27,7 @@ const CurrentPackage = ({ currentPackage }) => {
           <span className="text-xl font-bold xs:text-2xl md:text-3xl">
             {currentPackage?.price + ' '}
           </span>
-          so&apos;m
+          {t("so'm")}
         </div>
       </div>
     </div>

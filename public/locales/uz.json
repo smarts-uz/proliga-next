@@ -213,6 +213,7 @@
   "Parolni yangilash": "Parolni yangilash",
   "Har bir o'yinchi haqiqiy": "Har bir o'yinchi haqiqiy o'yinlarda qilgan harakatlari uchun ochko oladi yoki yo'qotadi. Ochkolar soni o'yinchining roliga qarab farq qilishi mumkin. Masalan, himoyachi gol uchun 6 ochko, hujumchi esa 4 ochko oladi",
   "Keyingi Tur": "Keyingi Tur",
+  "Yutuqlar": "Yutuqlar",
   "Tur": "Tur",
   "Turdagi ochkolar": "Turdagi ochkolar",
   "Turnirdagi o'rtacha ochkolar": "Turnirdagi o'rtacha ochkolar",
@@ -221,7 +222,6 @@
   "active": "",
   "activity": "",
   "amount": "",
-  "Yutuqlar": "Yutuqlar",
   "Tangalar miqdorini": "Tangalar miqdorini",
   "Biz bilan yarating": "Biz bilan yarating",
   "user_activity_buy_package_balance": "{team_name} jamoasi o'z balansini {balans} ga oshirdi\r\n",
@@ -452,5 +452,9 @@
   "QO'": "QO'",
   "AG": "AG",
   "O'2": "O'2",
-  "Avto Gol": "Avto Gol"
+  "Avto Gol": "Avto Gol",
+  "O'RIN": "O'RIN",
+  "Yar Himoyachi": "Yar Himoyachi",
+  "Clubni nomi": "Clubni nomi",
+  "Ko'rish": "Ko'rish"
 }
