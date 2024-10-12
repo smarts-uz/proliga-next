@@ -31,10 +31,9 @@ function UserCabinet() {
           />
         )}
         {tab === SETTINGSTAB.SETTINGS && (
-          <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.HOME)} />
+          <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.PROFILE)} />
         )}
         {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
-        {/* {tab === SETTINGSTAB.LANGUAGE && <CabinetLanguageTab />} */}
         {tab === SETTINGSTAB.TRANSACTIONHISTORY && (
           <CabinetTransactionsHistory />
         )}
