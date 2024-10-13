@@ -41,13 +41,13 @@ const GetInitialState = ({ children }) => {
     }
   }, [dispatch, userAuth, userTable, router, path])
 
-  useEffect(() => {
-    if (userTable?.id) {
-      dispatch(fetchSystemNotification({ userId: userTable.id }))
-      systemNotifications?.length === 0 &&
-        dispatch(setupNotificationListener({ userId: userTable.id }))
-    }
-  }, [dispatch, userTable])
+  // useEffect(() => {
+  //   if (userTable?.id) {
+  //     dispatch(fetchSystemNotification({ userId: userTable.id }))
+  //     systemNotifications?.length === 0 &&
+  //       dispatch(setupNotificationListener({ userId: userTable.id }))
+  //   }
+  // }, [dispatch, userTable])
 
   useEffect(() => {
     if (lang !== userTable?.language && userTable?.id) {

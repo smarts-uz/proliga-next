@@ -51,7 +51,8 @@ const SignUpForm = ({ onClick }) => {
       setPassword('')
       setConfirmPassword('')
     }
-  }, [userAuth, active, phone, isLoading, error])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAuth, active, phone, isLoading, error, data])
 
   useEffect(() => {
     if (userAuth && userTable && active) {
