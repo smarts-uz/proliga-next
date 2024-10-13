@@ -3,7 +3,8 @@ import { supabase } from 'app/lib/supabaseClient'
 
 export const fetchTours = createAsyncThunk(
   'tours/fetchTours',
-  async ({ competition_id }) => {
+  async ({ competition_id, registered_tour_id }) => {
+    console.log('registered_tour_id', registered_tour_id)
     const { data, error } = await supabase
       .from('tour')
       .select('*')
@@ -11,6 +12,6 @@ export const fetchTours = createAsyncThunk(
       .is('deleted_at', null)
       .order('order', { ascending: true })
 
-    return { data, error }
+    return { data, error, registered_tour_id }
   }
 )

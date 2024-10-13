@@ -10,20 +10,14 @@ export const toursExtraReducer = (builder) => {
       state.isLoading = false
       state.tours = action.payload.data
       let tour = state.tours.find(
-        (tour) => tour.status === TOUR.notStartedTransfer
+        (tour) => tour.id === action.payload.registered_tour_id
       )
       if (!tour) {
-        tour = state.tours.find(
-          (tour) =>
-            tour.status === TOUR.completed &&
-            tour.id >= action.payload.registered_tour_id
-        )
-      }
-      if (!tour) {
-        tour = state.tours.find((tour) => tour.status === TOUR.inProcess)
+        state.currentTour = state.tours[0]
       }
       if (tour) {
         state.currentTour = tour
+        state.registeredTour = tour
         state.currentTourIndex = state.tours.indexOf(tour)
       }
     })

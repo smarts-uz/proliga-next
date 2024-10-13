@@ -1,12 +1,28 @@
-import React from 'react'
+/* eslint-disable @next/next/no-img-element */
+'use client'
+import { useSelector } from 'react-redux'
 
 const Banner = () => {
+  const { banners } = useSelector((store) => store.banner)
+
   return (
-    <div className="aspect- relative flex h-auto min-h-[36rem] w-full max-w-[26rem] flex-col items-center justify-between overflow-hidden rounded-xl px-0 shadow shadow-neutral-600 sm:min-h-[36rem]">
-      <div className="mb-2 block h-1/5 w-full rounded bg-red-400"></div>
-      <div className="block h-4/5 w-full rounded bg-red-400"></div>
+    <div className="relative mx-auto flex h-auto min-h-[36rem] min-w-[300px] max-w-[340px] flex-col items-center justify-between overflow-hidden sm:min-h-[36rem] lg:mx-0">
+      <div className="mb-2 block h-[100px] w-[300px] overflow-hidden rounded">
+        <img
+          src={banners[7]?.content_url ?? ''}
+          alt={banners[1]?.name}
+          className="h-full w-full"
+        />
+      </div>
+      <div className="block h-[600px] w-[300px] overflow-hidden rounded">
+        <img
+          src={banners[4]?.content_url ?? ''}
+          alt={banners[4]?.name}
+          className="h-full w-full"
+        />
+        {/*  */}
+      </div>
     </div>
-    // <div className="block h-auto min-w-[10rem] rounded bg-red-400"></div>
   )
 }
 

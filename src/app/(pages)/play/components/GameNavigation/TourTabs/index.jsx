@@ -4,10 +4,7 @@ import StyledTabs from './StyledTabs'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
-import {
-  setCurrentTourIndex,
-  setRegisteredTour,
-} from 'app/lib/features/tours/tours.slice'
+import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
 import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
@@ -16,10 +13,9 @@ import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
-  const { currentTeam } = useSelector((state) => state.currentTeam)
   const { currentCompetition } = useSelector((state) => state.competition)
   const selectedTours = useSelector(selectTours)
-  const { currentTourIndex, tours, registeredTour } = useSelector(
+  const { currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
   const { currentTourTeamIndex, tourTeams } = useSelector(
@@ -72,12 +68,6 @@ export default function TourTabs() {
     dispatch(setCurrentTourIndex(index))
     dispatch(setMatchesTourIndex(index))
   }
-
-  useEffect(() => {
-    if (currentTeam?.registered_tour_id && tours?.length > 0) {
-      dispatch(setRegisteredTour(currentTeam?.registered_tour_id))
-    }
-  }, [currentTeam, tours, dispatch])
 
   return (
     <Box

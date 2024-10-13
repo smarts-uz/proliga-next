@@ -30,15 +30,10 @@ export const tourSlice = createSlice({
     setTab: (state, action) => {
       state.gameTab = action.payload
     },
-    setRegisteredTour: (state, action) => {
-      const tourId = action.payload
-      state.registeredTour = state.tours.find((tour) => tour.id === tourId)
-    },
   },
   extraReducers: toursExtraReducer,
 })
 
-export const { setCurrentTourIndex, setTab, setRegisteredTour } =
-  tourSlice.actions
+export const { setCurrentTourIndex, setTab } = tourSlice.actions
 
 export default tourSlice.reducer
