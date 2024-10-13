@@ -20,12 +20,7 @@ const SignUpForm = ({ onClick }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
   const { userAuth, userTable } = useSelector((store) => store.auth)
-  const {
-    isLoading: tableIsLoading,
-    error: tableError,
-    data: tableData,
-    updateUserTable,
-  } = useUpdateUserTable()
+  const { isLoading: tableIsLoading, updateUserTable } = useUpdateUserTable()
 
   const router = useRouter()
 
@@ -51,7 +46,7 @@ const SignUpForm = ({ onClick }) => {
       setPassword('')
       setConfirmPassword('')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth, active, phone, isLoading, error, data])
 
   useEffect(() => {

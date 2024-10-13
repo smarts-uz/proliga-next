@@ -39,15 +39,15 @@ const Prize = ({ prize }) => {
   const { lang } = useSelector((store) => store.systemLanguage)
   return (
     <div className="flex flex-col items-center justify-center">
-      <p className="mb-1 text-lg md:mb-2 xl:text-xl"> 
-        {lang === LANGUAGE.uz
-          ? prize?.name
-          : prize?.name_ru}</p>
+      <p className="mb-1 text-lg md:mb-2 xl:text-xl">
+        {lang === LANGUAGE.uz ? prize?.name : prize?.name_ru}
+      </p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
           src={prize?.image}
           alt={prize?.name}
-          className="aspect-auto h-auto w-auto bg-cover"
+          draggable={false}
+          className="aspect-auto h-auto w-auto select-none bg-cover"
         />
       </div>
     </div>
