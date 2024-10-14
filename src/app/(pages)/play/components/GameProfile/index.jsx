@@ -12,7 +12,7 @@ const GameProfile = () => {
   const { currentTour } = useSelector((store) => store.tours)
 
   return (
-    <main className="flex w-full flex-col justify-between gap-2 lg:flex-row lg:gap-4">
+    <main className="flex w-full flex-col justify-between gap-2 lg:flex-row">
       <div className="h-full w-full lg:w-1/2">
         <div className="relative h-auto w-full">
           <Image
@@ -21,6 +21,7 @@ const GameProfile = () => {
             width={700}
             height={600}
             className="w-full rounded-sm"
+            priority
           />
           <ProfilePlayersStructure />
         </div>

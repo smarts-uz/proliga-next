@@ -20,6 +20,7 @@ const Transfer = () => {
             width={700}
             height={600}
             draggable={false}
+            priority
             className="w-full select-none rounded-sm"
           />
           {currentTour?.status === TOUR.notStartedTransfer && (

@@ -4,6 +4,14 @@ import { useMemo } from 'react'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { useTranslation } from 'react-i18next'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
 
 const ProfileStadiumForm = () => {
   const { t } = useTranslation()
@@ -80,38 +88,36 @@ const ProfileStadiumForm = () => {
       onSubmit={handleSubmit}
       className="mt-2 flex justify-between gap-x-1 text-black"
     >
-      <select
+      <Select
         name="formation"
         id="formation"
-        onChange={(e) => dispatch(setCaptain(e.target.value))}
-        className="w-full max-w-56 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none"
+        value={teamConcat.find((player) => player.is_captain)?.player_id ?? ''}
+        onValueChange={(value) => dispatch(setCaptain(value))}
       >
-        <option
-          value=""
-          className="checked:bg-neutral-700 active:bg-neutral-800"
-        >
-          {t('Kapitan')}
-        </option>
-        {teamConcat.map(
-          (player) =>
-            player.name && (
-              <option
-                className="bg-neutral-950 checked:bg-neutral-800"
-                value={player.player_id}
-                key={player.id}
-                selected={player.is_captain}
-              >
-                {player.name}
-              </option>
-            )
-        )}
-      </select>
-      <button
+        <SelectTrigger className="w-full min-w-36 max-w-56 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
+          <SelectValue placeholder={t('Kapitan tanlang')} />
+        </SelectTrigger>
+        <SelectContent>
+          {teamConcat.map(
+            (player) =>
+              player.name && (
+                <SelectItem
+                  value={player.player_id}
+                  key={player.id}
+                  selected={player.is_captain}
+                >
+                  {player.name}
+                </SelectItem>
+              )
+          )}
+        </SelectContent>
+      </Select>
+      <Button
         type="submit"
-        className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
+        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black md:text-base"
       >
         {t('Saqlash')}
-      </button>
+      </Button>
     </form>
   )
 }

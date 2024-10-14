@@ -220,7 +220,7 @@ const TransferStadiumForm = () => {
             width={24}
             height={24}
             draggable={false}
-            className="filter-white size-6"
+            className="filter-white size-6 h-auto w-auto"
           />
         </Button>
       </div>
