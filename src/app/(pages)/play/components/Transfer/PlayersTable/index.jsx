@@ -113,9 +113,9 @@ function PlayersTable() {
   })
 
   return (
-    <div className="fade-in-fast h-min min-h-full border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2 xl:text-base">
+    <div className="fade-in-fast min-h-auto h-min w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2">
       <TeamOverview />
-      <div className="flex w-full flex-col gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid sm:grid-cols-4 md:gap-2 md:text-sm lg:text-base xl:gap-y-4">
+      <div className="flex w-full flex-col gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid sm:grid-cols-4 md:gap-1 md:text-sm lg:text-base xl:gap-y-2">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>

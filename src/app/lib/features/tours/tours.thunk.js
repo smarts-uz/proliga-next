@@ -4,7 +4,6 @@ import { supabase } from 'app/lib/supabaseClient'
 export const fetchTours = createAsyncThunk(
   'tours/fetchTours',
   async ({ competition_id, registered_tour_id }) => {
-    console.log('registered_tour_id', registered_tour_id)
     const { data, error } = await supabase
       .from('tour')
       .select('*')

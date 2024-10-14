@@ -5,7 +5,7 @@ const JournalPagination = ({ decrementPage, incrementPage, page }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="mt-auto flex items-center justify-center gap-2 py-2">
+    <div className="mt-auto h-auto flex items-center justify-center gap-2 pt-2">
       <button
         onClick={decrementPage}
         disabled={page === 0}

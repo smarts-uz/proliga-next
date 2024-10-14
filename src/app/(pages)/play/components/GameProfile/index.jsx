@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Gutter from '../../../../../components/Gutter'
 import ProfileStadiumForm from './ProfileStadiumForm'
 import ProfilePlayersStructure from './PlayersStructure'
 import { useSelector } from 'react-redux'
@@ -20,7 +19,6 @@ const GameProfile = () => {
             src="/icons/stadium.svg"
             alt="stadium"
             width={700}
-            S
             height={600}
             className="w-full rounded-sm"
           />

@@ -63,7 +63,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   }
 
   return (
-    <div className="col-span-4 flex w-full gap-2 overflow-x-scroll text-xs xs:text-sm lg:gap-4 lg:text-base">
+    <section className="col-span-4 flex w-full overflow-x-scroll text-xs xs:text-sm sm:gap-2 lg:gap-4 lg:text-base">
       {DATA.map((obj, index) => (
         <button
           key={index}
@@ -75,7 +75,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
           {obj.title}
         </button>
       ))}
-    </div>
+    </section>
   )
 }
 

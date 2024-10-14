@@ -13,7 +13,7 @@ import { fetchPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import { fetchBanners } from 'app/lib/features/banner/banner.thunk'
-import Gutter from 'components/Gutter'
+import { TABS } from 'app/utils/tabs.util'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -54,28 +54,18 @@ const Play = ({ params }) => {
   }, [dispatch, currentTeam])
 
   return (
-    <div>
-      {/* <Gutter> */}
-      {/* <div className="absolute -left-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
-        <img
-          src={'/images/banner.jpg'}
-          alt={'banner'}
-          className="h-full w-full"
-        />
-      </div>
-      <div className="absolute -right-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
-        <img
-          src={'/images/banner.jpg'}
-          alt={'banner'}
-          className="h-full w-full"
-        />
-      </div> */}
-      {/* </Gutter> */}
-      <section className="flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 pt-20 text-neutral-700">
+    <>
+      <section
+        className={`flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 ${
+          gameTab === TABS.GameProfile || gameTab === TABS.Transfer
+            ? 'pt-20'
+            : 'pt-16'
+        } text-neutral-700`}
+      >
         <GameNavigation currentTab={gameTab} />
         <CurrentTab paramsId={params.id} currentTab={gameTab} />
       </section>
-    </div>
+    </>
   )
 }
 

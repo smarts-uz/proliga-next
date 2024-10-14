@@ -37,7 +37,6 @@ export const setupNotificationListener = createAsyncThunk(
           { event: 'INSERT', schema: 'public', table: 'system_notification' },
           (payload) => {
             const { name, desc, is_broadcast, user_id } = payload.new;
-            console.log(payload);
 
             if (is_broadcast || user_id === userId) {
               dispatch(addNotification({ name, desc }));

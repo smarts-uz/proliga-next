@@ -13,6 +13,14 @@ import { revertTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slic
 import { useTranslation } from 'react-i18next'
 import { useUpdateTourTeam } from 'app/hooks/transfer/useUpdateTourTeam/useUpdateTourTeam.index'
 import { useAutoGenerateTeamPlayers } from 'app/hooks/transfer/useAutoGenerateTeamPlayers/useAutoGenerateTeamPlayers'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -154,43 +162,40 @@ const TransferStadiumForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex justify-between gap-x-0.5 text-black xs:gap-x-1"
+      className="mt-2 flex justify-between gap-x-0 text-black xs:gap-x-0.5 sm:gap-x-1"
     >
-      <select
+      <Select
         name="formation"
         id="formation"
-        onChange={(e) => dispatch(setCaptain(e.target.value))}
-        className="w-36 flex-1 rounded-sm border border-neutral-400 bg-neutral-950 p-1.5 font-semibold text-neutral-50 outline-none 2xs:w-36 xs:w-40 xs:max-w-80 sm:w-max lg:min-w-56"
+        value={teamConcat.find((player) => player.is_captain)?.player_id ?? ''}
+        onValueChange={(value) => dispatch(setCaptain(value))}
       >
-        <option
-          value=""
-          className="checked:bg-neutral-700 active:bg-neutral-800"
-        >
-          {t('Kapitan')}
-        </option>
-        {teamConcat.map(
-          (player) =>
-            player.name && (
-              <option
-                className="bg-neutral-950 checked:bg-neutral-800"
-                value={player.player_id}
-                key={player.id}
-                selected={player.is_captain}
-              >
-                {player.name}
-              </option>
-            )
-        )}
-      </select>
+        <SelectTrigger className="w-full min-w-36 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
+          <SelectValue placeholder={t('Kapitan tanlang')} />
+        </SelectTrigger>
+        <SelectContent>
+          {teamConcat.map(
+            (player) =>
+              player.name && (
+                <SelectItem
+                  value={player.player_id}
+                  key={player.id}
+                  selected={player.is_captain}
+                >
+                  {player.name}
+                </SelectItem>
+              )
+          )}
+        </SelectContent>
+      </Select>
       <div className="flex w-full justify-center gap-0.5 xs:gap-1">
         {teamCreateBtns && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <Button
             onClick={handleAutoGenerateTeamPlayers}
             type="button"
+            variant="default"
             title="Avto jamoa yigish"
-            className="flex w-full min-w-5 max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
+            className="flex w-full min-w-5 max-w-10 items-center justify-center gap-1 rounded border border-neutral-400 bg-neutral-950 px-2 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
           >
             <Image
               src="/icons/auto.svg"
@@ -200,15 +205,14 @@ const TransferStadiumForm = () => {
               draggable={false}
               className="filter-white size-6"
             />
-          </motion.button>
+          </Button>
         )}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <Button
           type="button"
+          variant="default"
           onClick={() => dispatch(revertTeamPlayers())}
           title="orqaga qaytish "
-          className="flex w-full max-w-10 items-center justify-center gap-1 rounded-sm border border-neutral-400 bg-neutral-950 px-1.5 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
+          className="flex w-full max-w-10 items-center justify-center gap-1 rounded border border-neutral-400 bg-neutral-950 px-2 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
         >
           <Image
             src="/icons/revert.svg"
@@ -218,14 +222,14 @@ const TransferStadiumForm = () => {
             draggable={false}
             className="filter-white size-6"
           />
-        </motion.button>
+        </Button>
       </div>
-      <button
+      <Button
         type="submit"
-        className="rounded-sm border bg-black px-4 text-lg text-white transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:px-6 md:px-10"
+        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black md:text-base"
       >
         {t('Saqlash')}
-      </button>
+      </Button>
     </form>
   )
 }
