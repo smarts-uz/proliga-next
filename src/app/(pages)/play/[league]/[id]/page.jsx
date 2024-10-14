@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import GameNavigation from '../../components/GameNavigation'
@@ -53,13 +54,28 @@ const Play = ({ params }) => {
   }, [dispatch, currentTeam])
 
   return (
-    <>
+    <div>
+      {/* <Gutter> */}
+      {/* <div className="absolute -left-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+        <img
+          src={'/images/banner.jpg'}
+          alt={'banner'}
+          className="h-full w-full"
+        />
+      </div>
+      <div className="absolute -right-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+        <img
+          src={'/images/banner.jpg'}
+          alt={'banner'}
+          className="h-full w-full"
+        />
+      </div> */}
+      {/* </Gutter> */}
       <section className="flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-900 to-blue-950 pb-4 pt-20 text-neutral-700">
         <GameNavigation currentTab={gameTab} />
         <CurrentTab paramsId={params.id} currentTab={gameTab} />
-       
       </section>
-    </>
+    </div>
   )
 }
 

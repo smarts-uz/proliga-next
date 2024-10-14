@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import GameProfile from '../GameProfile'
@@ -15,6 +16,7 @@ import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk
 import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
+import Gutter from 'components/Gutter'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -98,7 +100,11 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       player.name && teamPlayersId.push(player.player_id)
     })
 
-    if (currentTour?.id && currentTeam?.competition_id?.id) {
+    if (
+      currentTour?.id &&
+      currentTeam?.competition_id?.id &&
+      teamPlayersId?.length > 0
+    ) {
       dispatch(
         fetchPlayerPoint({
           competition_id: currentTeam.competition_id.id,
@@ -110,13 +116,36 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [dispatch, currentTour, currentTeam, teamConcat])
 
   return (
-    <>
-      {currentTab === TABS.GameProfile && <GameProfile />}
-      {currentTab === TABS.Transfer && <Transfer paramsId={paramsId} />}
-      {currentTab === TABS.Statistics && <Statistics />}
-      {currentTab === TABS.Journal && <Journal />}
-      {currentTab === TABS.Tournament && <Tournament />}
-    </>
+    <Gutter>
+      <div className="flex gap-2">
+        {/* <div className="absolute -left-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+        <img
+        src={'/images/banner.jpg'}
+        alt={'banner'}
+        className="h-full w-full"
+        />
+        </div> */}
+        <div className="hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+          <img
+            src={'/images/banner.jpg'}
+            alt={'banner'}
+            className="h-full w-full"
+          />
+        </div>
+        {currentTab === TABS.GameProfile && <GameProfile />}
+        {currentTab === TABS.Transfer && <Transfer paramsId={paramsId} />}
+        {currentTab === TABS.Statistics && <Statistics />}
+        {currentTab === TABS.Journal && <Journal />}
+        {currentTab === TABS.Tournament && <Tournament />}
+        <div className="hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+          <img
+            src={'/images/banner.jpg'}
+            alt={'banner'}
+            className="h-full w-full"
+          />
+        </div>
+      </div>
+    </Gutter>
   )
 }
 

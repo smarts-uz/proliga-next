@@ -10,7 +10,7 @@ import StatisticsTable from './Table'
 const Statistics = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(14)
+  const [perPage, setPerPage] = useState(12)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
 
@@ -35,19 +35,17 @@ const Statistics = () => {
   }
 
   return (
-    <Gutter>
-      <section className="flex w-full flex-col gap-4 lg:flex-row">
-        <div className="flex h-full min-h-[40.5rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
-          <StatisticsTable />
-          <StatisticsPagination
-            incrementPage={incrementPage}
-            decrementPage={decrementPage}
-            page={page}
-          />
-        </div>
-        <TopTeams />
-      </section>
-    </Gutter>
+    <section className="flex w-full flex-col gap-4 lg:flex-row">
+      <div className="flex h-auto min-h-[40.5rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
+        <StatisticsTable />
+        <StatisticsPagination
+          incrementPage={incrementPage}
+          decrementPage={decrementPage}
+          page={page}
+        />
+      </div>
+      <TopTeams />
+    </section>
   )
 }
 

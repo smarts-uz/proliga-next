@@ -110,7 +110,7 @@ const MobileProfile = ({
   return (
     <div className="flex w-max items-center justify-center gap-4 lg:hidden">
       <ChangeLanguageDropdown />
-      <button onClick={handleToggleNotifications}>
+      <button onClick={handleToggleNotifications} className="relative">
         <Image
           src={'/icons/bell.svg'}
           alt="bell"
@@ -119,6 +119,7 @@ const MobileProfile = ({
           height={24}
           className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
         />
+        <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
       </button>
       <span
         onClick={handleToggleModal}
@@ -155,7 +156,7 @@ const DesktopProfile = ({
   return (
     <div className="hidden w-max items-center justify-center gap-4 lg:flex">
       <ChangeLanguageDropdown />
-      <button onClick={handleToggleNotifications}>
+      <button onClick={handleToggleNotifications} className="relative">
         <Image
           src={'/icons/bell.svg'}
           alt="bell"
@@ -164,6 +165,7 @@ const DesktopProfile = ({
           height={24}
           className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
         />
+        <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
       </button>
       <span
         onClick={handleToggleDropdown}

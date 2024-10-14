@@ -39,20 +39,18 @@ const Tournament = () => {
   }
 
   return (
-    <Gutter>
-      <section className="flex flex-col gap-4 lg:flex-row">
-        <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-6 text-neutral-200 lg:w-2/3">
-          <TournamentSelectedTour setTour={setTour} tour={tour} />
-          <TournamentTable />
-          <TournamentPagination
-            incrementPage={incrementPage}
-            decrementPage={decrementPage}
-            page={page}
-          />
-        </div>
-        <TopTeams />
-      </section>
-    </Gutter>
+    <section className="flex w-full flex-col gap-4 lg:flex-row">
+      <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
+        <TournamentSelectedTour setTour={setTour} tour={tour} />
+        <TournamentTable />
+        <TournamentPagination
+          incrementPage={incrementPage}
+          decrementPage={decrementPage}
+          page={page}
+        />
+      </div>
+      <TopTeams />
+    </section>
   )
 }
 
