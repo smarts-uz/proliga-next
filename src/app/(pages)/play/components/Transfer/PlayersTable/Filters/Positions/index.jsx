@@ -25,7 +25,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
       title: t('Yar Himoyachi'),
       key: 'MID',
     },
-    { 
+    {
       title: t('Hujumchi'),
       key: 'STR',
     },

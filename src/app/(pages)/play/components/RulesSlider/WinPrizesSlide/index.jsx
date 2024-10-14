@@ -24,7 +24,7 @@ const WinPrizesSlide = () => {
         </h2>
         <p className="carousel-text text-neutral-300">{t('Eng ko‘p ball')}</p>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 flex-wrap items-center gap-2 sm:grid-cols-3 sm:grid-rows-1 md:gap-4">
+      <div className="z grid grid-cols-2 grid-rows-2 justify-center gap-2 sm:flex sm:grid-rows-1 md:gap-4 xl:gap-8">
         {prizes.map(
           (prize, index) =>
             prize?.competition_id.id === currentCompetition.id && (
@@ -38,13 +38,11 @@ const WinPrizesSlide = () => {
 
 const Prize = ({ prize }) => {
   const { t } = useTranslation()
-  const { lang } = useSelector((store) => store.systemLanguage) 
+  const { lang } = useSelector((store) => store.systemLanguage)
   return (
-    <div className="flex min-w-16 md:max-w-80 flex-col items-center justify-center">
+    <div className="flex min-w-16 flex-1 flex-col items-center justify-center md:max-w-80">
       <p className="mb-1 text-xs xs:text-sm md:mb-2 md:text-lg xl:text-xl">
-             {lang === LANGUAGE.uz
-          ? prize?.name
-          : prize?.name_ru}
+        {lang === LANGUAGE.uz ? prize?.name : prize?.name_ru}
       </p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
@@ -55,7 +53,7 @@ const Prize = ({ prize }) => {
       </div>
       <p>
         <span className="font-bold md:text-xl">{prize.order} </span>
-         {t("O'RIN")}
+        {t("O'RIN")}
       </p>
     </div>
   )

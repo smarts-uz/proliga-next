@@ -51,7 +51,7 @@ const TeamMaxTransfers = () => {
             className="filter-neutral-400 group-hover:filter-neutral-50 size-3.5 translate-x-0 rotate-45 self-center transition-all group-hover:translate-x-1 xs:size-4"
           />
         </header>
-        <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
+        <p className="text-2xl font-bold sm:text-3xl">
           <span
             className={
               currentTransferCount === 0 ? 'text-red-500' : 'text-neutral-100'

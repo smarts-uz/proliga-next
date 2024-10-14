@@ -1,7 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectClubs } from 'app/lib/features/clubs/clubs.selector'
-import { useTranslation } from 'react-i18next'
 import {
   Select,
   SelectContent,

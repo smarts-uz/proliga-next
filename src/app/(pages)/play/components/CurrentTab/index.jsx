@@ -118,13 +118,6 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   return (
     <Gutter>
       <div className="flex gap-2">
-        {/* <div className="absolute -left-20 bottom-0 top-0 mt-24 hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
-        <img
-        src={'/images/banner.jpg'}
-        alt={'banner'}
-        className="h-full w-full"
-        />
-        </div> */}
         <div className="mt-auto hidden h-[600px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
           <img
             src={'/images/banner.jpg'}

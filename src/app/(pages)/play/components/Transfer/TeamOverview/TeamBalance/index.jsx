@@ -33,7 +33,7 @@ const TeamBalance = () => {
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
             className="text-xs sm:text-sm"
           >
-            {t("Balans")}
+            {t('Balans')}
           </h3>
           <Image
             src="/icons/arrow-bold-up.svg"
@@ -43,9 +43,7 @@ const TeamBalance = () => {
             height={16}
           />
         </header>
-        <p className="text-2xl font-bold sm:text-3xl md:text-4xl">
-          {teamBalance ?? '00'}
-        </p>
+        <p className="text-2xl font-bold sm:text-3xl">{teamBalance ?? '00'}</p>
       </div>
       {isModalOpen && <TeamBalanceModal handleModal={handleModal} />}
     </>
