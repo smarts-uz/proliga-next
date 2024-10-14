@@ -17,6 +17,8 @@ import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 import Gutter from 'components/Gutter'
+import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
+import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -24,7 +26,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { teamPrice } = useSelector((store) => store.teamPlayers)
-
+  const { currentCompetition } = useSelector((store) => store.competition)
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -114,6 +116,21 @@ const CurrentTab = ({ currentTab, paramsId }) => {
       )
     }
   }, [dispatch, currentTour, currentTeam, teamConcat])
+
+  useEffect(() => {
+    if (currentCompetition?.id) {
+      dispatch(
+        fetchTopTeams({
+          competition_id: currentCompetition?.id,
+        })
+      )
+      dispatch(
+        fetchTopPlayers({
+          competition_id: currentCompetition?.id,
+        })
+      )
+    }
+  }, [currentCompetition, dispatch])
 
   return (
     <Gutter>

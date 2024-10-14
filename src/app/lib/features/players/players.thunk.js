@@ -20,13 +20,9 @@ export const fetchPlayers = createAsyncThunk(
 export const fetchTopPlayers = createAsyncThunk(
   'players/fetchTopPlayers',
   async ({ competition_id }) => {
-    const { data, error } = await supabase
-      .from('player')
-      .select('*')
-      // .eq('competition_id', competition_id)
-      .order('point', { ascending: false })
-      // .is('deleted_at', null)
-      .limit(3)
+    const { data, error } = await supabase.rpc('get__player_point_desc', {
+      comp_id: competition_id,
+    })
 
     return { data, error }
   }

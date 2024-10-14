@@ -12,9 +12,13 @@ const RankingPlayers = () => {
         {t('Eng kuchli top 3 - futbolchilar')}
       </h3>
       <div className="mt-4 grid grid-cols-2 gap-2 xs:grid-cols-3">
-        {topPlayers?.map((player, index) => (
-          <PlayerPlace key={index} player={player} index={index} />
-        ))}
+        {topPlayers?.length > 0 ? (
+          topPlayers?.map((player, index) => (
+            <PlayerPlace key={index} player={player} index={index} />
+          ))
+        ) : (
+          <div>Oyinchilar yoq</div>
+        )}
       </div>
     </div>
   )
@@ -22,7 +26,7 @@ const RankingPlayers = () => {
 
 const PlayerPlace = ({ player, index }) => {
   return (
-    <div className="relative min-h-32  rounded-lg bg-neutral-100 p-2">
+    <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <img
           src={player?.image}
@@ -40,7 +44,7 @@ const PlayerPlace = ({ player, index }) => {
         {player?.club?.name ?? 'team'}
       </h4>
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
-        {player.name}
+        {player?.name}
       </p>
       <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}

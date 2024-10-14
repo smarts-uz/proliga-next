@@ -9,10 +9,16 @@ const RankingTeams = () => {
   return (
     <div className="w-full rounded-lg bg-black p-6 text-neutral-100">
       <h3 className="text-xl font-bold">{t('Eng kuchli top 3 jamoalar')}</h3>
-      <div className="mt-4 grid min-h-32 grid-cols-2 gap-2 xs:grid-cols-3">
-        {topTeams?.map((team, index) => (
-          <TeamPlace team={team} index={index} key={index} />
-        ))}
+      <div
+        className={`mt-4 ${topTeams?.length > 0 ? 'grid' : ''} h-auto min-h-32 grid-cols-2 gap-2 xs:grid-cols-3`}
+      >
+        {topTeams?.length > 0 ? (
+          topTeams?.map((team, index) => (
+            <TeamPlace team={team} index={index} key={index} />
+          ))
+        ) : (
+          <div className="text-center">Yuqori ochkolik jamoalar yoq</div>
+        )}
       </div>
     </div>
   )
