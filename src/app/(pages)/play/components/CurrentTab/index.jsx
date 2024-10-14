@@ -125,7 +125,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         className="h-full w-full"
         />
         </div> */}
-        <div className="hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+        <div className="mt-auto hidden h-[600px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
           <img
             src={'/images/banner.jpg'}
             alt={'banner'}
@@ -137,7 +137,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         {currentTab === TABS.Statistics && <Statistics />}
         {currentTab === TABS.Journal && <Journal />}
         {currentTab === TABS.Tournament && <Tournament />}
-        <div className="hidden h-[600px] w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
+        <div className="mt-auto hidden h-[600px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
           <img
             src={'/images/banner.jpg'}
             alt={'banner'}

@@ -47,7 +47,7 @@ const GameBrief = () => {
   const prevDate = new Date(prevTour?.datetime_start)
 
   return (
-    <section className="fade-in-fast mx-auto flex h-min w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-6 md:px-10 lg:mx-0 lg:w-1/2 xl:w-[45%]">
+    <section className="fade-in-fast mx-auto flex h-full w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-6 md:px-10 lg:mx-0 lg:w-1/2">
       <Container className="border-b border-neutral-700">
         <Item>
           <Title> {t('Keyingi Tur')}</Title>

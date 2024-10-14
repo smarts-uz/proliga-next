@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 const PlayerNameFilter = ({ column, columnFilterValue }) => {
   const { t } = useTranslation()
   return (
-    <div className="relative sm:col-span-2 md:w-auto md:min-w-80">
+    <div className="relative sm:col-span-2 sm:min-w-80 md:w-auto">
       <Input
         className="h-8 w-full rounded border border-neutral-500 bg-neutral-950 px-2 text-neutral-200 shadow placeholder:text-neutral-300"
         onChange={(e) => column.setFilterValue(e.target.value)}

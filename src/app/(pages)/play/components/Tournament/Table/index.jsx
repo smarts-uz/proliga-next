@@ -70,7 +70,7 @@ function TournamentTable() {
   })
 
   return (
-    <table className="] h-full w-full min-w-80 table-auto text-sm">
+    <table className="h-auto w-full min-w-80 table-auto text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody table={table} flexRender={flexRender} />
     </table>

@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
-import StatisticsTableFilters from './Filters'
+import StatisticsTableFilters from '../Filters'
 
 const columnHelper = createColumnHelper()
 
@@ -134,8 +134,8 @@ function StatisticsTable() {
   })
 
   return (
-    <div>
-      <div className="relative mb-2 flex flex-col gap-2 text-xs xs:text-sm lg:flex-row">
+    <>
+      <div className="relative flex flex-col gap-2 text-xs xs:text-sm sm:flex-row">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>
@@ -144,11 +144,11 @@ function StatisticsTable() {
             ))
           )}
       </div>
-      <table className="h-full w-full min-w-[18rem] text-[10px] xs:text-xs md:text-sm">
+      <table className="h-full w-full min-w-[310px] text-[10px] xs:text-xs md:text-sm">
         <TransferTableHead table={table} />
         <TransferTableBody table={table} flexRender={flexRender} />
       </table>
-    </div>
+    </>
   )
 }
 

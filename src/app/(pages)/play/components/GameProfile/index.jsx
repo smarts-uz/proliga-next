@@ -14,12 +14,13 @@ const GameProfile = () => {
 
   return (
     <main className="flex w-full flex-col justify-between gap-2 lg:flex-row lg:gap-4">
-      <div className="h-full w-full lg:w-1/2 xl:w-[55%]">
+      <div className="h-full w-full lg:w-1/2">
         <div className="relative h-auto w-full">
           <Image
             src="/icons/stadium.svg"
             alt="stadium"
             width={700}
+            S
             height={600}
             className="w-full rounded-sm"
           />

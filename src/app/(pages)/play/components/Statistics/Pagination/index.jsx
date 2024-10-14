@@ -5,7 +5,7 @@ const StatisticsPagination = ({ decrementPage, incrementPage, page }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="mt-auto flex items-center justify-center gap-2 pt-4">
+    <div className="flex h-auto items-center justify-center gap-2 text-sm md:text-base">
       <button
         onClick={decrementPage}
         disabled={page === 0}

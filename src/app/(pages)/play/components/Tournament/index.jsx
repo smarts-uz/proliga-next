@@ -2,16 +2,15 @@ import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { fetchAllTeams } from 'app/lib/features/teams/teams.thunk'
 import { useDispatch } from 'react-redux'
-import Gutter from '../../../../../components/Gutter'
 import TopTeams from '../TopTeams'
 import TournamentTable from './Table'
 import TournamentPagination from './Pagination'
-import TournamentSelectedTour from './Dropdown'
+import TournamentSelectedTour from './Filters'
 
 const Tournament = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(16)
+  const [perPage, setPerPage] = useState(15)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
   const { currentTour } = useSelector((state) => state.tours)
