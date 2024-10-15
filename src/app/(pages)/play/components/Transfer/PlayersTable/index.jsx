@@ -37,7 +37,6 @@ function PlayersTable() {
     pageSize: 8,
   })
   const selectedPlayers = useSelector(selectPlayers)
-  console.log(selectPlayers.length)
   useEffect(() => {
     if (selectedPlayers?.length > 0) {
       setData(selectedPlayers)

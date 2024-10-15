@@ -4,10 +4,11 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
@@ -15,20 +16,18 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
 import StatisticsTableFilters from '../Filters'
+import StatisticsTablePagination from './Pagination'
 
 const columnHelper = createColumnHelper()
 
 function StatisticsTable() {
   const { t } = useTranslation()
   const { players } = useSelector((state) => state.playerResult)
-  const [data, setData] = useState(players ?? [])
   const { lang } = useSelector((state) => state.systemLanguage)
-
-  useEffect(() => {
-    if (players) {
-      setData(players)
-    }
-  }, [players])
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 14,
+  })
 
   const columns = [
     columnHelper.accessor('player_id.position', {
@@ -127,10 +126,15 @@ function StatisticsTable() {
 
   const table = useReactTable({
     columns,
-    data,
+    data: players ?? [],
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
+    state: {
+      pagination,
+    },
   })
 
   return (
@@ -144,10 +148,11 @@ function StatisticsTable() {
             ))
           )}
       </div>
-      <table className="h-full w-full min-w-[310px] text-[10px] xs:text-xs md:text-sm">
+      <table className="h-auto w-full min-w-[310px] text-[10px] xs:text-xs md:text-sm">
         <TransferTableHead table={table} />
         <TransferTableBody table={table} flexRender={flexRender} />
       </table>
+      <StatisticsTablePagination table={table} />
     </>
   )
 }

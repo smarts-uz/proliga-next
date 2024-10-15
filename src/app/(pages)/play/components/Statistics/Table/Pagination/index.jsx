@@ -1,10 +1,10 @@
 import Image from 'next/image'
 
-const TransferTablePagination = ({ table }) => {
+const StatisticsTablePagination = ({ table }) => {
   const currentIndex = table.getState().pagination.pageIndex
 
   return (
-    <section className="mt-4 flex items-center justify-center gap-2 overflow-x-auto">
+    <section className="mt-auto flex items-center justify-center gap-2 overflow-x-auto">
       <PaginationButton
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
@@ -27,7 +27,7 @@ const TransferTablePagination = ({ table }) => {
               className={
                 'block size-6 rounded border p-1 text-xs md:size-8 md:text-sm ' +
                 (table.getState().pagination.pageIndex === page
-                  ? 'bg-primary text-black'
+                  ? 'bg-neutral-300 text-black'
                   : 'bg-transparent hover:bg-neutral-800')
               }
             >
@@ -77,4 +77,4 @@ const PaginationButton = ({
   )
 }
 
-export default TransferTablePagination
+export default StatisticsTablePagination

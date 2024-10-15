@@ -3,7 +3,7 @@ const TransferTableBody = ({ table, flexRender }) => {
     if (id === 'player-name') return 'w-min sm:min-w-24  md:min-w-32'
     if (id === 'player-position' || 'club' || 'played-min')
       return 'w-min px-0.5 sm:min-w-12 sm:px-1'
-    return 'w-min px-0.5 sm:min-w-10 sm:px-1 bg-red-400'
+    return 'w-min px-0.5 sm:min-w-10 sm:px-1'
   }
 
   return (
@@ -15,7 +15,7 @@ const TransferTableBody = ({ table, flexRender }) => {
         >
           {row.getVisibleCells().map((cell) => (
             <td
-              className={`${styles(cell.column.id)} h-8 w-min py-1 capitalize`}
+              className={`${styles(cell.column.id)} h-8 w-min px-0.5 py-1 capitalize sm:min-w-8`}
               key={cell.id}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
