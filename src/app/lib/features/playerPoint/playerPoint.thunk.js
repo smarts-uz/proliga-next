@@ -13,7 +13,7 @@ export const fetchPlayerPoint = createAsyncThunk(
       .eq('tour_id', tour_id)
       .in('player_id', playerIds)
       .is('deleted_at', null)
-      .limit(200)
+      .limit(20000)
 
     return { data, error }
   }

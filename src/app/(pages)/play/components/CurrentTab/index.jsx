@@ -28,6 +28,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { teamPrice } = useSelector((store) => store.teamPlayers)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
+  const { players } = useSelector((store) => store.players)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -124,13 +125,18 @@ const CurrentTab = ({ currentTab, paramsId }) => {
           competition_id: currentCompetition?.id,
         })
       )
+    }
+  }, [currentCompetition, dispatch])
+
+  useEffect(() => {
+    if (currentCompetition?.id && players?.length > 0) {
       dispatch(
         fetchTopPlayers({
           competition_id: currentCompetition?.id,
         })
       )
     }
-  }, [currentCompetition, dispatch])
+  }, [currentCompetition, dispatch, players])
 
   return (
     <Gutter>
