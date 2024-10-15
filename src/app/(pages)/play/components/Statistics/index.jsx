@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
@@ -22,14 +22,9 @@ const Statistics = () => {
   }, [dispatch, currentCompetition, season])
 
   return (
-    <section className="flex w-full flex-col gap-4 lg:flex-row">
+    <section className="flex w-full flex-col gap-2 lg:flex-row">
       <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col gap-4 overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
         <StatisticsTable />
-        {/* <StatisticsPagination
-          incrementPage={incrementPage}
-          decrementPage={decrementPage}
-          page={page}
-        /> */}
       </div>
       <TopTeams />
     </section>

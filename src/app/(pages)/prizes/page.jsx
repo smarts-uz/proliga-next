@@ -23,18 +23,19 @@ const Prizes = () => {
     dispatch(fetchPrizes())
     dispatch(fetchCompetition())
   }, [dispatch])
-const { t } = useTranslation()
+
   return (
-    <Gutter>
-      <section className="mt-4 pb-12">
+    <section className="bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-8">
+      <Gutter>
         <PrizesTitle />
         <div className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
           {competition?.map((competition, index) => (
             <div
               key={index}
-              className="group flex flex-col rounded-xl border bg-neutral-800 p-2 md:p-4"
+              className="transitiona-all group flex flex-col rounded-xl border 
+              border-neutral-100/50 bg-neutral-900/30 p-2 backdrop-blur-sm hover:border-neutral-100 md:p-4"
             >
-              <div className="mb-2 flex items-center gap-2 border-b border-neutral-600 
+              <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 
               pb-2 transition-all group-hover:border-primary">
                 <img
                   src={competition.flag}
@@ -59,8 +60,8 @@ const { t } = useTranslation()
             </div>
           ))}
         </div>
-      </section>
-    </Gutter>
+      </Gutter>
+    </section>
   )
 }
 
@@ -70,9 +71,7 @@ const Prize = ({ prize }) => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <p className="mb-1 text-sm md:mb-2 xl:text-base">
-         {lang === LANGUAGE.uz
-          ? prize?.name
-          : prize?.name_ru}
+        {lang === LANGUAGE.uz ? prize?.name : prize?.name_ru}
       </p>
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img

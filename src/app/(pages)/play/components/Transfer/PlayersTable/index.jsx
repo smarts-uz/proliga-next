@@ -34,7 +34,7 @@ function PlayersTable() {
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 8,
+    pageSize: 9,
   })
   const selectedPlayers = useSelector(selectPlayers)
   useEffect(() => {

@@ -3,7 +3,7 @@ import RankingPlayers from './Players'
 
 const TopTeams = () => {
   return (
-    <div className="flex h-min w-full flex-col gap-4 lg:w-1/3">
+    <div className="flex h-min w-full flex-col gap-2 lg:w-1/3">
       <RankingTeams />
       <RankingPlayers />
     </div>

@@ -11,7 +11,7 @@ export default function Journal() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(14)
+  const [perPage, setPerPage] = useState(15)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
   const { userTable } = useSelector((state) => state.auth)
@@ -47,8 +47,8 @@ export default function Journal() {
   }
 
   return (
-    <div className="flex w-full flex-col gap-4 lg:flex-row">
-      <section className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
+    <div className="flex w-full flex-col gap-2 lg:flex-row">
+      <section className="flex h-min min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
         <JournalTable />
         <JournalPagination
           incrementPage={incrementPage}
