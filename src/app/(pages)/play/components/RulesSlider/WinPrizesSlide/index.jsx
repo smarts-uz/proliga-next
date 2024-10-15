@@ -40,7 +40,9 @@ const Prize = ({ prize }) => {
   const { t } = useTranslation()
   const { lang } = useSelector((store) => store.systemLanguage)
   return (
-    <div className="flex min-w-16 flex-1 flex-col items-center justify-center md:max-w-80">
+    <div
+      className={`flex min-w-24 ${prize.order === 3 && 'col-span-2 mx-auto max-w-[50%] sm:col-span-1 sm:mx-0 sm:max-w-max'} flex-1 flex-col items-center justify-center md:max-w-80`}
+    >
       <p className="mb-1 text-xs xs:text-sm md:mb-2 md:text-lg xl:text-xl">
         {lang === LANGUAGE.uz ? prize?.name : prize?.name_ru}
       </p>

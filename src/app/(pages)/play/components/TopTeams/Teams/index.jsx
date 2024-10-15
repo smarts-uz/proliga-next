@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 const RankingTeams = () => {
@@ -43,7 +43,7 @@ const TeamPlace = ({ team, index }) => {
         {team?.name ?? 'team'}
       </h4>
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
-        {team.user_id.name}
+        {team?.user_id?.name}
       </p>
       <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}
