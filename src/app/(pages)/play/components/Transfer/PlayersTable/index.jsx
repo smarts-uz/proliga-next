@@ -34,10 +34,10 @@ function PlayersTable() {
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 9,
+    pageSize: 8,
   })
   const selectedPlayers = useSelector(selectPlayers)
-
+  console.log(selectPlayers.length)
   useEffect(() => {
     if (selectedPlayers?.length > 0) {
       setData(selectedPlayers)

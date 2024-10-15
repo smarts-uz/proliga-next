@@ -63,11 +63,11 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   }
 
   return (
-    <section className="col-span-4 flex w-full overflow-x-scroll text-xs xs:text-sm sm:gap-2 lg:gap-4 lg:text-base">
+    <section className="col-span-4 flex w-full overflow-x-scroll text-xs xs:text-sm lg:text-[13px] 2xl:gap-0.5 2xl:text-base">
       {DATA.map((obj, index) => (
         <button
           key={index}
-          className={`text-nowrap break-keep rounded px-2 py-1 font-bold capitalize transition-all md:px-4 md:text-sm 2xl:px-2 ${getCorrentPlayerPosition(obj.key) === '' && typeof columnFilterValue === 'undefined' ? active : getCorrentPlayerPosition(obj.key) === columnFilterValue ? active : passive}`}
+          className={`text-nowrap break-keep rounded px-2 py-1 font-bold capitalize transition-all md:px-4 2xl:px-2 ${getCorrentPlayerPosition(obj.key) === '' && typeof columnFilterValue === 'undefined' ? active : getCorrentPlayerPosition(obj.key) === columnFilterValue ? active : passive}`}
           onClick={() =>
             column.setFilterValue(getCorrentPlayerPosition(obj.key))
           }

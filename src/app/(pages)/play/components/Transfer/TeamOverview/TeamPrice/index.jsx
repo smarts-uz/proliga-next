@@ -7,7 +7,7 @@ const TeamPrice = () => {
     <div className="w-1/2 md:w-auto">
       <h3
         title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-        className="cursor-default text-xs capitalize text-neutral-400 xs:text-sm"
+        className="cursor-default text-xs capitalize text-neutral-400 sm:text-xs lg:text-xs 2xl:text-sm"
       >
         {t('Jamoa narxi')}
       </h3>

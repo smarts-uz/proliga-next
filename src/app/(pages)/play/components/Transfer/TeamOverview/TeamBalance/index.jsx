@@ -31,7 +31,7 @@ const TeamBalance = () => {
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-            className="text-xs sm:text-sm"
+            className="text-xs sm:text-xs lg:text-xs 2xl:text-sm"
           >
             {t('Balans')}
           </h3>

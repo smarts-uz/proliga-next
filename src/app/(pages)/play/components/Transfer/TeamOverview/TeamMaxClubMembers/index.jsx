@@ -33,7 +33,7 @@ export default function TeamMaxClubMembers() {
         <header className="flex text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
             title="Maksimum sotib olish mumkin bolgan o'yinchilar"
-            className="text-xs xs:text-sm"
+            className="text-xs sm:text-xs lg:text-xs 2xl:text-sm"
           >
             {t('Bir jamoadan')}
           </h3>

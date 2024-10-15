@@ -8,7 +8,7 @@ import Journal from '../Journal'
 import Tournament from '../Tournament'
 import { TABS } from '../../../../utils/tabs.util'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
@@ -33,6 +33,11 @@ const CurrentTab = ({ currentTab, paramsId }) => {
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
+  const [windowWidth, setWindowWidth] = useState(0)
+  let timeOutId = useRef()
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
 
   useEffect(() => {
     if (currentTeam?.is_team_created) {
@@ -138,28 +143,41 @@ const CurrentTab = ({ currentTab, paramsId }) => {
     }
   }, [currentCompetition, dispatch, players])
 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  const NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH =
+    process.env.NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH ?? 1280
+  const NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH =
+    process.env.NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH ?? 1440
+
   return (
     <Gutter>
-      <div className="flex gap-2">
-        <div className="mt-auto hidden h-[600px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
-          <img
-            src={'/images/banner.jpg'}
-            alt={'banner'}
-            className="h-full w-full"
-          />
-        </div>
+      <div className="flex gap-1 2xl:gap-2">
+        {windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
+          <div className="mt-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+            <img
+              src={'/images/banner.jpg'}
+              alt={'banner'}
+              className="h-full w-full"
+            />
+          </div>
+        )}
         {currentTab === TABS.GameProfile && <GameProfile />}
         {currentTab === TABS.Transfer && <Transfer paramsId={paramsId} />}
         {currentTab === TABS.Statistics && <Statistics />}
         {currentTab === TABS.Journal && <Journal />}
         {currentTab === TABS.Tournament && <Tournament />}
-        <div className="mt-auto hidden h-[600px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 2xl:block">
-          <img
-            src={'/images/banner.jpg'}
-            alt={'banner'}
-            className="h-full w-full"
-          />
-        </div>
+        {windowWidth >= NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH && (
+          <div className="mt-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+            <img
+              src={'/images/banner.jpg'}
+              alt={'banner'}
+              className="h-full w-full"
+            />
+          </div>
+        )}
       </div>
     </Gutter>
   )
