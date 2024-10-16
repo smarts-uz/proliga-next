@@ -92,36 +92,37 @@ const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
         </div>
         <PlayerStatisticsTable matches={matches} />
         <DialogDescription className="mt-auto flex flex-wrap justify-center gap-x-1 gap-y-0 text-nowrap text-xs md:gap-x-2 md:text-sm">
-          <p>
-            <span>{t("QO'")}</span> - {t("Quriq Oyin")},
-          </p>
-          <p>
-            <span>{t("QP")}</span> - {t("Qaytarilagian Penalti")},
-          </p>
-          <p>
-            <span>{t("AG")}</span> - {t("Avto Gol")},
-          </p>
-          <p>
-            <span>{t("O'2")}</span> - {t("O‘tkazib yuborilgan har 2 to‘p farqi")},
-          </p>
-          <p>
-            <span>{t("G")}</span> - {t("Gol")},
-          </p>
-          <p>
-            <span>{t("GA")}</span> - {t("Gol Assist")},
-          </p>
-          <p>
-            <span>{t("SK")}</span> - {t("Sariq kartochka")},
-          </p>
-          <p>
-            <span>{t("QZ")}</span> - {t("Qizil kartochka")},
-          </p>
-          <p>
-            <span>{t("MIN")}</span> - {t("Daqiqani o‘yinda o‘tkazdi")},
-          </p>
-          <p>
-            <span>{t("O")}</span> - {t("Ochko")}
-          </p>
+          <div>
+            <span>{t("QO'")}</span> - {t('Quriq Oyin')},
+          </div>
+          <div>
+            <span>{t('QP')}</span> - {t('Qaytarilagian Penalti')},
+          </div>
+          <div>
+            <span>{t('AG')}</span> - {t('Avto Gol')},
+          </div>
+          <div>
+            <span>{t("O'2")}</span> -{' '}
+            {t('O‘tkazib yuborilgan har 2 to‘p farqi')},
+          </div>
+          <div>
+            <span>{t('G')}</span> - {t('Gol')},
+          </div>
+          <div>
+            <span>{t('GA')}</span> - {t('Gol Assist')},
+          </div>
+          <div>
+            <span>{t('SK')}</span> - {t('Sariq kartochka')},
+          </div>
+          <div>
+            <span>{t('QZ')}</span> - {t('Qizil kartochka')},
+          </div>
+          <div>
+            <span>{t('MIN')}</span> - {t('Daqiqani o‘yinda o‘tkazdi')},
+          </div>
+          <div>
+            <span>{t('O')}</span> - {t('Ochko')}
+          </div>
         </DialogDescription>
       </DialogContent>
     </Dialog>
