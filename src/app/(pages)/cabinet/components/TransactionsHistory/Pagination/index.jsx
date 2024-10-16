@@ -4,7 +4,7 @@ const CabinetTablePagination = ({ table }) => {
   const currentIndex = table.getState().pagination.pageIndex
 
   return (
-    <section className="mt-4 flex items-center justify-center gap-2 overflow-x-auto">
+    <section className="mt-2 flex h-auto items-center justify-center gap-2 overflow-x-auto">
       <PaginationButton
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
@@ -27,7 +27,7 @@ const CabinetTablePagination = ({ table }) => {
               className={
                 'block size-6 rounded-sm border p-1 text-xs md:size-8 md:text-sm ' +
                 (table.getState().pagination.pageIndex === page
-                  ? 'bg-primary text-black'
+                  ? 'bg-neutral-50/90 text-black'
                   : 'bg-transparent hover:bg-neutral-800')
               }
             >

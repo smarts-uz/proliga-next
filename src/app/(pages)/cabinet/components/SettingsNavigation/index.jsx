@@ -19,7 +19,7 @@ const SettingsNavigation = ({ setTab, currentTab }) => {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex w-full flex-row justify-between rounded-xl bg-neutral-900 bg-opacity-90 px-4 py-2 lg:w-80 lg:flex-col lg:py-4 xl:gap-1"
+      className="flex w-full flex-row justify-between rounded-xl bg-neutral-900/80 bg-opacity-90 px-4 py-2 lg:w-72 lg:flex-col lg:py-4 xl:gap-1"
     >
       {Object.keys(SETTINGSTAB).map((tab) => (
         <Tab

@@ -57,7 +57,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
     <motion.section
       initial={{ opacity: 0.75 }}
       animate={{ opacity: 1 }}
-      className="h-full w-full flex-1 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+      className="h-full w-full flex-1 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6"
     >
       <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
         <section className="flex w-full flex-col gap-4 sm:flex-row">
@@ -218,7 +218,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               rows={5}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="h-10 min-h-56 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base 2xl:min-h-64"
+              className="h-10 min-h-40 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base 2xl:min-h-64"
             />
           </div>
         </section>

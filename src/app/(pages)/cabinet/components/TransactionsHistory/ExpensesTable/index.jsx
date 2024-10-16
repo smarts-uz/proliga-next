@@ -25,7 +25,7 @@ function CabinetTransactionsExpensesTable() {
   const { lang } = useSelector((store) => store.systemLanguage)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 8,
   })
 
   const getCorrectDate = (startDate) => {
@@ -84,8 +84,8 @@ function CabinetTransactionsExpensesTable() {
   })
 
   return (
-    <section className="w-full flex-1">
-      <table className="w-full table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">
+    <section className="flex h-full w-full flex-1 flex-col justify-between ">
+      <table className=" w-full table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />
       </table>

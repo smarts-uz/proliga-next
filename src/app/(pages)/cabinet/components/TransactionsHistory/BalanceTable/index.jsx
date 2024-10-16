@@ -23,7 +23,7 @@ function CabinetTransactionsBalanceTable() {
   const { balance } = useSelector((store) => store.payBalance)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 8,
   })
   const getCorrectDate = (startDate) => {
     const date = new Date(startDate)

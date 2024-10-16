@@ -18,27 +18,31 @@ function UserCabinet() {
   const [tab, setTab] = useState(SETTINGSTAB.PROFILE)
 
   return (
-    <Gutter>
-      <main className="mb-8 mt-24 flex h-full min-h-screen flex-col gap-4 md:min-h-[95vh] lg:flex-row xl:min-h-[92vh] 2xl:min-h-[50rem]">
-        <SettingsNavigation
-          currentTab={tab}
-          tabs={SETTINGSTAB}
-          setTab={setTab}
-        />
-        {tab === SETTINGSTAB.PROFILE && (
-          <CabinetProfileTab
-            setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)}
+    <div className="bg-gradient-to-tr from-red-800 to-blue-900 pb-8 pt-20">
+      <Gutter>
+        <main className="flex h-full min-h-screen flex-col gap-2 md:min-h-[95vh] lg:flex-row xl:min-h-[38rem] 2xl:min-h-[45rem]">
+          <SettingsNavigation
+            currentTab={tab}
+            tabs={SETTINGSTAB}
+            setTab={setTab}
           />
-        )}
-        {tab === SETTINGSTAB.SETTINGS && (
-          <CabinetSettingsTab setHomeTab={() => setTab(SETTINGSTAB.PROFILE)} />
-        )}
-        {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
-        {tab === SETTINGSTAB.TRANSACTIONHISTORY && (
-          <CabinetTransactionsHistory />
-        )}
-      </main>
-    </Gutter>
+          {tab === SETTINGSTAB.PROFILE && (
+            <CabinetProfileTab
+              setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)}
+            />
+          )}
+          {tab === SETTINGSTAB.SETTINGS && (
+            <CabinetSettingsTab
+              setHomeTab={() => setTab(SETTINGSTAB.PROFILE)}
+            />
+          )}
+          {tab === SETTINGSTAB.PASSWORD && <CabinetChangePasswordTab />}
+          {tab === SETTINGSTAB.TRANSACTIONHISTORY && (
+            <CabinetTransactionsHistory />
+          )}
+        </main>
+      </Gutter>
+    </div>
   )
 }
 

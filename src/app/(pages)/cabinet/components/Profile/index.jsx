@@ -79,7 +79,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
       <motion.section
         initial={{ opacity: 0.75 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+        className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6"
       >
         <div className="flex items-center gap-2 md:gap-4">
           {userTable?.email && (
@@ -129,9 +129,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
           </button>
         </div>
         <section className="flex flex-col gap-2">
-          <h3 className="font-medium capitalize xs:text-lg">
-            {t('Qisqacha Malumot')}:
-          </h3>
+          <h3 className="font-medium capitalize">{t('Qisqacha Malumot')}:</h3>
           <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
             <div className="flex gap-2 rounded border border-neutral-500 bg-neutral-800 p-2">
               <div className="flex items-center gap-1 capitalize">
@@ -177,59 +175,59 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
           </div>
         </section>
         <section>
-          <h3 className="font-medium xs:text-lg">{t('Bio')}:</h3>
+          <h3 className="font-medium">{t('Bio')}:</h3>
           <div className="scroll-y-auto h-40 rounded border border-neutral-500 bg-neutral-800 p-2">
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>
         </section>
         <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
           <div
-            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent p-4 transition-all sm:size-56 sm:p-6 2xl:size-64`}
+            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-48 2xl:size-56`}
           >
             <Image
               src="/icons/wallet.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center sm:size-16"
+              className="filter-neutral-50 size-10 self-center lg:size-12"
               alt="wallet"
             />
             <div className="w-full self-center text-center">
-              <h4 className="text-sm font-medium xs:text-base sm:text-lg">
+              <h4 className="text-sm font-medium sm:text-base">
                 {t('Proliga hisobi')}
               </h4>
               <p className="text-sm text-neutral-400">
                 {t('Hisobda')}:{' '}
-                <span className="font-bold text-neutral-50">4000 </span>
+                <span className="font-bold text-neutral-50">0 </span>
                 {t("so'm")}
               </p>
             </div>
             <button
               onClick={handleBalanceModal}
-              className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+              className="w-min self-center text-nowrap rounded border px-4 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
             >
               {t('Hisobni toldirish')}
             </button>
           </div>
           <div
-            className={`flex size-44 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent p-4 transition-all sm:size-56 sm:p-6 2xl:size-64`}
+            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-48 2xl:size-56`}
           >
             <Image
               src="/icons/call.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center sm:size-16"
+              className="filter-neutral-50 size-10 self-center lg:size-12"
               alt="wallet"
             />
-            <div className="w-full self-center text-center">
-              <h4 className="text-sm font-medium xs:text-base sm:text-lg">
+            <div className="w-full max-w-36 self-center text-center">
+              <h4 className="text-sm font-medium sm:text-base">
                 {t('Telefon raqam tasdiqlash')}
               </h4>
             </div>
             <button
               onClick={handleOtpModal}
-              className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+              className="w-min self-center rounded border px-4 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
             >
               {t('Tasdiqlash')}
             </button>

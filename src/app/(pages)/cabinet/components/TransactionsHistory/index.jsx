@@ -32,7 +32,7 @@ const CabinetTransactionsHistory = () => {
       <motion.section
         initial={{ opacity: 0.75 }}
         animate={{ opacity: 1 }}
-        className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900 p-4 lg:h-auto xl:p-6"
+        className="flex h-auto w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 xl:p-6"
       >
         <h3 className="lg:texl-lg text-base xl:text-xl">
           {t('Xarajatlar tarixi')}
@@ -52,7 +52,7 @@ const CabinetTransactionsHistory = () => {
           </button>
         </div>
         {currentTab === TRANSACTIONTABS.BALANCE && (
-          <div className="flex w-full flex-col">
+          <div className="flex h-full w-full flex-col">
             {balance?.length > 0 && <CabinetTransactionsBalanceTable />}
             {balance?.length === 0 && (
               <p className="fade-in-fast text-center text-neutral-300">
@@ -62,7 +62,7 @@ const CabinetTransactionsHistory = () => {
           </div>
         )}
         {currentTab === TRANSACTIONTABS.EXPENSES && (
-          <div className="flex w-full flex-col">
+          <div className="flex h-full w-full flex-col justify-between">
             {expenses?.length > 0 && <CabinetTransactionsExpensesTable />}
             {expenses?.length === 0 && (
               <p className="fade-in-fast text-center text-neutral-300">
