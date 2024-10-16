@@ -34,7 +34,7 @@ export const teamsExtraReducer = (builder) => {
     .addCase(fetchTopTeams.fulfilled, (state, action) => {
       state.topTeamsLoading = false
       if (action.payload.data?.length > 0) {
-        state.topTeams = action.payload.data.reverse()
+        state.topTeams = action.payload.data
       }
     })
     .addCase(fetchTopTeams.rejected, (state, action) => {

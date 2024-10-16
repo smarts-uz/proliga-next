@@ -10,7 +10,7 @@ import TournamentSelectedTour from './Filters'
 const Tournament = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(15)
+  const [perPage, setPerPage] = useState(14)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
   const { currentTour } = useSelector((state) => state.tours)

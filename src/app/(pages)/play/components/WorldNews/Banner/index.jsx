@@ -7,14 +7,14 @@ const Banner = () => {
 
   return (
     <div className="relative mx-auto flex h-auto min-h-[36rem] min-w-[300px] max-w-[340px] flex-col items-center justify-between overflow-hidden sm:min-h-[36rem] lg:mx-0">
-      <div className="mb-2 block h-[100px] w-[300px] overflow-hidden rounded">
+      <div className="mb-2 block h-[100px] w-[360px] overflow-hidden rounded">
         <img
           src={banners[7]?.content_url ?? ''}
           alt={banners[1]?.name}
           className="h-full w-full"
         />
       </div>
-      <div className="block h-[600px] w-[300px] overflow-hidden rounded">
+      <div className="block h-[600px] w-[360px] overflow-hidden rounded">
         <img
           src={banners[4]?.content_url ?? ''}
           alt={banners[4]?.name}

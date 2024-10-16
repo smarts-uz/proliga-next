@@ -156,7 +156,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
     <Gutter>
       <div className="flex gap-1 2xl:gap-2">
         {windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
-          <div className="mt-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+          <div className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}
@@ -170,7 +170,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         {currentTab === TABS.Journal && <Journal />}
         {currentTab === TABS.Tournament && <Tournament />}
         {windowWidth >= NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH && (
-          <div className="mt-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+          <div className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}

@@ -12,7 +12,7 @@ const Transfer = () => {
 
   return (
     <main className="flex w-full flex-col justify-between gap-2 pb-0 md:min-h-max lg:flex-row">
-      <div className="flex h-auto flex-col lg:w-1/2">
+      <div className="mt-0.5 flex h-auto flex-col lg:w-1/2">
         <div className="relative h-auto w-full lg:w-full">
           <Image
             src="/icons/stadium.svg"

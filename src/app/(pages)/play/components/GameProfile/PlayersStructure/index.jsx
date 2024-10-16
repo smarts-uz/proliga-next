@@ -37,29 +37,6 @@ const ProfilePlayersStructure = ({ allowDelete = true }) => {
           </div>
         </>
       )}
-
-      {/* <div className={`flex w-full items-start justify-center`}>
-        {GOA.map((player) => (
-          <Player key={player.id} player={player} />
-        ))}
-      </div>
-      <div
-        className={`flex items-start justify-evenly gap-0.5 px-6 2xs:px-10 xs:gap-1 xl:gap-0 xl:px-14`}
-      >
-        {DEF.map((player) => (
-          <Player key={player.id} player={player} />
-        ))}
-      </div>
-      <div className="flex items-start justify-evenly gap-0.5 px-8 2xs:px-11 sm:gap-1 md:gap-4 md:px-4 xl:gap-0 xl:px-10">
-        {MID.map((player) => (
-          <Player deletePlayer={allowDelete} key={player.id} player={player} />
-        ))}
-      </div>
-      <div className="flex items-start justify-evenly gap-0 px-0 md:px-4">
-        {STR.map((player) => (
-          <Player key={player.id} player={player} />
-        ))}
-      </div> */}
     </div>
   )
 }

@@ -34,6 +34,11 @@ function TournamentTable() {
   }, [allTeams])
 
   const columns = [
+    columnHelper.accessor('', {
+      accessorFn: (row) => row?.team.id ?? '',
+      header: t('Id'),
+      id: 'Id',
+    }),
     columnHelper.accessor('name', {
       accessorFn: (row) => row?.team?.name ?? '',
       cell: (info) => info.getValue(),
@@ -70,7 +75,7 @@ function TournamentTable() {
   })
 
   return (
-    <table className="h-auto w-full min-w-80 table-auto text-sm">
+    <table className="h-auto w-full min-w-80 table-auto text-xs xs:text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody table={table} flexRender={flexRender} />
     </table>

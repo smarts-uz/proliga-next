@@ -19,6 +19,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
       color: '#fff',
       backgroundColor: '#fff1',
       borderRadius: '4px',
+      scrollSnapAlign: 'center',
     },
     '&.Mui-disabled': {
       color: 'white',

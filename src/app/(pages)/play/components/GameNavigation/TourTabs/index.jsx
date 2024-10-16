@@ -84,24 +84,25 @@ export default function TourTabs() {
         value={currentTourIndex}
         variant="scrollable"
         scrollButtons="auto"
-        className="rounded text-neutral-50 fade-in disabled:text-neutral-500"
+        className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
+        // allowScrollButtonsMobile
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
             onClick={() => handleClick(index)}
-            className="w-40 space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-56 md:w-64 2xl:w-72"
+            className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
               item.status === 'not_started' ||
               item.order < registeredTour?.order
             }
             label={
-              <div className="flex flex-col items-center justify-center gap-1">
+              <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">
                 <h3 className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
                   {item.name}
                 </h3>
-                <p className="text-[9px] capitalize text-neutral-200 sm:text-xs md:text-sm">
+                <p className="max-w-28 text-[10px] capitalize text-neutral-200 sm:text-xs">
                   {getStatus(item.status)}
                 </p>
               </div>
