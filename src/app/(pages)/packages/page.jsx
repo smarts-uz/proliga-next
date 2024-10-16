@@ -34,10 +34,10 @@ const Packages = () => {
   const { t } = useTranslation()
   return (
     <Gutter>
-      <section className="my-8 h-full space-y-6 rounded-xl border border-primary border-opacity-50 bg-neutral-900 p-6 text-neutral-200 transition-all hover:border-opacity-100">
+      <section className="h-full space-y-6 py-8 text-neutral-200">
         <PackagesTitle />
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 xl:gap-6">
-          <div className="min-h-96 space-y-4 rounded-xl border p-4">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
             <BalanceTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -53,7 +53,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -62,7 +62,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border p-4">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
             <TransferTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -78,7 +78,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -87,7 +87,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black bg-opacity-20 p-4 backdrop-blur-sm">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
             <SameTeamPlayerTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -103,7 +103,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-neutral-800 bg-neutral-800 px-4 py-2 transition-all hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
                       >
                         {t('Tanlang')}
                       </Link>
