@@ -7,7 +7,7 @@ import Gutter from '../Gutter'
 import Notification from './Notification/Notification'
 import PlayLinks from './Links'
 import MobileModal from './Modal'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
 import ChangeLanguageDropdown from './Language'
@@ -18,6 +18,23 @@ const Navbar = () => {
   const [isNotificationsOpen, toggleNotificationsOpen] = useState(false)
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const [isModalOpen, toggleModal] = useState(false)
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+  const [initialNotificationCount, setInitialNotificationCount] = useState(null);
+
+  const { systemNotifications } = useSelector(
+    (state) => state.systemNotifications
+  )
+
+  useEffect(() => {
+    // When notifications come in, check if any are unread
+    const readNotifications = JSON.parse(localStorage.getItem('readNotifications')) || [];
+    const unreadExists = systemNotifications?.some(notification => !readNotifications.includes(notification.id));
+  
+    setHasUnreadNotifications(unreadExists);
+  }, [systemNotifications]);
+
+
+
 
   const handleToggleDropdown = () => {
     if (isNotificationsOpen) {
@@ -28,10 +45,27 @@ const Navbar = () => {
 
   const handleToggleNotifications = () => {
     if (isDropdownOpen) {
-      toggleDropdown(false)
+      toggleDropdown(false);
     }
-    toggleNotificationsOpen(!isNotificationsOpen)
-  }
+    toggleNotificationsOpen(!isNotificationsOpen);
+  
+    // If the user opens notifications and there are unread notifications, mark them as read
+    if (!isNotificationsOpen && hasUnreadNotifications) {
+      const readNotifications = JSON.parse(localStorage.getItem('readNotifications')) || [];
+  
+      // Add the IDs of new unread notifications to the readNotifications array
+      const updatedReadNotifications = [
+        ...readNotifications,
+        ...systemNotifications.map(notification => notification.id)
+      ];
+  
+      // Update localStorage with the newly read notifications
+      localStorage.setItem('readNotifications', JSON.stringify(updatedReadNotifications));
+  
+      // Hide the span now that notifications have been read
+      setHasUnreadNotifications(false);
+    }
+  };
 
   const handleToggleModal = () => {
     if (isDropdownOpen) {
@@ -83,6 +117,7 @@ const Navbar = () => {
               userAuth={userAuth}
               userTable={userTable}
               isModalOpen={isModalOpen}
+              hasUnreadNotifications={hasUnreadNotifications}
             />
             <DesktopProfile
               handleToggleDropdown={handleToggleDropdown}
@@ -91,6 +126,7 @@ const Navbar = () => {
               isNotificationsOpen={isNotificationsOpen}
               userAuth={userAuth}
               userTable={userTable}
+              hasUnreadNotifications={hasUnreadNotifications}
             />
           </div>
         </Gutter>
@@ -106,6 +142,7 @@ const MobileProfile = ({
   isNotificationsOpen,
   userAuth,
   userTable,
+  hasUnreadNotifications
 }) => {
   return (
     <div className="flex w-max items-center justify-center gap-4 lg:hidden">
@@ -119,7 +156,10 @@ const MobileProfile = ({
           height={24}
           className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
         />
-        <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
+        {hasUnreadNotifications && (
+          <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
+
+        )}
       </button>
       <span
         onClick={handleToggleModal}
@@ -152,6 +192,7 @@ const DesktopProfile = ({
   isDropdownOpen,
   userAuth,
   userTable,
+  hasUnreadNotifications
 }) => {
   return (
     <div className="hidden w-max items-center justify-center gap-4 lg:flex">
@@ -165,7 +206,9 @@ const DesktopProfile = ({
           height={24}
           className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
         />
-        <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
+        {hasUnreadNotifications && (
+          <span className="absolute -top-0 right-0.5 block size-2 rounded-full bg-primary" />
+        )}
       </button>
       <span
         onClick={handleToggleDropdown}

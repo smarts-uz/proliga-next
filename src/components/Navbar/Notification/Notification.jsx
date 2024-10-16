@@ -40,10 +40,12 @@ const Notification = () => {
               onClick={() => handleNotificationClick(notification)}
               className="flex items-center justify-between rounded-lg bg-neutral-800 p-2 transition-all duration-300 ease-in hover:bg-neutral-700"
             >
-              <p className="line-clamp-2 max-w-[80%] break-words text-sm font-thin text-neutral-100">
+            <div className='max-w-[80%]'>
+              <p className="line-clamp-2  break-words text-sm font-thin text-neutral-100">
                 {notification.name}
               </p>
-              <p>{notification.created_at}</p>
+              <p className=' text-xs'>{notification.created_at}</p>
+            </div>
               <button className="w-auto rounded-md border border-amber-400 p-1 text-xs font-bold">
               {t("Ko'rish")}
               </button>
