@@ -9,7 +9,6 @@ import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.sl
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
-import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -28,7 +27,6 @@ export default function TourTabs() {
       selectTours?.length > 0 &&
       tourTeams?.length > 0
     ) {
-      dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
@@ -40,7 +38,6 @@ export default function TourTabs() {
       selectTours?.length > 0 &&
       tourTeams?.length > 0
     ) {
-      dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeamIndex(currentTourIndex))
     }
   }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
@@ -66,7 +63,6 @@ export default function TourTabs() {
     }
     dispatch(setCurrentTourTeamIndex(index))
     dispatch(setCurrentTourIndex(index))
-    dispatch(setMatchesTourIndex(index))
   }
 
   return (
@@ -86,7 +82,6 @@ export default function TourTabs() {
         scrollButtons="auto"
         className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
-        // allowScrollButtonsMobile
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
@@ -94,7 +89,8 @@ export default function TourTabs() {
             onClick={() => handleClick(index)}
             className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
-              item.status === 'not_started' ||
+              item.status === TOUR.notStarted ||
+              item.status === TOUR.notStartedTransfer ||
               item.order < registeredTour?.order
             }
             label={

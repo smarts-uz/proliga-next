@@ -94,7 +94,7 @@ export default function TourTabs() {
             onClick={() => handleClick(index)}
             className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
-              item.status === 'not_started' ||
+              item.status === TOUR.notStarted ||
               item.order < registeredTour?.order
             }
             label={

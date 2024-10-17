@@ -28,14 +28,17 @@ export const useUpdateTourTeam = () => {
     if (!team_id) {
       setError(t('Jamoa ID kiritilmagan!'))
       toast.error(t('Jamoa ID kiritilmagan!'), { theme: 'dark' })
+      return
     }
     if (!tour_id) {
       setError(t('Turnir ID kiritilmagan!'))
       toast.error(t('Turnir ID kiritilmagan!'), { theme: 'dark' })
+      return
     }
     if (!count_of_transfers) {
       setError(t('Transfer soni kiritilmagan!'))
       toast.error(t('Transfer soni kiritilmagan!'), { theme: 'dark' })
+      return
     }
 
     try {

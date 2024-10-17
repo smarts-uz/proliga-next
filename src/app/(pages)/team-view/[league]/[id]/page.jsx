@@ -1,14 +1,18 @@
 'use client'
-import TeamProfile from '../components/TeamProfile'
-import TeamTabs from '../components/GameNavigation'
+import TeamProfile from '../../components/TeamProfile'
+import TeamTabs from '../../components/GameNavigation'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSelectedTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
 import Gutter from 'components/Gutter'
-import { fetchTours } from 'app/lib/features/tours/tours.thunk'
+import { fetchTeamViewTours } from 'app/lib/features/tours/tours.thunk'
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 import { fetchPlayers } from 'app/lib/features/players/players.thunk'
+import { fetchSeason } from 'app/lib/features/season/season.thunk'
+import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
+import { setCurrentCompetition } from 'app/lib/features/competition/competition.slice'
+import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -19,6 +23,7 @@ const Play = ({ params }) => {
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
+  const { competition } = useSelector((store) => store.competition)
   useEffect(() => {
     if (params?.id) {
       dispatch(fetchSelectedTeam({ id: params.id }))
@@ -29,7 +34,7 @@ const Play = ({ params }) => {
     if (currentTeam?.competition_id && +currentTeam?.id === +params.id) {
       const fetch = async () => {
         dispatch(
-          fetchTours({
+          fetchTeamViewTours({
             competition_id: currentTeam.competition_id.id,
             registered_tour_id: currentTeam?.registered_tour_id,
           })
@@ -84,6 +89,26 @@ const Play = ({ params }) => {
       )
     }
   }, [dispatch, currentTeam, params])
+
+  useEffect(() => {
+    dispatch(fetchCompetition())
+    dispatch(fetchSeason())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (competition?.length > 0) {
+      dispatch(setCurrentCompetition(params.league))
+    }
+  }, [dispatch, params.league, competition])
+
+  useEffect(() => {
+    if (params.id) {
+      const fetch = async () => {
+        dispatch(fetchTourTeams({ team_id: params.id }))
+      }
+      fetch()
+    }
+  }, [params.id, currentTour, dispatch])
 
   return (
     <div
