@@ -36,14 +36,14 @@ const TeamPlace = ({ team, index }) => {
           className="size-6 md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
-          {team?.point ?? '00'}
+          {team?.team_point ?? '00'}
         </span>
       </div>
       <h4 className="line-clamp-2 max-w-28 break-words text-sm font-bold text-black">
-        {team?.name ?? 'team'}
+        {team?.team_name ?? 'team'}
       </h4>
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
-        {team?.user_id?.name}
+        {team?.user_name}
       </p>
       <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}
