@@ -86,7 +86,6 @@ export default function TourTabs() {
         scrollButtons="auto"
         className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
-        // allowScrollButtonsMobile
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
@@ -95,7 +94,7 @@ export default function TourTabs() {
             className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
               item.status === TOUR.notStarted ||
-              item.order < registeredTour?.order
+              item.order < registeredTour?.order - 1
             }
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">
