@@ -6,7 +6,6 @@ import DatePicker from 'react-datepicker'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { useUploadUserImage } from 'app/hooks/user/useUploadUserImage/useUploadUserImage'
 import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
 import { toast } from 'react-toastify'
@@ -54,15 +53,11 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
   }
 
   return (
-    <motion.section
-      initial={{ opacity: 0.75 }}
-      animate={{ opacity: 1 }}
-      className="h-full w-full flex-1 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6"
-    >
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-        <section className="flex w-full flex-col gap-4 sm:flex-row">
+    <section className="h-full w-full flex-1 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
+      <form className="flex flex-col" onSubmit={handleSubmit}>
+        <section className="flex w-full flex-col gap-2 sm:flex-row">
           <div className="cursor-pointer space-y-1">
-            <p className="capitalize text-neutral-200">
+            <p className="text-sm capitalize text-neutral-300">
               {t('Sizning Rasmingiz')}:
             </p>
             <label
@@ -77,7 +72,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               }
             >
               <div
-                className={`flex-col items-center justify-center gap-0.5 rounded px-0 py-2 fade-in ${file ? 'mx-auto hidden bg-black bg-opacity-50 group-hover:flex' : 'flex bg-transparent'}`}
+                className={`flex-col items-center justify-center gap-0.5 rounded px-0 py-2 ${file ? 'mx-auto hidden bg-black bg-opacity-50 group-hover:flex' : 'flex bg-transparent'}`}
               >
                 <Image
                   src={'/icons/placeholder-image-2.svg'}
@@ -104,7 +99,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           <div className="flex w-full flex-col items-start justify-start gap-2 self-start xs:w-auto xs:min-w-80 xs:gap-0">
             <div className="w-full">
               <label
-                className="mx-2 my-2 block text-sm font-bold capitalize text-neutral-300"
+                className="mx-2 my-1 block text-sm font-bold capitalize text-neutral-300"
                 htmlFor="gender"
               >
                 {t('Jins')}
@@ -137,7 +132,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
             </div>
             <div className="flex w-full flex-col">
               <label
-                className="my-2 block text-sm font-bold text-neutral-300"
+                className="my-1 block text-sm font-bold text-neutral-300"
                 htmlFor="birthdate"
               >
                 {t("Tug'ilgan kuni")}
@@ -151,10 +146,10 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
             </div>
           </div>
         </section>
-        <section className="mb-4 grid grid-cols-1 gap-2 lg:grid-cols-2">
+        <section className="grid grid-cols-1 gap-x-2 gap-y-0 lg:grid-cols-2">
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold capitalize text-neutral-300"
+              className="my-1 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="firstName"
             >
               {t('Ism')}
@@ -171,7 +166,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           </div>
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold capitalize text-neutral-300"
+              className="my-1 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="lastName"
             >
               {t('Familiya')}
@@ -187,7 +182,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           </div>
           <div className="col-span-2 w-full lg:col-span-1">
             <label
-              className="my-2 block text-sm font-bold capitalize text-neutral-300"
+              className="my-1 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="surname"
             >
               {t('Sharif')}
@@ -204,7 +199,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           </div>
           <div className="col-span-2 w-full">
             <label
-              className="my-2 block text-sm font-bold capitalize text-neutral-300"
+              className="my-1 block text-sm font-bold capitalize text-neutral-300"
               htmlFor="bio"
             >
               {t('Siz haqingizda')}
@@ -218,12 +213,12 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               rows={5}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="h-10 min-h-40 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:h-12 md:text-base 2xl:min-h-64"
+              className="h-36 min-h-36 w-full gap-4 rounded border border-neutral-400 bg-gradient-to-r from-neutral-800 to-stone-900 p-2 text-sm text-neutral-200 placeholder:text-neutral-300 md:text-base 2xl:min-h-44"
             />
           </div>
         </section>
         <button
-          className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
+          className="mt-1 w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
           type="submit"
         >
           {updateUserLoading ? (
@@ -239,7 +234,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           )}
         </button>
       </form>
-    </motion.section>
+    </section>
   )
 }
 

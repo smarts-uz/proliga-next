@@ -1,16 +1,11 @@
 'use client'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 const CabinetChangePasswordTab = () => {
   const { t } = useTranslation()
 
   return (
-    <motion.section
-      initial={{ opacity: 0.75 }}
-      animate={{ opacity: 1 }}
-      className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6"
-    >
+    <section className="flex h-full w-full flex-1 flex-col gap-2 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
       <h3 className="lg:texl-lg text-base xl:text-xl">
         {t('Parol Yangilash')}
       </h3>
@@ -57,12 +52,12 @@ const CabinetChangePasswordTab = () => {
         />
       </div>
       <button
-        className="w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-48"
+        className="w-full mt-2 rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-48"
         type="submit"
       >
         {t('Parol Yangilash')}
       </button>
-    </motion.section>
+    </section>
   )
 }
 

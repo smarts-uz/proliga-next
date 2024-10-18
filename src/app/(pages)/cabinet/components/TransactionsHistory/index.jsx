@@ -3,7 +3,6 @@
 import CabinetTransactionsBalanceTable from './BalanceTable'
 import CabinetTransactionsExpensesTable from './ExpensesTable'
 import { useDispatch, useSelector } from 'react-redux'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { fetchPayBalance } from 'app/lib/features/payBalance/payBalance.thunk'
@@ -29,11 +28,7 @@ const CabinetTransactionsHistory = () => {
 
   return (
     <>
-      <motion.section
-        initial={{ opacity: 0.75 }}
-        animate={{ opacity: 1 }}
-        className="flex h-auto w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 xl:p-6"
-      >
+      <section className="flex h-auto w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 xl:p-6">
         <h3 className="lg:texl-lg text-base xl:text-xl">
           {t('Xarajatlar tarixi')}
         </h3>
@@ -71,7 +66,7 @@ const CabinetTransactionsHistory = () => {
             )}
           </div>
         )}
-      </motion.section>
+      </section>
     </>
   )
 }

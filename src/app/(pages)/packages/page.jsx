@@ -37,7 +37,7 @@ const Packages = () => {
       <section className="h-full space-y-6 pb-12 pt-8 text-neutral-200">
         <PackagesTitle />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
             <BalanceTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -62,7 +62,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
             <TransferTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -87,7 +87,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/15 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
             <SameTeamPlayerTitle />
             <div className="flex flex-col gap-4">
               {packages.map(

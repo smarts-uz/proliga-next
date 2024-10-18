@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic'
 import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
 import { LANGUAGE } from 'app/utils/languages.util'
 import { useState, useEffect } from 'react'
 const SettingsSidebarLogOut = dynamic(() => import('./LogOut/LogOut'), {
@@ -16,11 +15,7 @@ const SettingsNavigation = ({ setTab, currentTab }) => {
   const { t } = useTranslation()
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex w-full flex-row justify-between rounded-xl bg-neutral-900/80 bg-opacity-90 px-4 py-2 lg:w-72 lg:flex-col lg:py-4 xl:gap-1"
-    >
+    <section className="flex w-full flex-row justify-between rounded-xl bg-neutral-900/80 bg-opacity-90 px-4 py-2 fade-in lg:w-64 lg:flex-col lg:py-4 xl:gap-1">
       {Object.keys(SETTINGSTAB).map((tab) => (
         <Tab
           key={tab}
@@ -30,7 +25,7 @@ const SettingsNavigation = ({ setTab, currentTab }) => {
         />
       ))}
       <SettingsSidebarLogOut />
-    </motion.section>
+    </section>
   )
 }
 
@@ -106,7 +101,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
     <button
       key={tab}
       onClick={() => setTab(tab)}
-      className={`flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 lg:w-auto lg:justify-start lg:px-8 xl:gap-4 ${isActive ? containerActive : containerPassive}`}
+      className={`flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-2 py-2 transition-all hover:bg-neutral-800 lg:w-auto lg:justify-start lg:px-8 ${isActive ? containerActive : containerPassive}`}
     >
       <Image
         src={`/icons/${getCorrectIcon(tab)}.svg`}
@@ -116,7 +111,7 @@ const Tab = ({ tab, setTab, currentTab }) => {
         className={`size-6 ${isActive ? activeIcon : passiveIcon}`}
       />
       <div
-        className={`hidden lg:block lg:text-sm xl:text-base ${isActive ? active : passive}`}
+        className={`hidden lg:block lg:text-sm ${isActive ? active : passive}`}
       >
         {title}
       </div>

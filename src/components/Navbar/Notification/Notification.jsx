@@ -26,7 +26,7 @@ const Notification = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 1, y: -20 }}
-      className="absolute right-0 top-14 flex h-full min-h-96 w-full max-w-96 flex-col gap-4 overflow-y-auto rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500 sm:w-80"
+      className="absolute right-0 top-12 flex h-full min-h-96 w-full max-w-96 flex-col gap-4 overflow-y-auto rounded-md bg-neutral-900 p-4 shadow-sm shadow-neutral-500 sm:w-80"
     >
       <h3 className="font-bold">{t('Xabarnomalar')}</h3>
       <section className="flex flex-col gap-1 text-neutral-200">
@@ -40,14 +40,14 @@ const Notification = () => {
               onClick={() => handleNotificationClick(notification)}
               className="flex items-center justify-between rounded-lg bg-neutral-800 p-2 transition-all duration-300 ease-in hover:bg-neutral-700"
             >
-            <div className='max-w-[80%]'>
-              <p className="line-clamp-2  break-words text-sm font-thin text-neutral-100">
-                {notification.name}
-              </p>
-              <p className=' text-xs'>{notification.created_at}</p>
-            </div>
+              <div className="max-w-[80%]">
+                <p className="line-clamp-2 break-words text-sm font-thin text-neutral-100">
+                  {notification.name}
+                </p>
+                <p className="text-xs">{notification.created_at}</p>
+              </div>
               <button className="w-auto rounded-md border border-amber-400 p-1 text-xs font-bold">
-              {t("Ko'rish")}
+                {t("Ko'rish")}
               </button>
             </div>
           ))

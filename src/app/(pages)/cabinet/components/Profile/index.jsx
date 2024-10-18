@@ -3,7 +3,6 @@
 
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import Image from 'next/image'
@@ -76,28 +75,23 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
 
   return (
     <>
-      <motion.section
-        initial={{ opacity: 0.75 }}
-        animate={{ opacity: 1 }}
-        className="flex h-full w-full flex-1 flex-col gap-4 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6"
-      >
+      <section className="flex h-full w-full flex-1 flex-col gap-2 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
         <div className="flex items-center gap-2 md:gap-4">
           {userTable?.email && (
-            <div className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-4xl font-bold uppercase text-black md:size-24">
+            <div className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
               {userTable.email.slice(0, 1)}
             </div>
           )}
           {publicUrl && (
             <img
               src={publicUrl}
-              className="flex size-8 select-none rounded-full md:size-12"
+              className="flex size-16 select-none rounded-full md:size-20"
               alt="user avatar"
               width={24}
               height={24}
             />
           )}
-
-          <div className="flex flex-col justify-center gap-2 text-sm md:text-base">
+          <div className="flex flex-col justify-center text-sm md:text-base">
             <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 md:max-w-96 md:text-base">
               <p className="truncate">
                 {userTable?.name ? userTable?.name : t('Ism')}
@@ -130,7 +124,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </div>
         <section className="flex flex-col gap-2">
           <h3 className="font-medium capitalize">{t('Qisqacha Malumot')}:</h3>
-          <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-1 lg:grid-cols-2">
             <div className="flex gap-2 rounded border border-neutral-500 bg-neutral-800 p-2">
               <div className="flex items-center gap-1 capitalize">
                 <Image
@@ -176,20 +170,20 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
         <section>
           <h3 className="font-medium">{t('Bio')}:</h3>
-          <div className="scroll-y-auto h-40 rounded border border-neutral-500 bg-neutral-800 p-2">
+          <div className="scroll-y-auto line-clamp-5 h-28 max-w-full text-wrap break-words rounded border border-neutral-500 bg-neutral-800 p-2 text-sm">
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>
         </section>
         <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
           <div
-            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-48 2xl:size-56`}
+            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
           >
             <Image
               src="/icons/wallet.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center lg:size-12"
+              className="filter-neutral-50 size-10 self-center"
               alt="wallet"
             />
             <div className="w-full self-center text-center">
@@ -210,14 +204,14 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             </button>
           </div>
           <div
-            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-48 2xl:size-56`}
+            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
           >
             <Image
               src="/icons/call.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center lg:size-12"
+              className="filter-neutral-50 size-10 self-center"
               alt="wallet"
             />
             <div className="w-full max-w-36 self-center text-center">
@@ -233,7 +227,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             </button>
           </div>
         </section>
-      </motion.section>
+      </section>
       {otpModal && <OTPConfirmationModal toggleModal={handleOtpModal} />}
       {balanceModal && <RefillBalanceModal toggleModal={handleBalanceModal} />}
     </>
