@@ -13,26 +13,28 @@ const WalletPaymentOption = ({
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.WALLET)}
-      className={`flex size-64 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 p-6 transition-all ${paymentOption === PAYMENTOPTIONS.WALLET ? active : passive}`}
+      className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 transition-all sm:size-44 lg:size-56 ${paymentOption === PAYMENTOPTIONS.WALLET ? active : passive}`}
     >
       <Image
         src="/icons/wallet.svg"
         draggable={false}
         width={36}
         height={36}
-        className="filter-neutral-50 size-16 self-center"
+        className="filter-neutral-50 size-9 self-center sm:size-12 lg:size-16"
         alt="wallet"
       />
       <div className="w-full self-center text-center">
-        <h4 className="text-lg font-medium">{t('Proliga hisobi')}</h4>
-        <p className="text-sm text-neutral-400">
+        <h4 className="text-sm font-medium sm:text-base lg:text-lg">
+          {t('Proliga hisobi')}
+        </h4>
+        <p className="text-xs text-neutral-400 lg:text-sm">
           {t('Hisobda')}: <span className="font-bold text-neutral-50">0 </span>
           {t("so'm")}
         </p>
       </div>
       <button
         onClick={toggleModal}
-        className="rounded border py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+        className="mx-auto w-min self-center text-nowrap rounded border px-3 py-1 text-xs transition-all hover:bg-primary hover:text-neutral-900 sm:text-sm lg:px-4 lg:text-base"
       >
         {t('Hisobni toldirish')}
       </button>

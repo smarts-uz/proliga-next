@@ -8,6 +8,7 @@ import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import Image from 'next/image'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
+import { toast } from 'react-toastify'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, publicUrl } = useSelector((store) => store.auth)
@@ -197,7 +198,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               </p>
             </div>
             <button
-              onClick={handleBalanceModal}
+              onClick={() => toast('Test qilinmoqda!', { theme: 'dark' })}
               className="w-min self-center text-nowrap rounded border px-4 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
             >
               {t('Hisobni toldirish')}

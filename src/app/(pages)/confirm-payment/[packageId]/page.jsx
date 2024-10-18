@@ -33,104 +33,21 @@ const ConfirmPayment = ({ params }) => {
     dispatch(fetchPackages())
   }, [dispatch])
 
-  const [isModalOpen, toggleModal] = useState(false)
-
-  const handleModal = () => {
-    if (isModalOpen) {
-      toggleModal(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      toggleModal(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
-
   return (
-    <>
-      <Gutter>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          currentPackage && (
-            <section className="my-8 w-full">
-              <CurrentPackage currentPackage={currentPackage} />
-              <PaymentOptions toggleModal={handleModal} />
-              <ConfirmPaymentTab currentPackage={currentPackage} />
-            </section>
-          )
-        )}
-      </Gutter>
-      {isModalOpen && <RefillBalanceModal toggleModal={handleModal} />}
-    </>
+    <Gutter>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        currentPackage && (
+          <section className="my-4 flex min-h-[85vh] w-full flex-col">
+            <CurrentPackage currentPackage={currentPackage} />
+            <PaymentOptions />
+            <ConfirmPaymentTab currentPackage={currentPackage} />
+          </section>
+        )
+      )}
+    </Gutter>
   )
 }
-
-const balance = [
-  {
-    id: 1,
-    type: 'balance',
-    amount: 110,
-    price: 25000,
-  },
-  {
-    id: 2,
-    type: 'balance',
-
-    amount: 120,
-    price: 35000,
-  },
-  {
-    id: 3,
-    type: 'balance',
-    amount: 130,
-    price: 65000,
-  },
-]
-
-const transfers = [
-  {
-    id: 4,
-    type: 'transfer',
-    amount: 3,
-    price: 25000,
-  },
-  {
-    id: 5,
-    type: 'transfer',
-    amount: 4,
-    price: 35000,
-  },
-  {
-    id: 6,
-    type: 'transfer',
-    amount: 5,
-    price: 65000,
-  },
-]
-
-const maxClubMembers = [
-  {
-    id: 7,
-    type: 'maxClubMembers',
-    amount: 3,
-    price: 25000,
-  },
-  {
-    id: 8,
-    type: 'maxClubMembers',
-    amount: 4,
-    price: 35000,
-  },
-  {
-    id: 9,
-    type: 'maxClubMembers',
-    amount: 5,
-    price: 65000,
-  },
-]
 
 export default ConfirmPayment

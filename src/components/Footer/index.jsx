@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-neutral-400 bg-neutral-950">
       <Gutter>
-        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-16 pt-8 text-neutral-200 xl:gap-0">
+        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 pb-16 pt-8 text-sm text-neutral-200 lg:text-base xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/contact" className="capitalize hover:underline">
               {t('Biz haqimizda')}

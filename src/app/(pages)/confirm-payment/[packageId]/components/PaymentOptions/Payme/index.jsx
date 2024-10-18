@@ -12,19 +12,23 @@ const PaymePaymentOption = ({
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.PAYME)}
-      className={`flex size-64 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 p-6 transition-all ${paymentOption === PAYMENTOPTIONS.PAYME ? active : passive}`}
+      className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 transition-all sm:size-44 lg:size-56 ${paymentOption === PAYMENTOPTIONS.PAYME ? active : passive}`}
     >
       <Image
         src="/icons/payme.svg"
         width={36}
         draggable={false}
         height={36}
-        className="h-16 w-28 self-center"
+        className="h-auto w-20 self-center lg:w-28"
         alt="payme"
       />
       <div className="w-full self-center text-center">
-        <h4 className="text-lg font-medium">Payme</h4>
-        <p className="text-sm text-neutral-400">{t("Payme orqali tolov qilish")}</p>
+        <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
+          Payme
+        </h4>
+        <p className="text-xs text-neutral-400 lg:text-sm">
+          {t('Payme orqali tolov qilish')}
+        </p>
       </div>
     </div>
   )

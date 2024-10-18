@@ -4,31 +4,32 @@ import PaymePaymentOption from './Payme'
 import { useState } from 'react'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { useTranslation } from 'react-i18next'
+import RefillBalanceModal from 'components/RefillBalanceModal'
 
-
-const PaymentOptions = ({ toggleModal }) => {
+const PaymentOptions = () => {
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
   const { t } = useTranslation()
 
   return (
-    <div className="mt-4">
-      <div className="flex w-full items-center gap-6 p-0 pb-6 md:p-6">
+    <div className="mb-4 mt-2">
+      <div className="flex w-full items-center gap-4 p-4 lg:p-6">
         <span className="hidden size-12 items-center justify-center rounded-full bg-neutral-700 font-bold text-neutral-300 sm:flex">
           2
         </span>
-        <h3 className="text-lg font-medium sm:text-xl">
-        {t("To'lov usulini tanlang")}
+        <h3 className="text-sm font-medium sm:text-base md:text-lg lg:text-xl">
+          {t("To'lov usulini tanlang")}
         </h3>
       </div>
-      <section className="flex flex-wrap justify-center gap-4 sm:justify-start md:gap-6">
+      <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
         <WalletPaymentOption
           paymentOption={paymentOption}
           setPaymentOption={setPaymentOption}
           active={active}
           passive={passive}
-          toggleModal={toggleModal}
+          toggleModal={() => setIsModalOpen(true)}
         />
         <ClickUpPaymentOption
           paymentOption={paymentOption}
@@ -43,6 +44,10 @@ const PaymentOptions = ({ toggleModal }) => {
           passive={passive}
         />
       </section>
+      <RefillBalanceModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   )
 }

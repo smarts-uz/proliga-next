@@ -32,11 +32,9 @@ const Prizes = () => {
           {competition?.map((competition, index) => (
             <div
               key={index}
-              className="transitiona-all group flex flex-col rounded-xl border 
-              border-neutral-100/50 bg-neutral-900/30 p-2 backdrop-blur-sm hover:border-neutral-100 md:p-4"
+              className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 md:p-4"
             >
-              <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 
-              pb-2 transition-all group-hover:border-primary">
+              <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
                 <img
                   src={competition.flag}
                   alt={competition.title}

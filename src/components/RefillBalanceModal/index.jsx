@@ -1,12 +1,17 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Backdrop from 'components/Backdrop'
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
-const RefillBalanceModal = ({ toggleModal }) => {
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from '@/components/ui/dialog'
+
+const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
   const { t } = useTranslation()
   const router = useRouter()
@@ -18,35 +23,23 @@ const RefillBalanceModal = ({ toggleModal }) => {
     e.preventDefault()
     router.push('/championships')
   }
-
   return (
-    <Backdrop onClick={toggleModal}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-h-[80vh] max-w-[36rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-600 bg-neutral-900 p-4 text-neutral-200 xs:mx-auto md:w-1/2 md:p-6 2xl:w-1/3"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="self-end" onClick={toggleModal}>
-          <Image
-            src="/icons/close.svg"
-            className="filter-neutral-50"
-            alt="close"
-            width={24}
-            height={24}
-          />
-        </button>
-        <h2 className="text-xl font-bold sm:text-2xl">
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogContent className="min-w-[30%] max-w-[90%] rounded-xl border border-neutral-600 bg-neutral-900 xs:max-w-max md:p-6">
+        {/* <DialogTitle>{t('Balansingizni toldiring')}</DialogTitle> */}
+        <DialogTitle className="text-lg font-bold sm:text-xl">
           {t('Balansingizni toldiring')}
-        </h2>
+        </DialogTitle>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="w-full space-y-2">
-            <h3 className="text-neutral-300">{t("To'lov usulini tanlang")}</h3>
-            <section className="flex justify-center gap-2 xs:gap-4 sm:justify-start">
+            <h3 className="text-sm font-medium text-neutral-300 sm:text-base">
+              {t("To'lov usulini tanlang")}
+            </h3>
+            <section className="flex justify-center gap-1 sm:justify-start">
               <button
                 onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
                 type="button"
-                className={`h-16 w-full rounded-xl border bg-stone-950 p-4 transition-all sm:h-20 sm:p-6 ${paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive}`}
+                className={`h-16 w-full rounded border bg-stone-950 p-4 transition-all xl:rounded-md ${paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive}`}
               >
                 <Image
                   src="/icons/click-up.svg"
@@ -60,7 +53,7 @@ const RefillBalanceModal = ({ toggleModal }) => {
               <button
                 type="button"
                 onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
-                className={`h-16 w-full rounded-xl border bg-stone-950 p-4 transition-all sm:h-20 sm:p-6 ${paymentOption === BALANCEOPTIONS.PAYME ? active : passive}`}
+                className={`h-16 w-full rounded border bg-stone-950 p-4 transition-all xl:rounded-md ${paymentOption === BALANCEOPTIONS.PAYME ? active : passive}`}
               >
                 <Image
                   src="/icons/payme.svg"
@@ -74,7 +67,10 @@ const RefillBalanceModal = ({ toggleModal }) => {
             </section>
           </div>
           <div className="w-full space-y-2">
-            <label className="text-neutral-300" htmlFor="money">
+            <label
+              className="text-sm font-medium text-neutral-300 sm:text-base"
+              htmlFor="money"
+            >
               {t("To'lash summasini tering")}
             </label>
             <input
@@ -92,8 +88,11 @@ const RefillBalanceModal = ({ toggleModal }) => {
             {t("To'lash")}
           </button>
         </form>
-      </motion.dialog>
-    </Backdrop>
+      </DialogContent>
+      <DialogDescription className="hidden">
+        This is a dialog to refill user balance
+      </DialogDescription>
+    </Dialog>
   )
 }
 

@@ -37,7 +37,7 @@ const Packages = () => {
       <section className="h-full space-y-6 pb-12 pt-8 text-neutral-200">
         <PackagesTitle />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
             <BalanceTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -45,7 +45,7 @@ const Packages = () => {
                   item.type === PACKAGES.team_balance && (
                     <div
                       key={index}
-                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
                     >
                       <span className="font-bold text-neutral-50">
                         {t('gacha oshirish ru')} {item.amount}{' '}
@@ -53,7 +53,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -62,7 +62,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
             <TransferTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -70,7 +70,7 @@ const Packages = () => {
                   item.type === PACKAGES.transfer_count && (
                     <div
                       key={index}
-                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
                     >
                       <span className="font-bold text-neutral-50">
                         {t('gacha oshirish ru')} {item.amount}{' '}
@@ -78,7 +78,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -87,7 +87,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border bg-black/25 p-4 backdrop-blur-md">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
             <SameTeamPlayerTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -95,7 +95,7 @@ const Packages = () => {
                   item.type === PACKAGES.single_club_count && (
                     <div
                       key={index}
-                      className="xs:text-md flex items-center justify-between rounded border p-2 text-sm"
+                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
                     >
                       <span className="font-bold text-neutral-50">
                         {t('gacha oshirish ru')} {item.amount}{' '}
@@ -103,7 +103,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:border-primary hover:bg-neutral-900"
+                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>
