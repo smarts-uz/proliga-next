@@ -4,7 +4,6 @@ import { toast } from 'react-toastify'
 import { useEffect, useMemo } from 'react'
 import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
-import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useUpdateTeam } from 'app/hooks/transfer/useUpdateTeam/useUpdateTeam'
 import { setTab } from 'app/lib/features/tours/tours.slice'
@@ -114,7 +113,7 @@ const TransferStadiumForm = () => {
     let difference = curTeamPlayersId.filter(
       (x) => !prevTeamPlayersId.includes(x)
     )
-    let countOfTransfers = Math.ceil(+difference.length)
+    let countOfTransfers = difference.length ?? 0
 
     if (
       currentTeam.is_team_created &&

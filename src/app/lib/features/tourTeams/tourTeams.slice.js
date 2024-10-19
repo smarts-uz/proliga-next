@@ -15,10 +15,12 @@ const tourTeamSlice = createSlice({
   name: 'tourTeams',
   initialState,
   reducers: {
-    setCurrentTourTeamIndex: (state, action) => {
-      if (action.payload && state.tourTeams[action.payload]) {
-        state.currentTourTeam = state.tourTeams[action.payload]
-        state.currentTourTeamIndex = action.payload
+    setCurrentTourTeam: (state, action) => {
+      const tour = action.payload
+      if (action.payload) {
+        state.currentTourTeam = state.tourTeams.find(
+          (t) => +t.tour_id === +tour.id
+        )
       }
     },
     setTeamBalance: (state, action) => {
@@ -35,7 +37,7 @@ const tourTeamSlice = createSlice({
 })
 
 export const {
-  setCurrentTourTeamIndex,
+  setCurrentTourTeam,
   setTeamBalance,
   setCurrentTourTeamTransfersCount,
 } = tourTeamSlice.actions

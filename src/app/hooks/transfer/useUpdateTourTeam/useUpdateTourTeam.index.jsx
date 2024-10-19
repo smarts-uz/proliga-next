@@ -10,13 +10,12 @@ export const useUpdateTourTeam = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
-  const { userAuth } = useSelector((state) => state.auth)
   const { t } = useTranslation()
 
   const updateTourTeam = async ({
     team_id,
     tour_id,
-    count_of_transfers = 0,
+    count_of_transfers,
     is_team_created,
   }) => {
     setIsLoading(false)
@@ -40,7 +39,6 @@ export const useUpdateTourTeam = () => {
       toast.error(t('Transfer soni kiritilmagan!'), { theme: 'dark' })
       return
     }
-
     try {
       setIsLoading(true)
 

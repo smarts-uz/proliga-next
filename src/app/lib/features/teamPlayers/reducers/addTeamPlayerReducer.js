@@ -92,6 +92,20 @@ export const addTeamPlayerReducer = (state, action) => {
     return state
   }
   if (
+    player.position === PLAYERS.GOA &&
+    state.playersCount.GOA < 1 &&
+    state.GOA.length === 0
+  ) {
+    softDeleteEmptyPlayer(emptyPlayer)
+    const newPlayer = createUpdatedPlayer(player)
+    delete newPlayer.club
+    state.GOA.push({ ...newPlayer, id: emptyPlayer.id })
+    state.playersCount.GOA++
+    calcTeamPrice()
+    evaluateTeamClubId()
+    return state
+  }
+  if (
     player.position === PLAYERS.DEF &&
     state.playersCount.DEF < state.DEF.length
   ) {

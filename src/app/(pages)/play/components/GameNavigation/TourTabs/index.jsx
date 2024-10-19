@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
-import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { setCurrentTourTeam } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
@@ -15,7 +15,7 @@ export default function TourTabs() {
   const dispatch = useDispatch()
   const { currentCompetition } = useSelector((state) => state.competition)
   const selectedTours = useSelector(selectTours)
-  const { currentTourIndex, registeredTour } = useSelector(
+  const { currentTour, currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
   const { currentTeam } = useSelector((store) => store.currentTeam)
@@ -30,7 +30,7 @@ export default function TourTabs() {
       tourTeams?.length > 0
     ) {
       dispatch(setMatchesTourIndex(currentTourIndex))
-      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+      dispatch(setCurrentTourTeam(currentTour))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
 
@@ -42,7 +42,7 @@ export default function TourTabs() {
       tourTeams?.length > 0
     ) {
       dispatch(setMatchesTourIndex(currentTourIndex))
-      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+      dispatch(setCurrentTourTeam(currentTour))
     }
   }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
 
@@ -65,7 +65,7 @@ export default function TourTabs() {
     if (currentTourIndex !== index) {
       dispatch(emptyTeamPlayers())
     }
-    dispatch(setCurrentTourTeamIndex(index))
+    dispatch(setCurrentTourTeam(index))
     dispatch(setCurrentTourIndex(index))
     dispatch(setMatchesTourIndex(index))
   }

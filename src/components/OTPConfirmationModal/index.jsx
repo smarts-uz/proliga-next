@@ -1,8 +1,7 @@
 'use client'
 
 import Backdrop from 'components/Backdrop'
-import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import { useState } from 'react'
 import {
   InputOTP,
   InputOTPGroup,

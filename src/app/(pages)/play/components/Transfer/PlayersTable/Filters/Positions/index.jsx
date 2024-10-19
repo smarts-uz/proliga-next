@@ -63,7 +63,7 @@ const PositionsFilter = ({ column, columnFilterValue }) => {
   }
 
   return (
-    <section className="col-span-4 flex w-full overflow-x-scroll text-xs xs:text-sm lg:text-[13px] 2xl:gap-0.5 2xl:text-base">
+    <section className="col-span-4 flex w-full overflow-x-scroll text-xs xs:text-sm lg:text-[13px] 2xl:gap-x-0.5 2xl:text-sm">
       {DATA.map((obj, index) => (
         <button
           key={index}

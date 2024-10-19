@@ -24,7 +24,6 @@ export const fetchTeamViewTours = createAsyncThunk(
       .eq('competition_id', competition_id)
       .is('deleted_at', null)
       .order('order', { ascending: true })
-    console.log(registered_tour_id)
 
     return { data, error, registered_tour_id }
   }

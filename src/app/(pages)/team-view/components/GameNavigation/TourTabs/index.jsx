@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import { setCurrentTourIndex } from 'app/lib/features/tours/tours.slice'
-import { setCurrentTourTeamIndex } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { setCurrentTourTeam } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +14,7 @@ export default function TourTabs() {
   const dispatch = useDispatch()
   const { currentCompetition } = useSelector((state) => state.competition)
   const selectedTours = useSelector(selectTours)
-  const { currentTourIndex, registeredTour } = useSelector(
+  const { currentTour, currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
   const { currentTourTeamIndex, tourTeams } = useSelector(
@@ -27,7 +27,7 @@ export default function TourTabs() {
       selectTours?.length > 0 &&
       tourTeams?.length > 0
     ) {
-      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+      dispatch(setCurrentTourTeam(currentTour))
     }
   }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
 
@@ -38,7 +38,7 @@ export default function TourTabs() {
       selectTours?.length > 0 &&
       tourTeams?.length > 0
     ) {
-      dispatch(setCurrentTourTeamIndex(currentTourIndex))
+      dispatch(setCurrentTourTeam(currentTour))
     }
   }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
 
@@ -57,11 +57,11 @@ export default function TourTabs() {
     return 'Unidentified Status'
   }
 
-  const handleClick = (index) => {
+  const handleClick = (index, item) => {
     if (currentTourIndex !== index) {
       dispatch(emptyTeamPlayers())
     }
-    dispatch(setCurrentTourTeamIndex(index))
+    dispatch(setCurrentTourTeam(item))
     dispatch(setCurrentTourIndex(index))
   }
   return (
@@ -85,7 +85,7 @@ export default function TourTabs() {
         {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
-            onClick={() => handleClick(index)}
+            onClick={() => handleClick(index, item)}
             className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
               item.status === TOUR.notStarted ||
