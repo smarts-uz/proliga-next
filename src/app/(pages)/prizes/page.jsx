@@ -66,6 +66,7 @@ const Prizes = () => {
 const Prize = ({ prize }) => {
   const { lang } = useSelector((store) => store.systemLanguage)
   const { t } = useTranslation()
+  
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <p className="mb-1 text-sm md:mb-2 xl:text-base">
@@ -79,7 +80,8 @@ const Prize = ({ prize }) => {
         />
       </div>
       <p className="text-lg">
-        <span className="text-3xl font-bold md:text-xl">{prize.order}</span>{' '}
+        <span className="text-3xl font-bold md:text-xl">{prize.order}</span>
+        {'-'}
         {t("O'RIN")}
       </p>
     </div>

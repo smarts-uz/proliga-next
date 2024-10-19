@@ -10,7 +10,7 @@ const PaymentOptions = () => {
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const active = 'border-primary'
-  const passive = 'border-neutral-600 hover:border-yellow-600'
+  const passive = 'border-neutral-600 hover:border-primary/80'
   const { t } = useTranslation()
 
   return (

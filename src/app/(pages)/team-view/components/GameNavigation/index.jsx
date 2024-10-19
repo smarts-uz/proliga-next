@@ -1,10 +1,7 @@
 import Gutter from '../../../../../components/Gutter'
 import Tabs from './TourTabs'
-import { useSelector } from 'react-redux'
 
 const TeamTabs = () => {
-  const { gameTab } = useSelector((state) => state.tours)
-
   return (
     <>
       <div className="hidden lg:block">

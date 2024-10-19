@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
+import { Switch } from '@/components/ui/switch'
+import { useState } from 'react'
+
 const ConfirmPaymentTab = ({ currentPackage }) => {
+  const [testingActive, setTestingActive] = useState(false)
   const { t } = useTranslation()
+
   return (
-    <div className="mt-auto flex flex-col items-start justify-between gap-2 rounded-md bg-gradient-to-l from-neutral-800 to-stone-900 p-4 md:h-auto md:flex-row md:items-center md:p-6">
+    <section className="mt-auto flex flex-col items-start justify-between gap-2 rounded-md bg-gradient-to-l from-neutral-800 to-stone-900 p-4 md:h-auto md:flex-row md:items-center md:p-6">
       <div className="space-x-1 text-sm font-medium xs:text-base md:text-lg">
         <p className="inline-block"> {t("To'lov miqdori")}</p>
         <span className="inline-block text-base font-bold xs:text-lg sm:text-xl lg:text-2xl">
@@ -11,9 +16,17 @@ const ConfirmPaymentTab = ({ currentPackage }) => {
         </span>
         <p className="inline-block font-medium">{t("so'm")}</p>
       </div>
-      <span className="mr-4 rounded-full bg-green-700 px-4 py-0.5 text-xs md:text-sm">
-        test
-      </span>
+      <div className="flex items-center gap-2 text-xs md:text-sm">
+        <label htmlFor="testing" className="select-none">
+          Test
+        </label>
+        <Switch
+          id="testing"
+          checked={testingActive}
+          onCheckedChange={setTestingActive}
+          className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-green-900"
+        />
+      </div>
       <div className="flex items-center gap-1 self-end font-medium md:self-auto">
         <Link
           href="/packages"
@@ -28,7 +41,7 @@ const ConfirmPaymentTab = ({ currentPackage }) => {
           {t("To'lash")}
         </Link>
       </div>
-    </div>
+    </section>
   )
 }
 

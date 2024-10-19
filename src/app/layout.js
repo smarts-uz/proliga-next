@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       </head>
       <ReduxProvider>
         <body
-          className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased md:min-h-max`}
+          className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased`}
         >
           <GetInitialState>
             <Navbar />

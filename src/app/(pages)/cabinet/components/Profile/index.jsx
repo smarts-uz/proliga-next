@@ -8,7 +8,6 @@ import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import Image from 'next/image'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
-import { toast } from 'react-toastify'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, publicUrl } = useSelector((store) => store.auth)
@@ -22,27 +21,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
   const month = date.getMonth() + 1
   const year = date.getFullYear()
 
-  const handleBalanceModal = () => {
-    if (otpModal) {
-      setOtpModal(false)
-    }
-    if (balanceModal) {
-      setBalanceModal(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setBalanceModal(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
-
   const handleOtpModal = () => {
-    if (balanceModal) {
-      setBalanceModal(false)
-    }
     if (otpModal) {
       setOtpModal(false)
       if (typeof window != 'undefined' && window.document) {
@@ -177,14 +156,14 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
         <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
           <div
-            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
+            className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
           >
             <Image
               src="/icons/wallet.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center"
+              className="filter-neutral-50 size-9 self-center sm:size-10"
               alt="wallet"
             />
             <div className="w-full self-center text-center">
@@ -198,21 +177,21 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               </p>
             </div>
             <button
-              onClick={() => toast('Test qilinmoqda!', { theme: 'dark' })}
-              className="w-min self-center text-nowrap rounded border px-4 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+              onClick={() => setBalanceModal(true)}
+              className="w-min self-center text-nowrap rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
             >
               {t('Hisobni toldirish')}
             </button>
           </div>
           <div
-            className={`flex size-40 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
+            className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
           >
             <Image
               src="/icons/call.svg"
               draggable={false}
               width={36}
               height={36}
-              className="filter-neutral-50 size-10 self-center"
+              className="filter-neutral-50 size-9 self-center sm:size-10"
               alt="wallet"
             />
             <div className="w-full max-w-36 self-center text-center">
@@ -222,7 +201,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             </div>
             <button
               onClick={handleOtpModal}
-              className="w-min self-center rounded border px-4 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900"
+              className="w-min self-center rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
             >
               {t('Tasdiqlash')}
             </button>
@@ -230,7 +209,12 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
       </section>
       {otpModal && <OTPConfirmationModal toggleModal={handleOtpModal} />}
-      {balanceModal && <RefillBalanceModal toggleModal={handleBalanceModal} />}
+      {balanceModal && (
+        <RefillBalanceModal
+          setIsModalOpen={setBalanceModal}
+          isModalOpen={balanceModal}
+        />
+      )}
     </>
   )
 }
