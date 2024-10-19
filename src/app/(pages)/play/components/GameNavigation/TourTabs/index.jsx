@@ -18,6 +18,7 @@ export default function TourTabs() {
   const { currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
+  const { currentTeam } = useSelector((store) => store.currentTeam)
   const { currentTourTeamIndex, tourTeams } = useSelector(
     (state) => state.tourTeams
   )
@@ -94,7 +95,7 @@ export default function TourTabs() {
             className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
             disabled={
               item.status === TOUR.notStarted ||
-              item.order < registeredTour?.order - 1
+              item.order < registeredTour?.order
             }
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">

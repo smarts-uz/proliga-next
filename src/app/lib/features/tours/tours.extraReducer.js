@@ -12,6 +12,12 @@ export const toursExtraReducer = (builder) => {
       let tour = state.tours.find(
         (tour) => tour.status === TOUR.notStartedTransfer
       )
+      let registeredTour = state.tours.find(
+        (tour) => tour.id === action.payload.registered_tour_id
+      )
+      if (registeredTour) {
+        state.registeredTour = registeredTour
+      }
       if (!tour) {
         tour = state.tours.find(
           (tour) => tour.id === action.payload.registered_tour_id
@@ -22,7 +28,7 @@ export const toursExtraReducer = (builder) => {
       }
       if (tour) {
         state.currentTour = tour
-        state.registeredTour = tour
+        state.registeredTour = registeredTour ?? tour
         state.currentTourIndex = state.tours.indexOf(tour)
       }
     })
@@ -35,14 +41,20 @@ export const toursExtraReducer = (builder) => {
     })
     .addCase(fetchTeamViewTours.fulfilled, (state, action) => {
       state.isLoading = false
-      state.tours = action.payload.data
+      state.tours = action.payload?.data
       let tour = state.tours.find((tour) => tour.status === TOUR.inProcess)
+      let registeredTour = state.tours.find(
+        (tour) => tour.id === action.payload.registered_tour_id
+      )
+      if (registeredTour) {
+        state.registeredTour = registeredTour
+      }
       if (!tour) {
         tour = state.tours.find((tour) => tour.status === TOUR.completed)
       }
       if (!tour) {
         tour = state.tours.find(
-          (tour) => tour.id === action.payload.registered_tour_id
+          (tour) => +tour.id === +action.payload.registered_tour_id
         )
       }
       if (!tour) {
@@ -50,7 +62,7 @@ export const toursExtraReducer = (builder) => {
       }
       if (tour) {
         state.currentTour = tour
-        state.registeredTour = tour
+        state.registeredTour = registeredTour ?? tour
         state.currentTourIndex = state.tours.indexOf(tour)
       }
     })

@@ -64,7 +64,6 @@ export default function TourTabs() {
     dispatch(setCurrentTourTeamIndex(index))
     dispatch(setCurrentTourIndex(index))
   }
-
   return (
     <Box
       sx={{

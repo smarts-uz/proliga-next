@@ -24,6 +24,7 @@ const Play = ({ params }) => {
     [GOA, DEF, MID, STR]
   )
   const { competition } = useSelector((store) => store.competition)
+
   useEffect(() => {
     if (params?.id) {
       dispatch(fetchSelectedTeam({ id: params.id }))
@@ -31,12 +32,12 @@ const Play = ({ params }) => {
   }, [dispatch, params])
 
   useEffect(() => {
-    if (currentTeam?.competition_id && +currentTeam?.id === +params.id) {
+    if (currentTeam && +currentTeam?.id === +params.id) {
       const fetch = async () => {
         dispatch(
           fetchTeamViewTours({
             competition_id: currentTeam.competition_id.id,
-            registered_tour_id: currentTeam?.registered_tour_id,
+            registered_tour_id: currentTeam.registered_tour_id,
           })
         )
       }
@@ -104,11 +105,15 @@ const Play = ({ params }) => {
   useEffect(() => {
     if (params.id) {
       const fetch = async () => {
-        dispatch(fetchTourTeams({ team_id: params.id }))
+        dispatch(
+          fetchTourTeams({
+            team_id: params.id,
+          })
+        )
       }
       fetch()
     }
-  }, [params.id, currentTour, dispatch])
+  }, [params.id, currentTour, dispatch, currentTeam])
 
   return (
     <div
