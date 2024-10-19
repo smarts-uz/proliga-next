@@ -28,7 +28,6 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "embla-carousel-react": "^8.3.0",
-    "formik": "^2.4.6",
     "framer-motion": "^11.5.4",
     "i18next": "^23.15.1",
     "input-otp": "^1.2.4",
@@ -41,15 +40,12 @@
     "react-i18next": "^15.0.2",
     "react-phone-number-input": "^3.4.5",
     "react-redux": "^9.1.2",
-    "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
     "sass": "^1.79.3",
-    "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.59.1",
     "@types/react": "18.3.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
