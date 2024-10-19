@@ -9,7 +9,7 @@ import { setTab } from 'app/lib/features/tours/tours.slice'
 import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 import { useTranslation } from 'react-i18next'
 
-const MobileModal = ({ onCancel }) => {
+const MobileSidebar = ({ onCancel }) => {
   const path = usePathname()
   const active = 'before:block before:bg-primary text-white'
   const passive = 'before:hidden hover:before:block'
@@ -254,4 +254,4 @@ const NavLink = ({ children, href, handleToggle }) => {
   )
 }
 
-export default MobileModal
+export default MobileSidebar
