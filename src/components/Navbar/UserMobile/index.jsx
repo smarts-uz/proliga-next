@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const NavbarMobile = ({ handleToggleModal, userAuth }) => {
+const NavbarUserMobile = ({ handleToggleModal, userAuth }) => {
   return (
     <span
       onClick={handleToggleModal}
@@ -24,4 +24,4 @@ const NavbarMobile = ({ handleToggleModal, userAuth }) => {
   )
 }
 
-export default NavbarMobile
+export default NavbarUserMobile

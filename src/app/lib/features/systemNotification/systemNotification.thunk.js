@@ -9,6 +9,8 @@ export const fetchSystemNotification = createAsyncThunk(
       .from('system_notification')
       .select('*')
       .eq('is_broadcast', true)
+      .is('deleted_at', null)
+      .order('created_at')
 
     return { data, error }
   }
@@ -21,6 +23,8 @@ export const fetchPersonalNotification = createAsyncThunk(
       .from('system_notification')
       .select('*')
       .eq('user_id', userId)
+      .is('deleted_at', null)
+      .order('created_at')
 
     return { data, error }
   }
@@ -36,19 +40,19 @@ export const setupNotificationListener = createAsyncThunk(
           'postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'system_notification' },
           (payload) => {
-            const { name, desc, is_broadcast, user_id } = payload.new;
+            const { name, desc, is_broadcast, user_id } = payload.new
 
             if (is_broadcast || user_id === userId) {
-              dispatch(addNotification({ name, desc }));
+              dispatch(addNotification({ name, desc }))
             }
           }
         )
-        .subscribe();
+        .subscribe()
 
       // Do not dispatch the channel itself
-      return; // If needed, handle channel separately outside Redux
+      return // If needed, handle channel separately outside Redux
     } catch (error) {
-      toast.error(error.message, { theme: 'dark' });
+      toast.error(error.message, { theme: 'dark' })
     }
   }
-);
+)

@@ -3,7 +3,7 @@ import Dropdown from './Dropdown'
 import { Popover, PopoverTrigger } from '@/components/ui/popover'
 import { useState } from 'react'
 
-const NavbarDesktop = ({ userAuth }) => {
+const NavbarUserDesktop = ({ userAuth }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
 
   return (
@@ -30,7 +30,7 @@ const NavbarDesktop = ({ userAuth }) => {
           )}
           <Image
             src={'/icons/arrow-down.svg'}
-            className={`hidden size-5 select-none transition-all sm:block lg:hidden xl:block`}
+            className={`${isDropdownOpen ? 'rotate-180' : 'rotate-0'} hidden size-5 select-none transition-all sm:block lg:hidden xl:block`}
             alt="arrow down"
             width={20}
             draggable={false}
@@ -43,4 +43,4 @@ const NavbarDesktop = ({ userAuth }) => {
   )
 }
 
-export default NavbarDesktop
+export default NavbarUserDesktop

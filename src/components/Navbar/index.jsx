@@ -1,21 +1,21 @@
 'use client'
 
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import Gutter from '../Gutter'
 import PlayLinks from './Links'
-import MobileSidebar from './Mobile/Sidebar'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { usePathname } from 'next/navigation'
-import NavbarDesktop from './Desktop'
-import NavbarMobile from './Mobile'
+import MobileSidebar from './UserMobile/Sidebar'
+import NavbarUserDesktop from './UserDesktop'
+import NavbarUserMobile from './UserMobile'
 import ChangeLanguageDropdown from './Language'
 import Notification from './Notification'
 
 const Navbar = () => {
   const path = usePathname()
-  const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { userAuth } = useSelector((state) => state.auth)
   const [isModalOpen, toggleModal] = useState(false)
 
   // const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false)
@@ -92,12 +92,11 @@ const Navbar = () => {
             <div className="flex w-max items-center justify-center gap-4">
               <ChangeLanguageDropdown />
               <Notification />
-              <NavbarMobile
+              <NavbarUserMobile
                 handleToggleModal={handleToggleModal}
                 userAuth={userAuth}
-                isModalOpen={isModalOpen}
               />
-              <NavbarDesktop userAuth={userAuth} userTable={userTable} />
+              <NavbarUserDesktop userAuth={userAuth} />
             </div>
           </div>
         </Gutter>
