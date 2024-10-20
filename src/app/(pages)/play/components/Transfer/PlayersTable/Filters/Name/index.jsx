@@ -5,9 +5,9 @@ import { Input } from '@/components/ui/input'
 const PlayerNameFilter = ({ column, columnFilterValue }) => {
   const { t } = useTranslation()
   return (
-    <div className="relative w-full sm:col-span-2 max-w-96">
+    <div className="relative col-span-4 w-full sm:max-w-96 sm:col-span-2">
       <Input
-        className="h-8 w-full rounded border border-neutral-500 bg-neutral-950 px-2 text-neutral-200 shadow placeholder:text-neutral-300"
+        className="h-8 w-full rounded border border-neutral-500 bg-neutral-950 pl-2 pr-7 text-neutral-200 shadow placeholder:text-neutral-300"
         onChange={(e) => column.setFilterValue(e.target.value)}
         onClick={(e) => e.stopPropagation()}
         placeholder={t("O'yinchi Ismi")}

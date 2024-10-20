@@ -7,15 +7,13 @@ import { TOUR } from 'app/utils/tour.util'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
-  const [prevTour, setPrevTour] = useState(null)
 
-  const [prevTourTeam, setPrevTourTeam] = useState(null)
-  const { tours, currentTourIndex, currentTour, isLoading } = useSelector(
+  const { tours, currentTourIndex, currentTour } = useSelector(
     (store) => store.tours
   )
   const { currentTeam } = useSelector((store) => store.currentTeam)
   const { currentCompetition } = useSelector((store) => store.competition)
-  const { teamPrice, teamBalance, tourTeams, currentTourTeam } = useSelector(
+  const { teamPrice, teamBalance, currentTourTeam } = useSelector(
     (store) => store.tourTeams
   )
   const { t } = useTranslation()
@@ -27,15 +25,6 @@ const GameBrief = () => {
     }
   }, [tours, currentTourIndex])
 
-  useEffect(() => {
-    if (tours.length > 0 && currentTourIndex > 0) {
-      const prevTour = tours[currentTourIndex - 1]
-      setPrevTour(prevTour)
-      const prevTourTeam = tourTeams.find((t) => t.tour_id === prevTour.id)
-      setPrevTourTeam(prevTourTeam)
-    }
-  }, [currentTourIndex, tours, tourTeams])
-
   const date = new Date(nextTour?.datetime_start)
   const day = date.getDate()
   const month = date.getUTCMonth() + 1
@@ -44,20 +33,15 @@ const GameBrief = () => {
   const minutes = date.getMinutes()
 
   const curDate = new Date(currentTour?.datetime_start)
-  const prevDate = new Date(prevTour?.datetime_start)
 
   return (
     <section className="fade-in-fast mx-auto flex h-auto w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-6 md:px-10 lg:mx-0 lg:w-1/2 2xl:h-full">
       <Container className="border-b border-neutral-700">
         <Item>
           <Title> {t('Keyingi Tur')}</Title>
-          {currentTour.status !== TOUR.notStartedTransfer ? (
-            <Content className="text-sm uppercase text-primary md:text-base">
-              {nextTour?.name}
-            </Content>
-          ) : (
-            <Content>{currentTour?.name}</Content>
-          )}
+          <Content className="text-sm uppercase text-primary md:text-base">
+            {nextTour?.name}
+          </Content>
         </Item>
         <Item>
           <Title>{t('Deadline')}</Title>
@@ -78,29 +62,21 @@ const GameBrief = () => {
       <Container className="border-b border-neutral-700">
         <Item>
           <Title>{t('Tur')}</Title>
-          {currentTour.status !== TOUR.notStartedTransfer ? (
-            <Content>{currentTour?.name ?? t('Hozirgi Tur')}</Content>
-          ) : (
-            <Content>{prevTour?.name}</Content>
-          )}
+          <Content>{currentTour?.name ?? t('Hozirgi Tur')}</Content>
         </Item>
         <Item>
           <Title>{t('Turdagi ochkolar')}</Title>
-          {currentTour.status !== TOUR.notStartedTransfer ? (
-            <Content>{currentTourTeam?.point ?? '00'}</Content>
-          ) : (
-            <Content>{prevTourTeam?.point ?? '00'}</Content>
-          )}
+          <Content>{currentTourTeam?.point ?? '0'}</Content>
         </Item>
       </Container>
       <Container className="border-b border-neutral-700">
         <Item>
           <Title>{t('Turnirdagi ochkolar')}</Title>
-          <Content>{currentTeam?.point ?? '000'}</Content>
+          <Content>{currentTeam?.point ?? '0'}</Content>
         </Item>
         <Item>
           <Title>{t("Turnirdagi o'rtacha ochkolar")}</Title>
-          <Content>{currentCompetition?.average_team_point ?? '00.0'}</Content>
+          <Content>{currentCompetition?.average_team_point ?? '0'}</Content>
         </Item>
       </Container>
       <Container className="border-b border-neutral-700">
@@ -111,8 +87,8 @@ const GameBrief = () => {
         <Item>
           <Title className="text-neutral-100">{t("Ligadagi o'rin")}</Title>
           <Content className="space-x-1">
-            {currentTeam?.order ?? '00'} /{' '}
-            {currentCompetition?.team_count ?? '0000'}
+            {currentTeam?.order ?? '0'} /{' '}
+            {currentCompetition?.team_count ?? '0'}
           </Content>
         </Item>
       </Container>

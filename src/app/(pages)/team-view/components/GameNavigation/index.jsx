@@ -1,15 +1,12 @@
-import Gutter from '../../../../../components/Gutter'
 import Tabs from './TourTabs'
 
 const TeamTabs = () => {
   return (
     <>
-      <div className="hidden lg:block">
-        <Gutter>
-          <Tabs />
-        </Gutter>
+      <div className="relative mx-auto hidden w-full max-w-screen-2xl flex-1 lg:block">
+        <Tabs />
       </div>
-      <div className="block lg:hidden">
+      <div className="block w-full lg:hidden">
         <Tabs />
       </div>
     </>

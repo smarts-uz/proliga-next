@@ -22,9 +22,10 @@ const ConfirmationModal = ({
         </DialogTitle>
         <div className="flex items-center gap-4">
           <button
-            className="h-auto select-none rounded-md border-2 border-red-600 bg-red-600 px-8 py-2 font-medium text-neutral-50 transition-all hover:bg-red-800"
+            className="h-auto select-none rounded-md border-2 border-red-600 bg-red-600 px-8 py-2 font-medium text-neutral-50 transition-all hover:bg-red-800 focus:outline-white"
             onClick={onConfirm}
             tabIndex={0}
+            autoFocus={true}
           >
             {t('Tasdiqlash')}
           </button>

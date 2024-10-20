@@ -143,8 +143,8 @@ function PlayerTable({ prevPlayer, handleModal }) {
   })
 
   return (
-    <div className="h-full border-collapse overflow-x-auto text-neutral-200 md:text-sm">
-      <div className="relative m-1 flex w-auto flex-col gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid sm:grid-cols-4 md:gap-2 md:text-sm lg:text-base xl:gap-y-4">
+    <div className="h-full text-neutral-200 md:text-sm">
+      <div className="grid grid-cols-2 grid-rows-2 gap-x-1 gap-y-1 text-sm xs:text-xs sm:grid-cols-4 sm:grid-rows-1 md:gap-1 md:text-sm lg:text-base">
         {table
           .getHeaderGroups()
           .map((headerGroup) =>

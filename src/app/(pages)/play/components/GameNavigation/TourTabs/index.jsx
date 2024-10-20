@@ -85,7 +85,7 @@ export default function TourTabs() {
         variant="scrollable"
         scrollButtons="auto"
         className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
-        aria-label="scrollable auto tabs example "
+        aria-label="tour tabs"
         sx={{
           [`& .${tabsClasses.scrollButtons}`]: {
             '&.Mui-disabled': { opacity: 0.4 },

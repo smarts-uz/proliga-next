@@ -17,7 +17,7 @@ const tourTeamSlice = createSlice({
   reducers: {
     setCurrentTourTeam: (state, action) => {
       const tour = action.payload
-      if (action.payload) {
+      if (action.payload?.id) {
         state.currentTourTeam = state.tourTeams.find(
           (t) => +t.tour_id === +tour.id
         )

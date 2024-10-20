@@ -15,7 +15,7 @@ const ClubsFilter = ({ column }) => {
 
   return (
     <Select onValueChange={(value) => column.setFilterValue(value)}>
-      <SelectTrigger className="h-8 w-full max-w-64 truncate rounded border border-neutral-500 bg-neutral-950 px-2 text-neutral-200 shadow sm:col-span-1 sm:max-w-36 md:max-w-48">
+      <SelectTrigger className="h-8 w-full max-w-64 truncate rounded border border-neutral-500 bg-neutral-950 px-2 text-neutral-200 shadow col-span-2 sm:col-span-1 sm:max-w-36 md:max-w-48">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

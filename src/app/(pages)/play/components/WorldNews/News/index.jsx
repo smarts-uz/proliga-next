@@ -12,7 +12,7 @@ const News = () => {
   const dispatch = useDispatch()
   const { news, isLoading } = useSelector((store) => store.news)
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(6)
+  const [perPage, setPerPage] = useState(5)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const News = () => {
   }
 
   return (
-    <div className="relative mx-auto flex h-auto min-h-[36rem] w-full max-w-[28rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 sm:min-h-[36rem] md:p-6 lg:mx-0 xl:flex-grow">
+    <div className="relative mx-auto flex h-min min-h-[38.25rem] w-full max-w-[32rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 md:p-6 lg:mx-0 lg:w-auto xl:flex-grow">
       <h3 className="items-start self-start text-xl font-semibold">
         {t('Yangiliklar')}
       </h3>
@@ -67,7 +67,7 @@ const News = () => {
           {page + 1}
         </span>
         <button
-          className="rounded border px-4 py-2 text-neutral-200 hover:opacity-75"
+          className="rounded border px-3 py-1 text-neutral-200 hover:opacity-75"
           onClick={incrementPage}
         >
           {t('Keyingi')}

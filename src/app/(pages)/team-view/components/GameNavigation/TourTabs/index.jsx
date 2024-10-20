@@ -9,6 +9,7 @@ import { setCurrentTourTeam } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
+import { tabsClasses } from '@mui/material'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -80,7 +81,12 @@ export default function TourTabs() {
         variant="scrollable"
         scrollButtons="auto"
         className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
-        aria-label="scrollable auto tabs example "
+        aria-label="tour tabs"
+        sx={{
+          [`& .${tabsClasses.scrollButtons}`]: {
+            '&.Mui-disabled': { opacity: 0.4 },
+          },
+        }}
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
