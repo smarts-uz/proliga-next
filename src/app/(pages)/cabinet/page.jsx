@@ -19,7 +19,7 @@ function UserCabinet() {
   return (
     <div className="min-h-[90vh] bg-gradient-to-tr from-red-800 to-blue-900 pb-8 pt-20">
       <Gutter>
-        <main className="flex h-full min-h-screen flex-col gap-2 md:min-h-[95vh] lg:flex-row xl:min-h-[36.5rem] 2xl:min-h-[38rem]">
+        <main className="flex h-full min-h-[49.8rem] flex-col gap-2 md:min-h-[44em] lg:flex-row xl:min-h-[36.5rem] 2xl:min-h-[38rem]">
           <SettingsNavigation
             currentTab={tab}
             tabs={SETTINGSTAB}

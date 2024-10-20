@@ -52,10 +52,10 @@ const CabinetChangePasswordTab = () => {
         />
       </div>
       <button
-        className="w-full mt-2 rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-48"
+        className="mt-2 w-full rounded border border-black bg-primary bg-opacity-75 py-2 text-sm font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-48"
         type="submit"
       >
-        {t('Parol Yangilash')}
+        {t('Saqlash')}
       </button>
     </section>
   )

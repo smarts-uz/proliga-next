@@ -97,7 +97,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
           </div>
           <button
             onClick={setSettingsTab}
-            className="ml-auto rounded border border-primary bg-black px-2 py-1 text-neutral-100 transition-all hover:bg-primary hover:text-black"
+            className="ml-auto hidden rounded border border-primary bg-black px-2 py-1 text-neutral-100 transition-all hover:bg-primary hover:text-black md:block"
           >
             {t('Tahrirlash')}
           </button>
@@ -154,7 +154,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             {userTable?.bio ? userTable?.bio : t("Ma'lumot yo'q")}
           </div>
         </section>
-        <section className="flex flex-wrap justify-center gap-2 sm:justify-start">
+        <section className="flex flex-wrap justify-start gap-2">
           <div
             className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
           >
@@ -209,12 +209,10 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
       </section>
       {otpModal && <OTPConfirmationModal toggleModal={handleOtpModal} />}
-      {balanceModal && (
-        <RefillBalanceModal
-          setIsModalOpen={setBalanceModal}
-          isModalOpen={balanceModal}
-        />
-      )}
+      <RefillBalanceModal
+        setIsModalOpen={setBalanceModal}
+        isModalOpen={balanceModal}
+      />
     </>
   )
 }

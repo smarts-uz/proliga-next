@@ -40,7 +40,7 @@ export default function TourTabs() {
     ) {
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
+  }, [dispatch, currentCompetition, currentTourIndex, tourTeams, currentTour])
 
   const { t } = useTranslation()
 

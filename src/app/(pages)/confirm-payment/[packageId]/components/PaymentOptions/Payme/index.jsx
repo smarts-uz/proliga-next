@@ -26,7 +26,7 @@ const PaymePaymentOption = ({
         <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
           Payme
         </h4>
-        <p className="text-xs text-neutral-400 lg:text-sm">
+        <p className="mx-2 text-center text-xs text-neutral-400 lg:text-sm">
           {t('Payme orqali tolov qilish')}
         </p>
       </div>

@@ -62,7 +62,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
             </p>
             <label
               htmlFor="img"
-              className="group flex size-32 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 p-6 transition-all hover:from-neutral-900 hover:to-stone-900"
+              className="group flex size-24 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 transition-all hover:from-neutral-900 hover:to-stone-900 md:size-32"
               style={
                 file && {
                   backgroundImage: `url(${URL.createObjectURL(file)})`,
@@ -79,10 +79,10 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
                   alt="placeholder"
                   width={24}
                   height={24}
-                  className="filter-neutral-200 size-8 self-center"
+                  className="filter-neutral-200 size-6 self-center md:size-8"
                 />
                 <p
-                  className={`break-words text-center text-xs text-neutral-300`}
+                  className={`break-words text-center text-[11px] text-neutral-300 md:text-xs`}
                 >
                   {t('Rasmni yuklash')}
                 </p>
@@ -96,10 +96,10 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               />
             </label>
           </div>
-          <div className="flex w-full flex-col items-start justify-start gap-2 self-start xs:w-auto xs:min-w-80 xs:gap-0">
+          <div className="flex w-full flex-col items-start justify-start gap-2 self-start xs:gap-0 sm:w-auto sm:min-w-80">
             <div className="w-full">
               <label
-                className="mx-2 my-1 block text-sm font-bold capitalize text-neutral-300"
+                className="my-1 block text-sm font-bold capitalize text-neutral-300"
                 htmlFor="gender"
               >
                 {t('Jins')}

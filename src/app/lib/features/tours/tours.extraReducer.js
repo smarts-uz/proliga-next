@@ -50,11 +50,17 @@ export const toursExtraReducer = (builder) => {
         state.registeredTour = registeredTour
       }
       if (!tour) {
-        tour = state.tours.find((tour) => tour.status === TOUR.completed)
+        tour = state.tours.find(
+          (tour) =>
+            tour.status === TOUR.completed &&
+            tour.order === registeredTour?.order
+        )
       }
       if (!tour) {
         tour = state.tours.find(
-          (tour) => +tour.id === +action.payload.registered_tour_id
+          (tour) =>
+            tour.status === TOUR.inProcess &&
+            tour.order === registeredTour?.order
         )
       }
       if (!tour) {

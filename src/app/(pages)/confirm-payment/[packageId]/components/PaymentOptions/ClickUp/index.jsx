@@ -26,7 +26,7 @@ const ClickUpPaymentOption = ({
         <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
           Click Up
         </h4>
-        <p className="text-xs text-neutral-400  lg:text-sm">
+        <p className="mx-2 text-xs text-neutral-400 lg:text-sm">
           {t('Click up orqali tolov qilish')}
         </p>
       </div>
