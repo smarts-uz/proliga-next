@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { useTranslation } from 'react-i18next'
 import { setCurrentTourTeamTransfersCount } from 'app/lib/features/tourTeams/tourTeams.slice'
+import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
 
 export const useUpdateTourTeam = () => {
   const dispatch = useDispatch()
@@ -56,6 +57,7 @@ export const useUpdateTourTeam = () => {
       if (data) {
         setData(data)
         dispatch(setCurrentTourTeamTransfersCount(count_of_transfers))
+        dispatch(fetchTourTeams({ team_id: team_id }))
       }
     } catch (error) {
       setError(error.message)

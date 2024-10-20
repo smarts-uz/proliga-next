@@ -10,6 +10,7 @@ import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
 import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
+import { tabsClasses } from '@mui/material'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -18,10 +19,10 @@ export default function TourTabs() {
   const { currentTour, currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
-  const { currentTeam } = useSelector((store) => store.currentTeam)
   const { currentTourTeamIndex, tourTeams } = useSelector(
     (state) => state.tourTeams
   )
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (
@@ -32,7 +33,7 @@ export default function TourTabs() {
       dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
+  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams, currentTour])
 
   useEffect(() => {
     if (
@@ -44,9 +45,7 @@ export default function TourTabs() {
       dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
-
-  const { t } = useTranslation()
+  }, [dispatch, currentCompetition, currentTourIndex, tourTeams, currentTour])
 
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
@@ -87,12 +86,17 @@ export default function TourTabs() {
         scrollButtons="auto"
         className="snap-x snap-center rounded text-neutral-50 fade-in disabled:text-neutral-500"
         aria-label="scrollable auto tabs example "
+        sx={{
+          [`& .${tabsClasses.scrollButtons}`]: {
+            '&.Mui-disabled': { opacity: 0.4 },
+          },
+        }}
       >
         {selectedTours?.map((item, index) => (
           <StyledTab
             key={item.id}
             onClick={() => handleClick(index)}
-            className="w-32 snap-center space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-48"
+            className="w-32 space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-40"
             disabled={
               item.status === TOUR.notStarted ||
               item.order < registeredTour?.order

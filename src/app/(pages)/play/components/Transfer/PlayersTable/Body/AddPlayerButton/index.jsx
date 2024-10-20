@@ -1,5 +1,8 @@
+'use client'
 import Image from 'next/image'
+import { useDispatch } from 'react-redux'
 import { motion } from 'framer-motion'
+import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const AddPlayerButton = ({
   cell,
@@ -8,8 +11,14 @@ const AddPlayerButton = ({
   teamBalance,
   totalPlayersCount,
 }) => {
+  const dispatch = useDispatch()
   const condition = teamBalance >= cell.row.original.price
   const isPlayerInTeam = team.find((p) => p.name === cell.getValue())
+
+  const handleClick = () => {
+    if (condition) handleAddPlayer(cell.row.original)
+    else dispatch(setBalanceModal(true))
+  }
 
   if (isPlayerInTeam) {
     return (
@@ -36,7 +45,7 @@ const AddPlayerButton = ({
         animate={{ opacity: 1 }}
         className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
-        onClick={condition ? () => handleAddPlayer(cell.row.original) : null}
+        onClick={handleClick}
       >
         <Image
           src="/icons/plus.svg"

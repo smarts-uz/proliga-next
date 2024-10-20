@@ -1,21 +1,23 @@
-import { useSelector } from 'react-redux'
 import Image from 'next/image'
-import { useState } from 'react'
 import TeamBalanceModal from './Modal'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const TeamBalance = () => {
-  const { teamBalance } = useSelector((store) => store.tourTeams)
-  const [isModalOpen, toggleModal] = useState(false)
+  const dispatch = useDispatch()
   const { t } = useTranslation()
+  const { teamBalance } = useSelector((store) => store.tourTeams)
+  const { balanceModal } = useSelector((store) => store.currentTeam)
+
   const handleModal = () => {
-    if (isModalOpen) {
-      toggleModal(false)
+    if (balanceModal) {
+      dispatch(setBalanceModal(false))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'auto'
       }
     } else {
-      toggleModal(true)
+      dispatch(setBalanceModal(true))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'hidden'
       }
@@ -45,7 +47,7 @@ const TeamBalance = () => {
         </header>
         <p className="text-2xl font-bold sm:text-3xl">{teamBalance ?? '00'}</p>
       </div>
-      {isModalOpen && <TeamBalanceModal handleModal={handleModal} />}
+      {balanceModal && <TeamBalanceModal handleModal={handleModal} />}
     </>
   )
 }

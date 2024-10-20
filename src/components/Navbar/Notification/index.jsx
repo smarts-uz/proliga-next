@@ -42,7 +42,7 @@ const Notification = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="mr-2 mt-5 flex h-auto max-h-96 min-h-64 w-80 flex-col gap-2 overflow-y-scroll rounded-xl xl:w-96">
+      <PopoverContent className="mr-2 mt-5 flex h-auto max-h-96 min-h-64 w-80 flex-col gap-2 overflow-y-scroll rounded-xl p-3 xl:w-96">
         <h3 className="font-bold">{t('Xabarnomalar')}</h3>
         <section className="flex flex-col gap-1 text-neutral-200">
           {systemNotifications?.length === 0 ? (
@@ -61,7 +61,7 @@ const Notification = () => {
                   </p>
                   <p className="text-xs">{notification.created_at}</p>
                 </div>
-                <button className="w-auto rounded-md border border-amber-400 p-1 text-xs font-bold">
+                <button className="w-auto rounded-md border border-primary p-1 text-xs font-bold transition-all hover:bg-primary hover:text-black">
                   {t("Ko'rish")}
                 </button>
               </div>

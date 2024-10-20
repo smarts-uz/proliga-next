@@ -3,7 +3,7 @@ import { supabase } from 'app/lib/supabaseClient'
 
 export const fetchTeamPlayers = createAsyncThunk(
   'teamPlayers/fetchTeamPlayers',
-  async ({ team_id, tour_id, user_id }) => {
+  async ({ team_id, tour_id }) => {
     const { data, error } = await supabase
       .from('team_player')
       .select('*, club_id(name, id, slug)')

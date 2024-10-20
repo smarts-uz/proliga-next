@@ -29,7 +29,7 @@ export default function TourTabs() {
     ) {
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams])
+  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams, currentTour])
 
   useEffect(() => {
     if (

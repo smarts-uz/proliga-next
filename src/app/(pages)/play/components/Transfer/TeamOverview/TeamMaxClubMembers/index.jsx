@@ -1,23 +1,23 @@
 import Image from 'next/image'
-import { useState } from 'react'
 import TeamMaxClubMembersModal from './Modal'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { setClubModal } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 export default function TeamMaxClubMembers() {
-  const { packages } = useSelector((state) => state.packages)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
-  const [isModalOpen, toggleModal] = useState(false)
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { clubModal } = useSelector((state) => state.teamPlayers)
 
   const handleModal = () => {
-    if (isModalOpen) {
-      toggleModal(false)
+    if (clubModal) {
+      dispatch(setClubModal(false))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'auto'
       }
     } else {
-      toggleModal(true)
+      dispatch(setClubModal(true))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'hidden'
       }
@@ -49,7 +49,7 @@ export default function TeamMaxClubMembers() {
           {currentTeam?.count_of_transfers ?? '0'}
         </p>
       </div>
-      {isModalOpen && <TeamMaxClubMembersModal handleModal={handleModal} />}
+      {clubModal && <TeamMaxClubMembersModal handleModal={handleModal} />}
     </>
   )
 }

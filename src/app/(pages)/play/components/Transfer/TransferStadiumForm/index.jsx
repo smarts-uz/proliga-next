@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -124,6 +125,7 @@ const TransferStadiumForm = () => {
         theme: 'dark',
       })
       dispatch(revertTeamPlayers())
+      dispatch(setTransferModal(true))
       return
     }
 

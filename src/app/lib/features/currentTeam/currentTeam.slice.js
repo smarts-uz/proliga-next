@@ -4,6 +4,8 @@ import { currentTeamExtraReducer } from './currentTeam.extraReducer'
 const initialState = {
   currentTeam: {},
   lastVisitedTeam: '',
+  balanceModal: false,
+  transferModal: false,
   isLoading: false,
   error: null,
 }
@@ -18,10 +20,17 @@ const currentTeamSlice = createSlice({
     setIsTeamCreated: (state, action) => {
       state.currentTeam.is_team_created = action.payload
     },
+    setBalanceModal: (state, action) => {
+      state.balanceModal = action.payload
+    },
+    setTransferModal: (state, action) => {
+      state.transferModal = action.payload
+    },
   },
   extraReducers: currentTeamExtraReducer,
 })
 
-export const { setLastVisitedTeam, setIsTeamCreated } = currentTeamSlice.actions
+export const { setLastVisitedTeam, setIsTeamCreated, setBalanceModal, setTransferModal } =
+  currentTeamSlice.actions
 
 export default currentTeamSlice.reducer

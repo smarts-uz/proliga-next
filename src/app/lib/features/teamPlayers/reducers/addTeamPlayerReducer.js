@@ -74,6 +74,7 @@ export const addTeamPlayerReducer = (state, action) => {
       `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`,
       { theme: 'dark' }
     )
+    state.clubModal = true
     return state
   }
 

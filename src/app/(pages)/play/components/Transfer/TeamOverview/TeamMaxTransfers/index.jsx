@@ -1,23 +1,25 @@
 import Image from 'next/image'
 import TeamMaxTransfersModal from './Modal'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const TeamMaxTransfers = () => {
-  const [isModalOpen, toggleModal] = useState(false)
-  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const dispatch = useDispatch()
+  const { currentTeam, transferModal } = useSelector(
+    (store) => store.currentTeam
+  )
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
   const { t } = useTranslation()
 
   const handleModal = () => {
-    if (isModalOpen) {
-      toggleModal(false)
+    if (transferModal) {
+      dispatch(setTransferModal(false))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'auto'
       }
     } else {
-      toggleModal(true)
+      dispatch(setTransferModal(true))
       if (typeof window != 'undefined' && window.document) {
         document.body.style.overflow = 'hidden'
       }
@@ -62,7 +64,7 @@ const TeamMaxTransfers = () => {
           /{currentTeam?.transfers_from_one_team ?? 0}
         </p>
       </div>
-      {isModalOpen && <TeamMaxTransfersModal handleModal={handleModal} />}
+      {transferModal && <TeamMaxTransfersModal handleModal={handleModal} />}
     </>
   )
 }

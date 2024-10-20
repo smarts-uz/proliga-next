@@ -22,6 +22,7 @@ const initialState = {
   teamPrice: 0,
   duplicatesMap: {},
   prevTeam: [],
+  clubModal: false,
   error: null,
   isLoading: false,
 }
@@ -38,6 +39,9 @@ const teamPlayersSlice = createSlice({
     swapTeamPlayer: swapTeamPlayerReducer,
     autoAssembleTeam: autoAssembleTeamReducer,
     emptyTeamPlayers: () => initialState,
+    setClubModal: (state, action) => {
+      state.clubModal = action.payload
+    },
   },
   extraReducers: teamPlayersExtraReducer,
 })
@@ -51,6 +55,7 @@ export const {
   updateTeamPlayer,
   swapTeamPlayer,
   autoAssembleTeam,
+  setClubModal,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

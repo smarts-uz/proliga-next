@@ -4,7 +4,6 @@ import { toast } from 'react-toastify'
 export const swapTeamPlayerReducer = (state, action) => {
   const { player, team, previousPlayer, handleModal, t } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
-  const newHandleModal = handleModal
 
   const evaluateTeamClubId = () => {
     state.duplicatesMap = {}
@@ -51,6 +50,8 @@ export const swapTeamPlayerReducer = (state, action) => {
       `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`,
       { theme: 'dark' }
     )
+    handleModal()
+    state.clubModal = true
     return state
   }
 
@@ -62,7 +63,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.GOA[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    newHandleModal()
+    handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
@@ -74,7 +75,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.DEF[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    newHandleModal()
+    handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
@@ -86,7 +87,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.MID[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    newHandleModal()
+    handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }
@@ -98,7 +99,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.STR[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    newHandleModal()
+    handleModal()
     toast.success("Oyinchi muvaffaqiyatli o'zgartirildi!", { theme: 'dark' })
     return state
   }

@@ -9,7 +9,7 @@ import Tournament from '../Tournament'
 import Gutter from 'components/Gutter'
 import { TABS } from '../../../../utils/tabs.util'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useMemo, useState, useRef } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { setTeamBalance } from 'app/lib/features/tourTeams/tourTeams.slice'
 import { setTab } from 'app/lib/features/tours/tours.slice'
 import { fetchCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
@@ -28,22 +28,23 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { teamPrice } = useSelector((store) => store.teamPlayers)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
-  const { players, topPlayers } = useSelector((store) => store.players)
+  const { players } = useSelector((store) => store.players)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
   const [windowWidth, setWindowWidth] = useState(0)
-  let timeOutId = useRef()
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
 
   useEffect(() => {
-    if (currentTeam?.is_team_created) {
-      dispatch(setTab(TABS.GameProfile))
-    } else {
-      dispatch(setTab(TABS.Transfer))
+    if (typeof currentTeam?.is_team_created === 'boolean') {
+      if (currentTeam?.is_team_created) {
+        dispatch(setTab(TABS.GameProfile))
+      } else {
+        dispatch(setTab(TABS.Transfer))
+      }
     }
   }, [dispatch, currentTeam])
 
