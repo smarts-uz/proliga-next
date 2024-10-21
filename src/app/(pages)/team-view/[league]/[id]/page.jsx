@@ -1,10 +1,11 @@
 'use client'
+
 import TeamProfile from '../../components/TeamProfile'
 import TeamTabs from '../../components/GameNavigation'
+import Gutter from 'components/Gutter'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSelectedTeam } from 'app/lib/features/currentTeam/currentTeam.thunk'
-import Gutter from 'components/Gutter'
 import { fetchTeamViewTours } from 'app/lib/features/tours/tours.thunk'
 import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'

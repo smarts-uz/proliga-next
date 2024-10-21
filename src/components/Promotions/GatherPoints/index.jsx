@@ -10,7 +10,6 @@ const PromotionGatherPoints = () => {
         <article className="flex w-full flex-col justify-between gap-4 md:flex-row md:gap-0">
           <div className="my-auto flex flex-col gap-4 xl:gap-8">
             <h2 className="promotion-header font-bold">
-              {' '}
               {t('Ochkolar yiging')}
             </h2>
             <p className="promotion-text text-neutral-400 md:max-w-lg xl:max-w-xl">
@@ -24,7 +23,7 @@ const PromotionGatherPoints = () => {
               width={400}
               height={400}
               draggable={false}
-              className="h-full w-full"
+              className="h-full w-full min-w-80 lg:min-w-96"
             />
           </div>
         </article>

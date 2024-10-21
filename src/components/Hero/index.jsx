@@ -13,10 +13,10 @@ const Hero = () => {
     >
       <div className="flex h-screen flex-col items-center justify-center gap-6 text-white xl:gap-6">
         <div className="flex flex-col gap-2 text-center">
-          <h2 className="text-xl font-semibold uppercase sm:text-2xl md:text-3xl xl:text-4xl">
+          <h2 className="mx-1 text-lg font-semibold uppercase xs:text-xl sm:text-2xl md:text-3xl xl:text-4xl">
             {t("O'z futbol jamoangizni")}
           </h2>
-          <h2 className="text-3xl font-bold uppercase md:text-4xl lg:text-5xl xl:text-6xl">
+          <h2 className="mx-1 text-2xl font-bold uppercase xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
             {t('Biz bilan yarating')}
           </h2>
         </div>

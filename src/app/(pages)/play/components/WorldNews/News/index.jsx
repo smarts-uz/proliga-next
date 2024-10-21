@@ -59,15 +59,15 @@ const News = () => {
         <button
           onClick={decrementPage}
           disabled={page === 0}
-          className="rounded border px-3 py-1 capitalize text-white hover:underline disabled:opacity-75 disabled:hover:cursor-default disabled:hover:no-underline"
+          className="rounded border border-neutral-200 px-3 py-1 capitalize text-neutral-200 hover:border-neutral-50 hover:underline disabled:opacity-60 disabled:hover:cursor-default disabled:hover:no-underline"
         >
           {t('Oldigisi')}
         </button>
-        <span className="flex w-10 items-center justify-center rounded border px-4 text-center text-white">
+        <span className="flex w-10 items-center justify-center rounded border px-4 text-center text-neutral-200">
           {page + 1}
         </span>
         <button
-          className="rounded border px-3 py-1 text-neutral-200 hover:opacity-75"
+          className="rounded border border-neutral-200 px-3 py-1 text-neutral-200 hover:border-neutral-50 hover:text-neutral-50"
           onClick={incrementPage}
         >
           {t('Keyingi')}

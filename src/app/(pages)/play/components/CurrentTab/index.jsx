@@ -19,6 +19,7 @@ import { fetchTours } from 'app/lib/features/tours/tours.thunk'
 import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk'
 import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
+import Link from 'next/link'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -157,13 +158,16 @@ const CurrentTab = ({ currentTab, paramsId }) => {
     <Gutter>
       <div className="flex gap-1 2xl:gap-2">
         {windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
-          <div className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+          <Link
+            href="https://youtube.com"
+            className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
+          >
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}
               className="h-full w-full"
             />
-          </div>
+          </Link>
         )}
         {currentTab === TABS.GameProfile && <GameProfile />}
         {currentTab === TABS.Transfer && <Transfer paramsId={paramsId} />}
@@ -171,13 +175,16 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         {currentTab === TABS.Journal && <Journal />}
         {currentTab === TABS.Tournament && <Tournament />}
         {windowWidth >= NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH && (
-          <div className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block">
+          <Link
+            href="https://youtube.com"
+            className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
+          >
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}
               className="h-full w-full"
             />
-          </div>
+          </Link>
         )}
       </div>
     </Gutter>
