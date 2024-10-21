@@ -25,7 +25,7 @@ const CabinetTablePagination = ({ table }) => {
               key={page}
               onClick={() => table.setPageIndex(page)}
               className={
-                'block size-6 rounded-sm border p-1 text-xs md:size-8 md:text-sm ' +
+                'block size-7 rounded-sm border p-1 text-xs md:size-8 md:text-sm ' +
                 (table.getState().pagination.pageIndex === page
                   ? 'bg-neutral-50/90 text-black'
                   : 'bg-transparent hover:bg-neutral-800')
@@ -62,7 +62,7 @@ const PaginationButton = ({
       onClick={onClick}
       disabled={disabled}
       className={
-        'block size-6 rounded-sm border p-1 hover:bg-neutral-800 disabled:opacity-75 disabled:hover:bg-transparent md:size-8 ' +
+        'block size-7 rounded-sm border p-1 hover:bg-neutral-800 disabled:opacity-75 disabled:hover:bg-transparent md:size-8 ' +
         className
       }
     >

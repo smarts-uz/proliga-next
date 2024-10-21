@@ -25,7 +25,7 @@ const TransferTablePagination = ({ table }) => {
               key={page}
               onClick={() => table.setPageIndex(page)}
               className={
-                'block size-6 rounded border p-1 text-xs md:size-8 md:text-sm ' +
+                'block size-7 rounded border p-1 text-xs md:size-8 md:text-sm ' +
                 (table.getState().pagination.pageIndex === page
                   ? 'bg-primary text-black'
                   : 'bg-transparent hover:bg-neutral-800')

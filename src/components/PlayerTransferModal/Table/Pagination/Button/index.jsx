@@ -12,7 +12,7 @@ const PaginationButton = ({
       onClick={onClick}
       disabled={disabled}
       className={
-        'block size-6 rounded-sm border p-1 hover:bg-neutral-800 disabled:opacity-75 disabled:hover:bg-transparent md:size-8 ' +
+        'block size-7 rounded-sm border p-1 hover:bg-neutral-800 disabled:opacity-75 disabled:hover:bg-transparent md:size-8 ' +
         className
       }
     >

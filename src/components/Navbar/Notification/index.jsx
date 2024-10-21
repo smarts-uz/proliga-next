@@ -42,7 +42,7 @@ const Notification = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="relative mr-2 mt-5 flex h-auto max-h-96 min-h-64 w-80 flex-col gap-2 overflow-y-scroll rounded-xl p-3 xl:w-96">
+      <PopoverContent className="relative mr-2 mt-5 flex h-auto max-h-96 min-h-80 w-full flex-col gap-2 overflow-y-scroll rounded-xl p-4 xl:w-96">
         <h3 className="font-bold">{t('Xabarnomalar')}</h3>
         <section className="flex flex-col gap-1 text-neutral-200">
           {systemNotifications?.length === 0 ? (

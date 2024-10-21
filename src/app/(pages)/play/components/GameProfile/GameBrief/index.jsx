@@ -47,7 +47,7 @@ const GameBrief = () => {
   const prevDate = new Date(prevTour?.datetime_start)
 
   return (
-    <section className="fade-in-fast mx-auto flex h-auto w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-6 md:px-10 lg:mx-0 lg:w-1/2 2xl:h-full">
+    <section className="fade-in-fast mx-auto flex h-auto w-full max-w-[32rem] flex-col justify-between gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:px-10 lg:mx-0 lg:w-1/2 lg:gap-4 xl:gap-6 2xl:h-full">
       <Container className="border-b border-neutral-700">
         <Item>
           <Title> {t('Keyingi Tur')}</Title>
@@ -132,7 +132,9 @@ const GameBrief = () => {
 
 const Container = ({ children, className }) => {
   return (
-    <div className={`flex flex-col gap-2 pb-2 md:gap-4 ${className}`}>
+    <div
+      className={`flex flex-col gap-2 pb-2 md:gap-4 lg:gap-2 xl:gap-4 ${className}`}
+    >
       {children}
     </div>
   )
