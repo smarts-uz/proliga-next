@@ -13,7 +13,7 @@ export const systemNotificationSlice = createSlice({
   initialState,
   reducers: {
     addNotification: (state, action) => {
-      state.systemNotifications.push(action.payload)
+      state.systemNotifications.unshift(action.payload)
     },
     clearNotifications: (state) => {
       state.systemNotifications = []

@@ -18,39 +18,6 @@ const Navbar = () => {
   const { userAuth } = useSelector((state) => state.auth)
   const [isModalOpen, toggleModal] = useState(false)
 
-  // const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false)
-  // const [initialNotificationCount, setInitialNotificationCount] = useState(null)
-
-  // const { systemNotifications } = useSelector(
-  //   (state) => state.systemNotifications
-  // )
-
-  // useEffect(() => {
-  //   const readNotifications =
-  //     JSON.parse(localStorage.getItem('readNotifications')) || []
-  //   const unreadExists = systemNotifications?.some(
-  //     (notification) => !readNotifications.includes(notification.id)
-  //   )
-  //   setHasUnreadNotifications(unreadExists)
-  // }, [systemNotifications])
-
-  // const handleToggleNotifications = () => {
-  //   setNotificationsOpen(!isNotificationsOpen)
-  //   if (!isNotificationsOpen && hasUnreadNotifications) {
-  //     const readNotifications =
-  //       JSON.parse(localStorage.getItem('readNotifications')) || []
-
-  //     const updatedReadNotifications = [
-  //       ...readNotifications,
-  //       ...systemNotifications.map((notification) => notification.id),
-  //     ]
-  //     localStorage.setItem(
-  //       'readNotifications',
-  //       JSON.stringify(updatedReadNotifications)
-  //     )
-  //     setHasUnreadNotifications(false)
-  //   }
-  // }
 
   const handleToggleModal = () => {
     if (isModalOpen) {
