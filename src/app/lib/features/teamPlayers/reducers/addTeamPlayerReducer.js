@@ -2,7 +2,7 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const addTeamPlayerReducer = (state, action) => {
-  const { player, team, teamConcat } = action.payload
+  const { player, team, teamConcat, t} = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
   const evaluateTeamClubId = () => {
@@ -58,20 +58,20 @@ export const addTeamPlayerReducer = (state, action) => {
 
   const emptyPlayer = teamConcat.find((player) => !player.name)
   if (!emptyPlayer) {
-    toast.warning('Boshqa oyinchi qoshish mumkin emas!', { theme: 'dark' })
+    toast.warning(t('Boshqa oyinchi qoshish mumkin emas!'), { theme: 'dark' })
     return state
   }
 
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
   if (existingPlayer) {
-    toast.warning('Ushbu oyinchi allaqachon oyinda!', { theme: 'dark' })
+    toast.warning(t('Ushbu oyinchi allaqachon oyinda!'), { theme: 'dark' })
     return state
   }
 
   const clubId = player?.club?.id || player.club_id.id
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
-      `Ushbu klubdan ${maxTeamPlayers} ta oyinchi qo'shib bo'lmaydi!`,
+      (t("Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!").replace("$", maxTeamPlayers)),
       { theme: 'dark' }
     )
     state.clubModal = true

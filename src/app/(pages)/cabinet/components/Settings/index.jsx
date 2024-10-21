@@ -31,11 +31,11 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
     e.preventDefault()
 
     if (!firstName) {
-      toast.warning('Iltimos ismni kiriting', { theme: 'dark' })
+      toast.warning(t('Iltimos ismni kiriting'), { theme: 'dark' })
     }
 
     if (!gender) {
-      toast.warning('Iltimos jiningizni tanlang', { theme: 'dark' })
+      toast.warning(t('Iltimos jiningizni tanlang'), { theme: 'dark' })
     }
 
     if (file) {
