@@ -27,7 +27,7 @@ export const useUpdateTeamPlayers = () => {
         user_id: userTable.id,
         is_captain: player.is_captain,
       }))
-      console.log(newTeam)
+      console.log(newTeam, ' s')
       const { data, error } = await supabase
         .from('team_player')
         .upsert(newTeam)
