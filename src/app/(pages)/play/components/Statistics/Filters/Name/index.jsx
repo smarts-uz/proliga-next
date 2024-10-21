@@ -9,7 +9,6 @@ const PlayerNameFilter = ({ column, columnFilterValue }) => {
       <Input
         className="h-8 w-full rounded border border-neutral-500 bg-neutral-950 px-2 text-neutral-200 shadow placeholder:text-neutral-300"
         onChange={(e) => column.setFilterValue(e.target.value)}
-        onClick={(e) => e.stopPropagation()}
         placeholder={t("O'yinchi Ismi")}
         type="text"
         value={columnFilterValue ?? ''}

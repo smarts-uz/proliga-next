@@ -1,4 +1,3 @@
-import Backdrop from '../../../../../components/Backdrop'
 import Image from 'next/image'
 import { useCreateTeam } from 'app/hooks/competition/useCreateTeam/useCreateTeam'
 import { useEffect, useState } from 'react'
@@ -6,10 +5,23 @@ import { FORMATIONS } from 'app/utils/formations.util'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { selectTeams } from 'app/lib/features/teams/teams.selector'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import {
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  DialogDescription,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
-const CompetitionModal = ({ toggleModal, competition }) => {
+const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
   const [title, setTitle] = useState('')
   const [formation, setFormation] = useState(FORMATIONS['4-3-3'])
   const [active, setActive] = useState(false)
@@ -49,83 +61,60 @@ const CompetitionModal = ({ toggleModal, competition }) => {
   ])
 
   return (
-    <Backdrop onClick={() => toggleModal(false)}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex w-4/5 max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-6 text-neutral-200 xs:mx-auto sm:w-2/3 md:p-6 lg:w-1/3"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between pb-4">
-          <h3 className="text-2xl font-semibold">{t('Jamoa yarating')}</h3>
-          <button onClick={() => toggleModal(false)}>
-            <Image
-              src="/icons/close.svg"
-              className="filter-neutral-50"
-              alt="close"
-              width={24}
-              height={24}
-            />
-          </button>
-        </div>
-        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="name">{t('Jamoa Ismi')}</label>
-            <input
+    <Dialog onOpenChange={toggleModal} open={isModalOpen}>
+      <DialogContent className="lg:max-w-max-w-[32rem] flex max-w-[96%] flex-col items-center justify-between gap-4 rounded-md bg-neutral-950 px-4 py-6 text-neutral-100 xs:max-w-[90%] sm:max-w-96 md:max-w-[28rem] md:p-6 2xl:max-w-[36rem]">
+        <DialogTitle className="w-full text-lg font-semibold text-neutral-50 xs:text-xl lg:text-2xl">
+          {t('Jamoa yarating')}
+        </DialogTitle>
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className="flex w-full flex-col gap-2"
+          id="team-create"
+          name="team-create"
+        >
+          <div className="flex flex-col gap-1">
+            <label
+              className="text-sm text-neutral-200 md:text-base"
+              htmlFor="team-title"
+            >
+              {t('Jamoa Ismi')}
+            </label>
+            <Input
               type="text"
               id="team-title"
               value={title}
-              autoFocus
               onChange={(e) => setTitle(e.target.value)}
               placeholder={t('Jamoangizni nomi')}
-              className="h-12 w-full rounded-lg border border-neutral-700 bg-transparent p-2 outline-none"
+              className="h-10 w-full rounded border-neutral-700 bg-transparent p-2"
             />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="email">{t('Taktika')}</label>
-            <select
-              name=""
-              id=""
-              value={formation['4-3-3']}
-              onChange={(e) => setFormation(e.target.value)}
-              className="h-12 w-full rounded-lg border border-neutral-700 bg-neutral-800 bg-transparent p-2 outline-none"
+          <div className="flex flex-col gap-1">
+            <label
+              className="text-sm text-neutral-200 md:text-base"
+              htmlFor="formation"
             >
-              <option
-                className="bg-neutral-800 checked:bg-neutral-700"
-                value={FORMATIONS['4-3-3']}
-              >
-                4-3-3
-              </option>
-              <option
-                className="bg-neutral-800 checked:bg-neutral-700"
-                value={FORMATIONS['4-4-2']}
-              >
-                4-4-2
-              </option>
-              <option
-                className="bg-neutral-800 checked:bg-neutral-700"
-                value={FORMATIONS['3-4-3']}
-              >
-                3-4-3
-              </option>
-              <option
-                className="bg-neutral-800 checked:bg-neutral-700"
-                value={FORMATIONS['5-3-2']}
-              >
-                5-3-2
-              </option>
-              <option
-                className="bg-neutral-800 checked:bg-neutral-700"
-                value={FORMATIONS['3-5-2']}
-              >
-                3-5-2
-              </option>
-            </select>
+              {t('Taktika')}
+            </label>
+            <Select
+              defaultValue={FORMATIONS['4-3-3']}
+              onValueChange={(value) => setFormation(value)}
+            >
+              <SelectTrigger className="h-10 w-full rounded border border-neutral-700 bg-neutral-800 bg-transparent p-2 outline-none">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(FORMATIONS).map((key, index) => (
+                  <SelectItem value={FORMATIONS[key]} key={index}>
+                    {key}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <button
             type="submit"
             disabled={isLoading}
-            className="rounded border border-primary bg-black py-2 text-white hover:bg-opacity-80 hover:text-primary"
+            className="mt-2 rounded border border-primary bg-black py-2 text-white hover:bg-opacity-80 hover:text-primary"
           >
             {isLoading ? (
               <Image
@@ -140,8 +129,9 @@ const CompetitionModal = ({ toggleModal, competition }) => {
             )}
           </button>
         </form>
-      </motion.dialog>
-    </Backdrop>
+        <DialogDescription className="hidden">Jamoa yaratish</DialogDescription>
+      </DialogContent>
+    </Dialog>
   )
 }
 

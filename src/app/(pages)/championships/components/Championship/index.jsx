@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/navigation'
-import LeagueModal from '../Modal/index'
+import CompetitionModal from '../Modal/index'
 import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -78,8 +78,12 @@ const Championship = ({ game }) => {
           </div>
         </div>
       </article>
-      {game.can_register && isModalOpen && (
-        <LeagueModal toggleModal={toggleModal} competition={game} />
+      {game.can_register && (
+        <CompetitionModal
+          toggleModal={toggleModal}
+          isModalOpen={isModalOpen}
+          competition={game}
+        />
       )}
     </>
   )

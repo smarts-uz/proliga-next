@@ -42,14 +42,14 @@ const Championships = () => {
 
   return (
     <Gutter>
-      <section className="my-8 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">
+      <section className="my-8 min-h-56 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">
         <ChampionshipsTitle />
         {isLoading ? (
-          <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {t('Yuklanmoqda')}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {selectedCompetition.map((game, index) => (
               <Championship key={index} game={game} />
             ))}
