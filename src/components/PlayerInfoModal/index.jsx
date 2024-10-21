@@ -91,7 +91,7 @@ const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
           </div>
         </div>
         <PlayerStatisticsTable matches={matches} />
-        <DialogDescription className="mt-auto flex flex-wrap justify-center gap-x-1 gap-y-0 text-nowrap text-xs md:gap-x-2 md:text-sm">
+        <div className="mt-auto flex flex-wrap justify-center gap-x-1 gap-y-0 text-nowrap text-xs md:gap-x-2 md:text-sm">
           <div>
             <span>{t("QO'")}</span> - {t('Quriq Oyin')},
           </div>
@@ -123,6 +123,9 @@ const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
           <div>
             <span>{t('O')}</span> - {t('Ochko')}
           </div>
+        </div>
+        <DialogDescription className="hidden">
+          Oyinchi haqida malumot
         </DialogDescription>
       </DialogContent>
     </Dialog>

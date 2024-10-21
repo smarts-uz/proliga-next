@@ -1,14 +1,17 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
+import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const SwapPlayerButton = ({
   cell,
   handleSwapPlayer,
   teamBalance,
   prevPlayer,
+  handleModal,
 }) => {
+  const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
 
   const teamConcat = useMemo(
@@ -17,6 +20,15 @@ const SwapPlayerButton = ({
   )
 
   const condition = teamBalance + prevPlayer.price >= cell.row.original.price
+
+  const handleClick = () => {
+    if (condition) {
+      handleSwapPlayer(cell.row.original)
+    } else {
+      handleModal()
+      dispatch(setBalanceModal(true))
+    }
+  }
 
   if (teamConcat.find((p) => p.name === cell.getValue())) {
     return (
@@ -43,7 +55,7 @@ const SwapPlayerButton = ({
         animate={{ opacity: 1 }}
         className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
-        onClick={condition ? () => handleSwapPlayer(cell.row.original) : null}
+        onClick={handleClick}
       >
         <Image
           src="/icons/swap-circle.svg"

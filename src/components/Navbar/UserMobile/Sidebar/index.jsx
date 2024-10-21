@@ -43,7 +43,7 @@ const MobileSidebar = ({ onCancel }) => {
           />
         </button>
 
-        <div className="flex flex-col items-start justify-center gap-8 pl-12">
+        <div className="flex flex-col items-start justify-center gap-6 pl-14 xs:gap-8">
           {path.includes('play') && (
             <>
               <Tab
@@ -155,7 +155,7 @@ const MobileSidebar = ({ onCancel }) => {
           </Link>
         </div>
         <section
-          className={`mt-auto flex w-full flex-col justify-between gap-2 rounded-md xs:flex-row`}
+          className={`mt-auto flex w-full flex-col justify-between gap-1 rounded-md sm:flex-row`}
         >
           {userAuth ? (
             <>

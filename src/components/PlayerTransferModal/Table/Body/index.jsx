@@ -47,6 +47,7 @@ const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
                     cell={cell}
                     prevPlayer={prevPlayer}
                     handleSwapPlayer={handleSwapPlayer}
+                    handleModal={handleModal}
                   />
                 )
             )}

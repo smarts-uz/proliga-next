@@ -49,7 +49,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="relative mx-auto flex min-h-[30rem] w-full max-w-[34rem] flex-col gap-2 rounded-xl bg-neutral-900 p-4 shadow shadow-neutral-600 md:p-6 lg:mx-0 lg:w-auto xl:flex-grow">
+    <div className="relative mx-auto flex min-h-[36rem] w-full max-w-[34rem] flex-col gap-2 rounded-xl bg-neutral-900 p-4 shadow shadow-neutral-600 md:p-6 lg:mx-0 lg:w-auto xl:flex-grow">
       <div className="flex w-full items-center justify-center gap-4">
         <button
           disabled={tourIndex === 0}
