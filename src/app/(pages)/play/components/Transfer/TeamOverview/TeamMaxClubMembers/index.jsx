@@ -10,25 +10,11 @@ export default function TeamMaxClubMembers() {
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { clubModal } = useSelector((state) => state.teamPlayers)
 
-  const handleModal = () => {
-    if (clubModal) {
-      dispatch(setClubModal(false))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      dispatch(setClubModal(true))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
-
   return (
     <>
       <div
         className="group w-1/2 cursor-pointer capitalize md:w-auto"
-        onClick={handleModal}
+        onClick={() => dispatch(setClubModal(!clubModal))}
       >
         <header className="flex text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
@@ -49,7 +35,7 @@ export default function TeamMaxClubMembers() {
           {currentTeam?.count_of_transfers ?? '0'}
         </p>
       </div>
-      {clubModal && <TeamMaxClubMembersModal handleModal={handleModal} />}
+      <TeamMaxClubMembersModal />
     </>
   )
 }

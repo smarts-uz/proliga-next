@@ -1,34 +1,38 @@
-import Backdrop from 'components/Backdrop'
-import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { PACKAGES } from 'app/utils/packages.util'
+import {
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  DialogDescription,
+} from '@/components/ui/dialog'
+import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
-const TeamMaxTransfersModal = ({ handleModal }) => {
-  const { t } = useTranslation()
+const TeamMaxTransfersModal = () => {
+  const dispatch = useDispatch()
+  const { transferModal } = useSelector((store) => store.currentTeam)
   const { packages } = useSelector((store) => store.packages)
+  const { t } = useTranslation()
+
   return (
-    <Backdrop onClick={handleModal}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button onClick={handleModal} className="self-end">
-          <Image width={24} height={24} src="/icons/close.svg" alt="close" />
-        </button>
-        <header className="space-y-1">
-          <h3 className="text-xl font-semibold">
+    <Dialog
+      onOpenChange={() => dispatch(setTransferModal(!transferModal))}
+      open={transferModal}
+    >
+      <DialogContent className="flex max-w-[98%] flex-col items-center justify-between 
+      gap-4 rounded-md bg-neutral-950 px-4 py-6 text-neutral-100 xs:max-w-[90%] 
+      sm:max-w-[80%] md:max-w-[70%] md:p-6 lg:max-w-[55%] xl:max-w-[45%] 2xl:max-w-[40rem]">
+        <header className="space-y-2">
+          <DialogTitle className="text-base font-semibold sm:text-lg 2xl:text-xl">
             {t('Transfer limitini oshirishni hoxlaysizmi?')}
-          </h3>
-          <p className="text-sm text-neutral-300 md:text-base">
+          </DialogTitle>
+          <p className="text-xs text-neutral-300 md:text-sm xl:text-base">
             {t('update tranfer txt')}
           </p>
         </header>
-        <section className="flex flex-col gap-2 text-sm xs:text-base">
+        <section className="flex w-full flex-col gap-1 text-sm sm:text-base">
           {packages.map(
             (transfer) =>
               transfer.type === PACKAGES.transfer_count && (
@@ -36,7 +40,8 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
                   key={transfer.id}
                   href={`/confirm-payment/${transfer.id}`}
                 >
-                  <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
+                  <div className="flex gap-1 rounded border border-neutral-400 
+                  p-2 transition-all hover:border-primary md:p-3">
                     {t('Transfer limitni')}
                     <span className="font-bold">{transfer.amount} </span>
                     {t('taga oshirish')}
@@ -45,30 +50,10 @@ const TeamMaxTransfersModal = ({ handleModal }) => {
               )
           )}
         </section>
-      </motion.dialog>
-    </Backdrop>
+      </DialogContent>
+      <DialogDescription className="hidden">Max Team players</DialogDescription>
+    </Dialog>
   )
 }
-
-const transfers = [
-  {
-    id: 4,
-    type: 'transfer',
-    amount: 3,
-    price: 25000,
-  },
-  {
-    id: 5,
-    type: 'transfer',
-    amount: 4,
-    price: 35000,
-  },
-  {
-    id: 6,
-    type: 'transfer',
-    amount: 5,
-    price: 65000,
-  },
-]
 
 export default TeamMaxTransfersModal

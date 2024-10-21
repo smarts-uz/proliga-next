@@ -11,20 +11,7 @@ const TeamMaxTransfers = () => {
   )
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
   const { t } = useTranslation()
-
-  const handleModal = () => {
-    if (transferModal) {
-      dispatch(setTransferModal(false))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      dispatch(setTransferModal(true))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
+  
   const currentCountOfTransfers = Number(
     currentTourTeam?.current_count_of_transfers ?? 0
   )
@@ -36,7 +23,7 @@ const TeamMaxTransfers = () => {
     <>
       <div
         className="group w-1/2 cursor-pointer capitalize md:w-auto"
-        onClick={handleModal}
+        onClick={() => dispatch(setTransferModal(!transferModal))}
       >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
@@ -64,7 +51,7 @@ const TeamMaxTransfers = () => {
           /{currentTeam?.transfers_from_one_team ?? 0}
         </p>
       </div>
-      {transferModal && <TeamMaxTransfersModal handleModal={handleModal} />}
+      <TeamMaxTransfersModal />
     </>
   )
 }

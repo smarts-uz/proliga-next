@@ -10,25 +10,11 @@ const TeamBalance = () => {
   const { teamBalance } = useSelector((store) => store.tourTeams)
   const { balanceModal } = useSelector((store) => store.currentTeam)
 
-  const handleModal = () => {
-    if (balanceModal) {
-      dispatch(setBalanceModal(false))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      dispatch(setBalanceModal(true))
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
-
   return (
     <>
       <div
         className="group w-1/2 cursor-pointer capitalize md:w-auto"
-        onClick={handleModal}
+        onClick={() => dispatch(setBalanceModal(!balanceModal))}
       >
         <header className="flex cursor-pointer text-neutral-400 transition-all group-hover:text-neutral-50 group-hover:underline">
           <h3
@@ -47,7 +33,7 @@ const TeamBalance = () => {
         </header>
         <p className="text-2xl font-bold sm:text-3xl">{teamBalance ?? '00'}</p>
       </div>
-      {balanceModal && <TeamBalanceModal handleModal={handleModal} />}
+      <TeamBalanceModal />
     </>
   )
 }

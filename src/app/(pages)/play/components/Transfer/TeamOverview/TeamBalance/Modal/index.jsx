@@ -1,39 +1,41 @@
-import Backdrop from 'components/Backdrop'
-import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { PACKAGES } from 'app/utils/packages.util'
+import {
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  DialogDescription,
+} from '@/components/ui/dialog'
+import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
-const TeamBalanceModal = ({ handleModal }) => {
+const TeamBalanceModal = () => {
+  const dispatch = useDispatch()
   const { packages } = useSelector((store) => store.packages)
   const { t } = useTranslation()
+  const { balanceModal } = useSelector((store) => store.currentTeam)
+
   return (
-    <Backdrop onClick={handleModal}>
-      <motion.dialog
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="mx-4 flex max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-2xl bg-neutral-900 p-4 text-neutral-200 xs:mx-auto xs:w-2/3 md:w-1/2 md:p-6 lg:w-1/3"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button onClick={handleModal} className="self-end">
-          <Image width={24} height={24} src="/icons/close.svg" alt="close" />
-        </button>
-        <header className="space-y-1">
-          <h3 className="text-xl font-semibold">
+    <Dialog
+      onOpenChange={() => dispatch(setBalanceModal(!balanceModal))}
+      open={balanceModal}
+    >
+      <DialogContent className="flex max-w-[98%] flex-col items-center justify-between gap-4 rounded-md bg-neutral-950 px-4 py-6 text-neutral-100 xs:max-w-[90%] sm:max-w-[80%] md:max-w-[70%] md:p-6 lg:max-w-[55%] xl:max-w-[45%] 2xl:max-w-[40rem]">
+        <header className="space-y-2">
+          <DialogTitle className="text-base font-semibold sm:text-lg 2xl:text-xl">
             {t('Balans miqdorini oshirishni hoxlaysizmi')}
-          </h3>
-          <p className="text-sm text-neutral-300 md:text-base">
+          </DialogTitle>
+          <p className="text-xs text-neutral-300 md:text-sm xl:text-base">
             {t('update balance txt')}
           </p>
         </header>
-        <section className="flex flex-col gap-2 text-sm xs:text-base">
+        <section className="flex w-full flex-col gap-2 text-sm sm:text-base">
           {packages.map(
             (item) =>
               item.type === PACKAGES.team_balance && (
                 <Link key={item.id} href={`/confirm-payment/${item.id}`}>
-                  <div className="flex gap-2 rounded border border-neutral-400 p-4 transition-all hover:border-primary">
+                  <div className="flex gap-2 rounded border border-neutral-400 p-2 transition-all hover:border-primary md:p-3">
                     {t('Tangalar miqdorini')}
                     <span className="font-bold">{item.amount}</span>
                     {t('tangaga oshirish')}
@@ -42,31 +44,10 @@ const TeamBalanceModal = ({ handleModal }) => {
               )
           )}
         </section>
-      </motion.dialog>
-    </Backdrop>
+        <DialogDescription className="hidden">Balance</DialogDescription>
+      </DialogContent>
+    </Dialog>
   )
 }
-
-const balance = [
-  {
-    id: 1,
-    type: 'balance',
-    amount: 115,
-    price: 25000,
-  },
-  {
-    id: 2,
-    type: 'balance',
-
-    amount: 125,
-    price: 35000,
-  },
-  {
-    id: 3,
-    type: 'balance',
-    amount: 150,
-    price: 65000,
-  },
-]
 
 export default TeamBalanceModal
