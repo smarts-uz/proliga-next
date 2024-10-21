@@ -23,10 +23,11 @@ const Notification = () => {
   const [unreadCount, setUnreadCount] = useState(0)
 
   useEffect(() => {
-    const readNotificationIds = JSON.parse(localStorage.getItem('readNotificationIds') || '[]')
+    const readNotificationIds = JSON.parse(
+      localStorage.getItem('readNotificationIds') || '[]'
+    )
 
     if (systemNotifications?.length > 0) {
-
       const unreadNotifications = systemNotifications.filter(
         (notification) => !readNotificationIds.includes(notification.id)
       )
@@ -34,17 +35,20 @@ const Notification = () => {
     }
   }, [systemNotifications])
 
-
   const handleOpenNotifications = () => {
     setNotificationsOpen(!isNotificationsOpen)
 
     if (!isNotificationsOpen) {
       setUnreadCount(0)
 
-
       if (systemNotifications?.length > 0) {
-        const notificationIds = systemNotifications.map(notification => notification.id)
-        localStorage.setItem('readNotificationIds', JSON.stringify(notificationIds))
+        const notificationIds = systemNotifications.map(
+          (notification) => notification.id
+        )
+        localStorage.setItem(
+          'readNotificationIds',
+          JSON.stringify(notificationIds)
+        )
       }
     }
   }
@@ -57,17 +61,20 @@ const Notification = () => {
   return (
     <Popover open={isNotificationsOpen} onOpenChange={handleOpenNotifications}>
       <PopoverTrigger asChild>
-        <div className="relative cursor-pointer" onClick={handleOpenNotifications}>
+        <div
+          className="relative cursor-pointer"
+          onClick={handleOpenNotifications}
+        >
           <Image
             src={'/icons/bell.svg'}
             alt="bell"
             draggable={false}
             width={24}
             height={24}
-            className={`hover:filter-neutral-200 size-8 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
+            className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
           />
           {unreadCount > 0 && (
-            <span className="absolute -top-0 right-0.5 size-4 text-xs rounded-full flex justify-center bg-primary text-black font-semibold">
+            <span className="absolute -top-0 right-0.5 flex size-4 justify-center rounded-full bg-primary text-xs font-semibold text-black">
               {unreadCount}
             </span>
           )}

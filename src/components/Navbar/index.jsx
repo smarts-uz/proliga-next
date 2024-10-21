@@ -18,7 +18,6 @@ const Navbar = () => {
   const { userAuth } = useSelector((state) => state.auth)
   const [isModalOpen, toggleModal] = useState(false)
 
-
   const handleToggleModal = () => {
     if (isModalOpen) {
       toggleModal(false)
