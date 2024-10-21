@@ -5,6 +5,7 @@ import {
   addTeamPlayer,
   updateTeamPlayer,
 } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { useTranslation } from 'react-i18next'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const dispatch = useDispatch()
@@ -12,6 +13,7 @@ const TransferTableBody = ({ table, flexRender }) => {
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
+
   const { teamBalance } = useSelector((state) => state.tourTeams)
   const totalPlayersCount =
     playersCount?.GOA +
@@ -23,7 +25,7 @@ const TransferTableBody = ({ table, flexRender }) => {
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
-
+  const { t } = useTranslation()
   const handleAddPlayer = (player) => {
     if (currentTeam?.is_team_created) {
       dispatch(
@@ -31,6 +33,7 @@ const TransferTableBody = ({ table, flexRender }) => {
           player,
           team: currentTeam,
           teamConcat,
+          t,
         })
       )
     } else {
@@ -39,6 +42,7 @@ const TransferTableBody = ({ table, flexRender }) => {
           player,
           team: currentTeam,
           teamConcat,
+          t,
         })
       )
     }

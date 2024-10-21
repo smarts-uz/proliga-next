@@ -36,11 +36,11 @@ const ProfileStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          t('identifikatori') +
+          t("identifikatori ") +
             player.id +
-            t("bo'lgan va") +
+            t(" bo'lgan va ") +
             player.position +
-            t("holatidagi o'yinchi yaroqsiz"),
+            t(" holatidagi o'yinchi yaroqsiz"),
           { theme: 'dark' }
         )
         return
