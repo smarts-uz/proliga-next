@@ -14,15 +14,9 @@ export const useGenerateLanguage = () => {
     try {
       setIsLoading(true)
 
-      //uz
-      // const { data, error } = await supabase
-      //   .from('system_language')
-      //   .select('id, name, uz')
-
-      //ru
-      // const { data, error } = await supabase
-      //   .from('system_language')
-      //   .select('id, name, ru')
+      const { data, error } = await supabase
+        .from('system_language')
+        .select('id, name, ru, uz, is_exclude')
 
       if (error) {
         setError(error.message)
@@ -33,10 +27,18 @@ export const useGenerateLanguage = () => {
         setData(data)
         let obj = {}
         // uz
-        // data.map((item) => (obj = { ...obj, [item.name]: item.uz }))
+        data.map((item) => {
+          if (!item?.is_exclude) {
+            obj = { ...obj, [item.name]: item.uz }
+          }
+        })
         //ru
-        // data.map((item) => (obj = { ...obj, [item.name]: item.ru }))
-        // console.log(obj)
+        // data.map((item) => {
+        //   if (!item?.is_exclude) {
+        //     obj = { ...obj, [item.name]: item.ru }
+        //   }
+        // })
+        console.log(obj)
       }
     } catch (error) {
       setError(error.message)

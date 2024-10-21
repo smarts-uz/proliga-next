@@ -74,7 +74,7 @@ const Notification = () => {
             className={`hover:filter-neutral-200 size-6 select-none ${isNotificationsOpen ? 'filter-neutral-50' : 'filter-neutral-300'}`}
           />
           {unreadCount > 0 && (
-            <span className="absolute -top-0 right-0.5 flex size-4 justify-center rounded-full bg-primary text-xs font-semibold text-black">
+            <span className="absolute right-0.5 top-0 flex size-3 justify-center rounded-full bg-primary text-[9px] font-bold text-black">
               {unreadCount}
             </span>
           )}
