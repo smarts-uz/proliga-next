@@ -3,13 +3,25 @@ import { useSelector } from 'react-redux'
 
 const TransferTableBody = ({ table, flexRender }) => {
   const { currentCompetition } = useSelector((store) => store.competition)
+  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const topThreeTeam = 'border-l-red-600 border-l-2 md:border-l-4'
+  const topTenTeam = 'border-l-yellow-600 border-l-2 md:border-l-4'
+  const matchingTeam = 'border-l-blue-600 border-l-2 md:border-l-4'
 
+  const condition = (order, teamId) => {
+    if (teamId === currentTeam?.id) {
+      return matchingTeam
+    }
+    if (order > 0 && order <= 3) return topThreeTeam
+    if (order > 3 && order <= 10) return topTenTeam
+    return ''
+  }
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (
         <tr
           key={row.id}
-          className="mx-auto border-b border-neutral-700 bg-neutral-900 odd:bg-stone-950 hover:bg-neutral-800"
+          className={`mx-auto border-b border-neutral-700 bg-neutral-900 odd:bg-stone-950 hover:bg-neutral-800 ${condition(row?.original?.team?.order, row?.original?.team?.id)}`}
         >
           {row.getVisibleCells().map((cell) => (
             <td

@@ -35,8 +35,8 @@ function TournamentTable() {
 
   const columns = [
     columnHelper.accessor('', {
-      accessorFn: (row) => row?.team.id ?? '',
-      header: t('Id'),
+      accessorFn: (row) => row?.team.order ?? '',
+      header: t("O'RIN").toLocaleLowerCase(),
       id: 'Id',
     }),
     columnHelper.accessor('name', {
