@@ -30,7 +30,7 @@ const Regulation = () => {
   return (
     <Gutter>
       <div
-        className="rules my-6 min-h-screen w-full rounded-xl border bg-neutral-900/75 p-4 text-sm md:p-6 xl:text-base"
+        className="rules my-6 min-h-screen w-full rounded-xl border bg-neutral-900/75 px-2 py-4 text-sm sm:p-4 md:p-6 xl:text-base"
         dangerouslySetInnerHTML={{
           __html: lang === LANGUAGE.uz ? rules?.uz : rules?.ru,
         }}
