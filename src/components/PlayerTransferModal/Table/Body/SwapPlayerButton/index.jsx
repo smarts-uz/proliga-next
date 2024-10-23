@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
@@ -32,10 +31,8 @@ const SwapPlayerButton = ({
 
   if (teamConcat.find((p) => p.name === cell.getValue())) {
     return (
-      <motion.td
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+      <td
+        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -46,14 +43,12 @@ const SwapPlayerButton = ({
           height={24}
           className="filter-green-500 size-5 select-none sm:size-6"
         />
-      </motion.td>
+      </td>
     )
   } else {
     return (
-      <motion.td
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+      <td
+        className="fade-in-fast flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
         onClick={handleClick}
       >
@@ -65,7 +60,7 @@ const SwapPlayerButton = ({
           className={`${condition ? 'filter-primary' : 'filter-neutral-400'} size-5 select-none sm:size-6`}
           height={24}
         />
-      </motion.td>
+      </td>
     )
   }
 }

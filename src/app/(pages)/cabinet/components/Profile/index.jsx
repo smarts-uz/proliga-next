@@ -2,17 +2,16 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import Image from 'next/image'
-import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import RefillBalanceModal from 'components/RefillBalanceModal'
+import CabinetProfileOTP from './OTPBox'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, publicUrl } = useSelector((store) => store.auth)
   const { t } = useTranslation()
-  const [otpModal, setOtpModal] = useState(false)
   const [balanceModal, setBalanceModal] = useState(false)
   const { getUserPhoto } = useGetUserPhoto()
 
@@ -20,20 +19,6 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
-
-  const handleOtpModal = () => {
-    if (otpModal) {
-      setOtpModal(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      setOtpModal(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
 
   const getCorrectGenderText = (gender) => {
     if (gender === 'male') {
@@ -183,32 +168,9 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               {t('Hisobni toldirish')}
             </button>
           </div>
-          <div
-            className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
-          >
-            <Image
-              src="/icons/call.svg"
-              draggable={false}
-              width={36}
-              height={36}
-              className="filter-neutral-50 size-9 self-center sm:size-10"
-              alt="wallet"
-            />
-            <div className="w-full max-w-36 self-center text-center">
-              <h4 className="text-sm font-medium sm:text-base">
-                {t('Telefon raqam tasdiqlash')}
-              </h4>
-            </div>
-            <button
-              onClick={handleOtpModal}
-              className="w-min self-center rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
-            >
-              {t('Tasdiqlash')}
-            </button>
-          </div>
+          <CabinetProfileOTP />
         </section>
       </section>
-      {otpModal && <OTPConfirmationModal toggleModal={handleOtpModal} />}
       <RefillBalanceModal
         setIsModalOpen={setBalanceModal}
         isModalOpen={balanceModal}

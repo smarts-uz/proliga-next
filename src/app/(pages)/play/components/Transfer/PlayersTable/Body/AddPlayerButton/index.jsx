@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
-import { motion } from 'framer-motion'
 import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 
 const AddPlayerButton = ({
@@ -22,10 +21,8 @@ const AddPlayerButton = ({
 
   if (isPlayerInTeam) {
     return (
-      <motion.td
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+      <td
+        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -36,14 +33,12 @@ const AddPlayerButton = ({
           height={24}
           className="filter-green-500 size-5 select-none sm:size-6"
         />
-      </motion.td>
+      </td>
     )
   } else if (!isPlayerInTeam && totalPlayersCount < 11) {
     return (
-      <motion.td
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+      <td
+        className="fade-in-fast flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
         onClick={handleClick}
       >
@@ -55,14 +50,12 @@ const AddPlayerButton = ({
           className={`${condition ? 'filter-primary' : 'filter-neutral-400'} size-5 select-none sm:size-6`}
           height={24}
         />
-      </motion.td>
+      </td>
     )
   } else if (!isPlayerInTeam && totalPlayersCount >= 11) {
     return (
-      <motion.td
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+      <td
+        className="fade-in-fast flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -73,7 +66,7 @@ const AddPlayerButton = ({
           className={`filter-neutral-400 size-5 select-none opacity-80 sm:size-6`}
           height={24}
         />
-      </motion.td>
+      </td>
     )
   }
 }

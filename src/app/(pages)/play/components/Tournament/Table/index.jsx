@@ -4,11 +4,10 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
@@ -19,19 +18,12 @@ const columnHelper = createColumnHelper()
 function TournamentTable() {
   const { t } = useTranslation()
   const { allTeams } = useSelector((store) => store.teams)
-  const [data, setData] = useState(allTeams ?? [])
   const [sorting, setSorting] = useState([
     {
       id: 'hammasi',
       desc: true,
     },
   ])
-
-  useEffect(() => {
-    if (allTeams) {
-      setData(allTeams)
-    }
-  }, [allTeams])
 
   const columns = [
     columnHelper.accessor('', {
@@ -64,7 +56,7 @@ function TournamentTable() {
 
   const table = useReactTable({
     columns,
-    data,
+    data: allTeams ?? [],
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),

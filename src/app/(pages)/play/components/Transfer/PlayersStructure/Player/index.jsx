@@ -3,7 +3,6 @@
 import PlayerTransferModal from 'components/PlayerTransferModal'
 import ConfirmationModal from 'components/ConfirmationModal'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -45,11 +44,7 @@ const Player = ({ player }) => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative z-30 flex h-min select-none flex-col items-center justify-center text-sm text-neutral-700 sm:text-base"
-      >
+      <div className="fade-in-fast relative z-30 flex h-min select-none flex-col items-center justify-center text-sm text-neutral-700 sm:text-base">
         {!player.name && (
           <>
             <Image
@@ -114,7 +109,7 @@ const Player = ({ player }) => {
             </div>
           </>
         )}
-      </motion.div>
+      </div>
       <PlayerTransferModal
         prevPlayer={player}
         isModalOpen={isModalOpen}

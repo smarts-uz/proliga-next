@@ -7,10 +7,15 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import {
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  DialogDescription,
+} from '@/components/ui/dialog'
 
-const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
+const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
   const [code, setCode] = useState()
   const { t } = useTranslation()
   // useEffect(() => {
@@ -18,17 +23,12 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
   // }, [])
 
   return (
-    <Backdrop>
-      <motion.dialog
-        onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex max-w-[45rem] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500"
-      >
+    <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
+      <DialogContent className="flex max-w-[45rem] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500">
         <form className="flex flex-col items-start gap-6">
-          <label htmlFor="" className="text-xl font-medium">
+          <DialogTitle className="text-xl font-medium">
             {t('SMS Kod Tasdiqlash')}
-          </label>
+          </DialogTitle>
           <InputOTP
             maxLength={6}
             value={code}
@@ -47,8 +47,11 @@ const OTPConfirmationModal = ({ onConfirm, onCancel }) => {
             {t('Tasdiqlash')}
           </button>
         </form>
-      </motion.dialog>
-    </Backdrop>
+        <DialogDescription className="hidden">
+          SMS confirmation
+        </DialogDescription>
+      </DialogContent>
+    </Dialog>
   )
 }
 

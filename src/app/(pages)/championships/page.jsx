@@ -43,7 +43,7 @@ const Championships = () => {
 
   return (
     <Gutter>
-      <section className="my-8 min-h-40 w-full rounded-2xl bg-neutral-900 p-6 shadow shadow-neutral-400">
+      <section className="my-6 min-h-80 md:min-h-36 w-full rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-400">
         <ChampionshipsTitle />
         {isLoading ? (
           <div className="flex items-center justify-center">
