@@ -38,7 +38,7 @@ export const useUpdateUserData = () => {
     }
     if (!userAuth) {
       setError('User not authenticated')
-      toast.error('Foydalanuvchi autentifikatsiya qilinmagan', { theme: 'dark' })
+      toast.error(t('Foydalanuvchi autentifikatsiya qilinmagan'), { theme: 'dark' })
       return
     }
 
