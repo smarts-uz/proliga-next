@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import SettingsNavigation from './components/SettingsNavigation'
 import Gutter from 'components/Gutter'
 import CabinetSettingsTab from './components/Settings'
 import CabinetChangePasswordTab from './components/ChangePassword'
 import dynamic from 'next/dynamic'
-import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import CabinetTransactionsHistory from './components/TransactionsHistory'
 
 const CabinetProfileTab = dynamic(() => import('./components/Profile'), {

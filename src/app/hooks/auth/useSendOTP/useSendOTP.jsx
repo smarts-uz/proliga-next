@@ -42,7 +42,6 @@ export const useSendOTP = () => {
       }
       if (data) {
         setData(data)
-        console.log(data)
         toast.success(t('SMS muvaffaqiyatli yuborildi'), { theme: 'dark' })
       }
     } catch (error) {

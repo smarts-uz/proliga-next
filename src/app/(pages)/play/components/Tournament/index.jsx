@@ -12,6 +12,7 @@ const Tournament = () => {
   const [page, setPage] = useState(0)
   const [perPage, setPerPage] = useState(14)
   const { currentCompetition } = useSelector((store) => store.competition)
+  const { teamsLoading } = useSelector((store) => store.teams)
   const { season } = useSelector((state) => state.season)
   const { currentTour } = useSelector((state) => state.tours)
   const [tour, setTour] = useState(currentTour?.id || 0)
@@ -36,17 +37,25 @@ const Tournament = () => {
   const decrementPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 0))
   }
-
   return (
     <section className="flex w-full flex-col gap-2 lg:flex-row">
       <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
-        <TournamentSelectedTour setTour={setTour} tour={tour} />
-        <TournamentTable />
-        <TournamentPagination
-          incrementPage={incrementPage}
-          decrementPage={decrementPage}
-          page={page}
-        />
+        {teamsLoading ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="loader" />
+          </div>
+        ) : (
+          <>
+            <TournamentSelectedTour setTour={setTour} tour={tour} />
+            <TournamentTable />
+            <TournamentPagination
+              incrementPage={incrementPage}
+              decrementPage={decrementPage}
+              page={page}
+              perPage={perPage}
+            />
+          </>
+        )}
       </div>
       <TopTeams />
     </section>

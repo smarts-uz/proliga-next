@@ -20,7 +20,7 @@ const columnHelper = createColumnHelper()
 
 function CabinetTransactionsBalanceTable() {
   const { t } = useTranslation()
-  const { balance } = useSelector((store) => store.payBalance)
+  const { balance, isLoading } = useSelector((store) => store.payBalance)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 8,
@@ -71,7 +71,6 @@ function CabinetTransactionsBalanceTable() {
       pagination,
     },
   })
-
   return (
     <section className="w-full flex-1">
       <table className="w-full table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">

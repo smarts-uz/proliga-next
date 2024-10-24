@@ -68,7 +68,7 @@ function JournalTable() {
   })
 
   return (
-    <table className="h-full w-full text-sm">
+    <table className="h-auto w-full text-xs sm:text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody table={table} flexRender={flexRender} />
     </table>

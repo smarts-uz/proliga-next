@@ -1,6 +1,8 @@
-import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
+'use client'
+
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import { useLogOut } from 'app/hooks/auth/useLogOut/useLogOut'
 
 const SettingsSidebarLogOut = () => {
   const { logOut } = useLogOut()

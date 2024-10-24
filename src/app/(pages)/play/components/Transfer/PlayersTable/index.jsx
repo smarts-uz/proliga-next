@@ -36,6 +36,7 @@ function PlayersTable() {
     pageIndex: 0,
     pageSize: 9,
   })
+  const { isLoading } = useSelector((state) => state.players)
   const selectedPlayers = useSelector(selectPlayers)
   useEffect(() => {
     if (selectedPlayers?.length > 0) {
@@ -112,22 +113,33 @@ function PlayersTable() {
   })
 
   return (
-    <div className="fade-in-fast min-h-auto h-min w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2">
-      <TeamOverview />
-      <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-3 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 md:text-sm lg:text-base xl:gap-y-2">
-        {table
-          .getHeaderGroups()
-          .map((headerGroup) =>
-            headerGroup.headers.map((header) => (
-              <TransferTableFilters key={header.id} column={header.column} />
-            ))
-          )}
-      </div>
-      <table className="w-full min-w-80 table-auto text-sm">
-        <TransferTableHead table={table} />
-        <TransferTableBody table={table} flexRender={flexRender} />
-      </table>
-      <TransferTablePagination table={table} />
+    <div className="fade-in-fast min-h-auto h-auto w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black p-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:p-6 md:text-sm lg:w-1/2">
+      {isLoading ? (
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="loader" />
+        </div>
+      ) : (
+        <>
+          <TeamOverview />
+          <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-3 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 md:text-sm lg:text-base xl:gap-y-2">
+            {table
+              .getHeaderGroups()
+              .map((headerGroup) =>
+                headerGroup.headers.map((header) => (
+                  <TransferTableFilters
+                    key={header.id}
+                    column={header.column}
+                  />
+                ))
+              )}
+          </div>
+          <table className="w-full min-w-80 table-auto text-sm">
+            <TransferTableHead table={table} />
+            <TransferTableBody table={table} flexRender={flexRender} />
+          </table>
+          <TransferTablePagination table={table} />
+        </>
+      )}
     </div>
   )
 }

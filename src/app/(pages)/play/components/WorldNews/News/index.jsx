@@ -67,7 +67,8 @@ const News = () => {
           {page + 1}
         </span>
         <button
-          className="rounded border border-neutral-200 px-3 py-1 text-neutral-200 hover:border-neutral-50 hover:text-neutral-50"
+          className="rounded border border-neutral-200 px-3 py-1 capitalize text-neutral-200 hover:border-neutral-50 hover:underline disabled:opacity-60 disabled:hover:cursor-default disabled:hover:no-underline"
+          disabled={news?.length < perPage + 1}
           onClick={incrementPage}
         >
           {t('Keyingi')}

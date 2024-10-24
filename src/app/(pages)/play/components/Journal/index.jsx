@@ -16,6 +16,7 @@ export default function Journal() {
   const { season } = useSelector((state) => state.season)
   const { userTable } = useSelector((state) => state.auth)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { isLoading } = useSelector((state) => state.userActivity)
 
   useEffect(() => {
     if (currentCompetition?.id && season?.id && currentTeam?.id) {
@@ -45,16 +46,24 @@ export default function Journal() {
   const decrementPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 0))
   }
-
   return (
     <div className="flex w-full flex-col gap-2 lg:flex-row">
-      <section className="flex h-min min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
-        <JournalTable />
-        <JournalPagination
-          incrementPage={incrementPage}
-          decrementPage={decrementPage}
-          page={page}
-        />
+      <section className="flex h-auto min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
+        {isLoading ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="loader" />
+          </div>
+        ) : (
+          <>
+            <JournalTable />
+            <JournalPagination
+              incrementPage={incrementPage}
+              decrementPage={decrementPage}
+              page={page}
+              perPage={perPage}
+            />
+          </>
+        )}
       </section>
       <TopTeams />
     </div>
