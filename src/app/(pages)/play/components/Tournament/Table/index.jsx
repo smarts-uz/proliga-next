@@ -27,7 +27,7 @@ function TournamentTable() {
 
   const columns = [
     columnHelper.accessor('', {
-      accessorFn: (row) => row?.team.order ?? '',
+      accessorFn: (row) => row?.team?.order ?? '',
       header: t("O'RIN").toLocaleLowerCase(),
       id: 'Id',
     }),
@@ -40,14 +40,14 @@ function TournamentTable() {
       accessorFn: (row) => row?.user_id?.name ?? 'Ism kiritilmagan',
       header: t('Foydalanuvchi'),
     }),
-    columnHelper.accessor((row) => row.point, {
-      accessorFn: (row) => row.point,
+    columnHelper.accessor("point", {
+      accessorFn: (row) => row?.point,
       id: 'point',
       cell: (info) => info.getValue(),
       header: t('Tur'),
     }),
-    columnHelper.accessor((row) => row.point, {
-      accessorFn: (row) => row.team.point,
+    columnHelper.accessor("team-point", {
+      accessorFn: (row) => row?.team?.point,
       id: 'hammasi',
       cell: (info) => <i>{info.getValue()}</i>,
       header: t('Hammasi'),

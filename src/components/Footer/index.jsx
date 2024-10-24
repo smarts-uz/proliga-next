@@ -7,9 +7,9 @@ const Footer = () => {
   const { t } = useTranslation()
 
   return (
-    <footer className="w-full border-t border-neutral-400 bg-neutral-950">
+    <footer className="w-full border-t border-neutral-400 bg-black">
       <Gutter>
-        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 py-8 lg:pb-12 text-sm text-neutral-200 lg:text-base xl:gap-0">
+        <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 py-8 text-sm text-neutral-200 lg:pb-12 lg:text-base xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
             <Link href="/contact" className="capitalize hover:underline">
               {t('Biz haqimizda')}
