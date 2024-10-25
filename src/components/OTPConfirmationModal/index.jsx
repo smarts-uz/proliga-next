@@ -14,6 +14,7 @@ import {
   Dialog,
   DialogDescription,
 } from '@/components/ui/dialog'
+import ResendOTP from './ResendOTP'
 
 const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
   const [code, setCode] = useState()
@@ -24,25 +25,26 @@ const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-      <DialogContent className="flex max-w-[45rem] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500">
+      <DialogContent className="flex max-w-[96%] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500 sm:max-w-[32rem]">
         <form className="flex flex-col items-start gap-6">
-          <DialogTitle className="text-xl font-medium">
-            {t('SMS Kod Tasdiqlash')}
-          </DialogTitle>
-          <InputOTP
-            maxLength={6}
-            value={code}
-            onChange={(value) => setCode(value)}
-          >
-            <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
-            </InputOTPGroup>
-          </InputOTP>
+          <DialogTitle className="mb-0">{t('SMS Kod Tasdiqlash')}</DialogTitle>
+          <div className="flex flex-col gap-4">
+            <InputOTP
+              maxLength={6}
+              value={code}
+              onChange={(value) => setCode(value)}
+            >
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+            <ResendOTP />
+          </div>
           <button className="w-full rounded border border-primary bg-neutral-900 py-1.5 transition-all hover:bg-black">
             {t('Tasdiqlash')}
           </button>

@@ -15,6 +15,20 @@ export const useConfirmOTP = () => {
     setIsLoading(false)
     setError(null)
 
+    if (!code) {
+      toast.error(t('SMS kodingizni kiriting'), { theme: 'dark' })
+      setError(t('SMS kodingizni kiriting'))
+      return
+    }
+
+    if (code.length !== 6) {
+      toast.error(t("SMS kodingiz 6 ta raqamdan iborat bo'lishi kerak"), {
+        theme: 'dark',
+      })
+      setError(t("SMS kodingiz 6 ta raqamdan iborat bo'lishi kerak"))
+      return
+    }
+
     if (!userTable?.guid) {
       toast.error(t('Foydalanuvchi topilmadi'), { theme: 'dark' })
       setError(t('Foydalanuvchi topilmadi'))
@@ -30,11 +44,10 @@ export const useConfirmOTP = () => {
     try {
       setIsLoading(true)
 
-      // const { data, error } = await supabase.rpc('http__send_message_sms', {
-      //   user_id: userTable?.guid,
-      //   send_phone: userTable?.phone,
-      // })
-      let data, error;
+      const { data, error } = await supabase.rpc('verify_sms_code', {
+        user_id: userTable?.guid,
+        confirm_code: code,
+      })
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
