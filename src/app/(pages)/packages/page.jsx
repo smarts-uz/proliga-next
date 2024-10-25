@@ -37,7 +37,7 @@ const Packages = () => {
       <section className="h-full space-y-6 pb-12 pt-8 text-neutral-200">
         <PackagesTitle />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/20 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
             <BalanceTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -53,7 +53,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -62,7 +62,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
             <TransferTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -78,7 +78,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>
@@ -87,7 +87,7 @@ const Packages = () => {
               )}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50">
+          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
             <SameTeamPlayerTitle />
             <div className="flex flex-col gap-4">
               {packages.map(
@@ -103,7 +103,7 @@ const Packages = () => {
                       </span>
                       <Link
                         href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800/50 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
+                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
                       >
                         {t('Tanlang')}
                       </Link>

@@ -17,7 +17,7 @@ const CabinetProfileOTP = () => {
   return (
     <>
       <div
-        className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
+        className={`flex size-36 flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
       >
         <Image
           src="/icons/call.svg"
@@ -27,7 +27,7 @@ const CabinetProfileOTP = () => {
           className="filter-neutral-50 size-9 self-center sm:size-10"
           alt="sms confirm"
         />
-        <div className="w-full max-w-36 self-center text-center">
+        <div className="w-full max-w-36 cursor-default self-center text-center">
           <h4 className="text-sm font-medium sm:text-base">
             {t('Telefon raqam tasdiqlash')}
           </h4>

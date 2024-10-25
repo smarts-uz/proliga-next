@@ -23,8 +23,14 @@ function CabinetTransactionsBalanceTable() {
   const { balance, isLoading } = useSelector((store) => store.payBalance)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 8,
+    pageSize: 9,
   })
+  const [sorting, setSorting] = useState([
+    {
+      id: 'date',
+      desc: true,
+    },
+  ])
   const getCorrectDate = (startDate) => {
     const date = new Date(startDate)
     const day = date.getDate()
@@ -67,8 +73,10 @@ function CabinetTransactionsBalanceTable() {
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     state: {
       pagination,
+      sorting,
     },
   })
   return (

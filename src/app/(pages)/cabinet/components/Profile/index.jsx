@@ -141,7 +141,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
         <section className="flex flex-wrap justify-start gap-2">
           <div
-            className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
+            className={`flex size-36 flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44`}
           >
             <Image
               src="/icons/wallet.svg"
@@ -151,7 +151,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               className="filter-neutral-50 size-9 self-center sm:size-10"
               alt="wallet"
             />
-            <div className="w-full self-center text-center">
+            <div className="w-full cursor-default self-center text-center">
               <h4 className="text-sm font-medium sm:text-base">
                 {t('Proliga hisobi')}
               </h4>

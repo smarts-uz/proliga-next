@@ -10,11 +10,11 @@ import {
 } from '@tanstack/react-table'
 import TransactionsTableHead from './Head'
 import TransactionsTableBody from './Body'
+import CabinetTablePagination from '../Pagination'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
-import CabinetTablePagination from '../Pagination'
 import { useState } from 'react'
 
 const columnHelper = createColumnHelper()
@@ -25,8 +25,14 @@ function CabinetTransactionsExpensesTable() {
   const { lang } = useSelector((store) => store.systemLanguage)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 8,
+    pageSize: 9,
   })
+  const [sorting, setSorting] = useState([
+    {
+      id: 'date',
+      desc: true,
+    },
+  ])
 
   const getCorrectDate = (startDate) => {
     const date = new Date(startDate)
@@ -78,14 +84,16 @@ function CabinetTransactionsExpensesTable() {
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     state: {
       pagination,
+      sorting,
     },
   })
 
   return (
-    <section className="flex h-full w-full flex-1 flex-col justify-between ">
-      <table className=" w-full table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">
+    <section className="flex h-full w-full flex-1 flex-col justify-between">
+      <table className="w-full table-auto rounded text-[11px] xs:text-xs md:text-sm lg:text-base">
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />
       </table>

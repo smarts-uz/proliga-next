@@ -32,7 +32,7 @@ const Prizes = () => {
           {competition?.map((competition, index) => (
             <div
               key={index}
-              className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 md:p-4"
+              className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 hover:bg-black/50 md:p-4"
             >
               <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
                 <img
@@ -66,7 +66,7 @@ const Prizes = () => {
 const Prize = ({ prize }) => {
   const { lang } = useSelector((store) => store.systemLanguage)
   const { t } = useTranslation()
-  
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <p className="mb-1 text-sm md:mb-2 xl:text-base">

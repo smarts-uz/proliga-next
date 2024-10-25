@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setUserTable } from 'app/lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+import { useRefreshUserTable } from '../useRefreshUserTable/useRefreshUserTable'
 
 export const useFillBalance = () => {
   const dispatch = useDispatch()
@@ -12,14 +13,15 @@ export const useFillBalance = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { userTable } = useSelector((state) => state.auth)
   const { t } = useTranslation()
+  const { refreshUserTable } = useRefreshUserTable()
 
-  const fillBalance = async (amount) => {
+  const fillBalance = async (amount, system) => {
     if (!amount) {
       setError('Amount is required')
       toast.error('Amount is required', { theme: 'dark' })
       return
     }
-    if (!userTable?.guid) {
+    if (!userTable?.id) {
       setError('User not found')
       toast.error('User not found', { theme: 'dark' })
       return
@@ -30,11 +32,12 @@ export const useFillBalance = () => {
       setError('')
 
       const { data, error } = await supabase
-        .from('user')
-        .update({
-          balance: userTable.balance + amount,
+        .from('pay_balance')
+        .insert({
+          user_id: userTable?.id,
+          price: amount,
+          system,
         })
-        .eq('guid', userTable?.guid)
         .select()
         .single()
 
@@ -44,10 +47,8 @@ export const useFillBalance = () => {
         return
       }
       if (data) {
-        console.log(data)
+        await refreshUserTable()
         toast.success(t('Hisobingiz toldirildi'), { theme: 'dark' })
-        dispatch(setUserTable(data))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
       }
     } catch (error) {
       setError(error.message)

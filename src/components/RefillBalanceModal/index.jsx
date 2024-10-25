@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -12,6 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { useFillBalance } from 'app/hooks/user/useFillBalance/useFillBalance'
 import { Input } from '@/components/ui/input'
+import { toast } from 'react-toastify'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
@@ -25,7 +25,14 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await fillBalance(Number(amount))
+    if (+amount < 1000) {
+      toast.warning("Hisobni kamida 1000 so'm ga toldirish lozim", {
+        theme: 'dark',
+      })
+      return
+    }
+
+    await fillBalance(Number(amount), paymentOption)
     if (!isLoading && !error) {
       setAmount('')
       setIsModalOpen(false)
@@ -107,9 +114,20 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="mt-4 rounded border border-primary py-3 font-bold transition-all hover:bg-primary hover:text-black"
           >
-            {t("To'lash")}
+            {isLoading ? (
+              <Image
+                src="/icons/loading.svg"
+                width={24}
+                height={24}
+                alt="loading"
+                className="mx-auto size-6 animate-spin"
+              />
+            ) : (
+              t("To'lash")
+            )}
           </button>
         </form>
       </DialogContent>
@@ -121,9 +139,9 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
 }
 
 export const BALANCEOPTIONS = {
-  CLICKUP: 'CLICKUP',
-  PAYME: 'PAYME',
-  UZUM: 'UZUM',
+  CLICKUP: 'click',
+  PAYME: 'payme',
+  UZUM: 'uzum',
 }
 
 export default RefillBalanceModal
