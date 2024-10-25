@@ -19,21 +19,19 @@ export default function TourTabs() {
   const { currentTour, currentTourIndex, registeredTour } = useSelector(
     (state) => state.tours
   )
-  const { currentTourTeamIndex, tourTeams } = useSelector(
-    (state) => state.tourTeams
-  )
+  const { tourTeams, currentTourTeam } = useSelector((state) => state.tourTeams)
   const { t } = useTranslation()
 
   useEffect(() => {
     if (
-      currentTourIndex !== currentTourTeamIndex &&
+      currentTour?.id !== currentTourTeam?.tour_id &&
       selectTours?.length > 0 &&
       tourTeams?.length > 0
     ) {
       dispatch(setMatchesTourIndex(currentTourIndex))
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentTourIndex, currentTourTeamIndex, tourTeams, currentTour])
+  }, [dispatch, currentTourIndex, currentTourTeam, tourTeams, currentTour])
 
   useEffect(() => {
     if (
@@ -43,9 +41,19 @@ export default function TourTabs() {
       tourTeams?.length > 0
     ) {
       dispatch(setMatchesTourIndex(currentTourIndex))
+    }
+  }, [dispatch, currentCompetition, currentTourIndex, tourTeams])
+
+  useEffect(() => {
+    if (
+      currentCompetition?.id &&
+      selectTours?.length > 0 &&
+      currentTour &&
+      tourTeams?.length > 0
+    ) {
       dispatch(setCurrentTourTeam(currentTour))
     }
-  }, [dispatch, currentCompetition, currentTourIndex, tourTeams, currentTour])
+  }, [dispatch, currentCompetition, tourTeams, currentTour])
 
   const getStatus = (status) => {
     if (status === TOUR.notStarted) {
