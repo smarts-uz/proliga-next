@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { useTranslation } from 'react-i18next'
 import RefillBalanceModal from 'components/RefillBalanceModal'
+import UzumPaymentOption from './Uzum'
 
 const PaymentOptions = () => {
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
@@ -38,6 +39,12 @@ const PaymentOptions = () => {
           passive={passive}
         />
         <PaymePaymentOption
+          paymentOption={paymentOption}
+          setPaymentOption={setPaymentOption}
+          active={active}
+          passive={passive}
+        />
+        <UzumPaymentOption
           paymentOption={paymentOption}
           setPaymentOption={setPaymentOption}
           active={active}

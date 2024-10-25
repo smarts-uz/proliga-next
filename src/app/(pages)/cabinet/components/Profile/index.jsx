@@ -157,7 +157,9 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               </h4>
               <p className="text-sm text-neutral-400">
                 {t('Hisobda')}:{' '}
-                <span className="font-bold text-neutral-50">0 </span>
+                <span className="font-bold text-neutral-50">
+                  {userTable?.balance ?? 0}{' '}
+                </span>
                 {t("so'm")}
               </p>
             </div>

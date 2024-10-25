@@ -7,6 +7,10 @@ const ConfirmPaymentTab = ({ currentPackage }) => {
   const [testingActive, setTestingActive] = useState(false)
   const { t } = useTranslation()
 
+  const handleConfirmPayment = () => {
+    console.log('clicked')
+  }
+
   return (
     <section className="mt-auto flex flex-col items-start justify-between gap-2 rounded-md bg-gradient-to-l from-neutral-800 to-stone-900 p-4 md:h-auto md:flex-row md:items-center md:p-6">
       <div className="space-x-1 text-sm font-medium xs:text-base md:text-lg">
@@ -34,12 +38,12 @@ const ConfirmPaymentTab = ({ currentPackage }) => {
         >
           {t('Qaytish')}
         </Link>
-        <Link
-          href="/championships"
+        <button
+          onClick={handleConfirmPayment}
           className="flex h-10 w-24 items-center justify-center rounded border border-primary bg-neutral-950 text-sm text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary lg:w-32 lg:text-base"
         >
           {t("To'lash")}
-        </Link>
+        </button>
       </div>
     </section>
   )
