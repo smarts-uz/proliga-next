@@ -64,7 +64,7 @@ export const toursExtraReducer = (builder) => {
         )
       }
       if (!tour) {
-        state.currentTour = state.tours[0]
+        state.currentTour = {}
       }
       if (tour) {
         state.currentTour = tour
