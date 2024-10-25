@@ -30,6 +30,7 @@ export const useConfirmUserAuth = () => {
     }
 
     if (!email.includes('@')) {
+      j
       setError("Elektron pochta manzili notog'ri kiritildi")
       toast.error(t("Elektron pochta manzili notog'ri kiritildi"), {
         theme: 'dark',

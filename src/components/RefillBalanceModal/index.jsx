@@ -25,8 +25,8 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (+amount < 1000) {
-      toast.warning("Hisobni kamida 1000 so'm ga toldirish lozim", {
+    if (+amount < 1) {
+      toast.warning("Hisobni kamida 1 so'm ga toldirish lozim", {
         theme: 'dark',
       })
       return
