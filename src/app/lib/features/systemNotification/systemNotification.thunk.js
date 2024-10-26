@@ -2,33 +2,47 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { supabase } from 'app/lib/supabaseClient'
 import { addNotification } from './systemNotification.slice'
 
-export const fetchSystemNotification = createAsyncThunk(
-  'systemNotification/fetchSystemNotification',
-  async () => {
-    const { data, error } = await supabase
-      .from('system_notification')
-      .select('*')
-      .eq('is_broadcast', true)
-      .is('deleted_at', null)
-      .order('created_at')
-
-    return { data, error }
-  }
-)
-
-export const fetchPersonalNotification = createAsyncThunk(
-  'systemNotification/fetchPersonalNotification',
+export const fetchAllNotifications = createAsyncThunk(
+  'systemNotification/fetchAllNotifications',
   async ({ userId }) => {
-    const { data, error } = await supabase
-      .from('system_notification')
-      .select('*')
-      .eq('user_id', userId)
-      .is('deleted_at', null)
-      .order('created_at')
+    try {
+      // Fetch system (broadcast) notifications
+      const { data: systemData, error: systemError } = await supabase
+        .from('system_notification')
+        .select('*')
+        .eq('is_broadcast', true)
+        .is('deleted_at', null)
+        .order('created_at');
 
-    return { data, error }
+      if (systemError) {
+        console.error('System notification fetch error:', systemError);
+        return { data: [], error: systemError.message }; // Return an empty array with the error
+      }
+
+      // Fetch personal notifications for the user
+      const { data: personalData, error: personalError } = await supabase
+        .from('system_notification')
+        .select('*')
+        .eq('user_id', userId)
+        .is('deleted_at', null)
+        .order('created_at');
+
+      if (personalError) {
+        console.error('Personal notification fetch error:', personalError);
+        return { data: [], error: personalError.message }; // Return an empty array with the error
+      }
+
+      // Combine both system and personal notifications
+      const allNotifications = [...systemData, ...personalData];
+
+      return { data: allNotifications };
+    } catch (error) {
+      console.error('Fetch notifications error:', error);
+      return { data: [], error: error.message }; 
+    }
   }
-)
+);
+
 
 export const setupNotificationListener = createAsyncThunk(
   'systemNotification/setupNotificationListener',
