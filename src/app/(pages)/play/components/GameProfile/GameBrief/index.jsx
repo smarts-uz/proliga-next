@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { TOUR } from 'app/utils/tour.util'
-import Spinner from 'components/Spinner'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
@@ -47,7 +46,7 @@ const GameBrief = () => {
     <section
       className={`${
         isLoading ? 'justify-center' : 'justify-between'
-      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min xl:gap-6 2xl:h-full`}
+      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[36rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min xl:gap-6`}
     >
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">

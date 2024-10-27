@@ -7,7 +7,7 @@ export const fetchPlayers = createAsyncThunk(
     const { data, error } = await supabase
       .from('player')
       .select(
-        'id, name, position, club(id, name, slug), price, point, image, percentage'
+        'id, name, position, club(id, name, slug), price, point, image, percentage, slug'
       )
       .eq('competition_id', competition_id)
       .is('deleted_at', null)
