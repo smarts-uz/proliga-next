@@ -6,43 +6,39 @@ export const fetchAllNotifications = createAsyncThunk(
   'systemNotification/fetchAllNotifications',
   async ({ userId }) => {
     try {
-      // Fetch system (broadcast) notifications
       const { data: systemData, error: systemError } = await supabase
         .from('system_notification')
         .select('*')
         .eq('is_broadcast', true)
         .is('deleted_at', null)
-        .order('created_at');
+        .order('created_at')
 
       if (systemError) {
-        console.error('System notification fetch error:', systemError);
-        return { data: [], error: systemError.message }; // Return an empty array with the error
+        console.error('System notification fetch error:', systemError)
+        return { data: [], error: systemError.message }
       }
 
-      // Fetch personal notifications for the user
       const { data: personalData, error: personalError } = await supabase
         .from('system_notification')
         .select('*')
         .eq('user_id', userId)
         .is('deleted_at', null)
-        .order('created_at');
+        .order('created_at')
 
       if (personalError) {
-        console.error('Personal notification fetch error:', personalError);
-        return { data: [], error: personalError.message }; // Return an empty array with the error
+        console.error('Personal notification fetch error:', personalError)
+        return { data: [], error: personalError.message }
       }
 
-      // Combine both system and personal notifications
-      const allNotifications = [...systemData, ...personalData];
+      const allNotifications = [...systemData, ...personalData]
 
-      return { data: allNotifications };
+      return { data: allNotifications }
     } catch (error) {
-      console.error('Fetch notifications error:', error);
-      return { data: [], error: error.message }; 
+      console.error('Fetch notifications error:', error)
+      return { data: [], error: error.message }
     }
   }
-);
-
+)
 
 export const setupNotificationListener = createAsyncThunk(
   'systemNotification/setupNotificationListener',
@@ -63,8 +59,7 @@ export const setupNotificationListener = createAsyncThunk(
         )
         .subscribe()
 
-      // Do not dispatch the channel itself
-      return // If needed, handle channel separately outside Redux
+      return
     } catch (error) {
       toast.error(error.message, { theme: 'dark' })
     }
