@@ -44,7 +44,7 @@ export const useConfirmOTP = () => {
     try {
       setIsLoading(true)
 
-      const { data, error } = await supabase.rpc('verify_sms_code', {
+      const { data, error } = await supabase.rpc('verify__sms_code', {
         user_id: userTable?.guid,
         confirm_code: code,
       })
@@ -55,7 +55,11 @@ export const useConfirmOTP = () => {
       }
       if (data) {
         setData(data)
-        toast.success(t('SMS muvaffaqiyatli yuborildi'), { theme: 'dark' })
+        if (data === 'code expire') {
+          toast.warning('Kod eskirib qolgan!', { theme: 'dark' })
+        } else {
+          toast.success(t('SMS muvaffaqiyatli tasdiqlandi'), { theme: 'dark' })
+        }
       }
     } catch (error) {
       setError(error.message)

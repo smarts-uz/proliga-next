@@ -46,6 +46,7 @@ const Prize = ({ prize }) => {
         <img
           src={prize?.image}
           alt={prize?.name}
+          loading="lazy"
           draggable={false}
           className="aspect-auto h-auto w-auto select-none bg-cover"
         />

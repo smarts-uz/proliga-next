@@ -3,10 +3,12 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
 
 export default function ResendOTP() {
   const [countdown, setCountdown] = useState(60)
   const [isResendEnabled, setIsResendEnabled] = useState(false)
+  const { sendOTP } = useSendOTP()
 
   useEffect(() => {
     let timer
@@ -20,11 +22,18 @@ export default function ResendOTP() {
     return () => clearTimeout(timer)
   }, [countdown])
 
+  const handleClick = async () => {
+    await sendOTP()
+    setCountdown(60)
+    setIsResendEnabled(false)
+  }
+
   return (
     <div className="flex items-center space-x-2">
       <Button
         disabled={!isResendEnabled}
         type="button"
+        onClick={handleClick}
         className={`${
           isResendEnabled
             ? 'text-primary hover:text-primary/70'

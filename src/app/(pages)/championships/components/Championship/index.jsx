@@ -64,6 +64,7 @@ const Championship = ({ game }) => {
           alt={game.title}
           className="z-10 size-12 select-none rounded-full bg-white p-1"
           draggable={false}
+          loading='lazy'
         />
         <span
           className={`absolute bottom-0 left-0 top-0 h-full w-10 ${currentGame ? 'bg-primary' : 'bg-neutral-800'}`}

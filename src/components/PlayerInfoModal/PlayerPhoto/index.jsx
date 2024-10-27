@@ -11,6 +11,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
             : `/club/${currentPlayer?.club_id?.slug}/app.svg`
         }
         alt="player image"
+        loading="lazy"
         width={24}
         height={24}
         onError={(e) => (e.target.src = '/images/placeholder-user.png')}
@@ -27,6 +28,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
             width={48}
             height={48}
             draggable={false}
+            loading="lazy"
             onError={(e) => (e.target.src = '/icons/football.svg')}
             className="h-full w-6 select-none rounded-full bg-neutral-400 md:w-8"
           />

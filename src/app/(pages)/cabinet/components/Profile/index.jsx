@@ -55,6 +55,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               alt="user avatar"
               width={24}
               height={24}
+              loading='lazy'
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">

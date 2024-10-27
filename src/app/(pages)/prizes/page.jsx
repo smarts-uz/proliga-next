@@ -37,6 +37,7 @@ const Prizes = () => {
               <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
                 <img
                   src={competition.flag}
+                  loading="lazy"
                   alt={competition.title}
                   className="z-10 size-10 select-none rounded-full bg-white p-1"
                   draggable={false}
@@ -75,6 +76,7 @@ const Prize = ({ prize }) => {
       <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
         <img
           src={prize?.image}
+          loading="lazy"
           alt={prize?.name}
           className="aspect-auto h-auto w-auto bg-cover"
         />

@@ -33,6 +33,7 @@ const PlayerPlace = ({ player, index }) => {
           width={24}
           height={24}
           onError={(e) => (e.target.src = '/images/placeholder-user.png')}
+          loading="lazy"
           className="size-6 rounded-full text-black md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">

@@ -21,6 +21,7 @@ const AdModal = ({ isModalOpen, setModalOpen }) => {
             alt="banner"
             width={128}
             height={72}
+            loading="lazy"
             className="h-full w-full bg-cover"
           />
         </div>

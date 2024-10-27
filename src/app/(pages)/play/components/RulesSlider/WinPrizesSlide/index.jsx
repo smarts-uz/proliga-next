@@ -50,6 +50,7 @@ const Prize = ({ prize }) => {
         <img
           src={prize?.image}
           alt={prize?.name}
+          loading="lazy"
           className="aspect-auto h-auto w-auto bg-cover"
         />
       </div>

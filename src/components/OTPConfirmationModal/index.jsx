@@ -14,18 +14,36 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog'
 import ResendOTP from './ResendOTP'
+import { useConfirmOTP } from 'app/hooks/auth/useConfirmOTP/useConfirmOTP'
 
 const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
   const [code, setCode] = useState()
   const { t } = useTranslation()
-  // useEffect(() => {
-  //   toast.success(t("Sizga SMS kod jonatildi"), { theme: 'dark' })
-  // }, [])
+  const { confirmOTP, isLoading, error, data } = useConfirmOTP()
+
+  const handleConfirm = async (e) => {
+    e.preventDefault()
+
+    if (code.length !== 6) {
+      toast.warning('Kod 6 ta harf bolishi shart!')
+      return
+    }
+
+    await confirmOTP(code)
+
+    if (!isLoading && !error && data !== 'code expire') {
+      setCode('')
+      setModalOpen(false)
+    }
+  }
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-      <DialogContent className="flex max-w-[96%] flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-8 text-neutral-100 shadow shadow-neutral-500 sm:max-w-[32rem]">
-        <form className="flex flex-col items-start gap-6">
+      <DialogContent className="flex w-min min-w-80 flex-col items-center justify-between gap-2 rounded-md bg-neutral-950 p-6 text-neutral-100 shadow shadow-neutral-500">
+        <form
+          onSubmit={handleConfirm}
+          className="flex flex-col items-start gap-6"
+        >
           <DialogTitle className="mb-0">{t('SMS Kod Tasdiqlash')}</DialogTitle>
           <div className="flex flex-col gap-4">
             <InputOTP
@@ -44,7 +62,10 @@ const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
             </InputOTP>
             <ResendOTP />
           </div>
-          <button className="w-full rounded border border-primary bg-neutral-900 py-1.5 transition-all hover:bg-black">
+          <button
+            type="submit"
+            className="w-full rounded border border-primary bg-neutral-900 py-1.5 transition-all hover:bg-black"
+          >
             {t('Tasdiqlash')}
           </button>
         </form>

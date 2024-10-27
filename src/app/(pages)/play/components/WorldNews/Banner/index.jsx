@@ -15,6 +15,7 @@ const Banner = () => {
         <img
           src={banners[7]?.content_url ?? ''}
           alt={banners[1]?.name}
+          loading="lazy"
           className="h-full w-full rounded"
         />
       </Link>
@@ -25,6 +26,7 @@ const Banner = () => {
         <img
           src={banners[4]?.content_url ?? ''}
           alt={banners[4]?.name}
+          loading='lazy'
           className="h-full w-full rounded"
         />
       </Link>

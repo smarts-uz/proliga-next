@@ -29,6 +29,7 @@ const TeamProfile = () => {
           <img
             src={'/images/banner.jpg'}
             alt={'banner'}
+            loading="lazy"
             className="h-full w-full"
           />
         </Link>
@@ -55,6 +56,7 @@ const TeamProfile = () => {
           <img
             src={'/images/banner.jpg'}
             alt={'banner'}
+            loading="lazy"
             className="h-full w-full"
           />
         </Link>

@@ -167,6 +167,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}
+              loading="lazy"
               className="h-full w-full"
             />
           </Link>
@@ -184,6 +185,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
             <img
               src={'/images/banner.jpg'}
               alt={'banner'}
+              loading="lazy"
               className="h-full w-full"
             />
           </Link>
