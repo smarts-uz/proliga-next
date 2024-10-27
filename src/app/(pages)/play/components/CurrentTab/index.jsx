@@ -20,6 +20,7 @@ import { fetchPlayerPoint } from 'app/lib/features/playerPoint/playerPoint.thunk
 import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
 import Link from 'next/link'
+import AdModal from 'components/AdModal'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { currentCompetition } = useSelector((store) => store.competition)
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
   const { players } = useSelector((store) => store.players)
+  const [isModalOpen, setModalOpen] = useState(true)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -187,6 +189,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
           </Link>
         )}
       </div>
+      <AdModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </Gutter>
   )
 }

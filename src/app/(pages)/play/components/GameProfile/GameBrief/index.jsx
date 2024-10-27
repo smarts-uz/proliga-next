@@ -47,7 +47,7 @@ const GameBrief = () => {
     <section
       className={`${
         isLoading ? 'justify-center' : 'justify-between'
-      } fade-in-fast mx-auto flex h-auto min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min xl:gap-6 2xl:h-full`}
+      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min xl:gap-6 2xl:h-full`}
     >
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
