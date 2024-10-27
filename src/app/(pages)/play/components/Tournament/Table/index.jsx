@@ -7,7 +7,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import TransferTableHead from './Head'
 import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
@@ -18,6 +18,11 @@ const columnHelper = createColumnHelper()
 function TournamentTable() {
   const { t } = useTranslation()
   const { allTeams } = useSelector((store) => store.teams)
+  const { currentTourTeam } = useSelector((store) => store.tourTeams)
+  const curTourTeam = useMemo(
+    () => Boolean(allTeams.find((team) => team?.id === currentTourTeam?.id)),
+    [allTeams, currentTourTeam]
+  )
   const [sorting, setSorting] = useState([
     {
       id: 'hammasi',
@@ -40,13 +45,13 @@ function TournamentTable() {
       accessorFn: (row) => row?.user_id?.name ?? 'Ism kiritilmagan',
       header: t('Foydalanuvchi'),
     }),
-    columnHelper.accessor("point", {
+    columnHelper.accessor('point', {
       accessorFn: (row) => row?.point,
       id: 'point',
       cell: (info) => info.getValue(),
       header: t('Tur'),
     }),
-    columnHelper.accessor("team-point", {
+    columnHelper.accessor('team-point', {
       accessorFn: (row) => row?.team?.point,
       id: 'hammasi',
       cell: (info) => <i>{info.getValue()}</i>,
@@ -69,7 +74,12 @@ function TournamentTable() {
   return (
     <table className="h-auto w-full min-w-80 table-auto text-xs xs:text-sm">
       <TransferTableHead table={table} />
-      <TransferTableBody table={table} flexRender={flexRender} />
+      <TransferTableBody
+        table={table}
+        flexRender={flexRender}
+        tableCurrentTourTeam={curTourTeam}
+        currentTourTeam={currentTourTeam}
+      />
     </table>
   )
 }

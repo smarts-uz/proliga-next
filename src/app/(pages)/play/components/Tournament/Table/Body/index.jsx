@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
+import TournamentTableCurrentTeamRow from './CurrentTeamRow'
 
-const TransferTableBody = ({ table, flexRender }) => {
+const TransferTableBody = ({
+  table,
+  flexRender,
+  currentTourTeam,
+  tableCurrentTourTeam,
+}) => {
   const topThreeTeam = 'border-l-red-600 border-l-2 md:border-l-4'
   const topTenTeam = 'border-l-yellow-600 border-l-2 md:border-l-4'
   const matchingTeam = 'border-l-blue-600 border-l-2 md:border-l-4'
@@ -38,6 +44,11 @@ const TransferTableBody = ({ table, flexRender }) => {
           ))}
         </tr>
       ))}
+      <TournamentTableCurrentTeamRow
+        currentCompetition={currentCompetition}
+        currentTourTeam={currentTourTeam}
+        tableCurrentTourTeam={tableCurrentTourTeam}
+      />
     </tbody>
   )
 }

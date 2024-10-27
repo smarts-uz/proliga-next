@@ -6,7 +6,7 @@ export const fetchTourTeams = createAsyncThunk(
   async ({ team_id }) => {
     const { data, error } = await supabase
       .from('tour_team')
-      .select('*')
+      .select('*, user_id(name), team(*)')
       .eq('team_id', team_id)
       .is('deleted_at', null)
       .order('tour_id', { ascending: true })
