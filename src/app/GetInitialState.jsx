@@ -6,6 +6,7 @@ import { setLanguage } from './lib/features/systemLanguage/systemLanguage.slice'
 import { LANGUAGE } from './utils/languages.util'
 import { useTranslation } from 'react-i18next'
 import {
+  fetchAllNotifications,
   fetchSystemNotification,
   setupNotificationListener,
 } from './lib/features/systemNotification/systemNotification.thunk'
@@ -44,12 +45,12 @@ const GetInitialState = ({ children }) => {
 
   useEffect(() => {
     if (userTable?.id) {
-      dispatch(fetchSystemNotification({ userId: userTable.id }))
+      dispatch(fetchAllNotifications({ userId: userTable.id }))
     }
   }, [dispatch, userTable])
 
   useEffect(() => {
-    if (userTable?.id && systemNotifications?.length === 0) {
+    if (userTable?.id) {
       dispatch(setupNotificationListener({ userId: userTable.id }))
     }
   }, [dispatch, userTable, systemNotifications])
