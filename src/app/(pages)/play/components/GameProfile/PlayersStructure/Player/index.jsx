@@ -17,6 +17,8 @@ const Player = ({ player }) => {
       setCurrentPlayerPoint(
         playerPoint.find((item) => item.player_id === player.player_id)
       )
+    } else {
+      setCurrentPlayerPoint(null)
     }
   }, [playerPoint, player])
 

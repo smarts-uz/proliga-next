@@ -27,10 +27,11 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { teamPrice } = useSelector((store) => store.teamPlayers)
   const { currentCompetition } = useSelector((store) => store.competition)
-  const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
-  const { players } = useSelector((store) => store.players)
+  const { GOA, DEF, MID, STR, teamPrice } = useSelector(
+    (store) => store.teamPlayers
+  )
+  const { players, topPlayers } = useSelector((store) => store.players)
   const [isModalOpen, setModalOpen] = useState(true)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -138,14 +139,18 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   }, [currentCompetition, dispatch])
 
   useEffect(() => {
-    if (currentCompetition?.id && players?.length > 0) {
+    if (
+      currentCompetition?.id &&
+      players?.length > 0 &&
+      topPlayers.length === 0
+    ) {
       dispatch(
         fetchTopPlayers({
           competition_id: currentCompetition?.id,
         })
       )
     }
-  }, [currentCompetition, dispatch, players])
+  }, [currentCompetition, dispatch, players, topPlayers.length])
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
@@ -164,12 +169,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
             href="https://youtube.com"
             className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
           >
-            <img
-              src={'/images/banner.jpg'}
-              alt={'banner'}
-              loading="lazy"
-              className="h-full w-full"
-            />
+            <img src={'/images/banner.jpg'} alt={'banner'} loading="lazy" />
           </Link>
         )}
         {currentTab === TABS.GameProfile && <GameProfile />}
