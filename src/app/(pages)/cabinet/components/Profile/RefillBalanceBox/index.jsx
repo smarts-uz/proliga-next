@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 const RefillBalanceBox = ({ setBalanceModal }) => {
   const { t } = useTranslation()
   const { userTable } = useSelector((store) => store.auth)
+  
   return (
     <div className="flex size-36 flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:size-44">
       <Image

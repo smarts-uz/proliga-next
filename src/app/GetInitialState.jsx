@@ -10,6 +10,7 @@ import {
   fetchSystemNotification,
   setupNotificationListener,
 } from './lib/features/systemNotification/systemNotification.thunk'
+import { useRefreshUserTable } from './hooks/user/useRefreshUserTable/useRefreshUserTable'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const GetInitialState = ({ children }) => {
   const { systemNotifications } = useSelector(
     (state) => state.systemNotifications
   )
+  const { refreshUserTable } = useRefreshUserTable()
   const { lang } = useSelector((state) => state.systemLanguage)
   const { i18n } = useTranslation()
   const path = usePathname()
@@ -42,7 +44,6 @@ const GetInitialState = ({ children }) => {
     }
   }, [dispatch, userAuth, userTable, router, path])
 
-
   useEffect(() => {
     if (userTable?.id) {
       dispatch(fetchAllNotifications({ userId: userTable.id }))
@@ -61,6 +62,16 @@ const GetInitialState = ({ children }) => {
       i18n.changeLanguage(userTable?.language ?? LANGUAGE.uz)
     }
   }, [dispatch, lang, userTable?.language, i18n, userTable])
+
+  useEffect(() => {
+    if (userTable && userAuth) {
+      const fetch = async () => {
+        await refreshUserTable()
+      }
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAuth, userTable])
 
   return <>{children}</>
 }

@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
-import Image from 'next/image'
 import PlayerInfoModal from 'components/PlayerInfoModal'
+import Image from 'next/image'
 
 const Player = ({ player }) => {
   const dispatch = useDispatch()
