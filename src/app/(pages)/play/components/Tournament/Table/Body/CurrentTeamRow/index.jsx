@@ -3,11 +3,11 @@ import Link from 'next/link'
 const TournamentTableCurrentTeamRow = ({
   currentCompetition,
   currentTourTeam,
-  tableCurrentTourTeam
+  tableCurrentTourTeam,
 }) => {
   return (
     <tr
-      className={`mx-auto border-b border-l-2 border-neutral-700 border-l-blue-600 bg-neutral-900 odd:bg-stone-950 hover:bg-neutral-800 md:border-l-4 ${tableCurrentTourTeam && 'hidden'}`}
+      className={`mx-auto border-b border-l-2 border-neutral-700 border-l-blue-600 bg-neutral-900 text-center odd:bg-stone-950 hover:bg-neutral-800 md:border-l-4 md:text-start ${tableCurrentTourTeam && 'hidden'}`}
     >
       <td className={`h-min w-min px-0.5 capitalize md:w-auto`}>
         <Link

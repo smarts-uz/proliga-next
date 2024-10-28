@@ -48,7 +48,7 @@ export default function Journal() {
   }
   return (
     <div className="flex w-full flex-col gap-2 lg:flex-row">
-      <section className="flex h-auto min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black p-4 text-neutral-200 md:p-6 lg:w-2/3">
+      <section className="flex h-auto min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black px-2 py-4 text-neutral-200 xs:p-4 xs:px-3 md:p-5 lg:w-2/3">
         {isLoading ? (
           <div className="flex h-full w-full items-center justify-center">
             <div className="loader" />

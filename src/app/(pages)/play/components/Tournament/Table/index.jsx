@@ -71,7 +71,7 @@ function TournamentTable() {
   })
 
   return (
-    <table className="h-auto w-full min-w-80 table-auto text-xs xs:text-sm">
+    <table className="h-auto w-full min-w-72 table-auto text-xs sm:text-sm">
       <TransferTableHead table={table} />
       <TransferTableBody
         table={table}
