@@ -1,18 +1,25 @@
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
-import { Switch } from '@/components/ui/switch'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { Switch } from '@/components/ui/switch'
 import { usePurchasePackage } from 'app/hooks/user/usePurchasePackage/usePurchasePackage'
 
 const ConfirmPaymentTab = ({ paymentOption }) => {
-  const [testingActive, setTestingActive] = useState(false)
-  const { t } = useTranslation()
   const { currentPackage } = useSelector((store) => store.packages)
+  const [testingActive, setTestingActive] = useState(false)
   const { purchasePackage } = usePurchasePackage()
+  const { t } = useTranslation()
 
-  const handleConfirmPayment = () => {
-    console.log('clicked')
+  const handleConfirmPayment = async () => {
+    if (!testingActive) return toast.error('Test ni tanlang!')
+    if (!currentPackage?.id) return toast.error('Current package is missing!')
+    if (!paymentOption) return toast.error('Payment option is missing!')
+
+    await purchasePackage({
+      package_id: currentPackage?.id,
+      system: paymentOption,
+    })
   }
 
   return (

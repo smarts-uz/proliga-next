@@ -6,24 +6,44 @@ import { useTranslation } from 'react-i18next'
 import { useRefreshUserTable } from '../useRefreshUserTable/useRefreshUserTable'
 
 export const usePurchasePackage = () => {
+  const { t } = useTranslation()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const { userTable } = useSelector((state) => state.auth)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { currentTour } = useSelector((state) => state.tours)
-  const { currentCompetition } = useSelector((state) => state.competition)
-  const { t } = useTranslation()
   const { refreshUserTable } = useRefreshUserTable()
+  const { userTable } = useSelector((state) => state.auth)
+  const { currentTour } = useSelector((state) => state.tours)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { currentCompetition } = useSelector((state) => state.competition)
 
   const purchasePackage = async ({ package_id, system }) => {
-    if (!amount) {
-      setError('Amount is required')
-      toast.error('Amount is required', { theme: 'dark' })
-      return
-    }
     if (!userTable?.id) {
       setError('User not found')
       toast.error('User not found', { theme: 'dark' })
+      return
+    }
+    if (!currentTeam?.id) {
+      setError('Team not found')
+      toast.error('Team not found', { theme: 'dark' })
+      return
+    }
+    if (!currentTour?.id) {
+      setError('Tour not found')
+      toast.error('Tour not found', { theme: 'dark' })
+      return
+    }
+    if (!currentCompetition?.id) {
+      setError('Competition not found')
+      toast.error('Competition not found', { theme: 'dark' })
+      return
+    }
+    if (!package_id) {
+      setError('Package not found')
+      toast.error('Package not found', { theme: 'dark' })
+      return
+    }
+    if (!system) {
+      setError('System not found')
+      toast.error('System not found', { theme: 'dark' })
       return
     }
 
@@ -53,7 +73,6 @@ export const usePurchasePackage = () => {
         return
       }
       if (data) {
-        await refreshUserTable()
         toast.success(t('Paket sotib olindi'), { theme: 'dark' })
       }
     } catch (error) {
