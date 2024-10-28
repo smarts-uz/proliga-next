@@ -18,15 +18,15 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { t } = useTranslation()
   const { fillBalance, isLoading, error } = useFillBalance()
   const [amount, setAmount] = useState('')
-
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (+amount < 1) {
-      toast.warning("Hisobni kamida 1 so'm ga toldirish lozim", {
+      toast.warning(t("Hisobni kamida 1 so'm ga toldirish lozim"), {
         theme: 'dark',
       })
       return
