@@ -8,12 +8,27 @@ import CabinetSettingsTab from './components/Settings'
 import CabinetChangePasswordTab from './components/ChangePassword'
 import dynamic from 'next/dynamic'
 import CabinetTransactionsHistory from './components/TransactionsHistory'
+import { useSelector } from 'react-redux'
+import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
 const CabinetProfileTab = dynamic(() => import('./components/Profile'), {
   ssr: false,
 })
+import { useEffect } from 'react'
 
 function UserCabinet() {
   const [tab, setTab] = useState(SETTINGSTAB.PROFILE)
+  const { userTable, userAuth } = useSelector((store) => store.auth)
+  const { refreshUserTable } = useRefreshUserTable()
+
+  useEffect(() => {
+    if (userTable && userAuth) {
+      const fetch = async () => {
+        await refreshUserTable()
+      }
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-20 xl:pb-16 2xl:pb-24">

@@ -7,7 +7,6 @@ import { LANGUAGE } from './utils/languages.util'
 import { useTranslation } from 'react-i18next'
 import {
   fetchAllNotifications,
-  fetchSystemNotification,
   setupNotificationListener,
 } from './lib/features/systemNotification/systemNotification.thunk'
 import { useRefreshUserTable } from './hooks/user/useRefreshUserTable/useRefreshUserTable'
@@ -18,7 +17,6 @@ const GetInitialState = ({ children }) => {
   const { systemNotifications } = useSelector(
     (state) => state.systemNotifications
   )
-  const { refreshUserTable } = useRefreshUserTable()
   const { lang } = useSelector((state) => state.systemLanguage)
   const { i18n } = useTranslation()
   const path = usePathname()
@@ -63,15 +61,6 @@ const GetInitialState = ({ children }) => {
     }
   }, [dispatch, lang, userTable?.language, i18n, userTable])
 
-  useEffect(() => {
-    if (userTable && userAuth) {
-      const fetch = async () => {
-        await refreshUserTable()
-      }
-      fetch()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAuth, userTable])
 
   return <>{children}</>
 }
