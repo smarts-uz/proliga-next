@@ -91,7 +91,9 @@ const Player = ({ player }) => {
               </button>
 
               <div className="flex h-3.5 w-6 cursor-default items-center justify-center rounded bg-primary text-center text-[11px] font-bold shadow shadow-neutral-600 xs:h-4 xs:w-8 xs:text-xs md:h-5 md:text-sm">
-                {currentPlayerPoint?.point ?? 0}
+                {player.is_captain
+                  ? (currentPlayerPoint?.point ?? 0) * 2
+                  : (currentPlayerPoint?.point ?? 0)}
               </div>
             </div>
           </>

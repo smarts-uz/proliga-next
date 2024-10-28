@@ -1,11 +1,12 @@
 'use client'
+
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
-import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import dynamic from 'next/dynamic'
 import { PACKAGES } from 'app/utils/packages.util'
+import Gutter from 'components/Gutter'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 const BalanceTitle = dynamic(() => import('./components/BalanceTitle'), {
   ssr: false,

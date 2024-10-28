@@ -9,6 +9,7 @@ import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
+import { toast } from 'react-toastify'
 
 const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -20,12 +21,34 @@ const SignUpForm = ({ onClick }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
   const { userAuth, userTable } = useSelector((store) => store.auth)
-  const { isLoading: tableIsLoading, updateUserTable } = useUpdateUserTable()
-
+  const {
+    isLoading: tableIsLoading,
+    updateUserTable,
+    error: tableError,
+  } = useUpdateUserTable()
+  const { t } = useTranslation()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (password.length < 6) {
+      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
+        theme: 'dark',
+      })
+
+      return
+    }
+    if (!email || !password) {
+      toast.error(t("Barcha maydonlar to'ldirilishi shart"), {
+        theme: 'dark',
+      })
+      return
+    }
+    if (password !== confirmPassword) {
+      toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
+      return
+    }
 
     setActive(true)
     await signUp({ email, password, confirmPassword })
@@ -56,7 +79,11 @@ const SignUpForm = ({ onClick }) => {
     }
   }, [active, router, userAuth, userTable])
 
-  const { t } = useTranslation()
+  useEffect(() => {
+    if (error || tableError) {
+      setActive(false)
+    }
+  }, [error, tableError])
 
   return (
     <form

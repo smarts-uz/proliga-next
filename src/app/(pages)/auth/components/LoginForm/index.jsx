@@ -8,8 +8,10 @@ import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 const LoginForm = ({ onClick }) => {
+  const { t } = useTranslation()
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -25,6 +27,13 @@ const LoginForm = ({ onClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (password.length < 6) {
+      toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
+        theme: 'dark',
+      })
+      return
+    }
 
     setActive(true)
     await getUserTable({ phone })
@@ -50,7 +59,11 @@ const LoginForm = ({ onClick }) => {
     }
   }, [active, router, userAuth, userTable])
 
-  const { t } = useTranslation()
+  useEffect(() => {
+    if (error || tableError) {
+      setActive(false)
+    }
+  }, [error, tableError])
 
   return (
     <form
