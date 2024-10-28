@@ -5,14 +5,17 @@ import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { useRefreshUserTable } from '../useRefreshUserTable/useRefreshUserTable'
 
-export const useFillBalance = () => {
+export const usePurchasePackage = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const { userTable } = useSelector((state) => state.auth)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { currentTour } = useSelector((state) => state.tours)
+  const { currentCompetition } = useSelector((state) => state.competition)
   const { t } = useTranslation()
   const { refreshUserTable } = useRefreshUserTable()
 
-  const fillBalance = async (amount, system) => {
+  const purchasePackage = async ({ package_id, system }) => {
     if (!amount) {
       setError('Amount is required')
       toast.error('Amount is required', { theme: 'dark' })
@@ -29,10 +32,16 @@ export const useFillBalance = () => {
       setError('')
 
       const { data, error } = await supabase
-        .from('pay_balance')
+        .from('pay_expense')
         .insert({
+          team_id: currentTeam?.id,
           user_id: userTable?.id,
-          price: amount,
+          tour_id: currentTour?.id,
+          competition_id: currentCompetition?.id,
+          pay_package_id: package_id,
+          transaction_id: Math.floor(Math.random() * 10000),
+          state: 0,
+          detail: 'TEST',
           system,
         })
         .select()
@@ -45,7 +54,7 @@ export const useFillBalance = () => {
       }
       if (data) {
         await refreshUserTable()
-        toast.success(t('Hisobingiz toldirildi'), { theme: 'dark' })
+        toast.success(t('Paket sotib olindi'), { theme: 'dark' })
       }
     } catch (error) {
       setError(error.message)
@@ -54,5 +63,5 @@ export const useFillBalance = () => {
       setIsLoading(false)
     }
   }
-  return { fillBalance, isLoading, error }
+  return { purchasePackage, isLoading, error }
 }

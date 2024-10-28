@@ -9,7 +9,6 @@ import {
   fetchAllNotifications,
   setupNotificationListener,
 } from './lib/features/systemNotification/systemNotification.thunk'
-import { useRefreshUserTable } from './hooks/user/useRefreshUserTable/useRefreshUserTable'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
@@ -60,7 +59,6 @@ const GetInitialState = ({ children }) => {
       i18n.changeLanguage(userTable?.language ?? LANGUAGE.uz)
     }
   }, [dispatch, lang, userTable?.language, i18n, userTable])
-
 
   return <>{children}</>
 }

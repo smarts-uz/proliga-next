@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useMemo } from 'react'
 
 const RankingPlayers = () => {
   const { t } = useTranslation()
@@ -24,11 +25,16 @@ const RankingPlayers = () => {
 }
 
 const PlayerPlace = ({ player, index }) => {
+  const image = useMemo(
+    () => process.env.NEXT_PUBLIC_URL + '/player/' + player?.slug + '/app.png',
+    [player?.slug]
+  )
+
   return (
     <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <img
-          src={player?.image}
+          src={image}
           alt="player"
           width={24}
           height={24}
@@ -37,14 +43,14 @@ const PlayerPlace = ({ player, index }) => {
           className="size-6 rounded-full text-black md:size-8"
         />
         <span className="flex h-6 w-12 items-center justify-center rounded-full bg-primary text-xs font-bold text-black sm:text-sm">
-          {player?.point ?? '00'}
+          {player?.point ?? 0}
         </span>
       </div>
       <h4 className="line-clamp-2 max-w-28 break-words text-sm font-bold text-black">
-        {player?.club?.name ?? 'team'}
+        {player?.name}
       </h4>
       <p className="line-clamp-2 max-w-28 break-words text-sm font-medium text-black">
-        {player?.name}
+        {player?.club?.name ?? ''}
       </p>
       <span className="absolute bottom-0 right-0 flex size-6 items-center justify-center rounded-br-lg rounded-tl-lg bg-primary text-sm font-extrabold text-black">
         {index + 1}

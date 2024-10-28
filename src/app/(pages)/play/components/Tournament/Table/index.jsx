@@ -54,7 +54,6 @@ function TournamentTable() {
     columnHelper.accessor('team-point', {
       accessorFn: (row) => row?.team?.point,
       id: 'hammasi',
-      cell: (info) => <i>{info.getValue()}</i>,
       header: t('Hammasi'),
     }),
   ]

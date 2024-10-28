@@ -116,7 +116,6 @@ function PlayerTable({ prevPlayer, handleModal }) {
     columnHelper.accessor('position', {
       accessorFn: (row) => getCorrentPlayerPosition(row.position),
       id: 'position',
-      cell: (info) => <i>{info.getValue()}</i>,
       header: t('Poz'),
     }),
   ]

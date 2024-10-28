@@ -1,6 +1,6 @@
 export const PAYMENTOPTIONS = {
-  WALLET: 'WALLET',
-  CLICKUP: 'CLICK',
-  PAYME: 'PAYME',
-  UZUM: 'UZUM',
+  WALLET: 'balance',
+  CLICKUP: 'click',
+  PAYME: 'payme',
+  UZUM: 'uzum',
 }

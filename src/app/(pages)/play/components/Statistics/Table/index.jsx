@@ -72,7 +72,7 @@ function StatisticsTable() {
       accessorFn: (row) => row.goal,
       id: 'gol',
       cell: (info) => info.getValue(),
-      header: t('G'),
+      header: t('G') + ' ',
       meta: {
         title: t('Gol'),
       },
@@ -87,7 +87,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor((row) => row.missed_penalty, {
-      accessorFn: (row) => row.missed_penalty,
+      accessorFn: (row) => row?.missed_penalty,
       id: 'returned penalty',
       cell: (info) => info.getValue(),
       header: t('QP'),
@@ -95,10 +95,9 @@ function StatisticsTable() {
         title: t('Qaytarilgan penalti'),
       },
     }),
-    columnHelper.accessor((row) => row.yellow_card, {
-      accessorFn: (row) => row.yellow_card,
+    columnHelper.accessor('yellow_card', {
+      accessorFn: (row) => row?.yellow_card,
       id: 'Yellow Card',
-      cell: (info) => <i>{info.getValue()}</i>,
       header: t('SK'),
       meta: {
         title: t('Sariq kartochka'),
@@ -114,7 +113,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor((row) => row.played_min, {
-      accessorFn: (row) => row.played_min,
+      accessorFn: (row) => row?.played_min,
       id: 'played-min',
       cell: (info) => info.getValue(),
       header: t('MIN'),

@@ -2,10 +2,14 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Switch } from '@/components/ui/switch'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePurchasePackage } from 'app/hooks/user/usePurchasePackage/usePurchasePackage'
 
-const ConfirmPaymentTab = ({ currentPackage }) => {
+const ConfirmPaymentTab = ({ paymentOption }) => {
   const [testingActive, setTestingActive] = useState(false)
   const { t } = useTranslation()
+  const { currentPackage } = useSelector((store) => store.packages)
+  const { purchasePackage } = usePurchasePackage()
 
   const handleConfirmPayment = () => {
     console.log('clicked')

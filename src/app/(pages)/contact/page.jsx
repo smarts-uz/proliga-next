@@ -1,5 +1,4 @@
 'use client'
-import './contact.styles.css'
 
 import Gutter from '../../../components/Gutter'
 import { useTranslation } from 'react-i18next'

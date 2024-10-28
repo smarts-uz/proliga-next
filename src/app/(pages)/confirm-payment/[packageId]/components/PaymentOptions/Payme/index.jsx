@@ -19,7 +19,7 @@ const PaymePaymentOption = ({
         width={36}
         draggable={false}
         height={36}
-        className="h-auto w-20 self-center lg:w-28"
+        className="h-auto w-20 self-center select-none lg:w-28"
         alt="payme"
       />
       <div className="w-full self-center text-center">

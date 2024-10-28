@@ -1,6 +1,5 @@
 'use client'
 
-import RefillBalanceModal from 'components/RefillBalanceModal'
 import Gutter from 'components/Gutter'
 import dynamic from 'next/dynamic'
 const CurrentPackage = dynamic(() => import('./components/CurrentPackage'), {
@@ -19,19 +18,46 @@ import Spinner from 'components/Spinner'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
+import { useRouter } from 'next/navigation'
+import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { setCurrentPackage } from 'app/lib/features/packages/packages.slice'
 
 const ConfirmPayment = ({ params }) => {
+  const router = useRouter()
   const dispatch = useDispatch()
-  const { packages, isLoading } = useSelector((store) => store.packages)
-  const [currentPackage, setCurrentPackage] = useState({})
+  const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
+  const { packages, isLoading, currentPackage } = useSelector(
+    (store) => store.packages
+  )
+  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { currentTour } = useSelector((state) => state.tours)
+  const { currentCompetition } = useSelector((state) => state.competition)
+  const { userTable } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    setCurrentPackage(packages.find((item) => +item.id === +params.packageId))
-  }, [params, packages])
+    dispatch(setCurrentPackage(+params.packageId))
+  }, [params, packages, dispatch])
 
   useEffect(() => {
     dispatch(fetchPackages())
   }, [dispatch])
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault()
+      event.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!currentTeam || !currentTour || !currentCompetition || !userTable) {
+      router.push('/championships')
+    }
+  }, [currentTeam, currentTour, currentCompetition, router, userTable])
 
   return (
     <Gutter>
@@ -40,9 +66,12 @@ const ConfirmPayment = ({ params }) => {
       ) : (
         currentPackage && (
           <section className="my-4 flex min-h-[85vh] w-full flex-col">
-            <CurrentPackage currentPackage={currentPackage} />
-            <PaymentOptions />
-            <ConfirmPaymentTab currentPackage={currentPackage} />
+            <CurrentPackage />
+            <PaymentOptions
+              paymentOption={paymentOption}
+              setPaymentOption={setPaymentOption}
+            />
+            <ConfirmPaymentTab paymentOption={paymentOption} />
           </section>
         )
       )}

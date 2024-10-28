@@ -19,7 +19,7 @@ const ClickUpPaymentOption = ({
         width={36}
         draggable={false}
         height={36}
-        className="h-auto w-20 self-center lg:w-28"
+        className="h-auto w-20 select-none self-center lg:w-28"
         alt="click up"
       />
       <div className="w-full self-center text-center">

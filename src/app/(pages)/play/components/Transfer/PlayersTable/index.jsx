@@ -89,7 +89,6 @@ function PlayersTable() {
     columnHelper.accessor('position', {
       accessorFn: (row) => getCorrentPlayerPosition(row.position, lang),
       id: 'position',
-      cell: (info) => <i>{info.getValue()}</i>,
       header: t('Poz'),
       meta: {
         filterVariant: 'position',

@@ -2,17 +2,15 @@ import WalletPaymentOption from './Wallet'
 import ClickUpPaymentOption from './ClickUp'
 import PaymePaymentOption from './Payme'
 import { useState } from 'react'
-import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { useTranslation } from 'react-i18next'
 import RefillBalanceModal from 'components/RefillBalanceModal'
 import UzumPaymentOption from './Uzum'
 
-const PaymentOptions = () => {
-  const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
+const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
+  const { t } = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-primary/80'
-  const { t } = useTranslation()
 
   return (
     <div className="mb-4 mt-2">
