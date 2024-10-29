@@ -16,21 +16,7 @@ import Notification from './Notification'
 const Navbar = () => {
   const path = usePathname()
   const { userAuth } = useSelector((state) => state.auth)
-  const [isModalOpen, toggleModal] = useState(false)
-
-  const handleToggleModal = () => {
-    if (isModalOpen) {
-      toggleModal(false)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'auto'
-      }
-    } else {
-      toggleModal(true)
-      if (typeof window != 'undefined' && window.document) {
-        document.body.style.overflow = 'hidden'
-      }
-    }
-  }
+  const [isModalOpen, setModalOpen] = useState(false)
 
   return (
     <>
@@ -59,7 +45,7 @@ const Navbar = () => {
               <ChangeLanguageDropdown />
               <Notification />
               <NavbarUserMobile
-                handleToggleModal={handleToggleModal}
+                handleToggleModal={() => setModalOpen(true)}
                 userAuth={userAuth}
               />
               <NavbarUserDesktop userAuth={userAuth} />
@@ -67,7 +53,7 @@ const Navbar = () => {
           </div>
         </Gutter>
       </nav>
-      {isModalOpen && <MobileSidebar onCancel={handleToggleModal} />}
+      <MobileSidebar isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </>
   )
 }

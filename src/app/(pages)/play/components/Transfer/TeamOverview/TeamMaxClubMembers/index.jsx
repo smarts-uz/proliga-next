@@ -32,7 +32,7 @@ export default function TeamMaxClubMembers() {
           />
         </header>
         <p className="text-2xl font-bold sm:text-3xl">
-          {currentTeam?.count_of_transfers ?? '0'}
+          {currentTeam?.transfers_from_one_team ?? '0'}
         </p>
       </div>
       <TeamMaxClubMembersModal />

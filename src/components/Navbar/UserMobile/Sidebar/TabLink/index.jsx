@@ -1,0 +1,30 @@
+import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
+import { sidebarStyles } from 'app/utils/sidebarStyles.util'
+
+const SidebarTabLink = ({ title, tab, toggleModal }) => {
+  const dispatch = useDispatch()
+  const { lastVisitedTeam } = useSelector((state) => state.currentTeam)
+
+  const handleClick = () => {
+    dispatch(setTab(tab))
+    toggleModal()
+  }
+
+  return (
+    <div className="group flex w-full gap-4">
+      <span
+        className={`block h-full w-2 rounded-md ${sidebarStyles.passiveIndicator}`}
+      />
+      <Link
+        className={`block h-full w-2 rounded-md`}
+        onClick={handleClick}
+        href={'/play/' + lastVisitedTeam}
+      >
+        {title}
+      </Link>
+    </div>
+  )
+}
+
+export default SidebarTabLink

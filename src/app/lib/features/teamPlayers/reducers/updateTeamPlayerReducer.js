@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 export const updateTeamPlayerReducer = (state, action) => {
   const { player, team, teamConcat, t} = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
+  
   const calcTeamPrice = () => {
     state.teamPrice =
       state.GOA.reduce((acc, player) => acc + player.price, 0) +

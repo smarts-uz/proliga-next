@@ -53,13 +53,18 @@ export const useConfirmOTP = () => {
         toast.error(error.message, { theme: 'dark' })
         return
       }
-      if (data) {
+      if (data?.status === 419) {
+        toast.warning('Kod eskirib qolgan!', { theme: 'dark' })
+      }
+      if (data?.status === 200) {
         setData(data)
-        if (data === 'code expire') {
-          toast.warning('Kod eskirib qolgan!', { theme: 'dark' })
-        } else {
-          toast.success(t('SMS muvaffaqiyatli tasdiqlandi'), { theme: 'dark' })
-        }
+        toast.success(t('SMS muvaffaqiyatli tasdiqlandi'), { theme: 'dark' })
+      }
+      if (data?.status === 400) {
+        toast.error(t('SMS kodingiz xato'), { theme: 'dark' })
+      }
+      if (data?.status === 404) {
+        toast.error(t('SMS kod topilmadi'), { theme: 'dark' })
       }
     } catch (error) {
       setError(error.message)
