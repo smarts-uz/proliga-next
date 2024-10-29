@@ -17,12 +17,12 @@ const SidebarTab = ({ title, tab, toggleModal }) => {
   }
 
   return (
-    <div className="flex w-full gap-4">
+    <div className="group flex w-full gap-4">
       <span
-        className={`block h-full w-2 rounded-md ${sidebarStyles.passiveIndicator}`}
+        className={`block h-full w-2 rounded-md ${currentTeam?.is_team_created ? (gameTab === tab ? sidebarStyles.activeIndicator : sidebarStyles.passiveIndicator) : sidebarStyles.disabledIndicator}`}
       />
       <button
-        className={`relative transition-all hover:text-white ${currentTeam?.is_team_created ? (gameTab === tab ? sidebarStyles.active : sidebarStyles.passive) : sidebarStyles.disabled}`}
+        className={`select-none transition-all hover:text-white ${currentTeam?.is_team_created ? (gameTab === tab ? sidebarStyles.active : sidebarStyles.passive) : sidebarStyles.disabled}`}
         onClick={handleClick}
       >
         {title}

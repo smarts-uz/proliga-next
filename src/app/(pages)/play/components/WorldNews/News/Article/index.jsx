@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 
 const Article = ({ item }) => {
-  const [isModalOpen, setModalOpen] = useState(false)
+  const { t } = useTranslation()
   const { lang } = useSelector((store) => store.systemLanguage)
+  const [isModalOpen, setModalOpen] = useState(false)
 
-  const date = new Date(item.created_at)
+  const date = new Date(item?.created_at ?? new Date())
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
-  const { t } = useTranslation()
   return (
     <>
       <article

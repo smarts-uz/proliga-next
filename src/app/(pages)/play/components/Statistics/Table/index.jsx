@@ -9,12 +9,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useState } from 'react'
-import TransferTableHead from './Head'
-import TransferTableBody from './Body'
 import { useSelector } from 'react-redux'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import TransferTableHead from './Head'
+import TransferTableBody from './Body'
 import StatisticsTableFilters from '../Filters'
 import StatisticsTablePagination from './Pagination'
 
@@ -41,7 +41,6 @@ function StatisticsTable() {
     }),
     columnHelper.accessor('player_id.name', {
       accessorKey: 'player_id.name',
-      cell: (info) => info.getValue(),
       header: t("O'yinchi ismi"),
       id: 'player-name',
       meta: {
@@ -51,7 +50,6 @@ function StatisticsTable() {
     }),
     columnHelper.accessor('club_id.name', {
       accessorKey: 'club_id.name',
-      cell: (info) => info.getValue(),
       header: t('Klub'),
       id: 'club',
       meta: {
@@ -62,14 +60,13 @@ function StatisticsTable() {
     columnHelper.accessor('ochko', {
       accessorFn: (row) => row?.player_id?.point,
       id: 'ochko',
-      cell: (info) => info.getValue(),
       header: t('O'),
       meta: {
         title: t('Ochko'),
       },
     }),
     columnHelper.accessor((row) => row.goal, {
-      accessorFn: (row) => row.goal,
+      accessorFn: (row) => row?.goal,
       id: 'gol',
       cell: (info) => info.getValue(),
       header: t('G') + ' ',
@@ -78,18 +75,16 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor('GA', {
-      accessorFn: (row) => row.goal_asist,
+      accessorFn: (row) => row?.goal_asist,
       id: 'gol assist',
-      cell: (info) => info.getValue(),
       header: t('GA'),
       meta: {
         title: t('Assist'),
       },
     }),
-    columnHelper.accessor((row) => row.missed_penalty, {
+    columnHelper.accessor((row) => row?.missed_penalty, {
       accessorFn: (row) => row?.missed_penalty,
       id: 'returned penalty',
-      cell: (info) => info.getValue(),
       header: t('QP'),
       meta: {
         title: t('Qaytarilgan penalti'),
@@ -103,10 +98,9 @@ function StatisticsTable() {
         title: t('Sariq kartochka'),
       },
     }),
-    columnHelper.accessor((row) => row.red_card, {
-      accessorFn: (row) => row.red_card,
+    columnHelper.accessor('red_card', {
+      accessorFn: (row) => (row?.is_red_card ? 1 : 0),
       id: 'Red Card',
-      cell: (info) => info.getValue(),
       header: t('QZ'),
       meta: {
         title: t('Qizil kartochka'),
@@ -115,7 +109,6 @@ function StatisticsTable() {
     columnHelper.accessor((row) => row.played_min, {
       accessorFn: (row) => row?.played_min,
       id: 'played-min',
-      cell: (info) => info.getValue(),
       header: t('MIN'),
       meta: {
         title: t('O‘ynagan vaqti'),
