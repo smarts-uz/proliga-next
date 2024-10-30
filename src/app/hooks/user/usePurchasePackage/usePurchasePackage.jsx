@@ -18,32 +18,32 @@ export const usePurchasePackage = () => {
   const purchasePackage = async ({ package_id, system }) => {
     if (!userTable?.id) {
       setError('User not found')
-      toast.error('User not found', { theme: 'dark' })
+      toast.error(t('Foydalanuvchi topilmadi'), { theme: 'dark' })
       return
     }
     if (!currentTeam?.id) {
       setError('Team not found')
-      toast.error('Team not found', { theme: 'dark' })
+      toast.error(t('Jamoa topilmadi'), { theme: 'dark' })
       return
     }
     if (!currentTour?.id) {
       setError('Tour not found')
-      toast.error('Tour not found', { theme: 'dark' })
+      toast.error(t('Tur topilmadi'), { theme: 'dark' })
       return
     }
     if (!currentCompetition?.id) {
       setError('Competition not found')
-      toast.error('Competition not found', { theme: 'dark' })
+      toast.error(t('Musobaqa topilmadi'), { theme: 'dark' })
       return
     }
     if (!package_id) {
       setError('Package not found')
-      toast.error('Package not found', { theme: 'dark' })
+      toast.error(t('Paket topilmadi'), { theme: 'dark' })
       return
     }
     if (!system) {
       setError('System not found')
-      toast.error('System not found', { theme: 'dark' })
+      toast.error(t('Tizim topilmadi'), { theme: 'dark' })
       return
     }
 
