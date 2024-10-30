@@ -20,6 +20,7 @@ export default function TourTabs() {
     (state) => state.tours
   )
   const { tourTeams, currentTourTeam } = useSelector((state) => state.tourTeams)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -106,8 +107,10 @@ export default function TourTabs() {
             onClick={() => handleClick(index)}
             className="w-32 space-y-0 rounded hover:bg-primary hover:bg-opacity-10 disabled:cursor-default sm:w-40"
             disabled={
-              item.status === TOUR.notStarted ||
-              item.order < registeredTour?.order
+              currentTeam?.is_team_created
+                ? item.status === TOUR.notStarted ||
+                  item.order < registeredTour?.order
+                : item.status !== TOUR.notStartedTransfer
             }
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">

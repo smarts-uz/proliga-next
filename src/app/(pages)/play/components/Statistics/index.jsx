@@ -1,27 +1,9 @@
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { fetchPlayerResult } from 'app/lib/features/playerResult/playerResult.thunk'
 import TopTeams from '../TopTeams'
 import StatisticsTable from './Table'
-import Spinner from 'components/Spinner'
 
 const Statistics = () => {
-  const dispatch = useDispatch()
-  const { currentCompetition } = useSelector((store) => store.competition)
-  const { season } = useSelector((state) => state.season)
-  const { isLoading } = useSelector((state) => state.playerResult)
-
-  useEffect(() => {
-    if (currentCompetition?.id && season?.id) {
-      dispatch(
-        fetchPlayerResult({
-          competition_id: currentCompetition?.id,
-          season_id: season?.id,
-        })
-      )
-    }
-  }, [dispatch, currentCompetition, season])
+  const { isLoading } = useSelector((state) => state.players)
 
   return (
     <section className="flex w-full flex-col gap-2 lg:flex-row">

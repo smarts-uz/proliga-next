@@ -6,9 +6,7 @@ export const fetchPlayers = createAsyncThunk(
   async ({ competition_id }) => {
     const { data, error } = await supabase
       .from('player')
-      .select(
-        'id, name, position, club(id, name, slug), price, point, image, percentage, slug'
-      )
+      .select('*, club(id, name, slug)')
       .eq('competition_id', competition_id)
       .is('deleted_at', null)
       .limit(1000)

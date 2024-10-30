@@ -13,7 +13,6 @@ import SystemLanguageSlice from './features/systemLanguage/systemLanguage.slice.
 import PlayerPointSlice from './features/playerPoint/playerPoint.slice.js'
 import MatchesSlice from './features/matches/matches.slice.js'
 import NewsSlice from './features/news/news.slice.js'
-import PlayerResultSlice from './features/playerResult/playerResult.slice.js'
 import UserActivitySlice from './features/userActivity/userActivity.slice.js'
 import PackagesSlice from './features/packages/packages.slice.js'
 import PayBalanceSlice from './features/payBalance/payBalance.slice.js'
@@ -23,6 +22,7 @@ import PrizesSlice from './features/prize/prize.slice.js'
 import BannerSlice from './features/banner/banner.slice.js'
 
 export const rootReducer = combineReducers({
+  // playerResult: PlayerResultSlice,
   auth: AuthSlice,
   competition: CompetitionSlice,
   players: PlayersSlice,
@@ -35,7 +35,6 @@ export const rootReducer = combineReducers({
   tourTeams: TourTeamsSlice,
   systemLanguage: SystemLanguageSlice,
   playerPoint: PlayerPointSlice,
-  playerResult: PlayerResultSlice,
   matches: MatchesSlice,
   news: NewsSlice,
   userActivity: UserActivitySlice,

@@ -22,7 +22,7 @@ const columnHelper = createColumnHelper()
 
 function StatisticsTable() {
   const { t } = useTranslation()
-  const { players } = useSelector((state) => state.playerResult)
+  const { players } = useSelector((state) => state.players)
   const { lang } = useSelector((state) => state.systemLanguage)
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -31,8 +31,7 @@ function StatisticsTable() {
 
   const columns = [
     columnHelper.accessor('player_id.position', {
-      accessorFn: (row) =>
-        getCorrentPlayerPosition(row?.player_id?.position, lang),
+      accessorFn: (row) => getCorrentPlayerPosition(row?.position, lang),
       id: 'player-position',
       header: t('POZ'),
       meta: {
@@ -40,7 +39,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor('player_id.name', {
-      accessorKey: 'player_id.name',
+      accessorFn: (row) => row?.name,
       header: t("O'yinchi ismi"),
       id: 'player-name',
       meta: {
@@ -49,7 +48,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor('club_id.name', {
-      accessorKey: 'club_id.name',
+      accessorFn: (row) => row.club?.name,
       header: t('Klub'),
       id: 'club',
       meta: {
@@ -58,7 +57,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor('ochko', {
-      accessorFn: (row) => row?.player_id?.point,
+      accessorFn: (row) => row?.point,
       id: 'ochko',
       header: t('O'),
       meta: {
@@ -99,7 +98,7 @@ function StatisticsTable() {
       },
     }),
     columnHelper.accessor('red_card', {
-      accessorFn: (row) => (row?.is_red_card ? 1 : 0),
+      accessorFn: (row) => row?.red_card,
       id: 'Red Card',
       header: t('QZ'),
       meta: {
