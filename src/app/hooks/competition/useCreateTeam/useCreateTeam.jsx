@@ -5,6 +5,7 @@ import { supabase } from '../../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { addGameToTeam } from 'app/lib/features/teams/teams.slice'
 import { useTranslation } from 'react-i18next'
+
 export const useCreateTeam = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
@@ -53,7 +54,11 @@ export const useCreateTeam = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message, { theme: 'dark' })
+        if (error?.code === '23505') {
+          toast.error(t('Ushbu jamoa allaqachon yaratilgan'), { theme: 'dark' })
+        } else {
+          toast.error(error.message, { theme: 'dark' })
+        }
         return
       }
       if (data) {
