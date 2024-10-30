@@ -54,7 +54,7 @@ export const useConfirmOTP = () => {
         return
       }
       if (data?.status === 419) {
-        toast.warning('Kod eskirib qolgan!', { theme: 'dark' })
+        toast.warning(t('Kod eskirib qolgan!'), { theme: 'dark' })
       }
       if (data?.status === 200) {
         setData(data)

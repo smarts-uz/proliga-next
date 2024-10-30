@@ -12,9 +12,9 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
   const { t } = useTranslation()
 
   const handleConfirmPayment = async () => {
-    if (!testingActive) return toast.error('Test ni tanlang!')
-    if (!currentPackage?.id) return toast.error('Current package is missing!')
-    if (!paymentOption) return toast.error('Payment option is missing!')
+    if (!testingActive) return toast.error(t('Test ni tanlang!'))
+    if (!currentPackage?.id) return toast.error(t('Joriy paket yo‘q!'))
+    if (!paymentOption) return toast.error(t('To‘lov varianti topilmadi!'))
 
     await purchasePackage({
       package_id: currentPackage?.id,

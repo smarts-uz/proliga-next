@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
-
+import { useTranslation } from 'react-i18next'
 export default function ResendOTP() {
   const [countdown, setCountdown] = useState(60)
   const [isResendEnabled, setIsResendEnabled] = useState(false)
   const { sendOTP } = useSendOTP()
-
+  const { t } = useTranslation()
   useEffect(() => {
     let timer
     if (countdown > 0) {
@@ -47,7 +47,7 @@ export default function ResendOTP() {
           width="20"
           className={`mr-1.5 size-5 ${isResendEnabled ? 'filter-primary' : 'filter-neutral-300'}`}
         />
-        Resend OTP
+        {t("Qayta jo‘natish")}
       </Button>
       {!isResendEnabled && (
         <div className="text-sm text-neutral-200">{countdown}s</div>
