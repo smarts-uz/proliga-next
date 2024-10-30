@@ -14,6 +14,7 @@ export const useCreateTeam = () => {
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const router = useRouter()
   const { t } = useTranslation()
+  
   const createTeam = async ({ title, formation, competition_id }) => {
     setIsLoading(false)
     setError(null)
