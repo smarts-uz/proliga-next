@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url('./utils/animations.global.css');
 @import url('./utils/filters.global.css');
+@import url('./utils/defaults.global.css');
 
 @layer base {
   ::-webkit-scrollbar {

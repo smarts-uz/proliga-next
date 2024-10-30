@@ -8,7 +8,7 @@ function Contact() {
   return (
     <Gutter>
       <div
-        className="mb-8 mt-24 flex min-h-screen w-full flex-col overflow-x-auto rounded-md border border-solid bg-neutral-900 p-6 text-sm xl:text-base"
+        className="html-page mb-8 mt-24 flex min-h-screen w-full flex-col overflow-x-auto rounded-md border border-solid bg-neutral-900 p-6 text-sm xl:text-base"
         dangerouslySetInnerHTML={{ __html: t('about_us') }}
       />
     </Gutter>
