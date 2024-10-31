@@ -8,7 +8,7 @@ export const toursExtraReducer = (builder) => {
     })
     .addCase(fetchTours.fulfilled, (state, action) => {
       state.isLoading = false
-      state.tours = action.payload.data
+      state.tours = action?.payload?.data ?? []
       let tour = state.tours.find(
         (tour) => tour.status === TOUR.notStartedTransfer
       )

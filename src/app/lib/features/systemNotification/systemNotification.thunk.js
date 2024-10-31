@@ -32,10 +32,12 @@ export const fetchAllNotifications = createAsyncThunk(
 
       const allNotifications = [...systemData, ...personalData]
 
-      return { data: allNotifications }
+      return {
+        data: allNotifications,
+        error: { ...personalError, ...systemError },
+      }
     } catch (error) {
-      console.error('Fetch notifications error:', error)
-      return { data: [], error: error.message }
+      return { data: [], error: error }
     }
   }
 )
@@ -44,7 +46,7 @@ export const setupNotificationListener = createAsyncThunk(
   'systemNotification/setupNotificationListener',
   async ({ userId }, { dispatch }) => {
     try {
-      const channel = supabase
+      supabase
         .channel('public:system_notification')
         .on(
           'postgres_changes',

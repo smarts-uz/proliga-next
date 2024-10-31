@@ -1,8 +1,6 @@
 'use client'
 import { createSlice } from '@reduxjs/toolkit'
 
-const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
-
 const initialState = {
   userAuth: null,
   userTable: null,

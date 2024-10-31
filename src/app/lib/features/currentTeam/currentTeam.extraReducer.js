@@ -4,10 +4,10 @@ export const currentTeamExtraReducer = (builder) => {
   builder
     .addCase(fetchCurrentTeam.pending, (state) => {
       state.isLoading = true
-      state.currentTeam = {}
     })
     .addCase(fetchCurrentTeam.fulfilled, (state, action) => {
       state.isLoading = false
+      state.currentTeam = {}
       if (action.payload.data?.length > 0) {
         state.currentTeam = action.payload.data[0]
       }

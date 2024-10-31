@@ -19,6 +19,9 @@ export const playersSlice = createSlice({
       state.currentPlayer =
         state.players.find((p) => p.id === action.payload) ?? {}
     },
+    addPlayersToStore: (state, action) => {
+      state.players = [...state.players, action.payload]
+    },
   },
   extraReducers: playersExtraReducer,
 })

@@ -4,10 +4,10 @@ export const newsExtraReducer = (builder) => {
   builder
     .addCase(fetchNews.pending, (state) => {
       state.isLoading = true
-      state.news = []
     })
     .addCase(fetchNews.fulfilled, (state, action) => {
       state.isLoading = false
+      state.news = []
       if (action.payload.data?.length > 0) {
         state.news = action.payload.data
       }

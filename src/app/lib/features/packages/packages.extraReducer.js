@@ -4,10 +4,10 @@ export const packagesExtraReducer = (builder) => {
   builder
     .addCase(fetchPackages.pending, (state) => {
       state.isLoading = true
-      state.packages = []
     })
     .addCase(fetchPackages.fulfilled, (state, action) => {
       state.isLoading = false
+      state.packages = []
       if (action.payload.data?.length > 0) {
         state.packages = action.payload.data
       }

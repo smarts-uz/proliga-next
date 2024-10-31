@@ -4,10 +4,10 @@ export const payBalanceExtraReducer = (builder) => {
   builder
     .addCase(fetchPayBalance.pending, (state) => {
       state.isLoading = true
-      state.balance = []
     })
     .addCase(fetchPayBalance.fulfilled, (state, action) => {
       state.isLoading = false
+      state.balance = []
       if (action.payload.data?.length > 0) {
         state.balance = action.payload.data
       }
