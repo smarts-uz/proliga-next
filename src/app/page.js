@@ -15,14 +15,20 @@ function Home() {
   const { generate } = useGenerateLanguage()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    generate()
-  }, [])
+  // useEffect(() => {
+  //   generate()
+  // }, [])
 
   useEffect(() => {
     dispatch(fetchPrizes())
   }, [dispatch])
 
+  // useEffect(() => {
+  //   function showPosition(position) {
+  //     console.log(position)
+  //   }
+  //   navigator.geolocation.getCurrentPosition(showPosition)
+  // })
   return (
     <section>
       <Hero />
