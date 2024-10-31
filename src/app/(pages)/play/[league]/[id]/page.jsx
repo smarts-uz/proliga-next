@@ -3,7 +3,7 @@
 
 import GameNavigation from '../../components/GameNavigation'
 import CurrentTab from '../../components/CurrentTab'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { setCurrentCompetition } from 'app/lib/features/competition/competition.slice'
@@ -14,6 +14,7 @@ import { fetchClubs } from 'app/lib/features/clubs/clubs.thunk'
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import { fetchBanners } from 'app/lib/features/banner/banner.thunk'
 import { TABS } from 'app/utils/tabs.util'
+import { fetchAdditionalPlayers } from 'app/lib/features/players/players.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -23,6 +24,11 @@ const Play = ({ params }) => {
   const { competition, isLoading } = useSelector((state) => state.competition)
   const { currentTeam, isLoading: teamLoading } = useSelector(
     (state) => state.currentTeam
+  )
+  const { players } = useSelector((state) => state.players)
+  const countOfPlayers = useMemo(
+    () => [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000],
+    []
   )
 
   useEffect(() => {
@@ -52,6 +58,21 @@ const Play = ({ params }) => {
       dispatch(fetchClubs({ competition_id: currentTeam.competition_id.id }))
     }
   }, [dispatch, currentTeam])
+
+  useEffect(() => {
+    if (currentTeam?.competition_id?.id) {
+      countOfPlayers.map((pCount) => {
+        if (players.length + 450 > pCount - 1) {
+          dispatch(
+            fetchAdditionalPlayers({
+              competition_id: currentTeam.competition_id.id,
+              page: Math.ceil(pCount / 1000),
+            })
+          )
+        }
+      })
+    }
+  }, [dispatch, currentTeam, countOfPlayers, players.length])
 
   return (
     <>

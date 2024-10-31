@@ -112,7 +112,7 @@ function PlayersTable() {
   })
 
   return (
-    <div className="fade-in-fast min-h-auto h-auto w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black py-4 px-2 xs:px-3 sm:px-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 md:text-sm lg:w-1/2">
+    <div className="fade-in-fast min-h-auto h-min w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black px-2 py-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 xs:px-3 sm:px-4 md:text-sm lg:w-1/2">
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
           <div className="loader" />
