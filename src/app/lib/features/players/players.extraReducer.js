@@ -1,4 +1,8 @@
-import { fetchPlayers, fetchTopPlayers } from './players.thunk'
+import {
+  fetchPlayers,
+  fetchTopPlayers,
+  fetchAdditionalPlayers,
+} from './players.thunk'
 
 export const playersExtraReducer = (builder) => {
   builder
@@ -11,7 +15,22 @@ export const playersExtraReducer = (builder) => {
     })
     .addCase(fetchPlayers.rejected, (state, action) => {
       state.isLoading = false
-      state.error = action.payload.error.message ?? null
+      state.error = action.payload?.error?.message ?? null
+    })
+    .addCase(fetchAdditionalPlayers.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(fetchAdditionalPlayers.fulfilled, (state, action) => {
+      state.isLoading = false
+      const threshold = action?.payload?.page ?? 1000
+
+      if (state.players.length > threshold - 1) {
+        state.players = [...state.players, ...action.payload?.data]
+      }
+    })
+    .addCase(fetchAdditionalPlayers.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.payload?.error?.message ?? null
     })
     .addCase(fetchTopPlayers.pending, (state) => {
       state.topPlayersLoading = true
@@ -29,6 +48,6 @@ export const playersExtraReducer = (builder) => {
     })
     .addCase(fetchTopPlayers.rejected, (state, action) => {
       state.topPlayersLoading = false
-      state.topPlayersError = action.payload.error.message ?? null
+      state.topPlayersError = action.payload?.error?.message ?? null
     })
 }

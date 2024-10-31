@@ -20,6 +20,7 @@ import PayExpenseSlice from './features/payExpense/payExpense.slice.js'
 import SystemNotificationSlice from './features/systemNotification/systemNotification.slice.js'
 import PrizesSlice from './features/prize/prize.slice.js'
 import BannerSlice from './features/banner/banner.slice.js'
+import systemConfigSlice from './features/systemConfig/systemConfig.slice.js'
 
 export const rootReducer = combineReducers({
   // playerResult: PlayerResultSlice,
@@ -33,7 +34,6 @@ export const rootReducer = combineReducers({
   tours: ToursSlice,
   season: SeasonSlice,
   tourTeams: TourTeamsSlice,
-  systemLanguage: SystemLanguageSlice,
   playerPoint: PlayerPointSlice,
   matches: MatchesSlice,
   news: NewsSlice,
@@ -41,6 +41,8 @@ export const rootReducer = combineReducers({
   packages: PackagesSlice,
   payBalance: PayBalanceSlice,
   payExpense: PayExpenseSlice,
+  systemLanguage: SystemLanguageSlice,
+  systemConfig: systemConfigSlice,
   systemNotifications: SystemNotificationSlice,
   prizes: PrizesSlice,
   banner: BannerSlice,
