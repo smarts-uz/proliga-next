@@ -8,7 +8,6 @@ import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
-import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
 
@@ -35,10 +34,9 @@ const SignUpForm = ({ onClick }) => {
     e.preventDefault()
 
     if (!agreement) {
-      toast.error('Iltimos qoidalarga rozilik berin'),
-        {
-          theme: 'dark',
-        }
+      toast.error('Iltimos qoidalarga rozilik berin', {
+        theme: 'dark',
+      })
       return
     }
 

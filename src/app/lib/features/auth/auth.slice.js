@@ -15,7 +15,7 @@ const authSlice = createSlice({
       state.userAuth = action.payload
     },
     setUserTable: (state, action) => {
-      state.userTable = action.payload
+      state.userTable = action.payload ?? null
     },
     setUserPhoto: (state, action) => {
       state.userTable.photo = action.payload

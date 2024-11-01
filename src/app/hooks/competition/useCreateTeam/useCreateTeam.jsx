@@ -14,14 +14,14 @@ export const useCreateTeam = () => {
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const router = useRouter()
   const { t } = useTranslation()
-  
+
   const createTeam = async ({ title, formation, competition_id }) => {
     setIsLoading(false)
     setError(null)
 
     if (!userTable && !userAuth) {
       setError('"Jamoa tuzish uchun tizimga kirishingiz kerak')
-      toast.error(t('Jamoa tuzish uchun tizimga kirishingiz kerak'), {
+      toast.warning(t('Jamoa tuzish uchun tizimga kirishingiz kerak'), {
         theme: 'dark',
       })
       router.push('/auth')
@@ -30,13 +30,13 @@ export const useCreateTeam = () => {
 
     if (!title) {
       setError('Ism bolishi shart')
-      toast.error(t('Ism bolishi shart'), { theme: 'dark' })
+      toast.warning(t('Ism bolishi shart'), { theme: 'dark' })
       return
     }
 
     if (!formation) {
       setError('Taktika bolishi shart')
-      toast.error(t('Taktika bolishi shart'), { theme: 'dark' })
+      toast.warning(t('Taktika bolishi shart'), { theme: 'dark' })
       return
     }
 

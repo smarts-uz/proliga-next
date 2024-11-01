@@ -7,7 +7,7 @@ export async function POST(req) {
   const formData = await req.formData()
 
   const fileName = formData.get('title') ?? 'title'
-  const dir = formData.get('dir') ?? 'avatars'
+  const dir = formData.get('dir') ?? 'avatar'
   const image = formData.get('image')
 
   const buffer = Buffer.from(await image.arrayBuffer())
