@@ -77,7 +77,7 @@ const Play = ({ params }) => {
   return (
     <>
       <section
-        className={`flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-800 t/*  */o-blue-900 pb-4 ${
+        className={`flex flex-col gap-4 overflow-hidden bg-gradient-to-tr from-red-800 to-blue-900 pb-4 ${
           gameTab === TABS.GameProfile || gameTab === TABS.Transfer
             ? 'pt-20'
             : 'pt-16'

@@ -21,6 +21,7 @@ import { fetchTopPlayers } from 'app/lib/features/players/players.thunk'
 import { fetchTopTeams } from 'app/lib/features/teams/teams.thunk'
 import Link from 'next/link'
 import AdModal from 'components/AdModal'
+import { BANNER } from 'app/utils/banner.util'
 
 const CurrentTab = ({ currentTab, paramsId }) => {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
+  const { banners } = useSelector((store) => store.banner)
 
   useEffect(() => {
     if (typeof currentTeam?.is_team_created === 'boolean') {
@@ -161,15 +163,29 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   const NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH =
     process.env.NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH ?? 1440
 
+  const leftBanner = useMemo(
+    () => banners.find((b) => b?.banner_type === BANNER.SIDE_BANNER_LEFT),
+    [banners]
+  )
+  const rightBanner = useMemo(
+    () => banners.find((b) => b?.banner_type === BANNER.SIDE_BANNER_RIGHT),
+    [banners]
+  )
+
   return (
     <Gutter>
       <div className="flex gap-1 2xl:gap-2">
         {windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
           <Link
-            href="https://youtube.com"
-            className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
+            href={leftBanner?.link ?? ''}
+            className="mb-auto hidden h-[540px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
           >
-            <img src={'/images/banner.jpg'} alt={'banner'} loading="lazy" />
+            <img
+              src={leftBanner?.content_url ?? ''}
+              alt={leftBanner?.name}
+              loading="lazy"
+              className="h-full w-full"
+            />
           </Link>
         )}
         {currentTab === TABS.GameProfile && <GameProfile />}
@@ -179,12 +195,12 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         {currentTab === TABS.Tournament && <Tournament />}
         {windowWidth >= NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH && (
           <Link
-            href="https://youtube.com"
-            className="mb-auto hidden h-[500px] w-[100px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
+            href={rightBanner?.link ?? ''}
+            className="mb-auto hidden h-[540px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
           >
             <img
-              src={'/images/banner.jpg'}
-              alt={'banner'}
+              src={rightBanner?.content_url ?? ''}
+              alt={rightBanner?.name}
               loading="lazy"
               className="h-full w-full"
             />

@@ -4,7 +4,7 @@ import { supabase } from 'app/lib/supabaseClient'
 export const fetchBanners = createAsyncThunk('banner/fetchBanner', async () => {
   const { data, error } = await supabase
     .from('banner')
-    .select('id, name, content_url, link')
+    .select('id, name, content_url, link, banner_type')
     .is('deleted_at', null)
     .is('is_active', true)
 
