@@ -55,7 +55,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               alt="user avatar"
               width={24}
               height={24}
-              loading='lazy'
+              loading="lazy"
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">
@@ -143,7 +143,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
         <section className="flex flex-wrap justify-start gap-1 sm:gap-2">
           <RefillBalanceBox setBalanceModal={setBalanceModal} />
-          <CabinetProfileOTP />
+          {!userTable?.phone_verified && <CabinetProfileOTP />}
         </section>
       </section>
       <RefillBalanceModal

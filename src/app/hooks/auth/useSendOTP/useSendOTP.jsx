@@ -40,7 +40,11 @@ export const useSendOTP = () => {
         toast.error(error.message, { theme: 'dark' })
         return
       }
-      if (data) {
+      if (data?.status !== 200) {
+        setError(data?.response?.message)
+        toast.error(data?.response?.message, { theme: 'dark' })
+      }
+      if (data?.status === 200) {
         setData(data)
         toast.success(t('SMS muvaffaqiyatli yuborildi'), { theme: 'dark' })
       }
