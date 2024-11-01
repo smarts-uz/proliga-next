@@ -238,6 +238,8 @@ const SignUpForm = ({ onClick }) => {
           className="mr-1.5 inline size-4 cursor-pointer accent-primary"
           id="agreement"
           name="agreement"
+          value={agreement}
+          onChange={() => setAgreement(!agreement)}
         />
         <label htmlFor="agreement" className="inline select-none">
           Men{' '}
