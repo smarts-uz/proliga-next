@@ -10,6 +10,7 @@ import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateU
 import { useTranslation } from 'react-i18next'
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import { toast } from 'react-toastify'
+import Link from 'next/link'
 
 const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -19,6 +20,7 @@ const SignUpForm = ({ onClick }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [agreement, setAgreement] = useState(false)
   const { signUp, data, error, isLoading } = useSignUp()
   const { userAuth, userTable } = useSelector((store) => store.auth)
   const {
@@ -31,6 +33,14 @@ const SignUpForm = ({ onClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (!agreement) {
+      toast.error('Iltimos qoidalarga rozilik berin'),
+        {
+          theme: 'dark',
+        }
+      return
+    }
 
     if (password.length < 6) {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
@@ -88,19 +98,21 @@ const SignUpForm = ({ onClick }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
+      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-5 py-8 shadow shadow-neutral-500 md:px-6"
     >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
         {t("Ro'yxatdan o'tish")}
       </h2>
       <div className="relative flex flex-col gap-1">
         <label
-          htmlFor="username"
+          htmlFor="phone"
           className="text-xs text-neutral-400 md:text-base"
         >
           {t('Telefon raqam')}:
         </label>
         <PhoneInput
+          id="phone"
+          name="phone"
           placeholder={t('Telefon raqam')}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-white"
@@ -110,7 +122,7 @@ const SignUpForm = ({ onClick }) => {
       </div>
       <div className="relative flex flex-col gap-1">
         <label
-          htmlFor="username"
+          htmlFor="email"
           className="text-xs text-neutral-400 md:text-base"
         >
           {t('Elektron pochta')}:
@@ -134,7 +146,7 @@ const SignUpForm = ({ onClick }) => {
       </div>
       <div className="relative flex flex-col gap-1">
         <label
-          htmlFor="password"
+          htmlFor="confirmPassword"
           className="text-xs text-neutral-400 md:text-base"
         >
           {t('Parol')}:
@@ -216,10 +228,25 @@ const SignUpForm = ({ onClick }) => {
       <button
         type="button"
         onClick={onClick}
-        className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
+        className={`self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
       >
         {t('Akkauntingiz bormi ?')}
       </button>
+      <div className="mb-2 flex items-center text-xs text-neutral-100 sm:text-sm">
+        <input
+          type="checkbox"
+          className="mr-1.5 inline size-4 cursor-pointer accent-primary"
+          id="agreement"
+          name="agreement"
+        />
+        <label htmlFor="agreement" className="inline select-none">
+          Men{' '}
+          <Link href="/user-agreement" className="underline">
+            qoidalar
+          </Link>{' '}
+          bilan tanishib chiqdim va ularga roziman
+        </label>
+      </div>
       <button
         type="submit"
         disabled={isLoading || tableIsLoading}

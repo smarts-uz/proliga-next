@@ -27,7 +27,6 @@ const LoginForm = ({ onClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     if (password.length < 6) {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
@@ -68,16 +67,18 @@ const LoginForm = ({ onClick }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-6 py-8 shadow shadow-neutral-500 md:p-8"
+      className="flex w-full flex-col gap-4 rounded-xl bg-neutral-950 px-5 py-8 shadow shadow-neutral-500 md:px-6"
     >
       <h2 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">
         {t('Tizimga kirish_1')}
       </h2>
       <div className="relative flex flex-col gap-1">
-        <label htmlFor="username" className="text-xs md:text-base">
+        <label htmlFor="phone" className="text-xs md:text-base">
           {t('Login')}:
         </label>
         <PhoneInput
+          id="phone"
+          name="phone"
           placeholder={t('Telefon raqam')}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-neutral-200 placeholder:text-neutral-500"

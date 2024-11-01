@@ -148,7 +148,6 @@
   "promotion_text": "Используйте бюджет в 100 миллионов и соберите команду из лучших игроков чемпионата.",
   "Turnir": "Турнир",
   "Transferlarni amalga oshirin": "Осуществляйте переводы",
-  "Qoidalarimiz va maxfiylik": "Наши условия и конфиденциальность",
   "Ligalar": "Лиги",
   "Address": "Адрес",
   "Bizning ijtimoiy tarmoqlarimiz": "Наши социальные сети",
@@ -497,5 +496,6 @@
   "Qayta jo‘natish": "Переправить",
   "SMS kodingiz xato": "Ваш SMS-код неверный",
   "SMS kod topilmadi": "SMS kod topilmadi",
-  "Ushbu jamoa allaqachon yaratilgan": "Эта команда уже создана"
+  "Ushbu jamoa allaqachon yaratilgan": "Эта команда уже создана",
+  "Qoidalarimiz va maxfiylik": "Наши правила"
 }
