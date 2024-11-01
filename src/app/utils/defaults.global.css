@@ -1,33 +1,23 @@
 .html-page {
   h1 {
-    font-size: 4rem;
-    line-height: 5rem;
-    font-weight: bold;
-  }
-  h2 {
-    font-size: 3.5em;
-    line-height: 5rem;
-    font-weight: bold;
-  }
-  h3 {
     font-size: 3rem;
     line-height: 4rem;
     font-weight: bold;
   }
-  h4 {
+  h2 {
     font-size: 2.5rem;
-    line-height: 3rem;
+    line-height: 3.5rem;
     font-weight: bold;
   }
-  h5 {
+  h3 {
     font-size: 2rem;
     line-height: 3rem;
     font-weight: bold;
   }
-  h6 {
-    font-size: 1.5rem;
+  h4 {
+    font-size: 1.25rem;
     line-height: 2rem;
-    font-weight: bold;
+    font-weight: medium;
   }
   p {
     font-size: 1rem;
@@ -64,6 +54,68 @@
     font-size: 0.85rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
+  }
+
+  td {
+    display: table-cell;
+    vertical-align: inherit;
+  }
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 3rem;
+  }
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 3rem;
+  }
+  li {
+    display: list-item;
+  }
+  code {
+    font-family: monospace;
+  }
+  cite {
+    font-style: italic;
+  }
+  caption {
+    display: table-caption;
+    text-align: center;
+  }
+  blockquote {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+  b {
+    font-weight: bold;
+  }
+  a:link {
+    color: (internal value);
+    text-decoration: underline;
+    cursor: auto;
+  }
+  a:visited {
+    color: (internal value);
+    text-decoration: underline;
+    cursor: auto;
+  }
+  a:link:active {
+    color: (internal value);
+  }
+  a:visited:active {
+    color: (internal value);
   }
 
   @media screen and (max-width: 375px) {
@@ -105,16 +157,16 @@
     table td:last-child {
       border-bottom: 0;
     }
-  }
 
-  td {
-    @apply bg-transparent px-0 text-center text-[10px] capitalize xs:text-[11px] sm:text-start sm:text-sm md:p-1 lg:text-base;
-  }
-  tr {
-    @apply mx-auto border-b border-neutral-700 bg-neutral-800 odd:bg-stone-900/80;
-  }
+    td {
+      @apply bg-transparent px-0 text-center text-[10px] capitalize xs:text-[11px] sm:text-start sm:text-sm md:p-1 lg:text-base;
+    }
+    tr {
+      @apply mx-auto border-b border-neutral-700 bg-neutral-800 odd:bg-stone-900/80;
+    }
 
-  th {
-    @apply min-w-6 cursor-pointer select-none px-0.5 py-1 text-center text-xs font-medium xs:text-sm sm:min-w-max md:p-1 md:text-start lg:text-base;
+    th {
+      @apply min-w-6 cursor-pointer select-none px-0.5 py-1 text-center text-xs font-medium xs:text-sm sm:min-w-max md:p-1 md:text-start lg:text-base;
+    }
   }
 }

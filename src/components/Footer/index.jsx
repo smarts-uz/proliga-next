@@ -11,7 +11,7 @@ const Footer = () => {
       <Gutter>
         <footer className="flex flex-wrap justify-between gap-4 rounded-md bg-opacity-90 py-8 text-sm text-neutral-200 lg:pb-12 lg:text-base xl:gap-0">
           <div className="flex min-w-80 flex-col gap-4">
-            <Link href="/contact" className="capitalize hover:underline">
+            <Link href="/about-us" className="capitalize hover:underline">
               {t('Biz haqimizda')}
             </Link>
             <Link href="/packages" className="capitalize hover:underline">
@@ -23,7 +23,7 @@ const Footer = () => {
             <Link href="/regulation" className="hover:underline">
               {t('Qoidalarimiz va maxfiylik')}
             </Link>
-            <Link href="/" className="hover:underline">
+            <Link href="/user-agreement" className="hover:underline">
               {t('Foydalanuvchi shartnomasi')}
             </Link>
           </div>
