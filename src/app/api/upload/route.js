@@ -17,13 +17,13 @@ export async function POST(req) {
 
   try {
     await stat(uploadDir)
-  } catch (e) {
-    if (e.code === 'ENOENT') {
+  } catch (error) {
+    if (error.code === 'ENOENT') {
       await mkdir(uploadDir, { recursive: true })
     } else {
       console.error(
         'Error while trying to create directory when uploading a file\n',
-        e
+        error
       )
       return NextResponse.json(
         { error: 'Something went wrong.' },
@@ -42,8 +42,8 @@ export async function POST(req) {
     return NextResponse.json({
       path: process.env.NEXT_PUBLIC_URL + fileUrl,
     })
-  } catch (e) {
-    console.error('Error while trying to upload a file\n', e)
+  } catch (error) {
+    console.error('Error while trying to upload a file\n', error)
     return NextResponse.json(
       { error: 'Something went wrong.' },
       { status: 500 }
