@@ -19,7 +19,7 @@ export async function POST(req) {
     await stat(uploadDir)
   } catch (error) {
     if (error.code === 'ENOENT') {
-      await mkdir(uploadDir, { recursive: true })
+      await mkdir(uploadDir)
     } else {
       console.error(
         'Error while trying to create directory when uploading a file\n',
