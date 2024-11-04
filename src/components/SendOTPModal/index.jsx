@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import {
@@ -13,8 +13,11 @@ import { PhoneInput } from 'components/PhoneInput'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
 import { useGetUserId } from 'app/hooks/auth/useGetUserId/useGetUserId'
 import Image from 'next/image'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
 
 const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
+  const router = useRouter()
   const [phone, setPhone] = useState('')
   const [guid, setGuid] = useState('')
   const [active, setActive] = useState(false)
@@ -23,6 +26,8 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
     isLoading: tableLoading,
     error: tableError,
   } = useGetUserId()
+  const { temp } = useSelector((store) => store.auth)
+
   const { sendOTP, isLoading, error } = useSendOTP()
   const { t } = useTranslation()
 
@@ -35,7 +40,7 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
     }
 
     setActive(true)
-    await getUserId({ phone, setGuid })
+    await getUserId({ phone })
   }
 
   useEffect(() => {
@@ -45,6 +50,12 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, guid, phone])
+
+  useEffect(() => {
+    if (temp?.guid && temp?.phone) {
+      router.push('/confirm-otp')
+    }
+  }, [temp, router])
 
   useEffect(() => {
     if (error || tableError) {

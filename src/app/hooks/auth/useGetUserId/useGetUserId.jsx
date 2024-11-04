@@ -2,14 +2,16 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { supabase } from '../../../lib/supabaseClient'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 
 export const useGetUserId = () => {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState(null)
 
-  const getUserId = async ({ phone, setGuid }) => {
+  const getUserId = async ({ phone }) => {
     setIsLoading(false)
     setError(null)
 
@@ -35,8 +37,7 @@ export const useGetUserId = () => {
         return
       }
       if (data?.guid) {
-        setGuid(data?.guid)
-        setData(data)
+        dispatch(setUserTempData({ phone, guid: data?.guid }))
       }
     } catch (error) {
       setError(error.message)
@@ -45,5 +46,5 @@ export const useGetUserId = () => {
       setIsLoading(false)
     }
   }
-  return { getUserId, isLoading, error, data }
+  return { getUserId, isLoading, error }
 }
