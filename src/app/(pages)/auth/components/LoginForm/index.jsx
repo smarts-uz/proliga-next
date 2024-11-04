@@ -9,6 +9,7 @@ import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import SendOTPModal from 'components/SendOTPModal'
 
 const LoginForm = ({ onClick }) => {
   const { t } = useTranslation()
@@ -24,6 +25,7 @@ const LoginForm = ({ onClick }) => {
     error: tableError,
   } = useGetUserTable()
   const router = useRouter()
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -123,13 +125,21 @@ const LoginForm = ({ onClick }) => {
           )}
         </button>
       </div>
-      <button
-        type="button"
-        onClick={onClick}
-        className={`my-2 self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
-      >
-        {t("Ro'yxatdan o'tish")}
-      </button>
+      <div className="my-2 flex justify-between">
+        <button
+          type="button"
+          onClick={onClick}
+          className={`self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
+        >
+          {t("Ro'yxatdan o'tish")}
+        </button>
+        <buttton
+          className={`self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
+          onClick={() => setModalOpen(true)}
+        >
+          {t('Parolni unutdingizmi?')}
+        </buttton>
+      </div>
       <button
         type="submit"
         disabled={isLoading || tableIsLoading}
@@ -147,6 +157,7 @@ const LoginForm = ({ onClick }) => {
           t('Tizimga kirish_2')
         )}
       </button>
+      <SendOTPModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </form>
   )
 }

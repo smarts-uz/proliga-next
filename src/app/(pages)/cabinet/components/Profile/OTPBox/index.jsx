@@ -3,15 +3,17 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
+import { useSelector } from 'react-redux'
 
 const CabinetProfileOTP = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const { t } = useTranslation()
   const { sendOTP } = useSendOTP()
+  const { userTable } = useSelector((store) => store.auth)
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setModalOpen(true)
-    sendOTP()
+    await sendOTP({ phone: userTable?.phone, guid: userTable?.guid })
   }
 
   return (

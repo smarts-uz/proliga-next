@@ -9,19 +9,18 @@ export const useSendOTP = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { t } = useTranslation()
-  const { userTable } = useSelector((state) => state.auth)
 
-  const sendOTP = async () => {
+  const sendOTP = async ({ guid, phone }) => {
     setIsLoading(false)
     setError(null)
 
-    if (!userTable?.guid) {
+    if (!guid) {
       toast.error(t('Foydalanuvchi topilmadi'), { theme: 'dark' })
       setError(t('Foydalanuvchi topilmadi'))
       return
     }
 
-    if (!userTable?.phone) {
+    if (!phone) {
       toast.error(t('Telefon nomer kiritilmagan'), { theme: 'dark' })
       setError(t('Telefon nomer kiritilmagan'))
       return
@@ -31,8 +30,8 @@ export const useSendOTP = () => {
       setIsLoading(true)
 
       const { data, error } = await supabase.rpc('http__send_message_sms', {
-        user_id: userTable?.guid,
-        send_phone: userTable?.phone,
+        user_id: guid,
+        send_phone: phone,
       })
 
       if (error) {
