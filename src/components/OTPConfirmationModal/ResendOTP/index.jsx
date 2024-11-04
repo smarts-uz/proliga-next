@@ -7,11 +7,11 @@ import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 export default function ResendOTP() {
-  const [countdown, setCountdown] = useState(60)
-  const [isResendEnabled, setIsResendEnabled] = useState(false)
   const { sendOTP } = useSendOTP()
   const { t } = useTranslation()
   const { userTable } = useSelector((store) => store.auth)
+  const [countdown, setCountdown] = useState(60)
+  const [isResendEnabled, setIsResendEnabled] = useState(false)
 
   useEffect(() => {
     let timer

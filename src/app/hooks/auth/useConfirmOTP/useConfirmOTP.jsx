@@ -9,9 +9,8 @@ export const useConfirmOTP = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const { t } = useTranslation()
-  const { userTable } = useSelector((state) => state.auth)
 
-  const confirmOTP = async (code) => {
+  const confirmOTP = async ({ code, guid, phone }) => {
     setIsLoading(false)
     setError(null)
 
@@ -29,13 +28,13 @@ export const useConfirmOTP = () => {
       return
     }
 
-    if (!userTable?.guid) {
+    if (!guid) {
       toast.error(t('Foydalanuvchi topilmadi'), { theme: 'dark' })
       setError(t('Foydalanuvchi topilmadi'))
       return
     }
 
-    if (!userTable?.phone) {
+    if (!phone) {
       toast.error(t('Telefon nomer kiritilmagan'), { theme: 'dark' })
       setError(t('Telefon nomer kiritilmagan'))
       return
@@ -45,7 +44,7 @@ export const useConfirmOTP = () => {
       setIsLoading(true)
 
       const { data, error } = await supabase.rpc('verify__sms_code', {
-        user_id: userTable?.guid,
+        user_id: guid,
         confirm_code: code,
       })
       if (error) {
@@ -58,6 +57,7 @@ export const useConfirmOTP = () => {
       }
       if (data?.status === 200) {
         setData(data)
+
         toast.success(t('SMS muvaffaqiyatli tasdiqlandi'), { theme: 'dark' })
       }
       if (data?.status === 400) {
