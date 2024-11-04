@@ -38,7 +38,9 @@ const ConfirmOTPForm = () => {
       onSubmit={handleConfirm}
       className="flex w-full flex-col gap-8 rounded-xl bg-neutral-950 px-5 py-8 shadow shadow-neutral-500 md:px-6"
     >
-      <h1 className="text-xl font-bold">{t('SMS Kod Tasdiqlash')}</h1>
+      <h1 className="text-lg font-bold md:text-xl">
+        {t('SMS Kod Tasdiqlash')}
+      </h1>
       <div className="flex w-full flex-col gap-4">
         <InputOTP
           maxLength={6}
