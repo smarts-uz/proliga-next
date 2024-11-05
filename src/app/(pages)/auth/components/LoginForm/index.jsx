@@ -134,13 +134,13 @@ const LoginForm = ({ onClick }) => {
           >
             {t("Ro'yxatdan o'tish")}
           </button>
-          <button
+          {/* <button
             type="button"
             className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
             onClick={() => setModalOpen(true)}
           >
             {t('Parolni unutdingizmi?')}
-          </button>
+          </button> */}
         </div>
         <button
           type="submit"
