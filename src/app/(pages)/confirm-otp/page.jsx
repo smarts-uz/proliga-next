@@ -10,7 +10,7 @@ const ConfirmOTP = () => {
   const router = useRouter()
 
   useEffect(() => {
-    if (!temp?.guid || !temp?.phone || !temp) {
+    if (!temp?.phone || !temp) {
       router.push('/auth')
     }
   }, [temp, router])

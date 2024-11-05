@@ -2,18 +2,22 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useResetUserPassword } from 'app/hooks/auth/useResetUserPassword/useResetUserPassword'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
+import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 
 const ResetPasswordForm = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const { t } = useTranslation()
-  const [isVerified, setIsVerified] = useState(false)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [active, setActive] = useState(false)
-  const { resetUserPassword, isLoading, error } = useResetUserPassword()
+  const { resetUserPassword, isLoading, error, data } = useResetUserPassword()
+  const { temp } = useSelector((store) => store.auth)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -21,8 +25,34 @@ const ResetPasswordForm = () => {
       return
     }
 
-    await resetUserPassword(password)
+    if (password.length < 6 || confirmPassword.length < 6) {
+      toast.warning(t("Parolar 6 ta belgidan kam bo'lmasligi kerak"), {
+        theme: 'dark',
+      })
+      return
+    }
+    if (password !== confirmPassword) {
+      toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
+      return
+    }
+
+    await resetUserPassword({ password, code: temp.code, phone: temp.phone })
   }
+
+  useEffect(() => {
+    if (!temp?.phone || !temp?.code || !temp) {
+      router.push('/auth')
+    }
+  }, [temp, router])
+
+  console.log(data)
+
+  useEffect(() => {
+    if (data?.status === 200) {
+      dispatch(setUserTempData(null))
+      router.push('/auth')
+    }
+  }, [data, dispatch, router])
 
   return (
     <form
@@ -98,10 +128,10 @@ const ResetPasswordForm = () => {
       </section>
       <button
         type="submit"
-        disabled={false}
+        disabled={isLoading}
         className="h-10 w-full rounded border border-primary bg-neutral-900 transition-all hover:bg-black"
       >
-        {false ? (
+        {isLoading ? (
           <Image
             src="/icons/loading.svg"
             width={24}
@@ -110,7 +140,7 @@ const ResetPasswordForm = () => {
             className="mx-auto size-5 animate-spin"
           />
         ) : (
-          t('Tasdiqlash')
+          t('Parol Yangilash')
         )}
       </button>
     </form>

@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import {
@@ -11,25 +11,19 @@ import {
 } from '@/components/ui/dialog'
 import { PhoneInput } from 'components/PhoneInput'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
-import { useGetUserId } from 'app/hooks/auth/useGetUserId/useGetUserId'
 import Image from 'next/image'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
+import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 
 const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
   const [phone, setPhone] = useState('')
-  const [guid, setGuid] = useState('')
-  const [active, setActive] = useState(false)
-  const {
-    getUserId,
-    isLoading: tableLoading,
-    error: tableError,
-  } = useGetUserId()
   const { temp } = useSelector((store) => store.auth)
 
-  const { sendOTP, isLoading, error } = useSendOTP()
   const { t } = useTranslation()
+  const { sendOTP, isLoading, error, data } = useSendOTP()
 
   const handleConfirm = async (e) => {
     e.preventDefault()
@@ -39,29 +33,20 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
       return
     }
 
-    setActive(true)
-    await getUserId({ phone })
+    await sendOTP({ phone })
   }
 
   useEffect(() => {
-    if (active && guid) {
-      const fetch = async () => await sendOTP({ guid, phone })
-      fetch()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, guid, phone])
-
-  useEffect(() => {
-    if (temp?.guid && temp?.phone) {
+    if (temp?.phone && !temp?.code) {
       router.push('/confirm-otp')
     }
   }, [temp, router])
 
   useEffect(() => {
-    if (error || tableError) {
-      setActive(false)
+    if (data?.status === 200) {
+      dispatch(setUserTempData({ phone }))
     }
-  }, [error, tableError])
+  }, [data, dispatch, phone])
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
@@ -90,10 +75,10 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
           </div>
           <button
             type="submit"
-            disabled={isLoading || tableLoading}
+            disabled={isLoading}
             className="h-10 w-full rounded border border-primary bg-neutral-900 transition-all hover:bg-black"
           >
-            {isLoading || tableLoading ? (
+            {isLoading ? (
               <Image
                 src="/icons/loading.svg"
                 width={24}
@@ -102,7 +87,7 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
                 className="mx-auto size-5 animate-spin"
               />
             ) : (
-              t('Tizimga kirish_2')
+              t('Parolni tiklash')
             )}
           </button>
         </form>

@@ -10,7 +10,7 @@ import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import SendOTPModal from 'components/SendOTPModal'
-
+// https://my.click.uz/services/pay?service_id=23202&merchant_id=14364&amount=4000.00&transaction_param=1&return_url=https://user.uz/profile
 const LoginForm = ({ onClick }) => {
   const { t } = useTranslation()
   const [phone, setPhone] = useState('')
@@ -134,13 +134,13 @@ const LoginForm = ({ onClick }) => {
           >
             {t("Ro'yxatdan o'tish")}
           </button>
-          {/* <button
+          <button
             type="button"
             className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
             onClick={() => setModalOpen(true)}
           >
             {t('Parolni unutdingizmi?')}
-          </button> */}
+          </button>
         </div>
         <button
           type="submit"

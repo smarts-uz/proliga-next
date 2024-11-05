@@ -1,6 +1,5 @@
 'use client'
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
 import {
   InputOTP,
   InputOTPGroup,
@@ -9,13 +8,17 @@ import {
 import ResendOTPBox from '../ResendOTPBox'
 import { useTranslation } from 'react-i18next'
 import { useConfirmOTP } from 'app/hooks/auth/useConfirmOTP/useConfirmOTP'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const ConfirmOTPForm = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const { t } = useTranslation()
   const [code, setCode] = useState('')
-  const { confirmOTP, isLoading, error } = useConfirmOTP()
+  const { confirmOTP, isLoading, error, data } = useConfirmOTP()
   const { temp } = useSelector((store) => store.auth)
 
   const handleConfirm = async (e) => {
@@ -27,11 +30,15 @@ const ConfirmOTPForm = () => {
     }
 
     await confirmOTP({ code, guid: temp?.guid, phone: temp?.phone })
-
-    if (!isLoading && !error) {
-      setCode('')
-    }
   }
+
+  useEffect(() => {
+    if (data?.status === 200 && code) {
+      dispatch(setUserTempData({ phone: temp.phone, code }))
+      setCode('')
+      router.push('/reset-password')
+    }
+  }, [data, dispatch, code, temp?.phone, router])
 
   return (
     <form

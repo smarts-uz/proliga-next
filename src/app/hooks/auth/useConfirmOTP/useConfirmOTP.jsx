@@ -27,12 +27,6 @@ export const useConfirmOTP = () => {
       return
     }
 
-    if (!guid) {
-      toast.error(t('Foydalanuvchi topilmadi'), { theme: 'dark' })
-      setError(t('Foydalanuvchi topilmadi'))
-      return
-    }
-
     if (!phone) {
       toast.error(t('Telefon nomer kiritilmagan'), { theme: 'dark' })
       setError(t('Telefon nomer kiritilmagan'))
@@ -43,7 +37,7 @@ export const useConfirmOTP = () => {
       setIsLoading(true)
 
       const { data, error } = await supabase.rpc('verify__sms_code', {
-        user_id: guid,
+        phone_number: phone,
         confirm_code: code,
       })
       if (error) {
