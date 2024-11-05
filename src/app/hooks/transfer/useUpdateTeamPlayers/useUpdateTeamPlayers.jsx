@@ -36,6 +36,7 @@ export const useUpdateTeamPlayers = () => {
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
+        return
       }
       if (data) {
         dispatch(

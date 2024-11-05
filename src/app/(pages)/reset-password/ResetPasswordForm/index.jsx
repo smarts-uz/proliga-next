@@ -45,8 +45,6 @@ const ResetPasswordForm = () => {
     }
   }, [temp, router])
 
-  console.log(data)
-
   useEffect(() => {
     if (data?.status === 200) {
       dispatch(setUserTempData(null))

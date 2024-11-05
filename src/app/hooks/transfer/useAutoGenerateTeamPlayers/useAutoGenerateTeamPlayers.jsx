@@ -37,6 +37,7 @@ export const useAutoGenerateTeamPlayers = () => {
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
+        return
       }
       if (data) {
         setData(data)
