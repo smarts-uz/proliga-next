@@ -30,7 +30,7 @@ export const useUpdateUserTable = () => {
         .from('user')
         .update({ phone, email })
         .eq('guid', id)
-        .select()
+        .select('*')
 
       if (error) {
         setError(error.message)

@@ -5,6 +5,7 @@ const initialState = {
   userAuth: null,
   userTable: null,
   publicUrl: '',
+  temp: null,
 }
 
 const authSlice = createSlice({
@@ -23,10 +24,18 @@ const authSlice = createSlice({
     setPublicUrl: (state, action) => {
       state.publicUrl = action.payload
     },
+    setUserTempData: (state, action) => {
+      state.temp = action.payload
+    },
   },
 })
 
-export const { setUserAuth, setUserTable, setUserPhoto, setPublicUrl } =
-  authSlice.actions
+export const {
+  setUserAuth,
+  setUserTable,
+  setUserPhoto,
+  setPublicUrl,
+  setUserTempData,
+} = authSlice.actions
 
 export default authSlice.reducer

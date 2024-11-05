@@ -1,17 +1,40 @@
 import OTPConfirmationModal from 'components/OTPConfirmationModal'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
+import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const CabinetProfileOTP = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const { t } = useTranslation()
   const { sendOTP } = useSendOTP()
+  const { userTable } = useSelector((store) => store.auth)
+  const [countdown, setCountdown] = useState(60)
+  const [isResendEnabled, setIsResendEnabled] = useState(true)
 
-  const handleClick = () => {
+  useEffect(() => {
+    let timer
+    if (countdown > 0) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 1)
+      }, 1000)
+    } else {
+      setIsResendEnabled(true)
+    }
+    return () => clearTimeout(timer)
+  }, [countdown])
+
+  const handleClick = async () => {
     setModalOpen(true)
-    sendOTP()
+    if (isResendEnabled) {
+      setCountdown(60)
+      setIsResendEnabled(false)
+      await sendOTP({ phone: userTable?.phone, guid: userTable?.guid })
+    } else {
+      return toast.warning('SMS allaqachon jonatilgan', { theme: 'dark' })
+    }
   }
 
   return (

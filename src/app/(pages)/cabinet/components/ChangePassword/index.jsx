@@ -56,6 +56,11 @@ const CabinetChangePasswordTab = () => {
       return
     }
 
+    if (password !== confirmPassword) {
+      toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
+      return
+    }
+
     await confirmUserAuth({ password: oldPassword, setIsVerified })
   }
 

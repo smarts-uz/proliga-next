@@ -60,6 +60,12 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
     toggleModal,
   ])
 
+  useEffect(() => {
+    if (error) {
+      setActive(false)
+    }
+  }, [error])
+
   return (
     <Dialog onOpenChange={toggleModal} open={isModalOpen}>
       <DialogContent className="lg:max-w-max-w-[32rem] flex max-w-[96%] flex-col items-center justify-between gap-4 rounded-md bg-neutral-950 px-4 py-6 text-neutral-100 xs:max-w-[90%] sm:max-w-96 md:max-w-[28rem] md:p-6 2xl:max-w-[36rem]">
