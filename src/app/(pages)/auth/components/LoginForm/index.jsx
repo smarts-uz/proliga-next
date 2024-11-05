@@ -3,20 +3,24 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import SendOTPModal from 'components/SendOTPModal'
+import { setUserAuth, setUserTable } from 'app/lib/features/auth/auth.slice'
+
 // https://my.click.uz/services/pay?service_id=23202&merchant_id=14364&amount=4000.00&transaction_param=1&return_url=https://user.uz/profile
+
 const LoginForm = ({ onClick }) => {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const { isLoading, logIn, error } = useLogIn()
+  const { isLoading, logIn, error, data } = useLogIn()
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const [active, setActive] = useState(false)
   const {
@@ -63,8 +67,11 @@ const LoginForm = ({ onClick }) => {
   useEffect(() => {
     if (error || tableError) {
       setActive(false)
+      localStorage.clear()
+      dispatch(setUserAuth(null))
+      dispatch(setUserTable(null))
     }
-  }, [error, tableError])
+  }, [error, tableError, dispatch])
 
   return (
     <>

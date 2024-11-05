@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 export const useSignUp = () => {
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
-  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
