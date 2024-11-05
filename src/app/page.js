@@ -25,7 +25,6 @@ function Home() {
 
   // useEffect(() => {
   //   function showPosition(position) {
-  //     console.log(position)
   //   }
   //   navigator.geolocation.getCurrentPosition(showPosition)
   // })

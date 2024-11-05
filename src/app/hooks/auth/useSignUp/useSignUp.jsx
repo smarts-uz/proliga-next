@@ -45,11 +45,21 @@ export const useSignUp = () => {
         password,
       })
 
+      if (error.code === 'user_already_exists') {
+        toast.error(t("Bu foydalanuvchi allaqachon ro'yxatdan o'tgan"), {
+          theme: 'dark',
+        })
+        setError(error.message)
+        localStorage.removeItem(`user-table-${sbUrl}`)
+        localStorage.removeItem(`user-auth-${sbUrl}`)
+        return
+      }
       if (error) {
         toast.error(error.message, { theme: 'dark' })
         setError(error.message)
         localStorage.removeItem(`user-table-${sbUrl}`)
         localStorage.removeItem(`user-auth-${sbUrl}`)
+        return
       }
       if (data?.user && data?.session) {
         setData(data)
