@@ -12,6 +12,8 @@ import {
 import { useFillBalance } from 'app/hooks/user/useFillBalance/useFillBalance'
 import { Input } from '@/components/ui/input'
 import { toast } from 'react-toastify'
+import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useRouter } from 'next/navigation'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
@@ -20,23 +22,36 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [amount, setAmount] = useState('')
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
-
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const SERVICE_ID = process.env.NEXT_PUBLIC_CLICK_SERVICE_ID
+    const MERCHANT_ID = process.env.NEXT_PUBLIC_CLICK_MERCHANT_ID
+    const RETURN_URL = process.env.NEXT_PUBLIC_URL
 
-    if (+amount < 1) {
-      toast.warning(t("Hisobni kamida 1 so'm ga toldirish lozim"), {
-        theme: 'dark',
-      })
+    if (+amount < 100) {
+      toast.warning(
+        t("Hisobni kamida 1 so'm ga toldirish lozim").replace('1', '100'),
+        {
+          theme: 'dark',
+        }
+      )
       return
     }
 
-    await fillBalance(Number(amount), paymentOption)
+    // await fillBalance(Number(amount), paymentOption)
+    if (paymentOption === PAYMENTOPTIONS.CLICKUP) {
+      router.push(
+        `https://my.click.uz/services/pay?service_id=${SERVICE_ID}&merchant_id=${MERCHANT_ID}&amount=${amount}&transaction_param=1&return_url=${RETURN_URL}`
+      )
+    }
     if (!isLoading && !error) {
       setAmount('')
       setIsModalOpen(false)
     }
+
+    // https://my.click.uz/services/pay?service_id=23202&merchant_id=14364&amount=4000.00&transaction_param=1&return_url=https://user.uz/profile
   }
 
   return (

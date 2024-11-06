@@ -12,8 +12,6 @@ import { toast } from 'react-toastify'
 import SendOTPModal from 'components/SendOTPModal'
 import { setUserAuth, setUserTable } from 'app/lib/features/auth/auth.slice'
 
-// https://my.click.uz/services/pay?service_id=23202&merchant_id=14364&amount=4000.00&transaction_param=1&return_url=https://user.uz/profile
-
 const LoginForm = ({ onClick }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
