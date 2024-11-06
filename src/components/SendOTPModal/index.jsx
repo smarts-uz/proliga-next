@@ -37,7 +37,7 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   }
 
   useEffect(() => {
-    if (temp?.phone && !temp?.code) {
+    if (temp && temp?.phone && !temp?.code) {
       router.push('/confirm-otp')
     }
   }, [temp, router])
