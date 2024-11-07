@@ -9,7 +9,7 @@ export const useConfirmOTP = () => {
   const [data, setData] = useState(null)
   const { t } = useTranslation()
 
-  const confirmOTP = async ({ code, guid, phone }) => {
+  const confirmOTP = async ({ code, phone }) => {
     setIsLoading(false)
     setError(null)
 

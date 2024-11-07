@@ -12,18 +12,18 @@ import {
 import { PhoneInput } from 'components/PhoneInput'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
 import Image from 'next/image'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { setUserTempData } from 'app/lib/features/auth/auth.slice'
+import { useGetUserPhone } from 'app/hooks/user/useGetUserPhone/useGetUserPhone'
 
 const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const [phone, setPhone] = useState('')
-  const { temp } = useSelector((store) => store.auth)
-
   const { t } = useTranslation()
+  const [phone, setPhone] = useState('')
   const { sendOTP, isLoading, error, data } = useSendOTP()
+  const { getUserPhone, data: userExistsData } = useGetUserPhone()
 
   const handleConfirm = async (e) => {
     e.preventDefault()
@@ -33,7 +33,7 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
       return
     }
 
-    await sendOTP({ phone })
+    await getUserPhone({ phone })
   }
 
   useEffect(() => {
@@ -41,6 +41,22 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
       dispatch(setUserTempData({ phone }))
     }
   }, [data, dispatch, phone])
+
+  useEffect(() => {
+    if (userExistsData) {
+      const fetch = async () => {
+        await sendOTP({ phone })
+      }
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userExistsData, router, phone])
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { theme: 'dark' })
+    }
+  }, [error])
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
