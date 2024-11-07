@@ -57,9 +57,14 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
-
-    setActive(true)
-    await signUp({ email, password, confirmPassword })
+    console.log(phone)
+    if (phone.length !== 13) {
+      toast.error(t("Telefon raqam noto'g'ri"), { theme: 'dark' })
+      return
+    }
+    
+    // setActive(true)
+    // await signUp({ email, password, confirmPassword })
   }
 
   useEffect(() => {
@@ -111,7 +116,7 @@ const SignUpForm = ({ onClick }) => {
         <PhoneInput
           id="phone"
           name="phone"
-          placeholder={t('Telefon raqam')}
+          placeholder={'99-999-99-99'}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-white"
           value={phone}
