@@ -66,14 +66,15 @@ const CountrySelect = ({ disabled, value, onChange, options }) => {
           type="button"
           variant={'outline'}
           className={cn(
-            'flex gap-1 rounded-e-none rounded-s bg-neutral-900 px-3'
+            'flex gap-1 rounded-e-none rounded-s bg-neutral-900 px-2 text-sm'
           )}
           disabled={disabled}
         >
           <FlagComponent country={value} countryName={value} />
+          <p className="ml-1">+{RPNInput.getCountryCallingCode(value)}</p>
           <ChevronsUpDown
             className={cn(
-              '-mr-2 h-4 w-4 opacity-50',
+              '-mr-1 h-4 w-4 opacity-50',
               disabled ? 'hidden' : 'opacity-100'
             )}
           />

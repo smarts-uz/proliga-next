@@ -57,14 +57,13 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
-    console.log(phone)
-    if (phone.length !== 13) {
+    if (phone.length !== 13 && phone.slice(0, 4) !== '+998') {
       toast.error(t("Telefon raqam noto'g'ri"), { theme: 'dark' })
       return
     }
-    
-    // setActive(true)
-    // await signUp({ email, password, confirmPassword })
+
+    setActive(true)
+    await signUp({ email, password, confirmPassword })
   }
 
   useEffect(() => {
