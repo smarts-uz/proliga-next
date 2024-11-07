@@ -27,7 +27,7 @@ export default function ResendOTPBox() {
   }, [countdown])
 
   const handleClick = async () => {
-    await sendOTP({ phone: temp?.phone, guid: temp?.guid })
+    await sendOTP({ phone: temp?.phone })
     setCountdown(60)
     setIsResendEnabled(false)
   }

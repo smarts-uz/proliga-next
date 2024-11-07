@@ -31,7 +31,7 @@ const CabinetProfileOTP = () => {
     if (isResendEnabled) {
       setCountdown(60)
       setIsResendEnabled(false)
-      await sendOTP({ phone: userTable?.phone, guid: userTable?.guid })
+      await sendOTP({ phone: userTable?.phone })
     } else {
       return toast.warning('SMS allaqachon jonatilgan', { theme: 'dark' })
     }

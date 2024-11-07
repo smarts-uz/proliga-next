@@ -11,7 +11,11 @@ export const useSendOTP = () => {
   const [data, setData] = useState(null)
   const { t } = useTranslation()
 
-  const sendOTP = async ({ phone }) => {
+  const sendOTP = async ({
+    phone,
+    shouldRedirect = false,
+    redirectTo = '',
+  }) => {
     setIsLoading(false)
     setError(null)
 
@@ -40,7 +44,9 @@ export const useSendOTP = () => {
       if (data?.status === 200) {
         setData(data)
         toast.success(t('SMS muvaffaqiyatli yuborildi'), { theme: 'dark' })
-        router.push('/confirm-otp')
+        if (shouldRedirect) {
+          router.push(redirectTo)
+        }
       }
     } catch (error) {
       setError(error.message)
