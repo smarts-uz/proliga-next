@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { supabase } from 'app/lib/supabaseClient'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/navigation'
 
 export const useSendOTP = () => {
+  const router = useRouter()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
@@ -38,6 +40,7 @@ export const useSendOTP = () => {
       if (data?.status === 200) {
         setData(data)
         toast.success(t('SMS muvaffaqiyatli yuborildi'), { theme: 'dark' })
+        router.push('/confirm-otp')
       }
     } catch (error) {
       setError(error.message)

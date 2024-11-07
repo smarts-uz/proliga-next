@@ -37,12 +37,6 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   }
 
   useEffect(() => {
-    if (temp && temp?.phone && !temp?.code) {
-      router.push('/confirm-otp')
-    }
-  }, [temp, router])
-
-  useEffect(() => {
     if (data?.status === 200) {
       dispatch(setUserTempData({ phone }))
     }
