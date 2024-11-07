@@ -45,7 +45,11 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   useEffect(() => {
     if (userExistsData) {
       const fetch = async () => {
-        await sendOTP({ phone })
+        await sendOTP({
+          phone,
+          shouldRedirect: true,
+          redirectTo: '/confirm-otp',
+        })
       }
       fetch()
     }
