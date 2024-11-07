@@ -45,7 +45,7 @@ export const useSignUp = () => {
         password,
       })
 
-      if (error.code === 'user_already_exists') {
+      if (error?.code === 'user_already_exists') {
         toast.error(t("Bu foydalanuvchi allaqachon ro'yxatdan o'tgan"), {
           theme: 'dark',
         })
