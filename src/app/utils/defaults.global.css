@@ -26,17 +26,16 @@
   }
 
   table {
-    border: 1px solid #ccc;
+    border: 1px solid #a3a3a3;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
     width: 100%;
     table-layout: fixed;
-    border-radius: 4px;
   }
 
   table tr {
-    border: 1px solid #ddd;
+    border: 1px solid #a3a3a3;
     padding: 0.35rem;
   }
 
@@ -197,7 +196,6 @@
       font-weight: 400;
     }
     table tr {
-      border: 1px solid #ddd;
       padding: 0.2rem;
     }
     table {
