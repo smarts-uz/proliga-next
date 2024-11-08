@@ -244,11 +244,11 @@ const SignUpForm = ({ onClick }) => {
           onChange={() => setAgreement(!agreement)}
         />
         <label htmlFor="agreement" className="inline select-none">
-          Men{' '}
+          {t("Men")}{' '}
           <Link href="/user-agreement" className="underline">
-            qoidalar
+            {t("qoidalar")}
           </Link>{' '}
-          bilan tanishib chiqdim va ularga roziman
+          {t("bilan tanishib chiqdim va ularga roziman")}
         </label>
       </div>
       <button
