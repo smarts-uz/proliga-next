@@ -23,10 +23,10 @@ const UzumPaymentOption = ({
         alt="payme"
       />
       <div className="w-full self-center text-center">
-        <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
+        <h4 className="hidden select-none font-medium sm:block sm:text-base lg:text-lg">
           Uzum
         </h4>
-        <p className="mx-2 text-center text-xs text-neutral-400 lg:text-sm">
+        <p className="mx-2 select-none text-center text-xs text-neutral-400 lg:text-sm">
           {t('Uzum orqali tolov qilish')}
         </p>
       </div>

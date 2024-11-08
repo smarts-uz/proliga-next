@@ -23,10 +23,10 @@ const ClickUpPaymentOption = ({
         alt="click up"
       />
       <div className="w-full self-center text-center">
-        <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
+        <h4 className="hidden select-none font-medium sm:block sm:text-base lg:text-lg">
           Click Up
         </h4>
-        <p className="mx-2 text-xs text-neutral-400 lg:text-sm">
+        <p className="mx-2 select-none text-xs text-neutral-400 lg:text-sm">
           {t('Click up orqali tolov qilish')}
         </p>
       </div>

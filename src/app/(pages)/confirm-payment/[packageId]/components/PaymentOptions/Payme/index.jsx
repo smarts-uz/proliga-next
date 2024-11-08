@@ -19,14 +19,14 @@ const PaymePaymentOption = ({
         width={36}
         draggable={false}
         height={36}
-        className="h-auto w-20 self-center select-none lg:w-28"
+        className="h-auto w-20 select-none self-center lg:w-28"
         alt="payme"
       />
       <div className="w-full self-center text-center">
-        <h4 className="hidden font-medium sm:block sm:text-base lg:text-lg">
+        <h4 className="hidden select-none font-medium sm:block sm:text-base lg:text-lg">
           Payme
         </h4>
-        <p className="mx-2 text-center text-xs text-neutral-400 lg:text-sm">
+        <p className="mx-2 select-none text-center text-xs text-neutral-400 lg:text-sm">
           {t('Payme orqali tolov qilish')}
         </p>
       </div>

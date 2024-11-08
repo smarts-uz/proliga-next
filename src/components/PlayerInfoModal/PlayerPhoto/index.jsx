@@ -30,7 +30,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
         <div className="flex items-center gap-2 text-neutral-100">
           <img
             g
-            src={`/club-jpg/${currentPlayer?.club?.slug}/logo.jpeg`}
+            src={`/club-jpeg/${currentPlayer?.club?.slug}/logo.jpeg`}
             alt="home club"
             width={48}
             height={48}
