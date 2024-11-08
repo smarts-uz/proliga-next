@@ -6,7 +6,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
   const image = useMemo(
     () =>
       process.env.NEXT_PUBLIC_URL +
-      '/player/' +
+      '/player-png/' +
       currentPlayer?.slug +
       '/app.png',
     [currentPlayer?.slug]

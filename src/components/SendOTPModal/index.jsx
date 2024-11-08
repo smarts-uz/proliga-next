@@ -11,11 +11,11 @@ import {
 } from '@/components/ui/dialog'
 import { PhoneInput } from 'components/PhoneInput'
 import { useSendOTP } from 'app/hooks/auth/useSendOTP/useSendOTP'
-import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 import { useGetUserPhone } from 'app/hooks/user/useGetUserPhone/useGetUserPhone'
+import Image from 'next/image'
 
 const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   const dispatch = useDispatch()
@@ -23,7 +23,11 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
   const { t } = useTranslation()
   const [phone, setPhone] = useState('')
   const { sendOTP, isLoading, error, data } = useSendOTP()
-  const { getUserPhone, data: userExistsData } = useGetUserPhone()
+  const {
+    getUserPhone,
+    data: userExistsData,
+    isLoading: tableLoading,
+  } = useGetUserPhone()
 
   const handleConfirm = async (e) => {
     e.preventDefault()
@@ -89,10 +93,10 @@ const SendOTPModal = ({ isModalOpen, setModalOpen }) => {
           </div>
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || tableLoading}
             className="h-10 w-full rounded border border-primary bg-neutral-900 transition-all hover:bg-black"
           >
-            {isLoading ? (
+            {isLoading || tableLoading ? (
               <Image
                 src="/icons/loading.svg"
                 width={24}
