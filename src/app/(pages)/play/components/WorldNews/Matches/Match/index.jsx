@@ -16,7 +16,7 @@ const Match = ({ match }) => {
         <img
           src={`/club-jpeg/${homeClub?.slug}/logo.jpeg`}
           alt="home club"
-          loading='lazy'
+          loading="lazy"
           width={48}
           height={48}
           onError={(e) => (e.target.src = '/icons/football.svg')}
@@ -54,7 +54,7 @@ const Match = ({ match }) => {
           src={`/club-jpeg/${awayClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
-          loading='lazy'
+          loading="lazy"
           height={48}
           onError={(e) => (e.target.src = '/icons/football.svg')}
           draggable={false}

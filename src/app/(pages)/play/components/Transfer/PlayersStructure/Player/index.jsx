@@ -61,7 +61,7 @@ const Player = ({ player }) => {
           <>
             <div className="relative size-7 xs:size-8 md:size-10 lg:size-8 xl:size-10">
               <Image
-                src={`/club/${clubPath}/app.svg`}
+                src={`/club-svg/${clubPath}/app.svg`}
                 alt="player tshirt"
                 width={48}
                 height={48}
