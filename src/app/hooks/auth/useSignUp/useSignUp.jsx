@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 export const useSignUp = () => {
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
-  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -45,11 +45,21 @@ export const useSignUp = () => {
         password,
       })
 
+      if (error?.code === 'user_already_exists') {
+        toast.error(t("Bu foydalanuvchi allaqachon ro'yxatdan o'tgan"), {
+          theme: 'dark',
+        })
+        setError(error.message)
+        localStorage.removeItem(`user-table-${sbUrl}`)
+        localStorage.removeItem(`user-auth-${sbUrl}`)
+        return
+      }
       if (error) {
         toast.error(error.message, { theme: 'dark' })
         setError(error.message)
         localStorage.removeItem(`user-table-${sbUrl}`)
         localStorage.removeItem(`user-auth-${sbUrl}`)
+        return
       }
       if (data?.user && data?.session) {
         setData(data)

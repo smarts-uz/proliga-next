@@ -26,6 +26,7 @@ export const useLogOut = () => {
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)
+      localStorage.removeItem(`sb-${sbUrl}-auth-token`)
 
       router.push('/')
     } catch (error) {

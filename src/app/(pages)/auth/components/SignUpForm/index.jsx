@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -9,7 +10,6 @@ import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
-import Link from 'next/link'
 
 const SignUpForm = ({ onClick }) => {
   const [phone, setPhone] = useState('')
@@ -55,6 +55,10 @@ const SignUpForm = ({ onClick }) => {
     }
     if (password !== confirmPassword) {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
+      return
+    }
+    if (phone.length !== 13 && phone.slice(0, 4) !== '+998') {
+      toast.error(t("Telefon raqam noto'g'ri"), { theme: 'dark' })
       return
     }
 
@@ -111,7 +115,7 @@ const SignUpForm = ({ onClick }) => {
         <PhoneInput
           id="phone"
           name="phone"
-          placeholder={t('Telefon raqam')}
+          placeholder={'99-999-99-99'}
           defaultCountry="UZ"
           className="h-10 bg-neutral-950 text-white"
           value={phone}

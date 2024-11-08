@@ -12,6 +12,9 @@ import {
 import { useFillBalance } from 'app/hooks/user/useFillBalance/useFillBalance'
 import { Input } from '@/components/ui/input'
 import { toast } from 'react-toastify'
+import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
@@ -20,19 +23,43 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [amount, setAmount] = useState('')
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
-
+  const router = useRouter()
+  const { userTable } = useSelector((store) => store.auth)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const SERVICE_ID = process.env.NEXT_PUBLIC_CLICK_SERVICE_ID
+    const MERCHANT_ID = process.env.NEXT_PUBLIC_CLICK_MERCHANT_ID
+    const RETURN_URL = process.env.NEXT_PUBLIC_URL
+    const TRANSACTION_PARAM = Math.floor(Math.random() * 1000)
 
-    if (+amount < 1) {
-      toast.warning(t("Hisobni kamida 1 so'm ga toldirish lozim"), {
+    if (+amount < 100) {
+      toast.warning(
+        t("Hisobni kamida 1 so'm ga toldirish lozim").replace('1', '100'),
+        {
+          theme: 'dark',
+        }
+      )
+      return
+    }
+    if (!userTable) {
+      toast.error(t("Siz ro'yxatdan o'tmagansiz"), {
         theme: 'dark',
       })
       return
     }
 
-    await fillBalance(Number(amount), paymentOption)
+    if (paymentOption === PAYMENTOPTIONS.CLICKUP) {
+      const clickUrl = new URL('https://my.click.uz/services/pay')
+      clickUrl.searchParams.append('service_id', SERVICE_ID)
+      clickUrl.searchParams.append('merchant_id', MERCHANT_ID)
+      clickUrl.searchParams.append('amount', amount)
+      clickUrl.searchParams.append('transaction_param', TRANSACTION_PARAM)
+      clickUrl.searchParams.append('return_url', RETURN_URL)
+      clickUrl.searchParams.append('user_id', userTable?.id)
+
+      router.push(clickUrl.href)
+    }
     if (!isLoading && !error) {
       setAmount('')
       setIsModalOpen(false)

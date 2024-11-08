@@ -46,6 +46,12 @@ export const useLogIn = () => {
         email,
         password,
       })
+
+      if (error?.code === 'invalid_credentials') {
+        setError(t('Login yoki parol xato'))
+        toast.error(t('Login yoki parol xato'), { theme: 'dark' })
+        return
+      }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })

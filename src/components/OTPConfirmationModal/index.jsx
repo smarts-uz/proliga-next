@@ -1,25 +1,29 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { useTranslation } from 'react-i18next'
 import {
   DialogContent,
   DialogTitle,
   Dialog,
   DialogDescription,
 } from '@/components/ui/dialog'
-import ResendOTP from './ResendOTP'
 import { useConfirmOTP } from 'app/hooks/auth/useConfirmOTP/useConfirmOTP'
+import { useSelector } from 'react-redux'
+import ResendOTP from './ResendOTP'
+import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
 
 const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
   const [code, setCode] = useState()
   const { t } = useTranslation()
   const { confirmOTP, isLoading, error, data } = useConfirmOTP()
+  const { userTable } = useSelector((store) => store.auth)
+  const { refreshUserTable } = useRefreshUserTable()
 
   const handleConfirm = async (e) => {
     e.preventDefault()
@@ -29,11 +33,12 @@ const OTPConfirmationModal = ({ isModalOpen, setModalOpen }) => {
       return
     }
 
-    await confirmOTP(code)
+    await confirmOTP({ code, guid: userTable?.guid, phone: userTable?.phone })
 
     if (!isLoading && !error && data !== 'code expire') {
       setCode('')
       setModalOpen(false)
+      await refreshUserTable()
     }
   }
 

@@ -12,7 +12,7 @@ export const useGetUserTable = () => {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  
+
   const getUserTable = async ({ phone }) => {
     setIsLoading(false)
     setError(null)
@@ -28,9 +28,10 @@ export const useGetUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .select()
+        .select('*')
         .eq('phone', phone)
 
+      console.log(error)
       if (error) {
         setError(error.message)
         toast.error(error.message)
@@ -38,7 +39,9 @@ export const useGetUserTable = () => {
       }
       if (!data[0]) {
         setError(t('Parol yoki telefon raqam notogri kiritilgan'))
-        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'), { theme: 'dark' })
+        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'), {
+          theme: 'dark',
+        })
         return
       }
       if (data && data[0]) {
