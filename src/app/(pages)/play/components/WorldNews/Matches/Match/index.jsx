@@ -14,7 +14,7 @@ const Match = ({ match }) => {
       <div className="flex w-full items-center justify-end gap-2">
         <p className="text-xs font-medium xs:text-sm">{homeClub?.name}</p>
         <img
-          src={`/club-jpg/${homeClub?.slug}/logo.jpeg`}
+          src={`/club-jpeg/${homeClub?.slug}/logo.jpeg`}
           alt="home club"
           loading='lazy'
           width={48}
@@ -51,7 +51,7 @@ const Match = ({ match }) => {
       </div>
       <div className="flex w-full items-center gap-2">
         <img
-          src={`/club-jpg/${awayClub?.slug}/logo.jpeg`}
+          src={`/club-jpeg/${awayClub?.slug}/logo.jpeg`}
           alt="home club"
           width={48}
           loading='lazy'

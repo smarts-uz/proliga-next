@@ -2,13 +2,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { Switch } from '@/components/ui/switch'
-import { usePurchasePackage } from 'app/hooks/user/usePurchasePackage/usePurchasePackage'
 
 const ConfirmPaymentTab = ({ paymentOption }) => {
   const { currentPackage } = useSelector((store) => store.packages)
   const [testingActive, setTestingActive] = useState(false)
-  const { purchasePackage } = usePurchasePackage()
   const { t } = useTranslation()
 
   const handleConfirmPayment = async () => {
@@ -16,10 +13,10 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
     if (!currentPackage?.id) return toast.error(t('Joriy paket yo‘q!'))
     if (!paymentOption) return toast.error(t('To‘lov varianti topilmadi!'))
 
-    await purchasePackage({
-      package_id: currentPackage?.id,
-      system: paymentOption,
-    })
+    // await purchasePackage({
+    //   package_id: currentPackage?.id,
+    //   system: paymentOption,
+    // })
   }
 
   return (
@@ -30,17 +27,6 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
           {currentPackage?.price}
         </span>
         <p className="inline-block font-medium">{t("so'm")}</p>
-      </div>
-      <div className="flex items-center gap-2 text-xs md:text-sm">
-        <label htmlFor="testing" className="select-none">
-          Test
-        </label>
-        <Switch
-          id="testing"
-          checked={testingActive}
-          onCheckedChange={setTestingActive}
-          className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-green-900"
-        />
       </div>
       <div className="flex items-center gap-1 self-end font-medium md:self-auto">
         <Link

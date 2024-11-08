@@ -40,7 +40,7 @@ const WalletPaymentOption = ({
       </div>
       <button
         onClick={toggleModal}
-        className="mx-auto w-min self-center text-nowrap rounded border px-3 py-1 text-xs transition-all hover:bg-primary hover:text-neutral-900 sm:text-sm lg:px-4 lg:text-base"
+        className="mx-auto w-min select-none self-center text-nowrap rounded border px-3 py-1 text-xs transition-all hover:bg-primary hover:text-neutral-900 sm:text-sm lg:px-4 lg:text-base"
       >
         {t('Hisobni toldirish')}
       </button>

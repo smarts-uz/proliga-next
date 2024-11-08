@@ -19,7 +19,7 @@ const CurrentPackage = () => {
         1
       </span>
       <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row sm:gap-0">
-        <div className="space-x-2 text-sm xs:text-base sm:text-lg md:text-xl">
+        <div className="select-none space-x-2 text-sm xs:text-base sm:text-lg md:text-xl">
           {getPackageText(currentPackage)}
           <span className="text-lg font-bold xs:text-xl md:text-2xl">
             {' ' + currentPackage?.amount}
@@ -27,7 +27,7 @@ const CurrentPackage = () => {
           {t('ga oshirish')}
         </div>
         <div className="text-sm font-medium text-neutral-100 xs:text-base md:text-2xl">
-          <span className="text-base font-bold xs:text-2xl sm:text-lg md:text-3xl">
+          <span className="select-none text-base font-bold xs:text-2xl sm:text-lg md:text-3xl">
             {currentPackage?.price + ' '}
           </span>
           {t("so'm")}
