@@ -16,7 +16,7 @@ const ArticleModal = ({ item, toggleModal, isModalOpen, date }) => {
           <p className="max-w-xs text-xs text-neutral-400 md:text-sm">{date}</p>
         </div>
         <div
-          className="w-auto text-sm xl:text-base"
+          className="html-page w-auto text-sm xl:text-base"
           dangerouslySetInnerHTML={{ __html: item.desc }}
         />
         <DialogDescription className="hidden">News</DialogDescription>
