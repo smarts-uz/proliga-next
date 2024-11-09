@@ -1,8 +1,0 @@
-{
-  "service_id": "23202",
-  "merchant_id": "14364",
-  "transaction_param": "1",
-  "amount": "4000.00",
-  "return_url": "https://user.uz/profile",
-  "source": "checkout_page"
-}
