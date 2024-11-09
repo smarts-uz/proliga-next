@@ -1,8 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
-import { useTranslation } from 'react-i18next'
 import {
   DialogContent,
   DialogTitle,
@@ -14,8 +11,11 @@ import { UppyUploader } from './Uploader'
 const UploadFileModal = ({ isModalOpen, setModalOpen }) => {
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-      <DialogContent className="min-w-[35rem] bg-neutral-950 px-4 py-6 text-neutral-100 md:p-6">
-        <DialogTitle>File Upload</DialogTitle>
+      <DialogContent
+        closeButtonStyle="right-0 -top-8"
+        className="flex w-[96%] rounded-md bg-neutral-950 p-0 text-neutral-100 sm:w-full"
+      >
+        <DialogTitle className="hidden">File Upload</DialogTitle>
         <UppyUploader />
         <DialogDescription className="hidden">Upload Photos</DialogDescription>
       </DialogContent>
