@@ -24,11 +24,11 @@ const AdModal = ({ isModalOpen, setModalOpen }) => {
       <DialogTrigger className="hidden">Ad Trigger</DialogTrigger>
       <DialogContent
         closeButtonStyle="right-0 -top-8"
-        className="max-h-max w-[96%] max-w-max rounded-md p-0 2xl:w-full"
+        className="max-h-max w-[96%] rounded-md p-0 md:max-w-[80%] 2xl:w-full 2xl:max-w-[1280px]"
       >
         <Link
           href={modalBanner?.link ?? ''}
-          className="block rounded-sm md:min-w-[620px] lg:min-w-[960px] xl:min-w-[1024px] 2xl:min-w-[1280px]"
+          className="block rounded md:min-w-[620px] xl:min-w-[1024px] 2xl:min-w-[1280px] 2xl:max-w-[1280px]"
         >
           <img
             src={modalBanner?.content_url ?? ''}
@@ -36,7 +36,7 @@ const AdModal = ({ isModalOpen, setModalOpen }) => {
             width={128}
             height={72}
             loading="lazy"
-            className="aspect-video h-full w-full rounded-sm"
+            className="aspect-video h-full w-full rounded"
           />
         </Link>
         <DialogTitle className="hidden">Ad title</DialogTitle>
