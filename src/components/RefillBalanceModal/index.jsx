@@ -114,7 +114,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   style={
                     paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive
                   }
-                  img={'./icons/click-up.svg'}
+                  img={'/icons/click-up.svg'}
                   alt={'click-up'}
                 />
               )}
@@ -124,7 +124,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   style={
                     paymentOption === BALANCEOPTIONS.PAYME ? active : passive
                   }
-                  img={'./icons/payme.svg'}
+                  img={'/icons/payme.svg'}
                   alt={'payme'}
                 />
               )}
@@ -134,9 +134,14 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   style={
                     paymentOption === BALANCEOPTIONS.UZUM ? active : passive
                   }
-                  img={'./icons/uzum.svg'}
+                  img={'/icons/uzum.svg'}
                   alt={'uzum'}
                 />
+              )}
+              {!clickActive && !paymeActive && !uzumActive && (
+                <p className="w-full rounded border border-red-400 bg-red-600/75 py-1 text-center font-bold">
+                  Hozircha tolovlar ochirib qoyilgan!
+                </p>
               )}
             </section>
           </div>

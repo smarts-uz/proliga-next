@@ -59,7 +59,8 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">
-            <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 md:max-w-96 md:text-base">
+            <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 
+            md:max-w-96 md:text-base">
               <p className="truncate">
                 {userTable?.name ? userTable?.name : t('Ism')}
               </p>

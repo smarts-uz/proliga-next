@@ -1,6 +1,7 @@
 import { PACKAGES } from 'app/utils/packages.util'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { NumericFormat } from 'react-number-format'
 
 const CurrentPackage = () => {
   const { t } = useTranslation()
@@ -26,12 +27,14 @@ const CurrentPackage = () => {
           </span>{' '}
           {t('ga oshirish')}
         </div>
-        <div className="text-sm font-medium text-neutral-100 xs:text-base md:text-2xl">
-          <span className="select-none text-base font-bold xs:text-2xl sm:text-lg md:text-3xl">
-            {currentPackage?.price + ' '}
-          </span>
-          {t("so'm")}
-        </div>
+        <NumericFormat
+          value={currentPackage?.price}
+          className="w-min select-none border-none bg-transparent text-center text-sm font-bold text-neutral-100 outline-none xs:text-base md:text-2xl"
+          defaultValue={0}
+          thousandSeparator
+          tabIndex={-1}
+          suffix={' ' + t("so'm")}
+        />
       </div>
     </div>
   )
