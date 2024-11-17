@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -9,18 +8,18 @@ import {
   DialogDescription,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useFillBalance } from 'app/hooks/user/useFillBalance/useFillBalance'
 import { Input } from '@/components/ui/input'
 import { toast } from 'react-toastify'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { useSelector } from 'react-redux'
 import { useRedirectToClick } from 'app/hooks/payment/useRedirectToClick/useRedirectToClick'
 import { useRedirectToPayme } from 'app/hooks/payment/useRedirectToPayme/useRedirectToPayme'
+import RefilBalanceModalPaymentOption from './PaymentOption'
+import { configKey } from 'app/utils/config.util'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
   const { t } = useTranslation()
-  const { fillBalance, isLoading, error } = useFillBalance()
   const [amount, setAmount] = useState('')
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-yellow-600'
@@ -28,7 +27,9 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { redirectToClick } = useRedirectToClick()
   const { redirectToPayme } = useRedirectToPayme()
   const RETURN_URL = process.env.NEXT_PUBLIC_URL
-
+  const { config } = useSelector((store) => store.systemConfig)
+  console.log(config?.find(i => i.type === configKey.cabinet_click), config[9].key === configKey.cabinet_click)
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -54,10 +55,6 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
     if (paymentOption === PAYMENTOPTIONS.PAYME) {
       redirectToPayme({ amount, return_url: RETURN_URL })
     }
-    if (!isLoading && !error) {
-      setAmount('')
-      setIsModalOpen(false)
-    }
   }
 
   return (
@@ -72,48 +69,28 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
               {t("To'lov usulini tanlang")}
             </h3>
             <section className="flex flex-wrap justify-center gap-1 sm:flex-nowrap sm:justify-start">
-              <button
+              <RefilBalanceModalPaymentOption
                 onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
-                type="button"
-                className={`h-16 w-36 rounded border bg-stone-950 p-3 transition-all sm:w-full sm:p-4 xl:rounded-md ${paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive}`}
-              >
-                <Image
-                  src="/icons/click-up.svg"
-                  width={36}
-                  draggable={false}
-                  height={36}
-                  className="h-full w-full self-center"
-                  alt="click up"
-                />
-              </button>
-              <button
-                type="button"
+                style={
+                  paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive
+                }
+                img={'./icons/click-up.svg'}
+                alt={'click-up'}
+              />
+              <RefilBalanceModalPaymentOption
                 onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
-                className={`h-16 w-36 rounded border bg-stone-950 p-3 transition-all sm:w-full sm:p-4 xl:rounded-md ${paymentOption === BALANCEOPTIONS.PAYME ? active : passive}`}
-              >
-                <Image
-                  src="/icons/payme.svg"
-                  width={36}
-                  draggable={false}
-                  height={36}
-                  className="h-full w-full self-center"
-                  alt="payme"
-                />
-              </button>
-              <button
-                type="button"
+                style={
+                  paymentOption === BALANCEOPTIONS.PAYME ? active : passive
+                }
+                img={'./icons/payme.svg'}
+                alt={'payme'}
+              />
+              <RefilBalanceModalPaymentOption
                 onClick={() => setPaymentOption(BALANCEOPTIONS.UZUM)}
-                className={`h-16 w-36 rounded border bg-stone-950 p-3 transition-all sm:w-full sm:p-4 xl:rounded-md ${paymentOption === BALANCEOPTIONS.UZUM ? active : passive}`}
-              >
-                <Image
-                  src="/icons/uzum.svg"
-                  width={36}
-                  draggable={false}
-                  height={36}
-                  className="h-full w-full self-center"
-                  alt="payme"
-                />
-              </button>
+                style={paymentOption === BALANCEOPTIONS.UZUM ? active : passive}
+                img={'./icons/uzum.svg'}
+                alt={'uzum'}
+              />
             </section>
           </div>
           <div className="w-full space-y-2">
@@ -135,20 +112,9 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
           </div>
           <button
             type="submit"
-            disabled={isLoading}
             className="mt-4 rounded border border-primary py-3 font-bold transition-all hover:bg-primary hover:text-black"
           >
-            {isLoading ? (
-              <Image
-                src="/icons/loading.svg"
-                width={24}
-                height={24}
-                alt="loading"
-                className="mx-auto size-6 animate-spin"
-              />
-            ) : (
-              t("To'lash")
-            )}
+            {t("To'lash")}
           </button>
         </form>
       </DialogContent>

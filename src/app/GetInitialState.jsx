@@ -9,6 +9,7 @@ import {
   fetchAllNotifications,
   setupNotificationListener,
 } from './lib/features/systemNotification/systemNotification.thunk'
+import { fetchSystemConfig } from './lib/features/systemConfig/systemConfig.thunk'
 
 const GetInitialState = ({ children }) => {
   const dispatch = useDispatch()
@@ -60,7 +61,11 @@ const GetInitialState = ({ children }) => {
     }
   }, [dispatch, lang, userTable?.language, i18n, userTable])
 
-  return <>{children}</>
+  useEffect(() => {
+    dispatch(fetchSystemConfig())
+  }, [dispatch])
+
+  return children
 }
 
 export default GetInitialState

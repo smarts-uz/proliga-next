@@ -73,6 +73,7 @@ const Play = ({ params }) => {
         }
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentTeam, countOfPlayers])
 
   return (
