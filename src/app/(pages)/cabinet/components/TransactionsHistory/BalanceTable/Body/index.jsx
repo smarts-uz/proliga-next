@@ -12,7 +12,7 @@ const TransactionsTableBody = ({ table, flexRender }) => {
         >
           {row.getVisibleCells().map((cell) => (
             <td
-              className={`${styles(cell.column.id)} h-14 w-full px-0.5 py-1 capitalize md:px-1 lg:h-11`}
+              className={`${styles(cell.column.id)} h-14 w-full max-w-24 break-all px-0.5 py-1 capitalize md:px-1 lg:h-11`}
               key={cell.id}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}

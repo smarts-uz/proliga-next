@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { NumericFormat } from 'react-number-format'
 
 const ConfirmPaymentTab = ({ paymentOption }) => {
   const { currentPackage } = useSelector((store) => store.packages)
@@ -21,12 +22,16 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
 
   return (
     <section className="mt-auto flex flex-col items-start justify-between gap-2 rounded-md bg-gradient-to-l from-neutral-800 to-stone-900 p-4 md:h-auto md:flex-row md:items-center md:p-6">
-      <div className="space-x-1 text-sm font-medium xs:text-base md:text-lg">
-        <p className="inline-block"> {t("To'lov miqdori")}</p>
-        <span className="inline-block text-base font-bold xs:text-lg sm:text-xl lg:text-2xl">
-          {currentPackage?.price}
-        </span>
-        <p className="inline-block font-medium">{t("so'm")}</p>
+      <div className="flex items-center justify-center gap-2 text-sm font-medium xs:text-base md:text-lg">
+        <p>{t("To'lov miqdori")}</p>
+        <NumericFormat
+          value={currentPackage?.price}
+          className="text w-min select-none border-none bg-transparent text-base font-bold outline-none xs:text-lg sm:text-xl"
+          defaultValue={0}
+          thousandSeparator
+          tabIndex={-1}
+          suffix={' ' + t("so'm")}
+        />
       </div>
       <div className="flex items-center gap-1 self-end font-medium md:self-auto">
         <Link

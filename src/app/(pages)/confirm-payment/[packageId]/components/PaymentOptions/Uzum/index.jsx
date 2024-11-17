@@ -12,7 +12,7 @@ const UzumPaymentOption = ({
   return (
     <div
       onClick={() => setPaymentOption(PAYMENTOPTIONS.UZUM)}
-      className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 transition-all sm:size-44 lg:size-56 ${paymentOption === PAYMENTOPTIONS.UZUM ? active : passive}`}
+      className={`flex size-36 cursor-pointer flex-col justify-center gap-2 rounded-xl border bg-stone-950 transition-all sm:size-44 lg:size-56 xl:size-60 ${paymentOption === PAYMENTOPTIONS.UZUM ? active : passive}`}
     >
       <Image
         src="/icons/uzum.svg"
