@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
@@ -15,10 +15,13 @@ import { useSelector } from 'react-redux'
 import { useRedirectToClick } from 'app/hooks/payment/useRedirectToClick/useRedirectToClick'
 import { useRedirectToPayme } from 'app/hooks/payment/useRedirectToPayme/useRedirectToPayme'
 import RefilBalanceModalPaymentOption from './PaymentOption'
-import { configKey } from 'app/utils/config.util'
+import { configKey, configType } from 'app/utils/config.util'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
+  const [paymeActive, setPaymeActive] = useState(null)
+  const [clickActive, setClickActive] = useState(null) // search for config & check if it's active
+  const [uzumActive, setUzumActive] = useState(null)
   const { t } = useTranslation()
   const [amount, setAmount] = useState('')
   const active = 'border-primary'
@@ -28,8 +31,38 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { redirectToPayme } = useRedirectToPayme()
   const RETURN_URL = process.env.NEXT_PUBLIC_URL
   const { config } = useSelector((store) => store.systemConfig)
-  console.log(config?.find(i => i.type === configKey.cabinet_click), config[9].key === configKey.cabinet_click)
-  
+
+  useEffect(() => {
+    if (config?.length > 0) {
+      setPaymeActive(
+        config
+          ?.find(
+            (i) =>
+              i.key === configKey.cabinet_payme &&
+              i.type === configType.Checkbox
+          )
+          .value.toLowerCase() === 'true' ?? null
+      )
+      setClickActive(
+        config
+          ?.find(
+            (i) =>
+              i.key === configKey.cabinet_click &&
+              i.type === configType.Checkbox
+          )
+          .value.toLowerCase() === 'true' ?? null
+      )
+      setUzumActive(
+        config
+          ?.find(
+            (i) =>
+              i.key === configKey.cabinet_uzum && i.type === configType.Checkbox
+          )
+          .value.toLowerCase() === 'true' ?? null
+      )
+    }
+  }, [config])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -55,6 +88,12 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
     if (paymentOption === PAYMENTOPTIONS.PAYME) {
       redirectToPayme({ amount, return_url: RETURN_URL })
     }
+    if (paymentOption === PAYMENTOPTIONS.UZUM) {
+      toast.warning(t('Hozircha bu xizmat mavjud emas'), {
+        theme: 'dark',
+      })
+      setAmount('')
+    }
   }
 
   return (
@@ -68,29 +107,37 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
             <h3 className="text-sm font-medium text-neutral-300 sm:text-base">
               {t("To'lov usulini tanlang")}
             </h3>
-            <section className="flex flex-wrap justify-center gap-1 sm:flex-nowrap sm:justify-start">
-              <RefilBalanceModalPaymentOption
-                onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
-                style={
-                  paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive
-                }
-                img={'./icons/click-up.svg'}
-                alt={'click-up'}
-              />
-              <RefilBalanceModalPaymentOption
-                onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
-                style={
-                  paymentOption === BALANCEOPTIONS.PAYME ? active : passive
-                }
-                img={'./icons/payme.svg'}
-                alt={'payme'}
-              />
-              <RefilBalanceModalPaymentOption
-                onClick={() => setPaymentOption(BALANCEOPTIONS.UZUM)}
-                style={paymentOption === BALANCEOPTIONS.UZUM ? active : passive}
-                img={'./icons/uzum.svg'}
-                alt={'uzum'}
-              />
+            <section className="flex flex-wrap justify-start gap-1 sm:flex-nowrap">
+              {clickActive && (
+                <RefilBalanceModalPaymentOption
+                  onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
+                  style={
+                    paymentOption === BALANCEOPTIONS.CLICKUP ? active : passive
+                  }
+                  img={'./icons/click-up.svg'}
+                  alt={'click-up'}
+                />
+              )}
+              {paymeActive && (
+                <RefilBalanceModalPaymentOption
+                  onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
+                  style={
+                    paymentOption === BALANCEOPTIONS.PAYME ? active : passive
+                  }
+                  img={'./icons/payme.svg'}
+                  alt={'payme'}
+                />
+              )}
+              {uzumActive && (
+                <RefilBalanceModalPaymentOption
+                  onClick={() => setPaymentOption(BALANCEOPTIONS.UZUM)}
+                  style={
+                    paymentOption === BALANCEOPTIONS.UZUM ? active : passive
+                  }
+                  img={'./icons/uzum.svg'}
+                  alt={'uzum'}
+                />
+              )}
             </section>
           </div>
           <div className="w-full space-y-2">
