@@ -1,16 +1,12 @@
 {
-  "name": "proliga-next",
-  "version": "0.1.0",
+  "name": "proliga.uz",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3030",
     "build": "next build",
     "start": "next start -p 3030",
     "lint": "next lint"
-  },
-  "engines": {
-    "node": "20.17.0",
-    "npm": "10.8.2"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
