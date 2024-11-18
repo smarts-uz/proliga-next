@@ -33,7 +33,7 @@ const WalletPaymentOption = ({
         </h4>
         <NumericFormat
           value={userTable?.balance}
-          className="mx-1 w-min select-none border-none bg-transparent text-center text-sm font-bold text-neutral-50 outline-none xl:text-base"
+          className="mx-1 w-full max-w-32 select-none border-none bg-transparent text-center text-sm font-bold text-neutral-50 outline-none md:max-w-40 xl:text-base"
           defaultValue={0}
           thousandSeparator
           tabIndex={-1}

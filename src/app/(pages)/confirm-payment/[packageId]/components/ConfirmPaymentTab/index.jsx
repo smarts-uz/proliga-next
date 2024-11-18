@@ -1,23 +1,39 @@
 import Link from 'next/link'
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { NumericFormat } from 'react-number-format'
+import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
+import { useBuyPackageWithWallet } from 'app/hooks/payment/useBuyPackageWithWallet/useBuyPackageWithWallet'
+import { toast } from 'react-toastify'
+import Image from 'next/image'
+import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
+import { useRouter } from 'next/navigation'
 
 const ConfirmPaymentTab = ({ paymentOption }) => {
   const { currentPackage } = useSelector((store) => store.packages)
-  const [testingActive, setTestingActive] = useState(false)
+  const { userTable } = useSelector((store) => store.auth)
+  const { currentTeam } = useSelector((store) => store.currentTeam)
   const { t } = useTranslation()
+  const { buyPackageWithWallet, isLoading, error, data } =
+    useBuyPackageWithWallet()
+  const { refreshUserTable } = useRefreshUserTable()
+  const router = useRouter()
 
   const handleConfirmPayment = async () => {
-    if (!testingActive) return toast.error(t('Test ni tanlang!'))
     if (!currentPackage?.id) return toast.error(t('Joriy paket yo‘q!'))
     if (!paymentOption) return toast.error(t('To‘lov varianti topilmadi!'))
 
-    // await purchasePackage({
-    //   package_id: currentPackage?.id,
-    //   system: paymentOption,
-    // })
+    if (userTable.balance < currentPackage?.price) {
+      toast.error(t('Mablag‘ yetarli emas!'), { theme: 'dark' })
+      return
+    }
+    if (paymentOption === PAYMENTOPTIONS.WALLET) {
+      await buyPackageWithWallet({
+        package_id: currentPackage?.id,
+        team_id: currentTeam?.id,
+      })
+    }
+    await refreshUserTable()
   }
 
   return (
@@ -42,9 +58,20 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
         </Link>
         <button
           onClick={handleConfirmPayment}
+          disabled={isLoading}
           className="flex h-10 w-24 items-center justify-center rounded border border-primary bg-neutral-950 text-sm text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary lg:w-32 lg:text-base"
         >
-          {t("To'lash")}
+          {isLoading ? (
+            <Image
+              src="/icons/loading.svg"
+              width={24}
+              height={24}
+              alt="loading"
+              className="filter-white mx-auto size-5 animate-spin"
+            />
+          ) : (
+            t("To'lash")
+          )}
         </button>
       </div>
     </section>
