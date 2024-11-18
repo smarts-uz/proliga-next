@@ -15,11 +15,32 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
   const { getUserPhoto } = useGetUserPhoto()
+  const { config } = useSelector((store) => store.systemConfig)
+  const [canSendSMS, setCanSendSMS] = useState(true)
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
+  
+  useEffect(() => {
+    if (config?.length > 0) {
+      setCanSendSMS(
+        Boolean(
+          config?.find((i) => i.key === 'can_send_sms').value.toLowerCase() ===
+            'true'
+        )
+      )
+    }
+  }, [config])
+
+  useEffect(() => {
+    if (userTable?.photo) {
+      const fetch = async () => await getUserPhoto()
+      fetch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userTable])
 
   const getCorrectGenderText = (gender) => {
     if (gender === 'male') {
@@ -30,14 +51,6 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
       return t('Belgilanmagan')
     }
   }
-
-  useEffect(() => {
-    if (userTable?.photo) {
-      const fetch = async () => await getUserPhoto()
-      fetch()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTable])
 
   return (
     <>
@@ -59,8 +72,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">
-            <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 
-            md:max-w-96 md:text-base">
+            <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 md:max-w-96 md:text-base">
               <p className="truncate">
                 {userTable?.name ? userTable?.name : t('Ism')}
               </p>
@@ -144,7 +156,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
         </section>
         <section className="flex flex-wrap justify-start gap-1 sm:gap-2">
           <RefillBalanceBox setBalanceModal={setBalanceModal} />
-          {!userTable?.phone_verified && <CabinetProfileOTP />}
+          {!userTable?.phone_verified && canSendSMS && <CabinetProfileOTP />}
         </section>
       </section>
       <RefillBalanceModal

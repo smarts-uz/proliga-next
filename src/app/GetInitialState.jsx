@@ -63,6 +63,7 @@ const GetInitialState = ({ children }) => {
 
   useEffect(() => {
     dispatch(fetchSystemConfig())
+    console.log('Hello you sneaky developer, what are you doing here?')
   }, [dispatch])
 
   return children

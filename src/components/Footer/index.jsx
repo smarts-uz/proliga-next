@@ -38,8 +38,6 @@ const Footer = () => {
     }
   }, [config])
 
-  console.log(email, instagram, telegram)
-
   return (
     <footer className="w-full border-t border-neutral-400 bg-black">
       <Gutter>

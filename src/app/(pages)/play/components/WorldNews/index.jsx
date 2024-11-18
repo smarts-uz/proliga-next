@@ -11,7 +11,7 @@ import Banner from './Banner'
 const WorldNews = () => {
   return (
     <Gutter>
-      <section className="mb-4 flex flex-col justify-between gap-2 py-6 md:mb-6 lg:flex-row lg:gap-4">
+      <section className="mb-4 flex flex-col justify-between gap-2 py-6 md:mb-6 lg:flex-row xl:gap-4">
         <Matches />
         <Banner />
         <News />
