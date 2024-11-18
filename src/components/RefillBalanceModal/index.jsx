@@ -28,9 +28,9 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { redirectToPayme } = useRedirectToPayme()
   const RETURN_URL = process.env.NEXT_PUBLIC_URL
   const { config } = useSelector((store) => store.systemConfig)
-  const [paymeActive, setPaymeActive] = useState(null)
-  const [clickActive, setClickActive] = useState(null) // search for config & check if it's active
-  const [uzumActive, setUzumActive] = useState(null)
+  const [paymeActive, setPaymeActive] = useState(false)
+  const [clickActive, setClickActive] = useState(false) // search for config & check if it's active
+  const [uzumActive, setUzumActive] = useState(false)
 
   useEffect(() => {
     if (config?.length > 0) {
@@ -41,7 +41,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
               i.key === configKey.cabinet_payme &&
               i.type === configType.Checkbox
           )
-          .value.toLowerCase() === 'true' ?? null
+          .value.toLowerCase() === 'true' ?? false
       )
       setClickActive(
         config
@@ -50,7 +50,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
               i.key === configKey.cabinet_click &&
               i.type === configType.Checkbox
           )
-          .value.toLowerCase() === 'true' ?? null
+          .value.toLowerCase() === 'true' ?? false
       )
       setUzumActive(
         config
@@ -58,7 +58,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
             (i) =>
               i.key === configKey.cabinet_uzum && i.type === configType.Checkbox
           )
-          .value.toLowerCase() === 'true' ?? null
+          .value.toLowerCase() === 'true' ?? false
       )
     }
   }, [config])
@@ -155,7 +155,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
             <Input
               type="number"
               id="money"
-              placeholder="100000"
+              placeholder="100,000"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               name="money"

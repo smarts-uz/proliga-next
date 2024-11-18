@@ -13,6 +13,7 @@ import SendOTPModal from 'components/SendOTPModal'
 import { setUserAuth, setUserTable } from 'app/lib/features/auth/auth.slice'
 
 const LoginForm = ({ onClick }) => {
+  const [canSendSMS, setCanSendSMS] = useState(true)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [phone, setPhone] = useState('')
@@ -21,6 +22,7 @@ const LoginForm = ({ onClick }) => {
   const { isLoading, logIn, error, data } = useLogIn()
   const { userTable, userAuth } = useSelector((state) => state.auth)
   const [active, setActive] = useState(false)
+  const { config } = useSelector((store) => store.systemConfig)
   const {
     isLoading: tableIsLoading,
     getUserTable,
@@ -70,6 +72,17 @@ const LoginForm = ({ onClick }) => {
       dispatch(setUserTable(null))
     }
   }, [error, tableError, dispatch])
+
+  useEffect(() => {
+    if (config?.length > 0) {
+      setCanSendSMS(
+        Boolean(
+          config?.find((i) => i.key === 'can_send_sms').value.toLowerCase() ===
+            'true'
+        )
+      )
+    }
+  }, [config])
 
   return (
     <>
@@ -139,13 +152,15 @@ const LoginForm = ({ onClick }) => {
           >
             {t("Ro'yxatdan o'tish")}
           </button>
-          <button
-            type="button"
-            className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
-            onClick={() => setModalOpen(true)}
-          >
-            {t('Parolni unutdingizmi?')}
-          </button>
+          {canSendSMS && (
+            <button
+              type="button"
+              className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
+              onClick={() => setModalOpen(true)}
+            >
+              {t('Parolni unutdingizmi?')}
+            </button>
+          )}
         </div>
         <button
           type="submit"

@@ -31,7 +31,6 @@ export const useGetUserTable = () => {
         .select('*')
         .eq('phone', phone)
 
-      console.log(error)
       if (error) {
         setError(error.message)
         toast.error(error.message)
