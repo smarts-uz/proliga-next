@@ -19,9 +19,6 @@ import { configKey, configType } from 'app/utils/config.util'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
-  const [paymeActive, setPaymeActive] = useState(null)
-  const [clickActive, setClickActive] = useState(null) // search for config & check if it's active
-  const [uzumActive, setUzumActive] = useState(null)
   const { t } = useTranslation()
   const [amount, setAmount] = useState('')
   const active = 'border-primary'
@@ -31,6 +28,9 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { redirectToPayme } = useRedirectToPayme()
   const RETURN_URL = process.env.NEXT_PUBLIC_URL
   const { config } = useSelector((store) => store.systemConfig)
+  const [paymeActive, setPaymeActive] = useState(null)
+  const [clickActive, setClickActive] = useState(null) // search for config & check if it's active
+  const [uzumActive, setUzumActive] = useState(null)
 
   useEffect(() => {
     if (config?.length > 0) {

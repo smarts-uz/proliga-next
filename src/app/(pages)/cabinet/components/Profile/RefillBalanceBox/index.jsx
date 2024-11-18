@@ -8,8 +8,7 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
   const { userTable } = useSelector((store) => store.auth)
 
   return (
-    <div className="flex h-48 w-36 flex-col justify-center gap-2 rounded-xl border 
-    border-neutral-400 bg-transparent transition-all sm:w-44">
+    <div className="flex h-48 w-36 flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:w-44">
       <Image
         src="/icons/wallet.svg"
         draggable={false}
@@ -26,8 +25,7 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
           <p>{t('Hisobda')}</p>
           <NumericFormat
             value={userTable?.balance}
-            className="w-min select-none border-none bg-transparent text-center 
-            font-bold text-neutral-50 outline-none"
+            className="w-min select-none border-none bg-transparent text-center font-bold text-neutral-50 outline-none"
             defaultValue={0}
             thousandSeparator
             tabIndex={-1}
@@ -37,8 +35,7 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
       </div>
       <button
         onClick={() => setBalanceModal(true)}
-        className="w-min self-center text-nowrap rounded border px-2 py-1 text-sm 
-        transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
+        className="w-min self-center text-nowrap rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
       >
         {t('Hisobni toldirish')}
       </button>

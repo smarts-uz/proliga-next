@@ -62,7 +62,6 @@ const Play = ({ params }) => {
   useEffect(() => {
     if (currentTeam?.competition_id?.id) {
       countOfPlayers.map((pCount) => {
-        console.log(false)
         if (players.length > pCount - 1) {
           dispatch(
             fetchAdditionalPlayers({
@@ -73,7 +72,7 @@ const Play = ({ params }) => {
         }
       })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentTeam, countOfPlayers])
 
   return (
