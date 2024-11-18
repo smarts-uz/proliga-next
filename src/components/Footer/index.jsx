@@ -2,9 +2,43 @@ import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Gutter from '../Gutter'
+import { configKey, configType } from 'app/utils/config.util'
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const Footer = () => {
   const { t } = useTranslation()
+  const { config } = useSelector((store) => store.systemConfig)
+
+  const [email, setEmail] = useState('')
+  const [instagram, setInstagram] = useState('') // search for config & check if it's active
+  const [telegram, setTelegram] = useState('')
+
+  useEffect(() => {
+    if (config?.length > 0) {
+      setEmail(
+        config?.find(
+          (i) =>
+            i.key === configKey.link_email && i.type === configType.TextField
+        ).value ?? null
+      )
+      setInstagram(
+        config?.find(
+          (i) =>
+            i.key === configKey.link_instagram &&
+            i.type === configType.TextField
+        ).value ?? null
+      )
+      setTelegram(
+        config?.find(
+          (i) =>
+            i.key === configKey.link_telegram && i.type === configType.TextField
+        ).value ?? null
+      )
+    }
+  }, [config])
+
+  console.log(email, instagram, telegram)
 
   return (
     <footer className="w-full border-t border-neutral-400 bg-black">
@@ -33,7 +67,7 @@ const Footer = () => {
               {t('Bizning ijtimoiy tarmoqlarimiz')}
             </h3>
             <div className="flex items-center gap-4">
-              <Link href="https://www.instagram.com/proliga.uz1">
+              <Link target="_blank" href={instagram ?? '/'}>
                 <Image
                   src={'/icons/instagram.svg'}
                   alt="instagram"
@@ -42,7 +76,7 @@ const Footer = () => {
                   className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
-              <Link href="mailto:proliga.uz1@gmail.com">
+              <Link target="_blank" href={email ?? '/'}>
                 <Image
                   src={'/icons/mail.svg'}
                   alt="facebook"
@@ -51,7 +85,7 @@ const Footer = () => {
                   className="size-8 opacity-75 transition-all hover:scale-110 hover:opacity-100"
                 />
               </Link>
-              <Link href="https://t.me/proliga_uz1">
+              <Link target="_blank" href={telegram ?? '/'}>
                 <Image
                   src={'/icons/telegram.svg'}
                   alt="telegram"
