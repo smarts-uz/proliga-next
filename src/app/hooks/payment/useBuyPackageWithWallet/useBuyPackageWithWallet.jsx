@@ -35,6 +35,7 @@ export const useBuyPackageWithWallet = () => {
           team_id,
           pay_package_id: package_id,
           system: PAYMENTOPTIONS.WALLET,
+          status: 1,
           transaction_id: btoa(Date.now() + team_id + PAYMENTOPTIONS.WALLET),
         })
         .select()
