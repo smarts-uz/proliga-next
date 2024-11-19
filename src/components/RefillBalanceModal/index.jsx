@@ -140,7 +140,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
               )}
               {!clickActive && !paymeActive && !uzumActive && (
                 <p className="w-full rounded border border-red-400 bg-red-600/75 py-1 text-center font-bold">
-                  Hozircha tolovlar ochirib qoyilgan!
+                 {t("Hozircha to'lovlar o'chirib qo'yilgan!")}
                 </p>
               )}
             </section>
