@@ -14,6 +14,7 @@ import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import { setCurrentCompetition } from 'app/lib/features/competition/competition.slice'
 import { fetchTourTeams } from 'app/lib/features/tourTeams/tourTeams.thunk'
+import { fetchBanners } from 'app/lib/features/banner/banner.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
@@ -47,7 +48,7 @@ const Play = ({ params }) => {
   }, [currentTeam, dispatch, params])
 
   useEffect(() => {
-    if (params?.id && currentTour?.id) {
+    if (Boolean(params?.id && currentTour?.id)) {
       const fetch = async () => {
         dispatch(
           fetchTeamPlayers({
@@ -95,6 +96,7 @@ const Play = ({ params }) => {
   useEffect(() => {
     dispatch(fetchCompetition())
     dispatch(fetchSeason())
+    dispatch(fetchBanners())
   }, [dispatch])
 
   useEffect(() => {

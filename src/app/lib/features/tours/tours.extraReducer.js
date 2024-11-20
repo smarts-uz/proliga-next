@@ -42,25 +42,26 @@ export const toursExtraReducer = (builder) => {
     .addCase(fetchTeamViewTours.fulfilled, (state, action) => {
       state.isLoading = false
       state.tours = action.payload?.data
-      let tour = state.tours.find((tour) => tour.status === TOUR.inProcess)
       let registeredTour = state.tours.find(
         (tour) => tour.id === action.payload.registered_tour_id
       )
+      let tour
       if (registeredTour) {
         state.registeredTour = registeredTour
       }
       if (!tour) {
         tour = state.tours.find(
           (tour) =>
-            tour.status === TOUR.completed &&
-            tour.order === registeredTour?.order
+            tour.status === TOUR.inProcess &&
+            tour.order >= registeredTour?.order
         )
       }
       if (!tour) {
-        tour = state.tours.find(
+        const tempTours = [...state.tours].reverse()
+        tour = tempTours.find(
           (tour) =>
-            tour.status === TOUR.inProcess &&
-            tour.order === registeredTour?.order
+            tour.status === TOUR.completed &&
+            tour.order >= registeredTour?.order
         )
       }
       if (!tour) {
