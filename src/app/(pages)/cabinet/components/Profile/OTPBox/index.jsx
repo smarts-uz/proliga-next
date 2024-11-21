@@ -40,7 +40,7 @@ const CabinetProfileOTP = () => {
   return (
     <>
       <div
-        className={`flex size-36 flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:size-44`}
+        className={`flex h-48 w-36 flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:w-44`}
       >
         <Image
           src="/icons/call.svg"
