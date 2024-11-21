@@ -1,28 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
-import Image from 'next/image'
 import RefillBalanceModal from 'components/RefillBalanceModal'
-import CabinetProfileOTP from './OTPBox'
 import RefillBalanceBox from './RefillBalanceBox'
+import CabinetProfileOTP from './OTPBox'
+import Image from 'next/image'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, publicUrl } = useSelector((store) => store.auth)
+  const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
-  const { getUserPhoto } = useGetUserPhoto()
-  const { config } = useSelector((store) => store.systemConfig)
   const [canSendSMS, setCanSendSMS] = useState(true)
+  const { getUserPhoto } = useGetUserPhoto()
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
-  
+
   useEffect(() => {
     if (config?.length > 0) {
       setCanSendSMS(
@@ -73,25 +73,32 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">
             <div className="flex gap-1 text-sm font-bold capitalize text-neutral-50 xs:max-w-64 md:max-w-96 md:text-base">
-              <p className="truncate">
-                {userTable?.name ? userTable?.name : t('Ism')}
-              </p>
-              <p className="truncate lg:hidden">
-                {userTable?.last_name
-                  ? userTable?.last_name.slice(0, 1) + '.'
-                  : t('Familiya')}
-              </p>
-              <p className="hidden truncate lg:block">
-                {userTable?.last_name ? userTable?.last_name : t('Familiya')}
-              </p>
-              <p className="truncate lg:hidden">
-                {userTable?.middle_name
-                  ? userTable?.middle_name.slice(0, 1) + '.'
-                  : t('Sharif')}
-              </p>
-              <p className="hidden truncate lg:block">
-                {userTable?.middle_name ? userTable?.middle_name : t('Sharif')}
-              </p>
+              {userTable?.name && <p className="truncate">{userTable?.name}</p>}
+              {userTable?.last_name && (
+                <>
+                  <p className="truncate lg:hidden">
+                    {userTable?.last_name.slice(0, 1) + '.'}
+                  </p>
+                  <p className="hidden truncate lg:block">
+                    {userTable?.last_name}
+                  </p>
+                </>
+              )}
+              {userTable?.middle_name && (
+                <>
+                  <p className="truncate lg:hidden">
+                    {userTable?.middle_name.slice(0, 1) + '.'}
+                  </p>
+                  <p className="hidden truncate lg:block">
+                    {userTable?.middle_name}
+                  </p>
+                </>
+              )}
+              {!userTable?.name &&
+                !userTable?.last_name &&
+                !userTable?.middle_name && (
+                  <p className="truncate">{t('Sizning Ismingiz')}</p>
+                )}
             </div>
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
