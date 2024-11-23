@@ -4,19 +4,17 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGetUserPhoto } from 'app/hooks/user/useGetUserPhoto/useGetUserPhoto'
 import RefillBalanceModal from 'components/RefillBalanceModal'
 import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
-  const { userTable, publicUrl } = useSelector((store) => store.auth)
+  const { userTable, userAuth } = useSelector((store) => store.auth)
   const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
   const [canSendSMS, setCanSendSMS] = useState(true)
-  const { getUserPhoto } = useGetUserPhoto()
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
@@ -34,14 +32,6 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
     }
   }, [config])
 
-  useEffect(() => {
-    if (userTable?.photo) {
-      const fetch = async () => await getUserPhoto()
-      fetch()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTable])
-
   const getCorrectGenderText = (gender) => {
     if (gender === 'male') {
       return t('Erkak')
@@ -56,19 +46,31 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
     <>
       <section className="flex h-full w-full flex-1 flex-col gap-2 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
         <div className="flex items-center gap-2 md:gap-4">
-          {userTable?.email && (
-            <div className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
-              {userTable.email.slice(0, 1)}
-            </div>
+          {userTable?.email && !userTable?.photo && (
+            <span className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
+              {userAuth.user.email.slice(0, 1)}
+            </span>
           )}
-          {publicUrl && (
+          {userTable?.email && userTable?.photo && (
             <img
-              src={publicUrl}
-              className="flex size-16 select-none rounded-full md:size-20"
-              alt="user avatar"
-              width={24}
-              height={24}
-              loading="lazy"
+              src={process.env.NEXT_PUBLIC_URL + '/avatar/' + userTable?.photo}
+              alt="user"
+              width={32}
+              draggable={false}
+              height={32}
+              key={userAuth?.user.email}
+              className="size-16 rounded-full bg-white md:size-20"
+            />
+          )}
+          {!userTable?.email && !userTable?.photo && (
+            <Image
+              src={'/icons/user.svg'}
+              alt="user"
+              width={32}
+              draggable={false}
+              height={32}
+              key={userAuth?.user.email}
+              className="size-16 rounded-full bg-white md:size-20"
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">

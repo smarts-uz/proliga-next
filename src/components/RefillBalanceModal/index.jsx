@@ -16,7 +16,6 @@ import { useRedirectToClick } from 'app/hooks/payment/useRedirectToClick/useRedi
 import { useRedirectToPayme } from 'app/hooks/payment/useRedirectToPayme/useRedirectToPayme'
 import RefilBalanceModalPaymentOption from './PaymentOption'
 import { configKey, configType } from 'app/utils/config.util'
-import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
 
 const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const [paymentOption, setPaymentOption] = useState(BALANCEOPTIONS.CLICKUP)
@@ -27,12 +26,10 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { userTable } = useSelector((store) => store.auth)
   const { redirectToClick } = useRedirectToClick()
   const { redirectToPayme } = useRedirectToPayme()
-  const RETURN_URL = process.env.NEXT_PUBLIC_URL
   const { config } = useSelector((store) => store.systemConfig)
   const [paymeActive, setPaymeActive] = useState(false)
   const [clickActive, setClickActive] = useState(false) // search for config & check if it's active
   const [uzumActive, setUzumActive] = useState(false)
-  const { refreshUserTable } = useRefreshUserTable()
 
   useEffect(() => {
     if (config?.length > 0) {

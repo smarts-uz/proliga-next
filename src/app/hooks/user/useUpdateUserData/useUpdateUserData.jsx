@@ -38,7 +38,9 @@ export const useUpdateUserData = () => {
     }
     if (!userAuth) {
       setError('User not authenticated')
-      toast.error(t('Foydalanuvchi autentifikatsiya qilinmagan'), { theme: 'dark' })
+      toast.error(t('Foydalanuvchi autentifikatsiya qilinmagan'), {
+        theme: 'dark',
+      })
       return
     }
 
@@ -55,10 +57,10 @@ export const useUpdateUserData = () => {
           bio,
           gender,
           birth_date: birthdate,
-          photo: userTable.photo,
         })
         .eq('guid', userAuth.user.id)
         .select()
+        .single()
 
       if (error) {
         setError(error.message)
@@ -66,8 +68,8 @@ export const useUpdateUserData = () => {
         return
       }
       if (data) {
-        dispatch(setUserTable(data[0]))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
+        dispatch(setUserTable(data))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
       }
     } catch (error) {
       setError(error.message)

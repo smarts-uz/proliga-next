@@ -7,7 +7,6 @@ export async function saveFile(formData) {
   const files = formData.getAll('files')
   const fileName = formData.get('filename')
   const urls = []
-  console.log(fileName, 'action')
   for (const file of files) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)

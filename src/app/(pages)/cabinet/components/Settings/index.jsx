@@ -1,33 +1,25 @@
 'use client'
 import './datepicker.scss'
 import Image from 'next/image'
-import DatePicker from 'react-datepicker'
-
+import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
+import UploadFileModal from 'components/UploadFileModal'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import { useUploadUserImage } from 'app/hooks/user/useUploadUserImage/useUploadUserImage'
-import { useUpdateUserData } from 'app/hooks/user/useUpdateUserData/useUpdateUserData'
+import DatePicker from 'react-datepicker'
 import { toast } from 'react-toastify'
-import UploadFileModal from 'components/UploadFileModal'
+import { useState } from 'react'
 
 const CabinetSettingsTab = ({ setHomeTab }) => {
   const { t } = useTranslation()
   const { userTable } = useSelector((store) => store.auth)
   const [date, setDate] = useState(userTable?.birth_date ?? new Date())
-  const [file, setFile] = useState(null)
   const [firstName, setFirstName] = useState(userTable?.name ?? '')
   const [lastName, setLastName] = useState(userTable?.last_name ?? '')
   const [middleName, setMiddleName] = useState(userTable?.middle_name ?? '')
   const [bio, setBio] = useState(userTable?.bio ?? '')
   const [gender, setGender] = useState(userTable?.gender ?? GENDERS.UNSET)
-  const { uploadUserImage, isLoading, error } = useUploadUserImage()
   const [isModalOpen, setModalOpen] = useState(false)
-  const {
-    updateUserData,
-    isLoading: updateUserLoading,
-    error: updateUserError,
-  } = useUpdateUserData()
+  const { updateUserData, isLoading, error } = useUpdateUserData()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -39,11 +31,6 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
     if (!gender) {
       toast.warning(t('Iltimos jiningizni tanlang'), { theme: 'dark' })
     }
-
-    if (file) {
-      uploadUserImage({ file })
-    }
-
     await updateUserData(firstName, lastName, middleName, bio, gender, date)
     if (!isLoading && !error) {
       setHomeTab()
@@ -60,42 +47,23 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               <p className="text-sm capitalize text-neutral-300">
                 {t('Sizning Rasmingiz')}:
               </p>
-              <label
-                // htmlFor="img"
+              <div
                 onClick={() => setModalOpen(true)}
                 className="group flex size-24 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 transition-all hover:from-neutral-900 hover:to-stone-900 md:size-32"
-                // style={
-                //   file && {
-                //     backgroundImage: `url(${URL.createObjectURL(file)})`,
-                //     backgroundSize: 'cover',
-                //     backgroundRepeat: 'no-repeat',
-                //   }
-                // }
               >
-                <div
-                  className={`flex-col items-center justify-center gap-0.5 rounded px-0 py-2 ${file ? 'mx-auto hidden bg-black bg-opacity-50 group-hover:flex' : 'flex bg-transparent'}`}
+                <Image
+                  src={'/icons/placeholder-image-2.svg'}
+                  alt="placeholder"
+                  width={24}
+                  height={24}
+                  className="filter-neutral-200 size-6 self-center md:size-8"
+                />
+                <p
+                  className={`break-words text-center text-[11px] text-neutral-300 md:text-xs`}
                 >
-                  <Image
-                    src={'/icons/placeholder-image-2.svg'}
-                    alt="placeholder"
-                    width={24}
-                    height={24}
-                    className="filter-neutral-200 size-6 self-center md:size-8"
-                  />
-                  <p
-                    className={`break-words text-center text-[11px] text-neutral-300 md:text-xs`}
-                  >
-                    {t('Rasmni yuklash')}
-                  </p>
-                </div>
-                {/* <input
-                type="file"
-                onChange={handleFileChange}
-                id="img"
-                accept="image/png, image/jpeg, image/jpg"
-                className="hidden"
-              /> */}
-              </label>
+                  {t('Rasmni yuklash')}
+                </p>
+              </div>
             </div>
             <div className="flex w-full flex-col items-start justify-start gap-2 self-start xs:gap-0 sm:w-auto sm:min-w-80">
               <div className="w-full">
@@ -221,8 +189,9 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
           <button
             className="mt-1 w-full rounded border border-black bg-primary bg-opacity-75 py-2 font-semibold text-neutral-900 transition-all hover:bg-opacity-100 sm:max-w-64"
             type="submit"
+            disabled={isLoading}
           >
-            {updateUserLoading ? (
+            {isLoading ? (
               <Image
                 src="/icons/loading.svg"
                 width={24}
