@@ -3,16 +3,18 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 
-export const useRedirectToClick = () => {
+export const useBuyPackageWithClick = () => {
   const router = useRouter()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const SERVICE_ID = process.env.NEXT_PUBLIC_CLICK_SERVICE_ID
+  const SERVICE_ID = process.env.NEXT_PUBLIC_CLICK_EXPENSE_SERVICE_ID
   const MERCHANT_ID = process.env.NEXT_PUBLIC_CLICK_MERCHANT_ID
   const RETURN_URL = process.env.NEXT_PUBLIC_URL
   const { userTable } = useSelector((store) => store.auth)
+  const { currentPackage } = useSelector((store) => store.packages)
+  const { currentTeam } = useSelector((store) => store.currentTeam)
 
-  const redirectToClick = ({ amount }) => {
+  const buyPackageWithClick = () => {
     setIsLoading(false)
     setError(null)
 
@@ -21,10 +23,13 @@ export const useRedirectToClick = () => {
       toast.error('User not found', { theme: 'dark' })
       return
     }
-
-    if (!amount) {
-      setError('Amount is required')
-      toast.error('Amount is required', { theme: 'dark' })
+    if (!currentTeam?.id) {
+      setError(t('Jamoa ID kiritilmagan!'))
+      toast.error(t('Jamoa ID kiritilmagan!'), { theme: 'dark' })
+    }
+    if (!currentPackage || !currentPackage?.price) {
+      setError(t('Joriy paket yo‘q!'))
+      toast.error(t('Joriy paket yo‘q!'), { theme: 'dark' })
       return
     }
 
@@ -34,10 +39,12 @@ export const useRedirectToClick = () => {
       const url = new URL('https://my.click.uz/services/pay')
       url.searchParams.append('service_id', SERVICE_ID)
       url.searchParams.append('merchant_id', MERCHANT_ID)
-      url.searchParams.append('amount', amount)
-      url.searchParams.append('transaction_param', userTable?.id)
+      url.searchParams.append('amount', currentPackage.price)
+      url.searchParams.append(
+        'transaction_param',
+        `${currentTeam?.id}-${currentPackage?.id}`
+      )
       url.searchParams.append('return_url', RETURN_URL)
-      url.searchParams.append('param2', userTable?.id)
 
       router.push(url.href)
     } catch (error) {
@@ -47,5 +54,5 @@ export const useRedirectToClick = () => {
       setIsLoading(false)
     }
   }
-  return { redirectToClick, isLoading, error }
+  return { buyPackageWithClick, isLoading, error }
 }
