@@ -1,27 +1,32 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { NumericFormat } from 'react-number-format'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
-import { useBuyPackageWithWallet } from 'app/hooks/payment/useBuyPackageWithWallet/useBuyPackageWithWallet'
-import { toast } from 'react-toastify'
-import Image from 'next/image'
 import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
-import { useRouter } from 'next/navigation'
+import { useBuyPackageWithWallet } from 'app/hooks/payment/useBuyPackageWithWallet/useBuyPackageWithWallet'
+import { useBuyPackageWithPayme } from 'app/hooks/payment/useBuyPackageWithPayme/useBuyPackageWithPayme'
+import { useBuyPackageWithClick } from 'app/hooks/payment/useBuyPackageWithClick/useBuyPackageWithClick'
 
 const ConfirmPaymentTab = ({ paymentOption }) => {
   const { currentPackage } = useSelector((store) => store.packages)
   const { userTable } = useSelector((store) => store.auth)
   const { currentTeam } = useSelector((store) => store.currentTeam)
   const { t } = useTranslation()
-  const { buyPackageWithWallet, isLoading, error, data } =
-    useBuyPackageWithWallet()
+  const { buyPackageWithWallet, isLoading } = useBuyPackageWithWallet()
+  const { buyPackageWithPayme, isLoading: isPaymeLoading } =
+    useBuyPackageWithPayme()
+  const { buyPackageWithClick, isLoading: isClickLoading } =
+    useBuyPackageWithClick()
   const { refreshUserTable } = useRefreshUserTable()
-  const router = useRouter()
 
   const handleConfirmPayment = async () => {
-    if (!currentPackage?.id) return toast.error(t('Joriy paket yo‘q!'))
-    if (!paymentOption) return toast.error(t('To‘lov varianti topilmadi!'))
+    if (!currentPackage?.id)
+      return toast.error(t('Joriy paket yo‘q!'), { theme: 'dark' })
+    if (!paymentOption)
+      return toast.error(t('To‘lov varianti topilmadi!'), { theme: 'dark' })
 
     if (userTable.balance < currentPackage?.price) {
       toast.error(t('Mablag‘ yetarli emas!'), { theme: 'dark' })
@@ -32,6 +37,15 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
         package_id: currentPackage?.id,
         team_id: currentTeam?.id,
       })
+    }
+    if (paymentOption === PAYMENTOPTIONS.PAYME) {
+      buyPackageWithPayme({
+        package_id: currentPackage?.id,
+        team_id: currentTeam?.id,
+      })
+    }
+    if (paymentOption === PAYMENTOPTIONS.CLICKUP) {
+      buyPackageWithClick({})
     }
     await refreshUserTable()
   }
@@ -58,10 +72,10 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
         </Link>
         <button
           onClick={handleConfirmPayment}
-          disabled={isLoading}
+          disabled={isLoading || isClickLoading || isPaymeLoading}
           className="flex h-10 w-24 items-center justify-center rounded border border-primary bg-neutral-950 text-sm text-neutral-50 transition-all hover:bg-opacity-75 hover:text-primary lg:w-32 lg:text-base"
         >
-          {isLoading ? (
+          {isLoading || isClickLoading || isPaymeLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}

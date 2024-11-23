@@ -1,19 +1,18 @@
 'use client'
 
-import { useState } from 'react'
-import { SETTINGSTAB } from 'app/utils/settingsTab.util'
-import SettingsNavigation from './components/SettingsNavigation'
-import Gutter from 'components/Gutter'
-import CabinetSettingsTab from './components/Settings'
-import CabinetChangePasswordTab from './components/ChangePassword'
-import dynamic from 'next/dynamic'
-import CabinetTransactionsHistory from './components/TransactionsHistory'
 import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
+import CabinetTransactionsHistory from './components/TransactionsHistory'
+import CabinetChangePasswordTab from './components/ChangePassword'
+import SettingsNavigation from './components/SettingsNavigation'
+import CabinetSettingsTab from './components/Settings'
+import Gutter from 'components/Gutter'
+import dynamic from 'next/dynamic'
 const CabinetProfileTab = dynamic(() => import('./components/Profile'), {
   ssr: false,
 })
-import { useEffect } from 'react'
 
 function UserCabinet() {
   const [tab, setTab] = useState(SETTINGSTAB.PROFILE)
