@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,7 +14,6 @@ import Notification from './Notification'
 
 const Navbar = () => {
   const path = usePathname()
-  const { userAuth } = useSelector((state) => state.auth)
   const [isModalOpen, setModalOpen] = useState(false)
 
   return (
@@ -44,11 +42,8 @@ const Navbar = () => {
             <div className="flex w-max items-center justify-center gap-4">
               <ChangeLanguageDropdown />
               <Notification />
-              <NavbarUserMobile
-                handleToggleModal={() => setModalOpen(true)}
-                userAuth={userAuth}
-              />
-              <NavbarUserDesktop userAuth={userAuth} />
+              <NavbarUserMobile handleToggleModal={() => setModalOpen(true)} />
+              <NavbarUserDesktop />
             </div>
           </div>
         </Gutter>
