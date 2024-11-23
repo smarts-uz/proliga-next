@@ -514,5 +514,7 @@
   "Parolingizni unutingizmi?": "Забыли пароль?",
   "Login yoki parol xato": "Неверный логин или пароль",
   "Bunaqa raqamli foydalanuvchi yoq": "Пользователь с таким номером не существует",
-  "Telefon kiritilmagan": "Телефон не добавлен"
+  "Telefon kiritilmagan": "Телефон не добавлен",
+  "Sizning Ismingiz": "Ваше имя"
+  
 }
