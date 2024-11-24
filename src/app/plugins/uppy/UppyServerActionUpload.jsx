@@ -1,4 +1,5 @@
 import { BasePlugin } from '@uppy/core'
+
 export default class UppyServerActionUpload extends BasePlugin {
   constructor(uppy, opts) {
     super(uppy, opts)
@@ -10,17 +11,20 @@ export default class UppyServerActionUpload extends BasePlugin {
       )
     }
     this.action = opts.action
-    this.formDataName = opts.formDataName || 'files'
-    this.fileName = opts.fileName || 'filename'
+    this.folderNames = opts.folderNames || []
+    
+    this.dir = opts.dir || 'uploads'
     this.handleUpload = this.handleUpload.bind(this)
   }
   async handleUpload(fileIDs) {
     const { uppy } = this
     const files = fileIDs.map((fileID) => uppy.getFile(fileID))
     const formData = new FormData()
-    files.forEach((file) => {
-      formData.append(this.formDataName, file.data)
-      formData.append(this.fileName, file.name)
+    formData.append('folderNames', this.folderNames)
+    formData.append('dir', this.dir)
+    files.forEach((file, index) => {
+      formData.append('files', file.data, file.name)
+      formData.append('subDir', this.folderNames[index])
     })
     this.uppy.emit('upload-started', files)
     await this.action(formData)

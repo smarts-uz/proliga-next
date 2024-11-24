@@ -10,8 +10,8 @@ import { useState } from 'react'
 import Uppy from '@uppy/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
-import UppyServerActionUpload from 'app/api/route'
-import { saveFile } from 'app/action/route'
+import UppyServerActionUpload from 'app/plugins/uppy/UppyServerActionUpload'
+import { saveFiles } from 'app/action/upload/route'
 import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 import { useUpdateUserPhoto } from 'app/hooks/user/useUpdateUserPhoto/useUpdateUserPhoto'
 
@@ -20,6 +20,10 @@ export const UppyUploader = () => {
   const { lang } = useSelector((state) => state.systemLanguage)
   const { userTable } = useSelector((state) => state.auth)
   const { updateUserPhoto } = useUpdateUserPhoto()
+  const [fileTypes, setFileTypes] = useState([])
+  const [fileNames, setFileNames] = useState([])
+
+  console.log(fileTypes, fileNames)
 
   const [uppy] = useState(() =>
     new Uppy({
@@ -32,23 +36,31 @@ export const UppyUploader = () => {
         maxNumberOfFiles: 1,
         minNumberOfFiles: 1,
       },
-      onBeforeFileAdded: (currentFile) => {
-        const modifiedFile = {
-          ...currentFile,
-          name: `${userTable?.id}.${currentFile.extension}`,
-        }
-        console.log(modifiedFile.name, currentFile?.extension)
-        modifiedFile.name &&
-          dispatch(setUserTempData({ photo: modifiedFile.name }))
-        return modifiedFile
-      },
     })
-      .use(UppyServerActionUpload, {
-        action: saveFile,
+      .on('file-added', (result) => {
+        setFileTypes((prev) => [...prev, result?.data?.type])
+        setFileNames((prev) => [...prev, userTable?.id.toString()])
       })
-      .on('upload-success', () => {
-        updateUserPhoto()
+      .use(UppyServerActionUpload, {
+        action: saveFiles,
+        dir: 'locales',
+        folderNames: fileNames || [],
       })
   )
+  // .on('upload-success', () => {
+  //   updateUserPhoto()
+  // })
+
+  //   onBeforeFileAdded: (currentFile) => {
+  //     const modifiedFile = {
+  //       ...currentFile,
+  //       name: `${userTable?.id}.${currentFile.extension}`,
+  //     }
+  //     modifiedFile.name &&
+  //       dispatch(setUserTempData({ photo: modifiedFile.name }))
+
+  //     return modifiedFile
+  //   },
+  // })
   return <Dashboard className="w-full rounded-xl" theme="dark" uppy={uppy} />
 }
