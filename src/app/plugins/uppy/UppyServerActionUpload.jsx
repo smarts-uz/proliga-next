@@ -12,9 +12,9 @@ export default class UppyServerActionUpload extends BasePlugin {
     }
     this.action = opts.action
     this.folderNames = opts.folderNames || []
-    
     this.dir = opts.dir || 'uploads'
     this.handleUpload = this.handleUpload.bind(this)
+    console.log(this.folderNames)
   }
   async handleUpload(fileIDs) {
     const { uppy } = this

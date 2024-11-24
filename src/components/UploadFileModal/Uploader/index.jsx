@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 import UppyServerActionUpload from 'app/plugins/uppy/UppyServerActionUpload'
 import { saveFiles } from 'app/action/upload/route'
-import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 import { useUpdateUserPhoto } from 'app/hooks/user/useUpdateUserPhoto/useUpdateUserPhoto'
 
 export const UppyUploader = () => {
@@ -22,8 +21,6 @@ export const UppyUploader = () => {
   const { updateUserPhoto } = useUpdateUserPhoto()
   const [fileTypes, setFileTypes] = useState([])
   const [fileNames, setFileNames] = useState([])
-
-  console.log(fileTypes, fileNames)
 
   const [uppy] = useState(() =>
     new Uppy({
@@ -41,6 +38,14 @@ export const UppyUploader = () => {
         setFileTypes((prev) => [...prev, result?.data?.type])
         setFileNames((prev) => [...prev, userTable?.id.toString()])
       })
+      // .on('upload-success', () => {
+      //   setFileTypes([])
+      //   setFileNames([])
+      // })
+      // .on('upload-error', () => {
+      //   setFileTypes([])
+      //   setFileNames([])
+      // })
       .use(UppyServerActionUpload, {
         action: saveFiles,
         dir: 'locales',

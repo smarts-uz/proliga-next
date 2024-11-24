@@ -23,7 +23,6 @@ import BannerSlice from './features/banner/banner.slice.js'
 import systemConfigSlice from './features/systemConfig/systemConfig.slice.js'
 
 export const rootReducer = combineReducers({
-  // playerResult: PlayerResultSlice,
   auth: AuthSlice,
   competition: CompetitionSlice,
   players: PlayersSlice,
