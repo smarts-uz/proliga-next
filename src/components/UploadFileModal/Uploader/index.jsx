@@ -6,20 +6,26 @@ import '@uppy/core/dist/style.min.css'
 import Russian from '@uppy/locales/lib/ru_RU'
 import Uzbek from '@uppy/locales/lib/uz_UZ'
 import { Dashboard } from '@uppy/react'
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Uppy from '@uppy/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { LANGUAGE } from 'app/utils/languages.util'
-import UppyServerActionUpload from 'app/api/route'
-import { saveFile } from 'app/action/route'
-import { setUserTempData } from 'app/lib/features/auth/auth.slice'
 import { useUpdateUserPhoto } from 'app/hooks/user/useUpdateUserPhoto/useUpdateUserPhoto'
+import UppyServerActionUpload from 'app/plugins/UploadFile/UppyServerActionUpload'
+import { saveFile } from 'app/action/upload/saveFile.action'
+import { useSelector } from 'react-redux'
+import { LANGUAGE } from 'app/utils/languages.util'
+import mime from 'mime'
 
 export const UppyUploader = () => {
-  const dispatch = useDispatch()
   const { lang } = useSelector((state) => state.systemLanguage)
   const { userTable } = useSelector((state) => state.auth)
   const { updateUserPhoto } = useUpdateUserPhoto()
+  const [fileType, setFileType] = useState('')
+  const dir = useMemo(() => 'user', [])
+  const subDir = useMemo(() => userTable?.id.toString() || '', [userTable])
+  const path = useMemo(
+    () => `/${dir}/${subDir}/image.${fileType}`,
+    [dir, subDir, fileType]
+  )
 
   const [uppy] = useState(() =>
     new Uppy({
@@ -27,28 +33,32 @@ export const UppyUploader = () => {
       allowMultipleUploadBatches: false,
       locale: lang === LANGUAGE.uz ? Uzbek : Russian,
       restrictions: {
-        maxFileSize: 5242880, //5mb
-        allowedFileTypes: ['image/png', 'image/jpeg', 'image/webp'],
+        maxFileSize: 5 * 1024 * 1024, // 5 mb
+        allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
         maxNumberOfFiles: 1,
         minNumberOfFiles: 1,
       },
-      onBeforeFileAdded: (currentFile) => {
-        const modifiedFile = {
-          ...currentFile,
-          name: `${userTable?.id}.${currentFile.extension}`,
-        }
-        console.log(modifiedFile.name, currentFile?.extension)
-        modifiedFile.name &&
-          dispatch(setUserTempData({ photo: modifiedFile.name }))
-        return modifiedFile
-      },
+    }).use(UppyServerActionUpload, {
+      action: saveFile,
+      dir,
+      subDir,
     })
-      .use(UppyServerActionUpload, {
-        action: saveFile,
-      })
-      .on('upload-success', () => {
-        updateUserPhoto()
-      })
   )
+
+  useEffect(() => {
+    uppy.on('file-added', async (result) => {
+      setFileType(mime.getExtension(result.data.type))
+    })
+  }, [uppy])
+
+  useEffect(() => {
+    if (fileType && path) {
+      uppy.on('upload-success', async () => {
+        await updateUserPhoto(path)
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uppy, path, fileType])
+
   return <Dashboard className="w-full rounded-xl" theme="dark" uppy={uppy} />
 }

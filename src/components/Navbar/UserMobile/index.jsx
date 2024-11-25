@@ -18,7 +18,7 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
       )}
       {userTable?.email && userTable?.photo && (
         <img
-          src={process.env.NEXT_PUBLIC_URL + '/avatar/' + userTable?.photo}
+          src={process.env.NEXT_PUBLIC_URL + userTable?.photo}
           alt="user"
           width={32}
           draggable={false}

@@ -1,1 +1,0 @@
-<div data-v-046119b6="" class="ui-tooltip__reference"><img class="fantasy-player-item__tshirt" src="https://pictures.cdn.sports.ru/jhaHIng9qF23-qKXf8lF8pYqBt9-DMqWFfaqpgSAfII/fill/72/67/no/1/czM6Ly9zcG9ydHMtYmFja2VuZC1zdGF0LXBpY3R1cmVzLXh3enltd3NyL0ZBTlRBU1lfS0lUL3Bhcm1hX25ld18yMDI0MDgxMzE2MDIuc3Zn.svg" alt="Корви" loading="lazy"></div>
