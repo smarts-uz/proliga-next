@@ -9,20 +9,22 @@ export const useUpdateUserPhoto = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const { userAuth, userTable, temp } = useSelector((state) => state.auth)
+  const { userAuth, userTable } = useSelector((state) => state.auth)
   const { t } = useTranslation()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 
-  const updateUserPhoto = async () => {
+  const updateUserPhoto = async (path) => {
     try {
       setIsLoading(true)
       setError('')
+      console.log(path, 'path')
 
-      if (!temp || !temp.photo) {
+      if (!path) {
         setError(t('Rasmni tanlang'))
         toast.warning(t('Rasmni tanlang'), { theme: 'dark' })
         return
       }
+
       if (!userAuth || !userTable) {
         setError('User not authenticated')
         toast.error(t('Foydalanuvchi autentifikatsiya qilinmagan'), {
@@ -34,7 +36,7 @@ export const useUpdateUserPhoto = () => {
       const { data, error } = await supabase
         .from('user')
         .update({
-          photo: temp.photo,
+          photo: path,
         })
         .eq('guid', userAuth.user.id)
         .select()
@@ -42,11 +44,10 @@ export const useUpdateUserPhoto = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
-        console.log(data)
         dispatch(setUserTable(data))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         toast.success(`Rasm muvofaqiyatli yuklandi`, { theme: 'dark' })
@@ -54,7 +55,7 @@ export const useUpdateUserPhoto = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }
