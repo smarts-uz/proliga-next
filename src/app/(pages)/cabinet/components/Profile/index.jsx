@@ -8,6 +8,7 @@ import RefillBalanceModal from 'components/RefillBalanceModal'
 import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 
 const CabinetProfileTab = ({ setSettingsTab }) => {
   const { userTable, userAuth } = useSelector((store) => store.auth)
@@ -42,10 +43,15 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
     }
   }
 
+  const handleClick = (value) => {
+    navigator.clipboard.writeText(value)
+    toast.info('Successfully copied to clipboard!', { theme: 'dark' })
+  }
+
   return (
     <>
       <section className="flex h-full w-full flex-1 flex-col gap-2 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex flex-wrap items-center gap-2 md:gap-4">
           {userTable?.email && !userTable?.photo && (
             <span className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
               {userAuth.user.email.slice(0, 1)}
@@ -104,12 +110,24 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             </div>
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
-          <button
-            onClick={setSettingsTab}
-            className="ml-auto hidden rounded border border-primary bg-black px-2 py-1 text-neutral-100 transition-all hover:bg-primary hover:text-black md:block"
-          >
-            {t('Tahrirlash')}
-          </button>
+          <div className="s ml-auto flex items-center justify-center gap-1 px-0 py-0 text-sm md:gap-2">
+            <p className="hidden sm:block">Foydalanuvchi Id:</p>
+            <div
+              className={
+                'flex cursor-pointer items-center justify-center gap-0.5 rounded-md border bg-primary/75 px-2 py-0.5 text-base text-black transition-all hover:bg-primary hover:underline'
+              }
+              onClick={() => handleClick(userTable?.id)}
+            >
+              <Image
+                width="20"
+                height="20"
+                className="filter-black size-5"
+                src="/icons/copy.svg"
+                alt="copy"
+              />
+              {userTable?.id}
+            </div>
+          </div>
         </div>
         <section className="flex flex-col gap-2">
           <h3 className="font-medium capitalize">{t('Qisqacha Malumot')}:</h3>

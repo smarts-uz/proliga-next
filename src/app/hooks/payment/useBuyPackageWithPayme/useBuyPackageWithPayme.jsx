@@ -37,13 +37,12 @@ export const useBuyPackageWithPayme = () => {
 
       const url = new URL('https://checkout.paycom.uz')
       const m = process.env.NEXT_PUBLIC_PAYME_EXPENSE_ID // merchant id
-      const ac = { team_id: currentTeam?.id, package_id: currentPackage?.id } // account
       const a = currentPackage?.price * 100 // amount
       const l = lang
       const cr = 4217 // UZS
       const ct = 15000 // Millinseconds to wait
       const encoded = btoa(
-        `m=${m};ac.user_id=${ac};a=${a};l=${l};c=${RETURN_URL};ct=${ct};cr=${cr};`
+        `m=${m};ac.team_id=${currentTeam?.id};ac.package_id=${currentPackage?.id};a=${a};l=${l};c=${RETURN_URL};ct=${ct};cr=${cr};`
       )
       router.push(url.href + encoded)
     } catch (error) {

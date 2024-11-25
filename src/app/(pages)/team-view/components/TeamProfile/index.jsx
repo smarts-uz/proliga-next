@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ProfilePlayersStructure from './PlayersStructure'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { BANNER } from 'app/utils/banner.util'
 const GameBrief = dynamic(() => import('./GameBrief'), {

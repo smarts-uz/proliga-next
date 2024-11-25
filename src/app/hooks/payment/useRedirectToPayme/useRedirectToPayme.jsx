@@ -32,7 +32,7 @@ export const useRedirectToPayme = () => {
 
       const url = new URL('https://checkout.paycom.uz')
       const m = process.env.NEXT_PUBLIC_PAYME_ID // merchant id
-      const ac = { user_id: userTable?.id } // account
+      const ac = userTable?.id // account
       const a = amount * 100 // amount
       const l = lang
       const cr = 4217 // UZS
