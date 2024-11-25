@@ -24,7 +24,10 @@ export default function RootLayout({ children }) {
     <html lang="uz">
       <head>
         <title>Proliga.uz</title>
-        <meta name="description" content="Bu sportlar haqida web sayt" />
+        <meta
+          name="description"
+          content="Proliga Fantasy Futbol - bu vertual futbol o'yini bo'lib, unda ishtirokchilar haqiqiy futbol ligalarining haqiqiy o'yinchilariga asoslangan vertual jamoalarning murabbiylari bo'lishadi. Ushbu o'yinda ishtirokchilar futbolchilarnii tanlash orqali o'z jamoalarini yaratadilar va haqiqiy o'yinlariga qarab ochko oladilar. "
+        />
         <link rel="icon" href="./favicon.svg" type="image/x-icon" />
       </head>
       <ReduxProvider>
