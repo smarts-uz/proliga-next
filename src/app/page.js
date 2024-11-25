@@ -15,9 +15,9 @@ function Home() {
   const { generate } = useGenerateLanguage()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    generate()
-  }, [])
+  // useEffect(() => {
+  //   generate()
+  // }, [])
 
   useEffect(() => {
     dispatch(fetchPrizes())

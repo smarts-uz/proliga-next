@@ -1,9 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useEffect, useState } from 'react'
 import { TOUR } from 'app/utils/tour.util'
+import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import Image from 'next/image'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
@@ -42,11 +44,16 @@ const GameBrief = () => {
     }
   }, [currentTourIndex, tours, tourTeams])
 
+  const handleClick = (value) => {
+    navigator.clipboard.writeText(value)
+    toast.info('Successfully copied to clipboard!', { theme: 'dark' })
+  }
+
   return (
     <section
       className={`${
         isLoading ? 'justify-center' : 'justify-between'
-      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[36rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min xl:gap-6`}
+      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[36rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min`}
     >
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
@@ -54,6 +61,30 @@ const GameBrief = () => {
         </div>
       ) : (
         <>
+          <Container className="border-b border-neutral-700">
+            <Item>
+              <Title className="">{t('ID')}</Title>
+              <Content
+                className={
+                  'flex cursor-pointer items-center justify-center gap-0.5 hover:underline'
+                }
+                onClick={() => handleClick(currentTeam?.id)}
+              >
+                <Image
+                  width="20"
+                  height="20"
+                  className="filter-white size-5"
+                  src="/icons/copy.svg"
+                  alt="copy"
+                />
+                {currentTeam?.id}
+              </Content>
+            </Item>
+            <Item>
+              <Title>{t('Nomi')}</Title>
+              <Content>{currentTeam?.name}</Content>
+            </Item>
+          </Container>
           <Container className="border-b border-neutral-700">
             <Item>
               <Title> {t('Keyingi Tur')}</Title>
@@ -140,14 +171,9 @@ const GameBrief = () => {
 
 const Container = ({ children, className }) => {
   return (
-    <div
-      className={`flex flex-col gap-2 pb-2 md:gap-4 lg:gap-2 xl:gap-4 ${className}`}
-    >
-      {children}
-    </div>
+    <div className={`flex flex-col gap-2 pb-2 ${className}`}>{children}</div>
   )
 }
-
 const Item = ({ children, className }) => {
   return (
     <div className={`flex justify-between gap-1 ${className}`}>{children}</div>
@@ -162,9 +188,10 @@ const Title = ({ children, className }) => {
   )
 }
 
-const Content = ({ children, className }) => {
+const Content = ({ children, className, onClick }) => {
   return (
     <p
+      onClick={onClick}
       className={`text-end text-sm uppercase text-primary md:text-base ${className}`}
     >
       {children}
