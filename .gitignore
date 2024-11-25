@@ -8,7 +8,9 @@
 
 # testing
 /coverage
-/public/avatar
+/public/user
+/public/uploads
+/public/player
 
 # next.js
 /.next/
