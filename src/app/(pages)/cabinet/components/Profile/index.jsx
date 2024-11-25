@@ -52,8 +52,8 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             </span>
           )}
           {userTable?.email && userTable?.photo && (
-            <img
-              src={process.env.NEXT_PUBLIC_URL + userTable?.photo}
+            <Image
+              src={userTable?.photo}
               alt="user"
               width={32}
               draggable={false}
