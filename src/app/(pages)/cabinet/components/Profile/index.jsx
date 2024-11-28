@@ -64,8 +64,7 @@ const CabinetProfileTab = () => {
               width={32}
               draggable={false}
               height={32}
-              unoptimized={true}
-              key={userTable?.name}
+              key={userTable?.photo}
               className="size-16 rounded-full bg-white md:size-20"
             />
           )}

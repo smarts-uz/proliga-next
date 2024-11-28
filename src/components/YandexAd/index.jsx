@@ -1,39 +1,40 @@
-import { useEffect } from 'react'
-import Head from 'next/head'
+import Script from 'next/script'
 
-const YandexAd = () => {
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://an.yandex.ru/system/context.js'
-    script.async = true
-    script.onload = () => {
-      if (window.yandexContext) {
-        window.yandexContext.refresh()
-      }
-    }
-    document.body.appendChild(script)
-  }, [])
-
+export default function YandexAd({ blockId }) {
+  const renderToId = `yandex_rtb_${blockId}`
   return (
     <div>
-      <Head>
-        <script type="text/javascript">
-          {`
-            (function(w, d, s, t, id) {
-                w[id] = w[id] || [];
-                w[id].push({ 'script': s, 'onload': function() { console.log('Yandex Ad loaded'); } });
-                var f = d.getElementsByTagName(t)[0], j = d.createElement(t);
-                j.src = s;
-                j.async = true;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, 'https://an.yandex.ru/system/context.js', 'script', 'yandexContext');
-          `}
-        </script>
-      </Head>
-      {/* This is where the ad will be injected */}
-      <div id="yandex-ad-1"></div>
+      <Script
+        id={`yandex-context-script-${blockId}`}
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+                        (function(w, d, n, s, t) {
+                            w[n] = w[n] || [];
+                            w[n].push(function() {
+                                Ya.Context.AdvManager.render({
+                                    blockId: "${blockId}",
+                                    renderTo: "${renderToId}",
+                                    async: true
+                                });
+                            });
+                            t = d.getElementsByTagName("script")[0];
+                            s = d.createElement("script");
+                            s.type = "text/javascript";
+                            s.src = "//an.yandex.ru/system/context.js";
+                            s.async = true;
+                            t.parentNode.insertBefore(s, t);
+                        })(this, this.document, "yandexContextAsyncCallbacks");
+                    `,
+        }}
+      />
+      <Script
+        id="yandex-context-script"
+        strategy="afterInteractive"
+        src="//an.yandex.ru/system/context.js"
+        onError={(e) => console.error('Yandex script failed to load:', e)}
+      />
+      <div id={renderToId}></div>
     </div>
   )
 }
-
-export default YandexAd
