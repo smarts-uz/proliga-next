@@ -27,11 +27,6 @@ export default function YandexAd({ blockId }) {
                         })(this, this.document, "yandexContextAsyncCallbacks");
                     `,
         }}
-      />
-      <Script
-        id="yandex-context-script"
-        strategy="afterInteractive"
-        src="//an.yandex.ru/system/context.js"
         onError={(e) => console.error('Yandex script failed to load:', e)}
       />
       <div id={renderToId}></div>
