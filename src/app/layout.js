@@ -3,9 +3,6 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ReduxProvider from './store.provider'
-// import dynamic from 'next/dynamic'
-// const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
-// const Footer = dynamic(() => import('../components/Footer'), { ssr: false })
 import GetInitialState from './GetInitialState'
 import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'

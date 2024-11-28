@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { BANNER } from 'app/utils/banner.util'
 import { useMemo, useEffect } from 'react'
-import Script from 'next/script'
+import YandexAd from 'components/YandexAd'
 
 const AdModal = ({ isModalOpen, setModalOpen }) => {
   const { banners } = useSelector((store) => store.banner)
@@ -50,31 +50,7 @@ const AdModal = ({ isModalOpen, setModalOpen }) => {
             className="aspect-video h-full w-full rounded"
           />
         </Link>
-        <div id="yandex_rtb_R-A-13081280-1"></div>
-        <Script
-          id="random"
-          strategy="afterInteractive"
-          src="https://an.yandex.ru/system/context.js"
-          onLoad={() => {
-            if (
-              window.Ya &&
-              window.Ya.Context &&
-              window.Ya.Context.AdvManager
-            ) {
-              window.Ya.Context.AdvManager.render({
-                blockId: 'R-A-13081280-1',
-                renderTo: 'yandex_rtb_R-A-13081280-1',
-              })
-            } else {
-              console.error(
-                'Yandex ad script failed to load or Ya is not defined.'
-              )
-            }
-          }}
-          onError={(e) => {
-            console.error('Failed to load Yandex script:', e)
-          }}
-        />
+        <YandexAd blockId="R-A-13081280-1" />
         <DialogTitle className="hidden">Ad title</DialogTitle>
         <DialogDescription className="hidden">Ad Descriptor</DialogDescription>
       </DialogContent>
