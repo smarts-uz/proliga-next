@@ -21,10 +21,9 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
           src={userTable?.photo}
           alt="user"
           width={32}
-          unoptimized={true}
           draggable={false}
           height={32}
-          key={userTable?.name}
+          key={userTable?.photo}
           className="size-8 rounded-full bg-white"
         />
       )}
