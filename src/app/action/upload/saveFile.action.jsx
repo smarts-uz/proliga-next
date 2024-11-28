@@ -20,16 +20,23 @@ export async function saveFile(formData) {
   )
   const dirExists = existsSync(join(process.cwd(), `/public/${dir}`, subDir))
 
-  if (dirExists) {
-    await writeFile(path, buffer)
-  } else {
-    await mkdir(join(process.cwd(), `/public/${dir}`, subDir), {
-      recursive: true,
-    }).then(async () => await writeFile(path, buffer))
-  }
+  try {
+    if (dirExists) {
+      await writeFile(path, buffer)
+    } else {
+      await mkdir(join(process.cwd(), `/public/${dir}`, subDir), {
+        recursive: true,
+      }).then(async () => await writeFile(path, buffer))
+    }
 
-  return {
-    status: 201,
-    body: path,
+    return {
+      status: 201,
+      body: path,
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      body: error,
+    }
   }
 }
