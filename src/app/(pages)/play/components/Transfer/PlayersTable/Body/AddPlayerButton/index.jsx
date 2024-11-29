@@ -63,7 +63,7 @@ const AddPlayerButton = ({
           alt="plus"
           width={24}
           draggable={false}
-          className={`filter-neutral-400 size-5 select-none opacity-80 sm:size-6`}
+          className={`filter-neutral-400 size-5 h-full w-full select-none opacity-80 sm:size-6`}
           height={24}
         />
       </td>

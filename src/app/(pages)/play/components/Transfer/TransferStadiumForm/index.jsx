@@ -227,7 +227,7 @@ const TransferStadiumForm = () => {
       </div>
       <Button
         type="submit"
-        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black md:text-base"
+        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:text-black md:text-base"
       >
         {t('Saqlash')}
       </Button>

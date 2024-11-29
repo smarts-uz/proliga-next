@@ -27,7 +27,7 @@ const News = () => {
   }
 
   return (
-    <div className="relative mx-auto flex h-min min-h-[38rem] min-w-full lg:min-w-64 max-w-[32rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto xl:flex-1 xl:p-5">
+    <div className="relative mx-auto flex h-min min-h-[38rem] min-w-full max-w-[32rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto lg:min-w-72 xl:flex-1 xl:p-5">
       <h3 className="items-start self-start text-xl font-semibold">
         {t('Yangiliklar')}
       </h3>

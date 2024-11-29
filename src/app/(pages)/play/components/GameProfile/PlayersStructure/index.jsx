@@ -2,7 +2,7 @@ import Player from './Player'
 import { useSelector } from 'react-redux'
 import StadiumSpinner from '../../StadiumSpinner'
 
-const ProfilePlayersStructure = ({ allowDelete = true }) => {
+const ProfilePlayersStructure = () => {
   const { GOA, DEF, MID, STR, isLoading } = useSelector(
     (state) => state.teamPlayers
   )

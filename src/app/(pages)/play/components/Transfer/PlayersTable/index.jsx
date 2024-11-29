@@ -32,12 +32,32 @@ function PlayersTable() {
   const { t } = useTranslation()
   const { lang } = useSelector((state) => state.systemLanguage)
   const [data, setData] = useState([])
+  const [playersCount, setPlayersCount] = useState(0)
+
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 9,
+    pageSize: 10,
   })
   const { isLoading } = useSelector((state) => state.players)
   const selectedPlayers = useSelector(selectPlayers)
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
   useEffect(() => {
     if (selectedPlayers?.length > 0) {
       setData(selectedPlayers)
@@ -111,8 +131,16 @@ function PlayersTable() {
     },
   })
 
+  useEffect(() => {
+    if (windowWidth >= 1024 && windowWidth <= 1280) {
+      table.setPageSize(8)
+    } else {
+      table.setPageSize(10)
+    }
+  }, [windowWidth, table])
+
   return (
-    <div className="fade-in-fast min-h-auto h-min w-auto border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black px-2 py-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 xs:px-3 sm:px-4 md:text-sm lg:w-1/2">
+    <div className="fade-in-fast min-h-auto mx-auto h-min w-auto max-w-[40rem] border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black px-2 py-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 xs:px-3 sm:px-4 md:text-sm lg:w-1/2 lg:max-w-[28rem] xl:max-w-[34rem] 2xl:max-w-[36rem]">
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
           <div className="loader" />
@@ -120,7 +148,7 @@ function PlayersTable() {
       ) : (
         <>
           <TeamOverview />
-          <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-3 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 md:text-sm lg:text-base xl:gap-y-2">
+          <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 lg:grid-rows-2 xl:grid-rows-1 xl:gap-y-1.5 2xl:text-sm">
             {table
               .getHeaderGroups()
               .map((headerGroup) =>
@@ -132,7 +160,7 @@ function PlayersTable() {
                 ))
               )}
           </div>
-          <table className="w-full min-w-80 table-auto text-sm">
+          <table className="w-full min-w-80 table-auto text-xs xl:text-sm">
             <TransferTableHead table={table} />
             <TransferTableBody table={table} flexRender={flexRender} />
           </table>

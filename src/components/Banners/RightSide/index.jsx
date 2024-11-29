@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { BANNER } from 'app/utils/banner.util'

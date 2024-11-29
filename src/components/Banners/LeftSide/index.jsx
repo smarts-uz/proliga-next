@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
@@ -12,12 +11,11 @@ const LeftSideBanner = () => {
   const NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH =
     process.env.NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH
 
-  const [windowWidth, setWindowWidth] = useState(0)
-
   const banner = useMemo(
     () => banners.find((b) => b?.banner_type === BANNER.SIDE_BANNER_LEFT),
     [banners]
   )
+  const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
     const handleResize = () => {
