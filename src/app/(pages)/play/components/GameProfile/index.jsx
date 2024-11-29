@@ -13,7 +13,7 @@ const GameProfile = () => {
 
   return (
     <main className="flex w-full flex-col justify-between gap-2 lg:flex-row">
-      <div className="mt-0.5 h-auto w-full lg:w-1/2">
+      <div className="mt-0.5 h-auto w-full flex-grow lg:w-1/2 xl:flex-grow-0">
         <div className="relative h-auto w-full">
           <Image
             src="/icons/stadium.svg"

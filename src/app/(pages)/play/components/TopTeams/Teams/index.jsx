@@ -7,14 +7,14 @@ const RankingTeams = () => {
   const { topTeams } = useSelector((store) => store.teams)
 
   return (
-    <div className="w-full rounded-lg bg-black p-6 text-neutral-100">
+    <div className="w-full rounded-lg bg-black p-5 text-neutral-100">
       <h3 className="text-xl font-bold">{t('Eng kuchli top 3 jamoalar')}</h3>
       <div
         className={`mt-4 ${topTeams?.length > 0 ? 'grid' : ''} h-auto min-h-32 grid-cols-2 gap-2 xs:grid-cols-3`}
       >
         {topTeams?.length > 0 ? (
           topTeams?.map((team, index) => (
-            <TeamPlace team={team} index={index} key={index} />
+            <TeamPlace team={team} index={index} key={team?.id || index} />
           ))
         ) : (
           <div className="text-center">Yuqori ochkolik jamoalar yoq</div>

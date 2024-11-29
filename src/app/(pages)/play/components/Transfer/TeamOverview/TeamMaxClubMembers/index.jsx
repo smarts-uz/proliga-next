@@ -31,7 +31,7 @@ export default function TeamMaxClubMembers() {
             height={16}
           />
         </header>
-        <p className="text-2xl font-bold sm:text-3xl">
+        <p className="text-2xl font-bold xl:text-3xl">
           {currentTeam?.transfers_from_one_team ?? '0'}
         </p>
       </div>

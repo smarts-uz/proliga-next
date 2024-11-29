@@ -9,6 +9,8 @@ import { BANNER } from 'app/utils/banner.util'
 const GameBrief = dynamic(() => import('./GameBrief'), {
   ssr: false,
 })
+import LeftSideBanner from 'components/Banners/LeftSide'
+import RightSideBanner from 'components/Banners/RightSide'
 
 const TeamProfile = () => {
   const [windowWidth, setWindowWidth] = useState(0)
@@ -37,20 +39,8 @@ const TeamProfile = () => {
   }, [banners])
 
   return (
-    <main className="flex w-full flex-col justify-between gap-2 lg:flex-row">
-      {windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
-        <Link
-          href={leftBanner?.link ?? ''}
-          className="mb-auto hidden h-[540px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
-        >
-          <img
-            src={leftBanner?.content_url ?? ''}
-            alt={leftBanner?.name}
-            loading="lazy"
-            className="h-full w-full"
-          />
-        </Link>
-      )}
+    <main className="flex w-full flex-col justify-between gap-1.5 lg:flex-row">
+      <LeftSideBanner />
       <div className="mt-0.5 h-full w-full lg:w-1/2">
         <div className="relative h-auto w-full">
           <Image
@@ -65,19 +55,7 @@ const TeamProfile = () => {
         </div>
       </div>
       <GameBrief />
-      {windowWidth >= NEXT_PUBLIC_BANNER_TWO_RENDER_WIDTH && (
-        <Link
-          href={rightBanner?.link ?? ''}
-          className="mb-auto hidden h-[540px] w-[120px] min-w-[120px] overflow-hidden rounded bg-neutral-500 xl:block"
-        >
-          <img
-            src={rightBanner?.content_url ?? ''}
-            alt={rightBanner?.name}
-            loading="lazy"
-            className="h-full w-full"
-          />
-        </Link>
-      )}
+      <RightSideBanner />
     </main>
   )
 }
