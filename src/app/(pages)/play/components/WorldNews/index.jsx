@@ -14,7 +14,7 @@ const WorldNews = () => {
     <Gutter>
       <section className="mb-4 flex flex-col justify-between gap-2 py-6 lg:flex-row xl:gap-4">
         <Matches />
-        <section className="relative mx-auto hidden h-min flex-col items-center justify-between overflow-hidden md:flex lg:mx-0">
+        <section className="relative mx-auto h-min flex-col items-center justify-between overflow-hidden md:flex lg:mx-0">
           <MiniBanner />
           <BigBanner />
         </section>
