@@ -2,6 +2,11 @@ import Script from 'next/script'
 
 export default function YandexAd({ blockId }) {
   const renderToId = `yandex_rtb_${blockId}`
+
+  // if (typeof blockAdBlock === 'undefined') {
+  //   alert('Please disable your ad blocker to support our site!')
+  // }
+
   return (
     <div>
       <Script
