@@ -9,12 +9,12 @@ import {
 } from '@/components/ui/dialog'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { BANNER } from 'app/utils/banner.util'
-import { useMemo, useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import YandexAd from 'components/YandexAd'
 import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
+import { BANNER } from 'app/utils/banner.util'
 
-const AdModal = ({ isModalOpen, setModalOpen }) => {
+const ModalBanner = ({ isModalOpen, setModalOpen }) => {
   const [disabled, setDisabled] = useState(false)
   const { banners } = useSelector((store) => store.banner)
 
@@ -67,4 +67,4 @@ const AdModal = ({ isModalOpen, setModalOpen }) => {
   )
 }
 
-export default AdModal
+export default ModalBanner
