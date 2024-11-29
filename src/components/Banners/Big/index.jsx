@@ -31,7 +31,7 @@ const BigBanner = () => {
         </Link>
       )}
       {banner?.type === BANNER_SERVICE_TYPE.YANDEX && (
-        <div className="block h-[640px] w-[360px] overflow-hidden rounded">
+        <div className="block max-h-[800px] max-w-[360px] overflow-hidden rounded">
           <YandexAd blockId={banner?.service_id} />
         </div>
       )}
