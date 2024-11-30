@@ -1,7 +1,23 @@
 import Script from 'next/script'
 
-export default function YandexAd({ blockId }) {
+export default function YandexAd({ blockId, type = 'default' }) {
   const renderToId = `yandex_rtb_${blockId}`
+
+  const modalStyle =
+    type === 'modal'
+      ? {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 9999,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }
+      : {}
 
   return (
     <div>
@@ -30,7 +46,7 @@ export default function YandexAd({ blockId }) {
         }}
         onError={(e) => console.error('Yandex script failed to load:', e)}
       />
-      <div id={renderToId} style={{ width: '100%', height: 'auto' }}></div>
+      <div id={renderToId} style={{ ...modalStyle }}></div>
     </div>
   )
 }
