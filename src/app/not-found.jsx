@@ -12,21 +12,21 @@ export default function NotFound() {
             <div className="absolute inset-0 rounded-full bg-yellow-500"></div>
             <div className="absolute inset-2 rounded-full bg-gray-800"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl font-bold text-yellow-500">XATO</span>
+              <span className="text-2xl font-bold text-yellow-500">404</span>
             </div>
           </div>
           <h2 className="mb-4 text-2xl font-semibold text-yellow-400">
-            O&apos;yinda jarima!
+            Sahifa topilmadi
           </h2>
           <p className="mb-6 text-gray-300">
-            Afsuski, noqonuniy sahifa uchun bayroq ko&apos;tarildi. Hakam siz
-            qidirayotgan narsani topa olmayapti.
+            Kechirasiz, siz so&apos;ragan sahifa mavjud emas. Iltimos, manzilni
+            tekshiring yoki quyidagi havoladan foydalaning.
           </p>
           <Button
             asChild
             className="bg-yellow-500 text-gray-900 hover:bg-yellow-600"
           >
-            <Link href="/">Asosiy maydonga qaytish</Link>
+            <Link href="/">Bosh sahifaga qaytish</Link>
           </Button>
         </div>
       </Card>
