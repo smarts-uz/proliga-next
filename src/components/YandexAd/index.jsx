@@ -1,23 +1,7 @@
 import Script from 'next/script'
 
-export default function YandexAd({ blockId, type = 'default' }) {
+export default function YandexAd({ blockId, type = null }) {
   const renderToId = `yandex_rtb_${blockId}`
-
-  const modalStyle =
-    type === 'modal'
-      ? {
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 9999,
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }
-      : {}
 
   return (
     <div>
@@ -29,11 +13,15 @@ export default function YandexAd({ blockId, type = 'default' }) {
             (function(w, d, n, s, t) {
               w[n] = w[n] || [];
               w[n].push(function() {
-                Ya.Context.AdvManager.render({
+                const config = {
                   blockId: "${blockId}",
                   renderTo: "${renderToId}",
                   async: true
-                });
+                };
+                if (${type ? `"${type}"` : 'null'}) {
+                  config.type = "${type}";
+                }
+                Ya.Context.AdvManager.render(config);
               });
               t = d.getElementsByTagName("script")[0];
               s = d.createElement("script");
@@ -46,7 +34,7 @@ export default function YandexAd({ blockId, type = 'default' }) {
         }}
         onError={(e) => console.error('Yandex script failed to load:', e)}
       />
-      <div id={renderToId} style={{ ...modalStyle }}></div>
+      <div id={renderToId}></div>
     </div>
   )
 }
