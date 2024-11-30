@@ -34,7 +34,8 @@ const ModalBanner = ({ isModalOpen, setModalOpen }) => {
         <DialogTrigger className="hidden">Ad Trigger</DialogTrigger>
         <DialogContent
           closeButtonStyle="right-0 -top-8"
-          className="max-h-max w-[96%] rounded-md p-0 md:max-w-[80%] 2xl:w-full 2xl:max-w-[1280px]"
+          // className="max-h-max w-[96%] rounded-md p-0 md:max-w-[80%] 2xl:w-full 2xl:max-w-[1280px]"
+          className="max-h-max rounded-md p-0"
         >
           {banner?.type === BANNER_SERVICE_TYPE.CUSTOM && (
             <Link
