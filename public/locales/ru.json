@@ -516,5 +516,16 @@
   "Rasm muvofaqiyatli yuklandi": "Изображение загружено успешно",
   "Nomi": "Название",
   "Foydalanuvchi Id:": "ID пользователя:",
-  "Vaqtinchalik varaqqa nusxalandi!": "Копировано в временной лист!"
+  "Vaqtinchalik varaqqa nusxalandi!": "Копировано в временной лист!",
+  "Buferga muvaffaqiyatli nusxalandi!": "Успешно скопировано в буфер обмена!",
+  "Oyinchilar yoq": "Игроков нет",
+  "Sahifa topilmadi": "Страница не найдена",
+  "Kechirasiz, siz so'ragan sahifa mavjud emas. Iltimos, manzilni tekshiring yoki quyidagi havoladan foydalaning.": "Извините, страница, на которую вы запросили, не существует. Проверьте адрес или воспользуйтесь ссылкой.",
+  "Bosh sahifaga qaytish": "Вернуться на главную страницу",
+  "XATO": "ОШИБКА",
+  "Qayta urinish": "Повторить попытку",
+  "Asosiy maydonga qaytish": "Возвращение в основное поле",
+  "Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish ustida ishlamoqda.": "К сожалению, произошла серверная ошибка. Наша команда работает над решением этой проблемы.",
+  "O'yinda texnik to'xtash!": "Техническая остановка в игре!",
+  "STOP": "СТОП"
 }
