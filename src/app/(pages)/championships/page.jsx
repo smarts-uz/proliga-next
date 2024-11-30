@@ -19,10 +19,9 @@ import Image from 'next/image'
 
 const Championships = () => {
   const dispatch = useDispatch()
-  const { userTable } = useSelector((state) => state.auth)
   const selectedCompetition = useSelector(selectCompetition)
   const { isLoading } = useSelector((state) => state.competition)
-  const { t } = useTranslation()
+  const { userTable } = useSelector((state) => state.auth)
   const { season } = useSelector((state) => state.season)
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const Championships = () => {
 
   return (
     <Gutter>
-      <section className="my-6 min-h-80 md:min-h-36 w-full rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-400">
+      <section className="my-6 min-h-80 w-full rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-400 md:min-h-36">
         <ChampionshipsTitle />
         {isLoading ? (
           <div className="flex items-center justify-center">

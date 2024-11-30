@@ -46,14 +46,14 @@ const GameBrief = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info(t('Vaqtinchalik varaqqa nusxalandi!'), { theme: 'dark' })
+    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
   }
 
   return (
     <section
       className={`${
         isLoading ? 'justify-center' : 'justify-between'
-      } fade-in-fast mx-auto flex h-full min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[36rem] lg:mx-0 lg:w-1/2 lg:gap-4 lg:px-8 xl:h-min`}
+      } fade-in-fast mx-auto flex h-min min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-5 transition-all hover:border-opacity-100 2xs:px-5 lg:mx-0 lg:w-1/2 lg:max-w-[24rem] lg:gap-4 lg:px-6 xl:h-min xl:max-w-[34rem]`}
     >
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
@@ -182,7 +182,7 @@ const Item = ({ children, className }) => {
 
 const Title = ({ children, className }) => {
   return (
-    <h3 className={`text-base text-neutral-100 md:text-lg ${className}`}>
+    <h3 className={`text-base text-neutral-100 xl:text-lg ${className}`}>
       {children}
     </h3>
   )
@@ -192,7 +192,7 @@ const Content = ({ children, className, onClick }) => {
   return (
     <p
       onClick={onClick}
-      className={`text-end text-sm uppercase text-primary md:text-base ${className}`}
+      className={`text-end text-sm uppercase text-primary xl:text-base ${className}`}
     >
       {children}
     </p>

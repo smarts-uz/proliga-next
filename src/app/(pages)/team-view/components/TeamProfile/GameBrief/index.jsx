@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useEffect, useState } from 'react'
 import { TOUR } from 'app/utils/tour.util'
-import Image from 'next/image'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import Image from 'next/image'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
@@ -38,11 +38,11 @@ const GameBrief = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info(t('Vaqtinchalik varaqqa nusxalandi!'), { theme: 'dark' })
+    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
   }
 
   return (
-    <section className="fade-in-fast mx-auto flex h-min min-h-96 w-full max-w-[32rem] flex-col justify-between gap-4 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-6 transition-all hover:border-opacity-100 2xs:px-6 md:max-w-[40rem] md:gap-4 md:px-8 lg:mx-0 lg:w-1/2 2xl:h-full">
+    <section className="fade-in-fast mx-auto flex h-min min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-5 transition-all hover:border-opacity-100 2xs:px-5 lg:mx-0 lg:w-1/2 lg:max-w-[26rem] lg:gap-3 lg:px-6 xl:h-min xl:max-w-[34rem] 2xl:max-w-[36rem]">
       {isLoading ? (
         <div className="flex h-full w-full items-center justify-center">
           <div className="loader" />

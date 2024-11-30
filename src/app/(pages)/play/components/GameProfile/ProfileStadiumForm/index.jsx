@@ -36,7 +36,7 @@ const ProfileStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          t("identifikatori ") +
+          t('identifikatori ') +
             player.id +
             t(" bo'lgan va ") +
             player.position +

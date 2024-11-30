@@ -11,8 +11,8 @@ const Transfer = () => {
   const { currentTour } = useSelector((state) => state.tours)
 
   return (
-    <main className="flex w-full flex-col justify-between gap-2 lg:flex-row">
-      <div className="mt-0.5 flex h-auto flex-col lg:w-1/2">
+    <main className="flex w-full flex-col justify-between gap-1 lg:flex-row">
+      <div className="mt-0.5 flex h-auto flex-grow flex-col lg:w-1/2 xl:flex-grow-0">
         <div className="relative h-auto w-full lg:w-full">
           <Image
             src="/icons/stadium.svg"

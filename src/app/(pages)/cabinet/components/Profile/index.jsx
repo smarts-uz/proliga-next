@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,9 +9,8 @@ import RefillBalanceModal from 'components/RefillBalanceModal'
 import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
-import { toast } from 'react-toastify'
 
-const CabinetProfileTab = ({ setSettingsTab }) => {
+const CabinetProfileTab = () => {
   const { userTable, userAuth } = useSelector((store) => store.auth)
   const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
@@ -45,7 +45,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info(t('Vaqtinchalik varaqqa nusxalandi!'), { theme: 'dark' })
+    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
   }
 
   return (
@@ -64,7 +64,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               width={32}
               draggable={false}
               height={32}
-              key={userAuth?.user.email}
+              key={userTable?.photo}
               className="size-16 rounded-full bg-white md:size-20"
             />
           )}
