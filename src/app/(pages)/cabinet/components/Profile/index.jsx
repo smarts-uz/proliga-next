@@ -45,7 +45,7 @@ const CabinetProfileTab = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info('Successfully copied to clipboard!', { theme: 'dark' })
+    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
   }
 
   return (
@@ -111,7 +111,7 @@ const CabinetProfileTab = () => {
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
           <div className="s ml-auto flex items-center justify-center gap-1 px-0 py-0 text-sm md:gap-2">
-            <p className="hidden sm:block">Foydalanuvchi IDsi:</p>
+            <p className="hidden sm:block">{t("Foydalanuvchi Id:")}</p>
             <div
               className={
                 'flex cursor-pointer items-center justify-center gap-0.5 rounded-md border bg-primary/75 px-2 py-0.5 text-base text-black transition-all hover:bg-primary hover:underline'

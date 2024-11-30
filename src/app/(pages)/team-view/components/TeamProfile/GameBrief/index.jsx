@@ -38,7 +38,7 @@ const GameBrief = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info('Successfully copied to clipboard!', { theme: 'dark' })
+    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
   }
 
   return (

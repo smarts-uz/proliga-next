@@ -21,7 +21,7 @@ const RankingPlayers = () => {
             />
           ))
         ) : (
-          <div>Oyinchilar yoq</div>
+          <div>{t("Oyinchilar yoq")}</div>
         )}
       </div>
     </div>

@@ -58,7 +58,7 @@ const ModalBanner = ({ isModalOpen, setModalOpen }) => {
         </Dialog>
       )}
       {banner?.type === BANNER_SERVICE_TYPE.YANDEX && (
-        <YandexAd type="fullscreen" blockId={banner?.service_id} />
+        <YandexAd type="modal" blockId={banner?.service_id} />
       )}
     </>
   )
