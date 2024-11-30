@@ -1,17 +1,17 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setUserTable } from './lib/features/auth/auth.slice'
+import { setUserAuth, setUserTable } from '../lib/features/auth/auth.slice'
 import { usePathname, useRouter } from 'next/navigation'
-import { setLanguage } from './lib/features/systemLanguage/systemLanguage.slice'
-import { LANGUAGE } from './utils/languages.util'
+import { setLanguage } from '../lib/features/systemLanguage/systemLanguage.slice'
+import { LANGUAGE } from '../utils/languages.util'
 import { useTranslation } from 'react-i18next'
 import {
   fetchAllNotifications,
   setupNotificationListener,
-} from './lib/features/systemNotification/systemNotification.thunk'
-import { fetchSystemConfig } from './lib/features/systemConfig/systemConfig.thunk'
+} from '../lib/features/systemNotification/systemNotification.thunk'
+import { fetchSystemConfig } from '../lib/features/systemConfig/systemConfig.thunk'
 
-const GetInitialState = ({ children }) => {
+const InitialStateProvider = ({ children }) => {
   const dispatch = useDispatch()
   const { userAuth, userTable } = useSelector((state) => state.auth)
   const { systemNotifications } = useSelector(
@@ -69,4 +69,4 @@ const GetInitialState = ({ children }) => {
   return children
 }
 
-export default GetInitialState
+export default InitialStateProvider
