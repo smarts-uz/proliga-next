@@ -2,7 +2,6 @@
 'use client'
 
 import { toast } from 'react-toastify'
-import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -11,7 +10,6 @@ import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
 
-const CabinetProfileTab = () => {
 const CabinetProfileTab = () => {
   const { userTable, userAuth } = useSelector((store) => store.auth)
   const { config } = useSelector((store) => store.systemConfig)
@@ -66,7 +64,6 @@ const CabinetProfileTab = () => {
               width={32}
               draggable={false}
               height={32}
-              key={userTable?.photo}
               key={userTable?.photo}
               className="size-16 rounded-full bg-white md:size-20"
             />
