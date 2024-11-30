@@ -151,7 +151,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
 
   return (
     <Gutter>
-      <div className="flex gap-1.5 2xl:gap-2">
+      <div className="flex gap-1.5">
         <LeftSideBanner />
         {currentTab === TABS.GameProfile && <GameProfile />}
         {currentTab === TABS.Transfer && <Transfer paramsId={paramsId} />}
