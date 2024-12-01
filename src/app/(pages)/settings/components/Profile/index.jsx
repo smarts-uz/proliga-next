@@ -54,7 +54,7 @@ const CabinetProfileTab = () => {
         <div className="flex flex-wrap items-center gap-2 md:gap-4">
           {userTable?.email && !userTable?.photo && (
             <span className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
-              {userAuth.user.email.slice(0, 1)}
+              {userTable.email.slice(0, 1)}
             </span>
           )}
           {userTable?.email && userTable?.photo && (
