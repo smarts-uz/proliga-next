@@ -110,12 +110,10 @@ const CabinetProfileTab = () => {
             </div>
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
-          <div className="s ml-auto flex items-center justify-center gap-1 px-0 py-0 text-sm md:gap-2">
-            <p className="hidden sm:block">{t('Foydalanuvchi Id:')}</p>
+          <div className="ml-auto flex items-center justify-center gap-1 px-0 py-0 text-sm md:gap-2">
+            <p className="block">{t('Foydalanuvchi Id:')}</p>
             <div
-              className={
-                'flex cursor-pointer items-center justify-center gap-0.5 rounded-md border bg-primary/75 px-2 py-0.5 text-base text-black transition-all hover:bg-primary hover:underline'
-              }
+              className="flex cursor-pointer items-center justify-center gap-0.5 rounded-md border bg-primary/75 px-2 py-0.5 text-base text-black transition-all hover:bg-primary hover:underline"
               onClick={() => handleClick(userTable?.id)}
             >
               <Image
