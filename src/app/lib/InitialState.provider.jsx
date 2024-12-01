@@ -31,10 +31,13 @@ const InitialStateProvider = ({ children }) => {
       localStorage.getItem(`user-table-${sbUrl}`) !== 'undefined' &&
       JSON.parse(localStorage.getItem(`user-table-${sbUrl}`))
 
-    if (auth && auth?.session?.access_token && !userAuth) {
+    if (
+      auth?.session?.access_token &&
+      table?.email &&
+      !userAuth &&
+      !userTable
+    ) {
       dispatch(setUserAuth(auth))
-    }
-    if (table && table.email && !userTable) {
       dispatch(setUserTable(table))
     }
     if (!auth && !table && path.slice(1, 5) === 'play') {
