@@ -19,25 +19,25 @@ export default function Error({ error, reset }) {
             <div className="absolute inset-0 rounded-full bg-red-500"></div>
             <div className="absolute inset-2 rounded-full bg-gray-800"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl font-bold text-red-500">{t("STOP")}</span>
+              <span className="text-2xl font-bold text-red-500">STOP</span>
             </div>
           </div>
           <h2 className="mb-4 text-2xl font-semibold text-red-400">
-            {t("O'yinda texnik to'xtash!")}
+            O&apos;yinda texnik to&apos;xtash!
           </h2>
           <p className="mb-6 text-gray-300">
-            {t("Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish ustida ishlamoqda.")}
-            
+            Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish
+            ustida ishlamoqda.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <Button
               onClick={reset}
               className="w-full bg-red-500 text-gray-900 hover:bg-red-600"
             >
-              {t("Qayta urinish")}
+              Qayta urinish
             </Button>
             <Button asChild variant="outline" className="w-full">
-              <Link href="/">{t("Asosiy maydonga qaytish")}</Link>
+              <Link href="/">Asosiy maydonga qaytish</Link>
             </Button>
           </div>
         </div>

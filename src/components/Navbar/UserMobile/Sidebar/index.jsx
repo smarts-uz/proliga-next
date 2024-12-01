@@ -136,7 +136,7 @@ const MobileSidebar = ({ isModalOpen, setModalOpen }) => {
             <>
               <SystemLink
                 handleToggle={() => setModalOpen(false)}
-                href="/cabinet"
+                href="/settings"
               >
                 <Image
                   width={24}

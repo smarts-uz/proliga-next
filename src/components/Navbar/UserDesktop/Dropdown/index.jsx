@@ -18,7 +18,7 @@ const Dropdown = () => {
       </NavLink>
       {userAuth ? (
         <>
-          <NavLink href="/cabinet">
+          <NavLink href="/settings">
             <Image
               width={24}
               height={24}
