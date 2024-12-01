@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useSelector } from 'react-redux'
 
 const NavbarUserMobile = ({ handleToggleModal }) => {
-  const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { userTable } = useSelector((state) => state.auth)
 
   return (
     <span
@@ -13,7 +13,7 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
     >
       {userTable?.email && !userTable?.photo && (
         <span className="flex size-8 select-none items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
-          {userAuth.user.email.slice(0, 1)}
+          {userTable?.email.slice(0, 1)}
         </span>
       )}
       {userTable?.email && userTable?.photo && (
@@ -34,7 +34,6 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
           width={32}
           draggable={false}
           height={32}
-          key={userAuth?.user.email}
           className="size-8 rounded-full bg-white"
         />
       )}
