@@ -11,24 +11,28 @@ import {
 } from '../lib/features/systemNotification/systemNotification.thunk'
 import { fetchSystemConfig } from '../lib/features/systemConfig/systemConfig.thunk'
 import { useGenerateFingerprint } from 'app/hooks/system/useGenerateFingerprint/useGenerateFingerprint'
+import { useUpdateUserFingerprint } from 'app/hooks/auth/useUpdateUserFingerprint/useUpdateUserFingerprint'
 
 const InitialStateProvider = ({ children }) => {
   const dispatch = useDispatch()
-  const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { userAuth, userTable, fingerprint } = useSelector(
+    (state) => state.auth
+  )
   const { systemNotifications } = useSelector(
     (state) => state.systemNotifications
   )
   const { generateFingerprint } = useGenerateFingerprint()
-
-  useEffect(() => {
-    generateFingerprint()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { updateUserFingerprint } = useUpdateUserFingerprint()
 
   const { lang } = useSelector((state) => state.systemLanguage)
   const { i18n } = useTranslation()
   const path = usePathname()
   const router = useRouter()
+
+  useEffect(() => {
+    generateFingerprint()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
@@ -76,6 +80,14 @@ const InitialStateProvider = ({ children }) => {
     dispatch(fetchSystemConfig())
     // console.log('Hello you sneaky developer, what are you doing here?')
   }, [dispatch])
+
+  useEffect(() => {
+    if (userTable?.id && userAuth?.user?.id && fingerprint) {
+      userTable?.visitor !== fingerprint &&
+        updateUserFingerprint({ id: userTable.guid })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fingerprint, userTable, userAuth])
 
   return children
 }

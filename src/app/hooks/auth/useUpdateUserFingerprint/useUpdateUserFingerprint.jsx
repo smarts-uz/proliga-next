@@ -1,25 +1,31 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 
-export const useGetUserTable = () => {
+export const useUpdateUserFingerprint = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
-  const [error, setError] = useState(null)
+  const { fingerprint, userTable } = useSelector((store) => store.auth)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const [data, setData] = useState(null)
-  const dispatch = useDispatch()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
-  const getUserTable = async ({ phone }) => {
+  const updateUserFingerprint = async ({ id }) => {
     setIsLoading(false)
     setError(null)
 
-    if (!phone) {
-      setError(t('Email yoki Telefon kiritilmagan'))
-      toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
+    if (!id) {
+      setError('ID kirilmagan')
+      toast.error(t('ID kiritilmagan'), { theme: 'dark' })
+      return
+    }
+    if (!fingerprint) {
+      setError('Fingerprint kirilmagan')
+      toast.error(t('Fingerprint kiritilmagan'), { theme: 'dark' })
       return
     }
 
@@ -28,20 +34,16 @@ export const useGetUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
+        .update({ visitor: fingerprint, visited_at: new Date() })
+        .eq('guid', id)
         .select('*')
-        .eq('phone', phone)
         .single()
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
-        return
-      }
-      if (!data) {
-        setError(t('Parol yoki telefon raqam notogri kiritilgan'))
-        toast.error(t('Parol yoki telefon raqam notogri kiritilgan'), {
-          theme: 'dark',
-        })
+        toast.error(error.message, { theme: 'dark' })
+        localStorage.removeItem(`user-table-${sbUrl}`)
+        localStorage.removeItem(`user-auth-${sbUrl}`)
         return
       }
       if (data) {
@@ -52,9 +54,11 @@ export const useGetUserTable = () => {
     } catch (error) {
       setError(error.message)
       toast.error(error.message, { theme: 'dark' })
+      localStorage.removeItem(`user-table-${sbUrl}`)
+      localStorage.removeItem(`user-auth-${sbUrl}`)
     } finally {
       setIsLoading(false)
     }
   }
-  return { getUserTable, isLoading, error, data }
+  return { updateUserFingerprint, isLoading, error, data }
 }

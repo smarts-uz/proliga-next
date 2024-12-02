@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 
