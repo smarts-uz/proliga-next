@@ -10,6 +10,7 @@ const Hero = dynamic(() => import('../components/Hero'), {
 const Promotions = dynamic(() => import('../components/Promotions'), {
   ssr: false,
 })
+import GeoIPInfo from 'components/GEOIPInfo'
 
 function Home() {
   const { generate } = useGenerateLanguage()
@@ -23,16 +24,12 @@ function Home() {
     dispatch(fetchPrizes())
   }, [dispatch])
 
-  // useEffect(() => {
-  //   function showPosition(position) {
-  //   }
-  //   navigator.geolocation.getCurrentPosition(showPosition)
-  // })
   return (
-    <section>
+    <>
+      {/* <GeoIPInfo /> */}
       <Hero />
       <Promotions />
-    </section>
+    </>
   )
 }
 
