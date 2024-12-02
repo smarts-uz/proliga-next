@@ -54,6 +54,7 @@ export const useSignUp = () => {
         localStorage.removeItem(`user-auth-${sbUrl}`)
         return
       }
+
       if (error) {
         toast.error(error.message, { theme: 'dark' })
         setError(error.message)
