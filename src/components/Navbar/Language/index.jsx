@@ -59,7 +59,7 @@ const ChangeLanguageDropdown = () => {
               className="size-6"
               height={24}
             />
-            <p className="hidden md:block">РУ</p>
+            <p className="hidden md:block">РУС</p>
           </div>
         </SelectItem>
       </SelectContent>

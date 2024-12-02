@@ -45,7 +45,7 @@ const CabinetProfileTab = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info('Buferga muvaffaqiyatli nusxalandi!', { theme: 'dark' })
+    toast.info(t('Buferga muvaffaqiyatli nusxalandi!'), { theme: 'dark' })
   }
 
   return (

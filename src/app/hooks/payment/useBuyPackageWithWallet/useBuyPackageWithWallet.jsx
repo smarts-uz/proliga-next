@@ -48,7 +48,7 @@ export const useBuyPackageWithWallet = () => {
       }
       if (data) {
         setData(data)
-        toast.success('Siz mufaqiyatli paket sotib olindigiz', {
+        toast.success(t('Siz mufaqiyatli paket sotib olindigiz'), {
           theme: 'dark',
         })
         router.push('/championships')

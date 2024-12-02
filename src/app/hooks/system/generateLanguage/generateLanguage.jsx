@@ -27,17 +27,17 @@ export const useGenerateLanguage = () => {
         setData(data)
         let obj = {}
         // uz
-        // data.map((item) => {
-        //   if (!item?.is_exclude) {
-        //     obj = { ...obj, [item.name]: item.uz }
-        //   }
-        // })
-        //ru
         data.map((item) => {
           if (!item?.is_exclude) {
-            obj = { ...obj, [item.name]: item.ru }
+            obj = { ...obj, [item.name]: item.uz }
           }
         })
+        //ru
+        // data.map((item) => {
+        //   if (!item?.is_exclude) {
+        //     obj = { ...obj, [item.name]: item.ru }
+        //   }
+        // })
         console.log(obj)
       }
     } catch (error) {
