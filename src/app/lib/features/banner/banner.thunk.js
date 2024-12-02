@@ -6,7 +6,7 @@ import { BANNER } from 'app/utils/banner.util'
 export const fetchBanners = createAsyncThunk('banner/fetchBanner', async () => {
   const { data, error } = await supabase
     .from('banner')
-    .select('id, name, content_url, link, banner_type, type, service_id')
+    .select('id, name, content_url, link, banner_type, type, service_id, is_mobile')
     .is('deleted_at', null)
     .in('banner_type', [
       BANNER.SIDE_BANNER_LEFT,
