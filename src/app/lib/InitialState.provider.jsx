@@ -10,6 +10,7 @@ import {
   setupNotificationListener,
 } from '../lib/features/systemNotification/systemNotification.thunk'
 import { fetchSystemConfig } from '../lib/features/systemConfig/systemConfig.thunk'
+import { useGenerateFingerprint } from 'app/hooks/system/useGenerateFingerprint/useGenerateFingerprint'
 
 const InitialStateProvider = ({ children }) => {
   const dispatch = useDispatch()
@@ -17,6 +18,13 @@ const InitialStateProvider = ({ children }) => {
   const { systemNotifications } = useSelector(
     (state) => state.systemNotifications
   )
+  const { generateFingerprint } = useGenerateFingerprint()
+
+  useEffect(() => {
+    generateFingerprint()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const { lang } = useSelector((state) => state.systemLanguage)
   const { i18n } = useTranslation()
   const path = usePathname()
