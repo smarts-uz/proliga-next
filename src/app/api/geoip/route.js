@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { NextResponse } from 'next/server'
 import { Reader } from '@maxmind/geoip2-node'
 import path from 'path'

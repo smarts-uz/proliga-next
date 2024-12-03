@@ -6,7 +6,7 @@ import { existsSync } from 'fs'
 import mime from 'mime'
 
 export async function saveFile(formData) {
-  const file = formData.getAll('files')[0] // getting the first file from files
+  const file = formData.getAll('files')[0]
   const dir = formData.get('dir')
   const subDir = formData.get('subDir')
 
