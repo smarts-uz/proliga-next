@@ -6,6 +6,7 @@ import { TOUR } from 'app/utils/tour.util'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { LANGUAGE } from 'app/utils/languages.util'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
@@ -19,6 +20,7 @@ const GameBrief = () => {
   const { teamPrice, teamBalance, tourTeams, currentTourTeam } = useSelector(
     (store) => store.tourTeams
   )
+  const { lang } = useSelector((store) => store.systemLanguage)
   const { t } = useTranslation()
   const date = new Date(nextTour?.datetime_start)
   const day = date.getDate()
@@ -143,7 +145,11 @@ const GameBrief = () => {
           <Container className="border-b border-neutral-700">
             <Item>
               <Title>{t('Chempionat')}</Title>
-              <Content>{currentTeam?.competition_id?.title}</Content>
+              <Content className="capitalize">
+                {lang === LANGUAGE.uz
+                  ? currentTeam?.competition_id?.name
+                  : currentTeam?.competition_id?.name_ru}
+              </Content>
             </Item>
             <Item>
               <Title className="text-neutral-100">{t("Ligadagi o'rin")}</Title>

@@ -1,4 +1,5 @@
 'use client'
+
 import GeoIPInfo from 'components/GEOIPInfo'
 import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
