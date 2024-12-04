@@ -50,7 +50,7 @@ export const useUpdateUserPhoto = () => {
       if (data) {
         dispatch(setUserTable(data))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
-        toast.success(`Rasm muvofaqiyatli yuklandi`, { theme: 'dark' })
+        toast.success(t('Rasm muvofaqiyatli yuklandi'), { theme: 'dark' })
         dispatch(setUserTempData(null))
       }
     } catch (error) {

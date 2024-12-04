@@ -11,6 +11,7 @@ import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice
 import { useTranslation } from 'react-i18next'
 import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
 import { tabsClasses } from '@mui/material'
+import { LANGUAGE } from 'app/utils/languages.util'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export default function TourTabs() {
   )
   const { tourTeams, currentTourTeam } = useSelector((state) => state.tourTeams)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { lang } = useSelector((store) => store.systemLanguage)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -114,9 +116,9 @@ export default function TourTabs() {
             }
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">
-                <h3 className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
-                  {item.name}
-                </h3>
+                <p className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
+                  {lang === LANGUAGE.uz ? item.name : item.name_ru}
+                </p>
                 <p className="max-w-28 text-[10px] capitalize text-neutral-200 sm:text-xs">
                   {getStatus(item.status)}
                 </p>
