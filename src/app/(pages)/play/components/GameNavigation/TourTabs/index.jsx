@@ -117,7 +117,7 @@ export default function TourTabs() {
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">
                 <p className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
-                  {lang === LANGUAGE.uz ? item.name : item.name_ru}
+                  {lang === LANGUAGE.uz ? item?.name : item?.name_ru}
                 </p>
                 <p className="max-w-28 text-[10px] capitalize text-neutral-200 sm:text-xs">
                   {getStatus(item.status)}
