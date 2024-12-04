@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { fetchMatches } from 'app/lib/features/matches/mathes.thunk'
 import { setMatchesTourIndex } from 'app/lib/features/matches/matches.slice'
+import { LANGUAGE } from 'app/utils/languages.util'
+import MatchSkeleton from './MatchSkeleton'
 
 const Matches = () => {
   const dispatch = useDispatch()
@@ -16,6 +18,7 @@ const Matches = () => {
   const { matches, tourIndex, isLoading } = useSelector(
     (state) => state.matches
   )
+  const { lang } = useSelector((store) => store.systemLanguage)
   const [currentTour, setCurrentTour] = useState(null)
   const { t } = useTranslation()
 
@@ -49,7 +52,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="relative mx-auto flex min-h-[36rem] w-full min-w-max max-w-[32rem] flex-1 flex-col gap-2 rounded-xl bg-neutral-900 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto lg:min-w-72 xl:flex-grow xl:p-5 2xl:max-w-[32rem]">
+    <div className="relative mx-auto flex h-min min-h-[38rem] w-full min-w-max max-w-[32rem] flex-1 flex-col gap-2 rounded-xl bg-neutral-900 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto lg:min-w-72 xl:flex-grow xl:p-5 2xl:max-w-[32rem]">
       <div className="flex w-full items-center justify-center gap-4">
         <button
           disabled={tourIndex === 0}
@@ -64,7 +67,9 @@ const Matches = () => {
             height={24}
           />
         </button>
-        <h2 className="text-xl font-semibold">{currentTour?.name}</h2>
+        <h2 className="text-xl font-semibold">
+          {lang === LANGUAGE.uz ? currentTour?.name : currentTour?.name_ru}
+        </h2>
         <button
           disabled={tourIndex === tours.length - 1}
           className="disabled:opacity-50"
@@ -81,24 +86,18 @@ const Matches = () => {
       </div>
       <div className="mt-4 flex flex-1 flex-col gap-1 overflow-x-scroll">
         {isLoading ? (
-          <div className="absolute bottom-0 left-0 right-0 top-[45%] w-full text-center">
-            <Image
-              src="/icons/loading.svg"
-              width={24}
-              height={24}
-              alt="loading"
-              className="mx-auto size-8 animate-spin"
-            />
-          </div>
+          Array.from({ length: 8 }).map((_, index) => (
+            <MatchSkeleton key={index} />
+          ))
         ) : (
           <>
             {matches?.length === 0 && (
-              <p className="mt-0 flex items-center justify-center text-center font-medium text-neutral-300">
+              <p className="text-muted-foreground mt-0 flex items-center justify-center text-center font-medium">
                 {t('Matchlar topilmadi!')}
               </p>
             )}
             {matches?.map((match, index) => (
-              <Match match={match} key={index} />
+              <Match key={index} match={match} />
             ))}
           </>
         )}

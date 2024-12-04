@@ -16,6 +16,8 @@ import { selectCompetition } from 'app/lib/features/competition/competition.sele
 import { fetchSeason } from 'app/lib/features/season/season.thunk'
 import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
+import { ChampionshipSkeleton } from './components/Skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const Championships = () => {
   const dispatch = useDispatch()
@@ -43,16 +45,16 @@ const Championships = () => {
   return (
     <Gutter>
       <section className="my-6 min-h-80 w-full rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-400 md:min-h-36">
-        <ChampionshipsTitle />
         {isLoading ? (
-          <div className="flex items-center justify-center">
-            <Image
-              src="/icons/loading.svg"
-              width={24}
-              height={24}
-              alt="loading"
-              className="mx-auto size-10 animate-spin"
-            />
+          <Skeleton className="mb-4 h-8 w-48" />
+        ) : (
+          <ChampionshipsTitle />
+        )}
+        {isLoading ? (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            {[...Array(4)].map((_, index) => (
+              <ChampionshipSkeleton key={index} />
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
