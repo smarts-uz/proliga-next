@@ -12,19 +12,19 @@ import {
 import { fetchSystemConfig } from '../lib/features/systemConfig/systemConfig.thunk'
 import { useGenerateFingerprint } from 'app/hooks/system/useGenerateFingerprint/useGenerateFingerprint'
 import { useUpdateUserFingerprint } from 'app/hooks/auth/useUpdateUserFingerprint/useUpdateUserFingerprint'
+import { fetchGeo } from './features/auth/auth.thunk'
+import { useUpdateUserGeo } from 'app/hooks/auth/useUpdateUserGeo/useUpdateUserGeo'
 
 const InitialStateProvider = ({ children }) => {
   const dispatch = useDispatch()
-  const { userAuth, userTable, fingerprint } = useSelector(
+  const { userAuth, userTable, fingerprint, geo } = useSelector(
     (state) => state.auth
   )
-  const { systemNotifications } = useSelector(
-    (state) => state.systemNotifications
-  )
+  const { lang } = useSelector((state) => state.systemLanguage)
+
   const { generateFingerprint } = useGenerateFingerprint()
   const { updateUserFingerprint } = useUpdateUserFingerprint()
-
-  const { lang } = useSelector((state) => state.systemLanguage)
+  const { updateUserGeo } = useUpdateUserGeo()
   const { i18n } = useTranslation()
   const path = usePathname()
   const router = useRouter()
@@ -33,6 +33,9 @@ const InitialStateProvider = ({ children }) => {
     generateFingerprint()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  useEffect(() => {
+    dispatch(fetchGeo())
+  }, [dispatch])
 
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
@@ -58,16 +61,16 @@ const InitialStateProvider = ({ children }) => {
   }, [dispatch, userAuth, userTable, router, path])
 
   useEffect(() => {
-    if (userTable?.id) {
+    if (userTable?.id && userAuth?.user?.id) {
       dispatch(fetchAllNotifications({ userId: userTable.id }))
     }
-  }, [dispatch, userTable])
+  }, [dispatch, userTable, userAuth])
 
   useEffect(() => {
-    if (userTable?.id) {
+    if (userTable?.id && userAuth?.user?.id) {
       dispatch(setupNotificationListener({ userId: userTable.id }))
     }
-  }, [dispatch, userTable, systemNotifications])
+  }, [dispatch, userTable, userAuth])
 
   useEffect(() => {
     if (lang !== userTable?.language && userTable?.id) {
@@ -85,6 +88,15 @@ const InitialStateProvider = ({ children }) => {
     if (userTable?.id && userAuth?.user?.id && fingerprint) {
       userTable?.visitor !== fingerprint &&
         updateUserFingerprint({ id: userTable.guid })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fingerprint, userTable, userAuth])
+
+  useEffect(() => {
+    if (userTable?.id && userAuth?.user?.id && geo && geo?.city) {
+      const { ip } = JSON.parse(userTable?.geo)
+
+      ip !== geo.ip && updateUserGeo({ id: userTable.guid })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fingerprint, userTable, userAuth])
