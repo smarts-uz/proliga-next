@@ -9,7 +9,7 @@ export const useUpdateUserData = () => {
   const dispatch = useDispatch()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { userAuth } = useSelector((state) => state.auth)
   const { t } = useTranslation()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 

@@ -5,22 +5,27 @@ import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 
-export const useUpdateUserTable = () => {
+export const useUpdateUserGeo = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
-  const { fingerprint, geo } = useSelector((store) => store.auth)
+  const { geo } = useSelector((store) => store.auth)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
-  const dispatch = useDispatch()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
-  const updateUserTable = async ({ id, email, phone }) => {
+  const updateUserGeo = async ({ id }) => {
     setIsLoading(false)
     setError(null)
 
-    if (!id || !phone || !email) {
-      setError('Email yoki Telefon kirilmagan')
-      toast.error(t('Email yokiTelefon kiritilmagan'), { theme: 'dark' })
+    if (!id) {
+      setError('ID kirilmagan')
+      toast.error(t('ID kiritilmagan'), { theme: 'dark' })
+      return
+    }
+    if (!geo) {
+      setError('Geo kirilmagan')
+      toast.error(t('Geo kirilmagan'), { theme: 'dark' })
       return
     }
 
@@ -29,13 +34,7 @@ export const useUpdateUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .update({
-          phone,
-          email,
-          visitor: fingerprint,
-          visited_at: new Date(),
-          geo: JSON.stringify(geo),
-        })
+        .update({ geo: JSON.stringify(geo) })
         .eq('guid', id)
         .select('*')
         .single()
@@ -61,5 +60,5 @@ export const useUpdateUserTable = () => {
       setIsLoading(false)
     }
   }
-  return { updateUserTable, isLoading, error, data }
+  return { updateUserGeo, isLoading, error, data }
 }
