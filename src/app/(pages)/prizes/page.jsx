@@ -34,7 +34,11 @@ const Prizes = () => {
   return (
     <section className="min-h-screen bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-8">
       <Gutter>
-        {isLoading ? <Skeleton className="mb-8 h-12 w-48" /> : <PrizesTitle />}
+        {isLoading ? (
+          <Skeleton className="mb-8 h-12 w-48 bg-neutral-500" />
+        ) : (
+          <PrizesTitle />
+        )}
         <div className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
           {isLoading
             ? [...Array(4)].map((_, index) => (
