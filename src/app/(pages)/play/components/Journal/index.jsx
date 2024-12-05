@@ -6,6 +6,7 @@ import JournalTable from './Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserActivity } from 'app/lib/features/userActivity/userActivity.thunk'
 import { useState, useEffect } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Journal() {
   const dispatch = useDispatch()
