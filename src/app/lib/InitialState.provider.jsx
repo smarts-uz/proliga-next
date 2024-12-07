@@ -33,6 +33,7 @@ const InitialStateProvider = ({ children }) => {
     generateFingerprint()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  
   useEffect(() => {
     dispatch(fetchGeo())
   }, [dispatch])
@@ -94,7 +95,9 @@ const InitialStateProvider = ({ children }) => {
 
   useEffect(() => {
     if (userTable?.id && userAuth?.user?.id && geo && geo?.city) {
-      const table = JSON.parse(userTable?.geo) ?? null
+      const table = userTable.geo && JSON.parse(userTable.geo)
+
+      if (!table.ip) return
 
       table?.ip !== geo.ip && updateUserGeo({ id: userTable.guid })
     }
