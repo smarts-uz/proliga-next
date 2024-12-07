@@ -9,7 +9,6 @@ export function useGetUserAgent() {
   const [error, setError] = useState(null)
 
   const getUserAgent = async () => {
-    console.log('executed')
     try {
       const ua = navigator.userAgent
       const browserRegex =
