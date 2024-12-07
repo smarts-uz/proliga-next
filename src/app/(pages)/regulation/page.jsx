@@ -13,6 +13,7 @@ const Regulation = () => {
 
   useEffect(() => {
     getPage('qoida')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
