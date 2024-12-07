@@ -13,6 +13,7 @@ const AboutUs = () => {
 
   useEffect(() => {
     getPage('about-us')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
