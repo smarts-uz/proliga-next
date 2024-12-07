@@ -2,8 +2,7 @@
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import ReduxProvider from './lib/store.provider'
-import InitialStateProvider from './lib/InitialState.provider'
+import RootProvider from './providers/Root.provider'
 import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
@@ -27,18 +26,16 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="./favicon.svg" type="image/x-icon" />
       </head>
-      <ReduxProvider>
+      <RootProvider>
         <body
           className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased`}
         >
-          <InitialStateProvider>
-            <Navbar />
-            {children}
-            <ToastContainer />
-            <Footer />
-          </InitialStateProvider>
+          <Navbar />
+          {children}
+          <ToastContainer />
+          <Footer />
         </body>
-      </ReduxProvider>
+      </RootProvider>
     </html>
   )
 }

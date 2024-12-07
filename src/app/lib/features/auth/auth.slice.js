@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { authExtraReducer } from './auth.extraReducer'
 
 const initialState = {
-  userAuth: null,
-  userTable: null,
-  temp: null,
   fingerprint: null,
+  userTable: null,
+  userAuth: null,
+  agent: null,
   geo: null,
-  geoLoading: false,
   geoError: null,
+  geoLoading: false,
+  temp: null,
 }
 
 const authSlice = createSlice({
@@ -33,6 +34,9 @@ const authSlice = createSlice({
     setGeo: (state, action) => {
       state.geo = action.payload
     },
+    setAgent: (state, action) => {
+      state.agent = action.payload
+    },
   },
   extraReducers: authExtraReducer,
 })
@@ -44,6 +48,7 @@ export const {
   setUserTempData,
   setFingerprint,
   setGeo,
+  setAgent,
 } = authSlice.actions
 
 export default authSlice.reducer
