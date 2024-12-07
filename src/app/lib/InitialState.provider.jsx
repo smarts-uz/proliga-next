@@ -94,9 +94,9 @@ const InitialStateProvider = ({ children }) => {
 
   useEffect(() => {
     if (userTable?.id && userAuth?.user?.id && geo && geo?.city) {
-      const { ip } = JSON.parse(userTable?.geo)
+      const table = JSON.parse(userTable?.geo) ?? null
 
-      ip !== geo.ip && updateUserGeo({ id: userTable.guid })
+      table?.ip !== geo.ip && updateUserGeo({ id: userTable.guid })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fingerprint, userTable, userAuth])
