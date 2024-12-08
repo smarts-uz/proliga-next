@@ -6,19 +6,22 @@ import {
   DialogDescription,
   DialogTitle,
 } from '@/components/ui/dialog'
+import YandexAd from 'components/YandexAd'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { useMemo, useState, useEffect } from 'react'
-import YandexAd from 'components/YandexAd'
-import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
 import { BANNER } from 'app/utils/banner.util'
+import { useMemo, useState, useEffect, memo } from 'react'
+import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
+import { useCreateBannerView } from 'app/hooks/system/useCreateBannerView/useCreateBannerView'
 
 const ModalBanner = ({ isModalOpen, setModalOpen }) => {
   const [disabled, setDisabled] = useState(false)
   const { banners } = useSelector((store) => store.banner)
+  const { userTable, userAuth, geo, agent } = useSelector((store) => store.auth)
   const NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH =
     process.env.NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH
   const [windowWidth, setWindowWidth] = useState(0)
+  const { createBannerView } = useCreateBannerView()
 
   const banner = useMemo(
     () =>
@@ -55,6 +58,15 @@ const ModalBanner = ({ isModalOpen, setModalOpen }) => {
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
+
+  useEffect(() => {
+    if (banner?.type === BANNER_SERVICE_TYPE.CUSTOM) {
+      if (banner?.id && userTable?.id && userAuth?.user?.id && geo && agent) {
+        createBannerView({ banner_id: banner?.id })
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [banner, windowWidth, agent, userTable?.id, userAuth?.user?.id, geo])
 
   return (
     <>
@@ -96,4 +108,4 @@ const ModalBanner = ({ isModalOpen, setModalOpen }) => {
   )
 }
 
-export default ModalBanner
+export default memo(ModalBanner)
