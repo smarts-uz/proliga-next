@@ -9,6 +9,7 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-phone-number-input/style.css'
 import './lib/i18n.config'
+import { useTranslation } from 'react-i18next'
 
 const dmSans = DM_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -16,8 +17,10 @@ const dmSans = DM_Sans({
 })
 
 export default function RootLayout({ children }) {
+  const { i18n } = useTranslation()
+
   return (
-    <html lang="uz">
+    <html lang={i18n.language || 'uz'}>
       <head>
         <title>Proliga.uz</title>
         <meta

@@ -275,7 +275,6 @@
   "tangaga oshirish": "",
   "transferlar": "трансферы",
   "Transferla sonini": "Увеличить количество переводов на ",
-  "ga oshirish": " ",
   "Balansni": "Увеличение баланса до",
   "To'lov usulini tanlang": "Выберите способ оплаты",
   "Payme orqali tolov qilish": "Оплата через Payme",
@@ -528,5 +527,11 @@
   "Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish ustida ishlamoqda.": "К сожалению, произошла серверная ошибка. Наша команда работает над решением этой проблемы.",
   "O'yinda texnik to'xtash!": "Техническая остановка в игре!",
   "STOP": "СТОП",
-  "Siz mufaqiyatli paket sotib olindigiz": "Вы успешно приобрели пакет"
+  "Siz mufaqiyatli paket sotib olindigiz": "Вы успешно приобрели пакет",
+  "Tanlash": "Выберите",
+  "Bir jamoa oyinchilari": "Игроки одной команды",
+  "Transfer": "Трансфер",
+  "O‘yiningizni mukammallikka yetkazing": "Совершенствуйте свою игру!",
+  "ga oshirish": " увеличить до",
+  "Iltimos, avval jamoani tanlang!": "Пожалуйста, сначала выберите команду! "
 }

@@ -275,7 +275,6 @@
   "tangaga oshirish": " tangacha oshirish",
   "transferlar": "transferlar",
   "Transferla sonini": "Transferla sonini",
-  "ga oshirish": "ga oshirish",
   "Balansni": "Balansni",
   "To'lov usulini tanlang": "To'lov usulini tanlang",
   "Payme orqali tolov qilish": "Payme orqali tolov qilish",
@@ -528,5 +527,11 @@
   "Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish ustida ishlamoqda.": "Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish ustida ishlamoqda.",
   "O'yinda texnik to'xtash!": "O'yinda texnik to'xtash!",
   "STOP": "STOP",
-  "Siz mufaqiyatli paket sotib olindigiz": "Siz mufaqiyatli paket sotib olindigiz"
+  "Siz mufaqiyatli paket sotib olindigiz": "Siz mufaqiyatli paket sotib olindigiz",
+  "Tanlash": "Tanlash",
+  "Bir jamoa oyinchilari": "Bir jamoa oyinchilari",
+  "Transfer": "Transfer",
+  "O‘yiningizni mukammallikka yetkazing": "O‘yiningizni mukammallikka yetkazing",
+  "ga oshirish": "ga ko‘tarish",
+  "Iltimos, avval jamoani tanlang!": "Iltimos, avval jamoani tanlang!"
 }

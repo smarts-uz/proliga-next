@@ -13,6 +13,7 @@ import { useUpdateUserFingerprint } from 'app/hooks/auth/useUpdateUserFingerprin
 import { useUpdateUserGeo } from 'app/hooks/auth/useUpdateUserGeo/useUpdateUserGeo'
 import { useGetUserAgent } from 'app/hooks/system/useGetUserAgent/useGetUserAgent'
 import { fetchGeo } from 'app/lib/features/auth/auth.thunk'
+import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
 
 const InitialStateProvider = ({ children }) => {
   const dispatch = useDispatch()
@@ -42,6 +43,10 @@ const InitialStateProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch(fetchSystemConfig())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(fetchPrizes())
   }, [dispatch])
 
   useEffect(() => {
