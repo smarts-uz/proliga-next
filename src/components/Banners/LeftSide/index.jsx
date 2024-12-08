@@ -1,15 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
+import YandexAd from 'components/YandexAd'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
 import { BANNER } from 'app/utils/banner.util'
-import YandexAd from 'components/YandexAd'
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, memo } from 'react'
+import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
+import { useCreateBannerView } from 'app/hooks/system/useCreateBannerView/useCreateBannerView'
 
 const LeftSideBanner = () => {
   const { banners } = useSelector((store) => store.banner)
+  const { userTable, userAuth, geo, agent } = useSelector((store) => store.auth)
   const NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH =
     process.env.NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH
+  const { createBannerView } = useCreateBannerView()
 
   const banner = useMemo(
     () => banners.find((b) => b?.banner_type === BANNER.SIDE_BANNER_LEFT),
@@ -32,6 +35,26 @@ const LeftSideBanner = () => {
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
+
+  useEffect(() => {
+    if (
+      windowWidth >= NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH &&
+      banner?.type === BANNER_SERVICE_TYPE.CUSTOM
+    ) {
+      if (banner?.id && userTable?.id && userAuth?.user?.id && geo && agent) {
+        createBannerView({ banner_id: banner?.id })
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    banner,
+    NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH,
+    windowWidth,
+    agent,
+    userTable?.id,
+    userAuth?.user?.id,
+    geo,
+  ])
 
   return (
     <>
@@ -59,4 +82,4 @@ const LeftSideBanner = () => {
   )
 }
 
-export default LeftSideBanner
+export default memo(LeftSideBanner)
