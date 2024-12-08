@@ -50,3 +50,30 @@
     transform: rotate(360deg);
   }
 }
+
+.animate-float-ball {
+  width: 50vw;
+  height: 50vw;
+  max-width: 500px;
+  max-height: 500px;
+  left: -50vw;
+  top: -50vw;
+}
+
+@media (min-width: 640px) {
+  .animate-float-ball {
+    width: 40vw;
+    height: 40vw;
+    left: -20vw;
+    top: -20vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animate-float-ball {
+    width: 30vw;
+    height: 30vw;
+    left: -15vw;
+    top: -15vw;
+  }
+}

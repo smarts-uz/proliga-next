@@ -8,114 +8,116 @@ import { PACKAGES } from 'app/utils/packages.util'
 import Gutter from 'components/Gutter'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-const BalanceTitle = dynamic(() => import('./components/BalanceTitle'), {
-  ssr: false,
-})
-const TransferTitle = dynamic(() => import('./components/TransferTitle'), {
-  ssr: false,
-})
-const PackagesTitle = dynamic(() => import('./components/Title'), {
-  ssr: false,
-})
-const SameTeamPlayerTitle = dynamic(
-  () => import('./components/SameTeamPlayerTitle'),
-  {
-    ssr: false,
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import AnimatedBackground from 'components/AnimatedBackground'
+
+import { Zap, Users, CircleDollarSign } from 'lucide-react'
+
+const PackageIcon = ({ type }) => {
+  switch (type) {
+    case PACKAGES.team_balance:
+      return <CircleDollarSign className="h-6 w-6 text-yellow-500" />
+    case PACKAGES.transfer_count:
+      return <Zap className="h-6 w-6 text-yellow-500" />
+    case PACKAGES.single_club_count:
+      return <Users className="h-6 w-6 text-yellow-500" />
+    default:
+      return null
   }
-)
+}
 
 const Packages = () => {
   const dispatch = useDispatch()
-  const { packages } = useSelector((store) => store.packages)
+  const { packages, isLoading } = useSelector((store) => store.packages)
 
   useEffect(() => {
     dispatch(fetchPackages())
   }, [dispatch])
 
+  const getPackageTitle = (type) => {
+    switch (type) {
+      case PACKAGES.team_balance:
+        return t('Balans')
+      case PACKAGES.transfer_count:
+        return t('Transfer')
+      case PACKAGES.single_club_count:
+        return t('Bir jamoa oyinchilari')
+      default:
+        return ''
+    }
+  }
+
   const { t } = useTranslation()
   return (
-    <Gutter>
-      <section className="h-full space-y-6 pb-12 pt-8 text-neutral-200">
-        <PackagesTitle />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/20 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
-            <BalanceTitle />
-            <div className="flex flex-col gap-4">
-              {packages.map(
-                (item, index) =>
-                  item.type === PACKAGES.team_balance && (
-                    <div
-                      key={index}
-                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
-                    >
-                      <span className="font-bold text-neutral-50">
-                        {t('gacha oshirish ru')} {item.amount}{' '}
-                        {t('gacha oshirish')}
-                      </span>
-                      <Link
-                        href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
-                      >
-                        {t('Tanlang')}
-                      </Link>
+    <>
+      <AnimatedBackground />
+      <Gutter>
+        {isLoading ? (
+          <div></div>
+        ) : (
+          <div className="container mx-auto px-4 py-8">
+            <h1 className="mb-8 text-center text-3xl font-bold text-neutral-100">
+              {t('O‘yiningizni mukammallikka yetkazing')}
+            </h1>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {Object.values(PACKAGES).map((packageType) => (
+                <Card
+                  key={packageType}
+                  className="border-yellow-500 bg-neutral-900 transition-all hover:border-yellow-400"
+                >
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-xl font-bold text-neutral-100">
+                        {getPackageTitle(packageType)}
+                      </CardTitle>
+                      <PackageIcon type={packageType} />
                     </div>
-                  )
-              )}
+                  </CardHeader>
+                  <CardContent className="pt-4">
+                    <Separator className="mb-4 bg-yellow-500/20" />
+                    <div className="space-y-4">
+                      {packages
+                        .filter((item) => item.type === packageType)
+                        .map((item, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center justify-between rounded bg-neutral-800 p-2 transition-all hover:bg-neutral-700"
+                          >
+                            <div className="flex items-center space-x-2">
+                              <Badge
+                                variant="outline"
+                                className="border border-yellow-500 bg-yellow-500/10 text-yellow-400"
+                              >
+                                +{item.amount}
+                              </Badge>
+                              <span className="text-sm text-neutral-300">
+                                ga oshirish
+                              </span>
+                            </div>
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="bg-yellow-500 text-neutral-900 transition-all hover:bg-yellow-400 hover:text-neutral-900"
+                            >
+                              <Link href={`/confirm-payment/${item.id}`}>
+                                {t('Tanlash')}
+                              </Link>
+                            </Button>
+                          </div>
+                        ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
-            <TransferTitle />
-            <div className="flex flex-col gap-4">
-              {packages.map(
-                (item, index) =>
-                  item.type === PACKAGES.transfer_count && (
-                    <div
-                      key={index}
-                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
-                    >
-                      <span className="font-bold text-neutral-50">
-                        {t('gacha oshirish ru')} {item.amount}{' '}
-                        {t('gacha oshirish')}
-                      </span>
-                      <Link
-                        href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
-                      >
-                        {t('Tanlang')}
-                      </Link>
-                    </div>
-                  )
-              )}
-            </div>
-          </div>
-          <div className="min-h-96 space-y-4 rounded-xl border border-neutral-300 bg-black/25 p-4 backdrop-blur-md transition-all hover:border-neutral-50 hover:bg-black/40">
-            <SameTeamPlayerTitle />
-            <div className="flex flex-col gap-4">
-              {packages.map(
-                (item, index) =>
-                  item.type === PACKAGES.single_club_count && (
-                    <div
-                      key={index}
-                      className="xs:text-md group flex items-center justify-between rounded border border-neutral-50/30 p-2 text-sm transition-all hover:border-neutral-50"
-                    >
-                      <span className="font-bold text-neutral-50">
-                        {t('gacha oshirish ru')} {item.amount}{' '}
-                        {t('gacha oshirish')}
-                      </span>
-                      <Link
-                        href={`/confirm-payment/${item.id}`}
-                        className="rounded border border-primary/50 bg-neutral-800 px-4 py-2 transition-all hover:bg-neutral-900 group-hover:border-primary"
-                      >
-                        {t('Tanlang')}
-                      </Link>
-                    </div>
-                  )
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-    </Gutter>
+        )}
+      </Gutter>
+    </>
   )
 }
 
