@@ -30,21 +30,19 @@ function Settings() {
   }, [])
 
   return (
-    <div className="bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-20 xl:pb-16 2xl:pb-24">
-      <Gutter>
-        <main className="flex h-full min-h-[50rem] flex-col gap-2 md:min-h-[44rem] lg:flex-row xl:min-h-[37rem] 2xl:min-h-[39rem]">
-          <Navigation currentTab={tab} tabs={SETTINGSTAB} setTab={setTab} />
-          {tab === SETTINGSTAB.PROFILE && (
-            <Profile setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />
-          )}
-          {tab === SETTINGSTAB.SETTINGS && (
-            <SettingsTab setHomeTab={() => setTab(SETTINGSTAB.PROFILE)} />
-          )}
-          {tab === SETTINGSTAB.PASSWORD && <ChangePassword />}
-          {tab === SETTINGSTAB.TRANSACTIONHISTORY && <TransactionsHistory />}
-        </main>
-      </Gutter>
-    </div>
+    <Gutter>
+      <main className="flex h-full min-h-[50rem] flex-col gap-2 md:min-h-[44rem] lg:flex-row xl:min-h-[37rem] 2xl:min-h-[39rem]">
+        <Navigation currentTab={tab} tabs={SETTINGSTAB} setTab={setTab} />
+        {tab === SETTINGSTAB.PROFILE && (
+          <Profile setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />
+        )}
+        {tab === SETTINGSTAB.SETTINGS && (
+          <SettingsTab setHomeTab={() => setTab(SETTINGSTAB.PROFILE)} />
+        )}
+        {tab === SETTINGSTAB.PASSWORD && <ChangePassword />}
+        {tab === SETTINGSTAB.TRANSACTIONHISTORY && <TransactionsHistory />}
+      </main>
+    </Gutter>
   )
 }
 

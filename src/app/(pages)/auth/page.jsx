@@ -1,9 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import LoginForm from './components/LoginForm'
-import SignUpForm from './components/SignUpForm'
+import {
+  LoginFormSkeleton,
+  SignUpFormSkeleton,
+} from './components/AuthSkeleton'
+import dynamic from 'next/dynamic'
+const SignUpForm = dynamic(() => import('./components/SignUpForm'), {
+  ssr: false,
+  loading: () => <SignUpFormSkeleton />,
+})
+const LoginForm = dynamic(() => import('./components/LoginForm'), {
+  ssr: false,
+  loading: () => <LoginFormSkeleton />,
+})
 import { useTranslation } from 'react-i18next'
+
 const Auth = () => {
   const [currentTab, setCurrentTab] = useState(tabs.login)
   const active = 'bg-black text-primary opacity-100 font-bold'
