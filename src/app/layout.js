@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   const { i18n } = useTranslation()
 
   return (
-    <html lang={i18n.language || 'uz'} suppressHydrationWarning>
+    <html lang={i18n.language || 'uz'}>
       <head>
         <title>Proliga.uz</title>
         <meta
@@ -32,7 +32,6 @@ export default function RootLayout({ children }) {
       <RootProvider>
         <body
           className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased`}
-          suppressHydrationWarning
         >
           <Navbar />
           {children}

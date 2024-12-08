@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import dynamic from 'next/dynamic'
 import { LANGUAGE } from 'app/utils/languages.util'
@@ -26,7 +25,6 @@ const Prizes = () => {
   )
 
   useEffect(() => {
-    dispatch(fetchPrizes())
     dispatch(fetchCompetition())
   }, [dispatch])
   const isLoading = competitionLoading || prizesLoading
