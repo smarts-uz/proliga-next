@@ -8,6 +8,7 @@ const Hero = dynamic(() => import('../components/Hero'), {
 const Promotions = dynamic(() => import('../components/Promotions'), {
   ssr: false,
 })
+import { useEffect } from 'react'
 
 function Home() {
   const { generate } = useGenerateLanguage()

@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 import { Zap, Users, CircleDollarSign } from 'lucide-react'
-import { Button } from '@mui/material'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
@@ -29,7 +29,7 @@ const PackageContainer = ({ packageType }) => {
     <Card className="border-yellow-500 bg-neutral-900 transition-all hover:border-yellow-400">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-xl font-bold text-neutral-100">
+          <CardTitle className="text-lg font-bold text-neutral-100 xs:text-xl">
             {getPackageTitle(packageType)}
           </CardTitle>
           <PackageIcon type={packageType} />
@@ -45,20 +45,22 @@ const PackageContainer = ({ packageType }) => {
                 key={index}
                 className="flex items-center justify-between rounded bg-neutral-800 p-2 transition-all hover:bg-neutral-700"
               >
-                <div className="flex items-center space-x-2">
+                <div className="flex cursor-default items-center space-x-2">
                   <Badge
                     variant="outline"
-                    className="border border-yellow-500 bg-yellow-500/10 text-yellow-400"
+                    className="border border-yellow-200 bg-primary/15 text-yellow-400"
                   >
                     +{item.amount}
                   </Badge>
-                  <span className="text-sm text-neutral-300">ga oshirish</span>
+                  <span className="text-sm text-neutral-300">
+                    {t('ga oshirish')}
+                  </span>
                 </div>
                 <Button
                   asChild
                   variant="outline"
                   size="sm"
-                  className="bg-yellow-500 text-neutral-900 transition-all hover:bg-yellow-400 hover:text-neutral-900"
+                  className="bg-yellow-500 text-neutral-900 transition-all hover:bg-primary hover:text-neutral-900"
                 >
                   <Link href={`/confirm-payment/${item.id}`}>
                     {t('Tanlash')}
@@ -75,11 +77,11 @@ const PackageContainer = ({ packageType }) => {
 const PackageIcon = ({ type }) => {
   switch (type) {
     case PACKAGES.team_balance:
-      return <CircleDollarSign className="h-6 w-6 text-yellow-500" />
+      return <CircleDollarSign className="h-6 w-6 text-primary/90" />
     case PACKAGES.transfer_count:
-      return <Zap className="h-6 w-6 text-yellow-500" />
+      return <Zap className="h-6 w-6 text-primary/90" />
     case PACKAGES.single_club_count:
-      return <Users className="h-6 w-6 text-yellow-500" />
+      return <Users className="h-6 w-6 text-primary/90" />
     default:
       return null
   }

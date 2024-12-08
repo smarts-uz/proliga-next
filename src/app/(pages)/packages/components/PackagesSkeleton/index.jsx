@@ -20,7 +20,7 @@ const PackageIcon = ({ type }) => {
 const PackagesSkeleton = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <Skeleton className="mx-auto mb-8 h-10 w-3/4" />
+      <Skeleton className="mx-auto mb-8 h-10 w-3/5" />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Object.values(PACKAGES).map((packageType) => (
           <Card

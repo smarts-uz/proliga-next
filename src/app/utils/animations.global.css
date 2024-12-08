@@ -56,8 +56,8 @@
   height: 50vw;
   max-width: 500px;
   max-height: 500px;
-  left: -50vw;
-  top: -50vw;
+  left: -15vw;
+  top: -15vw;
 }
 
 @media (min-width: 640px) {

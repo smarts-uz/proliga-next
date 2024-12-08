@@ -14,6 +14,7 @@ const ConfirmPaymentTab = dynamic(
     ssr: false,
   }
 )
+import { toast } from 'react-toastify'
 import Spinner from 'components/Spinner'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,8 +22,10 @@ import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
 import { useRouter } from 'next/navigation'
 import { PAYMENTOPTIONS } from 'app/utils/paymentOptions.util'
 import { setCurrentPackage } from 'app/lib/features/packages/packages.slice'
+import { useTranslation } from 'react-i18next'
 
 const ConfirmPayment = ({ params }) => {
+  const { t } = useTranslation()
   const router = useRouter()
   const dispatch = useDispatch()
   const [paymentOption, setPaymentOption] = useState(PAYMENTOPTIONS.WALLET)
@@ -55,9 +58,10 @@ const ConfirmPayment = ({ params }) => {
 
   useEffect(() => {
     if (!currentTeam || !currentTour || !currentCompetition || !userTable) {
+      toast.info(t('Iltimos, avval jamoani tanlang!'), { theme: 'dark' })
       router.push('/championships')
     }
-  }, [currentTeam, currentTour, currentCompetition, router, userTable])
+  }, [currentTeam, currentTour, currentCompetition, router, userTable, t])
 
   return (
     <Gutter>
