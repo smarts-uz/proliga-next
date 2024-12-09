@@ -4,14 +4,18 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+import { useGetUserTable } from '../useGetUserTable/useGetUserTable'
+import { setUserTempData } from '../../../lib/features/auth/auth.slice'
 
 export const useLogIn = () => {
+  const { getUserTable } = useGetUserTable()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const { t } = useTranslation()
+  const { temp } = useSelector((store) => store.auth)
 
   const logIn = async ({ email, password }) => {
     setIsLoading(false)
@@ -58,9 +62,11 @@ export const useLogIn = () => {
         return
       }
       if (data?.user) {
+        setData(data)
         dispatch(setUserAuth(data))
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        setData(data)
+        await getUserTable({ phone: temp?.phone })
+        dispatch(setUserTempData(null))
         toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
       }
     } catch (error) {
