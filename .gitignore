@@ -12,6 +12,17 @@
 /public/uploads
 /public/player
 
+# /public/club-jpeg
+# /public/club-svg
+# /public/icons
+# /public/images
+# /public/locales
+# /public/player-png
+
+/static/user
+/static/uploads
+/static/player
+
 # next.js
 /.next/
 /out/

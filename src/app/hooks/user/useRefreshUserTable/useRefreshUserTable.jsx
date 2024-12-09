@@ -34,7 +34,8 @@ export const useRefreshUserTable = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        console.log('idd')
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
@@ -43,7 +44,7 @@ export const useRefreshUserTable = () => {
       }
     } catch (error) {
       setError(error.message)
-      toast.error(error.message)
+      toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
     }

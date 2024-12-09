@@ -16,6 +16,7 @@ const CabinetProfileTab = () => {
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
   const [canSendSMS, setCanSendSMS] = useState(true)
+  const URL = process.env.NEXT_PUBLIC_URL
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
@@ -58,8 +59,8 @@ const CabinetProfileTab = () => {
             </span>
           )}
           {userTable?.email && userTable?.photo && (
-            <Image
-              src={userTable?.photo}
+            <img
+              src={URL + '/static' + userTable?.photo}
               alt="user"
               width={32}
               draggable={false}

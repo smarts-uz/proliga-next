@@ -22,6 +22,7 @@ export const useGetUserTable = () => {
       toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
       return
     }
+    console.log('executed')
 
     try {
       setIsLoading(true)
@@ -32,9 +33,14 @@ export const useGetUserTable = () => {
         .eq('phone', phone)
         .single()
 
+      if (error?.code === 'PGRST116') {
+        setError(error.message)
+        toast.error(t('Bunaqa raqamli foydalanuvchi yoq'), { theme: 'dark' })
+        return
+      }
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (!data) {
@@ -51,6 +57,7 @@ export const useGetUserTable = () => {
       }
     } catch (error) {
       setError(error.message)
+      console.log('idd')
       toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)
