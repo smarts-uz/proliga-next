@@ -31,7 +31,7 @@ function Settings() {
 
   return (
     <Gutter>
-      <main className="flex h-full min-h-[50rem] flex-col gap-2 md:min-h-[44rem] lg:flex-row xl:min-h-[37rem] 2xl:min-h-[39rem]">
+      <main className="flex h-full flex-col gap-2 md:min-h-[44rem] lg:flex-row xl:min-h-[37rem] 2xl:min-h-[39rem]">
         <Navigation currentTab={tab} tabs={SETTINGSTAB} setTab={setTab} />
         {tab === SETTINGSTAB.PROFILE && (
           <Profile setSettingsTab={() => setTab(SETTINGSTAB.SETTINGS)} />

@@ -1,18 +1,15 @@
-import Gutter from '../../../../../components/Gutter'
-import { useTranslation } from 'react-i18next'
 import TopTeams from '../TopTeams'
 import JournalPagination from './Pagination'
 import JournalTable from './Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserActivity } from 'app/lib/features/userActivity/userActivity.thunk'
 import { useState, useEffect } from 'react'
-import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Journal() {
   const dispatch = useDispatch()
-  const { t } = useTranslation()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(15)
+  const [perPage, setPerPage] = useState(12)
+  const [windowWidth, setWindowWidth] = useState(0)
   const { currentCompetition } = useSelector((store) => store.competition)
   const { season } = useSelector((state) => state.season)
   const { userTable } = useSelector((state) => state.auth)
@@ -40,6 +37,30 @@ export default function Journal() {
     userTable,
     currentTeam,
   ])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  useEffect(() => {
+    if (windowWidth >= 520) {
+      setPerPage(13)
+    } else {
+      setPerPage(12)
+    }
+  }, [windowWidth])
 
   const incrementPage = () => {
     setPage((prevPage) => prevPage + 1)

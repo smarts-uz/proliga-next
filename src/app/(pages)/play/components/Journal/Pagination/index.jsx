@@ -7,7 +7,7 @@ const JournalPagination = ({ decrementPage, incrementPage, page, perPage }) => {
   const { activities } = useSelector((state) => state.userActivity)
 
   return (
-    <div className="mt-auto flex h-auto items-center justify-center gap-2 pt-2">
+    <div className="mt-auto flex h-auto items-center justify-center gap-2 pt-2 text-sm md:text-base">
       <button
         onClick={decrementPage}
         disabled={page === 0}
