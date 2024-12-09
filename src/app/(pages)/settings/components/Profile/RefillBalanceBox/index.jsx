@@ -14,14 +14,14 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
         draggable={false}
         width={36}
         height={36}
-        className="filter-neutral-50 size-8 self-center xs:size-9 sm:size-10"
+        className="filter-neutral-50 size-8 self-center md:size-9"
         alt="wallet"
       />
-      <div className="w-full cursor-default self-center text-center">
+      <div className="w-full cursor-default text-center">
         <h4 className="text-sm font-medium sm:text-base">
           {t('Proliga hisobi')}
         </h4>
-        <div className="mx-1 text-xs text-neutral-400 sm:text-sm">
+        <div className="flex flex-col items-center justify-center text-xs text-neutral-400 sm:text-sm">
           <p>{t('Hisobda')}</p>
           <NumericFormat
             value={userTable?.balance}
@@ -35,7 +35,7 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
       </div>
       <button
         onClick={() => setBalanceModal(true)}
-        className="w-min self-center text-nowrap rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
+        className="w-min self-center text-nowrap rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-2.5"
       >
         {t('Hisobni toldirish')}
       </button>

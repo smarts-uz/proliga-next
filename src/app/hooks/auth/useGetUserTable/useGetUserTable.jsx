@@ -22,7 +22,6 @@ export const useGetUserTable = () => {
       toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
       return
     }
-    console.log('executed')
 
     try {
       setIsLoading(true)
@@ -57,7 +56,6 @@ export const useGetUserTable = () => {
       }
     } catch (error) {
       setError(error.message)
-      console.log('idd')
       toast.error(error.message, { theme: 'dark' })
     } finally {
       setIsLoading(false)

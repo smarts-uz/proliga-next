@@ -40,24 +40,24 @@ const CabinetProfileOTP = () => {
   return (
     <>
       <div
-        className={`flex h-48 w-36 flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all sm:w-44`}
+        className={`flex h-44 w-36 flex-col justify-center gap-2 rounded-xl border border-primary bg-transparent transition-all`}
       >
         <Image
           src="/icons/call.svg"
           draggable={false}
           width={36}
           height={36}
-          className="filter-neutral-50 size-9 self-center sm:size-10"
+          className="filter-neutral-50 size-8 self-center md:size-9"
           alt="sms confirm"
         />
         <div className="w-full max-w-36 cursor-default self-center text-center">
-          <h4 className="text-sm font-medium sm:text-base">
+          <h4 className="text-sm font-medium">
             {t('Telefon raqam tasdiqlash')}
           </h4>
         </div>
         <button
           onClick={handleClick}
-          className="w-min self-center rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-4"
+          className="w-min self-center rounded border px-2 py-1 text-sm transition-all hover:bg-primary hover:text-neutral-900 md:px-2.5"
         >
           {t('Tasdiqlash')}
         </button>

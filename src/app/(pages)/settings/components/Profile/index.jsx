@@ -54,7 +54,7 @@ const CabinetProfileTab = () => {
       <section className="flex h-full w-full flex-1 flex-col gap-2 rounded-xl bg-neutral-900/80 p-4 lg:h-auto xl:p-6">
         <div className="flex flex-wrap items-center gap-2 md:gap-4">
           {userTable?.email && !userTable?.photo && (
-            <span className="flex size-16 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
+            <span className="flex size-20 select-none items-center justify-center rounded-full bg-primary text-3xl font-bold uppercase text-black md:size-20">
               {userTable.email.slice(0, 1)}
             </span>
           )}
@@ -64,10 +64,9 @@ const CabinetProfileTab = () => {
               alt="user"
               width={32}
               draggable={false}
-              unoptimized={true}
               height={32}
               key={userTable?.photo}
-              className="size-16 rounded-full bg-white md:size-20"
+              className="size-20 rounded-full bg-white md:size-20"
             />
           )}
           {!userTable?.email && !userTable?.photo && (
@@ -78,7 +77,7 @@ const CabinetProfileTab = () => {
               draggable={false}
               height={32}
               key={userAuth?.user.email}
-              className="size-16 rounded-full bg-white md:size-20"
+              className="size-20 rounded-full bg-white md:size-20"
             />
           )}
           <div className="flex flex-col justify-center text-sm md:text-base">

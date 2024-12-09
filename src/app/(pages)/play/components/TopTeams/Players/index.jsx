@@ -21,7 +21,7 @@ const RankingPlayers = () => {
             />
           ))
         ) : (
-          <div>{t("Oyinchilar yoq")}</div>
+          <div>{t('Oyinchilar yoq')}</div>
         )}
       </div>
     </div>
@@ -33,7 +33,6 @@ const PlayerPlace = ({ player, index }) => {
     () => '/player-png/' + player?.slug + '/app.png',
     [player?.slug]
   )
-  console.log(player.slug)
 
   return (
     <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">

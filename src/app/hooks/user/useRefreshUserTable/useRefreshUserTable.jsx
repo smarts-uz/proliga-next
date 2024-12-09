@@ -34,7 +34,6 @@ export const useRefreshUserTable = () => {
 
       if (error) {
         setError(error.message)
-        console.log('idd')
         toast.error(error.message, { theme: 'dark' })
         return
       }

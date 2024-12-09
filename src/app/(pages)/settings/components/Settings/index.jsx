@@ -49,7 +49,7 @@ const CabinetSettingsTab = ({ setHomeTab }) => {
               </p>
               <div
                 onClick={() => setModalOpen(true)}
-                className="group flex size-24 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 transition-all hover:from-neutral-900 hover:to-stone-900 md:size-32"
+                className="group flex size-28 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-neutral-300 bg-gradient-to-r from-neutral-800 to-stone-900 transition-all hover:from-neutral-900 hover:to-stone-900 md:size-32"
               >
                 <Image
                   src={'/icons/placeholder-image-2.svg'}

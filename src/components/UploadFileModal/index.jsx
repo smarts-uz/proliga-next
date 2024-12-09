@@ -16,7 +16,7 @@ const UploadFileModal = ({ isModalOpen, setModalOpen }) => {
         className="flex w-[96%] rounded-md bg-neutral-950 p-0 text-neutral-100 sm:w-full"
       >
         <DialogTitle className="hidden">File Upload</DialogTitle>
-        <UppyUploader />
+        <UppyUploader closeModal={() => setModalOpen(false)} />
         <DialogDescription className="hidden">Upload Photos</DialogDescription>
       </DialogContent>
     </Dialog>
