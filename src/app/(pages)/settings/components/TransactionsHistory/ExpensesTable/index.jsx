@@ -42,7 +42,8 @@ function CabinetTransactionsExpensesTable() {
     const hours = date.getHours()
     const minutes = date.getMinutes()
 
-    return `${day}.${month}.${year} | ${hours}:${minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}`
+    return `${day}.${month}.${year} \n
+    | ${hours}:${minutes === 0 ? '00' : minutes < 10 ? '0' + minutes : minutes}`
   }
 
   const columns = [
@@ -92,8 +93,8 @@ function CabinetTransactionsExpensesTable() {
   })
 
   return (
-    <section className="flex h-full w-full flex-1 flex-col justify-between">
-      <table className="w-full table-auto rounded text-[11px] xs:text-xs md:text-sm">
+    <section className="flex h-full w-full flex-1 flex-col justify-between overflow-x-auto">
+      <table className="w-full min-w-96 table-auto rounded text-[11px] xs:text-xs md:text-sm">
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />
       </table>

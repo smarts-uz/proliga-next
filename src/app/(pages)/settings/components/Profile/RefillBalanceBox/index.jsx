@@ -8,13 +8,13 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
   const { userTable } = useSelector((store) => store.auth)
 
   return (
-    <div className="flex h-48 w-36 flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all sm:w-44">
+    <div className="flex h-44 w-36 flex-col justify-center gap-2 rounded-xl border border-neutral-400 bg-transparent transition-all">
       <Image
         src="/icons/wallet.svg"
         draggable={false}
         width={36}
         height={36}
-        className="filter-neutral-50 size-9 self-center sm:size-10"
+        className="filter-neutral-50 size-8 self-center xs:size-9 sm:size-10"
         alt="wallet"
       />
       <div className="w-full cursor-default self-center text-center">
