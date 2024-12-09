@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 const NavbarUserMobile = ({ handleToggleModal }) => {
   const { userTable } = useSelector((state) => state.auth)
+  const URL = process.env.NEXT_PUBLIC_URL
 
   return (
     <span
@@ -17,8 +18,8 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
         </span>
       )}
       {userTable?.email && userTable?.photo && (
-        <Image
-          src={userTable?.photo}
+        <img
+          src={URL + '/static' + userTable?.photo}
           alt="user"
           width={32}
           draggable={false}

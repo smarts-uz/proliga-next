@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 const NavbarUserDesktop = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
   const { userTable } = useSelector((state) => state.auth)
+  const URL = process.env.NEXT_PUBLIC_URL
 
   return (
     <Popover open={isDropdownOpen} onOpenChange={setDropdownOpen}>
@@ -22,11 +23,11 @@ const NavbarUserDesktop = () => {
             </span>
           )}
           {userTable?.email && userTable?.photo && (
-            <Image
-              src={userTable?.photo}
+            <img
+              src={URL + '/static' + userTable?.photo}
               alt="user"
-              width={32}
               draggable={false}
+              width={32}
               height={32}
               key={userTable?.photo}
               className="size-8 rounded-full bg-white"
