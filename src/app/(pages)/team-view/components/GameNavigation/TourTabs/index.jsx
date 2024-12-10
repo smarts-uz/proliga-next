@@ -10,6 +10,7 @@ import { selectTours } from 'app/lib/features/tours/tours.selector'
 import { emptyTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
 import { tabsClasses } from '@mui/material'
+import { LANGUAGE } from 'app/utils/languages.util'
 
 export default function TourTabs() {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export default function TourTabs() {
   const { currentTourTeamIndex, tourTeams } = useSelector(
     (state) => state.tourTeams
   )
+  const { lang } = useSelector((store) => store.systemLanguage)
 
   useEffect(() => {
     if (
@@ -101,7 +103,7 @@ export default function TourTabs() {
             label={
               <div className="flex h-12 flex-col items-center justify-start gap-1 sm:h-[3.75rem]">
                 <h3 className="text-start text-xs font-medium text-neutral-50 md:text-sm xl:text-base">
-                  {item.name}
+                  {lang === LANGUAGE.uz ? item?.name : item?.name_ru}
                 </h3>
                 <p className="max-w-28 text-[10px] capitalize text-neutral-200 sm:text-xs">
                   {getStatus(item.status)}

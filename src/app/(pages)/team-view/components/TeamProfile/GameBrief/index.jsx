@@ -6,10 +6,12 @@ import { TOUR } from 'app/utils/tour.util'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { LANGUAGE } from 'app/utils/languages.util'
+import GameBriefSkeleton from './Skeleton'
 
 const GameBrief = () => {
   const [nextTour, setNextTour] = useState(null)
-
+  const { lang } = useSelector((store) => store.systemLanguage)
   const { tours, currentTourIndex, currentTour, isLoading } = useSelector(
     (store) => store.tours
   )
@@ -38,15 +40,13 @@ const GameBrief = () => {
 
   const handleClick = (value) => {
     navigator.clipboard.writeText(value)
-    toast.info(t('Vaqtinchalik varaqqa nusxalandi!'), { theme: 'dark' })
+    toast.info(t('Buferga muvaffaqiyatli nusxalandi!'), { theme: 'dark' })
   }
 
   return (
     <section className="fade-in-fast mx-auto flex h-min min-h-96 w-full max-w-[32rem] flex-col gap-3 rounded-2xl border border-primary border-opacity-50 bg-neutral-950 px-4 py-5 transition-all hover:border-opacity-100 2xs:px-5 lg:mx-0 lg:w-1/2 lg:max-w-[26rem] lg:gap-3 lg:px-6 xl:h-min xl:max-w-[34rem] 2xl:max-w-[36rem]">
       {isLoading ? (
-        <div className="flex h-full w-full items-center justify-center">
-          <div className="loader" />
-        </div>
+        <GameBriefSkeleton />
       ) : (
         <>
           <Container className="border-b border-neutral-700">
@@ -119,7 +119,11 @@ const GameBrief = () => {
           <Container className="border-b border-neutral-700">
             <Item>
               <Title>{t('Chempionat')}</Title>
-              <Content>{currentTeam?.competition_id?.title}</Content>
+              <Content className="capitalize">
+                {lang === LANGUAGE.uz
+                  ? currentTeam?.competition_id?.name
+                  : currentTeam?.competition_id?.name_ru}
+              </Content>
             </Item>
             <Item>
               <Title className="text-neutral-100">{t("Ligadagi o'rin")}</Title>

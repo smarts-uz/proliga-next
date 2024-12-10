@@ -1,7 +1,12 @@
-import Spinner from 'components/Spinner'
+import Gutter from 'components/Gutter'
+import PageSkeleton from 'components/PageSkeleton'
 
 const Loading = () => {
-  return <Spinner />
+  return (
+    <Gutter>
+      <PageSkeleton />
+    </Gutter>
+  )
 }
 
 export default Loading

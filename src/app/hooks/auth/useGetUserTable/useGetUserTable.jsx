@@ -30,22 +30,28 @@ export const useGetUserTable = () => {
         .from('user')
         .select('*')
         .eq('phone', phone)
+        .single()
 
-      if (error) {
+      if (error?.code === 'PGRST116') {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(t('Bunaqa raqamli foydalanuvchi yoq'), { theme: 'dark' })
         return
       }
-      if (!data[0]) {
+      if (error) {
+        setError(error.message)
+        toast.error(error.message, { theme: 'dark' })
+        return
+      }
+      if (!data) {
         setError(t('Parol yoki telefon raqam notogri kiritilgan'))
         toast.error(t('Parol yoki telefon raqam notogri kiritilgan'), {
           theme: 'dark',
         })
         return
       }
-      if (data && data[0]) {
-        dispatch(setUserTable(data[0]))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
+      if (data) {
+        dispatch(setUserTable(data))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         setData(data)
       }
     } catch (error) {

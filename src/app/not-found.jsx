@@ -12,7 +12,7 @@ export default function NotFound() {
             <div className="absolute inset-0 rounded-full bg-yellow-500"></div>
             <div className="absolute inset-2 rounded-full bg-gray-800"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl font-bold text-yellow-500">404</span>
+              <span className="text-2xl font-bold text-yellow-500">XATO</span>
             </div>
           </div>
           <h2 className="mb-4 text-2xl font-semibold text-yellow-400">

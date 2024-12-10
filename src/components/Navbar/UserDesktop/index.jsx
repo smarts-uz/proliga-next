@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux'
 
 const NavbarUserDesktop = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
-  const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { userTable } = useSelector((state) => state.auth)
+  const URL = process.env.NEXT_PUBLIC_URL
 
   return (
     <Popover open={isDropdownOpen} onOpenChange={setDropdownOpen}>
@@ -18,15 +19,15 @@ const NavbarUserDesktop = () => {
         <div>
           {userTable?.email && !userTable?.photo && (
             <span className="flex size-8 select-none items-center justify-center rounded-full bg-primary text-lg font-bold uppercase text-black">
-              {userAuth.user.email.slice(0, 1)}
+              {userTable.email.slice(0, 1)}
             </span>
           )}
           {userTable?.email && userTable?.photo && (
-            <Image
-              src={userTable?.photo}
+            <img
+              src={URL + '/static' + userTable?.photo}
               alt="user"
-              width={32}
               draggable={false}
+              width={32}
               height={32}
               key={userTable?.photo}
               className="size-8 rounded-full bg-white"
@@ -39,7 +40,6 @@ const NavbarUserDesktop = () => {
               width={32}
               draggable={false}
               height={32}
-              key={userAuth?.user.email}
               className="size-8 rounded-full bg-white"
             />
           )}

@@ -1,7 +1,7 @@
-import Spinner from 'components/Spinner'
+import PackagesSkeleton from './components/PackagesSkeleton'
 
 const Loading = () => {
-  return <Spinner />
+  return <PackagesSkeleton />
 }
 
 export default Loading

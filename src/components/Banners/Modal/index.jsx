@@ -5,66 +5,107 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
+import YandexAd from 'components/YandexAd'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { useMemo, useState } from 'react'
-import YandexAd from 'components/YandexAd'
-import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
 import { BANNER } from 'app/utils/banner.util'
+import { useMemo, useState, useEffect, memo } from 'react'
+import { BANNER_SERVICE_TYPE } from 'app/utils/banner-service.util'
+import { useCreateBannerView } from 'app/hooks/system/useCreateBannerView/useCreateBannerView'
 
 const ModalBanner = ({ isModalOpen, setModalOpen }) => {
   const [disabled, setDisabled] = useState(false)
   const { banners } = useSelector((store) => store.banner)
+  const { userTable, userAuth, geo, agent } = useSelector((store) => store.auth)
+  const NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH =
+    process.env.NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH
+  const [windowWidth, setWindowWidth] = useState(0)
+  const { createBannerView } = useCreateBannerView()
 
-  const modalBanner = useMemo(
-    () => banners.find((b) => b?.banner_type === BANNER.MODAL_BANNER),
+  const banner = useMemo(
+    () =>
+      banners.find(
+        (b) => b?.banner_type === BANNER.MODAL_BANNER && !b?.is_mobile
+      ),
     [banners]
   )
-  // useEffect(() => {
-  //   if (window.Ya && window.Ya.Context && window.Ya.Context.AdvManager) {
-  //     window.Ya.Context.AdvManager.render({
-  //       blockId: 'R-A-13081280-1',
-  //       renderTo: 'yandex_rtb_R-A-13081280-1',
-  //     })
-  //   }
-  // }, [])
+  const mobileBanner = useMemo(
+    () =>
+      banners.find(
+        (b) => b?.banner_type === BANNER.MODAL_BANNER && b?.is_mobile
+      ),
+    [banners]
+  )
+
   const handleOpen = (open) => {
     if (disabled) return
     setModalOpen(open)
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  useEffect(() => {
+    if (banner?.type === BANNER_SERVICE_TYPE.CUSTOM) {
+      if (banner?.id && userTable?.id && userAuth?.user?.id && geo && agent) {
+        createBannerView({ banner_id: banner?.id })
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [banner, windowWidth, agent, userTable?.id, userAuth?.user?.id, geo])
+
   return (
-    <Dialog open={isModalOpen} onOpenChange={handleOpen}>
-      <DialogTrigger className="hidden">Ad Trigger</DialogTrigger>
-      <DialogContent
-        closeButtonStyle="right-0 -top-8"
-        className="max-h-max w-[96%] rounded-md p-0 md:max-w-[80%] 2xl:w-full 2xl:max-w-[1280px]"
-      >
-        {modalBanner?.type === BANNER_SERVICE_TYPE.CUSTOM && (
-          <Link
-            href={modalBanner?.link ?? ''}
-            className="block rounded md:min-w-[620px] xl:min-w-[1024px] 2xl:min-w-[1280px] 2xl:max-w-[1280px]"
+    <>
+      {banner?.type === BANNER_SERVICE_TYPE.CUSTOM && (
+        <Dialog open={isModalOpen} onOpenChange={handleOpen}>
+          <DialogContent
+            closeButtonStyle="right-0 -top-8"
+            className="max-h-max w-[96%] rounded-md p-0 md:max-w-[80%] 2xl:w-full 2xl:max-w-[1280px]"
           >
-            <img
-              src={modalBanner?.content_url ?? ''}
-              alt={modalBanner?.name}
-              width={128}
-              height={72}
-              loading="lazy"
-              className="aspect-video h-full w-full rounded"
-            />
-          </Link>
+            <Link
+              href={banner?.link ?? ''}
+              className="block rounded md:min-w-[620px] xl:min-w-[1024px] 2xl:min-w-[1280px] 2xl:max-w-[1280px]"
+            >
+              <img
+                src={banner?.content_url ?? ''}
+                alt={banner?.name}
+                width={128}
+                height={72}
+                loading="lazy"
+                className="aspect-video h-full w-full rounded"
+              />
+            </Link>
+            <DialogTitle className="hidden">Ad title</DialogTitle>
+            <DialogDescription className="hidden">
+              Ad Descriptor
+            </DialogDescription>
+          </DialogContent>
+        </Dialog>
+      )}
+      {banner?.type === BANNER_SERVICE_TYPE.YANDEX &&
+        windowWidth > NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
+          <YandexAd type="fullscreen" blockId={banner?.service_id} />
         )}
-        {modalBanner?.type === BANNER_SERVICE_TYPE.YANDEX && (
-          <YandexAd blockId={modalBanner?.service_id} />
+      {mobileBanner?.type === BANNER_SERVICE_TYPE.YANDEX &&
+        windowWidth < NEXT_PUBLIC_BANNER_ONE_RENDER_WIDTH && (
+          <YandexAd type="fullscreen" blockId={mobileBanner?.service_id} />
         )}
-        <DialogTitle className="hidden">Ad title</DialogTitle>
-        <DialogDescription className="hidden">Ad Descriptor</DialogDescription>
-      </DialogContent>
-    </Dialog>
+    </>
   )
 }
 
-export default ModalBanner
+export default memo(ModalBanner)

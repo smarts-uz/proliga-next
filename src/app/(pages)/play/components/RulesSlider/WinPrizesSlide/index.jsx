@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -12,9 +10,6 @@ const WinPrizesSlide = () => {
   const { prizes } = useSelector((store) => store.prizes)
   const { currentCompetition } = useSelector((store) => store.competition)
 
-  useEffect(() => {
-    dispatch(fetchPrizes())
-  }, [dispatch])
   const { t } = useTranslation()
   return (
     <div className="flex h-auto flex-col space-y-4 md:space-y-6">

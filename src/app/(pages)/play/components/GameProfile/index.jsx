@@ -4,6 +4,7 @@ import ProfilePlayersStructure from './PlayersStructure'
 import { useSelector } from 'react-redux'
 import { TOUR } from 'app/utils/tour.util'
 import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 const GameBrief = dynamic(() => import('./GameBrief'), {
   ssr: false,
 })
@@ -29,7 +30,9 @@ const GameProfile = () => {
           <ProfileStadiumForm />
         )}
       </div>
-      <GameBrief />
+      <Suspense fallback={<div>Loading...</div>}>
+        <GameBrief />
+      </Suspense>
     </main>
   )
 }

@@ -13,7 +13,7 @@ export const fetchMatches = createAsyncThunk(
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)
       .is('deleted_at', null)
-      .limit(20)
+      .limit(12)
 
     return { data, error }
   }

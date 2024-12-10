@@ -1,7 +1,6 @@
-import Spinner from 'components/Spinner'
+import { Skeleton } from '@/components/ui/skeleton'
+import AuthSkeleton from './components/AuthSkeleton'
 
-const AuthLoading = () => {
-  return <Spinner />
+export default function Loading() {
+  return <AuthSkeleton />
 }
-
-export default AuthLoading

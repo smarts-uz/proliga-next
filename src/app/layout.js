@@ -2,14 +2,14 @@
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import ReduxProvider from './lib/store.provider'
-import InitialStateProvider from './lib/InitialState.provider'
+import RootProvider from './providers/Root.provider'
 import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-phone-number-input/style.css'
 import './lib/i18n.config'
+import { useTranslation } from 'react-i18next'
 
 const dmSans = DM_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -17,8 +17,10 @@ const dmSans = DM_Sans({
 })
 
 export default function RootLayout({ children }) {
+  const { i18n } = useTranslation()
+
   return (
-    <html lang="uz">
+    <html lang={i18n.language || 'uz'}>
       <head>
         <title>Proliga.uz</title>
         <meta
@@ -27,18 +29,16 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="./favicon.svg" type="image/x-icon" />
       </head>
-      <ReduxProvider>
+      <RootProvider>
         <body
           className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased`}
         >
-          <InitialStateProvider>
-            <Navbar />
-            {children}
-            <ToastContainer />
-            <Footer />
-          </InitialStateProvider>
+          <Navbar />
+          {children}
+          <ToastContainer />
+          <Footer />
         </body>
-      </ReduxProvider>
+      </RootProvider>
     </html>
   )
 }

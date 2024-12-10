@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 export const useConfirmUserAuth = () => {
+  const { t } = useTranslation()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const { t } = useTranslation()
   const { userAuth } = useSelector((state) => state.auth)
   const email = userAuth?.user?.email
 
@@ -44,6 +44,12 @@ export const useConfirmUserAuth = () => {
         email,
         password,
       })
+
+      if (error?.code === 'invalid_credentials') {
+        setError(t('Login yoki parol xato'))
+        toast.error(t('Login yoki parol xato'), { theme: 'dark' })
+        return
+      }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })

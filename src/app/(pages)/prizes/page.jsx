@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import Gutter from 'components/Gutter'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { fetchPrizes } from 'app/lib/features/prize/prize.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import dynamic from 'next/dynamic'
 import { LANGUAGE } from 'app/utils/languages.util'
@@ -12,52 +11,66 @@ import { useTranslation } from 'react-i18next'
 const PrizesTitle = dynamic(() => import('./components/PrizesTitle'), {
   ssr: false,
 })
+import { Skeleton } from '@/components/ui/skeleton'
+import { CompetitionSkeleton } from './components/PrizesSkeleton'
 
 const Prizes = () => {
   const dispatch = useDispatch()
-  const { competition } = useSelector((store) => store.competition)
+  const { competition, isLoading: competitionLoading } = useSelector(
+    (store) => store.competition
+  )
   const { lang } = useSelector((store) => store.systemLanguage)
-  const { prizes } = useSelector((store) => store.prizes)
+  const { prizes, isLoading: prizesLoading } = useSelector(
+    (store) => store.prizes
+  )
 
   useEffect(() => {
-    dispatch(fetchPrizes())
     dispatch(fetchCompetition())
   }, [dispatch])
+  const isLoading = competitionLoading || prizesLoading
 
   return (
-    <section className="bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-8">
+    <section className="min-h-screen bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-8">
       <Gutter>
-        <PrizesTitle />
+        {isLoading ? (
+          <Skeleton className="mb-8 h-12 w-48 bg-neutral-500" />
+        ) : (
+          <PrizesTitle />
+        )}
         <div className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
-          {competition?.map((competition, index) => (
-            <div
-              key={index}
-              className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 hover:bg-black/50 md:p-4"
-            >
-              <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
-                <img
-                  src={competition.flag}
-                  loading="lazy"
-                  alt={competition.title}
-                  className="z-10 size-10 select-none rounded-full bg-white p-1"
-                  draggable={false}
-                />
-                <h2 className="text-lg xl:text-xl">
-                  {lang === LANGUAGE.uz
-                    ? competition?.name
-                    : competition?.name_ru}
-                </h2>
-              </div>
-              <div className="flex flex-col gap-2 xl:flex-row">
-                {prizes.map(
-                  (prize) =>
-                    prize.competition_id.id === competition.id && (
-                      <Prize prize={prize} key={prize.id} />
-                    )
-                )}
-              </div>
-            </div>
-          ))}
+          {isLoading
+            ? [...Array(4)].map((_, index) => (
+                <CompetitionSkeleton key={index} />
+              ))
+            : competition?.map((competition, index) => (
+                <div
+                  key={index}
+                  className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 hover:bg-black/50 md:p-4"
+                >
+                  <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
+                    <img
+                      src={competition.flag}
+                      loading="lazy"
+                      alt={competition.title}
+                      className="z-10 size-10 select-none rounded-full bg-white p-1"
+                      draggable={false}
+                    />
+                    <h2 className="text-lg xl:text-xl">
+                      {lang === LANGUAGE.uz
+                        ? competition?.name
+                        : competition?.name_ru}
+                    </h2>
+                  </div>
+                  <div className="flex flex-col gap-2 xl:flex-row">
+                    {prizes.map(
+                      (prize) =>
+                        prize.competition_id.id === competition.id && (
+                          <Prize prize={prize} key={prize.id} />
+                        )
+                    )}
+                  </div>
+                </div>
+              ))}
         </div>
       </Gutter>
     </section>

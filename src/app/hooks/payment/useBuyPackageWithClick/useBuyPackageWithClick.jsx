@@ -40,6 +40,8 @@ export const useBuyPackageWithClick = () => {
       url.searchParams.append('service_id', SERVICE_ID)
       url.searchParams.append('merchant_id', MERCHANT_ID)
       url.searchParams.append('amount', currentPackage.price)
+      url.searchParams.append('team_id', currentTeam?.id)
+      url.searchParams.append('package_id', currentPackage?.id)
       url.searchParams.append(
         'transaction_param',
         `${currentTeam?.id}-${currentPackage?.id}`

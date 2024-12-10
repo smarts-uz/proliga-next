@@ -20,24 +20,24 @@ export const useGenerateLanguage = () => {
 
       if (error) {
         setError(error.message)
-        toast.error(error.message)
+        toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
         setData(data)
         let obj = {}
         // uz
-        // data.map((item) => {
-        //   if (!item?.is_exclude) {
-        //     obj = { ...obj, [item.name]: item.uz }
-        //   }
-        // })
-        //ru
         data.map((item) => {
           if (!item?.is_exclude) {
-            obj = { ...obj, [item.name]: item.ru }
+            obj = { ...obj, [item.name]: item.uz }
           }
         })
+        //ru
+        // data.map((item) => {
+        //   if (!item?.is_exclude) {
+        //     obj = { ...obj, [item.name]: item.ru }
+        //   }
+        // })
         console.log(obj)
       }
     } catch (error) {

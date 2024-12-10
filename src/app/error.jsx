@@ -29,7 +29,7 @@ export default function Error({ error, reset }) {
             Afsuski, serverda xatolik yuz berdi. Jamoamiz bu muammoni hal qilish
             ustida ishlamoqda.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <Button
               onClick={reset}
               className="w-full bg-red-500 text-gray-900 hover:bg-red-600"

@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
 
 export const useUpdateUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
-  const [error, setError] = useState(null)
+  const { fingerprint, geo } = useSelector((store) => store.auth)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -28,9 +29,16 @@ export const useUpdateUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .update({ phone, email })
+        .update({
+          phone,
+          email,
+          visitor: fingerprint,
+          visited_at: new Date(),
+          geo: JSON.stringify(geo),
+        })
         .eq('guid', id)
         .select('*')
+        .single()
 
       if (error) {
         setError(error.message)
@@ -40,8 +48,8 @@ export const useUpdateUserTable = () => {
         return
       }
       if (data) {
-        dispatch(setUserTable(data[0]))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data[0]))
+        dispatch(setUserTable(data))
+        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
         setData(data)
       }
     } catch (error) {

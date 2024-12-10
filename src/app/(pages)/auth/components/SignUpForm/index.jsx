@@ -34,7 +34,7 @@ const SignUpForm = ({ onClick }) => {
     e.preventDefault()
 
     if (!agreement) {
-      toast.error('Iltimos qoidalarga rozilik berin', {
+      toast.error(t('Iltimos qoidalarga rozilik berin'), {
         theme: 'dark',
       })
       return
@@ -244,11 +244,11 @@ const SignUpForm = ({ onClick }) => {
           onChange={() => setAgreement(!agreement)}
         />
         <label htmlFor="agreement" className="inline select-none">
-          {t("Men")}{' '}
+          {t('Men')}{' '}
           <Link href="/user-agreement" className="underline">
-            {t("qoidalar")}
+            {t('qoidalar')}
           </Link>{' '}
-          {t("bilan tanishib chiqdim va ularga roziman")}
+          {t('bilan tanishib chiqdim va ularga roziman')}
         </label>
       </div>
       <button

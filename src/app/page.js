@@ -1,38 +1,29 @@
 'use client'
+
 import dynamic from 'next/dynamic'
 import { useGenerateLanguage } from './hooks/system/generateLanguage/generateLanguage'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { fetchPrizes } from './lib/features/prize/prize.thunk'
+import HeroSkeleton from 'components/Hero/HeroSkeleton'
 const Hero = dynamic(() => import('../components/Hero'), {
+  loading: () => <HeroSkeleton />,
   ssr: false,
 })
 const Promotions = dynamic(() => import('../components/Promotions'), {
   ssr: false,
 })
+import { useEffect } from 'react'
 
 function Home() {
   const { generate } = useGenerateLanguage()
-  const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   generate()
-  // }, [])
 
   useEffect(() => {
-    dispatch(fetchPrizes())
-  }, [dispatch])
+    generate()
+  }, [])
 
-  // useEffect(() => {
-  //   function showPosition(position) {
-  //   }
-  //   navigator.geolocation.getCurrentPosition(showPosition)
-  // })
   return (
-    <section>
+    <>
       <Hero />
       <Promotions />
-    </section>
+    </>
   )
 }
 

@@ -12,7 +12,7 @@ import MiniBanner from 'components/Banners/Mini'
 const WorldNews = () => {
   return (
     <Gutter>
-      <section className="mb-4 flex flex-col justify-between gap-2 py-6 lg:flex-row xl:gap-4">
+      <section className="mb-2 flex min-h-[40rem] flex-col justify-between gap-2 py-4 lg:flex-row xl:gap-4">
         <Matches />
         <section className="relative mx-auto h-min flex-col items-center justify-between overflow-hidden md:flex lg:mx-0">
           <MiniBanner />

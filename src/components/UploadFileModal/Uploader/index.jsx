@@ -10,12 +10,12 @@ import { useState, useMemo, useEffect } from 'react'
 import Uppy from '@uppy/core'
 import { useUpdateUserPhoto } from 'app/hooks/user/useUpdateUserPhoto/useUpdateUserPhoto'
 import UppyServerActionUpload from 'app/plugins/UploadFile/UppyServerActionUpload'
-import { saveFile } from 'app/action/upload/saveFile.action'
+import { saveFile } from 'app/actions/saveFile.action'
 import { useSelector } from 'react-redux'
 import { LANGUAGE } from 'app/utils/languages.util'
 import mime from 'mime'
 
-export const UppyUploader = () => {
+export const UppyUploader = ({ closeModal }) => {
   const { lang } = useSelector((state) => state.systemLanguage)
   const { userTable } = useSelector((state) => state.auth)
   const { updateUserPhoto } = useUpdateUserPhoto()
@@ -54,7 +54,7 @@ export const UppyUploader = () => {
   useEffect(() => {
     if (fileType && path) {
       uppy.on('upload-success', async () => {
-        await updateUserPhoto(path)
+        await updateUserPhoto(path, closeModal)
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

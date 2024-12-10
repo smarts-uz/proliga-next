@@ -135,7 +135,7 @@ function PlayersTable() {
     if (windowWidth >= 1024 && windowWidth <= 1280) {
       table.setPageSize(8)
     } else {
-      table.setPageSize(10)
+      table.setPageSize(9)
     }
   }, [windowWidth, table])
 

@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next'
 
 const Hero = () => {
   const { t } = useTranslation()
-  const btnStyles =
-    'border-2 uppercase border-primary transition-all text-center max-w-64 px-5 xs:px-5 py-4 rounded-sm font-bold xl:text-lg w-full -skew-x-12'
 
   return (
     <section
@@ -24,13 +22,13 @@ const Hero = () => {
         <div className="flex w-full flex-col items-center justify-center gap-4 text-lg font-bold sm:flex-row">
           <Link
             href="/auth"
-            className={`${btnStyles} bg-primary text-black hover:bg-opacity-55`}
+            className={`w-full max-w-64 -skew-x-12 rounded-sm border-2 border-primary bg-primary px-5 py-4 text-center font-bold uppercase text-black transition-all hover:bg-opacity-55 xs:px-5 xl:text-lg`}
           >
             {t("Ro'yxatdan otish")}
           </Link>
           <Link
             href={`/championships`}
-            className={`${btnStyles} bg-transparent text-primary hover:bg-primary hover:bg-opacity-55 hover:text-black`}
+            className={`w-full max-w-64 -skew-x-12 rounded-sm border-2 border-primary bg-transparent px-5 py-4 text-center font-bold uppercase text-primary transition-all hover:bg-primary hover:bg-opacity-55 hover:text-black xs:px-5 xl:text-lg`}
           >
             {t("O'yinga kirish")}
           </Link>

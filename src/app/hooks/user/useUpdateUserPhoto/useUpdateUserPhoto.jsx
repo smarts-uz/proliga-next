@@ -13,11 +13,10 @@ export const useUpdateUserPhoto = () => {
   const { t } = useTranslation()
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
 
-  const updateUserPhoto = async (path) => {
+  const updateUserPhoto = async (path, closeModal) => {
     try {
       setIsLoading(true)
       setError('')
-      console.log(path, 'path')
 
       if (!path) {
         setError(t('Rasmni tanlang'))
@@ -50,8 +49,9 @@ export const useUpdateUserPhoto = () => {
       if (data) {
         dispatch(setUserTable(data))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
-        toast.success(`Rasm muvofaqiyatli yuklandi`, { theme: 'dark' })
+        toast.success(t('Rasm muvofaqiyatli yuklandi'), { theme: 'dark' })
         dispatch(setUserTempData(null))
+        closeModal()
       }
     } catch (error) {
       setError(error.message)
