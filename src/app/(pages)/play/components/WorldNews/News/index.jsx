@@ -1,11 +1,10 @@
 'use client'
 
+import { fetchNews } from 'app/lib/features/news/news.thunk'
+import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import Article from './Article'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { fetchNews } from 'app/lib/features/news/news.thunk'
-import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 
 const News = () => {
@@ -14,6 +13,23 @@ const News = () => {
   const [page, setPage] = useState(0)
   const [perPage, setPerPage] = useState(5)
   const { t } = useTranslation()
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
 
   useEffect(() => {
     dispatch(fetchNews({ page, perPage }))
@@ -26,8 +42,16 @@ const News = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 0))
   }
 
+  useEffect(() => {
+    if (windowWidth >= 1024) {
+      setPerPage(6)
+    } else {
+      setPerPage(5)
+    }
+  }, [windowWidth])
+
   return (
-    <div className="relative mx-auto flex h-min min-h-[38rem] min-w-full lg:min-w-64 max-w-[32rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto xl:flex-1 xl:p-5">
+    <div className="relative mx-auto flex h-max min-h-[38rem] w-full min-w-max max-w-[32rem] flex-col items-center justify-between rounded-xl bg-neutral-950 p-4 shadow shadow-neutral-600 lg:mx-0 lg:w-auto lg:min-w-72 lg:flex-1 xl:p-5">
       <h3 className="items-start self-start text-xl font-semibold">
         {t('Yangiliklar')}
       </h3>

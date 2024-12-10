@@ -11,7 +11,7 @@ const TeamPrice = () => {
       >
         {t('Jamoa narxi')}
       </h3>
-      <p className="text-2xl font-bold sm:text-3xl">{teamPrice}</p>
+      <p className="text-2xl font-bold xl:text-3xl">{teamPrice}</p>
     </div>
   )
 }

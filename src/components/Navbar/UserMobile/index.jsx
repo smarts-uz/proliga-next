@@ -18,12 +18,12 @@ const NavbarUserMobile = ({ handleToggleModal }) => {
       )}
       {userTable?.email && userTable?.photo && (
         <Image
-          src={ userTable?.photo}
+          src={userTable?.photo}
           alt="user"
           width={32}
           draggable={false}
           height={32}
-          key={userAuth?.user.email}
+          key={userTable?.photo}
           className="size-8 rounded-full bg-white"
         />
       )}

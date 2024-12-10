@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,9 +9,8 @@ import RefillBalanceModal from 'components/RefillBalanceModal'
 import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
-import { toast } from 'react-toastify'
 
-const CabinetProfileTab = ({ setSettingsTab }) => {
+const CabinetProfileTab = () => {
   const { userTable, userAuth } = useSelector((store) => store.auth)
   const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
@@ -27,7 +27,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
       setCanSendSMS(
         Boolean(
           config?.find((i) => i.key === 'can_send_sms').value.toLowerCase() ===
-            'true'
+          'true'
         )
       )
     }
@@ -64,7 +64,7 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
               width={32}
               draggable={false}
               height={32}
-              key={userAuth?.user.email}
+              key={userTable?.photo}
               className="size-16 rounded-full bg-white md:size-20"
             />
           )}
@@ -111,7 +111,9 @@ const CabinetProfileTab = ({ setSettingsTab }) => {
             <span className="text-neutral-300">{userTable?.email}</span>
           </div>
           <div className="s ml-auto flex items-center justify-center gap-1 px-0 py-0 text-sm md:gap-2">
+
             <p className="hidden sm:block">{t("Foydalanuvchi Id:")}</p>
+
             <div
               className={
                 'flex cursor-pointer items-center justify-center gap-0.5 rounded-md border bg-primary/75 px-2 py-0.5 text-base text-black transition-all hover:bg-primary hover:underline'

@@ -2,11 +2,8 @@
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import ReduxProvider from './store.provider'
-// import dynamic from 'next/dynamic'
-// const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
-// const Footer = dynamic(() => import('../components/Footer'), { ssr: false })
-import GetInitialState from './GetInitialState'
+import ReduxProvider from './lib/store.provider'
+import InitialStateProvider from './lib/InitialState.provider'
 import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
@@ -34,12 +31,12 @@ export default function RootLayout({ children }) {
         <body
           className={`${dmSans.className} dark min-h-screen scroll-smooth bg-black text-white antialiased`}
         >
-          <GetInitialState>
+          <InitialStateProvider>
             <Navbar />
             {children}
             <ToastContainer />
             <Footer />
-          </GetInitialState>
+          </InitialStateProvider>
         </body>
       </ReduxProvider>
     </html>
