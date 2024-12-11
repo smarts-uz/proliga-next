@@ -17,6 +17,7 @@ export const useGetUserTable = () => {
     setIsLoading(false)
     setError(null)
 
+    if (typeof phone === 'undefined') return
     if (!phone) {
       setError(t('Email yoki Telefon kiritilmagan'))
       toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })

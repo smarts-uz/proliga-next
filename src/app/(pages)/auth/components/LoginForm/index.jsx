@@ -31,7 +31,11 @@ const LoginForm = ({ onClick }) => {
     error: checkError,
   } = useCheckUserTable()
 
-  const { isLoading: tableLoading, error: tableError, getUserTable } = useGetUserTable()
+  const {
+    isLoading: tableLoading,
+    error: tableError,
+    getUserTable,
+  } = useGetUserTable()
   const { userTable, userAuth, temp } = useSelector((state) => state.auth)
   const { config } = useSelector((store) => store.systemConfig)
 
@@ -47,6 +51,7 @@ const LoginForm = ({ onClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (password.length < 6) {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
@@ -54,15 +59,16 @@ const LoginForm = ({ onClick }) => {
       return
     }
 
+    if (!phone) return
     setActive(true)
     await getUserTable({ phone })
   }
 
   useEffect(() => {
     if (userTable && active && password.length > 5) {
-      const fetch = async () => await logIn({ email: temp?.email, password })
+      const fetch = async () =>
+        await logIn({ email: userTable?.email, password })
       fetch()
-      console.log(temp)
       setPassword('')
       setPhone('')
     }
@@ -177,10 +183,10 @@ const LoginForm = ({ onClick }) => {
         </div>
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={authLoading || tableLoading || checkLoading}
           className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
-          {isLoading ? (
+          {authLoading || tableLoading || checkLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}

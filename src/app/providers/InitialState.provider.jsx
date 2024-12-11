@@ -69,7 +69,7 @@ const InitialStateProvider = ({ children }) => {
   }, [dispatch, lang, userTable?.language, i18n, userTable])
 
   useEffect(() => {
-    if (userTable?.id && userAuth?.user?.id && fingerprint) {
+    if (userTable?.guid && userTable?.id && userAuth?.user?.id && fingerprint) {
       userTable?.visitor !== fingerprint &&
         updateUserFingerprint({ id: userTable.guid })
     }
@@ -80,7 +80,7 @@ const InitialStateProvider = ({ children }) => {
     if (userTable?.id && userAuth?.user?.id && geo && geo?.city) {
       const table = userTable.geo && JSON.parse(userTable.geo)
 
-      if (!table.ip) return
+      if (!table?.ip) return
 
       table?.ip !== geo.ip && updateUserGeo({ id: userTable.guid })
     }
