@@ -68,13 +68,12 @@ import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Coins } from 'lucide-react'
+import { ArrowRight, Coins, InfoIcon } from 'lucide-react'
 import {
   HoverCardTrigger,
   HoverCard,
   HoverCardContent,
 } from '@/components/ui/hover-card'
-import { InfoIcon } from 'lucide-react'
 
 const TeamBalanceModal = () => {
   const dispatch = useDispatch()
@@ -87,7 +86,7 @@ const TeamBalanceModal = () => {
       onOpenChange={() => dispatch(setBalanceModal(!balanceModal))}
       open={balanceModal}
     >
-      <DialogContent className="max-h-[92%] max-w-[96%] overflow-auto rounded-lg sm:max-w-[28rem]">
+      <DialogContent className="max-h-[92%] max-w-[96%] overflow-auto rounded-lg sm:max-w-[28rem] xl:max-w-[32rem] xl:p-6">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
             {t('Boost Your Team Balance!')}
@@ -106,12 +105,12 @@ const TeamBalanceModal = () => {
             </HoverCardContent>
           </HoverCard>
         </DialogHeader>
-        <div className="mt-4 space-y-4">
+        <div className="mt-4 space-y-2">
           {packages.map(
             (item) =>
               item.type === PACKAGES.team_balance && (
                 <Card key={item.id} className="overflow-hidden">
-                  <CardContent className="p-0">
+                  <CardContent className="bg-neutral-900 p-0">
                     <Link
                       href={`/confirm-payment/${item.id}`}
                       className="block"
