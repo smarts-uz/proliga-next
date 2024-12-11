@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 const Hero = () => {
   const { t } = useTranslation()
+  const { userTable, userAuth } = useSelector((store) => store.auth)
 
   return (
     <section
@@ -20,15 +22,25 @@ const Hero = () => {
         </div>
         <span className="block h-3 w-4/5 -skew-x-[45deg] rounded-sm bg-primary md:w-3/5 lg:w-1/2 xl:w-2/5" />
         <div className="flex w-full flex-col items-center justify-center gap-4 text-lg font-bold sm:flex-row">
-          <Link
-            href="/auth"
-            className={`w-full max-w-64 -skew-x-12 rounded-sm border-2 border-primary bg-primary px-5 py-4 text-center font-bold uppercase text-black transition-all hover:bg-opacity-55 xs:px-5 xl:text-lg`}
-          >
-            {t("Ro'yxatdan otish")}
-          </Link>
+          {!userTable?.id && !userAuth?.user?.id && (
+            <Link
+              href="/auth"
+              className={`w-full max-w-64 -skew-x-12 rounded-sm border-2 border-primary bg-primary px-5 py-4 text-center font-bold uppercase text-black transition-all hover:bg-opacity-55 xs:px-5 xl:text-lg`}
+            >
+              {t("Ro'yxatdan otish")}
+            </Link>
+          )}
+          {userTable?.id && userAuth?.user?.id && (
+            <Link
+              href="/settings"
+              className={`w-full max-w-64 -skew-x-[15deg] rounded-sm border-2 border-primary bg-primary px-5 py-4 text-center font-bold uppercase text-black transition-all hover:bg-opacity-55 xs:px-5 xl:text-lg`}
+            >
+              {t('Sozlamalar')}
+            </Link>
+          )}
           <Link
             href={`/championships`}
-            className={`w-full max-w-64 -skew-x-12 rounded-sm border-2 border-primary bg-transparent px-5 py-4 text-center font-bold uppercase text-primary transition-all hover:bg-primary hover:bg-opacity-55 hover:text-black xs:px-5 xl:text-lg`}
+            className={`w-full max-w-64 -skew-x-[15deg] rounded-sm border-2 border-primary bg-transparent px-5 py-4 text-center font-bold uppercase text-primary transition-all hover:bg-primary hover:bg-opacity-55 hover:text-black xs:px-5 xl:text-lg`}
           >
             {t("O'yinga kirish")}
           </Link>
