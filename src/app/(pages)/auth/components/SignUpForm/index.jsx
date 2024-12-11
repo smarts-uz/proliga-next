@@ -34,7 +34,7 @@ const SignUpForm = ({ onClick }) => {
     e.preventDefault()
 
     if (!agreement) {
-      toast.error('Iltimos qoidalarga rozilik berin', {
+      toast.error(t('Iltimos qoidalarga rozilik berin'), {
         theme: 'dark',
       })
       return

@@ -212,7 +212,7 @@ const TransferStadiumForm = () => {
           type="button"
           variant="default"
           onClick={() => dispatch(revertTeamPlayers())}
-          title="orqaga qaytish "
+          title={t("orqaga qaytish")}
           className="flex w-full max-w-10 items-center justify-center gap-1 rounded border border-neutral-400 bg-neutral-950 px-2 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
         >
           <Image
