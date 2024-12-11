@@ -87,7 +87,7 @@ const TeamBalanceModal = () => {
       onOpenChange={() => dispatch(setBalanceModal(!balanceModal))}
       open={balanceModal}
     >
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-h-[92%] max-w-[96%] overflow-auto rounded-lg sm:max-w-[28rem]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
             {t('Boost Your Team Balance!')}
@@ -96,22 +96,13 @@ const TeamBalanceModal = () => {
             <HoverCardTrigger asChild>
               <DialogDescription className="flex cursor-help items-center text-base">
                 {t(
-                  'Increase your spending power for better players and strategies.'
+                  'Increase your spending power for better players and strategies'
                 )}
                 <InfoIcon className="ml-1 h-4 w-4" />
               </DialogDescription>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
-              <p className="text-sm">
-                {t('Boosting your team balance allows you to:')}
-              </p>
-              <ul className="mt-2 list-inside list-disc space-y-1 text-sm">
-                <li>{t('Acquire top-tier players for your roster')}</li>
-                <li>{t('Invest in advanced training facilities')}</li>
-                <li>{t('Unlock premium strategies and tactics')}</li>
-                <li>{t('Gain a competitive edge in the transfer market')}</li>
-                <li>{t("Accelerate your team's growth and success")}</li>
-              </ul>
+              <p className="text-sm">{t('balance modal info')}</p>
             </HoverCardContent>
           </HoverCard>
         </DialogHeader>
@@ -127,18 +118,20 @@ const TeamBalanceModal = () => {
                     >
                       <Button
                         variant="ghost"
-                        className="relative h-full w-full justify-start rounded-none border-l-4 border-primary px-4 py-2.5 text-left hover:bg-primary/10"
+                        className="relative h-full w-full justify-start rounded-none border-l-4 border-primary px-4 py-2 text-left hover:bg-primary/10"
                       >
                         <div>
                           <Badge variant="secondary" className="mb-2">
                             +{item.amount} {t('Coins')}
                           </Badge>
                           <h3 className="text-lg font-semibold">
-                            {t('Enhance Your Budget')}
+                            {t('Increase your balance!')}
                           </h3>
                           <p className="text-muted-foreground text-sm">
-                            {t('Add')} {item.amount}{' '}
-                            {t('coins to your balance')}
+                            {t('Add coins to your balance').replace(
+                              '$',
+                              item.amount
+                            )}
                           </p>
                         </div>
                         <ArrowRight className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-primary" />
@@ -152,7 +145,7 @@ const TeamBalanceModal = () => {
         <div className="mt-6 flex items-center justify-center space-x-2 text-sm">
           <Coins className="h-4 w-4 text-yellow-400" />
           <p className="text-muted-foreground font-medium">
-            {t("Invest in your team's success!")}
+            {t("invest in your team's success")}
           </p>
         </div>
       </DialogContent>

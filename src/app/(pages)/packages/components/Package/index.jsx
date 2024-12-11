@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
-import { Zap, Users, CircleDollarSign } from 'lucide-react'
+import { Zap, Users, Coins } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
@@ -77,7 +77,7 @@ const PackageContainer = ({ packageType }) => {
 const PackageIcon = ({ type }) => {
   switch (type) {
     case PACKAGES.team_balance:
-      return <CircleDollarSign className="h-6 w-6 text-primary/90" />
+      return <Coins className="h-6 w-6 text-primary/90" />
     case PACKAGES.transfer_count:
       return <Zap className="h-6 w-6 text-primary/90" />
     case PACKAGES.single_club_count:
