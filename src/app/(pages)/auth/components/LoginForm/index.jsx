@@ -171,7 +171,7 @@ const LoginForm = ({ onClick }) => {
               className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}
               onClick={() => setModalOpen(true)}
             >
-              {t('Parolni unutdingizmi?')}
+              {t('Parolingizni unutingizmi?')}
             </button>
           )}
         </div>
