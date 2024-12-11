@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from 'next/navigation'
 import CompetitionModal from '../Modal/index'
+import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -42,11 +42,11 @@ const Championship = ({ game }) => {
         toggleModal(true)
       }
     } else {
-      toast.warning(t('Bu liga hozr active emas', { theme: 'dark' }))
+      toast.info(t('Bu liga hozr active emas'), { theme: 'dark' })
     }
   }
 
-  const date = new Date(game.deadline)
+  const date = new Date(game?.deadline)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
@@ -64,7 +64,7 @@ const Championship = ({ game }) => {
           alt={game.title}
           className="z-10 size-12 select-none rounded-full bg-white p-1"
           draggable={false}
-          loading='lazy'
+          loading="lazy"
         />
         <span
           className={`absolute bottom-0 left-0 top-0 h-full w-10 ${currentGame ? 'bg-primary' : 'bg-neutral-800'}`}

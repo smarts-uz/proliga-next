@@ -32,7 +32,6 @@ export async function saveFile(formData) {
 
     return {
       status: 201,
-      body: path,
     }
   } catch (error) {
     return {

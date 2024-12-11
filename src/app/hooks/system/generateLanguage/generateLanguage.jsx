@@ -25,20 +25,22 @@ export const useGenerateLanguage = () => {
       }
       if (data) {
         setData(data)
-        let obj = {}
+        let uz = {}
+        let ru = {}
         // uz
         data.map((item) => {
           if (!item?.is_exclude) {
-            obj = { ...obj, [item.name]: item.uz }
+            uz = { ...uz, [item.name]: item.uz }
           }
         })
         //ru
-        // data.map((item) => {
-        //   if (!item?.is_exclude) {
-        //     obj = { ...obj, [item.name]: item.ru }
-        //   }
-        // })
-        console.log(obj)
+        data.map((item) => {
+          if (!item?.is_exclude) {
+            ru = { ...ru, [item.name]: item.ru }
+          }
+        })
+        console.log('ru', ru)
+        console.log('uz', uz)
       }
     } catch (error) {
       setError(error.message)
