@@ -153,7 +153,6 @@
   "Bizning ijtimoiy tarmoqlarimiz": "Bizning ijtimoiy tarmoqlarimiz",
   "qo'shilgan balans": "qo'shilgan balans",
   "Bir jamoadan": "Bir jamoadan",
-  "Biz haqimizda": "Biz haqimizda",
   "Foydalanuvchi shartnomasi": "Foydalanuvchi shartnomasi\r\n",
   "Tizimga Kirish": "Tizimga Kirish",
   "Yangiliklar": "Yangiliklar",
@@ -171,6 +170,7 @@
   "Yangiliklar mavjud emas!": "Yangiliklar mavjud emas!",
   "Barchasi": "Barchasi",
   "transfer modal info": "Transfer limitini oshirish orqali musobaqada g‘alaba qozonish uchun foydalanuvchilarga yana 3 qo‘shimcha transfer (umumiy 5 ta transfer) imkoniyati yaratilib, bu ularga yanada ko‘proq strategik harakatlar qilish imkonini beradi. Foydalanuvchilar qo‘shimcha transferlardan birini sotib olib, chempionlik sari muhim qadam tashlashi mumkin!",
+  "Biz haqimizda": "Biz haqimizda",
   "Himoyachi": "Himoyachi",
   "Y Himoyachi": "Y Himoyachi",
   "Hujumchi": "Hujumchi",
@@ -547,7 +547,10 @@
   "Add coins to your balance": "Balansingizni $ tanga oshiring.",
   "Upgrade your game strategy with more transfers": "Qo‘shimcha transferlar bilan o‘yin strategiyangizni yaxshilang.",
   "Boost Your Transfer Limit!": "Transfer limitini oshiring!",
+  "Huquqiy": "Huquqiy",
   "Expand your options": "Imkoniyatlaringizni kengaytiring",
   "Increase limit by": "Limitingizni $ taga oshiring.",
-  "Upgrade now for instant access!": "Sotib oling va darhol foydalaning!"
+  "Upgrade now for instant access!": "Sotib oling va darhol foydalaning!",
+  "Navigatsiya": "Navigatsiya",
+  "Barcha huquqlar himoyalangan": "Barcha huquqlar himoyalangan"
 }

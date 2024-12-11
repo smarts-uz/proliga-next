@@ -153,7 +153,6 @@
   "Bizning ijtimoiy tarmoqlarimiz": "Наши социальные сети",
   "qo'shilgan balans": "добавленный баланс",
   "Bir jamoadan": "Из одной команды",
-  "Biz haqimizda": "о нас",
   "Foydalanuvchi shartnomasi": "Соглашение пользователей",
   "Tizimga Kirish": "Авторизоваться",
   "Yangiliklar": "Новости",
@@ -171,6 +170,7 @@
   "Yangiliklar mavjud emas!": "Новостей нет!",
   "Barchasi": "Все",
   "transfer modal info": "Для увеличения лимита трансфера пользователю может понадобиться до 3 дополнительных трансферов (всего 5 трансферов), что даст ему преимущество в турнире. Покупая один из дополнительных трансферов, пользователи приближаются к заветному чемпионству!",
+  "Biz haqimizda": "О Нас",
   "Himoyachi": "Защитник",
   "Y Himoyachi": "Полузащитник",
   "Hujumchi": "нападающий",
@@ -547,7 +547,10 @@
   "Add coins to your balance": "Увеличите свой баланс до $ монет.",
   "Upgrade your game strategy with more transfers": " Улучшите свою стратегию игры с помощью дополнительных трансферов.",
   "Boost Your Transfer Limit!": " Увеличьте свой лимит трансферов!",
+  "Huquqiy": "Юридический",
   "Expand your options": "Расширьте свои возможности",
   "Increase limit by": "Увеличьте лимит на $.",
-  "Upgrade now for instant access!": "Купите сейчас и получите мгновенный доступ!"
+  "Upgrade now for instant access!": "Купите сейчас и получите мгновенный доступ!",
+  "Navigatsiya": "Навигация",
+  "Barcha huquqlar himoyalangan": "Все права защищены"
 }
