@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
-import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+import { setUserTempData } from '../../../lib/features/auth/auth.slice'
 
-export const useGetUserTable = () => {
+export const useCheckUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -13,11 +13,10 @@ export const useGetUserTable = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const getUserTable = async ({ phone }) => {
+  const checkUserTable = async ({ phone }) => {
     setIsLoading(false)
     setError(null)
 
-    if (typeof phone === 'undefined') return
     if (!phone) {
       setError(t('Email yoki Telefon kiritilmagan'))
       toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
@@ -29,7 +28,7 @@ export const useGetUserTable = () => {
 
       const { data, error } = await supabase
         .from('user')
-        .select('*')
+        .select('phone, email')
         .eq('phone', phone)
         .single()
 
@@ -51,8 +50,7 @@ export const useGetUserTable = () => {
         return
       }
       if (data) {
-        dispatch(setUserTable(data))
-        localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
+        dispatch(setUserTempData({ email: data?.email, phone: data?.phone }))
         setData(data)
       }
     } catch (error) {
@@ -62,5 +60,5 @@ export const useGetUserTable = () => {
       setIsLoading(false)
     }
   }
-  return { getUserTable, isLoading, error, data }
+  return { checkUserTable, isLoading, error, data }
 }

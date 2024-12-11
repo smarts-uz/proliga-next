@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import SendOTPModal from 'components/SendOTPModal'
+import { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
@@ -9,30 +10,48 @@ import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
-import SendOTPModal from 'components/SendOTPModal'
 import { setUserAuth, setUserTable } from 'app/lib/features/auth/auth.slice'
+import { useCheckUserTable } from 'app/hooks/auth/useCheckUserTable/useCheckUserTable'
 
 const LoginForm = ({ onClick }) => {
-  const [canSendSMS, setCanSendSMS] = useState(true)
   const dispatch = useDispatch()
-  const { t } = useTranslation()
-  const [phone, setPhone] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const { isLoading, logIn, error, data } = useLogIn()
-  const { userTable, userAuth } = useSelector((state) => state.auth)
-  const [active, setActive] = useState(false)
-  const { config } = useSelector((store) => store.systemConfig)
-  const {
-    isLoading: tableIsLoading,
-    getUserTable,
-    error: tableError,
-  } = useGetUserTable()
   const router = useRouter()
+  const { t } = useTranslation()
+  const [showPassword, setShowPassword] = useState(false)
   const [isModalOpen, setModalOpen] = useState(false)
+  const [canSendSMS, setCanSendSMS] = useState(true)
+  const [password, setPassword] = useState('')
+  const [active, setActive] = useState(false)
+  const [phone, setPhone] = useState('')
+
+  const { logIn, isLoading: authLoading, error: authError } = useLogIn()
+  const {
+    checkUserTable,
+    isLoading: checkLoading,
+    error: checkError,
+  } = useCheckUserTable()
+
+  const {
+    isLoading: tableLoading,
+    error: tableError,
+    getUserTable,
+  } = useGetUserTable()
+  const { userTable, userAuth, temp } = useSelector((state) => state.auth)
+  const { config } = useSelector((store) => store.systemConfig)
+
+  const isLoading = useMemo(
+    () => authLoading || tableLoading || checkLoading,
+    [authLoading, tableLoading, checkLoading]
+  )
+
+  const error = useMemo(
+    () => authError || checkError || tableError,
+    [authError, checkError, tableError]
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (password.length < 6) {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
@@ -40,6 +59,7 @@ const LoginForm = ({ onClick }) => {
       return
     }
 
+    if (!phone) return
     setActive(true)
     await getUserTable({ phone })
   }
@@ -49,7 +69,6 @@ const LoginForm = ({ onClick }) => {
       const fetch = async () =>
         await logIn({ email: userTable?.email, password })
       fetch()
-
       setPassword('')
       setPhone('')
     }
@@ -65,13 +84,13 @@ const LoginForm = ({ onClick }) => {
   }, [active, router, userAuth, userTable])
 
   useEffect(() => {
-    if (error || tableError) {
+    if (error) {
       setActive(false)
       localStorage.clear()
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))
     }
-  }, [error, tableError, dispatch])
+  }, [error, dispatch])
 
   useEffect(() => {
     if (config?.length > 0) {
@@ -164,10 +183,10 @@ const LoginForm = ({ onClick }) => {
         </div>
         <button
           type="submit"
-          disabled={isLoading || tableIsLoading}
+          disabled={authLoading || tableLoading || checkLoading}
           className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
-          {isLoading || tableIsLoading ? (
+          {authLoading || tableLoading || checkLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}
@@ -179,8 +198,8 @@ const LoginForm = ({ onClick }) => {
             t('Tizimga kirish_2')
           )}
         </button>
+        <SendOTPModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
       </form>
-      <SendOTPModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </>
   )
 }
