@@ -27,6 +27,7 @@ const RefillBalanceBox = ({ setBalanceModal }) => {
             value={userTable?.balance}
             className="w-min select-none border-none bg-transparent text-center font-bold text-neutral-50 outline-none"
             defaultValue={0}
+            readOnly
             thousandSeparator
             tabIndex={-1}
             suffix={' ' + t("so'm")}

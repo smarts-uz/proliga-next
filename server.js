@@ -25,7 +25,6 @@ const MIME_TYPES = {
 }
 
 const server = http.createServer((req, res) => {
-  // Remove leading slash and decode URI
   const filePath = path.join(STATIC_DIR, decodeURIComponent(req.url.slice(1)))
 
   fs.stat(filePath, (err, stats) => {
@@ -46,11 +45,9 @@ const server = http.createServer((req, res) => {
       return
     }
 
-    // Determine the content type
     const ext = path.extname(filePath)
     const contentType = MIME_TYPES[ext] || 'application/octet-stream'
 
-    // Set the content type and character encoding
     res.setHeader('Content-Type', `${contentType}; charset=utf-8`)
 
     const stream = fs.createReadStream(filePath, { encoding: 'utf8' })
@@ -61,28 +58,3 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`)
 })
-
-// // For demonstration purposes, let's create a sample file with Cyrillic text in the statics folder
-// const sampleFilePath = path.join(STATIC_DIR, 'cyrillic-sample.txt')
-// fs.mkdir(STATIC_DIR, { recursive: true }, (err) => {
-//   if (err) {
-//     console.error('Error creating directory:', err)
-//     return
-//   }
-
-//   fs.writeFile(
-//     sampleFilePath,
-//     'Это пример текста на русском языке.',
-//     'utf8',
-//     (err) => {
-//       if (err) {
-//         console.error('Error writing file:', err)
-//         return
-//       }
-//       console.log(`Sample file with Cyrillic text created at ${sampleFilePath}`)
-//       console.log(
-//         `You can access it at http://localhost:${PORT}/cyrillic-sample.txt`
-//       )
-//     }
-//   )
-// })

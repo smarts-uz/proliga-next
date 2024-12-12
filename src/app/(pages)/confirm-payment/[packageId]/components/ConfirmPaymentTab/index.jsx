@@ -13,7 +13,10 @@ import { useBuyPackageWithClick } from 'app/hooks/payment/useBuyPackageWithClick
 const ConfirmPaymentTab = ({ paymentOption }) => {
   const { currentPackage } = useSelector((store) => store.packages)
   const { userTable } = useSelector((store) => store.auth)
-  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { currentTeam, lastVisitedTeam } = useSelector(
+    (store) => store.currentTeam
+  )
+
   const { t } = useTranslation()
   const { buyPackageWithWallet, isLoading } = useBuyPackageWithWallet()
   const { buyPackageWithPayme, isLoading: isPaymeLoading } =
@@ -60,12 +63,13 @@ const ConfirmPaymentTab = ({ paymentOption }) => {
           defaultValue={0}
           thousandSeparator
           tabIndex={-1}
+          readOnly
           suffix={' ' + t("so'm")}
         />
       </div>
       <div className="flex items-center gap-1 self-end font-medium md:self-auto">
         <Link
-          href="/packages"
+          href={'/play/' + lastVisitedTeam}
           className="flex h-10 w-24 items-center justify-center rounded border border-neutral-300 bg-neutral-950 text-center text-sm text-neutral-300 transition-all hover:border-neutral-100 hover:bg-opacity-75 hover:text-neutral-100 lg:w-32 lg:text-base"
         >
           {t('Qaytish')}

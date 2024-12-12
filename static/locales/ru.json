@@ -269,10 +269,10 @@
   "taga oshirish": " ",
   "tangaga oshirish": "",
   "transferlar": "трансферы",
-  "Transferla sonini": "Увеличить количество переводов на ",
-  "Balansni": "Увеличение баланса до",
   "To'lov usulini tanlang": "Выберите способ оплаты",
   "ta futbolchi sotib olish": "игрока из одной команды",
+  "Transferla sonini": "Увеличить количество трансферов на $ ",
+  "Balansni": "Увеличение баланса до $",
   "Payme orqali tolov qilish": "Оплата через Payme",
   "Proliga hisobi": "Счет Proliga",
   "Hisobda": "На счету",
@@ -370,7 +370,6 @@
   "Uyda": "Дома ",
   "Mehmonda": "Гостья",
   "Telefon raqam tasdiqlash": "Подтверждение номера телефона",
-  "Maksimum klub oyi'nchilarini": "Увеличь максимальное количество игроков из одного клуба на",
   "Deadline": "Дедлайн",
   "Xarajatlar tarixi": "История расходов",
   "Balans haqida malumot topilmadi!": "Информация о балансе не найдена!",
@@ -558,5 +557,6 @@
   "strengthen your squad": "Укрепите свою команду.",
   "Boost your team's potential with more players from a single club.": "Увеличьте потенциал вашей команды, добавив больше игроков из одного клуба.",
   "single club player modal info": "Не ограничивайтесь двумя игроками – станьте сильнее для победы! Теперь пользователи смогут приобрести до 3 дополнительных игроков из каждой команды, в сумме — 5 игроков. Это означает, что вы можете усилить свою команду, покупая лимит дополнительных игроков, и сделать уверенный шаг к чемпионству!",
-  "Expand Your Club Roster!": "Добавьте игроков из одного клуба в свой состав!"
+  "Expand Your Club Roster!": "Добавьте игроков из одного клуба в свой состав!",
+  "Maksimum klub oyi'nchilarini": "Увеличь максимальное количество игроков из одного клуба на $"
 }

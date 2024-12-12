@@ -44,11 +44,12 @@ const TransferTableBody = ({
           ))}
         </tr>
       ))}
-      <TournamentTableCurrentTeamRow
-        currentCompetition={currentCompetition}
-        currentTourTeam={currentTourTeam}
-        tableCurrentTourTeam={tableCurrentTourTeam}
-      />
+      {!tableCurrentTourTeam && (
+        <TournamentTableCurrentTeamRow
+          currentCompetition={currentCompetition}
+          currentTourTeam={currentTourTeam}
+        />
+      )}
     </tbody>
   )
 }

@@ -37,6 +37,7 @@ const WalletPaymentOption = ({
           defaultValue={0}
           thousandSeparator
           tabIndex={-1}
+          readOnly
           suffix={' ' + t("so'm")}
         />
       </div>
