@@ -33,7 +33,6 @@ const Navbar = () => {
                 alt="Proliga"
                 width={180}
                 height={56}
-                priority={true}
                 draggable={false}
                 className="w-28 cursor-pointer sm:w-36"
               />

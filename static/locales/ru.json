@@ -467,7 +467,6 @@
   "Foydalanuvchi autentifikatsiya qilinmagan": "Пользователь не аутентифицирован",
   "Foydalanuvchi topilmadi": "Пользователь не найден",
   "SMS muvaffaqiyatli yuborildi": "СМС отправлен успешно",
-  "Musobaqada g‘alaba qozonish": "Двух игроков из одной команды может оказаться недостаточно для победы в соревновании. Пользователи смогут приобрести еще 3 игроков из каждой команды (всего 5 игроков). Таким образом, пользователи могут купить лимит дополнительных игроков из одной команды и ийти к чемпионству.",
   "Xarajatlar": "Платежи",
   "Hisobni kamida 1 so'm ga toldirish lozim": "Необходимо пополнить счет минимум на 1 сум",
   "Sizning Parolingiz Almashdi": "Ваш пароль изменен",
@@ -479,6 +478,7 @@
   "Paket topilmadi": "Пакет не найден",
   "Tizim topilmadi": "Система не найдена",
   "Gol Assist": "Гол Ассист",
+  "Players": "Игроков",
   "Test ni tanlang!": "Выберите тест!",
   "Joriy paket yo‘q!": "Текущий пакет отсутствует!",
   "To‘lov varianti topilmadi!": "Вариант оплаты не найден!",
@@ -501,6 +501,7 @@
   "Sizning parolingiz almashtirildi": "Ваш пароль изменен",
   "Qayta jo‘natish": "Переотправить",
   "Bu foydalanuvchi allaqachon ro'yxatdan o'tgan": "Этот пользователь уже зарегистрирован",
+  "Add players from one club!": "Добавьте $ игроков из одного клуба!",
   "Parolingizni unutingizmi?": "Забыли пароль?",
   "Login yoki parol xato": "Неверный логин или пароль",
   "Bunaqa raqamli foydalanuvchi yoq": "Пользователь с таким номером не существует",
@@ -552,5 +553,10 @@
   "Increase limit by": "Увеличьте лимит на $.",
   "Upgrade now for instant access!": "Купите сейчас и получите мгновенный доступ!",
   "Navigatsiya": "Навигация",
-  "Barcha huquqlar himoyalangan": "Все права защищены"
+  "Barcha huquqlar himoyalangan": "Все права защищены",
+  "Build a stronger team for victory! ": "Постройте более сильную команду для победы!",
+  "strengthen your squad": "Укрепите свою команду.",
+  "Boost your team's potential with more players from a single club.": "Увеличьте потенциал вашей команды, добавив больше игроков из одного клуба.",
+  "single club player modal info": "Не ограничивайтесь двумя игроками – станьте сильнее для победы! Теперь пользователи смогут приобрести до 3 дополнительных игроков из каждой команды, в сумме — 5 игроков. Это означает, что вы можете усилить свою команду, покупая лимит дополнительных игроков, и сделать уверенный шаг к чемпионству!",
+  "Expand Your Club Roster!": "Добавьте игроков из одного клуба в свой состав!"
 }
