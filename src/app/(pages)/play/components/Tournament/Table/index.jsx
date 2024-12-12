@@ -20,7 +20,10 @@ function TournamentTable() {
   const { allTeams } = useSelector((store) => store.teams)
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
   const curTourTeam = useMemo(
-    () => Boolean(allTeams.find((team) => team?.id === currentTourTeam?.id)),
+    () =>
+      Boolean(
+        allTeams.find((team) => team?.team?.id === currentTourTeam?.team?.id)
+      ),
     [allTeams, currentTourTeam]
   )
   const [sorting, setSorting] = useState([

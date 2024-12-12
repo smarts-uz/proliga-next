@@ -23,6 +23,9 @@
 /static/uploads
 /static/player
 
+# dev only
+server.js
+
 # next.js
 /.next/
 /out/

@@ -269,10 +269,10 @@
   "taga oshirish": "taga oshirish",
   "tangaga oshirish": " tangacha oshirish",
   "transferlar": "transferlar",
-  "Transferla sonini": "Transferla sonini",
-  "Balansni": "Balansni",
   "To'lov usulini tanlang": "To'lov usulini tanlang",
   "ta futbolchi sotib olish": "ta futbolchi sotib olish",
+  "Transferla sonini": "Transferlar sonini $ ga oshirish",
+  "Balansni": "Balansni $ ga oshirish",
   "Payme orqali tolov qilish": "Payme orqali tolov qilish",
   "Proliga hisobi": "Proliga hisobi",
   "Hisobda": "Hisobda",
@@ -370,7 +370,6 @@
   "Uyda": "Uyda ",
   "Mehmonda": "Mehmonda",
   "Telefon raqam tasdiqlash": "Telefon raqam tasdiqlash",
-  "Maksimum klub oyi'nchilarini": "Maksimum klub oyi'nchilarini",
   "Deadline": "Deadline",
   "Xarajatlar tarixi": "Xarajatlar tarixi",
   "Balans haqida malumot topilmadi!": "Balans haqida malumot topilmadi!",
@@ -558,5 +557,6 @@
   "strengthen your squad": "Jamoangizni kuchaytiring.",
   "Boost your team's potential with more players from a single club.": "Jamoangizning salohiyatini bir klubdan ko‘proq o‘yinchi qo‘shib oshiring.",
   "single club player modal info": "Musobaqada g‘olib bo‘lish uchun imkoniyatlaringizni oshiring! Bir jamoadan atigi ikki nafar futbolchi bilan cheklanib qolmang. Endi siz har bir jamoadan yana 3 tagacha o‘yinchi sotib olib, umumiy hisobda 5 futbolchiga ega bo‘lish imkoniyatiga egasiz. Chempionlik sari bir qadam yaqinroq bo‘lish uchun sevimli jamoangizning kuchini to‘liq ishga soling va qo‘shimcha futbolchilar limitini qo‘lga kiriting!",
-  "Expand Your Club Roster!": "Bir klubdan o‘yinchilarni klubingiz tarkibiga qo‘shing!"
+  "Expand Your Club Roster!": "Bir klubdan o‘yinchilarni klubingiz tarkibiga qo‘shing!",
+  "Maksimum klub oyi'nchilarini": "Maksimum klub o‘yinchilarini $ ga oshirish"
 }

@@ -20,12 +20,8 @@ const CurrentPackage = () => {
         1
       </span>
       <div className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row sm:gap-0">
-        <div className="select-none space-x-2 text-sm xs:text-base sm:text-lg md:text-xl">
-          {getPackageText(currentPackage)}
-          <span className="text-lg font-bold xs:text-xl md:text-2xl">
-            {' ' + currentPackage?.amount}
-          </span>{' '}
-          {t('ga oshirish')}
+        <div className="select-none space-x-2 text-sm xs:text-base sm:text-lg">
+          {getPackageText(currentPackage).replace('$', currentPackage?.amount)}
         </div>
         <NumericFormat
           value={currentPackage?.price}
@@ -33,6 +29,7 @@ const CurrentPackage = () => {
           defaultValue={0}
           thousandSeparator
           tabIndex={-1}
+          readOnly
           suffix={' ' + t("so'm")}
         />
       </div>
