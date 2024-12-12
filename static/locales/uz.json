@@ -467,7 +467,6 @@
   "Foydalanuvchi autentifikatsiya qilinmagan": "Foydalanuvchi autentifikatsiya qilinmagan",
   "Foydalanuvchi topilmadi": "Foydalanuvchi topilmadi",
   "SMS muvaffaqiyatli yuborildi": "SMS muvaffaqiyatli yuborildi",
-  "Musobaqada g‘alaba qozonish": "Musobaqada g‘alaba qozonish uchun bir jamoadan ikkita o‘yinchi etarli bo‘lmasligi mumkin. Foydalanuvchiga qo‘shimcha ravishda har bir jamoadan yana 3 tagacha o‘yinchi (jami 5 o‘yinchi) sotib olishlari mumkin bo‘ladi. Shu sababli, foydalanuvchilar bir jamoadan qo‘shimcha futbolchilar limitini sotib olib, chempionlik sari qadam tashlaydi",
   "Xarajatlar": "Xarajatlar",
   "Hisobni kamida 1 so'm ga toldirish lozim": "Hisobni kamida 1 so'm ga toldirish lozim",
   "Sizning Parolingiz Almashdi": "Sizning Parolingiz Almashdi",
@@ -479,6 +478,7 @@
   "Paket topilmadi": "Paket topilmadi",
   "Tizim topilmadi": "Tizim topilmadi",
   "Gol Assist": "Gol Assist",
+  "Players": "O`yinchilar",
   "Test ni tanlang!": "Test ni tanlang!",
   "Joriy paket yo‘q!": "Joriy paket yo‘q!",
   "To‘lov varianti topilmadi!": "To‘lov varianti topilmadi!",
@@ -501,6 +501,7 @@
   "Sizning parolingiz almashtirildi": "Sizning parolingiz almashtirildi",
   "Qayta jo‘natish": "Qayta jo‘natish",
   "Bu foydalanuvchi allaqachon ro'yxatdan o'tgan": "Bu foydalanuvchi allaqachon ro'yxatdan o'tgan",
+  "Add players from one club!": "Bir klubdan $ ta o‘yinchi qo‘shing!",
   "Parolingizni unutingizmi?": "Parolingizni unutingizmi?",
   "Login yoki parol xato": "Login yoki parol xato",
   "Bunaqa raqamli foydalanuvchi yoq": "Bunaqa raqamli foydalanuvchi yoq",
@@ -552,5 +553,10 @@
   "Increase limit by": "Limitingizni $ taga oshiring.",
   "Upgrade now for instant access!": "Sotib oling va darhol foydalaning!",
   "Navigatsiya": "Navigatsiya",
-  "Barcha huquqlar himoyalangan": "Barcha huquqlar himoyalangan"
+  "Barcha huquqlar himoyalangan": "Barcha huquqlar himoyalangan",
+  "Build a stronger team for victory! ": "G‘alaba uchun kuchliroq jamoani yarating!",
+  "strengthen your squad": "Jamoangizni kuchaytiring.",
+  "Boost your team's potential with more players from a single club.": "Jamoangizning salohiyatini bir klubdan ko‘proq o‘yinchi qo‘shib oshiring.",
+  "single club player modal info": "Musobaqada g‘olib bo‘lish uchun imkoniyatlaringizni oshiring! Bir jamoadan atigi ikki nafar futbolchi bilan cheklanib qolmang. Endi siz har bir jamoadan yana 3 tagacha o‘yinchi sotib olib, umumiy hisobda 5 futbolchiga ega bo‘lish imkoniyatiga egasiz. Chempionlik sari bir qadam yaqinroq bo‘lish uchun sevimli jamoangizning kuchini to‘liq ishga soling va qo‘shimcha futbolchilar limitini qo‘lga kiriting!",
+  "Expand Your Club Roster!": "Bir klubdan o‘yinchilarni klubingiz tarkibiga qo‘shing!"
 }
