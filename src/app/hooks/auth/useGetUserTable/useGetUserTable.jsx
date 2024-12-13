@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
 import { setUserTable } from '../../../lib/features/auth/auth.slice'
 import { useTranslation } from 'react-i18next'
+import { setUserTempData } from '../../../lib/features/auth/auth.slice'
 
 export const useGetUserTable = () => {
   const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)
@@ -17,7 +18,6 @@ export const useGetUserTable = () => {
     setIsLoading(false)
     setError(null)
 
-    if (typeof phone === 'undefined') return
     if (!phone) {
       setError(t('Email yoki Telefon kiritilmagan'))
       toast.error(t('Email yoki Telefon kiritilmagan'), { theme: 'dark' })
@@ -36,11 +36,13 @@ export const useGetUserTable = () => {
       if (error?.code === 'PGRST116') {
         setError(error.message)
         toast.error(t('Bunaqa raqamli foydalanuvchi yoq'), { theme: 'dark' })
+        dispatch(setUserTempData(null))
         return
       }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
+        dispatch(setUserTempData(null))
         return
       }
       if (!data) {
@@ -53,11 +55,13 @@ export const useGetUserTable = () => {
       if (data) {
         dispatch(setUserTable(data))
         localStorage.setItem(`user-table-${sbUrl}`, JSON.stringify(data))
+        dispatch(setUserTempData(null))
         setData(data)
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message, { theme: 'dark' })
+      dispatch(setUserTempData(null))
     } finally {
       setIsLoading(false)
     }

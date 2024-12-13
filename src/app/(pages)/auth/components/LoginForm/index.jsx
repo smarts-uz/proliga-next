@@ -10,7 +10,11 @@ import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
-import { setUserAuth, setUserTable } from 'app/lib/features/auth/auth.slice'
+import {
+  setUserAuth,
+  setUserTable,
+  setUserTempData,
+} from 'app/lib/features/auth/auth.slice'
 import { useCheckUserTable } from 'app/hooks/auth/useCheckUserTable/useCheckUserTable'
 
 const LoginForm = ({ onClick }) => {
@@ -59,29 +63,54 @@ const LoginForm = ({ onClick }) => {
       return
     }
 
-    if (!phone) return
+    if (!phone) {
+      toast.error(t('Telefon raqam kiritilmagan'), { theme: 'dark' })
+      setError(t('Telefon raqam kiritilmagan'))
+      return
+    }
+
     setActive(true)
-    await getUserTable({ phone })
+    await checkUserTable({ phone })
   }
 
   useEffect(() => {
-    if (userTable && active && password.length > 5) {
-      const fetch = async () =>
-        await logIn({ email: userTable?.email, password })
-      fetch()
-      setPassword('')
-      setPhone('')
+    if (active) {
+      if (temp?.email && temp?.phone && password.length > 5) {
+        const handleLogin = async () => {
+          await logIn({ email: temp?.email, password })
+        }
+        handleLogin()
+      }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTable, active, password])
+  }, [active, password, temp, logIn])
 
   useEffect(() => {
-    if (userTable && userAuth && active) {
-      router.push('/championships')
-      setActive(false)
+    if (active) {
+      if (userAuth?.user?.id && temp?.phone && !authError && !authLoading) {
+        const handleLogin = async () => {
+          await getUserTable({ phone: temp?.phone })
+        }
+
+        handleLogin()
+        setActive(false)
+        setPassword('')
+        setPhone('')
+        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+      }
     }
-  }, [active, router, userAuth, userTable])
+  }, [active, userAuth, authError, temp?.phone, authLoading, getUserTable, t])
+
+  // useEffect(() => {
+  //   if (userTable && userAuth && active) {
+  //     toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+  //     setActive(false)
+  //   }
+  // }, [active, router, userAuth, userTable, temp, t])
+
+  useEffect(() => {
+    if (userAuth?.user?.id && userTable?.id && !active)
+      router.push('/championships')
+  }, [userAuth, router, userTable, active])
 
   useEffect(() => {
     if (error) {
@@ -89,6 +118,7 @@ const LoginForm = ({ onClick }) => {
       localStorage.clear()
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))
+      dispatch(setUserTempData(null))
     }
   }, [error, dispatch])
 
@@ -183,10 +213,10 @@ const LoginForm = ({ onClick }) => {
         </div>
         <button
           type="submit"
-          disabled={authLoading || tableLoading || checkLoading}
+          disabled={isLoading}
           className="mx-auto w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
         >
-          {authLoading || tableLoading || checkLoading ? (
+          {isLoading ? (
             <Image
               src="/icons/loading.svg"
               width={24}
