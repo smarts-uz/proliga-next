@@ -13,6 +13,8 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import Image from 'next/image'
+import { useUpdateTeamCaptains } from 'app/hooks/transfer/useUpdateTeamCaptains/useUpdateTeamCaptains'
 
 const ProfileStadiumForm = () => {
   const { t } = useTranslation()
@@ -22,19 +24,25 @@ const ProfileStadiumForm = () => {
     (state) => state.teamPlayers
   )
   const { lang } = useSelector((store) => store.systemLanguage)
-  const { currentTeam } = useSelector((state) => state.currentTeam)
-  const { currentTour } = useSelector((state) => state.tours)
-  const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
+  const { currentTeam, isLoading: teamLoading } = useSelector(
+    (state) => state.currentTeam
+  )
+  const { currentTour, isLoading: tourLoading } = useSelector(
+    (state) => state.tours
+  )
+  const { updateTeamCaptains, error, isLoading } = useUpdateTeamCaptains()
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
 
+  // create a variable that combines loading states
+  const loading = teamLoading || tourLoading || isLoading
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const captains = []
-    console.log(validPlayers())
     if (!validPlayers()) return
 
     teamConcat.forEach((player) => {
@@ -50,7 +58,7 @@ const ProfileStadiumForm = () => {
 
     if (!validTeamStructure()) return
 
-    await updateTeamPlayers({
+    await updateTeamCaptains({
       team: teamConcat,
       team_id: currentTeam.id,
       tour_id: currentTour.id,
@@ -106,7 +114,7 @@ const ProfileStadiumForm = () => {
         value={teamConcat.find((player) => player.is_captain)?.player_id ?? ''}
         onValueChange={(value) => dispatch(setCaptain(value))}
       >
-        <SelectTrigger className="w-full min-w-36 max-w-56 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
+        <SelectTrigger className="h-10 w-full min-w-36 max-w-56 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
           <SelectValue placeholder={t('Kapitan tanlang')} />
         </SelectTrigger>
         <SelectContent>
@@ -126,9 +134,19 @@ const ProfileStadiumForm = () => {
       </Select>
       <Button
         type="submit"
-        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black md:text-base"
+        className="h-10 min-w-24 rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:min-w-28 xs:min-w-28 sm:min-w-32 md:text-base"
       >
-        {t('Saqlash')}
+        {loading ? (
+          <Image
+            src="/icons/loading.svg"
+            width={24}
+            height={24}
+            alt="loading"
+            className="mx-auto size-6 animate-spin"
+          />
+        ) : (
+          t('Saqlash')
+        )}
       </Button>
     </form>
   )

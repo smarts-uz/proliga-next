@@ -25,10 +25,11 @@ const teamsSlice = createSlice({
         state.teams.push(action.payload)
       }
     },
+    resetTeams: () => initialState,
   },
   extraReducers: teamsExtraReducer,
 })
 
-export const { setTeams, addGameToTeam } = teamsSlice.actions
+export const { setTeams, addGameToTeam, resetTeams } = teamsSlice.actions
 
 export default teamsSlice.reducer

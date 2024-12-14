@@ -20,7 +20,6 @@ export const useLogIn = () => {
   const logIn = async ({ email, password, setActive = () => {} }) => {
     setIsLoading(false)
     setError(null)
-    console.log('executed')
 
     if (password.length < 6) {
       setError("Parol 6 ta belgidan kam bo'lmasligi kerak")
