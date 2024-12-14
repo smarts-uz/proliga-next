@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
 
 const ProfileStadiumForm = () => {
   const { t } = useTranslation()
@@ -20,6 +21,7 @@ const ProfileStadiumForm = () => {
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
+  const { lang } = useSelector((store) => store.systemLanguage)
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -36,11 +38,9 @@ const ProfileStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          t('identifikatori ') +
-            player.id +
-            t(" bo'lgan va ") +
-            player.position +
-            t(" holatidagi o'yinchi yaroqsiz"),
+          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
+            .replace('$', player?.id)
+            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
           { theme: 'dark' }
         )
         return

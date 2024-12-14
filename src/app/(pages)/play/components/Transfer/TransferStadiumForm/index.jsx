@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -32,6 +33,7 @@ const TransferStadiumForm = () => {
   const { teamBalance, teamPrice, currentTeam } = useSelector(
     (state) => state.currentTeam
   )
+  const { lang } = useSelector((state) => state.systemLanguage)
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTourTeam } = useSelector((state) => state.tourTeams)
   const teamConcat = useMemo(
@@ -49,7 +51,6 @@ const TransferStadiumForm = () => {
     isLoading: teamPlayersLoading,
     error: teamPlayersError,
   } = useAutoGenerateTeamPlayers()
-
   const {
     updateTeam,
     isLoading: teamLoading,
@@ -71,18 +72,14 @@ const TransferStadiumForm = () => {
     teamConcat.forEach((player) => {
       if (!player.name || !player.price) {
         toast.warning(
-          t('identifikatori') +
-            player.id +
-            t("bo'lgan va") +
-            player.position +
-            t("holatidagi o'yinchi yaroqsiz"),
+          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
+            .replace('$', player?.id)
+            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
           { theme: 'dark' }
         )
-        return player
+        return
       }
-      if (player.is_captain) {
-        captains.push(player.player_id)
-      }
+      player.is_captain && captains.push(player.player_id)
       player.name && curTeamPlayersId.push(player.player_id)
     })
 
@@ -111,6 +108,7 @@ const TransferStadiumForm = () => {
       toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
       return
     }
+
     let difference = curTeamPlayersId.filter(
       (x) => !prevTeamPlayersId.includes(x)
     )
@@ -212,7 +210,7 @@ const TransferStadiumForm = () => {
           type="button"
           variant="default"
           onClick={() => dispatch(revertTeamPlayers())}
-          title={t("orqaga qaytish")}
+          title={t('orqaga qaytish')}
           className="flex w-full max-w-10 items-center justify-center gap-1 rounded border border-neutral-400 bg-neutral-950 px-2 text-neutral-100 transition-all hover:border-primary sm:w-full sm:max-w-max"
         >
           <Image
