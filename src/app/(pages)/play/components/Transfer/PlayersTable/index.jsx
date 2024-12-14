@@ -141,7 +141,7 @@ function PlayersTable() {
     }
   }, [windowWidth, table])
 
-  if (!isLoading) {
+  if (isLoading) {
     return <PlayersTableSkeleton />
   }
 

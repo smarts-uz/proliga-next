@@ -42,7 +42,6 @@ export const playersExtraReducer = (builder) => {
       const players = action.payload?.data ?? []
       players.map((pl) => {
         let player = state.players.find((p) => p.id === pl)
-        if (players.length > 2) return
         state.topPlayers.push(player)
       })
     })

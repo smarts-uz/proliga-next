@@ -7,7 +7,7 @@ const RankingTeams = () => {
   const { topTeams } = useSelector((store) => store.teams)
 
   return (
-    <div className="w-full rounded-lg bg-black p-5 text-neutral-100">
+    <div className="w-full rounded-xl bg-black p-5 text-neutral-100">
       <h3 className="text-xl font-bold">{t('Eng kuchli top 3 jamoalar')}</h3>
       <div
         className={`mt-4 ${topTeams?.length > 0 ? 'grid' : ''} h-auto min-h-32 grid-cols-2 gap-2 xs:grid-cols-3`}
@@ -26,7 +26,7 @@ const RankingTeams = () => {
 
 const TeamPlace = ({ team, index }) => {
   return (
-    <div className="fade-in-fast relative min-h-32 rounded-lg bg-neutral-100 p-2">
+    <div className="relative min-h-32 rounded bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <Image
           src={`/icons/${index + 1}-place.svg`}

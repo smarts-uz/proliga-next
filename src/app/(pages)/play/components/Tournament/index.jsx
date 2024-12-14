@@ -6,16 +6,26 @@ import TopTeams from '../TopTeams'
 import TournamentTable from './Table'
 import TournamentPagination from './Pagination'
 import TournamentSelectedTour from './Filters'
+import TournamentSkeleton from './Skeleton'
 
 const Tournament = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
   const [perPage, setPerPage] = useState(12)
-  const { currentCompetition } = useSelector((store) => store.competition)
+  const { currentCompetition, isLoading: competitionLoading } = useSelector(
+    (store) => store.competition
+  )
   const { teamsLoading } = useSelector((store) => store.teams)
-  const { season } = useSelector((state) => state.season)
-  const { currentTour } = useSelector((state) => state.tours)
+  const { season, isLoading: seasonLoading } = useSelector(
+    (state) => state.season
+  )
+  const { currentTour, isLoading: tourLoading } = useSelector(
+    (state) => state.tours
+  )
   const [tour, setTour] = useState(currentTour?.id || 0)
+
+  const isLoading =
+    teamsLoading || tourLoading || competitionLoading || seasonLoading
 
   useEffect(() => {
     if (currentCompetition?.id && season?.id && currentTour?.id) {
@@ -37,25 +47,20 @@ const Tournament = () => {
   const decrementPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 0))
   }
+
+  if (isLoading) return <TournamentSkeleton />
+
   return (
     <section className="flex w-full flex-col gap-2 lg:flex-row">
-      <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black px-2 py-4 text-neutral-200 xs:px-3 md:p-5 lg:w-2/3">
-        {teamsLoading ? (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="loader" />
-          </div>
-        ) : (
-          <>
-            <TournamentSelectedTour setTour={setTour} tour={tour} />
-            <TournamentTable />
-            <TournamentPagination
-              incrementPage={incrementPage}
-              decrementPage={decrementPage}
-              page={page}
-              perPage={perPage}
-            />
-          </>
-        )}
+      <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-xl bg-black px-2 py-4 text-neutral-200 xs:px-3 md:p-5 lg:w-2/3">
+        <TournamentSelectedTour setTour={setTour} tour={tour} />
+        <TournamentTable />
+        <TournamentPagination
+          incrementPage={incrementPage}
+          decrementPage={decrementPage}
+          page={page}
+          perPage={perPage}
+        />
       </div>
       <TopTeams />
     </section>
