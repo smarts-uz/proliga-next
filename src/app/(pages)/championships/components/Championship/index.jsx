@@ -56,7 +56,7 @@ const Championship = ({ game }) => {
   return (
     <>
       <article
-        className={`relative flex cursor-pointer items-center gap-4 rounded-sm border border-neutral-500 bg-neutral-800 p-4 transition-all hover:bg-neutral-700`}
+        className={`relative flex cursor-pointer items-center gap-4 overflow-hidden rounded border border-neutral-500 bg-neutral-800 p-4 shadow-lg transition-all hover:border-primary hover:bg-neutral-700 hover:shadow-white/15 active:shadow-md`}
         onClick={handleClick}
       >
         <img
