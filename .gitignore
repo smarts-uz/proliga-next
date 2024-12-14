@@ -22,9 +22,10 @@
 /static/user
 /static/uploads
 /static/player
-/static/championship
+/static/competition
 /static/banner
 /static/club
+/static/prize
 
 # dev only
 server.js
