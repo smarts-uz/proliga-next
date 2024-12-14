@@ -6,18 +6,27 @@ import { SETTINGSTAB } from 'app/utils/settingsTab.util'
 import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
 import TransactionsHistory from './components/TransactionsHistory'
 import ChangePassword from './components/ChangePassword'
-import Navigation from './components/SettingsNavigation'
 import SettingsTab from './components/Settings'
 import Gutter from 'components/Gutter'
 import dynamic from 'next/dynamic'
+import SettingsSkeleton, {
+  ProfileSkeleton,
+  NavigationSkeleton,
+} from './components/SettingsSkeleton'
 const Profile = dynamic(() => import('./components/Profile'), {
   ssr: false,
+  loading: () => <ProfileSkeleton />,
+})
+const Navigation = dynamic(() => import('./components/SettingsNavigation'), {
+  ssr: false,
+  loading: () => <NavigationSkeleton />,
 })
 
 function Settings() {
   const [tab, setTab] = useState(SETTINGSTAB.PROFILE)
-  const { userTable, userAuth } = useSelector((store) => store.auth)
-  const { refreshUserTable } = useRefreshUserTable()
+  const { userTable, userAuth, isLoading } = useSelector((store) => store.auth)
+  const { refreshUserTable, isLoading: isRefreshLoading } =
+    useRefreshUserTable()
 
   useEffect(() => {
     if (userTable && userAuth) {
@@ -28,6 +37,10 @@ function Settings() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (isLoading || isRefreshLoading) {
+    return <SettingsSkeleton />
+  }
 
   return (
     <Gutter>

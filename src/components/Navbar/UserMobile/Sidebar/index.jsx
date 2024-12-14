@@ -30,8 +30,8 @@ const MobileSidebar = ({ isModalOpen, setModalOpen }) => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-      <DialogContent className="left-auto right-0 flex h-full w-4/5 min-w-80 translate-x-[0%] translate-y-[-50%] flex-col rounded-e-none rounded-s-xl p-4 py-6 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[0%] data-[state=open]:slide-in-from-right-1/2 xs:w-3/4 sm:w-2/3 sm:p-6">
-        <DialogTitle className="left-0 right-0 top-0 hidden">Title</DialogTitle>
+      <DialogContent className="left-auto right-0 flex h-full w-4/5 min-w-80 translate-x-[0%] translate-y-[-50%] flex-col rounded-e-none rounded-s-2xl p-4 py-6 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[0%] data-[state=open]:slide-in-from-right-1/2 xs:w-3/4 sm:w-2/3 sm:p-6">
+        <DialogTitle className="hidden">Title</DialogTitle>
         <div className="flex flex-col items-start justify-center gap-6 py-12 xs:gap-7 sm:py-16">
           {path.includes('play') && (
             <>

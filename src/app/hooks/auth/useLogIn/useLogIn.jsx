@@ -17,9 +17,10 @@ export const useLogIn = () => {
   const { t } = useTranslation()
   const { temp } = useSelector((store) => store.auth)
 
-  const logIn = async ({ email, password }) => {
+  const logIn = async ({ email, password, setActive = () => {} }) => {
     setIsLoading(false)
     setError(null)
+    console.log('executed')
 
     if (password.length < 6) {
       setError("Parol 6 ta belgidan kam bo'lmasligi kerak")
@@ -54,24 +55,27 @@ export const useLogIn = () => {
       if (error?.code === 'invalid_credentials') {
         setError(t('Login yoki parol xato'))
         toast.error(t('Login yoki parol xato'), { theme: 'dark' })
+        dispatch(setUserTempData(null))
+        setActive(false)
         return
       }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
+        dispatch(setUserTempData(null))
+        setActive(false)
         return
       }
       if (data?.user) {
         setData(data)
         dispatch(setUserAuth(data))
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        await getUserTable({ phone: temp?.phone })
-        dispatch(setUserTempData(null))
-        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+        dispatch(setUserTempData({ ...temp, email: null }))
       }
     } catch (error) {
       setError(error.message)
       toast.error(error.message, { theme: 'dark' })
+      setActive(false)
     } finally {
       setIsLoading(false)
     }

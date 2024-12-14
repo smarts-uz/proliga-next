@@ -1,4 +1,5 @@
 'use client'
+
 import { useTranslation } from 'react-i18next'
 import { useUpdatePassword } from 'app/hooks/auth/useUpdatePassword/useUpdatePassword'
 import { useEffect, useState } from 'react'
@@ -28,10 +29,8 @@ const CabinetChangePasswordTab = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    setIsActive(true)
     if (password !== confirmPassword) {
       toast.warning(t('Parollar mos kelmadi'), { theme: 'dark' })
-      setIsActive(false)
       return
     }
     if (
@@ -42,7 +41,6 @@ const CabinetChangePasswordTab = () => {
       toast.warning(t("Parolar 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
       })
-      setIsActive(false)
       return
     }
     if (oldPassword === password) {
@@ -52,7 +50,6 @@ const CabinetChangePasswordTab = () => {
           theme: 'dark',
         }
       )
-      setIsActive(false)
       return
     }
 
@@ -60,12 +57,20 @@ const CabinetChangePasswordTab = () => {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
+    setIsActive(true)
 
     await confirmUserAuth({ password: oldPassword, setIsVerified })
   }
 
   useEffect(() => {
-    if (isVerified && password && isActive) {
+    if (
+      isVerified &&
+      password &&
+      isActive &&
+      !confirmLoading &&
+      !isLoading &&
+      !confirmError
+    ) {
       const fetch = async () =>
         await updatePassword(password, isVerified, setIsVerified)
       fetch()
@@ -74,8 +79,16 @@ const CabinetChangePasswordTab = () => {
       setPassword('')
       setConfirmPassword('')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVerified, password, isActive, setIsActive])
+  }, [
+    isVerified,
+    password,
+    isActive,
+    setIsActive,
+    confirmLoading,
+    isLoading,
+    confirmError,
+    updatePassword,
+  ])
 
   return (
     <form

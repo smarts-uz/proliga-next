@@ -37,7 +37,7 @@ const ChangeLanguageDropdown = () => {
       <SelectTrigger className="h-8 w-16 border-none bg-transparent px-2 md:w-24 xl:w-24">
         <SelectValue placeholder={t('Til')} />
       </SelectTrigger>
-      <SelectContent className="w-min">
+      <SelectContent className="w-min rounded-lg">
         <SelectItem value={LANGUAGE.uz}>
           <div className="flex items-center justify-center md:gap-1 xl:gap-2">
             <Image
