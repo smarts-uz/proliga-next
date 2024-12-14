@@ -27,6 +27,9 @@ const Championships = () => {
 
   useEffect(() => {
     dispatch(fetchCompetition())
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(fetchSeason())
   }, [dispatch])
 
@@ -45,7 +48,7 @@ const Championships = () => {
     <>
       <AnimatedBackground />
       <Gutter>
-        <section className="my-6 min-h-80 w-full rounded-xl bg-neutral-900 p-6 shadow shadow-neutral-400 md:min-h-36">
+        <section className="mb-4 mt-8 min-h-96 w-full rounded-lg bg-neutral-900 p-5 shadow shadow-neutral-400 md:mt-6 md:min-h-40">
           {isLoading ? (
             <Skeleton className="mb-4 h-8 w-48" />
           ) : (

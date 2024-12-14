@@ -558,5 +558,10 @@
   "Expand Your Club Roster!": "Добавьте игроков из одного клуба в свой состав!",
   "Maksimum klub oyi'nchilarini": "Увеличь максимальное количество игроков из одного клуба на $",
   "identifikatori bolgan va holatida bolgan oyinchi yaroqsiz": "Игрок с ID $ и позицией * не соотвествует требованием",
-  "Yangi parol eski parol bilan birhil bolishi mumkin emas": "Новый пароль не может совпадать со старым паролем"
+  "Yangi parol eski parol bilan birhil bolishi mumkin emas": "Новый пароль не может совпадать со старым паролем",
+  "Input cannot be empty.": "Ввод не может быть пустым.",
+  "Input must be 20 characters or less.": "Ввод должен содержать не более 20 символов.",
+  "Input must contain either Latin or Cyrillic characters, not both.": "Ввод должен содержать либо латинские, либо кириллические символы, но не оба одновременно.",
+  "Input must contain either Latin or Cyrillic characters.": "Ввод должен содержать либо латинские, либо кириллические символы.",
+  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры, а также .-@&$."
 }

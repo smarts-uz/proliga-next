@@ -1,10 +1,10 @@
 import Gutter from 'components/Gutter'
-import PageSkeleton from 'components/PageSkeleton'
+import { AboutUsSkeleton } from './page'
 
 const Loading = () => {
   return (
     <Gutter>
-      <PageSkeleton />
+      <AboutUsSkeleton />
     </Gutter>
   )
 }
