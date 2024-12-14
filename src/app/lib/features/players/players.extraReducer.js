@@ -34,15 +34,15 @@ export const playersExtraReducer = (builder) => {
     })
     .addCase(fetchTopPlayers.pending, (state) => {
       state.topPlayersLoading = true
-      state.topPlayers = []
     })
     .addCase(fetchTopPlayers.fulfilled, (state, action) => {
       state.topPlayersLoading = false
+      state.topPlayers = []
 
       const players = action.payload?.data ?? []
       players.map((pl) => {
         let player = state.players.find((p) => p.id === pl)
-
+        if (players.length > 2) return
         state.topPlayers.push(player)
       })
     })

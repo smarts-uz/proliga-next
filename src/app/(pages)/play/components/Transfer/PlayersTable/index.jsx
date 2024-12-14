@@ -19,6 +19,8 @@ import { selectPlayers } from 'app/lib/features/players/players.selector'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import PlayersTableSkeleton from './Skeleton'
+import { Play } from 'next/font/google'
 
 const columnHelper = createColumnHelper()
 
@@ -139,34 +141,27 @@ function PlayersTable() {
     }
   }, [windowWidth, table])
 
+  if (!isLoading) {
+    return <PlayersTableSkeleton />
+  }
+
   return (
     <div className="fade-in-fast min-h-auto mx-auto h-min w-auto max-w-[40rem] border-collapse overflow-x-auto rounded-xl border border-primary border-opacity-50 bg-black px-2 py-4 text-neutral-200 shadow-md shadow-neutral-600 transition-all hover:border-opacity-100 xs:px-3 sm:px-4 md:text-sm lg:w-1/2 lg:max-w-[28rem] xl:max-w-[34rem] 2xl:max-w-[36rem]">
-      {isLoading ? (
-        <div className="flex h-full w-full items-center justify-center">
-          <div className="loader" />
-        </div>
-      ) : (
-        <>
-          <TeamOverview />
-          <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 lg:grid-rows-2 xl:grid-rows-1 xl:gap-y-1.5 2xl:text-sm">
-            {table
-              .getHeaderGroups()
-              .map((headerGroup) =>
-                headerGroup.headers.map((header) => (
-                  <TransferTableFilters
-                    key={header.id}
-                    column={header.column}
-                  />
-                ))
-              )}
-          </div>
-          <table className="w-full min-w-80 table-auto text-xs xl:text-sm">
-            <TransferTableHead table={table} />
-            <TransferTableBody table={table} flexRender={flexRender} />
-          </table>
-          <TransferTablePagination table={table} />
-        </>
-      )}
+      <TeamOverview />
+      <div className="grid w-full grid-cols-4 grid-rows-2 gap-x-0.5 gap-y-2 text-sm xs:text-xs sm:grid-rows-1 md:gap-1 lg:grid-rows-2 xl:grid-rows-1 xl:gap-y-1.5 2xl:text-sm">
+        {table
+          .getHeaderGroups()
+          .map((headerGroup) =>
+            headerGroup.headers.map((header) => (
+              <TransferTableFilters key={header.id} column={header.column} />
+            ))
+          )}
+      </div>
+      <table className="w-full min-w-80 table-auto text-xs xl:text-sm">
+        <TransferTableHead table={table} />
+        <TransferTableBody table={table} flexRender={flexRender} />
+      </table>
+      <TransferTablePagination table={table} />
     </div>
   )
 }

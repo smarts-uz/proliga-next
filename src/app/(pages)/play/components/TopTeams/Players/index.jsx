@@ -6,6 +6,7 @@ import Image from 'next/image'
 const RankingPlayers = () => {
   const { t } = useTranslation()
   const { topPlayers } = useSelector((store) => store.players)
+  
   return (
     <div className="w-full rounded-lg bg-black p-5 text-neutral-100">
       <h3 className="text-xl font-bold">
