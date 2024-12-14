@@ -6,8 +6,9 @@ import Image from 'next/image'
 const RankingPlayers = () => {
   const { t } = useTranslation()
   const { topPlayers } = useSelector((store) => store.players)
+
   return (
-    <div className="w-full rounded-lg bg-black p-5 text-neutral-100">
+    <div className="w-full rounded-xl bg-black p-5 text-neutral-100">
       <h3 className="text-xl font-bold">
         {t('Eng kuchli top 3 - futbolchilar')}
       </h3>
@@ -35,7 +36,7 @@ const PlayerPlace = ({ player, index }) => {
   )
 
   return (
-    <div className="relative min-h-32 rounded-lg bg-neutral-100 p-2">
+    <div className="relative min-h-32 rounded bg-neutral-100 p-2">
       <div className="flex items-center justify-between">
         <Image
           src={image}

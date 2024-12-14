@@ -157,7 +157,6 @@ const TabLink = ({ title, tab, passive, active, disabled }) => {
   const dispatch = useDispatch()
   const { lastVisitedTeam } = useSelector((store) => store.currentTeam)
   const { t } = useTranslation()
-
   return (
     <Link
       className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${passive}`}

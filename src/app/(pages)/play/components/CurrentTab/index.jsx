@@ -40,14 +40,17 @@ const CurrentTab = ({ currentTab, paramsId }) => {
   )
 
   useEffect(() => {
-    if (typeof currentTeam?.is_team_created === 'boolean') {
+    if (
+      typeof currentTeam?.is_team_created === 'boolean' &&
+      players.length === 0
+    ) {
       if (currentTeam?.is_team_created) {
         dispatch(setTab(TABS.GameProfile))
       } else {
         dispatch(setTab(TABS.Transfer))
       }
     }
-  }, [dispatch, currentTeam])
+  }, [dispatch, currentTeam, players.length])
 
   useEffect(() => {
     if (userAuth && userTable?.id && paramsId) {

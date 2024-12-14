@@ -4,6 +4,7 @@ import JournalTable from './Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserActivity } from 'app/lib/features/userActivity/userActivity.thunk'
 import { useState, useEffect } from 'react'
+import JournalSkeleton from './Skeleton'
 
 export default function Journal() {
   const dispatch = useDispatch()
@@ -68,24 +69,19 @@ export default function Journal() {
   const decrementPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 0))
   }
+
+  if (isLoading) return <JournalSkeleton />
+
   return (
     <div className="flex w-full flex-col gap-2 lg:flex-row">
-      <section className="flex h-auto min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-2xl bg-black px-2 py-4 text-neutral-200 xs:p-4 xs:px-3 md:p-5 lg:w-2/3">
-        {isLoading ? (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="loader" />
-          </div>
-        ) : (
-          <>
-            <JournalTable />
-            <JournalPagination
-              incrementPage={incrementPage}
-              decrementPage={decrementPage}
-              page={page}
-              perPage={perPage}
-            />
-          </>
-        )}
+      <section className="flex h-auto min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-xl bg-black px-2 py-4 text-neutral-200 xs:p-4 xs:px-3 md:p-5 lg:w-2/3">
+        <JournalTable />
+        <JournalPagination
+          incrementPage={incrementPage}
+          decrementPage={decrementPage}
+          page={page}
+          perPage={perPage}
+        />
       </section>
       <TopTeams />
     </div>

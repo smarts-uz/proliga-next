@@ -28,6 +28,7 @@ export const tourSlice = createSlice({
       }
     },
     setTab: (state, action) => {
+      console.log(action.payload)
       state.gameTab = action.payload
     },
   },

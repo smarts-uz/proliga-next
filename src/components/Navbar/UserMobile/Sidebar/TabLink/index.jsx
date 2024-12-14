@@ -11,6 +11,7 @@ const SidebarTabLink = ({ title, tab, toggleModal }) => {
     dispatch(setTab(tab))
     toggleModal()
   }
+  console.log(tab)
 
   return (
     <div className="group flex w-full gap-4">
