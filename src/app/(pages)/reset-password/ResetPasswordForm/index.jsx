@@ -7,6 +7,7 @@ import { useResetUserPassword } from 'app/hooks/auth/useResetUserPassword/useRes
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { setUserTempData } from 'app/lib/features/auth/auth.slice'
+import { toast } from 'react-toastify'
 
 const ResetPasswordForm = () => {
   const dispatch = useDispatch()
@@ -21,9 +22,6 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (password !== confirmPassword) {
-      return
-    }
 
     if (password.length < 6 || confirmPassword.length < 6) {
       toast.warning(t("Parolar 6 ta belgidan kam bo'lmasligi kerak"), {
@@ -32,7 +30,7 @@ const ResetPasswordForm = () => {
       return
     }
     if (password !== confirmPassword) {
-      toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
+      toast.warning(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
 

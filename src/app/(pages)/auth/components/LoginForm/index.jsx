@@ -241,8 +241,8 @@ const LoginForm = ({ onClick }) => {
             t('Tizimga kirish_2')
           )}
         </button>
-        <SendOTPModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
       </form>
+      <SendOTPModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </>
   )
 }
