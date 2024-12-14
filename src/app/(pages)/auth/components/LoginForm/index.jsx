@@ -2,14 +2,14 @@
 
 import Image from 'next/image'
 import SendOTPModal from 'components/SendOTPModal'
-import { useEffect, useState, useMemo } from 'react'
+import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogIn } from 'app/hooks/auth/useLogIn/useLogIn'
 import { useGetUserTable } from 'app/hooks/auth/useGetUserTable/useGetUserTable'
 import { PhoneInput } from 'components/PhoneInput'
 import { useTranslation } from 'react-i18next'
-import { toast } from 'react-toastify'
 import {
   setUserAuth,
   setUserTable,
@@ -27,7 +27,6 @@ const LoginForm = ({ onClick }) => {
   const [password, setPassword] = useState('')
   const [active, setActive] = useState(false)
   const [phone, setPhone] = useState('')
-
   const { logIn, isLoading: authLoading, error: authError } = useLogIn()
   const {
     checkUserTable,
@@ -75,18 +74,28 @@ const LoginForm = ({ onClick }) => {
 
   useEffect(() => {
     if (active) {
-      if (temp?.email && temp?.phone && password.length > 5) {
+      if (temp?.email && temp?.phone && password.length > 5 && !authLoading) {
         const handleLogin = async () => {
-          await logIn({ email: temp?.email, password })
+          await logIn({
+            email: temp?.email,
+            password,
+            setActive,
+          })
         }
         handleLogin()
       }
     }
-  }, [active, password, temp, logIn])
+  }, [active, password, temp, logIn, authLoading])
 
   useEffect(() => {
     if (active) {
-      if (userAuth?.user?.id && temp?.phone && !authError && !authLoading) {
+      if (
+        userAuth?.user?.id &&
+        temp?.phone &&
+        !authError &&
+        !authLoading &&
+        !checkLoading
+      ) {
         const handleLogin = async () => {
           await getUserTable({ phone: temp?.phone })
         }
@@ -95,17 +104,21 @@ const LoginForm = ({ onClick }) => {
         setActive(false)
         setPassword('')
         setPhone('')
-        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), {
+          theme: 'dark',
+        })
       }
     }
-  }, [active, userAuth, authError, temp?.phone, authLoading, getUserTable, t])
-
-  // useEffect(() => {
-  //   if (userTable && userAuth && active) {
-  //     toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
-  //     setActive(false)
-  //   }
-  // }, [active, router, userAuth, userTable, temp, t])
+  }, [
+    active,
+    userAuth,
+    authError,
+    temp?.phone,
+    authLoading,
+    getUserTable,
+    t,
+    checkLoading,
+  ])
 
   useEffect(() => {
     if (userAuth?.user?.id && userTable?.id && !active)

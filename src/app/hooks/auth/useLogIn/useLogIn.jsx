@@ -17,7 +17,7 @@ export const useLogIn = () => {
   const { t } = useTranslation()
   const { temp } = useSelector((store) => store.auth)
 
-  const logIn = async ({ email, password }) => {
+  const logIn = async ({ email, password, setActive = () => {} }) => {
     setIsLoading(false)
     setError(null)
     console.log('executed')
@@ -56,12 +56,14 @@ export const useLogIn = () => {
         setError(t('Login yoki parol xato'))
         toast.error(t('Login yoki parol xato'), { theme: 'dark' })
         dispatch(setUserTempData(null))
+        setActive(false)
         return
       }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
         dispatch(setUserTempData(null))
+        setActive(false)
         return
       }
       if (data?.user) {
@@ -73,6 +75,7 @@ export const useLogIn = () => {
     } catch (error) {
       setError(error.message)
       toast.error(error.message, { theme: 'dark' })
+      setActive(false)
     } finally {
       setIsLoading(false)
     }
