@@ -67,6 +67,7 @@ const TransferStadiumForm = () => {
     const prevTeamPlayersId = []
     const curTeamPlayersId = []
     const captains = []
+
     prevTeam.forEach((p) => p.name && prevTeamPlayersId.push(p.player_id))
 
     teamConcat.forEach((player) => {
@@ -82,20 +83,14 @@ const TransferStadiumForm = () => {
       player.is_captain && captains.push(player.player_id)
       player.name && curTeamPlayersId.push(player.player_id)
     })
-
-    if (captains.length === 0) {
+    if (captains.length !== 1) {
       toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
-      return
-    }
-    if (captains.length > 1) {
-      toast.warning(t('Ko`p kapitan tanlangan'), { theme: 'dark' })
       return
     }
     if (teamBalance < teamPrice) {
       toast.error(t('Balansingiz yetarli emas'), { theme: 'dark' })
       return
     }
-
     if (
       playersCount.GOA !== 1 ||
       playersCount.DEF < 3 ||
@@ -112,7 +107,7 @@ const TransferStadiumForm = () => {
     let difference = curTeamPlayersId.filter(
       (x) => !prevTeamPlayersId.includes(x)
     )
-    let countOfTransfers = difference.length ?? 0
+    const countOfTransfers = difference.length ?? 0
 
     if (
       currentTeam.is_team_created &&

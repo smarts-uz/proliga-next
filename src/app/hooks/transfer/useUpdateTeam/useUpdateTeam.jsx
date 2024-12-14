@@ -33,6 +33,7 @@ export const useUpdateTeam = () => {
         .update({ is_team_created: true })
         .eq('id', team_id)
         .select()
+        .single()
 
       if (error) {
         setError(error.message)
@@ -40,8 +41,8 @@ export const useUpdateTeam = () => {
         return
       }
       if (data) {
-        setData(data[0])
-        dispatch(setIsTeamCreated(data[0]?.is_team_created ?? true))
+        setData(data)
+        dispatch(setIsTeamCreated(data?.is_team_created ?? true))
       }
     } catch (error) {
       setError(error.message)

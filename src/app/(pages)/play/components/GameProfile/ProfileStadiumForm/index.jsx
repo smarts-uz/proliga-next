@@ -23,54 +23,32 @@ const ProfileStadiumForm = () => {
   )
   const { lang } = useSelector((store) => store.systemLanguage)
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { currentTour } = useSelector((state) => state.tours)
+  const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
-  const { currentTour } = useSelector((state) => state.tours)
-  const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const captains = []
+    console.log(validPlayers())
+    if (!validPlayers()) return
 
     teamConcat.forEach((player) => {
-      if (!player.name || !player.price) {
-        toast.warning(
-          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
-            .replace('$', player?.id)
-            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
-          { theme: 'dark' }
-        )
-        return
-      }
       if (player.is_captain) {
         captains.push(player.player_id)
       }
     })
 
-    if (captains.length === 0) {
+    if (captains.length !== 1) {
       toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
       return
     }
-    if (captains.length > 1) {
-      toast.warning(t('Ko`p kapitan tanlangan'), { theme: 'dark' })
-      return
-    }
 
-    if (
-      playersCount.GOA !== 1 ||
-      playersCount.DEF < 3 ||
-      playersCount.DEF > 5 ||
-      playersCount.MID < 3 ||
-      playersCount.MID > 5 ||
-      playersCount.STR < 2 ||
-      playersCount.STR > 3
-    ) {
-      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
-      return
-    }
+    if (!validTeamStructure()) return
 
     await updateTeamPlayers({
       team: teamConcat,
@@ -81,6 +59,40 @@ const ProfileStadiumForm = () => {
     if (!error && !isLoading) {
       toast.success(t('Kapitan yangilandi'), { theme: 'dark' })
     }
+  }
+
+  const validPlayers = () => {
+    let valid = true
+
+    teamConcat.forEach((player) => {
+      if (!player.name || !player.price) {
+        toast.warning(
+          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
+            .replace('$', player?.id)
+            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
+          { theme: 'dark' }
+        )
+        return (valid = false)
+      }
+    })
+
+    return valid
+  }
+
+  const validTeamStructure = () => {
+    if (
+      playersCount.GOA !== 1 ||
+      playersCount.DEF < 3 ||
+      playersCount.DEF > 5 ||
+      playersCount.MID < 3 ||
+      playersCount.MID > 5 ||
+      playersCount.STR < 2 ||
+      playersCount.STR > 3
+    ) {
+      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
+      return false
+    }
+    return true
   }
 
   return (
