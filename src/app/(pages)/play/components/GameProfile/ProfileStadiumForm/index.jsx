@@ -12,6 +12,9 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import Image from 'next/image'
+import { useUpdateTeamCaptains } from 'app/hooks/transfer/useUpdateTeamCaptains/useUpdateTeamCaptains'
 
 const ProfileStadiumForm = () => {
   const { t } = useTranslation()
@@ -20,45 +23,71 @@ const ProfileStadiumForm = () => {
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
-  const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { lang } = useSelector((store) => store.systemLanguage)
+  const { currentTeam, isLoading: teamLoading } = useSelector(
+    (state) => state.currentTeam
+  )
+  const { currentTour, isLoading: tourLoading } = useSelector(
+    (state) => state.tours
+  )
+  const { updateTeamCaptains, error, isLoading } = useUpdateTeamCaptains()
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
-  const { currentTour } = useSelector((state) => state.tours)
-  const { updateTeamPlayers, error, isLoading } = useUpdateTeamPlayers()
+
+  // create a variable that combines loading states
+  const loading = teamLoading || tourLoading || isLoading
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const captains = []
+    if (!validPlayers()) return
 
     teamConcat.forEach((player) => {
-      if (!player.name || !player.price) {
-        toast.warning(
-          t('identifikatori ') +
-            player.id +
-            t(" bo'lgan va ") +
-            player.position +
-            t(" holatidagi o'yinchi yaroqsiz"),
-          { theme: 'dark' }
-        )
-        return
-      }
       if (player.is_captain) {
         captains.push(player.player_id)
       }
     })
 
-    if (captains.length === 0) {
+    if (captains.length !== 1) {
       toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
       return
     }
-    if (captains.length > 1) {
-      toast.warning(t('Ko`p kapitan tanlangan'), { theme: 'dark' })
-      return
-    }
 
+    if (!validTeamStructure()) return
+
+    await updateTeamCaptains({
+      team: teamConcat,
+      team_id: currentTeam.id,
+      tour_id: currentTour.id,
+    })
+
+    if (!error && !isLoading) {
+      toast.success(t('Kapitan yangilandi'), { theme: 'dark' })
+    }
+  }
+
+  const validPlayers = () => {
+    let valid = true
+
+    teamConcat.forEach((player) => {
+      if (!player.name || !player.price) {
+        toast.warning(
+          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
+            .replace('$', player?.id)
+            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
+          { theme: 'dark' }
+        )
+        return (valid = false)
+      }
+    })
+
+    return valid
+  }
+
+  const validTeamStructure = () => {
     if (
       playersCount.GOA !== 1 ||
       playersCount.DEF < 3 ||
@@ -69,18 +98,9 @@ const ProfileStadiumForm = () => {
       playersCount.STR > 3
     ) {
       toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
-      return
+      return false
     }
-
-    await updateTeamPlayers({
-      team: teamConcat,
-      team_id: currentTeam.id,
-      tour_id: currentTour.id,
-    })
-
-    if (!error && !isLoading) {
-      toast.success(t('Kapitan yangilandi'), { theme: 'dark' })
-    }
+    return true
   }
 
   return (
@@ -94,7 +114,7 @@ const ProfileStadiumForm = () => {
         value={teamConcat.find((player) => player.is_captain)?.player_id ?? ''}
         onValueChange={(value) => dispatch(setCaptain(value))}
       >
-        <SelectTrigger className="w-full min-w-36 max-w-56 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
+        <SelectTrigger className="h-10 w-full min-w-36 max-w-56 rounded border-neutral-400 bg-neutral-950 px-2 text-xs text-neutral-100 hover:border-primary xs:text-sm md:text-base">
           <SelectValue placeholder={t('Kapitan tanlang')} />
         </SelectTrigger>
         <SelectContent>
@@ -114,9 +134,19 @@ const ProfileStadiumForm = () => {
       </Select>
       <Button
         type="submit"
-        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black md:text-base"
+        className="h-10 min-w-24 rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:min-w-28 xs:min-w-28 sm:min-w-32 md:text-base"
       >
-        {t('Saqlash')}
+        {loading ? (
+          <Image
+            src="/icons/loading.svg"
+            width={24}
+            height={24}
+            alt="loading"
+            className="mx-auto size-6 animate-spin"
+          />
+        ) : (
+          t('Saqlash')
+        )}
       </Button>
     </form>
   )

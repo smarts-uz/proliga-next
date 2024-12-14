@@ -6,9 +6,9 @@ import {
   setUserTable,
 } from '../../../lib/features/auth/auth.slice'
 import { useRouter } from 'next/navigation'
-import { setTeams } from 'app/lib/features/teams/teams.slice'
 import { clearNotifications } from 'app/lib/features/systemNotification/systemNotification.slice'
-import { setLastVisitedTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { resetCurrentTeam } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { resetTeams } from 'app/lib/features/teams/teams.slice'
 
 export const useLogOut = () => {
   const dispatch = useDispatch()
@@ -20,9 +20,9 @@ export const useLogOut = () => {
     try {
       dispatch(setUserAuth(null))
       dispatch(setUserTable(null))
-      dispatch(setTeams([]))
       dispatch(clearNotifications())
-      dispatch(setLastVisitedTeam(''))
+      dispatch(resetCurrentTeam())
+      dispatch(resetTeams())
 
       localStorage.removeItem(`user-auth-${sbUrl}`)
       localStorage.removeItem(`user-table-${sbUrl}`)

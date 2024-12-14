@@ -26,11 +26,17 @@ const currentTeamSlice = createSlice({
     setTransferModal: (state, action) => {
       state.transferModal = action.payload
     },
+    resetCurrentTeam: () => initialState,
   },
   extraReducers: currentTeamExtraReducer,
 })
 
-export const { setLastVisitedTeam, setIsTeamCreated, setBalanceModal, setTransferModal } =
-  currentTeamSlice.actions
+export const {
+  setLastVisitedTeam,
+  setIsTeamCreated,
+  setBalanceModal,
+  setTransferModal,
+  resetCurrentTeam,
+} = currentTeamSlice.actions
 
 export default currentTeamSlice.reducer
