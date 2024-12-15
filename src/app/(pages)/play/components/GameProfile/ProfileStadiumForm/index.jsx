@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
 import { setCaptain } from 'app/lib/features/teamPlayers/teamPlayers.slice'
-import { useUpdateTeamPlayers } from 'app/hooks/transfer/useUpdateTeamPlayers/useUpdateTeamPlayers'
 import { useTranslation } from 'react-i18next'
 import {
   Select,
@@ -134,6 +133,7 @@ const ProfileStadiumForm = () => {
       </Select>
       <Button
         type="submit"
+        disabled={loading}
         className="h-10 min-w-24 rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:min-w-28 xs:min-w-28 sm:min-w-32 md:text-base"
       >
         {loading ? (
