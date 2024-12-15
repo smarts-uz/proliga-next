@@ -35,7 +35,7 @@ export const useUpdateTourTeam = () => {
       toast.error(t('Turnir ID kiritilmagan!'), { theme: 'dark' })
       return
     }
-    if (!count_of_transfers) {
+    if (count_of_transfers === null || count_of_transfers === undefined) {
       setError(t('Transfer soni kiritilmagan!'))
       toast.error(t('Transfer soni kiritilmagan!'), { theme: 'dark' })
       return

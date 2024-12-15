@@ -22,6 +22,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -40,7 +41,11 @@ const TransferStadiumForm = () => {
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
-  const { updateTeamPlayers, isLoading, error } = useUpdateTeamPlayers()
+  const {
+    updateTeamPlayers,
+    isLoading: playersLoading,
+    error: playersError,
+  } = useUpdateTeamPlayers()
   const {
     updateTourTeam,
     isLoading: tourTeamLoading,
@@ -57,6 +62,17 @@ const TransferStadiumForm = () => {
     error: teamError,
   } = useUpdateTeam()
 
+  const isLoading = useMemo(
+    () =>
+      playersLoading || tourTeamLoading || teamPlayersLoading || teamLoading,
+    [playersLoading, tourTeamLoading, teamPlayersLoading, teamLoading]
+  )
+
+  const error = useMemo(
+    () => playersError || tourTeamError || teamPlayersError || teamError,
+    [playersError, tourTeamError, teamPlayersError, teamError]
+  )
+
   const handleAutoGenerateTeamPlayers = async () => {
     await generateTeamPlayers({ team_id: currentTeam.id })
   }
@@ -68,41 +84,26 @@ const TransferStadiumForm = () => {
     const curTeamPlayersId = []
     const captains = []
 
+    if (!validPlayers()) return
+
     prevTeam.forEach((p) => p.name && prevTeamPlayersId.push(p.player_id))
 
     teamConcat.forEach((player) => {
-      if (!player.name || !player.price) {
-        toast.warning(
-          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
-            .replace('$', player?.id)
-            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
-          { theme: 'dark' }
-        )
-        return
-      }
       player.is_captain && captains.push(player.player_id)
       player.name && curTeamPlayersId.push(player.player_id)
     })
+
     if (captains.length !== 1) {
       toast.warning(t('Kapitan tanlanmagan'), { theme: 'dark' })
       return
     }
+
     if (teamBalance < teamPrice) {
       toast.error(t('Balansingiz yetarli emas'), { theme: 'dark' })
       return
     }
-    if (
-      playersCount.GOA !== 1 ||
-      playersCount.DEF < 3 ||
-      playersCount.DEF > 5 ||
-      playersCount.MID < 3 ||
-      playersCount.MID > 5 ||
-      playersCount.STR < 2 ||
-      playersCount.STR > 3
-    ) {
-      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
-      return
-    }
+
+    if (!validTeamStructure()) return
 
     let difference = curTeamPlayersId.filter(
       (x) => !prevTeamPlayersId.includes(x)
@@ -122,10 +123,12 @@ const TransferStadiumForm = () => {
       return
     }
 
-    await updateTeam({
-      team_id: currentTeam.id,
-      is_team_created: currentTeam?.is_team_created,
-    })
+    if (!currentTeam?.is_team_created) {
+      await updateTeam({
+        team_id: currentTeam.id,
+        is_team_created: currentTeam?.is_team_created,
+      })
+    }
 
     await updateTourTeam({
       team_id: currentTeam.id,
@@ -142,9 +145,49 @@ const TransferStadiumForm = () => {
     })
 
     if (!error && !isLoading) {
-      toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
       dispatch(setTab(TABS.GameProfile))
+      dispatch(
+        fetchTeamPlayers({
+          team_id: currentTeam?.id,
+          tour_id: currentTour.id,
+        })
+      )
+      toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
     }
+  }
+
+  const validPlayers = () => {
+    let valid = true
+
+    teamConcat.forEach((player) => {
+      if (!player.name || !player.price) {
+        toast.warning(
+          t('identifikatori bolgan va holatida bolgan oyinchi yaroqsiz')
+            .replace('$', player?.id)
+            .replace('*', getCorrentPlayerPosition(player?.position, lang)),
+          { theme: 'dark' }
+        )
+        return (valid = false)
+      }
+    })
+
+    return valid
+  }
+
+  const validTeamStructure = () => {
+    if (
+      playersCount.GOA !== 1 ||
+      playersCount.DEF < 3 ||
+      playersCount.DEF > 5 ||
+      playersCount.MID < 3 ||
+      playersCount.MID > 5 ||
+      playersCount.STR < 2 ||
+      playersCount.STR > 3
+    ) {
+      toast.error(t('Jamoa formatsiyasi notogri'), { theme: 'dark' })
+      return false
+    }
+    return true
   }
 
   useEffect(() => {
@@ -218,11 +261,23 @@ const TransferStadiumForm = () => {
           />
         </Button>
       </div>
+
       <Button
         type="submit"
-        className="rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:text-black md:text-base"
+        disabled={isLoading}
+        className="h-10 min-w-24 rounded border border-primary/80 bg-neutral-950 text-sm font-medium text-neutral-50 transition-all hover:border-black hover:bg-primary hover:bg-opacity-75 hover:text-black 2xs:min-w-28 xs:min-w-28 sm:min-w-32 md:text-base"
       >
-        {t('Saqlash')}
+        {isLoading ? (
+          <Image
+            src="/icons/loading.svg"
+            width={24}
+            height={24}
+            alt="loading"
+            className="mx-auto size-6 animate-spin"
+          />
+        ) : (
+          t('Saqlash')
+        )}
       </Button>
     </form>
   )
