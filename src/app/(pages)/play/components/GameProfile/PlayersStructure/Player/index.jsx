@@ -61,6 +61,7 @@ const Player = ({ player }) => {
                 src={`/club-svg/${clubPath}/app.svg`}
                 alt="player tshirt"
                 width={48}
+                onClick={handleInfoModal}
                 height={48}
                 onError={imageErr}
                 draggable={false}
@@ -88,10 +89,9 @@ const Player = ({ player }) => {
                   draggable={false}
                   src="/icons/info.svg"
                   alt="additional info"
-                  className="size-3.5 rounded bg-black p-[1px] hover:opacity-70 xs:size-4 md:size-5 2xl:size-[18px]"
+                  className="size-3.5 rounded bg-black p-[1px] transition-all hover:scale-105 hover:bg-primary xs:size-4 md:size-5 2xl:size-[18px]"
                 />
               </button>
-
               <div className="flex h-3.5 w-6 cursor-default items-center justify-center rounded bg-primary text-center text-[11px] font-bold shadow shadow-neutral-600 xs:h-4 xs:w-8 xs:text-xs md:h-5 md:text-sm">
                 {player.is_captain
                   ? (currentPlayerPoint?.point ?? 0) * 2

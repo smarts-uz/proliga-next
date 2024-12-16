@@ -96,7 +96,6 @@ const SignUpForm = ({ onClick }) => {
 
   useEffect(() => {
     if (active) {
-      console.log()
       if (
         checkData &&
         !checkLoading &&

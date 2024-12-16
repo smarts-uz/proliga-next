@@ -9,12 +9,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog'
 
-const PlayerTransferModal = ({
-  prevPlayer,
-  handleModal,
-  isModalOpen,
-  setModalOpen,
-}) => {
+const PlayerTransferModal = ({ prevPlayer, isModalOpen, setModalOpen }) => {
   const { t } = useTranslation()
 
   return (
@@ -24,7 +19,7 @@ const PlayerTransferModal = ({
         className="mx-auto flex max-h-[96vh] min-h-[40vh] w-[96%] max-w-[45rem] flex-col gap-4 overflow-y-auto rounded-xl bg-black px-4 py-6 text-neutral-200 xs:w-[92%] md:w-[80%] md:p-6 lg:w-3/4 xl:w-2/3"
       >
         <DialogTitle>{t('Transfer Amalga Oshirish')}</DialogTitle>
-        <PlayerTable prevPlayer={prevPlayer} handleModal={handleModal} />
+        <PlayerTable prevPlayer={prevPlayer} />
         <DialogDescription className="hidden">
           This is a players transfer table
         </DialogDescription>

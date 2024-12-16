@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { swapTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
 
-const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
+const TransferTableBody = ({ table, flexRender, prevPlayer }) => {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { teamBalance } = useSelector((state) => state.tourTeams)
@@ -15,7 +15,6 @@ const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
         player,
         previousPlayer: prevPlayer,
         team: currentTeam,
-        handleModal,
         t,
       })
     )
@@ -47,7 +46,6 @@ const TransferTableBody = ({ table, flexRender, prevPlayer, handleModal }) => {
                     cell={cell}
                     prevPlayer={prevPlayer}
                     handleSwapPlayer={handleSwapPlayer}
-                    handleModal={handleModal}
                   />
                 )
             )}
