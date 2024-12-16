@@ -3,32 +3,49 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import { useGetUserPhone } from 'app/hooks/user/useGetUserPhone/useGetUserPhone'
 
 const SignUpForm = ({ onClick }) => {
+  const router = useRouter()
+  const { t } = useTranslation()
+
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [active, setActive] = useState(false)
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [agreement, setAgreement] = useState(false)
-  const { signUp, data, error, isLoading } = useSignUp()
+  const [showPassword, setShowPassword] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { userAuth, userTable } = useSelector((store) => store.auth)
+
+  const { signUp, data, error: authError, isLoading: authLoading } = useSignUp()
   const {
-    isLoading: tableIsLoading,
+    isLoading: tableLoading,
     updateUserTable,
     error: tableError,
   } = useUpdateUserTable()
-  const { t } = useTranslation()
-  const router = useRouter()
+  const {
+    getUserPhone,
+    isLoading: checkLoading,
+    error: checkError,
+  } = useGetUserPhone()
+
+  const isLoading = useMemo(
+    () => authLoading || tableLoading || checkLoading,
+    [authLoading, tableLoading, checkLoading]
+  )
+  const error = useMemo(
+    () => authError || checkError || tableError,
+    [authError, checkError, tableError]
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -252,10 +269,10 @@ const SignUpForm = ({ onClick }) => {
       </div>
       <button
         type="submit"
-        disabled={isLoading || tableIsLoading}
+        disabled={isLoading || tableLoading}
         className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
       >
-        {isLoading || tableIsLoading ? (
+        {isLoading || tableLoading ? (
           <Image
             src="/icons/loading.svg"
             width={24}

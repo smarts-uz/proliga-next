@@ -21,24 +21,26 @@ const LoginForm = ({ onClick }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { t } = useTranslation()
+
   const [showPassword, setShowPassword] = useState(false)
   const [isModalOpen, setModalOpen] = useState(false)
   const [canSendSMS, setCanSendSMS] = useState(true)
   const [password, setPassword] = useState('')
   const [active, setActive] = useState(false)
   const [phone, setPhone] = useState('')
+
   const { logIn, isLoading: authLoading, error: authError } = useLogIn()
   const {
     checkUserTable,
     isLoading: checkLoading,
     error: checkError,
   } = useCheckUserTable()
-
   const {
     isLoading: tableLoading,
     error: tableError,
     getUserTable,
   } = useGetUserTable()
+
   const { userTable, userAuth, temp } = useSelector((state) => state.auth)
   const { config } = useSelector((store) => store.systemConfig)
 
@@ -46,7 +48,6 @@ const LoginForm = ({ onClick }) => {
     () => authLoading || tableLoading || checkLoading,
     [authLoading, tableLoading, checkLoading]
   )
-
   const error = useMemo(
     () => authError || checkError || tableError,
     [authError, checkError, tableError]
