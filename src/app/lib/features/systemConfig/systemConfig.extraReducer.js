@@ -7,9 +7,13 @@ export const systemConfigExtraReducer = (builder) => {
     })
     .addCase(fetchSystemConfig.fulfilled, (state, action) => {
       state.isLoading = false
-      state.config = []
+      state.config = {}
       if (action.payload.data?.length > 0) {
-        state.config = action.payload.data
+        action.payload.data.forEach((item) => {
+          if (item?.type) {
+            state.config[item.key] = item
+          }
+        })
       }
     })
     .addCase(fetchSystemConfig.rejected, (state, action) => {

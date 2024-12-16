@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { systemConfigExtraReducer } from './systemConfig.extraReducer'
 
 const initialState = {
-  config: null,
+  config: {},
   isLoading: false,
   error: null,
 }

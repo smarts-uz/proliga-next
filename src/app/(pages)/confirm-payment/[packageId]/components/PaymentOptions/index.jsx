@@ -1,12 +1,12 @@
 import WalletPaymentOption from './Wallet'
 import ClickUpPaymentOption from './ClickUp'
 import PaymePaymentOption from './Payme'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import RefillBalanceModal from 'components/RefillBalanceModal'
 import UzumPaymentOption from './Uzum'
 import { useSelector } from 'react-redux'
-import { configKey, configType } from 'app/utils/config.util'
+import { configKey } from 'app/utils/config.util'
 
 const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
   const { t } = useTranslation()
@@ -14,41 +14,15 @@ const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
   const active = 'border-primary'
   const passive = 'border-neutral-600 hover:border-primary/80'
   const { config } = useSelector((store) => store.systemConfig)
-  const [paymeActive, setPaymeActive] = useState(null)
-  const [clickActive, setClickActive] = useState(null) // search for config & check if it's active
-  const [uzumActive, setUzumActive] = useState(null)
 
-  useEffect(() => {
-    if (config?.length > 0) {
-      setPaymeActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.checkout_payme &&
-              i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? null
-      )
-      setClickActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.checkout_click &&
-              i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? null
-      )
-      setUzumActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.checkout_uzum &&
-              i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? null
-      )
-    }
-  }, [config])
+  const checkout_payme = Boolean(
+    config[configKey.checkout_payme]?.value.toLowerCase() === 'true' ?? null
+  )
+  const checkout_click = Boolean(
+    config[configKey.checkout_click]?.value.toLowerCase() === 'true' ?? null
+  )
+  const checkout_uzum =
+    config[configKey.checkout_uzum]?.value.toLowerCase() === 'true' ?? null
 
   return (
     <div className="mb-4 mt-2">
@@ -68,7 +42,7 @@ const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
           passive={passive}
           toggleModal={() => setIsModalOpen(true)}
         />
-        {clickActive && (
+        {checkout_click && (
           <ClickUpPaymentOption
             paymentOption={paymentOption}
             setPaymentOption={setPaymentOption}
@@ -76,7 +50,7 @@ const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
             passive={passive}
           />
         )}
-        {paymeActive && (
+        {checkout_payme && (
           <PaymePaymentOption
             paymentOption={paymentOption}
             setPaymentOption={setPaymentOption}
@@ -84,7 +58,7 @@ const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
             passive={passive}
           />
         )}
-        {uzumActive && (
+        {checkout_uzum && (
           <UzumPaymentOption
             paymentOption={paymentOption}
             setPaymentOption={setPaymentOption}

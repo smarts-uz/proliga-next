@@ -194,4 +194,3 @@ const CabinetProfileTab = () => {
 }
 
 export default CabinetProfileTab
-
