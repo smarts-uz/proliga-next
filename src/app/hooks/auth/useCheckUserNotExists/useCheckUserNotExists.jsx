@@ -31,7 +31,14 @@ export const useCheckUserNotExists = () => {
         toast.error(error.message, { theme: 'dark' })
         return
       }
-      if (data) {
+      if (data?.status === 200) {
+        toast.error(t("Bu telefon raqam oldin ro'yxatdan o'tgan"), {
+          theme: 'dark',
+        })
+        setError(t("Bu telefon raqam oldin ro'yxatdan o'tgan"))
+        return
+      }
+      if (data?.status === 404) {
         setData(data?.success)
         return
       }

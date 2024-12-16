@@ -34,8 +34,8 @@ const SignUpForm = ({ onClick }) => {
 
   const { signUp, error: authError, isLoading: authLoading } = useSignUp()
   const {
-    isLoading: tableLoading,
     updateUserTable,
+    isLoading: tableLoading,
     error: tableError,
   } = useUpdateUserTable()
   const {
@@ -96,43 +96,79 @@ const SignUpForm = ({ onClick }) => {
 
   useEffect(() => {
     if (active) {
-      if (checkData && !checkLoading && !checkError) {
+      console.log()
+      if (
+        checkData &&
+        !checkLoading &&
+        !checkError &&
+        !authLoading &&
+        !userAuth
+      ) {
         const fetch = async () =>
-          await signUp({ email, password, confirmPassword })
+          await signUp({ email, password, confirmPassword, setActive })
 
         fetch()
-      } else {
-        toast.error(t("Bu telefon raqam oldin ro'yxatdan o'tgan"), {
-          theme: 'dark',
-        })
       }
     }
-  })
+  }, [
+    t,
+    email,
+    active,
+    signUp,
+    userAuth,
+    password,
+    checkData,
+    checkError,
+    authLoading,
+    checkLoading,
+    confirmPassword,
+  ])
 
   useEffect(() => {
-    if (userAuth?.user?.id && active && phone && !error && !isLoading) {
-      const fetch = async () => {
-        await updateUserTable({
-          id: userAuth.user.id,
-          email: userAuth.user.email,
-          phone,
-        })
-      }
+    if (active) {
+      if (
+        userAuth?.user?.id &&
+        phone &&
+        !authError &&
+        !checkError &&
+        !authLoading &&
+        !checkLoading &&
+        !tableLoading
+      ) {
+        const fetch = async () => {
+          await updateUserTable({
+            id: userAuth.user.id,
+            email: userAuth.user.email,
+            phone,
+          })
+        }
 
-      fetch()
+        fetch()
+      }
+    }
+  }, [
+    userAuth,
+    active,
+    phone,
+    authError,
+    updateUserTable,
+    checkLoading,
+    tableLoading,
+    authLoading,
+    checkError,
+  ])
+
+  useEffect(() => {
+    if (userAuth && userTable && active) {
+      setActive(false)
       setPhone('')
       setEmail('')
       setPassword('')
       setConfirmPassword('')
+      toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+      router.push('/championships')
     }
-  }, [userAuth, active, phone, isLoading, error, updateUserTable])
-
-  useEffect(() => {
-    if (userAuth && userTable && active) {
-      // setTimeout(() => router.push('/championships'), 250)
-      setActive(false)
-    }
-  }, [active, router, userAuth, userTable])
+  }, [active, router, userAuth, userTable, t])
 
   useEffect(() => {
     if (error) {
