@@ -67,7 +67,7 @@ const Championship = ({ game }) => {
           loading="lazy"
         />
         <span
-          className={`absolute bottom-0 left-0 top-0 h-full w-10 ${currentGame ? 'bg-primary' : 'bg-neutral-800'}`}
+          className={`absolute bottom-0 left-0 top-0 h-full w-10 ${currentGame ? 'bg-primary' : 'bg-primary/10'}`}
         />
         <div>
           <h3 className="text-base font-bold capitalize md:text-lg">
