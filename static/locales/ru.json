@@ -564,5 +564,6 @@
   "Input must contain either Latin or Cyrillic characters, not both.": "Ввод должен содержать либо латинские, либо кириллические символы, но не оба одновременно.",
   "Input must contain either Latin or Cyrillic characters.": "Ввод должен содержать либо латинские, либо кириллические символы.",
   "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры, а также .-@&$.",
-  "Phone number must start with '+998'.": "Номер телефона должен начинаться с '+998'."
+  "Phone number must start with '+998'.": "Номер телефона должен начинаться с '+998'.",
+  "Bu telefon raqam oldin ro'yxatdan o'tgan": "Этот номер телефона уже зарегистрирован"
 }

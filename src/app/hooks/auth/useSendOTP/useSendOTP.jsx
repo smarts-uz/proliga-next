@@ -31,6 +31,7 @@ export const useSendOTP = () => {
       const { data, error } = await supabase.rpc('http__send_message_sms', {
         send_phone: phone,
       })
+
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })

@@ -564,5 +564,6 @@
   "Input must contain either Latin or Cyrillic characters, not both.": "Kirish faqat lotin yoki kirill harflarini o‘z ichiga olishi kerak, ikkalasini birgalikda emas.",
   "Input must contain either Latin or Cyrillic characters.": "Kirish faqat lotin yoki kirill harflarini o‘z ichiga olishi kerak.",
   "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Kiritishda noto‘g‘ri belgilardan foydalanilgan. Faqat lotin, kirill harflari, raqamlar va .-@&$ ruxsat etiladi.",
-  "Phone number must start with '+998'.": "Telefon raqami '+998' bilan boshlanishi kerak."
+  "Phone number must start with '+998'.": "Telefon raqami '+998' bilan boshlanishi kerak.",
+  "Bu telefon raqam oldin ro'yxatdan o'tgan": "Bu telefon raqam oldin ro'yxatdan o'tgan"
 }

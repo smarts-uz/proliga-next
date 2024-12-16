@@ -90,28 +90,42 @@ const SignUpForm = ({ onClick }) => {
       return
     }
 
-    // setActive(true)
+    setActive(true)
     await checkUserNotExists({ phone })
-    // await signUp({ email, password, confirmPassword })
   }
-  console.log(checkData)
 
-  // useEffect(() => {
-  //   if (userAuth?.user?.id && active && phone && !error && !isLoading && data) {
-  //     const fetch = async () => {
-  //       await updateUserTable({
-  //         id: userAuth.user.id,
-  //         email: userAuth.user.email,
-  //         phone,
-  //       })
-  //     }
-  //     fetch()
-  //     setPhone('')
-  //     setEmail('')
-  //     setPassword('')
-  //     setConfirmPassword('')
-  //   }
-  // }, [userAuth, active, phone, isLoading, error, data, updateUserTable])
+  useEffect(() => {
+    if (active) {
+      if (checkData && !checkLoading && !checkError) {
+        const fetch = async () =>
+          await signUp({ email, password, confirmPassword })
+
+        fetch()
+      } else {
+        toast.error(t("Bu telefon raqam oldin ro'yxatdan o'tgan"), {
+          theme: 'dark',
+        })
+      }
+    }
+  })
+
+  useEffect(() => {
+    if (userAuth?.user?.id && active && phone && !error && !isLoading) {
+      const fetch = async () => {
+        await updateUserTable({
+          id: userAuth.user.id,
+          email: userAuth.user.email,
+          phone,
+        })
+      }
+
+      fetch()
+      setPhone('')
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
+    }
+  }, [userAuth, active, phone, isLoading, error, updateUserTable])
 
   useEffect(() => {
     if (userAuth && userTable && active) {

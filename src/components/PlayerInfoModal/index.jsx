@@ -65,7 +65,7 @@ const PlayerInfoModal = ({ isModalOpen, setModalOpen }) => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-      <DialogContent className="overflox-y-auto z-50 flex max-h-[90vh] min-h-[45vh] w-[98%] max-w-[64rem] flex-col gap-4 overflow-y-auto rounded-2xl border border-neutral-500 bg-neutral-900 px-2 pb-4 pt-4 text-neutral-200 xs:mx-auto xs:w-[96%] xs:px-4 sm:w-4/5 md:px-6 md:pb-4 md:pt-6 lg:w-3/4 xl:w-3/5">
+      <DialogContent className="overflox-y-auto z-50 flex max-h-[90vh] min-h-[45vh] w-[98%] max-w-[64rem] flex-col gap-4 overflow-y-auto rounded-xl border border-neutral-500 bg-neutral-900 px-2 pb-4 pt-4 text-neutral-200 xs:mx-auto xs:w-[96%] xs:px-4 sm:w-4/5 md:px-6 md:pb-4 md:pt-6 lg:w-3/4 xl:w-3/5">
         <PlayerPhoto
           currentPlayer={currentPlayer}
           position={getCorrentPlayerPosition(currentPlayer.position, lang)}

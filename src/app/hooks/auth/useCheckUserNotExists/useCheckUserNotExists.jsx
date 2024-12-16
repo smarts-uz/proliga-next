@@ -22,23 +22,17 @@ export const useCheckUserNotExists = () => {
     try {
       setIsLoading(true)
 
-      const { data, error } = await supabase
-        .from('user')
-        .select('phone')
-        .eq('phone', phone)
-        .single()
+      const { data, error } = await supabase.rpc('get__check_user_not_exist', {
+        phone_num: phone,
+      })
 
-      if (error?.code === 'PGRST116') {
-        setData(true)
-        return
-      }
       if (error) {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
         return
       }
       if (data) {
-        setData(false)
+        setData(data?.success)
         return
       }
     } catch (error) {
