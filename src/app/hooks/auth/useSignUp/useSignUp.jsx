@@ -13,7 +13,12 @@ export const useSignUp = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const signUp = async ({ email, password, confirmPassword }) => {
+  const signUp = async ({
+    email,
+    password,
+    confirmPassword,
+    setActive = () => {},
+  }) => {
     setIsLoading(false)
     setError(null)
 
@@ -27,9 +32,10 @@ export const useSignUp = () => {
     }
     if (!email || !password) {
       setError("Barcha maydonlar to'ldirilishi shart")
-      return toast.error(t("Barcha maydonlar to'ldirilishi shart"), {
+      toast.error(t("Barcha maydonlar to'ldirilishi shart"), {
         theme: 'dark',
       })
+      return
     }
     if (password !== confirmPassword) {
       setError('Parollar mos kelmadi')
@@ -52,6 +58,7 @@ export const useSignUp = () => {
         setError(error.message)
         localStorage.removeItem(`user-table-${sbUrl}`)
         localStorage.removeItem(`user-auth-${sbUrl}`)
+        setActive(false)
         return
       }
 
@@ -60,12 +67,12 @@ export const useSignUp = () => {
         setError(error.message)
         localStorage.removeItem(`user-table-${sbUrl}`)
         localStorage.removeItem(`user-auth-${sbUrl}`)
+        setActive(false)
         return
       }
       if (data?.user && data?.session) {
         setData(data)
         localStorage.setItem(`user-auth-${sbUrl}`, JSON.stringify(data))
-        toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
         dispatch(setUserAuth(data))
       }
     } catch (error) {
@@ -73,6 +80,7 @@ export const useSignUp = () => {
       toast.error(error.message, { theme: 'dark' })
       localStorage.removeItem(`user-table-${sbUrl}`)
       localStorage.removeItem(`user-auth-${sbUrl}`)
+      setActive(false)
     } finally {
       setIsLoading(false)
     }

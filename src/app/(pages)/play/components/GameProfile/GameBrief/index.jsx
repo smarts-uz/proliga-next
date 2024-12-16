@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { TOUR } from 'app/utils/tour.util'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -39,7 +39,10 @@ const GameBrief = () => {
   const hours = date.getHours()
   const minutes = date.getMinutes()
   const curDate = new Date(currentTour?.datetime_start)
-  const isLoading = toursLoading || teamLoading || tourTeamsLoading
+  const isLoading = useMemo(
+    () => toursLoading || teamLoading || tourTeamsLoading,
+    [toursLoading, teamLoading, tourTeamsLoading]
+  )
 
   useEffect(() => {
     if (tours.length > 0) {

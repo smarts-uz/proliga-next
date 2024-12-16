@@ -2,7 +2,7 @@
 'use client'
 import { useDispatch } from 'react-redux'
 import Gutter from 'components/Gutter'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
 import dynamic from 'next/dynamic'
@@ -24,10 +24,14 @@ const Prizes = () => {
     (store) => store.prizes
   )
 
+  const isLoading = useMemo(
+    () => competitionLoading || prizesLoading,
+    [competitionLoading, prizesLoading]
+  )
+
   useEffect(() => {
     dispatch(fetchCompetition())
   }, [dispatch])
-  const isLoading = competitionLoading || prizesLoading
 
   return (
     <section className="min-h-screen bg-gradient-to-tr from-red-800 to-blue-900 pb-12 pt-8">

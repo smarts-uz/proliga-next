@@ -30,6 +30,7 @@ const Navbar = () => {
             >
               <Image
                 src="/icons/proliga-full.svg"
+                priority={true}
                 alt="Proliga"
                 width={180}
                 height={56}

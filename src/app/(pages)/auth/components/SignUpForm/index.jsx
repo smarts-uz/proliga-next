@@ -3,32 +3,56 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState, useMemo } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import {
+  setUserAuth,
+  setUserTempData,
+  setUserTable,
+} from 'app/lib/features/auth/auth.slice'
+import { useCheckUserNotExists } from 'app/hooks/auth/useCheckUserNotExists/useCheckUserNotExists'
 
 const SignUpForm = ({ onClick }) => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const { t } = useTranslation()
+
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [active, setActive] = useState(false)
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [agreement, setAgreement] = useState(false)
-  const { signUp, data, error, isLoading } = useSignUp()
+  const [showPassword, setShowPassword] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { userAuth, userTable } = useSelector((store) => store.auth)
+
+  const { signUp, error: authError, isLoading: authLoading } = useSignUp()
   const {
-    isLoading: tableIsLoading,
     updateUserTable,
+    isLoading: tableLoading,
     error: tableError,
   } = useUpdateUserTable()
-  const { t } = useTranslation()
-  const router = useRouter()
+  const {
+    checkUserNotExists,
+    isLoading: checkLoading,
+    error: checkError,
+    data: checkData,
+  } = useCheckUserNotExists()
+
+  const isLoading = useMemo(
+    () => authLoading || tableLoading || checkLoading,
+    [authLoading, tableLoading, checkLoading]
+  )
+  const error = useMemo(
+    () => authError || checkError || tableError,
+    [authError, checkError, tableError]
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -44,7 +68,6 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
       })
-
       return
     }
     if (!email || !password) {
@@ -57,44 +80,105 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
-    if (phone.length !== 13 && phone.slice(0, 4) !== '+998') {
+    if (phone.length !== 13) {
       toast.error(t("Telefon raqam noto'g'ri"), { theme: 'dark' })
       return
     }
 
+    if (phone.slice(0, 4) !== '+998') {
+      toast.error(t("Phone number must start with '+998'."), { theme: 'dark' })
+      return
+    }
+
     setActive(true)
-    await signUp({ email, password, confirmPassword })
+    await checkUserNotExists({ phone })
   }
 
   useEffect(() => {
-    if (userAuth?.user?.id && active && phone && !error && !isLoading && data) {
-      const fetch = async () => {
-        await updateUserTable({
-          id: userAuth.user.id,
-          email: userAuth.user.email,
-          phone,
-        })
+    if (active) {
+      console.log()
+      if (
+        checkData &&
+        !checkLoading &&
+        !checkError &&
+        !authLoading &&
+        !userAuth
+      ) {
+        const fetch = async () =>
+          await signUp({ email, password, confirmPassword, setActive })
+
+        fetch()
       }
-      fetch()
+    }
+  }, [
+    t,
+    email,
+    active,
+    signUp,
+    userAuth,
+    password,
+    checkData,
+    checkError,
+    authLoading,
+    checkLoading,
+    confirmPassword,
+  ])
+
+  useEffect(() => {
+    if (active) {
+      if (
+        userAuth?.user?.id &&
+        phone &&
+        !authError &&
+        !checkError &&
+        !authLoading &&
+        !checkLoading &&
+        !tableLoading
+      ) {
+        const fetch = async () => {
+          await updateUserTable({
+            id: userAuth.user.id,
+            email: userAuth.user.email,
+            phone,
+          })
+        }
+
+        fetch()
+      }
+    }
+  }, [
+    userAuth,
+    active,
+    phone,
+    authError,
+    updateUserTable,
+    checkLoading,
+    tableLoading,
+    authLoading,
+    checkError,
+  ])
+
+  useEffect(() => {
+    if (userAuth && userTable && active) {
+      setActive(false)
       setPhone('')
       setEmail('')
       setPassword('')
       setConfirmPassword('')
+      toast.success(t('Tizimga muvaffaqiyatli kirdingiz'), { theme: 'dark' })
+      router.push('/championships')
     }
-  }, [userAuth, active, phone, isLoading, error, data, updateUserTable])
+  }, [active, router, userAuth, userTable, t])
 
   useEffect(() => {
-    if (userAuth && userTable && active) {
-      setTimeout(() => router.push('/championships'), 250)
+    if (error) {
       setActive(false)
+      localStorage.clear()
+      dispatch(setUserAuth(null))
+      dispatch(setUserTable(null))
+      dispatch(setUserTempData(null))
     }
-  }, [active, router, userAuth, userTable])
-
-  useEffect(() => {
-    if (error || tableError) {
-      setActive(false)
-    }
-  }, [error, tableError])
+  }, [error, dispatch])
 
   return (
     <form
@@ -252,10 +336,10 @@ const SignUpForm = ({ onClick }) => {
       </div>
       <button
         type="submit"
-        disabled={isLoading || tableIsLoading}
+        disabled={isLoading || tableLoading}
         className="w-full rounded-sm border border-primary bg-neutral-900 py-3 font-semibold transition-all hover:bg-black"
       >
-        {isLoading || tableIsLoading ? (
+        {isLoading || tableLoading ? (
           <Image
             src="/icons/loading.svg"
             width={24}

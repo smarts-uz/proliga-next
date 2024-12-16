@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { fetchAllTeams } from 'app/lib/features/teams/teams.thunk'
 import { useDispatch } from 'react-redux'
 import TopTeams from '../TopTeams'
@@ -24,8 +24,10 @@ const Tournament = () => {
   )
   const [tour, setTour] = useState(currentTour?.id || 0)
 
-  const isLoading =
-    teamsLoading || tourLoading || competitionLoading || seasonLoading
+  const isLoading = useMemo(
+    () => teamsLoading || tourLoading || competitionLoading || seasonLoading,
+    [teamsLoading, tourLoading, competitionLoading, seasonLoading]
+  )
 
   useEffect(() => {
     if (currentCompetition?.id && season?.id && currentTour?.id) {

@@ -71,7 +71,9 @@ const CountrySelect = ({ disabled, value, onChange, options }) => {
           disabled={disabled}
         >
           <FlagComponent country={value} countryName={value} />
-          <p className="ml-1">+{RPNInput.getCountryCallingCode(value)}</p>
+          {value && (
+            <p className="ml-1">+{RPNInput?.getCountryCallingCode(value)}</p>
+          )}
           <ChevronsUpDown
             className={cn(
               '-mr-1 h-4 w-4 opacity-50',

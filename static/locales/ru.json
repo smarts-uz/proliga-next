@@ -497,7 +497,6 @@
   "SMS kod bolishi shart": "SMS-код обязателен",
   "Sizning parolingiz almashtirildi": "Ваш пароль изменен",
   "Qayta jo‘natish": "Переотправить",
-  "Bu foydalanuvchi allaqachon ro'yxatdan o'tgan": "Этот пользователь уже зарегистрирован",
   "Add players from one club!": "Добавьте $ игроков из одного клуба!",
   "Parolingizni unutingizmi?": "Забыли пароль?",
   "Login yoki parol xato": "Неверный логин или пароль",
@@ -512,6 +511,7 @@
   "Buferga muvaffaqiyatli nusxalandi!": "Успешно скопировано в буфер обмена!",
   "Oyinchilar yoq": "Игроков нет",
   "Sahifa topilmadi": "Страница не найдена",
+  "Bu foydalanuvchi allaqachon ro'yxatdan o'tgan": "Пользователь с таким адресом электронной почты уже зарегистрирован.",
   "Kechirasiz, siz so'ragan sahifa mavjud emas. Iltimos, manzilni tekshiring yoki quyidagi havoladan foydalaning.": "Извините, страница, на которую вы запросили, не существует. Проверьте адрес или воспользуйтесь ссылкой.",
   "Bosh sahifaga qaytish": "Вернуться на главную страницу",
   "XATO": "ОШИБКА",
@@ -563,5 +563,7 @@
   "Input must be 20 characters or less.": "Ввод должен содержать не более 20 символов.",
   "Input must contain either Latin or Cyrillic characters, not both.": "Ввод должен содержать либо латинские, либо кириллические символы, но не оба одновременно.",
   "Input must contain either Latin or Cyrillic characters.": "Ввод должен содержать либо латинские, либо кириллические символы.",
-  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры, а также .-@&$."
+  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры, а также .-@&$.",
+  "Phone number must start with '+998'.": "Номер телефона должен начинаться с '+998'.",
+  "Bu telefon raqam oldin ro'yxatdan o'tgan": "Этот номер телефона уже зарегистрирован"
 }
