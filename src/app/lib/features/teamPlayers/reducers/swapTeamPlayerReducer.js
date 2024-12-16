@@ -2,7 +2,14 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const swapTeamPlayerReducer = (state, action) => {
-  const { player, team, previousPlayer, handleModal, t } = action.payload
+  const {
+    player,
+    team,
+    previousPlayer,
+    handleModal,
+    t,
+    configMaxSameClubPlayers,
+  } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
   const evaluateTeamClubId = () => {
@@ -45,6 +52,19 @@ export const swapTeamPlayerReducer = (state, action) => {
 
   const clubId = player?.club?.id || player.club_id.id
 
+  console.log(
+    configMaxSameClubPlayers,
+    state.duplicatesMap[clubId] === configMaxSameClubPlayers
+  )
+
+  if (state.duplicatesMap[clubId] === 5) {
+    toast.warning(t('Max players count reached from the same club!'), {
+      theme: 'dark',
+    })
+    handleModal()
+    // state.clubModal = true
+    return state
+  }
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
       t("Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!").replace(

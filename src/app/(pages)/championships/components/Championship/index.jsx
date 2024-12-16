@@ -35,14 +35,18 @@ const Championship = ({ game }) => {
   }, [teams, game.id])
 
   const handleClick = () => {
-    if (game.can_register) {
-      if (currentGame) {
-        router.push(`/play/${game.slug}/${currentGame.id}`)
-      } else {
-        toggleModal(true)
-      }
+    if (currentGame?.is_team_created) {
+      router.push(`/play/${game.slug}/${currentGame.id}`)
     } else {
-      toast.info(t('Bu liga hozr active emas'), { theme: 'dark' })
+      if (game.can_register) {
+        if (currentGame) {
+          router.push(`/play/${game.slug}/${currentGame.id}`)
+        } else {
+          toggleModal(true)
+        }
+      } else {
+        toast.info(t('Bu liga hozr active emas'), { theme: 'dark' })
+      }
     }
   }
 
