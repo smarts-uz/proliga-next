@@ -28,6 +28,7 @@ const TransferStadiumForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [teamCreateBtns, toggleTeamCreateBtns] = useState(false)
+  const [active, setActive] = useState(false)
   const { GOA, DEF, MID, STR, playersCount, prevTeam } = useSelector(
     (state) => state.teamPlayers
   )
@@ -50,6 +51,7 @@ const TransferStadiumForm = () => {
     updateTourTeam,
     isLoading: tourTeamLoading,
     error: tourTeamError,
+    data: tourTeamData,
   } = useUpdateTourTeam()
   const {
     generateTeamPlayers,
@@ -123,12 +125,20 @@ const TransferStadiumForm = () => {
       return
     }
 
+    setActive(true)
+
     if (!currentTeam?.is_team_created) {
       await updateTeam({
         team_id: currentTeam.id,
         is_team_created: currentTeam?.is_team_created,
       })
     }
+
+    await updateTeamPlayers({
+      team: teamConcat,
+      team_id: currentTeam.id,
+      tour_id: currentTour.id,
+    })
 
     await updateTourTeam({
       team_id: currentTeam.id,
@@ -137,24 +147,35 @@ const TransferStadiumForm = () => {
         countOfTransfers + currentTourTeam.current_count_of_transfers,
       is_team_created: currentTeam.is_team_created,
     })
-
-    await updateTeamPlayers({
-      team: teamConcat,
-      team_id: currentTeam.id,
-      tour_id: currentTour.id,
-    })
-
-    if (!error && !isLoading) {
-      dispatch(setTab(TABS.GameProfile))
-      dispatch(
-        fetchTeamPlayers({
-          team_id: currentTeam?.id,
-          tour_id: currentTour.id,
-        })
-      )
-      toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
-    }
   }
+
+  useEffect(() => {
+    if (active) {
+      if (!error && !isLoading) {
+        dispatch(
+          fetchTeamPlayers({
+            team_id: currentTeam?.id,
+            tour_id: currentTour.id,
+          })
+        )
+        dispatch(setTab(TABS.GameProfile))
+        toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
+        setActive(false)
+      }
+    }
+  }, [active, currentTeam?.id, currentTour.id, dispatch, error, isLoading, t])
+
+  useEffect(() => {
+    if (error) {
+      setActive(false)
+    }
+  }, [error])
+
+  useEffect(() => {
+    if (currentTeam?.is_team_created === false) {
+      toggleTeamCreateBtns(true)
+    }
+  }, [currentTeam])
 
   const validPlayers = () => {
     let valid = true
@@ -189,12 +210,6 @@ const TransferStadiumForm = () => {
     }
     return true
   }
-
-  useEffect(() => {
-    if (currentTeam.is_team_created === false) {
-      toggleTeamCreateBtns(true)
-    }
-  }, [currentTeam])
 
   return (
     <form
