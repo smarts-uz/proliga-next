@@ -8,7 +8,7 @@ const ChampionshipsTitle = dynamic(() => import('./components/Title'), {
 })
 import Gutter from '../../../components/Gutter'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserTeams } from 'app/lib/features/teams/teams.thunk'
 import { fetchCompetition } from 'app/lib/features/competition/competition.thunk'
@@ -21,9 +21,14 @@ import AnimatedBackground from 'components/AnimatedBackground'
 const Championships = () => {
   const dispatch = useDispatch()
   const selectedCompetition = useSelector(selectCompetition)
-  const { isLoading } = useSelector((state) => state.competition)
+  const { isLoading: competitionLoading } = useSelector(
+    (state) => state.competition
+  )
   const { userTable } = useSelector((state) => state.auth)
-  const { season } = useSelector((state) => state.season)
+  const { season, isLoading: seasonLoading } = useSelector(
+    (state) => state.season
+  )
+  const { isLoading: teamsLoading } = useSelector((state) => state.teams)
 
   useEffect(() => {
     dispatch(fetchCompetition())
@@ -44,11 +49,16 @@ const Championships = () => {
     }
   }, [dispatch, userTable, season.id])
 
+  const isLoading = useMemo(
+    () => competitionLoading || seasonLoading || teamsLoading,
+    [competitionLoading, seasonLoading, teamsLoading]
+  )
+
   return (
     <>
       <AnimatedBackground />
       <Gutter>
-        <section className="mb-4 mt-8 min-h-96 w-full rounded-lg bg-neutral-900 p-5 shadow shadow-neutral-400 md:mt-6 md:min-h-40">
+        <section className="mb-4 mt-8 min-h-96 w-full rounded-lg bg-neutral-900 p-5 shadow shadow-neutral-400 md:mt-6 md:min-h-44">
           {isLoading ? (
             <Skeleton className="mb-4 h-8 w-48" />
           ) : (
