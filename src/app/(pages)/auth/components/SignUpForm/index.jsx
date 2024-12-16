@@ -4,15 +4,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState, useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useSignUp } from 'app/hooks/auth/useSignUp/useSignUp'
 import { PhoneInput } from 'components/PhoneInput'
 import { useUpdateUserTable } from 'app/hooks/auth/useUpdateUserTable/useUpdateUserTable'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
-import { useGetUserPhone } from 'app/hooks/user/useGetUserPhone/useGetUserPhone'
+import {
+  setUserAuth,
+  setUserTempData,
+  setUserTable,
+} from 'app/lib/features/auth/auth.slice'
+import { useCheckUserNotExists } from 'app/hooks/auth/useCheckUserNotExists/useCheckUserNotExists'
 
 const SignUpForm = ({ onClick }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -26,17 +32,18 @@ const SignUpForm = ({ onClick }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const { userAuth, userTable } = useSelector((store) => store.auth)
 
-  const { signUp, data, error: authError, isLoading: authLoading } = useSignUp()
+  const { signUp, error: authError, isLoading: authLoading } = useSignUp()
   const {
     isLoading: tableLoading,
     updateUserTable,
     error: tableError,
   } = useUpdateUserTable()
   const {
-    getUserPhone,
+    checkUserNotExists,
     isLoading: checkLoading,
     error: checkError,
-  } = useGetUserPhone()
+    data: checkData,
+  } = useCheckUserNotExists()
 
   const isLoading = useMemo(
     () => authLoading || tableLoading || checkLoading,
@@ -61,7 +68,6 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t("Parol 6 ta belgidan kam bo'lmasligi kerak"), {
         theme: 'dark',
       })
-
       return
     }
     if (!email || !password) {
@@ -74,44 +80,55 @@ const SignUpForm = ({ onClick }) => {
       toast.error(t('Parollar mos kelmadi'), { theme: 'dark' })
       return
     }
-    if (phone.length !== 13 && phone.slice(0, 4) !== '+998') {
+    if (phone.length !== 13) {
       toast.error(t("Telefon raqam noto'g'ri"), { theme: 'dark' })
       return
     }
 
-    setActive(true)
-    await signUp({ email, password, confirmPassword })
-  }
-
-  useEffect(() => {
-    if (userAuth?.user?.id && active && phone && !error && !isLoading && data) {
-      const fetch = async () => {
-        await updateUserTable({
-          id: userAuth.user.id,
-          email: userAuth.user.email,
-          phone,
-        })
-      }
-      fetch()
-      setPhone('')
-      setEmail('')
-      setPassword('')
-      setConfirmPassword('')
+    if (phone.slice(0, 4) !== '+998') {
+      toast.error(t("Phone number must start with '+998'."), { theme: 'dark' })
+      return
     }
-  }, [userAuth, active, phone, isLoading, error, data, updateUserTable])
+
+    // setActive(true)
+    await checkUserNotExists({ phone })
+    // await signUp({ email, password, confirmPassword })
+  }
+  console.log(checkData)
+
+  // useEffect(() => {
+  //   if (userAuth?.user?.id && active && phone && !error && !isLoading && data) {
+  //     const fetch = async () => {
+  //       await updateUserTable({
+  //         id: userAuth.user.id,
+  //         email: userAuth.user.email,
+  //         phone,
+  //       })
+  //     }
+  //     fetch()
+  //     setPhone('')
+  //     setEmail('')
+  //     setPassword('')
+  //     setConfirmPassword('')
+  //   }
+  // }, [userAuth, active, phone, isLoading, error, data, updateUserTable])
 
   useEffect(() => {
     if (userAuth && userTable && active) {
-      setTimeout(() => router.push('/championships'), 250)
+      // setTimeout(() => router.push('/championships'), 250)
       setActive(false)
     }
   }, [active, router, userAuth, userTable])
 
   useEffect(() => {
-    if (error || tableError) {
+    if (error) {
       setActive(false)
+      localStorage.clear()
+      dispatch(setUserAuth(null))
+      dispatch(setUserTable(null))
+      dispatch(setUserTempData(null))
     }
-  }, [error, tableError])
+  }, [error, dispatch])
 
   return (
     <form
