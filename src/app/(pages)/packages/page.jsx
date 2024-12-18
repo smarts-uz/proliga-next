@@ -1,7 +1,7 @@
 'use client'
 
 import { fetchPackages } from 'app/lib/features/packages/packages.thunk'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { PACKAGES } from 'app/utils/packages.util'
@@ -16,9 +16,14 @@ const PackageContainer = dynamic(() => import('./components/Package'), {
 })
 
 const Packages = () => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { isLoading } = useSelector((store) => store.packages)
+  const { t } = useTranslation()
+  const { isLoading: packagesLoading } = useSelector((store) => store.packages)
+  const { isLoading: langLoading } = useSelector((store) => store.prizes)
+  const isLoading = useMemo(
+    () => packagesLoading || langLoading,
+    [packagesLoading, langLoading]
+  )
 
   useEffect(() => {
     dispatch(fetchPackages())

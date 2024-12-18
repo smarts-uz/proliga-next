@@ -27,40 +27,12 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
   const { redirectToClick } = useRedirectToClick()
   const { redirectToPayme } = useRedirectToPayme()
   const { config } = useSelector((store) => store.systemConfig)
-  const [paymeActive, setPaymeActive] = useState(false)
-  const [clickActive, setClickActive] = useState(false) // search for config & check if it's active
-  const [uzumActive, setUzumActive] = useState(false)
-
-  useEffect(() => {
-    if (config?.length > 0) {
-      setPaymeActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.cabinet_payme &&
-              i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? false
-      )
-      setClickActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.cabinet_click &&
-              i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? false
-      )
-      setUzumActive(
-        config
-          ?.find(
-            (i) =>
-              i.key === configKey.cabinet_uzum && i.type === configType.Checkbox
-          )
-          .value.toLowerCase() === 'true' ?? false
-      )
-    }
-  }, [config])
+  const cabinet_payme =
+    config[configKey.cabinet_payme]?.value.toLowerCase() === 'true' ?? false
+  const cabinet_click =
+    config[configKey.cabinet_click]?.value.toLowerCase() === 'true' ?? false
+  const cabinet_uzum =
+    config[configKey.cabinet_uzum]?.value.toLowerCase() === 'true' ?? false
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -107,7 +79,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
               {t("To'lov usulini tanlang")}
             </h3>
             <section className="flex flex-wrap justify-start gap-1 sm:flex-nowrap">
-              {clickActive && (
+              {cabinet_click && (
                 <RefilBalanceModalPaymentOption
                   onClick={() => setPaymentOption(BALANCEOPTIONS.CLICKUP)}
                   style={
@@ -117,7 +89,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   alt={'click-up'}
                 />
               )}
-              {paymeActive && (
+              {cabinet_payme && (
                 <RefilBalanceModalPaymentOption
                   onClick={() => setPaymentOption(BALANCEOPTIONS.PAYME)}
                   style={
@@ -127,7 +99,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   alt={'payme'}
                 />
               )}
-              {uzumActive && (
+              {cabinet_uzum && (
                 <RefilBalanceModalPaymentOption
                   onClick={() => setPaymentOption(BALANCEOPTIONS.UZUM)}
                   style={
@@ -137,7 +109,7 @@ const RefillBalanceModal = ({ isModalOpen, setIsModalOpen }) => {
                   alt={'uzum'}
                 />
               )}
-              {!clickActive && !paymeActive && !uzumActive && (
+              {!cabinet_click && !cabinet_payme && !cabinet_uzum && (
                 <p className="w-full rounded border border-red-400 bg-red-600/75 py-1 text-center font-bold">
                   {t("Hozircha to'lovlar o'chirib qo'yilgan!")}
                 </p>

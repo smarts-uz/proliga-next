@@ -15,12 +15,10 @@ const PaymentOptions = ({ paymentOption, setPaymentOption }) => {
   const passive = 'border-neutral-600 hover:border-primary/80'
   const { config } = useSelector((store) => store.systemConfig)
 
-  const checkout_payme = Boolean(
+  const checkout_payme =
     config[configKey.checkout_payme]?.value.toLowerCase() === 'true' ?? null
-  )
-  const checkout_click = Boolean(
+  const checkout_click =
     config[configKey.checkout_click]?.value.toLowerCase() === 'true' ?? null
-  )
   const checkout_uzum =
     config[configKey.checkout_uzum]?.value.toLowerCase() === 'true' ?? null
 

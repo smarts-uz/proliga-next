@@ -17,7 +17,8 @@ const CabinetProfileTab = () => {
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
   const URL = process.env.NEXT_PUBLIC_STATIC_URL
-  const can_send_sms = Boolean(config[configKey.can_send_sms]?.value) ?? false
+  const can_send_sms =
+    config[configKey.can_send_sms]?.value.toLowerCase() === 'true' ?? false
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()

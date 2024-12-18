@@ -99,3 +99,31 @@
   animation: marquee 10s linear infinite;
 }
 
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1);
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 300s ease infinite;
+}
+
+.animate-glow {
+  animation: glow 200s ease-in-out infinite;
+}

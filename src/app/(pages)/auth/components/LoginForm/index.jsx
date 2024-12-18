@@ -43,7 +43,8 @@ const LoginForm = ({ onClick }) => {
 
   const { userTable, userAuth, temp } = useSelector((state) => state.auth)
   const { config } = useSelector((store) => store.systemConfig)
-  const can_send_sms = Boolean(config[configKey.can_send_sms]?.value) ?? false
+  const can_send_sms =
+    config[configKey.can_send_sms]?.value.toLowerCase() === 'true' ?? false
 
   const isLoading = useMemo(
     () => authLoading || tableLoading || checkLoading,
