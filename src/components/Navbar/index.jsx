@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Gutter from '../Gutter'
@@ -12,7 +13,6 @@ import NavbarUserMobile from './UserMobile'
 import ChangeLanguageDropdown from './Language'
 import Notification from './Notification'
 import TestModeSlider from './TestModeSlider'
-import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const path = usePathname()
@@ -24,7 +24,7 @@ const Navbar = () => {
       <nav className="fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 pb-3 backdrop-blur-md">
         <TestModeSlider
           text={t('Website is in test mode')}
-          speed="normal"
+          speed="slow"
           className="mb-3"
         />
         <Gutter>
@@ -43,7 +43,7 @@ const Navbar = () => {
                 width={180}
                 height={56}
                 draggable={false}
-                className="w-28 cursor-pointer sm:w-36"
+                className="w-28 cursor-pointer xs:w-32 md:w-36"
               />
             </Link>
             <PlayLinks />

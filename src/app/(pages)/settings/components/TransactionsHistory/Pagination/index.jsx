@@ -4,7 +4,7 @@ const CabinetTablePagination = ({ table }) => {
   const currentIndex = table.getState().pagination.pageIndex
 
   return (
-    <section className="mt-2 flex h-auto items-center justify-center gap-2 overflow-x-auto">
+    <section className="flex h-auto items-center justify-center gap-2 overflow-x-auto pt-2">
       <PaginationButton
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}

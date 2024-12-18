@@ -9,7 +9,7 @@ const TestModeSlider = ({ text, speed = 'normal', className }) => {
 
   return (
     <div
-      className={`overflow-hidden border-y border-primary/50 py-0.5 text-xs text-neutral-200 xs:text-sm ${className}`}
+      className={`overflow-hidden border-y border-primary/50 text-xs text-neutral-200 ${className}`}
       role="marquee"
       aria-live="off"
     >

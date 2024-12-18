@@ -93,7 +93,7 @@ function CabinetTransactionsExpensesTable() {
   })
 
   return (
-    <section className="flex h-full w-full flex-1 flex-col justify-between overflow-x-auto">
+    <section className="flex h-full w-full flex-1 flex-col justify-between gap-1 overflow-x-auto">
       <table className="w-full min-w-96 table-auto rounded text-[11px] xs:text-xs md:text-sm">
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />

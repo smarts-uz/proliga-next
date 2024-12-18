@@ -80,7 +80,7 @@ function CabinetTransactionsBalanceTable() {
     },
   })
   return (
-    <section className="w-full flex-1">
+    <section className="flex w-full flex-1 flex-col justify-between gap-1 overflow-x-auto">
       <table className="w-full table-auto rounded text-[11px] xs:text-xs md:text-sm">
         <TransactionsTableHead table={table} />
         <TransactionsTableBody table={table} flexRender={flexRender} />
