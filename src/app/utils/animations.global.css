@@ -77,3 +77,25 @@
     top: -15vw;
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee-slow {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-normal {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee-fast {
+  animation: marquee 10s linear infinite;
+}
+

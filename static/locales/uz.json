@@ -566,5 +566,6 @@
   "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Kiritishda noto‘g‘ri belgilardan foydalanilgan. Faqat lotin, kirill harflari, raqamlar va .-@&$ ruxsat etiladi.",
   "Phone number must start with '+998'.": "Telefon raqami '+998' bilan boshlanishi kerak.",
   "Bu telefon raqam oldin ro'yxatdan o'tgan": "Bu telefon raqam oldin ro'yxatdan o'tgan",
-  "Max players count reached from the same club!": "Bitta klubdan qatnashuvchi o‘yinchilar sonining maksimal chegarasiga yetildi."
+  "Max players count reached from the same club!": "Bitta klubdan qatnashuvchi o‘yinchilar sonining maksimal chegarasiga yetildi.",
+  "Website is in test mode": "Veb-sayt test rejimida ishlamoqda"
 }

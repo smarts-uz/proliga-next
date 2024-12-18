@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const NavbarUserMobile = ({ handleToggleModal }) => {
   const { userTable } = useSelector((state) => state.auth)
-  const URL = process.env.NEXT_PUBLIC_URL
+  const URL = process.env.NEXT_PUBLIC_STATIC_URL
 
   return (
     <span

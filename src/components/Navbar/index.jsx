@@ -11,14 +11,22 @@ import NavbarUserDesktop from './UserDesktop'
 import NavbarUserMobile from './UserMobile'
 import ChangeLanguageDropdown from './Language'
 import Notification from './Notification'
+import TestModeSlider from './TestModeSlider'
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const path = usePathname()
   const [isModalOpen, setModalOpen] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 py-4 backdrop-blur-md">
+      <nav className="fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 pb-3 backdrop-blur-md">
+        <TestModeSlider
+          text={t('Website is in test mode')}
+          speed="normal"
+          className="mb-3"
+        />
         <Gutter>
           <div className="flex w-full items-center justify-between text-white">
             <Link

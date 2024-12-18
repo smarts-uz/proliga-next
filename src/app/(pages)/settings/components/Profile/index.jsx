@@ -9,30 +9,20 @@ import RefillBalanceModal from 'components/RefillBalanceModal'
 import RefillBalanceBox from './RefillBalanceBox'
 import CabinetProfileOTP from './OTPBox'
 import Image from 'next/image'
+import { configKey } from 'app/utils/config.util'
 
 const CabinetProfileTab = () => {
   const { userTable, userAuth } = useSelector((store) => store.auth)
   const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
   const [balanceModal, setBalanceModal] = useState(false)
-  const [canSendSMS, setCanSendSMS] = useState(true)
-  const URL = process.env.NEXT_PUBLIC_URL
+  const URL = process.env.NEXT_PUBLIC_STATIC_URL
+  const can_send_sms = Boolean(config[configKey.can_send_sms]?.value) ?? false
 
   const date = new Date(userTable?.birth_date)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
-
-  useEffect(() => {
-    if (config?.length > 0) {
-      setCanSendSMS(
-        Boolean(
-          config?.find((i) => i.key === 'can_send_sms').value.toLowerCase() ===
-            'true'
-        )
-      )
-    }
-  }, [config])
 
   const getCorrectGenderText = (gender) => {
     if (gender === 'male') {
@@ -182,7 +172,7 @@ const CabinetProfileTab = () => {
         </section>
         <section className="flex flex-wrap justify-start gap-1 sm:gap-2">
           <RefillBalanceBox setBalanceModal={setBalanceModal} />
-          {!userTable?.phone_verified && canSendSMS && <CabinetProfileOTP />}
+          {!userTable?.phone_verified && can_send_sms && <CabinetProfileOTP />}
         </section>
       </section>
       <RefillBalanceModal
