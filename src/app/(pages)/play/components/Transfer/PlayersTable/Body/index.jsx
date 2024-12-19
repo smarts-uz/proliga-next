@@ -6,13 +6,19 @@ import {
   updateTeamPlayer,
 } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
+import { configKey } from 'app/utils/config.util'
 
 const TransferTableBody = ({ table, flexRender }) => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
+  const { config } = useSelector((store) => store.systemConfig)
   const { GOA, DEF, MID, STR, playersCount } = useSelector(
     (state) => state.teamPlayers
   )
+  const max_same_team_players = +config[configKey.max_same_team_players]?.value
+  const transfer_show_modals =
+    config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
 
   const { teamBalance } = useSelector((state) => state.tourTeams)
   const totalPlayersCount =
@@ -25,7 +31,7 @@ const TransferTableBody = ({ table, flexRender }) => {
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
   )
-  const { t } = useTranslation()
+
   const handleAddPlayer = (player) => {
     if (currentTeam?.is_team_created) {
       dispatch(
@@ -34,6 +40,8 @@ const TransferTableBody = ({ table, flexRender }) => {
           team: currentTeam,
           teamConcat,
           t,
+          max_same_team_players,
+          transfer_show_modals,
         })
       )
     } else {
@@ -43,6 +51,8 @@ const TransferTableBody = ({ table, flexRender }) => {
           team: currentTeam,
           teamConcat,
           t,
+          max_same_team_players,
+          transfer_show_modals,
         })
       )
     }

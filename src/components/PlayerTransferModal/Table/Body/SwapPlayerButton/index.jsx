@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { setModals } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { configKey } from 'app/utils/config.util'
+import { toast } from 'react-toastify'
 
 const SwapPlayerButton = ({
   cell,
@@ -12,6 +14,14 @@ const SwapPlayerButton = ({
 }) => {
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
+  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { config } = useSelector((store) => store.systemConfig)
+
+  const max_balance = +config[configKey.max_balance]?.value
+  const transfer_show_modals =
+    config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
+
+  console.log(max_balance)
 
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
@@ -23,13 +33,19 @@ const SwapPlayerButton = ({
   const toggleModal = () => {
     dispatch(setModals({ id: prevPlayer.id, value: false }))
   }
+  console.log(currentTeam?.balance)
 
   const handleClick = () => {
     if (condition) {
       handleSwapPlayer(cell.row.original)
     } else {
-      toggleModal()
-      dispatch(setBalanceModal(true))
+      if (currentTeam?.balance === max_balance) {
+        toggleModal()
+        toast.info(t('Max balance has been reached!'), { theme: 'dark' })
+      } else {
+        toggleModal()
+        transfer_show_modals && dispatch(setBalanceModal(true))
+      }
     }
   }
 

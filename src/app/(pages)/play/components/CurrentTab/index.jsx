@@ -143,7 +143,7 @@ const CurrentTab = ({ currentTab, paramsId }) => {
         })
       )
     }
-  }, [currentCompetition, dispatch, players, topPlayers.length])
+  }, [currentCompetition?.id, dispatch, players?.length, topPlayers.length])
 
   return (
     <Gutter>

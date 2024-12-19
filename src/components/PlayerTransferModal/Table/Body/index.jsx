@@ -2,12 +2,18 @@ import SwapPlayerButton from './SwapPlayerButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { swapTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { useTranslation } from 'react-i18next'
+import { configKey } from 'app/utils/config.util'
 
 const TransferTableBody = ({ table, flexRender, prevPlayer }) => {
   const dispatch = useDispatch()
   const { currentTeam } = useSelector((state) => state.currentTeam)
   const { teamBalance } = useSelector((state) => state.tourTeams)
+  const { config } = useSelector((store) => store.systemConfig)
   const { t } = useTranslation()
+
+  const max_same_team_players = +config[configKey.max_same_team_players]?.value
+  const transfer_show_modals =
+    config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
 
   const handleSwapPlayer = (player) => {
     dispatch(
@@ -16,6 +22,8 @@ const TransferTableBody = ({ table, flexRender, prevPlayer }) => {
         previousPlayer: prevPlayer,
         team: currentTeam,
         t,
+        transfer_show_modals,
+        max_same_team_players,
       })
     )
   }

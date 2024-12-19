@@ -16,7 +16,7 @@ export const configKey = {
   can_send_sms: 'can_send_sms',
   max_transfers: 'max_transfers',
   max_balance: 'max_balance',
-  max_same_team_players: 'max_save_team_players',
+  max_same_team_players: 'max_same_team_players',
   test_marquee: 'test_marquee',
   transfer_show_modals: 'transfer_show_modals',
 }
