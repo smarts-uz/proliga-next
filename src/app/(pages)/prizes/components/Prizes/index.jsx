@@ -13,12 +13,16 @@ const PrizeCompetition = dynamic(() => import('../Competition'), {
 import { PrizesSkeleton } from '../PrizesSkeleton'
 import { useSelector } from 'react-redux'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const PrizesSection = () => {
+  const { t } = useTranslation()
   const { competition, isLoading: competitionLoading } = useSelector(
     (store) => store.competition
   )
-  const { isLoading: prizesLoading } = useSelector((store) => store.prizes)
+  const { isLoading: prizesLoading, prizes } = useSelector(
+    (store) => store.prizes
+  )
 
   const isLoading = useMemo(
     () => competitionLoading || prizesLoading,
@@ -26,14 +30,22 @@ const PrizesSection = () => {
   )
 
   return (
-    <div>
-      <PrizesTitle />
-      <section className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
-        {competition?.map((competition, index) => (
-          <PrizeCompetition competition={competition} key={index} />
-        ))}
-      </section>
-    </div>
+    <>
+      {isLoading ? (
+        <PrizesSkeleton />
+      ) : prizes?.length > 0 ? (
+        <>
+          <PrizesTitle />
+          <section className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
+            {competition?.map((competition, index) => (
+              <PrizeCompetition competition={competition} key={index} />
+            ))}
+          </section>
+        </>
+      ) : (
+        <h1 className="text-center text-2xl">{t('Hozircha yutuqlar yoq')}</h1>
+      )}
+    </>
   )
 }
 

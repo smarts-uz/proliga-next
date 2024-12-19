@@ -13,6 +13,12 @@ const PrizeCompetition = ({ competition }) => {
   const { lang } = useSelector((store) => store.systemLanguage)
   const { prizes, isLoading } = useSelector((store) => store.prizes)
 
+  const hasPrize = prizes.some(
+    (prize) => prize.competition_id.id === competition.id
+  )
+
+  if (!hasPrize) return <></>
+
   return (
     <article className="transitiona-all group flex flex-col rounded-xl border border-neutral-100/50 bg-black/25 p-2 backdrop-blur-sm hover:border-neutral-100 hover:bg-black/40 md:p-4">
       <div className="mb-2 flex items-center gap-2 border-b border-neutral-500/80 pb-2 transition-all group-hover:border-primary">
