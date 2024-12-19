@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { supabase } from '../../../lib/supabaseClient'
+import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 
 export const useUpdateTeamPlayers = () => {
+  const dispatch = useDispatch()
   const { userTable } = useSelector((state) => state.auth)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -37,6 +39,14 @@ export const useUpdateTeamPlayers = () => {
         setError(error.message)
         toast.error(error.message, { theme: 'dark' })
         return
+      }
+      if (!error) {
+        dispatch(
+          fetchTeamPlayers({
+            team_id,
+            tour_id,
+          })
+        )
       }
     } catch (error) {
       setError(error.message)
