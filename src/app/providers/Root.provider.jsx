@@ -1,3 +1,5 @@
+'use client'
+
 import ReduxProvider from './Store.provider'
 import AuthProvider from './Auth.provider'
 import InitialStateProvider from './InitialState.provider'

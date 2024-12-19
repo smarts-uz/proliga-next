@@ -2,7 +2,8 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const swapTeamPlayerReducer = (state, action) => {
-  const { player, team, previousPlayer, handleModal, t } = action.payload
+  const { player, team, previousPlayer, t, configMaxSameClubPlayers } =
+    action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
 
   const evaluateTeamClubId = () => {
@@ -44,7 +45,15 @@ export const swapTeamPlayerReducer = (state, action) => {
   })
 
   const clubId = player?.club?.id || player.club_id.id
+  const playerId = previousPlayer.id
 
+  if (state.duplicatesMap[clubId] === 5) {
+    toast.warning(t('Max players count reached from the same club!'), {
+      theme: 'dark',
+    })
+    state.modals[playerId] = false
+    return state
+  }
   if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
     toast.warning(
       t("Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!").replace(
@@ -53,7 +62,7 @@ export const swapTeamPlayerReducer = (state, action) => {
       ),
       { theme: 'dark' }
     )
-    handleModal()
+    state.modals[playerId] = false
     state.clubModal = true
     return state
   }
@@ -66,7 +75,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.GOA[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    handleModal()
+    state.modals[playerId] = false
     toast.success(t("Oyinchi muvaffaqiyatli o'zgartirildi!"), { theme: 'dark' })
     return state
   }
@@ -78,7 +87,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.DEF[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    handleModal()
+    state.modals[playerId] = false
     toast.success(t("Oyinchi muvaffaqiyatli o'zgartirildi!"), { theme: 'dark' })
     return state
   }
@@ -90,7 +99,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.MID[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    handleModal()
+    state.modals[playerId] = false
     toast.success(t("Oyinchi muvaffaqiyatli o'zgartirildi!"), { theme: 'dark' })
     return state
   }
@@ -102,7 +111,7 @@ export const swapTeamPlayerReducer = (state, action) => {
     state.STR[prevPlayerIndex] = createUpdatedPlayer(prevPlayer, player)
     evaluateTeamClubId()
     calcTeamPrice()
-    handleModal()
+    state.modals[playerId] = false
     toast.success(t("Oyinchi muvaffaqiyatli o'zgartirildi!"), { theme: 'dark' })
     return state
   }

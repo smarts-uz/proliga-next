@@ -101,7 +101,7 @@ const MobileSidebar = ({ isModalOpen, setModalOpen }) => {
               href="/championships"
               onClick={() => setModalOpen(false)}
             >
-              {t('Chempionat')}
+              {t('Chempionatlar')}
             </Link>
           </div>
           <div className="flex w-full gap-4">
@@ -125,7 +125,7 @@ const MobileSidebar = ({ isModalOpen, setModalOpen }) => {
               onClick={() => setModalOpen(false)}
               href="/regulation"
             >
-              {t('Qoida')}
+              {t('Qoidalar')}
             </Link>
           </div>
         </div>

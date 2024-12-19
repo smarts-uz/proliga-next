@@ -1,60 +1,38 @@
-import { configKey, configType } from 'app/utils/config.util'
+import { gradientAnimationClasses as classes } from 'app/utils/animations'
+import { cn } from 'app/utils/cn'
+import { configKey } from 'app/utils/config.util'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
 import { Separator } from '@/components/ui/separator'
+import SocialLink from './SocialLink'
+import GradientButton from './GradientButton'
 
 const Footer = () => {
   const { t } = useTranslation()
   const { config } = useSelector((store) => store.systemConfig)
+  const link_email = config[configKey.link_email]?.value ?? ''
+  const link_instagram = config[configKey.link_instagram]?.value ?? ''
+  const link_telegram = config[configKey.link_telegram]?.value ?? ''
 
-  const [socialLinks, setSocialLinks] = useState({
-    email: '',
-    instagram: '',
-    telegram: '',
-  })
-
-  useEffect(() => {
-    if (config?.length > 0) {
-      setSocialLinks({
-        email:
-          config.find(
-            (i) =>
-              i.key === configKey.link_email && i.type === configType.TextField
-          )?.value ?? '/',
-        instagram:
-          config.find(
-            (i) =>
-              i.key === configKey.link_instagram &&
-              i.type === configType.TextField
-          )?.value ?? '/',
-        telegram:
-          config.find(
-            (i) =>
-              i.key === configKey.link_telegram &&
-              i.type === configType.TextField
-          )?.value ?? '/',
-      })
-    }
-  }, [config])
-
-  const footerLinks = [
+  const navigation = [
     { href: '/about-us', label: t('Biz haqimizda') },
     { href: '/packages', label: t('Paketlar') },
-    { href: '/regulation', label: t('Qoidalarimiz va maxfiylik') },
+  ]
+
+  const legal = [
+    { href: '/regulation', label: t('Qoidalar') },
     { href: '/user-agreement', label: t('Foydalanuvchi shartnomasi') },
   ]
 
   return (
-    <footer className="bg-background text-foreground w-full border-t border-neutral-800">
-      <div className="container mx-auto px-4 py-8 lg:py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="w-full bg-black text-white">
+      <div className="container mx-auto px-6 py-10">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t('Navigatsiya')}</h3>
+            <h3 className="text-xl font-semibold">{t('Navigatsiya')}</h3>
             <nav className="flex flex-col space-y-2">
-              {footerLinks.slice(0, 2).map((link) => (
+              {navigation.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -66,9 +44,9 @@ const Footer = () => {
             </nav>
           </div>
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t('Huquqiy')}</h3>
+            <h3 className="text-xl font-semibold">{t('Huquqiy')}</h3>
             <nav className="flex flex-col space-y-2">
-              {footerLinks.slice(2).map((link) => (
+              {legal.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -79,23 +57,36 @@ const Footer = () => {
               ))}
             </nav>
           </div>
-          <div className="space-y-4 lg:col-span-2">
-            <h3 className="text-lg font-semibold">
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">
               {t('Bizning ijtimoiy tarmoqlarimiz')}
             </h3>
             <div className="flex space-x-4">
               <SocialLink
-                href={socialLinks.instagram}
+                href={link_instagram}
                 icon="instagram"
                 alt="Instagram"
               />
-              <SocialLink href={socialLinks.email} icon="mail" alt="Email" />
-              <SocialLink
-                href={socialLinks.telegram}
-                icon="telegram"
-                alt="Telegram"
-              />
+              <SocialLink href={link_email} icon="mail" alt="Email" />
+              <SocialLink href={link_telegram} icon="telegram" alt="Telegram" />
             </div>
+          </div>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+            <GradientButton
+              href="/prizes"
+              className={'w-full max-w-56'}
+              variant="solid"
+            >
+              {t("Sovgalarni ko'rish")}
+            </GradientButton>
+
+            <GradientButton
+              className={'w-full'}
+              href="/championships"
+              variant="gradient"
+            >
+              {t("Chempionatlarga o'tish")}
+            </GradientButton>
           </div>
         </div>
         <Separator className="my-8" />
@@ -108,22 +99,3 @@ const Footer = () => {
 }
 
 export default Footer
-
-export function SocialLink({ href, icon, alt }) {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="focus:ring-offset-background transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-    >
-      <Image
-        src={`/icons/${icon}.svg`}
-        alt={alt}
-        width={24}
-        height={24}
-        className="size-6 opacity-75 transition-opacity hover:opacity-100 md:size-7 xl:size-8"
-      />
-    </Link>
-  )
-}

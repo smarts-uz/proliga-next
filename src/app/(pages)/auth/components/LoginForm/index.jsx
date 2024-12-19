@@ -16,6 +16,7 @@ import {
   setUserTempData,
 } from 'app/lib/features/auth/auth.slice'
 import { useCheckUserTable } from 'app/hooks/auth/useCheckUserTable/useCheckUserTable'
+import { configKey } from 'app/utils/config.util'
 
 const LoginForm = ({ onClick }) => {
   const dispatch = useDispatch()
@@ -24,7 +25,6 @@ const LoginForm = ({ onClick }) => {
 
   const [showPassword, setShowPassword] = useState(false)
   const [isModalOpen, setModalOpen] = useState(false)
-  const [canSendSMS, setCanSendSMS] = useState(true)
   const [password, setPassword] = useState('')
   const [active, setActive] = useState(false)
   const [phone, setPhone] = useState('')
@@ -43,6 +43,8 @@ const LoginForm = ({ onClick }) => {
 
   const { userTable, userAuth, temp } = useSelector((state) => state.auth)
   const { config } = useSelector((store) => store.systemConfig)
+  const can_send_sms =
+    config[configKey.can_send_sms]?.value.toLowerCase() === 'true' ?? false
 
   const isLoading = useMemo(
     () => authLoading || tableLoading || checkLoading,
@@ -136,17 +138,6 @@ const LoginForm = ({ onClick }) => {
     }
   }, [error, dispatch])
 
-  useEffect(() => {
-    if (config?.length > 0) {
-      setCanSendSMS(
-        Boolean(
-          config?.find((i) => i.key === 'can_send_sms').value.toLowerCase() ===
-            'true'
-        )
-      )
-    }
-  }, [config])
-
   return (
     <>
       <form
@@ -215,7 +206,7 @@ const LoginForm = ({ onClick }) => {
           >
             {t("Ro'yxatdan o'tish")}
           </button>
-          {canSendSMS && (
+          {can_send_sms && (
             <button
               type="button"
               className={`cursor-pointer self-start text-sm text-neutral-300 transition-colors hover:text-neutral-100 hover:underline`}

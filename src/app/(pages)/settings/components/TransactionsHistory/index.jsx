@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { fetchPayBalance } from 'app/lib/features/payBalance/payBalance.thunk'
 import { fetchPayExpenses } from 'app/lib/features/payExpense/payExpense.thunk'
+import CabinetTransactionsSkeleton from './Skeleton'
 
 const CabinetTransactionsHistory = () => {
   const { userTable } = useSelector((state) => state.auth)
@@ -51,14 +52,12 @@ const CabinetTransactionsHistory = () => {
       </div>
       {currentTab === TRANSACTIONTABS.BALANCE &&
         (balanceLoading ? (
-          <div className="flex w-full flex-1 items-center justify-center">
-            <div className="loader" />
-          </div>
+          <CabinetTransactionsSkeleton cols={4} />
         ) : (
           <div className="flex h-full w-full flex-col">
             {balance?.length > 0 && <CabinetTransactionsBalanceTable />}
             {balance?.length === 0 && (
-              <p className="fade-in-fast text-center text-neutral-300">
+              <p className="fade-in-fast flex min-h-96 items-center justify-center text-center text-neutral-300">
                 {t('Balans haqida malumot topilmadi!')}
               </p>
             )}
@@ -66,9 +65,7 @@ const CabinetTransactionsHistory = () => {
         ))}
       {currentTab === TRANSACTIONTABS.EXPENSES &&
         (expenseLoading ? (
-          <div className="flex w-full flex-1 items-center justify-center">
-            <div className="loader" />
-          </div>
+          <CabinetTransactionsSkeleton cols={5} />
         ) : (
           <div className="flex h-full w-full flex-col justify-between">
             {expenses?.length > 0 && <CabinetTransactionsExpensesTable />}

@@ -25,6 +25,7 @@ export const teamPlayersExtraReducer = (builder) => {
 
           if (player.position === PLAYERS.GOA) {
             state.GOA.push(player)
+            state.modals[player.id] = false
             if (player.name) {
               state.playersCount.GOA++
               state.duplicatesMap[clubSlug] =
@@ -33,6 +34,7 @@ export const teamPlayersExtraReducer = (builder) => {
           }
           if (player.position === PLAYERS.DEF) {
             state.DEF.push(player)
+            state.modals[player.id] = false
             if (player.name) {
               state.playersCount.DEF++
               state.duplicatesMap[clubSlug] =
@@ -41,6 +43,7 @@ export const teamPlayersExtraReducer = (builder) => {
           }
           if (player.position === PLAYERS.MID) {
             state.MID.push(player)
+            state.modals[player.id] = false
             if (player.name) {
               state.playersCount.MID++
               state.duplicatesMap[clubSlug] =
@@ -49,6 +52,7 @@ export const teamPlayersExtraReducer = (builder) => {
           }
           if (player.position === PLAYERS.STR) {
             state.STR.push(player)
+            state.modals[player.id] = false
             if (player.name) {
               state.playersCount.STR++
               state.duplicatesMap[clubSlug] =

@@ -2,13 +2,13 @@ import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { setModals } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const SwapPlayerButton = ({
   cell,
   handleSwapPlayer,
   teamBalance,
   prevPlayer,
-  handleModal,
 }) => {
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
@@ -20,11 +20,15 @@ const SwapPlayerButton = ({
 
   const condition = teamBalance + prevPlayer.price >= cell.row.original.price
 
+  const toggleModal = () => {
+    dispatch(setModals({ id: prevPlayer.id, value: false }))
+  }
+
   const handleClick = () => {
     if (condition) {
       handleSwapPlayer(cell.row.original)
     } else {
-      handleModal()
+      toggleModal()
       dispatch(setBalanceModal(true))
     }
   }

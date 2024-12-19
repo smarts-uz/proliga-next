@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLanguage } from '../lib/features/systemLanguage/systemLanguage.slice'
@@ -33,7 +35,8 @@ const InitialStateProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getUserAgent()
+    const fetch = async () => await getUserAgent()
+    fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

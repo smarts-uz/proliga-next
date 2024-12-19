@@ -1,14 +1,14 @@
 'use client'
 
+import './globals.css'
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-phone-number-input/style.css'
+import './lib/i18n.config'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import RootProvider from './providers/Root.provider'
 import { DM_Sans } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
-import './globals.css'
-import 'react-toastify/dist/ReactToastify.css'
-import 'react-phone-number-input/style.css'
-import './lib/i18n.config'
 import { useTranslation } from 'react-i18next'
 
 const dmSans = DM_Sans({

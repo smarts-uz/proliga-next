@@ -3,20 +3,23 @@
 import PlayerTransferModal from 'components/PlayerTransferModal'
 import ConfirmationModal from 'components/ConfirmationModal'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { setCurrentPlayer } from 'app/lib/features/players/players.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTeamPlayer } from 'app/lib/features/teamPlayers/teamPlayers.slice'
+import { setModals } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 
 const Player = ({ player }) => {
   const dispatch = useDispatch()
-  const [isModalOpen, setModalOpen] = useState(false)
+  const { modals } = useSelector((store) => store.teamPlayers)
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
   const { currentTeam } = useSelector((state) => state.teams)
 
   const clubPath = player.name ? player?.club_id?.slug : ''
   const firstName = player.name ? player?.name?.split(' ')[0] : ''
   const lastName = player?.name?.split(' ')[1] ?? ''
+
+  const isModalOpen = useMemo(() => modals[player.id], [modals, player?.id])
 
   const imageErr = (e) => {
     e.target.src = '/icons/player.svg'
@@ -31,15 +34,18 @@ const Player = ({ player }) => {
     )
     toggleDeleteModal()
   }
+
   const handleTransfer = () => {
     setCurrentPlayer(player)
     toggleModal()
   }
+
   const toggleDeleteModal = () => {
     setDeleteModalOpen(!isDeleteModalOpen)
   }
+
   const toggleModal = () => {
-    setModalOpen(!isModalOpen)
+    dispatch(setModals({ id: player.id, value: !isModalOpen }))
   }
 
   return (
@@ -66,6 +72,7 @@ const Player = ({ player }) => {
                 width={48}
                 height={48}
                 onError={imageErr}
+                onClick={toggleModal}
                 draggable={false}
                 className="h-full w-full"
               />
@@ -91,7 +98,7 @@ const Player = ({ player }) => {
                   draggable={false}
                   src="/icons/swap.svg"
                   alt="additional info"
-                  className="size-3.5 rounded bg-black p-[1px] hover:opacity-70 xs:size-4 md:size-5 2xl:size-[18px]"
+                  className="size-3.5 rounded bg-black p-[1px] transition-all hover:scale-105 hover:bg-primary xs:size-4 md:size-5 2xl:size-[18px]"
                 />
               </button>
               <div className="flex h-3.5 w-6 cursor-default items-center justify-center rounded bg-white text-center text-[11px] font-bold shadow shadow-neutral-600 xs:h-4 xs:w-8 xs:text-xs md:h-5 md:text-sm">
@@ -103,7 +110,7 @@ const Player = ({ player }) => {
                   height={16}
                   src="/icons/close-red-circle.svg"
                   alt="delete player"
-                  className="size-3.5 rounded hover:opacity-70 xs:size-4 md:size-5 2xl:size-[18px]"
+                  className="size-3.5 rounded transition-all hover:scale-105 hover:bg-white xs:size-4 md:size-5 2xl:size-[18px]"
                 />
               </button>
             </div>
@@ -113,8 +120,7 @@ const Player = ({ player }) => {
       <PlayerTransferModal
         prevPlayer={player}
         isModalOpen={isModalOpen}
-        setModalOpen={setModalOpen}
-        handleModal={toggleModal}
+        setModalOpen={toggleModal}
       />
       <ConfirmationModal
         onConfirm={handleDeletePlayer}

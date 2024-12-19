@@ -25,6 +25,7 @@ const initialState = {
   clubModal: false,
   error: null,
   isLoading: false,
+  modals: {},
 }
 
 const teamPlayersSlice = createSlice({
@@ -42,6 +43,11 @@ const teamPlayersSlice = createSlice({
     setClubModal: (state, action) => {
       state.clubModal = action.payload
     },
+    setModals: (state, action) => {
+      const { id, value } = action.payload
+
+      state.modals[id] = value
+    },
   },
   extraReducers: teamPlayersExtraReducer,
 })
@@ -56,6 +62,7 @@ export const {
   swapTeamPlayer,
   autoAssembleTeam,
   setClubModal,
+  setModals,
 } = teamPlayersSlice.actions
 
 export default teamPlayersSlice.reducer

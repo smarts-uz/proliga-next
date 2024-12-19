@@ -22,7 +22,7 @@ import TransferTableFilters from './Filters'
 
 const columnHelper = createColumnHelper()
 
-function PlayerTable({ prevPlayer, handleModal }) {
+function PlayerTable({ prevPlayer }) {
   const { t } = useTranslation()
   const { lang } = useSelector((state) => state.systemLanguage)
   const [data, setData] = useState([])
@@ -158,7 +158,6 @@ function PlayerTable({ prevPlayer, handleModal }) {
           prevPlayer={prevPlayer}
           table={table}
           flexRender={flexRender}
-          handleModal={handleModal}
         />
       </table>
       <TransferTablePagination table={table} />

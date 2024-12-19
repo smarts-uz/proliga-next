@@ -11,10 +11,10 @@ const Dropdown = () => {
   const { t } = useTranslation()
 
   return (
-    <PopoverContent className="mr-2 mt-4 flex rounded-lg w-56 flex-col gap-3 p-3 2xl:mr-8">
+    <PopoverContent className="mr-2 mt-4 flex w-56 flex-col gap-3 rounded-lg p-3 2xl:mr-8">
       <NavLink href="/championships">
         <Image src="/icons/cup.svg" alt="user" width={24} height={24} />
-        <p> {t('Chempionat')}</p>
+        <p> {t('Chempionatlar')}</p>
       </NavLink>
       {userAuth ? (
         <>

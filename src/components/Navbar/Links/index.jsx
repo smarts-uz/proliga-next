@@ -101,7 +101,7 @@ const PlayLinks = () => {
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('championships') ? active : passive}`}
         href="/championships"
       >
-        {t('Chempionat')}
+        {t('Chempionatlar')}
       </Link>
       <Link
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('prizes') ? active : passive}`}
@@ -113,7 +113,7 @@ const PlayLinks = () => {
         className={`relative transition-all before:absolute before:-bottom-4 before:h-1 before:w-full before:rounded-md before:bg-neutral-100 hover:text-white ${path.includes('regulation') ? active : passive}`}
         href="/regulation"
       >
-        {t('Qoida')}
+        {t('Qoidalar')}
       </Link>
     </section>
   )

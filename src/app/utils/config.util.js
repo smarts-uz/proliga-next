@@ -14,4 +14,7 @@ export const configKey = {
   link_instagram: 'link_instagram',
   link_email: 'link_email',
   can_send_sms: 'can_send_sms',
+  max_transfers: 'max_transfers',
+  max_balance: 'max_balance',
+  max_same_team_players: 'max_save_team_players',
 }

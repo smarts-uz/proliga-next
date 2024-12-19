@@ -556,6 +556,8 @@
   "Boost your team's potential with more players from a single club.": "Jamoangizning salohiyatini bir klubdan ko‘proq o‘yinchi qo‘shib oshiring.",
   "single club player modal info": "Musobaqada g‘olib bo‘lish uchun imkoniyatlaringizni oshiring! Bir jamoadan atigi ikki nafar futbolchi bilan cheklanib qolmang. Endi siz har bir jamoadan yana 3 tagacha o‘yinchi sotib olib, umumiy hisobda 5 futbolchiga ega bo‘lish imkoniyatiga egasiz. Chempionlik sari bir qadam yaqinroq bo‘lish uchun sevimli jamoangizning kuchini to‘liq ishga soling va qo‘shimcha futbolchilar limitini qo‘lga kiriting!",
   "Expand Your Club Roster!": "Bir klubdan o‘yinchilarni klubingiz tarkibiga qo‘shing!",
+  "Chempionatlar": "Chempionatlar",
+  "Chempionatlarga o'tish": "Chempionatlarga o'tish 🏆",
   "Maksimum klub oyi'nchilarini": "Maksimum klub o‘yinchilarini $ ga oshirish",
   "identifikatori bolgan va holatida bolgan oyinchi yaroqsiz": "ID $ bolgan va * pozitsiyasida bolgan oyinchi yaroqsiz",
   "Yangi parol eski parol bilan birhil bolishi mumkin emas": "Yangi parol eski parol bilan birhil bolishi mumkin emas",
@@ -565,5 +567,8 @@
   "Input must contain either Latin or Cyrillic characters.": "Kirish faqat lotin yoki kirill harflarini o‘z ichiga olishi kerak.",
   "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Kiritishda noto‘g‘ri belgilardan foydalanilgan. Faqat lotin, kirill harflari, raqamlar va .-@&$ ruxsat etiladi.",
   "Phone number must start with '+998'.": "Telefon raqami '+998' bilan boshlanishi kerak.",
-  "Bu telefon raqam oldin ro'yxatdan o'tgan": "Bu telefon raqam oldin ro'yxatdan o'tgan"
+  "Bu telefon raqam oldin ro'yxatdan o'tgan": "Bu telefon raqam oldin ro'yxatdan o'tgan",
+  "Max players count reached from the same club!": "Bitta klubdan qatnashuvchi o‘yinchilar sonining maksimal chegarasiga yetildi.",
+  "Website is in test mode": "Veb-sayt test rejimida ishlamoqda",
+  "Sovgalarni ko'rish": "Sovgalarni ko'rish 🎁"
 }
