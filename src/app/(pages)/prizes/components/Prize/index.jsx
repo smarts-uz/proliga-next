@@ -13,7 +13,7 @@ const Prize = ({ prize }) => {
       <p className="mb-1 text-sm md:mb-2 xl:text-base">
         {lang === LANGUAGE.uz ? prize?.name : prize?.name_ru}
       </p>
-      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-white p-1 lg:p-2">
+      <div className="flex aspect-square max-w-56 items-center justify-center overflow-hidden rounded-lg bg-white p-1 lg:p-2 2xl:max-w-64">
         <img
           src={prize?.image}
           loading="lazy"

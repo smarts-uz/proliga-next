@@ -70,7 +70,7 @@ const CabinetTransactionsHistory = () => {
           <div className="flex h-full w-full flex-col justify-between">
             {expenses?.length > 0 && <CabinetTransactionsExpensesTable />}
             {expenses?.length === 0 && (
-              <p className="fade-in-fast text-center text-neutral-300">
+              <p className="fade-in-fast flex min-h-96 items-center justify-center text-center text-neutral-300">
                 {t('Paketlar haqida malumoti topilmadi!')}
               </p>
             )}

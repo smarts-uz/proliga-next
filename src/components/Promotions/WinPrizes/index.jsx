@@ -9,8 +9,6 @@ const PromotionWinPrizes = () => {
   const { t } = useTranslation()
   const { prizes } = useSelector((store) => store.prizes)
 
-  const limitedData = prizes?.filter((prize) => prize?.order === 1).slice(0, 4)
-
   return (
     <section className="w-full bg-neutral-800 py-6 md:py-8 xl:py-10 2xl:py-12">
       <Gutter>
@@ -24,10 +22,12 @@ const PromotionWinPrizes = () => {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {limitedData.map(
-              (prize, index) =>
-                prize?.image && <Prize prize={prize} key={index} />
-            )}
+            {prizes
+              ?.slice(0, 4)
+              .map(
+                (prize, index) =>
+                  prize?.image && <Prize prize={prize} key={index} />
+              )}
           </div>
         </div>
       </Gutter>

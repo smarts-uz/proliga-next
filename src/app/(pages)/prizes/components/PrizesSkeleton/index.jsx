@@ -1,21 +1,16 @@
 'use client'
 import { Skeleton } from '@/components/ui/skeleton'
-import dynamic from 'next/dynamic'
-const PrizeTitle = dynamic(() => import('../PrizesTitle'), {
-  ssr: false,
-  loading: () => <Skeleton className="mb-8 h-12 w-48 bg-neutral-500" />,
-})
 
 export function PrizesSkeleton() {
   return (
-    <div>
-      <PrizeTitle />
+    <>
+      <Skeleton className="mb-8 h-12 w-48 bg-neutral-500" />
       <section className="grid grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2">
         {[...Array(4)].map((_, index) => (
           <CompetitionSkeleton key={index} />
         ))}
       </section>
-    </div>
+    </>
   )
 }
 

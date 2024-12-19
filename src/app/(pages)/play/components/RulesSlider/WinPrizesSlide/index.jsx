@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { LANGUAGE } from 'app/utils/languages.util'
 
 const WinPrizesSlide = () => {
-  const dispatch = useDispatch()
-
+  const { t } = useTranslation()
   const { prizes } = useSelector((store) => store.prizes)
   const { currentCompetition } = useSelector((store) => store.competition)
 
-  const { t } = useTranslation()
   return (
     <div className="flex h-auto flex-col space-y-4 md:space-y-6">
       <div className="space-y-2">
@@ -22,9 +20,8 @@ const WinPrizesSlide = () => {
       <div className="z grid grid-cols-2 grid-rows-2 justify-center gap-2 sm:flex sm:grid-rows-1 md:gap-4 xl:gap-8">
         {prizes.map(
           (prize, index) =>
-            prize?.competition_id.id === currentCompetition.id && (
-              <Prize prize={prize} key={index} />
-            )
+            prize?.competition_id.id === currentCompetition.id &&
+            prize?.is_active && <Prize prize={prize} key={index} />
         )}
       </div>
     </div>
