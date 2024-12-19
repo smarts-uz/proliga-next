@@ -9,25 +9,25 @@ export function GradientButton({
   className,
 }) {
   const baseButtonStyles = cn(
-    'min-w-[160px] h-[48px]',
+    'min-w-40 h-12',
     'relative rounded-md',
     'flex items-center justify-center',
     'text-sm font-bold',
     classes.gradient.transition,
-    // classes.hover.scale,
+    classes.hover.scale,
     classes.hover.shadow
   )
 
   if (variant === 'gradient') {
     return (
-      <GradientBorder>
+      <GradientBorder className={'w-full'}>
         <div className={cn(baseButtonStyles, 'bg-black', className)}>
           <Link
             href={href}
             className={cn(
               classes.gradient.background,
               'bg-clip-text text-transparent',
-              'whitespace-nowrap px-4',
+              'w-full whitespace-nowrap px-5',
               classes.gradient.animate
             )}
           >

@@ -71,15 +71,23 @@ const Footer = () => {
               <SocialLink href={link_telegram} icon="telegram" alt="Telegram" />
             </div>
           </div>
-          {/* <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-            <GradientButton href="/prizes" variant="solid">
-              {"Prizlarni ko'rish 🎁"}
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+            <GradientButton
+              href="/prizes"
+              className={'w-full max-w-56'}
+              variant="solid"
+            >
+              {t("Sovgalarni ko'rish")}
             </GradientButton>
 
-            <GradientButton href="/championships" variant="gradient">
-              {"Chempionatlarga o'tish 🏆"}
+            <GradientButton
+              className={'w-full'}
+              href="/championships"
+              variant="gradient"
+            >
+              {t("Chempionatlarga o'tish")}
             </GradientButton>
-          </div> */}
+          </div>
         </div>
         <Separator className="my-8" />
         <div className="text-muted-foreground text-center text-sm">

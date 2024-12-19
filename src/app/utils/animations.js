@@ -6,9 +6,9 @@ export const gradientAnimationClasses = {
     transition: 'transition-all duration-300 ease-in-out',
   },
   hover: {
-    scale: 'hover:scale-[101deg]',
+    scale: 'hover:scale-[105deg]',
     glow: 'hover:animate-pulse',
-    animate: 'animate-gradient',
+    animate: 'animate-gradient-x',
     shadow: 'hover:shadow-xl hover:shadow-pink-500/20',
   },
 }
