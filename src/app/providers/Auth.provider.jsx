@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth, setUserTable } from '../lib/features/auth/auth.slice'
 import { usePathname, useRouter } from 'next/navigation'
+import { useRefreshUserTable } from 'app/hooks/user/useRefreshUserTable/useRefreshUserTable'
 
 const AuthProvider = ({ children }) => {
   const dispatch = useDispatch()
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const router = useRouter()
 
   const { userAuth, userTable } = useSelector((state) => state.auth)
+  const { refreshUserTable } = useRefreshUserTable()
 
   useEffect(() => {
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL.slice(8, 28)

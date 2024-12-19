@@ -18,15 +18,22 @@ const Navbar = () => {
   const path = usePathname()
   const [isModalOpen, setModalOpen] = useState(false)
   const { t } = useTranslation()
+  const NEXT_PUBLIC_TEST_NAV_SLIDER = Boolean(
+    process.env.NEXT_PUBLIC_TEST_NAV_SLIDER ?? ''
+  )
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 pb-3 backdrop-blur-md">
-        <TestModeSlider
-          text={t('Website is in test mode')}
-          speed="slow"
-          className="mb-3"
-        />
+      <nav
+        className={`fixed left-0 right-0 top-0 z-20 w-screen bg-black bg-opacity-80 backdrop-blur-md ${NEXT_PUBLIC_TEST_NAV_SLIDER ? 'pb-3' : 'py-4'}`}
+      >
+        {NEXT_PUBLIC_TEST_NAV_SLIDER && (
+          <TestModeSlider
+            text={t('Website is in test mode')}
+            speed="slow"
+            className="mb-3"
+          />
+        )}
         <Gutter>
           <div className="flex w-full items-center justify-between text-white">
             <Link

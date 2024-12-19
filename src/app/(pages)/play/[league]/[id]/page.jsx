@@ -18,13 +18,9 @@ import { fetchAdditionalPlayers } from 'app/lib/features/players/players.thunk'
 
 const Play = ({ params }) => {
   const dispatch = useDispatch()
-  const { gameTab, isLoading: tourLoading } = useSelector(
-    (state) => state.tours
-  )
-  const { competition, isLoading } = useSelector((state) => state.competition)
-  const { currentTeam, isLoading: teamLoading } = useSelector(
-    (state) => state.currentTeam
-  )
+  const { gameTab } = useSelector((state) => state.tours)
+  const { competition } = useSelector((state) => state.competition)
+  const { currentTeam } = useSelector((state) => state.currentTeam)
   const { players } = useSelector((state) => state.players)
   const countOfPlayers = useMemo(
     () => [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000],
@@ -33,8 +29,17 @@ const Play = ({ params }) => {
 
   useEffect(() => {
     dispatch(fetchCompetition())
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(fetchSeason())
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(fetchPackages())
+  }, [dispatch])
+
+  useEffect(() => {
     dispatch(fetchBanners())
   }, [dispatch])
 
@@ -42,7 +47,7 @@ const Play = ({ params }) => {
     if (competition?.length > 0) {
       dispatch(setCurrentCompetition(params.league))
     }
-  }, [dispatch, params.league, competition])
+  }, [dispatch, params.league, competition?.length])
 
   useEffect(() => {
     dispatch(setLastVisitedTeam(`${params.league}/${params.id}`))
@@ -55,9 +60,14 @@ const Play = ({ params }) => {
           competition_id: currentTeam.competition_id.id,
         })
       )
+    }
+  }, [dispatch, currentTeam?.competition_id?.id])
+
+  useEffect(() => {
+    if (currentTeam?.competition_id?.id) {
       dispatch(fetchClubs({ competition_id: currentTeam.competition_id.id }))
     }
-  }, [dispatch, currentTeam])
+  }, [dispatch, currentTeam?.competition_id?.id])
 
   useEffect(() => {
     if (currentTeam?.competition_id?.id) {
@@ -72,8 +82,7 @@ const Play = ({ params }) => {
         }
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentTeam, countOfPlayers])
+  }, [dispatch, currentTeam, countOfPlayers, players?.length])
 
   return (
     <>

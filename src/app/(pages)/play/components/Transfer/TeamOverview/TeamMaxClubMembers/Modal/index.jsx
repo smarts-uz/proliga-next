@@ -58,6 +58,7 @@ const TeamMaxClubMembersModal = () => {
                   <CardContent className="bg-neutral-900 p-0">
                     <Link
                       href={`/confirm-payment/${item.id}`}
+                      onClick={() => dispatch(setClubModal(false))}
                       className="block"
                     >
                       <Button
