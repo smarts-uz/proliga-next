@@ -22,7 +22,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
-import { fetchTeamPlayers } from 'app/lib/features/teamPlayers/teamPlayers.thunk'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -51,7 +50,6 @@ const TransferStadiumForm = () => {
     updateTourTeam,
     isLoading: tourTeamLoading,
     error: tourTeamError,
-    data: tourTeamData,
   } = useUpdateTourTeam()
   const {
     generateTeamPlayers,
@@ -152,12 +150,6 @@ const TransferStadiumForm = () => {
   useEffect(() => {
     if (active) {
       if (!error && !isLoading) {
-        dispatch(
-          fetchTeamPlayers({
-            team_id: currentTeam?.id,
-            tour_id: currentTour.id,
-          })
-        )
         dispatch(setTab(TABS.GameProfile))
         toast.success(t('Jamoa muvaffaqiyatli yangilandi'), { theme: 'dark' })
         setActive(false)
