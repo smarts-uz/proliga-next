@@ -57,6 +57,7 @@ const TeamMaxTransfersModal = () => {
                     <Link
                       href={`/confirm-payment/${transfer.id}`}
                       className="block"
+                      onClick={() => dispatch(setTransferModal(false))}
                     >
                       <Button
                         variant="ghost"
