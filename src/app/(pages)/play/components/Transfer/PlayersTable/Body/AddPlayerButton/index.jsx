@@ -1,7 +1,11 @@
 'use client'
+
 import Image from 'next/image'
-import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
 import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
+import { configKey } from 'app/utils/config.util'
+import { useTranslation } from 'react-i18next'
 
 const AddPlayerButton = ({
   cell,
@@ -10,13 +14,28 @@ const AddPlayerButton = ({
   teamBalance,
   totalPlayersCount,
 }) => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const condition = teamBalance >= cell.row.original.price
   const isPlayerInTeam = team.find((p) => p.name === cell.getValue())
+  const { currentTeam } = useSelector((store) => store.currentTeam)
+  const { config } = useSelector((store) => store.systemConfig)
+
+  const transfer_show_modals =
+    config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
+  const max_balance = +config[configKey.max_balance]?.value
 
   const handleClick = () => {
-    if (condition) handleAddPlayer(cell.row.original)
-    else dispatch(setBalanceModal(true))
+    if (condition) {
+      handleAddPlayer(cell.row.original)
+    } else {
+      if (currentTeam?.balance === max_balance) {
+        toast.info(t('Max balance has been reached!'), { theme: 'dark' })
+      } else {
+        toast.info(t('Not enough balance.'), { theme: 'dark' })
+        transfer_show_modals && dispatch(setBalanceModal(true))
+      }
+    }
   }
 
   if (isPlayerInTeam) {

@@ -22,6 +22,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { setTransferModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { getCorrentPlayerPosition } from 'app/utils/getCorrectPlayerPosition.utils'
+import { configKey } from 'app/utils/config.util'
 
 const TransferStadiumForm = () => {
   const { t } = useTranslation()
@@ -37,6 +38,10 @@ const TransferStadiumForm = () => {
   const { lang } = useSelector((state) => state.systemLanguage)
   const { currentTour } = useSelector((state) => state.tours)
   const { currentTourTeam } = useSelector((state) => state.tourTeams)
+  const { config } = useSelector((store) => store.systemConfig)
+
+  const transfer_show_modals =
+    config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -111,7 +116,7 @@ const TransferStadiumForm = () => {
     const countOfTransfers = difference.length ?? 0
 
     if (
-      currentTeam.is_team_created &&
+      currentTeam?.is_team_created &&
       currentTeam?.transfers_from_one_team <
         countOfTransfers + currentTourTeam?.current_count_of_transfers
     ) {
@@ -119,7 +124,7 @@ const TransferStadiumForm = () => {
         theme: 'dark',
       })
       dispatch(revertTeamPlayers())
-      dispatch(setTransferModal(true))
+      transfer_show_modals && dispatch(setTransferModal(true))
       return
     }
 

@@ -5,6 +5,7 @@ import { setBalanceModal } from 'app/lib/features/currentTeam/currentTeam.slice'
 import { setModals } from 'app/lib/features/teamPlayers/teamPlayers.slice'
 import { configKey } from 'app/utils/config.util'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 const SwapPlayerButton = ({
   cell,
@@ -12,6 +13,7 @@ const SwapPlayerButton = ({
   teamBalance,
   prevPlayer,
 }) => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { GOA, DEF, MID, STR } = useSelector((store) => store.teamPlayers)
   const { currentTeam } = useSelector((store) => store.currentTeam)
@@ -40,6 +42,7 @@ const SwapPlayerButton = ({
         toggleModal()
         toast.info(t('Max balance has been reached!'), { theme: 'dark' })
       } else {
+        toast.info(t('Not enough balance.'), { theme: 'dark' })
         toggleModal()
         transfer_show_modals && dispatch(setBalanceModal(true))
       }
