@@ -21,8 +21,6 @@ const SwapPlayerButton = ({
   const transfer_show_modals =
     config[configKey.transfer_show_modals]?.value?.toLowerCase() === 'true'
 
-  console.log(max_balance)
-
   const teamConcat = useMemo(
     () => GOA.concat(DEF, MID, STR),
     [GOA, DEF, MID, STR]
@@ -33,7 +31,6 @@ const SwapPlayerButton = ({
   const toggleModal = () => {
     dispatch(setModals({ id: prevPlayer.id, value: false }))
   }
-  console.log(currentTeam?.balance)
 
   const handleClick = () => {
     if (condition) {

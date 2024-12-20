@@ -11,7 +11,7 @@ import TournamentSkeleton from './Skeleton'
 const Tournament = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(1)
+  const [perPage, setPerPage] = useState(12)
   const { currentCompetition, isLoading: competitionLoading } = useSelector(
     (store) => store.competition
   )

@@ -20,9 +20,28 @@ function TournamentTable({ currentTour }) {
   const { allTeams } = useSelector((store) => store.teams)
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
   const { tours } = useSelector((store) => store.tours)
-  const tour = useMemo(
-    () => tours.find((tour) => tour?.id === currentTour),
-    [tours, currentTour]
+
+  const registeredTour = useMemo(
+    () => tours.find((t) => t.id === currentTourTeam?.tour_id),
+    [tours, currentTourTeam?.tour_id]
+  )
+
+  const curTour = useMemo(
+    () => tours.find((t) => t.id === currentTour),
+    [currentTour, tours]
+  )
+
+  const curTourTeam = useMemo(
+    () =>
+      Boolean(
+        allTeams.find((team) => team?.team?.id === currentTourTeam?.team?.id)
+      ),
+    [allTeams, currentTourTeam]
+  )
+
+  const toursCondition = useMemo(
+    () => registeredTour?.order <= curTour?.order,
+    [curTour?.order, registeredTour?.order]
   )
 
   const [sorting, setSorting] = useState([
@@ -78,7 +97,7 @@ function TournamentTable({ currentTour }) {
       <TransferTableBody
         table={table}
         flexRender={flexRender}
-        showTourTeam={false}
+        showTourTeam={!curTourTeam && toursCondition}
         currentTourTeam={currentTourTeam}
       />
     </table>
