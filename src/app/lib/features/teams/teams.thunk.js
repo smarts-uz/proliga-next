@@ -24,7 +24,7 @@ export const fetchAllTeams = createAsyncThunk(
 
     const { data, error } = await supabase
       .from('tour_team')
-      .select('*, user_id(name), team(*)')
+      .select('*, user_id(name), team(*), tour_id(id, order))')
       .eq('season_id', season_id)
       .eq('competition_id', competition_id)
       .eq('tour_id', tour_id)

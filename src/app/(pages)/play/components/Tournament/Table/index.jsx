@@ -15,17 +15,16 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 const columnHelper = createColumnHelper()
 
-function TournamentTable() {
+function TournamentTable({ currentTour }) {
   const { t } = useTranslation()
   const { allTeams } = useSelector((store) => store.teams)
   const { currentTourTeam } = useSelector((store) => store.tourTeams)
-  const curTourTeam = useMemo(
-    () =>
-      Boolean(
-        allTeams.find((team) => team?.team?.id === currentTourTeam?.team?.id)
-      ),
-    [allTeams, currentTourTeam]
+  const { tours } = useSelector((store) => store.tours)
+  const tour = useMemo(
+    () => tours.find((tour) => tour?.id === currentTour),
+    [tours, currentTour]
   )
+
   const [sorting, setSorting] = useState([
     {
       id: 'hammasi',
@@ -79,7 +78,7 @@ function TournamentTable() {
       <TransferTableBody
         table={table}
         flexRender={flexRender}
-        tableCurrentTourTeam={curTourTeam}
+        showTourTeam={false}
         currentTourTeam={currentTourTeam}
       />
     </table>

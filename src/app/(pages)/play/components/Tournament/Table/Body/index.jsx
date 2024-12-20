@@ -6,11 +6,11 @@ const TransferTableBody = ({
   table,
   flexRender,
   currentTourTeam,
-  tableCurrentTourTeam,
+  showTourTeam,
 }) => {
-  const topThreeTeam = 'border-l-red-600 border-l-2 md:border-l-4'
-  const topTenTeam = 'border-l-yellow-600 border-l-2 md:border-l-4'
-  const matchingTeam = 'border-l-blue-600 border-l-2 md:border-l-4'
+  const topThreeTeam = 'border-l-red-500 border-l-2 md:border-l-4'
+  const topTenTeam = 'border-l-yellow-500 border-l-2 md:border-l-4'
+  const matchingTeam = 'border-l-blue-500 border-l-2 md:border-l-4'
   const { currentCompetition } = useSelector((store) => store.competition)
   const { currentTeam } = useSelector((store) => store.currentTeam)
 
@@ -44,7 +44,7 @@ const TransferTableBody = ({
           ))}
         </tr>
       ))}
-      {!tableCurrentTourTeam && (
+      {showTourTeam && (
         <TournamentTableCurrentTeamRow
           currentCompetition={currentCompetition}
           currentTourTeam={currentTourTeam}

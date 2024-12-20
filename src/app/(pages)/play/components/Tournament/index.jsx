@@ -11,7 +11,7 @@ import TournamentSkeleton from './Skeleton'
 const Tournament = () => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(0)
-  const [perPage, setPerPage] = useState(12)
+  const [perPage, setPerPage] = useState(1)
   const { currentCompetition, isLoading: competitionLoading } = useSelector(
     (store) => store.competition
   )
@@ -56,7 +56,7 @@ const Tournament = () => {
     <section className="flex w-full flex-col gap-2 lg:flex-row">
       <div className="flex h-full min-h-[40rem] w-full flex-1 table-auto flex-col overflow-x-auto rounded-xl bg-black px-2 py-4 text-neutral-200 xs:px-3 md:p-5 lg:w-2/3">
         <TournamentSelectedTour setTour={setTour} tour={tour} />
-        <TournamentTable />
+        <TournamentTable currentTour={tour} />
         <TournamentPagination
           incrementPage={incrementPage}
           decrementPage={decrementPage}

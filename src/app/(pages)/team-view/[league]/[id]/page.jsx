@@ -28,6 +28,18 @@ const Play = ({ params }) => {
   const { competition } = useSelector((store) => store.competition)
 
   useEffect(() => {
+    dispatch(fetchCompetition())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(fetchSeason())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(fetchBanners())
+  }, [dispatch])
+
+  useEffect(() => {
     if (params?.id) {
       dispatch(fetchSelectedTeam({ id: params.id }))
     }
@@ -35,29 +47,23 @@ const Play = ({ params }) => {
 
   useEffect(() => {
     if (currentTeam && +currentTeam?.id === +params.id) {
-      const fetch = async () => {
-        dispatch(
-          fetchTeamViewTours({
-            competition_id: currentTeam.competition_id.id,
-            registered_tour_id: currentTeam.registered_tour_id,
-          })
-        )
-      }
-      fetch()
+      dispatch(
+        fetchTeamViewTours({
+          competition_id: currentTeam.competition_id.id,
+          registered_tour_id: currentTeam.registered_tour_id,
+        })
+      )
     }
   }, [currentTeam, dispatch, params])
 
   useEffect(() => {
-    if (Boolean(params?.id && currentTour?.id)) {
-      const fetch = async () => {
-        dispatch(
-          fetchTeamPlayers({
-            team_id: params?.id,
-            tour_id: currentTour.id,
-          })
-        )
-      }
-      fetch()
+    if (params?.id && currentTour?.id) {
+      dispatch(
+        fetchTeamPlayers({
+          team_id: params?.id,
+          tour_id: currentTour.id,
+        })
+      )
     }
   }, [params, currentTour, dispatch])
 
@@ -94,12 +100,6 @@ const Play = ({ params }) => {
   }, [dispatch, currentTeam, params])
 
   useEffect(() => {
-    dispatch(fetchCompetition())
-    dispatch(fetchSeason())
-    dispatch(fetchBanners())
-  }, [dispatch])
-
-  useEffect(() => {
     if (competition?.length > 0) {
       dispatch(setCurrentCompetition(params.league))
     }
@@ -107,14 +107,11 @@ const Play = ({ params }) => {
 
   useEffect(() => {
     if (params.id) {
-      const fetch = async () => {
-        dispatch(
-          fetchTourTeams({
-            team_id: params.id,
-          })
-        )
-      }
-      fetch()
+      dispatch(
+        fetchTourTeams({
+          team_id: params.id,
+        })
+      )
     }
   }, [params.id, currentTour, dispatch, currentTeam])
 
