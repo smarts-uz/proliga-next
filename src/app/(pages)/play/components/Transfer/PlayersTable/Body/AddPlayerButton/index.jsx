@@ -41,7 +41,7 @@ const AddPlayerButton = ({
   if (isPlayerInTeam) {
     return (
       <td
-        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-0.5 xs:p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -57,7 +57,7 @@ const AddPlayerButton = ({
   } else if (!isPlayerInTeam && totalPlayersCount < 11) {
     return (
       <td
-        className="fade-in-fast flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-0.5 xs:p-1 md:w-auto"
         key={cell.column.id}
         onClick={handleClick}
       >
@@ -74,7 +74,7 @@ const AddPlayerButton = ({
   } else if (!isPlayerInTeam && totalPlayersCount >= 11) {
     return (
       <td
-        className="fade-in-fast flex size-4 h-full w-full cursor-pointer items-center justify-center p-1 md:w-auto"
+        className="fade-in-fast flex h-full w-full cursor-pointer items-center justify-center p-0.5 xs:p-1 md:w-auto"
         key={cell.column.id}
       >
         <Image
@@ -82,7 +82,7 @@ const AddPlayerButton = ({
           alt="plus"
           width={24}
           draggable={false}
-          className={`filter-neutral-400 size-5 h-full w-full select-none opacity-80 sm:size-6`}
+          className={`filter-neutral-400 size-5 h-full select-none opacity-80 sm:size-6`}
           height={24}
         />
       </td>

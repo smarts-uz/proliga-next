@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { toast } from 'react-toastify'
+import { validateTeamName } from 'app/utils/validateTeamName.util'
 
 const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
   const [title, setTitle] = useState('')
@@ -34,7 +34,7 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const isValid = validateString(title, t)
+    const isValid = validateTeamName(title, t)
 
     if (!isValid) return
 
@@ -72,19 +72,32 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
 
   return (
     <Dialog onOpenChange={toggleModal} open={isModalOpen}>
-      <DialogContent className="lg:max-w-max-w-[32rem] flex max-w-[96%] flex-col items-center justify-between gap-4 rounded-md bg-neutral-950 px-4 py-6 text-neutral-100 xs:max-w-[90%] sm:max-w-96 md:max-w-[28rem] md:p-6 2xl:max-w-[36rem]">
-        <DialogTitle className="w-full text-lg font-semibold text-neutral-50 xs:text-xl lg:text-2xl">
-          {t('Jamoa yarating')}
-        </DialogTitle>
+      <DialogContent className="flex max-w-[95%] flex-col items-center justify-between gap-4 rounded-lg border border-neutral-50/25 bg-gradient-to-br from-blue-950 to-red-950 px-4 py-6 text-white shadow-xl transition-all duration-300 ease-in-out sm:max-w-[28rem] md:gap-6 md:px-6 md:py-8 lg:max-w-[32rem] 2xl:max-w-[36rem]">
+        <div className="w-full text-center">
+          <Image
+            src="/favicon.svg"
+            width={48}
+            height={48}
+            alt="Soccer Ball"
+            draggable={false}
+            className="mx-auto mb-2 md:mb-4"
+          />
+          <DialogTitle className="text-xl font-bold text-yellow-400 xs:text-2xl sm:text-3xl lg:text-4xl">
+            {t('Jamoa yarating')}
+          </DialogTitle>
+          <DialogDescription className="mt-1 text-sm text-yellow-100 sm:mt-2 sm:text-base">
+            {t('Join the league and lead your team to victory!')}
+          </DialogDescription>
+        </div>
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="flex w-full flex-col gap-2"
+          className="flex w-full flex-col gap-3 sm:gap-4"
           id="team-create"
           name="team-create"
         >
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label
-              className="text-sm text-neutral-200 md:text-base"
+              className="text-sm font-semibold text-yellow-200/80 sm:text-base"
               htmlFor="team-title"
             >
               {t('Jamoa Ismi')}
@@ -94,13 +107,13 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
               id="team-title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder={t('Jamoangizni nomi')}
-              className="h-10 w-full rounded border-neutral-700 bg-transparent p-2"
+              placeholder={t('Enter your team name')}
+              className="h-10 w-full rounded-md border-2 border-yellow-700 bg-gray-800 bg-opacity-50 p-2 text-sm text-neutral-50 placeholder-yellow-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 sm:h-12 sm:p-3 sm:text-base"
             />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label
-              className="text-sm text-neutral-200 md:text-base"
+              className="text-sm font-semibold text-yellow-200/80 sm:text-base"
               htmlFor="formation"
             >
               {t('Taktika')}
@@ -109,12 +122,16 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
               defaultValue={FORMATIONS['4-3-3']}
               onValueChange={(value) => setFormation(value)}
             >
-              <SelectTrigger className="h-10 w-full rounded border border-neutral-700 bg-neutral-800 bg-transparent p-2 outline-none">
+              <SelectTrigger className="h-10 w-full rounded-md border-2 border-yellow-700 bg-neutral-800/50 bg-opacity-50 p-2 text-sm text-white outline-none focus:border-yellow-500/50 focus:ring-2 focus:ring-yellow-500 sm:h-12 sm:p-3 sm:text-base">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-neutral-800 text-white">
                 {Object.keys(FORMATIONS).map((key, index) => (
-                  <SelectItem value={FORMATIONS[key]} key={index}>
+                  <SelectItem
+                    value={FORMATIONS[key]}
+                    key={index}
+                    className="hover:bg-neutral-700"
+                  >
                     {key}
                   </SelectItem>
                 ))}
@@ -124,7 +141,7 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="mt-2 rounded border border-primary bg-black py-2 text-white hover:bg-opacity-80 hover:text-primary"
+            className="mt-2 rounded-md bg-yellow-600 py-2 text-base font-bold text-white transition-all hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 sm:mt-4 sm:py-3 sm:text-lg"
           >
             {isLoading ? (
               <Image
@@ -132,62 +149,16 @@ const CompetitionModal = ({ toggleModal, competition, isModalOpen }) => {
                 width={24}
                 height={24}
                 alt="loading"
-                className="filter-neutral-50 mx-auto size-6 animate-spin"
+                className="mx-auto size-5 animate-spin invert sm:size-6"
               />
             ) : (
-              <>{t('Saqlash')}</>
+              <>{t('Tasdiqlash')}</>
             )}
           </button>
         </form>
-        <DialogDescription className="hidden">Jamoa yaratish</DialogDescription>
       </DialogContent>
     </Dialog>
   )
-}
-
-function validateString(input, t) {
-  if (input.length === 0) {
-    toast.warning(t('Input cannot be empty.'), { theme: 'dark' })
-    return false
-  }
-  if (input.length > 20) {
-    toast.warning(t('Input must be 20 characters or less.'), { theme: 'dark' })
-    return false
-  }
-
-  const latinRegex = /[a-zA-Z]/
-  const cyrillicRegex = /\p{Script=Cyrillic}/u
-  const validCharsRegex = /^[\p{Script=Cyrillic}a-zA-Z0-9.\-@_&$]+$/u
-
-  if (latinRegex.test(input) && cyrillicRegex.test(input)) {
-    toast.warning(
-      t('Input must contain either Latin or Cyrillic characters, not both.'),
-      { theme: 'dark' }
-    )
-    return false
-  }
-
-  if (!latinRegex.test(input) && !cyrillicRegex.test(input)) {
-    toast.warning(
-      t('Input must contain either Latin or Cyrillic characters.'),
-      {
-        theme: 'dark',
-      }
-    )
-    return false
-  }
-
-  if (!validCharsRegex.test(input)) {
-    toast.warning(
-      t(
-        'Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.'
-      ),
-      { theme: 'dark' }
-    )
-    return false
-  }
-
-  return true
 }
 
 export default CompetitionModal
