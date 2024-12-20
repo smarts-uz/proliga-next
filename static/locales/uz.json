@@ -571,5 +571,10 @@
   "Max players count reached from the same club!": "Bitta klubdan qatnashuvchi o‘yinchilar sonining maksimal chegarasiga yetildi.",
   "Website is in test mode": "Veb-sayt test rejimida ishlamoqda",
   "Sovgalarni ko'rish": "Sovgalarni ko'rish 🎁",
-  "Hozircha yutuqlar yoq": "Hozircha yutuqlar yoq"
+  "Hozircha yutuqlar yoq": "Hozircha yutuqlar yoq",
+  "Max transfers count reached!": "Maksimal transferlar soni yetildi!",
+  "Max balance has been reached!": "Maksimal balansga erishildi!",
+  "This league is not active.": "Bu liga hozirda faol emas.",
+  "You cannot register in this league": "Ushbu ligada ro‘yxatdan o‘tish hozircha mumkin emas.",
+  "Jamoa yaratish mumkin emas": "Jamoa yaratish hozircha mumkin emas."
 }

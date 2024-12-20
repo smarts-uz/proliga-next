@@ -8,7 +8,7 @@ export const fetchCompetition = createAsyncThunk(
       .from('competition')
       .select('*')
       .is('deleted_at', null)
-      .order("id")
+      .order('order')
 
     return { data, error }
   }
