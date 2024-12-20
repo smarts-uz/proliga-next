@@ -460,7 +460,6 @@
   "identifikatori": "Identifikato'ri",
   "Kapitan tanlang": "Kapitan tanlang",
   "Oyinchi muvaffaqiyatli o'zgartirildi!": "Oyinchi muvaffaqiyatli o'zgartirildi!",
-  "Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!": "Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!",
   "Foydalanuvchi autentifikatsiya qilinmagan": "Foydalanuvchi autentifikatsiya qilinmagan",
   "SMS muvaffaqiyatli yuborildi": "SMS muvaffaqiyatli yuborildi",
   "Xarajatlar": "Xarajatlar",
@@ -475,6 +474,7 @@
   "Tizim topilmadi": "Tizim topilmadi",
   "Gol Assist": "Gol Assist",
   "Players": "O`yinchilar",
+  "Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!": "Sizning tarifingizda ushbu klubdan dan oshiq $ oyinchi qo'shib bo'lmaydi!",
   "Test ni tanlang!": "Test ni tanlang!",
   "Joriy paket yo‘q!": "Joriy paket yo‘q!",
   "To‘lov varianti topilmadi!": "To‘lov varianti topilmadi!",
@@ -576,5 +576,6 @@
   "Max balance has been reached!": "Maksimal balansga erishildi!",
   "This league is not active.": "Bu liga hozirda faol emas.",
   "You cannot register in this league": "Ushbu ligada ro‘yxatdan o‘tish hozircha mumkin emas.",
-  "Jamoa yaratish mumkin emas": "Jamoa yaratish hozircha mumkin emas."
+  "Jamoa yaratish mumkin emas": "Jamoa yaratish hozircha mumkin emas.",
+  "Not enough balance.": "Balans yetarli emas."
 }

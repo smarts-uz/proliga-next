@@ -460,7 +460,6 @@
   "identifikatori": "Игрок с идентификатором",
   "Kapitan tanlang": "Выберите капитана",
   "Oyinchi muvaffaqiyatli o'zgartirildi!": "Успешно изменен игрок!",
-  "Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!": "Нельзя добавить $ игроков из этого клуба!",
   "Foydalanuvchi autentifikatsiya qilinmagan": "Пользователь не аутентифицирован",
   "SMS muvaffaqiyatli yuborildi": "СМС отправлен успешно",
   "Xarajatlar": "Платежи",
@@ -475,6 +474,7 @@
   "Tizim topilmadi": "Система не найдена",
   "Gol Assist": "Гол Ассист",
   "Players": "Игроков",
+  "Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!": "Нельзя добавить больше чем $ игроков из этого клуба в вашем тарифе!",
   "Test ni tanlang!": "Выберите тест!",
   "Joriy paket yo‘q!": "Текущий пакет отсутствует!",
   "To‘lov varianti topilmadi!": "Вариант оплаты не найден!",
@@ -576,5 +576,6 @@
   "Max balance has been reached!": "Достигнут максимальный баланс!",
   "This league is not active.": "Эта лига ещё не активна.",
   "You cannot register in this league": "Регистрация в этой лиге пока не доступно.",
-  "Jamoa yaratish mumkin emas": "Создание команды пока не доступно."
+  "Jamoa yaratish mumkin emas": "Создание команды пока не доступно.",
+  "Not enough balance.": "Недостаточно средств."
 }
