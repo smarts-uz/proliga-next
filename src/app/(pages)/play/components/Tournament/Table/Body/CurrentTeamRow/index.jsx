@@ -8,7 +8,7 @@ const TournamentTableCurrentTeamRow = ({
     <tr
       className={`mx-auto border-b border-l-2 border-neutral-700 border-l-blue-600 bg-neutral-900 text-center odd:bg-stone-950 hover:bg-neutral-800 md:border-l-4 md:text-start`}
     >
-      <td className={`h-min w-min px-0.5 capitalize md:w-auto`}>
+      <td className={`h-8 w-min px-0.5 capitalize md:w-auto`}>
         <Link
           href={`/team-view/${currentCompetition?.slug}/${currentTourTeam.team?.id ?? 0}`}
         >

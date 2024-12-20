@@ -47,47 +47,35 @@ const CurrentTab = ({ currentTab, paramsId }) => {
 
   useEffect(() => {
     if (userAuth && userTable?.id && paramsId) {
-      const fetch = async () => {
-        dispatch(fetchCurrentTeam({ id: paramsId, user_id: userTable?.id }))
-      }
-      fetch()
+      dispatch(fetchCurrentTeam({ id: paramsId, user_id: userTable?.id }))
     }
   }, [userAuth, paramsId, userTable, dispatch])
 
   useEffect(() => {
     if (paramsId && currentTour?.id) {
-      const fetch = async () => {
-        dispatch(
-          fetchTeamPlayers({
-            team_id: paramsId,
-            tour_id: currentTour.id,
-          })
-        )
-      }
-      fetch()
+      dispatch(
+        fetchTeamPlayers({
+          team_id: paramsId,
+          tour_id: currentTour.id,
+        })
+      )
     }
   }, [paramsId, userTable, currentTour, dispatch])
 
   useEffect(() => {
     if (paramsId) {
-      const fetch = async () => {
-        dispatch(fetchTourTeams({ team_id: paramsId }))
-      }
-      fetch()
+      dispatch(fetchTourTeams({ team_id: paramsId }))
     }
   }, [paramsId, userTable, currentTour, dispatch])
 
   useEffect(() => {
     if (currentTeam?.competition_id) {
-      const fetch = async () => {
-        dispatch(
-          fetchTours({
-            competition_id: currentTeam.competition_id.id,
-            registered_tour_id: currentTeam?.registered_tour_id,
-          })
-        )
-      }
-      fetch()
+      dispatch(
+        fetchTours({
+          competition_id: currentTeam.competition_id.id,
+          registered_tour_id: currentTeam?.registered_tour_id,
+        })
+      )
     }
   }, [currentTeam, dispatch])
 
