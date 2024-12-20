@@ -58,7 +58,7 @@ const Championships = () => {
     <>
       <AnimatedBackground />
       <Gutter>
-        <section className="mb-4 mt-8 min-h-96 w-full rounded-lg bg-neutral-900 p-6 shadow shadow-neutral-400 md:mt-6 md:min-h-44">
+        <section className="mb-4 mt-8 min-h-96 w-full rounded-lg bg-gradient-to-br from-neutral-900/80 to-neutral-950 p-5 shadow shadow-neutral-400 md:mt-6 md:min-h-44">
           {isLoading ? (
             <Skeleton className="mb-4 h-8 w-48" />
           ) : (

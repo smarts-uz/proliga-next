@@ -11,7 +11,8 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
       '/app.png',
     [currentPlayer?.slug]
   )
-
+  const club = `${process.env.NEXT_PUBLIC_STATIC_URL}/club-jpeg/${currentPlayer?.club?.slug}/logo.jpeg`
+  console.log(club)
   return (
     <DialogTitle className="flex gap-2 md:gap-4">
       <img
@@ -29,7 +30,7 @@ const PlayerPhoto = ({ currentPlayer, position }) => {
         </h3>
         <div className="flex items-center gap-2 text-neutral-100">
           <img
-            src={`/club-jpeg/${currentPlayer?.club?.slug}/logo.jpeg`}
+            src={`${process.env.NEXT_PUBLIC_STATIC_URL}/club-jpeg/${currentPlayer?.club?.slug}/logo.jpeg`}
             alt="home club"
             width={48}
             height={48}
