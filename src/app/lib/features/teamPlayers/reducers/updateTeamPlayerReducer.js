@@ -2,9 +2,16 @@ import { PLAYERS } from 'app/utils/players.util'
 import { toast } from 'react-toastify'
 
 export const updateTeamPlayerReducer = (state, action) => {
-  const { player, team, teamConcat, t} = action.payload
+  const {
+    player,
+    team,
+    teamConcat,
+    t,
+    max_same_team_players,
+    transfer_show_modals,
+  } = action.payload
   const maxTeamPlayers = team.transfers_from_one_team ?? 2
-  
+
   const calcTeamPrice = () => {
     state.teamPrice =
       state.GOA.reduce((acc, player) => acc + player.price, 0) +
@@ -44,21 +51,35 @@ export const updateTeamPlayerReducer = (state, action) => {
   const existingPlayer = teamConcat.find((p) => p.player_id === player.id)
 
   if (existingPlayer) {
-    toast.warning(t("Ushbu oyinchi allaqachon oyinda!"))
+    toast.warning(t('Ushbu oyinchi allaqachon oyinda!'))
     return state
   }
 
   const clubId = player?.club?.id || player.club_id.id
 
-  if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
-    toast.warning(
-      (t("Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!").replace("$", maxTeamPlayers)),
-      { theme: 'dark' }
-    )
-    state.clubModal = true
+  const playerId = player.id
+
+  if (state.duplicatesMap[clubId] === max_same_team_players) {
+    toast.warning(t('Max players count reached from the same club!'), {
+      theme: 'dark',
+    })
+    state.modals[playerId] = false
     return state
   }
-  
+
+  if (state.duplicatesMap[clubId] > maxTeamPlayers - 1) {
+    toast.warning(
+      t("Ushbu klubdan $ ta oyinchi qo'shib bo'lmaydi!").replace(
+        '$',
+        maxTeamPlayers
+      ),
+      { theme: 'dark' }
+    )
+    state.modals[playerId] = false
+    state.clubModal = transfer_show_modals && true
+    return state
+  }
+
   if (
     state.GOA.length > 0 &&
     player.position === PLAYERS.GOA &&
