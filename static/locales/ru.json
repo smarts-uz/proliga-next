@@ -580,5 +580,7 @@
   "Join the league and lead your team to victory!": "Присоединяйтесь к лиге и ведите свою команду к победе!",
   "Enter your team name": "Введите название вашей команды",
   "Input must contain either Latin or Cyrillic characters, not both.": "Ввод должен содержать либо латинские, либо кириллические символы, но не одновременно.",
-  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры и .-@_&$."
+  "Available": "Доступные",
+  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Ввод содержит недопустимые символы. Разрешены только латинские, кириллические буквы, цифры и .-@_&$.",
+  "Registration Ended": "Регистрация завершена"
 }

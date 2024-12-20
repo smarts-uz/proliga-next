@@ -580,5 +580,7 @@
   "Join the league and lead your team to victory!": "Ligaga qo‘shiling va jamoangizni g‘alabaga yetaklang!",
   "Enter your team name": "Jamoangiz nomini kiriting",
   "Input must contain either Latin or Cyrillic characters, not both.": "Kiritish faqat lotin yoki kirill harflarini o‘z ichiga olishi kerak, ikkalasi birga emas.",
-  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Kiritishda noto‘g‘ri belgilar bor. Faqat lotin, kirill harflari, raqamlar va .-@_&$ belgilariga ruxsat beriladi."
+  "Available": "Mavjud",
+  "Input contains invalid characters. Only Latin, Cyrillic, numbers, and .-@_&$ are allowed.": "Kiritishda noto‘g‘ri belgilar bor. Faqat lotin, kirill harflari, raqamlar va .-@_&$ belgilariga ruxsat beriladi.",
+  "Registration Ended": "Ro‘yxatdan o‘tish yakunlandi"
 }
